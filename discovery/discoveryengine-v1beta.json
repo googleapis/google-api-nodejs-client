@@ -210,6 +210,31 @@
       "resources": {
         "locations": {
           "methods": {
+            "getAclConfig": {
+              "description": "Gets the AclConfig.",
+              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/aclConfig",
+              "httpMethod": "GET",
+              "id": "discoveryengine.projects.locations.getAclConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of AclConfig, such as `projects/*/locations/*/aclConfig`. If the caller does not have permission to access the AclConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/aclConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaAclConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "getCmekConfig": {
               "description": "Gets the CmekConfig.",
               "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/cmekConfig",
@@ -314,6 +339,34 @@
               },
               "response": {
                 "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "updateAclConfig": {
+              "description": "Default ACL configuration for use in a location of a customer's project. Updates will only reflect to new data stores. Existing data stores will still use the old value.",
+              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/aclConfig",
+              "httpMethod": "PATCH",
+              "id": "discoveryengine.projects.locations.updateAclConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Immutable. The full resource name of the acl configuration. Format: `projects/{project}/locations/{location}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/aclConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaAclConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaAclConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -528,6 +581,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1beta/{+name}/operations",
@@ -1167,6 +1225,11 @@
                                   "description": "The standard list page token.",
                                   "location": "query",
                                   "type": "string"
+                                },
+                                "returnPartialSuccess": {
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "location": "query",
+                                  "type": "boolean"
                                 }
                               },
                               "path": "v1beta/{+name}/operations",
@@ -1715,6 +1778,11 @@
                                   "description": "The standard list page token.",
                                   "location": "query",
                                   "type": "string"
+                                },
+                                "returnPartialSuccess": {
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "location": "query",
+                                  "type": "boolean"
                                 }
                               },
                               "path": "v1beta/{+name}/operations",
@@ -1787,6 +1855,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1beta/{+name}/operations",
@@ -2013,6 +2086,11 @@
                                   "description": "The standard list page token.",
                                   "location": "query",
                                   "type": "string"
+                                },
+                                "returnPartialSuccess": {
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "location": "query",
+                                  "type": "boolean"
                                 }
                               },
                               "path": "v1beta/{+name}/operations",
@@ -2674,6 +2752,11 @@
                                   "description": "The standard list page token.",
                                   "location": "query",
                                   "type": "string"
+                                },
+                                "returnPartialSuccess": {
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "location": "query",
+                                  "type": "boolean"
                                 }
                               },
                               "path": "v1beta/{+name}/operations",
@@ -3006,6 +3089,11 @@
                                       "description": "The standard list page token.",
                                       "location": "query",
                                       "type": "string"
+                                    },
+                                    "returnPartialSuccess": {
+                                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                      "location": "query",
+                                      "type": "boolean"
                                     }
                                   },
                                   "path": "v1beta/{+name}/operations",
@@ -4026,6 +4114,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1beta/{+name}/operations",
@@ -4535,6 +4628,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1beta/{+name}/operations",
@@ -5146,6 +5244,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1beta/{+name}/operations",
@@ -5665,6 +5768,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1beta/{+name}/operations",
@@ -5737,6 +5845,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1beta/{+name}/operations",
@@ -7365,6 +7478,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1beta/{+name}/operations",
@@ -7437,6 +7555,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta/{+name}/operations",
@@ -8132,6 +8255,11 @@
                   "description": "The standard list page token.",
                   "location": "query",
                   "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta/{+name}/operations",
@@ -8147,7 +8275,7 @@
       }
     }
   },
-  "revision": "20250816",
+  "revision": "20250924",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GdataBlobstore2Info": {
@@ -8993,6 +9121,53 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1AclConfig": {
+      "description": "Access Control Configuration.",
+      "id": "GoogleCloudDiscoveryengineV1AclConfig",
+      "properties": {
+        "idpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1IdpConfig",
+          "description": "Identity provider config."
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the acl configuration. Format: `projects/{project}/locations/{location}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ActionConfig": {
+      "description": "Informations to support actions on the connector.",
+      "id": "GoogleCloudDiscoveryengineV1ActionConfig",
+      "properties": {
+        "actionParams": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Action parameters in structured json format.",
+          "type": "object"
+        },
+        "isActionConfigured": {
+          "description": "Output only. The connector contains the necessary parameters and is configured to support actions.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "jsonActionParams": {
+          "description": "Optional. Action parameters in json string format.",
+          "type": "string"
+        },
+        "serviceName": {
+          "description": "Optional. The Service Directory resource name (projects/*/locations/*/namespaces/*/services/*) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.",
+          "type": "string"
+        },
+        "useStaticSecrets": {
+          "description": "Optional. Whether to use static secrets for the connector. If true, the secrets provided in the action_params will be ignored.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig": {
       "description": "Configuration data for advance site search.",
       "id": "GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig",
@@ -9004,6 +9179,49 @@
         "disableInitialIndex": {
           "description": "If set true, initial indexing is disabled for the DataStore.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AlertPolicyConfig": {
+      "description": "The connector level alert config.",
+      "id": "GoogleCloudDiscoveryengineV1AlertPolicyConfig",
+      "properties": {
+        "alertEnrollments": {
+          "description": "Optional. The enrollment states of each alert.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AlertPolicyConfigAlertEnrollment"
+          },
+          "type": "array"
+        },
+        "alertPolicyName": {
+          "description": "Immutable. The fully qualified resource name of the AlertPolicy.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AlertPolicyConfigAlertEnrollment": {
+      "description": "The alert enrollment status.",
+      "id": "GoogleCloudDiscoveryengineV1AlertPolicyConfigAlertEnrollment",
+      "properties": {
+        "alertId": {
+          "description": "Immutable. The id of an alert.",
+          "type": "string"
+        },
+        "enrollState": {
+          "description": "Required. The enrollment status of a customer.",
+          "enum": [
+            "ENROLL_STATES_UNSPECIFIED",
+            "ENROLLED",
+            "DECLINED"
+          ],
+          "enumDescriptions": [
+            "Default value. Used for customers who have not responded to the alert policy.",
+            "Customer is enrolled in this policy.",
+            "Customer declined this policy."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -9114,6 +9332,10 @@
             "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase"
           },
           "type": "array"
+        },
+        "modelArmorConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyModelArmorConfig",
+          "description": "Optional. Model Armor configuration to be used for sanitizing user prompts and assistant responses."
         }
       },
       "type": "object"
@@ -9142,6 +9364,35 @@
         },
         "phrase": {
           "description": "Required. The raw string content to be banned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyModelArmorConfig": {
+      "description": "Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and assistant responses.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyModelArmorConfig",
+      "properties": {
+        "failureMode": {
+          "description": "Optional. Defines the failure mode for Model Armor sanitization.",
+          "enum": [
+            "FAILURE_MODE_UNSPECIFIED",
+            "FAIL_OPEN",
+            "FAIL_CLOSED"
+          ],
+          "enumDescriptions": [
+            "Unspecified failure mode, default behavior is `FAIL_CLOSED`.",
+            "In case of a Model Armor processing failure, the request is allowed to proceed without any changes.",
+            "In case of a Model Armor processing failure, the request is rejected."
+          ],
+          "type": "string"
+        },
+        "responseTemplate": {
+          "description": "Optional. The resource name of the Model Armor template for sanitizing assistant responses. Format: `projects/{project}/locations/{location}/templates/{template_id}` If not specified, no sanitization will be applied to the assistant response.",
+          "type": "string"
+        },
+        "userPromptTemplate": {
+          "description": "Optional. The resource name of the Model Armor template for sanitizing user prompts. Format: `projects/{project}/locations/{location}/templates/{template_id}` If not specified, no sanitization will be applied to the user prompt.",
           "type": "string"
         }
       },
@@ -9196,6 +9447,39 @@
           "description": "The list of tools with corresponding tool information.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1AssistantToolInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1BAPConfig": {
+      "description": "The configuration for the BAP connector.",
+      "id": "GoogleCloudDiscoveryengineV1BAPConfig",
+      "properties": {
+        "enabledActions": {
+          "description": "Optional. The actions enabled on the associated BAP connection.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "supportedConnectorModes": {
+          "description": "Required. The supported connector modes for the associated BAP connection.",
+          "items": {
+            "enum": [
+              "CONNECTOR_MODE_UNSPECIFIED",
+              "DATA_INGESTION",
+              "ACTIONS",
+              "END_USER_AUTHENTICATION"
+            ],
+            "enumDescriptions": [
+              "Connector mode unspecified.",
+              "Connector utilized for data ingestion.",
+              "Connector utilized for Actions",
+              "Connector utilized for End User Authentication."
+            ],
+            "type": "string"
           },
           "type": "array"
         }
@@ -9344,7 +9628,8 @@
             "DELETE_FAILED",
             "UNUSABLE",
             "ACTIVE_ROTATING",
-            "DELETED"
+            "DELETED",
+            "EXPIRED"
           ],
           "enumDescriptions": [
             "The CmekConfig state is unknown.",
@@ -9355,9 +9640,31 @@
             "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
             "The KMS key version is being rotated.",
-            "The KMS key is soft deleted. Some cleanup policy will eventually be applied."
+            "The KMS key is soft deleted. Some cleanup policy will eventually be applied.",
+            "The KMS key is expired, meaning the key has been disabled for 30+ days. The customer can call DeleteCmekConfig to change the state to DELETED."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1Collection": {
+      "description": "Collection is a container for configuring resources and access to a set of DataStores.",
+      "id": "GoogleCloudDiscoveryengineV1Collection",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp the Collection was created at.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The Collection display name. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the Collection. Format: `projects/{project}/locations/{location}/collections/{collection_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
@@ -9735,6 +10042,491 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1DataConnector": {
+      "description": "Manages the connection to external data sources for all data stores grouped under a Collection. It's a singleton resource of Collection. The initialization is only supported through DataConnectorService.SetUpDataConnector method, which will create a new Collection and initialize its DataConnector.",
+      "id": "GoogleCloudDiscoveryengineV1DataConnector",
+      "properties": {
+        "aclEnabled": {
+          "description": "Optional. Whether the connector will be created with an ACL config. Currently this field only affects Cloud Storage and BigQuery connectors.",
+          "type": "boolean"
+        },
+        "actionConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1ActionConfig",
+          "description": "Optional. Action configurations to make the connector support actions."
+        },
+        "actionState": {
+          "description": "Output only. State of the action connector. This reflects whether the action connector is initializing, active or has encountered errors.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "RUNNING",
+            "WARNING",
+            "INITIALIZATION_FAILED",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The connector is being set up.",
+            "The connector is successfully set up and awaiting next sync run.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is actively syncing records from the data source.",
+            "The connector has completed a sync run, but encountered non-fatal errors.",
+            "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
+            "Connector is in the process of an update."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "alertPolicyConfigs": {
+          "description": "Optional. The connector level alert config.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AlertPolicyConfig"
+          },
+          "type": "array"
+        },
+        "autoRunDisabled": {
+          "description": "Optional. Indicates whether the connector is disabled for auto run. It can be used to pause periodical and real time sync. Update: with the introduction of incremental_sync_disabled, auto_run_disabled is used to pause/disable only full syncs",
+          "type": "boolean"
+        },
+        "bapConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1BAPConfig",
+          "description": "Optional. The configuration for establishing a BAP connection."
+        },
+        "blockingReasons": {
+          "description": "Output only. User actions that must be completed before the connector can start syncing data.",
+          "items": {
+            "enum": [
+              "BLOCKING_REASON_UNSPECIFIED",
+              "ALLOWLIST_STATIC_IP",
+              "ALLOWLIST_IN_SERVICE_ATTACHMENT",
+              "ALLOWLIST_SERVICE_ACCOUNT"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Connector requires customer to allowlist static IPs.",
+              "Connector requires customer to allowlist our project in their service attachment.",
+              "Connector requires customer to allowlist service account in their project."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "connectorModes": {
+          "description": "Optional. The modes enabled for this connector. Default state is CONNECTOR_MODE_UNSPECIFIED.",
+          "items": {
+            "enum": [
+              "CONNECTOR_MODE_UNSPECIFIED",
+              "DATA_INGESTION",
+              "ACTIONS",
+              "FEDERATED",
+              "EUA",
+              "FEDERATED_AND_EUA"
+            ],
+            "enumDescriptions": [
+              "Connector mode unspecified.",
+              "Connector utilized for data ingestion.",
+              "Connector utilized for actions.",
+              "Connector utilized for federated search.",
+              "Connector utilized for End User Authentication.",
+              "Hybrid connector utilized for federated search and End User Authentication."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "connectorType": {
+          "description": "Output only. The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is not mutable once set by system.",
+          "enum": [
+            "CONNECTOR_TYPE_UNSPECIFIED",
+            "THIRD_PARTY",
+            "GCP_FHIR",
+            "BIG_QUERY",
+            "GCS",
+            "GOOGLE_MAIL",
+            "GOOGLE_CALENDAR",
+            "GOOGLE_DRIVE",
+            "NATIVE_CLOUD_IDENTITY",
+            "THIRD_PARTY_FEDERATED",
+            "THIRD_PARTY_EUA",
+            "GCNV"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Third party connector to connector to third party application.",
+            "Data connector connects between FHIR store and VAIS datastore.",
+            "Big query connector.",
+            "Google Cloud Storage connector.",
+            "Gmail connector.",
+            "Google Calendar connector.",
+            "Google Drive connector.",
+            "Native Cloud Identity connector for people search powered by People API.",
+            "Federated connector, it is a third party connector that doesn't ingestion data, and search is powered by third party application's API.",
+            "Connector utilized for End User Authentication features.",
+            "Google Cloud NetApp Volumes connector."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "createEuaSaas": {
+          "description": "Optional. Whether the END USER AUTHENTICATION connector is created in SaaS.",
+          "type": "boolean"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp the DataConnector was created at.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataSource": {
+          "description": "Required. The name of the data source. Supported values: `salesforce`, `jira`, `confluence`, `bigquery`.",
+          "type": "string"
+        },
+        "destinationConfigs": {
+          "description": "Optional. Any target destinations used to connect to third-party services.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1DestinationConfig"
+          },
+          "type": "array"
+        },
+        "endUserConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataConnectorEndUserConfig",
+          "description": "Optional. Any params and credentials used specifically for EUA connectors."
+        },
+        "entities": {
+          "description": "List of entities from the connected data source to ingest.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1DataConnectorSourceEntity"
+          },
+          "type": "array"
+        },
+        "errors": {
+          "description": "Output only. The errors from initialization or from the latest connector run.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "federatedConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataConnectorFederatedConfig",
+          "description": "Optional. Any params and credentials used specifically for hybrid connectors supporting FEDERATED mode. This field should only be set if the connector is a hybrid connector and we want to enable FEDERATED mode."
+        },
+        "hybridIngestionDisabled": {
+          "description": "Optional. If the connector is a hybrid connector, determines whether ingestion is enabled and appropriate resources are provisioned during connector creation. If the connector is not a hybrid connector, this field is ignored.",
+          "type": "boolean"
+        },
+        "identityRefreshInterval": {
+          "deprecated": true,
+          "description": "The refresh interval to sync the Access Control List information for the documents ingested by this connector. If not set, the access control list will be refreshed at the default interval of 30 minutes. The identity refresh interval can be at least 30 minutes and at most 7 days.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "identityScheduleConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1IdentityScheduleConfig",
+          "description": "The configuration for the identity data synchronization runs. This contains the refresh interval to sync the Access Control List information for the documents ingested by this connector."
+        },
+        "incrementalRefreshInterval": {
+          "description": "Optional. The refresh interval specifically for incremental data syncs. If unset, incremental syncs will use the default from env, set to 3hrs. The minimum is 30 minutes and maximum is 7 days. Applicable to only 3P connectors. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "incrementalSyncDisabled": {
+          "description": "Optional. Indicates whether incremental syncs are paused for this connector. This is independent of auto_run_disabled. Applicable to only 3P connectors. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled, i.e. set to true.",
+          "type": "boolean"
+        },
+        "jsonParams": {
+          "description": "Required data connector parameters in json string format.",
+          "type": "string"
+        },
+        "kmsKeyName": {
+          "description": "Input only. The KMS key to be used to protect the DataStores managed by this connector. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the DataStores created by this connector will be protected by the KMS key.",
+          "type": "string"
+        },
+        "lastSyncTime": {
+          "description": "Output only. For periodic connectors only, the last time a data sync was completed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "latestPauseTime": {
+          "description": "Output only. The most recent timestamp when this DataConnector was paused, affecting all functionalities such as data synchronization. Pausing a connector has the following effects: - All functionalities, including data synchronization, are halted. - Any ongoing data synchronization job will be canceled. - No future data synchronization runs will be scheduled nor can be triggered.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The full resource name of the Data Connector. Format: `projects/*/locations/*/collections/*/dataConnector`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextSyncTime": {
+          "$ref": "GoogleTypeDateTime",
+          "description": "Defines the scheduled time for the next data synchronization. This field requires hour , minute, and time_zone from the [IANA Time Zone Database](https://www.iana.org/time-zones). This is utilized when the data connector has a refresh interval greater than 1 day. When the hours or minutes are not specified, we will assume a sync time of 0:00. The user must provide a time zone to avoid ambiguity."
+        },
+        "params": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required data connector parameters in structured json format.",
+          "type": "object"
+        },
+        "privateConnectivityProjectId": {
+          "description": "Output only. The tenant project ID associated with private connectivity connectors. This project must be allowlisted by in order for the connector to function.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "realtimeState": {
+          "description": "Output only. real-time sync state",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "RUNNING",
+            "WARNING",
+            "INITIALIZATION_FAILED",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The connector is being set up.",
+            "The connector is successfully set up and awaiting next sync run.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is actively syncing records from the data source.",
+            "The connector has completed a sync run, but encountered non-fatal errors.",
+            "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
+            "Connector is in the process of an update."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "realtimeSyncConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfig",
+          "description": "Optional. The configuration for realtime sync."
+        },
+        "refreshInterval": {
+          "description": "Required. The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "removeParamKeys": {
+          "description": "Optional. Specifies keys to be removed from the 'params' field. This is only active when 'params' is included in the 'update_mask' in an UpdateDataConnectorRequest. Deletion takes precedence if a key is both in 'remove_param_keys' and present in the 'params' field of the request.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. State of the connector.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "RUNNING",
+            "WARNING",
+            "INITIALIZATION_FAILED",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The connector is being set up.",
+            "The connector is successfully set up and awaiting next sync run.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is actively syncing records from the data source.",
+            "The connector has completed a sync run, but encountered non-fatal errors.",
+            "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
+            "Connector is in the process of an update."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "staticIpAddresses": {
+          "description": "Output only. The static IP addresses used by this connector.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "staticIpEnabled": {
+          "description": "Optional. Whether customer has enabled static IP addresses for this connector.",
+          "type": "boolean"
+        },
+        "syncMode": {
+          "description": "The data synchronization mode supported by the data connector.",
+          "enum": [
+            "PERIODIC",
+            "STREAMING",
+            "UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "The connector will sync data periodically based on the refresh_interval. Use it with auto_run_disabled to pause the periodic sync, or indicate a one-time sync.",
+            "The data will be synced in real time.",
+            "Connector that doesn't ingest data will have this value"
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp the DataConnector was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataConnectorEndUserConfig": {
+      "description": "Any params and credentials used specifically for EUA connectors.",
+      "id": "GoogleCloudDiscoveryengineV1DataConnectorEndUserConfig",
+      "properties": {
+        "additionalParams": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Any additional parameters needed for EUA.",
+          "type": "object"
+        },
+        "authParams": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Any authentication parameters specific to EUA connectors.",
+          "type": "object"
+        },
+        "jsonAuthParams": {
+          "description": "Optional. Any authentication parameters specific to EUA connectors in json string format.",
+          "type": "string"
+        },
+        "tenant": {
+          "$ref": "GoogleCloudDiscoveryengineV1Tenant",
+          "description": "Optional. The tenant project the connector is connected to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataConnectorFederatedConfig": {
+      "description": "Any params and credentials used specifically for hybrid connectors supporting FEDERATED mode.",
+      "id": "GoogleCloudDiscoveryengineV1DataConnectorFederatedConfig",
+      "properties": {
+        "additionalParams": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Any additional parameters needed for FEDERATED.",
+          "type": "object"
+        },
+        "authParams": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Any authentication parameters specific to FEDERATED connectors.",
+          "type": "object"
+        },
+        "jsonAuthParams": {
+          "description": "Optional. Any authentication parameters specific to FEDERATED connectors in json string format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfig": {
+      "description": "The configuration for realtime sync to store additional params for realtime sync.",
+      "id": "GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfig",
+      "properties": {
+        "realtimeSyncSecret": {
+          "description": "Optional. The ID of the Secret Manager secret used for webhook secret.",
+          "type": "string"
+        },
+        "streamingError": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfigStreamingError",
+          "description": "Optional. Streaming error details."
+        },
+        "webhookUri": {
+          "description": "Optional. Webhook url for the connector to specify additional params for realtime sync.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfigStreamingError": {
+      "description": "Streaming error details.",
+      "id": "GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfigStreamingError",
+      "properties": {
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Optional. Error details."
+        },
+        "streamingErrorReason": {
+          "description": "Optional. Streaming error.",
+          "enum": [
+            "STREAMING_ERROR_REASON_UNSPECIFIED",
+            "STREAMING_SETUP_ERROR",
+            "STREAMING_SYNC_ERROR",
+            "INGRESS_ENDPOINT_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Streaming error reason unspecified.",
+            "Some error occurred while setting up resources for realtime sync.",
+            "Some error was encountered while running realtime sync for the connector.",
+            "Ingress endpoint is required when setting up realtime sync in private connectivity."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataConnectorSourceEntity": {
+      "description": "Represents an entity in the data source. For example, the `Account` object in Salesforce.",
+      "id": "GoogleCloudDiscoveryengineV1DataConnectorSourceEntity",
+      "properties": {
+        "dataStore": {
+          "description": "Output only. The full resource name of the associated data store for the source entity. Format: `projects/*/locations/*/collections/*/dataStores/*`. When the connector is initialized by the DataConnectorService.SetUpDataConnector method, a DataStore is automatically created for each source entity.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "entityName": {
+          "description": "The name of the entity. Supported values by data source: * Salesforce: `Lead`, `Opportunity`, `Contact`, `Account`, `Case`, `Contract`, `Campaign` * Jira: `Issue` * Confluence: `Content`, `Space`",
+          "type": "string"
+        },
+        "healthcareFhirConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1HealthcareFhirConfig",
+          "description": "Optional. Configuration for `HEALTHCARE_FHIR` vertical."
+        },
+        "jsonParams": {
+          "description": "The parameters for the entity to facilitate data ingestion in json string format.",
+          "type": "string"
+        },
+        "keyPropertyMappings": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Attributes for indexing. Key: Field name. Value: The key property to map a field to, such as `title`, and `description`. Supported key properties: * `title`: The title for data record. This would be displayed on search results. * `description`: The description for data record. This would be displayed on search results.",
+          "type": "object"
+        },
+        "params": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The parameters for the entity to facilitate data ingestion in structured json format.",
+          "type": "object"
+        },
+        "startingSchema": {
+          "$ref": "GoogleCloudDiscoveryengineV1Schema",
+          "description": "Optional. The start schema to use for the DataStore created from this SourceEntity. If unset, a default vertical specialized schema will be used. This field is only used by SetUpDataConnector API, and will be ignored if used in other APIs. This field will be omitted from all API responses including GetDataConnector API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema)."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1DataStore": {
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1DataStore",
@@ -9756,6 +10548,20 @@
           "$ref": "GoogleCloudDiscoveryengineV1CmekConfig",
           "description": "Output only. CMEK-related information for the DataStore.",
           "readOnly": true
+        },
+        "configurableBillingApproach": {
+          "description": "Optional. Configuration for configurable billing approach. See go/vais-repricing-billing-dd for more details, only apply to non-Spark UCS Search.",
+          "enum": [
+            "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED",
+            "CONFIGURABLE_SUBSCRIPTION_INDEXING_CORE",
+            "CONFIGURABLE_CONSUMPTION_EMBEDDING"
+          ],
+          "enumDescriptions": [
+            "Default value. For Spark and non-Spark non-configurable billing approach.",
+            "Use the subscription base + overage billing for indexing core for non embedding storage.",
+            "Use the consumption pay-as-you-go billing for embedding storage add-on."
+          ],
+          "type": "string"
         },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
@@ -9931,6 +10737,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1DeleteCollectionMetadata": {
+      "description": "Metadata related to the progress of the CollectionService.UpdateCollection operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1DeleteCollectionMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1DeleteDataStoreMetadata": {
       "description": "Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1DeleteDataStoreMetadata",
@@ -10029,6 +10852,52 @@
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DestinationConfig": {
+      "description": "Defines target endpoints used to connect to third-party sources.",
+      "id": "GoogleCloudDiscoveryengineV1DestinationConfig",
+      "properties": {
+        "destinations": {
+          "description": "Optional. The destinations for the corresponding key.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1DestinationConfigDestination"
+          },
+          "type": "array"
+        },
+        "jsonParams": {
+          "description": "Additional parameters for this destination config in json string format.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Optional. Unique destination identifier that is supported by the connector.",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Additional parameters for this destination config in structured json format.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DestinationConfigDestination": {
+      "description": "Defines a target endpoint",
+      "id": "GoogleCloudDiscoveryengineV1DestinationConfigDestination",
+      "properties": {
+        "host": {
+          "description": "Publicly routable host.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Optional. Target port number accepted by the destination.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -10227,6 +11096,18 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1Engine",
       "properties": {
+        "appType": {
+          "description": "Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.",
+          "enum": [
+            "APP_TYPE_UNSPECIFIED",
+            "APP_TYPE_INTRANET"
+          ],
+          "enumDescriptions": [
+            "All non specified apps.",
+            "App type for intranet search and Agentspace."
+          ],
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -10239,6 +11120,18 @@
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
+        },
+        "configurableBillingApproach": {
+          "description": "Optional. Configuration for configurable billing approach. See go/vais-repricing-billing-dd for more details.",
+          "enum": [
+            "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED",
+            "CONFIGURABLE_BILLING_APPROACH_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. For Spark and non-Spark non-configurable billing approach. General pricing model.",
+            "The billing approach follows configurations specified by customer."
+          ],
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. Timestamp the Recommendation Engine was created at.",
@@ -10275,7 +11168,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload`",
           "type": "object"
         },
         "industryVertical": {
@@ -10561,6 +11454,58 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1IdentityScheduleConfig": {
+      "description": "The configuration for the identity data synchronization runs.",
+      "id": "GoogleCloudDiscoveryengineV1IdentityScheduleConfig",
+      "properties": {
+        "nextSyncTime": {
+          "$ref": "GoogleTypeDateTime",
+          "description": "Optional. The UTC time when the next data sync is expected to start for the Data Connector. Customers are only able to specify the hour and minute to schedule the data sync. This is utilized when the data connector has a refresh interval greater than 1 day."
+        },
+        "refreshInterval": {
+          "description": "Optional. The refresh interval to sync the Access Control List information for the documents ingested by this connector. If not set, the access control list will be refreshed at the default interval of 30 minutes. The identity refresh interval can be at least 30 minutes and at most 7 days.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1IdpConfig": {
+      "description": "Identity Provider Config.",
+      "id": "GoogleCloudDiscoveryengineV1IdpConfig",
+      "properties": {
+        "externalIdpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig",
+          "description": "External Identity provider config."
+        },
+        "idpType": {
+          "description": "Identity provider type configured.",
+          "enum": [
+            "IDP_TYPE_UNSPECIFIED",
+            "GSUITE",
+            "THIRD_PARTY"
+          ],
+          "enumDescriptions": [
+            "Default value. ACL search not enabled.",
+            "Google 1P provider.",
+            "Third party provider."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig": {
+      "description": "Third party IDP Config.",
+      "id": "GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig",
+      "properties": {
+        "workforcePoolName": {
+          "description": "Workforce pool name. Example: \"locations/global/workforcePools/pool_id\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsMetadata": {
       "description": "Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsMetadata",
@@ -10787,6 +11732,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "customerProvidedConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig",
+          "description": "Optional. Customer provided configurations."
+        },
         "name": {
           "description": "Output only. Full resource name of the project, for example `projects/{project}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
           "readOnly": true,
@@ -10805,6 +11754,43 @@
           "description": "Output only. A map of terms of services. The key is the `id` of ServiceTerms.",
           "readOnly": true,
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig": {
+      "description": "Customer provided configurations.",
+      "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig",
+      "properties": {
+        "notebooklmConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfig",
+          "description": "Optional. Configuration for NotebookLM settings."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfig": {
+      "description": "Configuration for NotebookLM.",
+      "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfig",
+      "properties": {
+        "modelArmorConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
+          "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig": {
+      "description": "Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.",
+      "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
+      "properties": {
+        "responseTemplate": {
+          "description": "Optional. The resource name of the Model Armor Template for sanitizing LLM responses. Format: projects/{project}/locations/{location}/templates/{template_id} If not specified, no sanitization will be applied to the LLM response.",
+          "type": "string"
+        },
+        "userPromptTemplate": {
+          "description": "Optional. The resource name of the Model Armor Template for sanitizing user prompts. Format: projects/{project}/locations/{location}/templates/{template_id} If not specified, no sanitization will be applied to the user prompt.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11383,6 +12369,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1SetUpDataConnectorMetadata": {
+      "description": "Metadata for DataConnectorService.SetUpDataConnector method.",
+      "id": "GoogleCloudDiscoveryengineV1SetUpDataConnectorMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1SingleRegionKey": {
       "description": "Metadata for single-regional CMEKs.",
       "id": "GoogleCloudDiscoveryengineV1SingleRegionKey",
@@ -11545,6 +12537,25 @@
         "totalRequiredQuota": {
           "description": "This number is an estimation on how much total quota this project needs to successfully complete indexing.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1Tenant": {
+      "description": "Tenant information for a connector source. This includes some of the same information stored in the Credential message, but is limited to only what is needed to provide a list of accessible tenants to the user.",
+      "id": "GoogleCloudDiscoveryengineV1Tenant",
+      "properties": {
+        "displayName": {
+          "description": "Optional display name for the tenant, e.g. \"My Slack Team\".",
+          "type": "string"
+        },
+        "id": {
+          "description": "The tenant's instance ID. Examples: Jira (\"8594f221-9797-5f78-1fa4-485e198d7cd0\"), Slack (\"T123456\").",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of the tenant, if applicable. For example, the URI of a Jira instance is https://my-jira-instance.atlassian.net, and a Slack tenant does not have a URI.",
           "type": "string"
         }
       },
@@ -11779,13 +12790,17 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Required. Params needed to support actions in the format of (Key, Value) pairs. Required parameters for sources that support OAUTH, i.e. `gmail`, `google_calendar`, `jira`, `workday`, `salesforce`, `confluence`: * Key: `client_id` * Value: type STRING. The client ID for the service provider to identify your application. * Key: `client_secret` * Value:type STRING. The client secret generated by the application's authorization server.",
+          "description": "Optional. Action parameters in structured json format.",
           "type": "object"
         },
         "isActionConfigured": {
           "description": "Output only. The connector contains the necessary parameters and is configured to support actions.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "jsonActionParams": {
+          "description": "Optional. Action parameters in json string format.",
+          "type": "string"
         },
         "serviceName": {
           "description": "Optional. The Service Directory resource name (projects/*/locations/*/namespaces/*/services/*) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.",
@@ -12484,6 +13499,13 @@
       "description": "The configuration for the BAP connector.",
       "id": "GoogleCloudDiscoveryengineV1alphaBAPConfig",
       "properties": {
+        "enabledActions": {
+          "description": "Optional. The actions enabled on the associated BAP connection.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "supportedConnectorModes": {
           "description": "Required. The supported connector modes for the associated BAP connection.",
           "items": {
@@ -12648,7 +13670,8 @@
             "DELETE_FAILED",
             "UNUSABLE",
             "ACTIVE_ROTATING",
-            "DELETED"
+            "DELETED",
+            "EXPIRED"
           ],
           "enumDescriptions": [
             "The CmekConfig state is unknown.",
@@ -12659,7 +13682,8 @@
             "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
             "The KMS key version is being rotated.",
-            "The KMS key is soft deleted. Some cleanup policy will eventually be applied."
+            "The KMS key is soft deleted. Some cleanup policy will eventually be applied.",
+            "The KMS key is expired, meaning the key has been disabled for 30+ days. The customer can call DeleteCmekConfig to change the state to DELETED."
           ],
           "readOnly": true,
           "type": "string"
@@ -13375,12 +14399,14 @@
             "enum": [
               "BLOCKING_REASON_UNSPECIFIED",
               "ALLOWLIST_STATIC_IP",
-              "ALLOWLIST_IN_SERVICE_ATTACHMENT"
+              "ALLOWLIST_IN_SERVICE_ATTACHMENT",
+              "ALLOWLIST_SERVICE_ACCOUNT"
             ],
             "enumDescriptions": [
               "Default value.",
               "Connector requires customer to allowlist static IPs.",
-              "Connector requires customer to allowlist our project in their service attachment."
+              "Connector requires customer to allowlist our project in their service attachment.",
+              "Connector requires customer to allowlist service account in their project."
             ],
             "type": "string"
           },
@@ -13483,6 +14509,10 @@
           "readOnly": true,
           "type": "array"
         },
+        "federatedConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataConnectorFederatedConfig",
+          "description": "Optional. Any params and credentials used specifically for hybrid connectors supporting FEDERATED mode. This field should only be set if the connector is a hybrid connector and we want to enable FEDERATED mode."
+        },
         "hybridIngestionDisabled": {
           "description": "Optional. If the connector is a hybrid connector, determines whether ingestion is enabled and appropriate resources are provisioned during connector creation. If the connector is not a hybrid connector, this field is ignored.",
           "type": "boolean"
@@ -13505,6 +14535,10 @@
         "incrementalSyncDisabled": {
           "description": "Optional. Indicates whether incremental syncs are paused for this connector. This is independent of auto_run_disabled. Applicable to only 3P connectors. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled, i.e. set to true.",
           "type": "boolean"
+        },
+        "jsonParams": {
+          "description": "Required data connector parameters in json string format.",
+          "type": "string"
         },
         "kmsKeyName": {
           "description": "Input only. The KMS key to be used to protect the DataStores managed by this connector. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the DataStores created by this connector will be protected by the KMS key.",
@@ -13536,7 +14570,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Required. Params needed to access the source in the format of (Key, Value) pairs. Required parameters for all data sources: * Key: `instance_uri` * Value: type STRING. The uri to access the data source. Required parameters for sources that support OAUTH, i.e. `salesforce`: * Key: `client_id` * Value: type STRING. The client ID for the third party service provider to identify your application. * Key: `client_secret` * Value:type STRING. The client secret generated by the third party authorization server. * Key: `access_token` * Value: type STRING. OAuth token for UCS to access to the protected resource. * Key: `refresh_token` * Value: type STRING. OAuth refresh token for UCS to obtain a new access token without user interaction. Required parameters for sources that support basic API token auth, i.e. `jira`, `confluence`: * Key: `user_account` * Value: type STRING. The username or email with the source. * Key: `api_token` * Value: type STRING. The API token generated for the source account, that is used for authenticating anywhere where you would have used a password. Example: ```json { \"instance_uri\": \"https://xxx.atlassian.net\", \"user_account\": \"xxxx.xxx@xxx.com\", \"api_token\": \"test-token\" } ``` Optional parameter to specify the authorization type to use for multiple authorization types support: * Key: `auth_type` * Value: type STRING. The authorization type for the data source. Supported values: `BASIC_AUTH`, `OAUTH`, `OAUTH_ACCESS_TOKEN`, `OAUTH_TWO_LEGGED`, `OAUTH_JWT_BEARER`, `OAUTH_PASSWORD_GRANT`, `JWT`, `API_TOKEN`, `FEDERATED_CREDENTIAL`.",
+          "description": "Required data connector parameters in structured json format.",
           "type": "object"
         },
         "privateConnectivityProjectId": {
@@ -13577,6 +14611,13 @@
           "description": "Required. The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.",
           "format": "google-duration",
           "type": "string"
+        },
+        "removeParamKeys": {
+          "description": "Optional. Specifies keys to be removed from the 'params' field. This is only active when 'params' is included in the 'update_mask' in an UpdateDataConnectorRequest. Deletion takes precedence if a key is both in 'remove_param_keys' and present in the 'params' field of the request.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "state": {
           "description": "Output only. State of the connector.",
@@ -13658,9 +14699,40 @@
           "description": "Optional. Any authentication parameters specific to EUA connectors.",
           "type": "object"
         },
+        "jsonAuthParams": {
+          "description": "Optional. Any authentication parameters specific to EUA connectors in json string format.",
+          "type": "string"
+        },
         "tenant": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaTenant",
           "description": "Optional. The tenant project the connector is connected to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDataConnectorFederatedConfig": {
+      "description": "Any params and credentials used specifically for hybrid connectors supporting FEDERATED mode.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataConnectorFederatedConfig",
+      "properties": {
+        "additionalParams": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Any additional parameters needed for FEDERATED.",
+          "type": "object"
+        },
+        "authParams": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Any authentication parameters specific to FEDERATED connectors.",
+          "type": "object"
+        },
+        "jsonAuthParams": {
+          "description": "Optional. Any authentication parameters specific to FEDERATED connectors in json string format.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13728,6 +14800,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig",
           "description": "Optional. Configuration for `HEALTHCARE_FHIR` vertical."
         },
+        "jsonParams": {
+          "description": "The parameters for the entity to facilitate data ingestion in json string format.",
+          "type": "string"
+        },
         "keyPropertyMappings": {
           "additionalProperties": {
             "type": "string"
@@ -13740,7 +14816,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "The parameters for the entity to facilitate data ingestion. E.g. for BigQuery connectors: * Key: `document_id_column` * Value: type STRING. The value of the column ID.",
+          "description": "The parameters for the entity to facilitate data ingestion in structured json format.",
           "type": "object"
         },
         "startingSchema": {
@@ -13771,6 +14847,20 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaCmekConfig",
           "description": "Output only. CMEK-related information for the DataStore.",
           "readOnly": true
+        },
+        "configurableBillingApproach": {
+          "description": "Optional. Configuration for configurable billing approach. See go/vais-repricing-billing-dd for more details, only apply to non-Spark UCS Search.",
+          "enum": [
+            "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED",
+            "CONFIGURABLE_SUBSCRIPTION_INDEXING_CORE",
+            "CONFIGURABLE_CONSUMPTION_EMBEDDING"
+          ],
+          "enumDescriptions": [
+            "Default value. For Spark and non-Spark non-configurable billing approach.",
+            "Use the subscription base + overage billing for indexing core for non embedding storage.",
+            "Use the consumption pay-as-you-go billing for embedding storage add-on."
+          ],
+          "type": "string"
         },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
@@ -14123,6 +15213,10 @@
           },
           "type": "array"
         },
+        "jsonParams": {
+          "description": "Additional parameters for this destination config in json string format.",
+          "type": "string"
+        },
         "key": {
           "description": "Optional. Unique destination identifier that is supported by the connector.",
           "type": "string"
@@ -14132,7 +15226,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Optional. Additional parameters for this destination config.",
+          "description": "Optional. Additional parameters for this destination config in structured json format.",
           "type": "object"
         }
       },
@@ -14348,6 +15442,18 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1alphaEngine",
       "properties": {
+        "appType": {
+          "description": "Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.",
+          "enum": [
+            "APP_TYPE_UNSPECIFIED",
+            "APP_TYPE_INTRANET"
+          ],
+          "enumDescriptions": [
+            "All non specified apps.",
+            "App type for intranet search and Agentspace."
+          ],
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -14360,6 +15466,18 @@
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
+        },
+        "configurableBillingApproach": {
+          "description": "Optional. Configuration for configurable billing approach. See go/vais-repricing-billing-dd for more details.",
+          "enum": [
+            "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED",
+            "CONFIGURABLE_BILLING_APPROACH_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. For Spark and non-Spark non-configurable billing approach. General pricing model.",
+            "The billing approach follows configurations specified by customer."
+          ],
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. Timestamp the Recommendation Engine was created at.",
@@ -14396,7 +15514,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload`",
           "type": "object"
         },
         "industryVertical": {
@@ -15582,6 +16700,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "customerProvidedConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig",
+          "description": "Optional. Customer provided configurations."
+        },
         "name": {
           "description": "Output only. Full resource name of the project, for example `projects/{project}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
           "readOnly": true,
@@ -15600,6 +16722,43 @@
           "description": "Output only. A map of terms of services. The key is the `id` of ServiceTerms.",
           "readOnly": true,
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig": {
+      "description": "Customer provided configurations.",
+      "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig",
+      "properties": {
+        "notebooklmConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfig",
+          "description": "Optional. Configuration for NotebookLM settings."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfig": {
+      "description": "Configuration for NotebookLM.",
+      "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfig",
+      "properties": {
+        "modelArmorConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
+          "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig": {
+      "description": "Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.",
+      "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
+      "properties": {
+        "responseTemplate": {
+          "description": "Optional. The resource name of the Model Armor Template for sanitizing LLM responses. Format: projects/{project}/locations/{location}/templates/{template_id} If not specified, no sanitization will be applied to the LLM response.",
+          "type": "string"
+        },
+        "userPromptTemplate": {
+          "description": "Optional. The resource name of the Model Armor Template for sanitizing user prompts. Format: projects/{project}/locations/{location}/templates/{template_id} If not specified, no sanitization will be applied to the user prompt.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -16267,10 +17426,10 @@
         },
         "naturalLanguageQueryUnderstandingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec",
-          "description": "Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
+          "description": "Optional. Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
         },
         "offset": {
-          "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.",
+          "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.",
           "format": "int32",
           "type": "integer"
         },
@@ -16369,6 +17528,10 @@
         "safeSearch": {
           "description": "Whether to turn on safe search. This is only supported for website search.",
           "type": "boolean"
+        },
+        "searchAddonSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAddonSpec",
+          "description": "Optional. SearchAddonSpec is used to disable add-ons for search as per new repricing model. This field is only supported for search requests."
         },
         "searchAsYouTypeSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAsYouTypeSpec",
@@ -16876,6 +18039,13 @@
       "description": "Specification to enable natural language understanding capabilities for search requests.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec",
       "properties": {
+        "allowedFieldNames": {
+          "description": "Optional. Allowlist of fields that can be used for natural language filter extraction. By default, if this is unspecified, all indexable fields are eligible for natural language filter extraction (but are not guaranteed to be used). If any fields are specified in allowed_field_names, only the fields that are both marked as indexable in the schema and specified in the allowlist will be eligible for natural language filter extraction. Note: for multi-datastore search, this is not yet supported, and will be ignored.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "extractedFilterBehavior": {
           "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.",
           "enum": [
@@ -16966,6 +18136,25 @@
       "properties": {
         "returnRelevanceScore": {
           "description": "Optional. Whether to return the relevance score for search results. The higher the score, the more relevant the document is to the query.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAddonSpec": {
+      "description": "SearchAddonSpec is used to disable add-ons for search as per new repricing model. By default if the SearchAddonSpec is not specified, we consider that the customer wants to enable them wherever applicable.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAddonSpec",
+      "properties": {
+        "disableGenerativeAnswerAddOn": {
+          "description": "Optional. If true, generative answer add-on is disabled. Generative answer add-on includes natural language to filters and simple answers.",
+          "type": "boolean"
+        },
+        "disableKpiPersonalizationAddOn": {
+          "description": "Optional. If true, disables event re-ranking and personalization to optimize KPIs & personalize results.",
+          "type": "boolean"
+        },
+        "disableSemanticAddOn": {
+          "description": "Optional. If true, semantic add-on is disabled. Semantic add-on includes embeddings and jetstream.",
           "type": "boolean"
         }
       },
@@ -17639,6 +18828,21 @@
             "Workspace Data Store contains Keep data",
             "Workspace Data Store contains People data"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaAclConfig": {
+      "description": "Access Control Configuration.",
+      "id": "GoogleCloudDiscoveryengineV1betaAclConfig",
+      "properties": {
+        "idpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaIdpConfig",
+          "description": "Identity provider config."
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the acl configuration. Format: `projects/{project}/locations/{location}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
@@ -19322,6 +20526,10 @@
           },
           "type": "array"
         },
+        "customerPolicyEnforcementResult": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResult",
+          "description": "Optional. The field contains information about the various policy checks' results like the banned phrases or the Model Armor checks. This field is populated only if the assist call was skipped due to a policy violation."
+        },
         "name": {
           "description": "Immutable. Identifier. Resource name of the `AssistAnswer`. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/assistAnswers/{assist_answer}` This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
@@ -19350,6 +20558,78 @@
             "Assist operation has been skipped."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResult": {
+      "description": "Customer policy enforcement results. Contains the results of the various policy checks, like the banned phrases or the Model Armor checks.",
+      "id": "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResult",
+      "properties": {
+        "policyResults": {
+          "description": "Customer policy enforcement results. Populated only if the assist call was skipped due to a policy violation. It contains results from those filters that blocked the processing of the query.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResultPolicyEnforcementResult"
+          },
+          "type": "array"
+        },
+        "verdict": {
+          "description": "Final verdict of the customer policy enforcement. If only one policy blocked the processing, the verdict is BLOCK.",
+          "enum": [
+            "UNSPECIFIED",
+            "ALLOW",
+            "BLOCK"
+          ],
+          "enumDescriptions": [
+            "Unknown value.",
+            "There was no policy violation.",
+            "Processing was blocked by the customer policy."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResultBannedPhraseEnforcementResult": {
+      "description": "Customer policy enforcement result for the banned phrase policy.",
+      "id": "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResultBannedPhraseEnforcementResult",
+      "properties": {
+        "bannedPhrases": {
+          "description": "The banned phrases that were found in the query or the answer.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResultModelArmorEnforcementResult": {
+      "description": "Customer policy enforcement result for the Model Armor policy.",
+      "id": "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResultModelArmorEnforcementResult",
+      "properties": {
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error returned by Model Armor if the policy enforcement failed for some reason."
+        },
+        "modelArmorViolation": {
+          "description": "The Model Armor violation that was found.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResultPolicyEnforcementResult": {
+      "description": "Customer policy enforcement result for a single policy type.",
+      "id": "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResultPolicyEnforcementResult",
+      "properties": {
+        "bannedPhraseEnforcementResult": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResultBannedPhraseEnforcementResult",
+          "description": "The policy enforcement result for the banned phrase policy."
+        },
+        "modelArmorEnforcementResult": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResultModelArmorEnforcementResult",
+          "description": "The policy enforcement result for the Model Armor policy."
         }
       },
       "type": "object"
@@ -19536,6 +20816,10 @@
             "$ref": "GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicyBannedPhrase"
           },
           "type": "array"
+        },
+        "modelArmorConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicyModelArmorConfig",
+          "description": "Optional. Model Armor configuration to be used for sanitizing user prompts and assistant responses."
         }
       },
       "type": "object"
@@ -19564,6 +20848,35 @@
         },
         "phrase": {
           "description": "Required. The raw string content to be banned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicyModelArmorConfig": {
+      "description": "Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and assistant responses.",
+      "id": "GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicyModelArmorConfig",
+      "properties": {
+        "failureMode": {
+          "description": "Optional. Defines the failure mode for Model Armor sanitization.",
+          "enum": [
+            "FAILURE_MODE_UNSPECIFIED",
+            "FAIL_OPEN",
+            "FAIL_CLOSED"
+          ],
+          "enumDescriptions": [
+            "Unspecified failure mode, default behavior is `FAIL_CLOSED`.",
+            "In case of a Model Armor processing failure, the request is allowed to proceed without any changes.",
+            "In case of a Model Armor processing failure, the request is rejected."
+          ],
+          "type": "string"
+        },
+        "responseTemplate": {
+          "description": "Optional. The resource name of the Model Armor template for sanitizing assistant responses. Format: `projects/{project}/locations/{location}/templates/{template_id}` If not specified, no sanitization will be applied to the assistant response.",
+          "type": "string"
+        },
+        "userPromptTemplate": {
+          "description": "Optional. The resource name of the Model Armor template for sanitizing user prompts. Format: `projects/{project}/locations/{location}/templates/{template_id}` If not specified, no sanitization will be applied to the user prompt.",
           "type": "string"
         }
       },
@@ -19656,6 +20969,10 @@
         },
         "domain": {
           "description": "Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.",
           "type": "string"
         },
         "pageIdentifier": {
@@ -20519,7 +21836,8 @@
             "DELETE_FAILED",
             "UNUSABLE",
             "ACTIVE_ROTATING",
-            "DELETED"
+            "DELETED",
+            "EXPIRED"
           ],
           "enumDescriptions": [
             "The CmekConfig state is unknown.",
@@ -20530,7 +21848,8 @@
             "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
             "The KMS key version is being rotated.",
-            "The KMS key is soft deleted. Some cleanup policy will eventually be applied."
+            "The KMS key is soft deleted. Some cleanup policy will eventually be applied.",
+            "The KMS key is expired, meaning the key has been disabled for 30+ days. The customer can call DeleteCmekConfig to change the state to DELETED."
           ],
           "readOnly": true,
           "type": "string"
@@ -21304,6 +22623,20 @@
           "description": "Output only. CMEK-related information for the DataStore.",
           "readOnly": true
         },
+        "configurableBillingApproach": {
+          "description": "Optional. Configuration for configurable billing approach. See go/vais-repricing-billing-dd for more details, only apply to non-Spark UCS Search.",
+          "enum": [
+            "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED",
+            "CONFIGURABLE_SUBSCRIPTION_INDEXING_CORE",
+            "CONFIGURABLE_CONSUMPTION_EMBEDDING"
+          ],
+          "enumDescriptions": [
+            "Default value. For Spark and non-Spark non-configurable billing approach.",
+            "Use the subscription base + overage billing for indexing core for non embedding storage.",
+            "Use the consumption pay-as-you-go billing for embedding storage add-on."
+          ],
+          "type": "string"
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -22005,6 +23338,18 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1betaEngine",
       "properties": {
+        "appType": {
+          "description": "Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.",
+          "enum": [
+            "APP_TYPE_UNSPECIFIED",
+            "APP_TYPE_INTRANET"
+          ],
+          "enumDescriptions": [
+            "All non specified apps.",
+            "App type for intranet search and Agentspace."
+          ],
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -22017,6 +23362,18 @@
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
+        },
+        "configurableBillingApproach": {
+          "description": "Optional. Configuration for configurable billing approach. See go/vais-repricing-billing-dd for more details.",
+          "enum": [
+            "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED",
+            "CONFIGURABLE_BILLING_APPROACH_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. For Spark and non-Spark non-configurable billing approach. General pricing model.",
+            "The billing approach follows configurations specified by customer."
+          ],
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. Timestamp the Recommendation Engine was created at.",
@@ -22053,7 +23410,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload`",
           "type": "object"
         },
         "industryVertical": {
@@ -22635,6 +23992,42 @@
         },
         "name": {
           "description": "Immutable. The full resource name of the identity mapping store. Format: `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaIdpConfig": {
+      "description": "Identity Provider Config.",
+      "id": "GoogleCloudDiscoveryengineV1betaIdpConfig",
+      "properties": {
+        "externalIdpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig",
+          "description": "External Identity provider config."
+        },
+        "idpType": {
+          "description": "Identity provider type configured.",
+          "enum": [
+            "IDP_TYPE_UNSPECIFIED",
+            "GSUITE",
+            "THIRD_PARTY"
+          ],
+          "enumDescriptions": [
+            "Default value. ACL search not enabled.",
+            "Google 1P provider.",
+            "Third party provider."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig": {
+      "description": "Third party IDP Config.",
+      "id": "GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig",
+      "properties": {
+        "workforcePoolName": {
+          "description": "Workforce pool name. Example: \"locations/global/workforcePools/pool_id\"",
           "type": "string"
         }
       },
@@ -23742,6 +25135,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "customerProvidedConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig",
+          "description": "Optional. Customer provided configurations."
+        },
         "name": {
           "description": "Output only. Full resource name of the project, for example `projects/{project}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
           "readOnly": true,
@@ -23760,6 +25157,43 @@
           "description": "Output only. A map of terms of services. The key is the `id` of ServiceTerms.",
           "readOnly": true,
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig": {
+      "description": "Customer provided configurations.",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig",
+      "properties": {
+        "notebooklmConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfig",
+          "description": "Optional. Configuration for NotebookLM settings."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfig": {
+      "description": "Configuration for NotebookLM.",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfig",
+      "properties": {
+        "modelArmorConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
+          "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig": {
+      "description": "Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
+      "properties": {
+        "responseTemplate": {
+          "description": "Optional. The resource name of the Model Armor Template for sanitizing LLM responses. Format: projects/{project}/locations/{location}/templates/{template_id} If not specified, no sanitization will be applied to the LLM response.",
+          "type": "string"
+        },
+        "userPromptTemplate": {
+          "description": "Optional. The resource name of the Model Armor Template for sanitizing user prompts. Format: projects/{project}/locations/{location}/templates/{template_id} If not specified, no sanitization will be applied to the user prompt.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -23836,6 +25270,10 @@
       "properties": {
         "acceptBizQos": {
           "description": "Optional. Set to `true` to specify that caller has read and would like to give consent to the [Terms for Agent Space quality of service].",
+          "type": "boolean"
+        },
+        "isBiz": {
+          "description": "Optional. Indicates if the current request is for Biz edition (= true) or not (= false).",
           "type": "boolean"
         }
       },
@@ -24738,10 +26176,10 @@
         },
         "naturalLanguageQueryUnderstandingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec",
-          "description": "Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
+          "description": "Optional. Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
         },
         "offset": {
-          "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.",
+          "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.",
           "format": "int32",
           "type": "integer"
         },
@@ -24840,6 +26278,10 @@
         "safeSearch": {
           "description": "Whether to turn on safe search. This is only supported for website search.",
           "type": "boolean"
+        },
+        "searchAddonSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestSearchAddonSpec",
+          "description": "Optional. SearchAddonSpec is used to disable add-ons for search as per new repricing model. This field is only supported for search requests."
         },
         "searchAsYouTypeSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestSearchAsYouTypeSpec",
@@ -25343,6 +26785,13 @@
       "description": "Specification to enable natural language understanding capabilities for search requests.",
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec",
       "properties": {
+        "allowedFieldNames": {
+          "description": "Optional. Allowlist of fields that can be used for natural language filter extraction. By default, if this is unspecified, all indexable fields are eligible for natural language filter extraction (but are not guaranteed to be used). If any fields are specified in allowed_field_names, only the fields that are both marked as indexable in the schema and specified in the allowlist will be eligible for natural language filter extraction. Note: for multi-datastore search, this is not yet supported, and will be ignored.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "extractedFilterBehavior": {
           "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.",
           "enum": [
@@ -25433,6 +26882,25 @@
       "properties": {
         "returnRelevanceScore": {
           "description": "Optional. Whether to return the relevance score for search results. The higher the score, the more relevant the document is to the query.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestSearchAddonSpec": {
+      "description": "SearchAddonSpec is used to disable add-ons for search as per new repricing model. By default if the SearchAddonSpec is not specified, we consider that the customer wants to enable them wherever applicable.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestSearchAddonSpec",
+      "properties": {
+        "disableGenerativeAnswerAddOn": {
+          "description": "Optional. If true, generative answer add-on is disabled. Generative answer add-on includes natural language to filters and simple answers.",
+          "type": "boolean"
+        },
+        "disableKpiPersonalizationAddOn": {
+          "description": "Optional. If true, disables event re-ranking and personalization to optimize KPIs & personalize results.",
+          "type": "boolean"
+        },
+        "disableSemanticAddOn": {
+          "description": "Optional. If true, semantic add-on is disabled. Semantic add-on includes embeddings and jetstream.",
           "type": "boolean"
         }
       },
@@ -27240,7 +28708,7 @@
           "type": "string"
         },
         "eventType": {
-          "description": "Required. User event type. Allowed values are: Generic values: * `search`: Search for Documents. * `view-item`: Detailed page view of a Document. * `view-item-list`: View of a panel or ordered list of Documents. * `view-home-page`: View of the home page. * `view-category-page`: View of a category page, e.g. Home > Men > Jeans * `add-feedback`: Add a user feedback. Retail-related values: * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping * `purchase`: Purchase an item(s) Media-related values: * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc. Custom conversion value: * `conversion`: Customer defined conversion event.",
+          "description": "Required. User event type. Allowed values are: Generic values: * `search`: Search for Documents. * `view-item`: Detailed page view of a Document. * `view-item-list`: View of a panel or ordered list of Documents. * `view-home-page`: View of the home page. * `view-category-page`: View of a category page, e.g. Home > Men > Jeans Retail-related values: * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping * `purchase`: Purchase an item(s) Media-related values: * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc. Custom conversion value: * `conversion`: Customer defined conversion event.",
           "type": "string"
         },
         "filter": {
@@ -27443,6 +28911,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
