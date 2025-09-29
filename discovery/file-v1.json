@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -908,7 +908,7 @@
       }
     }
   },
-  "revision": "20250810",
+  "revision": "20250910",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1874,12 +1874,14 @@
           "enum": [
             "CONNECT_MODE_UNSPECIFIED",
             "DIRECT_PEERING",
-            "PRIVATE_SERVICE_ACCESS"
+            "PRIVATE_SERVICE_ACCESS",
+            "PRIVATE_SERVICE_CONNECT"
           ],
           "enumDescriptions": [
             "Not set.",
             "Connect via direct peering to the Filestore service.",
-            "Connect to your Filestore instance using Private Service Access. Private services access provides an IP address range for multiple Google Cloud services, including Filestore."
+            "Connect to your Filestore instance using Private Service Access. Private services access provides an IP address range for multiple Google Cloud services, including Filestore.",
+            "Connect to your Filestore instance using Private Service Connect. A connection policy must exist in the region for the VPC network and the google-cloud-filestore service class."
           ],
           "type": "string"
         },
@@ -1909,6 +1911,10 @@
         "network": {
           "description": "The name of the Google Compute Engine [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected.",
           "type": "string"
+        },
+        "pscConfig": {
+          "$ref": "PscConfig",
+          "description": "Optional. Private Service Connect configuration. Should only be set when connect_mode is PRIVATE_SERVICE_CONNECT."
         },
         "reservedIpRange": {
           "description": "Optional, reserved_ip_range can have one of the following two types of values. * CIDR range value when using DIRECT_PEERING connect mode. * [Allocated IP address range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address) when using PRIVATE_SERVICE_ACCESS connect mode. When the name of an allocated IP address range is specified, it must be one of the ranges associated with the private service access connection. When specified as a direct CIDR value, it must be a /29 CIDR block for Basic tier, a /24 CIDR block for High Scale tier, or a /26 CIDR block for Enterprise tier in one of the [internal IP address ranges](https://www.arin.net/reference/research/statistics/address_filters/) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29, 192.168.0.0/24 or 192.168.0.0/26, respectively. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Filestore instances in the selected VPC network.",
@@ -1951,6 +1957,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "network": {
+          "description": "Optional. The source VPC network for ip_ranges. Required for instances using Private Service Connect, optional otherwise. If provided, must be the same network specified in the `NetworkConfig.network` field.",
+          "type": "string"
         },
         "squashMode": {
           "description": "Either NO_ROOT_SQUASH, for allowing root access on the exported directory, or ROOT_SQUASH, for not allowing root access. The default is NO_ROOT_SQUASH.",
@@ -2106,6 +2116,17 @@
       "properties": {
         "peerInstance": {
           "description": "Optional. The resource name of the peer instance to promote, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}`. The peer instance is required if the operation is called on an active instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscConfig": {
+      "description": "Private Service Connect configuration.",
+      "id": "PscConfig",
+      "properties": {
+        "endpointProject": {
+          "description": "Optional. Consumer service project in which the Private Service Connect endpoint would be set up. This is optional, and only relevant in case the network is a shared VPC. If this is not specified, the endpoint would be setup in the VPC host project.",
           "type": "string"
         }
       },

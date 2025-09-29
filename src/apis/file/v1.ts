@@ -770,6 +770,10 @@ export namespace file_v1 {
      */
     network?: string | null;
     /**
+     * Optional. Private Service Connect configuration. Should only be set when connect_mode is PRIVATE_SERVICE_CONNECT.
+     */
+    pscConfig?: Schema$PscConfig;
+    /**
      * Optional, reserved_ip_range can have one of the following two types of values. * CIDR range value when using DIRECT_PEERING connect mode. * [Allocated IP address range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address) when using PRIVATE_SERVICE_ACCESS connect mode. When the name of an allocated IP address range is specified, it must be one of the ranges associated with the private service access connection. When specified as a direct CIDR value, it must be a /29 CIDR block for Basic tier, a /24 CIDR block for High Scale tier, or a /26 CIDR block for Enterprise tier in one of the [internal IP address ranges](https://www.arin.net/reference/research/statistics/address_filters/) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29, 192.168.0.0/24 or 192.168.0.0/26, respectively. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Filestore instances in the selected VPC network.
      */
     reservedIpRange?: string | null;
@@ -794,6 +798,10 @@ export namespace file_v1 {
      * List of either an IPv4 addresses in the format `{octet1\}.{octet2\}.{octet3\}.{octet4\}` or CIDR ranges in the format `{octet1\}.{octet2\}.{octet3\}.{octet4\}/{mask size\}` which may mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned. The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions.
      */
     ipRanges?: string[] | null;
+    /**
+     * Optional. The source VPC network for ip_ranges. Required for instances using Private Service Connect, optional otherwise. If provided, must be the same network specified in the `NetworkConfig.network` field.
+     */
+    network?: string | null;
     /**
      * Either NO_ROOT_SQUASH, for allowing root access on the exported directory, or ROOT_SQUASH, for not allowing root access. The default is NO_ROOT_SQUASH.
      */
@@ -903,6 +911,15 @@ export namespace file_v1 {
      * Optional. The resource name of the peer instance to promote, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`. The peer instance is required if the operation is called on an active instance.
      */
     peerInstance?: string | null;
+  }
+  /**
+   * Private Service Connect configuration.
+   */
+  export interface Schema$PscConfig {
+    /**
+     * Optional. Consumer service project in which the Private Service Connect endpoint would be set up. This is optional, and only relevant in case the network is a shared VPC. If this is not specified, the endpoint would be setup in the VPC host project.
+     */
+    endpointProject?: string | null;
   }
   /**
    * Replica configuration for the instance.
@@ -1271,7 +1288,7 @@ export namespace file_v1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1399,7 +1416,7 @@ export namespace file_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
