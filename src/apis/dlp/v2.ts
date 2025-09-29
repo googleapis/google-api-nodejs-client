@@ -147,6 +147,10 @@ export namespace dlp_v2 {
      */
     publishFindingsToCloudDataCatalog?: Schema$GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog;
     /**
+     * Publish findings as an aspect to Dataplex Universal Catalog.
+     */
+    publishFindingsToDataplexCatalog?: Schema$GooglePrivacyDlpV2PublishFindingsToDataplexCatalog;
+    /**
      * Publish summary to Cloud Security Command Center (Alpha).
      */
     publishSummaryToCscc?: Schema$GooglePrivacyDlpV2PublishSummaryToCscc;
@@ -1296,7 +1300,7 @@ export namespace dlp_v2 {
      */
     publishToChronicle?: Schema$GooglePrivacyDlpV2PublishToChronicle;
     /**
-     * Publishes a portion of each profile to Dataplex Catalog with the aspect type Sensitive Data Protection Profile.
+     * Publishes a portion of each profile to Dataplex Universal Catalog with the aspect type Sensitive Data Protection Profile.
      */
     publishToDataplexCatalog?: Schema$GooglePrivacyDlpV2PublishToDataplexCatalog;
     /**
@@ -2479,6 +2483,10 @@ export namespace dlp_v2 {
      * Optional. A collection of regular expressions to match a file store against.
      */
     includeRegexes?: Schema$GooglePrivacyDlpV2FileStoreRegexes;
+    /**
+     * Optional. To be included in the collection, a resource must meet all of the following requirements: - If tag filters are provided, match all provided tag filters. - If one or more patterns are specified, match at least one pattern. For a resource to match the tag filters, the resource must have all of the provided tags attached. Tags refer to Resource Manager tags bound to the resource or its ancestors. See https://cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules to learn more.
+     */
+    includeTags?: Schema$GooglePrivacyDlpV2TagFilters;
   }
   /**
    * The profile for a file store. * Cloud Storage: maps 1:1 with a bucket. * Amazon S3: maps 1:1 with a bucket.
@@ -3903,6 +3911,10 @@ export namespace dlp_v2 {
      */
     outputSchema?: string | null;
     /**
+     * Store findings in an existing Cloud Storage bucket. Files will be generated with the job ID and file part number as the filename, and will contain findings in textproto format as SaveToGcsFindingsOutput. The file name will use the naming convention -, for example: my-job-id-2. Supported for Inspect jobs. The bucket must not be the same as the bucket being inspected. If storing findings to Cloud Storage, the output schema field should not be set. If set, it will be ignored.
+     */
+    storagePath?: Schema$GooglePrivacyDlpV2CloudStoragePath;
+    /**
      * Store findings in an existing table or a new table in an existing dataset. If table_id is not set a new one will be generated for you with the following format: dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific time zone will be used for generating the date details. For Inspect, each column in an existing output table must have the same name, type, and mode of a field in the `Finding` object. For Risk, an existing output table should be the output of a previous Risk analysis job run on the same source table, with the same privacy metric and quasi-identifiers. Risk jobs that analyze the same table but compute a different privacy metric, or use different sets of quasi-identifiers, cannot store their results in the same table.
      */
     table?: Schema$GooglePrivacyDlpV2BigQueryTable;
@@ -4100,6 +4112,10 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog {}
   /**
+   * Publish findings of a DlpJob to Dataplex Universal Catalog as a `sensitive-data-protection-job-result` aspect. To learn more about aspects, see [Send inspection results to Dataplex Universal Catalog as aspects](https://cloud.google.com/sensitive-data-protection/docs/add-aspects-inspection-job). Aspects are persisted in Dataplex Universal Catalog storage and are governed by service-specific policies for Dataplex Universal Catalog. For more information, see [Service Specific Terms](https://cloud.google.com/terms/service-terms). Only a single instance of this action can be specified. This action is allowed only if all resources being scanned are BigQuery tables. Compatible with: Inspect
+   */
+  export interface Schema$GooglePrivacyDlpV2PublishFindingsToDataplexCatalog {}
+  /**
    * Publish the result summary of a DlpJob to [Security Command Center](https://cloud.google.com/security-command-center). This action is available for only projects that belong to an organization. This action publishes the count of finding instances and their infoTypes. The summary of findings are persisted in Security Command Center and are governed by [service-specific policies for Security Command Center](https://cloud.google.com/terms/service-terms). Only a single instance of this action can be specified. Compatible with: Inspect
    */
   export interface Schema$GooglePrivacyDlpV2PublishSummaryToCscc {}
@@ -4108,11 +4124,11 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2PublishToChronicle {}
   /**
-   * Create Dataplex Catalog aspects for profiled resources with the aspect type Sensitive Data Protection Profile. To learn more about aspects, see https://cloud.google.com/sensitive-data-protection/docs/add-aspects.
+   * Create Dataplex Universal Catalog aspects for profiled resources with the aspect type Sensitive Data Protection Profile. To learn more about aspects, see https://cloud.google.com/sensitive-data-protection/docs/add-aspects.
    */
   export interface Schema$GooglePrivacyDlpV2PublishToDataplexCatalog {
     /**
-     * Whether creating a Dataplex Catalog aspect for a profiled resource should lower the risk of the profile for that resource. This also lowers the data risk of resources at the lower levels of the resource hierarchy. For example, reducing the data risk of a table data profile also reduces the data risk of the constituent column data profiles.
+     * Whether creating a Dataplex Universal Catalog aspect for a profiled resource should lower the risk of the profile for that resource. This also lowers the data risk of resources at the lower levels of the resource hierarchy. For example, reducing the data risk of a table data profile also reduces the data risk of the constituent column data profiles.
      */
     lowerDataRiskToLow?: boolean | null;
   }
@@ -4984,7 +5000,7 @@ export namespace dlp_v2 {
      */
     key?: string | null;
     /**
-     * The namespaced name for the tag value to attach to Google Cloud resources. Must be in the format `{parent_id\}/{tag_key_short_name\}/{short_name\}`, for example, "123456/environment/prod". This is only set for Google Cloud resources.
+     * The namespaced name for the tag value to attach to Google Cloud resources. Must be in the format `{parent_id\}/{tag_key_short_name\}/{short_name\}`, for example, "123456/environment/prod" for an organization parent, or "my-project/environment/prod" for a project parent. This is only set for Google Cloud resources.
      */
     namespacedTagValue?: string | null;
     /**
@@ -5004,6 +5020,28 @@ export namespace dlp_v2 {
      * The tag value to attach to resources.
      */
     tag?: Schema$GooglePrivacyDlpV2TagValue;
+  }
+  /**
+   * A single tag to filter against.
+   */
+  export interface Schema$GooglePrivacyDlpV2TagFilter {
+    /**
+     * The namespaced name for the tag key. Must be in the format `{parent_id\}/{tag_key_short_name\}`, for example, "123456/sensitive" for an organization parent, or "my-project/sensitive" for a project parent.
+     */
+    namespacedTagKey?: string | null;
+    /**
+     * The namespaced name for the tag value. Must be in the format `{parent_id\}/{tag_key_short_name\}/{short_name\}`, for example, "123456/environment/prod" for an organization parent, or "my-project/environment/prod" for a project parent.
+     */
+    namespacedTagValue?: string | null;
+  }
+  /**
+   * Tags to match against for filtering.
+   */
+  export interface Schema$GooglePrivacyDlpV2TagFilters {
+    /**
+     * Required. A resource must match ALL of the specified tag filters to be included in the collection.
+     */
+    tagFilters?: Schema$GooglePrivacyDlpV2TagFilter[];
   }
   /**
    * A column with a semantic tag attached.
@@ -5048,7 +5086,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2TagValue {
     /**
-     * The namespaced name for the tag value to attach to resources. Must be in the format `{parent_id\}/{tag_key_short_name\}/{short_name\}`, for example, "123456/environment/prod".
+     * The namespaced name for the tag value to attach to resources. Must be in the format `{parent_id\}/{tag_key_short_name\}/{short_name\}`, for example, "123456/environment/prod" for an organization parent, or "my-project/environment/prod" for a project parent.
      */
     namespacedValue?: string | null;
   }
