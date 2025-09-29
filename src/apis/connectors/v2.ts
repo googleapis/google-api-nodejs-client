@@ -955,6 +955,14 @@ export namespace connectors_v2 {
    */
   export interface Schema$Tool {
     /**
+     * Annotations for the tool.
+     */
+    annotations?: Schema$ToolAnnotations;
+    /**
+     * List of tool names that this tool depends on.
+     */
+    dependsOn?: string[] | null;
+    /**
      * Description of the tool.
      */
     description?: string | null;
@@ -970,6 +978,31 @@ export namespace connectors_v2 {
      * JSON schema for the output of the tool.
      */
     outputSchema?: Schema$JsonSchema;
+  }
+  /**
+   * ToolAnnotations holds annotations for a tool.
+   */
+  export interface Schema$ToolAnnotations {
+    /**
+     * If true, the tool may perform destructive updates to its environment. If false, the tool performs only additive updates. (This property is meaningful only when `read_only_hint == false`)
+     */
+    destructiveHint?: boolean | null;
+    /**
+     * If true, calling the tool repeatedly with the same arguments will have no additional effect on the environment. (This property is meaningful only when `read_only_hint == false`)
+     */
+    idempotentHint?: boolean | null;
+    /**
+     * If true, this tool may interact with an "open world" of external entities. If false, the tool's domain of interaction is closed. For example, the world of a web search tool is open, whereas that of a memory tool is not.
+     */
+    openWorldHint?: boolean | null;
+    /**
+     * If true, the tool does not modify its environment.
+     */
+    readOnlyHint?: boolean | null;
+    /**
+     * A human-readable title for the tool.
+     */
+    title?: string | null;
   }
   /**
    * Response message for EntityService.UpdateEntitiesWithConditions
