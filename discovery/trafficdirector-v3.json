@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20250618",
+  "revision": "20250908",
   "rootUrl": "https://trafficdirector.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1118,7 +1118,7 @@
           "type": "string"
         },
         "networkNamespaceFilepath": {
-          "description": "Filepath that specifies the Linux network namespace this socket will be created in (see ``man 7 network_namespaces``). If this field is set, Envoy will create the socket in the specified network namespace. .. note:: Setting this parameter requires Envoy to run with the ``CAP_NET_ADMIN`` capability. .. note:: Currently only used for Listener sockets. .. attention:: Network namespaces are only configurable on Linux. Otherwise, this field has no effect.",
+          "description": "Filepath that specifies the Linux network namespace this socket will be created in (see ``man 7 network_namespaces``). If this field is set, Envoy will create the socket in the specified network namespace. .. note:: Setting this parameter requires Envoy to run with the ``CAP_NET_ADMIN`` capability. .. attention:: Network namespaces are only configurable on Linux. Otherwise, this field has no effect.",
           "type": "string"
         },
         "portValue": {
@@ -1321,7 +1321,7 @@
       "type": "object"
     },
     "ValueMatcher": {
-      "description": "Specifies the way to match a ProtobufWkt::Value. Primitive values and ListValue are supported. StructValue is not supported and is always not matched. [#next-free-field: 8]",
+      "description": "Specifies the way to match a Protobuf::Value. Primitive values and ListValue are supported. StructValue is not supported and is always not matched. [#next-free-field: 8]",
       "id": "ValueMatcher",
       "properties": {
         "boolMatch": {
