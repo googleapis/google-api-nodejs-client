@@ -520,6 +520,23 @@ export namespace alloydb_v1 {
     publicIpAddress?: string | null;
   }
   /**
+   * Configuration for Managed Connection Pool (MCP).
+   */
+  export interface Schema$ConnectionPoolConfig {
+    /**
+     * Optional. Whether to enable Managed Connection Pool (MCP).
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. Connection Pool flags, as a list of "key": "value" pairs.
+     */
+    flags?: {[key: string]: string} | null;
+    /**
+     * Output only. The number of running poolers per instance.
+     */
+    poolerCount?: number | null;
+  }
+  /**
    * ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.
    */
   export interface Schema$ContinuousBackupConfig {
@@ -858,6 +875,10 @@ export namespace alloydb_v1 {
      * Optional. Client connection specific configurations
      */
     clientConnectionConfig?: Schema$ClientConnectionConfig;
+    /**
+     * Optional. The configuration for Managed Connection Pool (MCP).
+     */
+    connectionPoolConfig?: Schema$ConnectionPoolConfig;
     /**
      * Output only. Create time stamp
      */
@@ -1812,7 +1833,7 @@ export namespace alloydb_v1 {
     internalResourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata[];
   }
   /**
-   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 11
+   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 13
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed {
     /**
@@ -1823,6 +1844,10 @@ export namespace alloydb_v1 {
      * Config based signal data is used to ingest signals that are generated based on the configuration of the database resource.
      */
     configBasedSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData;
+    /**
+     * Database resource signal data is used to ingest signals from database resource signal feeds.
+     */
+    databaseResourceSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData;
     /**
      * Required. Timestamp when feed is generated.
      */
@@ -1928,7 +1953,7 @@ export namespace alloydb_v1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 26
+   * Common model for database resource instance metadata. Next ID: 27
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
     /**
@@ -2027,6 +2052,10 @@ export namespace alloydb_v1 {
      * User-provided labels associated with the resource
      */
     userLabelSet?: Schema$StorageDatabasecenterPartnerapiV1mainUserLabels;
+    /**
+     * The resource zone. This is only applicable for zonal resources and will be empty for regional and multi-regional resources.
+     */
+    zone?: string | null;
   }
   /**
    * Common model for database resource recommendation signal data.
@@ -2062,6 +2091,35 @@ export namespace alloydb_v1 {
     resourceName?: string | null;
     /**
      * Required. Type of signal, for example, `SIGNAL_TYPE_IDLE`, `SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES`, etc.
+     */
+    signalType?: string | null;
+  }
+  /**
+   * Database resource signal data. This is used to send signals to Condor which are based on the DB/Instance/Fleet level configurations. These will be used to send signals for all inventory types. Next ID: 7
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData {
+    /**
+     * Required. Full Resource name of the source resource.
+     */
+    fullResourceName?: string | null;
+    /**
+     * Required. Last time signal was refreshed
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Database resource id.
+     */
+    resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
+    /**
+     * Signal data for boolean signals.
+     */
+    signalBoolValue?: boolean | null;
+    /**
+     * Required. Output only. Signal state of the signal
+     */
+    signalState?: string | null;
+    /**
+     * Required. Signal type of the signal
      */
     signalType?: string | null;
   }
@@ -2652,7 +2710,7 @@ export namespace alloydb_v1 {
      *
      *   // Do the magic
      *   const res = await alloydb.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2788,7 +2846,7 @@ export namespace alloydb_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -6091,6 +6149,7 @@ export namespace alloydb_v1 {
      *       //   "annotations": {},
      *       //   "availabilityType": "my_availabilityType",
      *       //   "clientConnectionConfig": {},
+     *       //   "connectionPoolConfig": {},
      *       //   "createTime": "my_createTime",
      *       //   "databaseFlags": {},
      *       //   "deleteTime": "my_deleteTime",
@@ -6276,6 +6335,7 @@ export namespace alloydb_v1 {
      *         //   "annotations": {},
      *         //   "availabilityType": "my_availabilityType",
      *         //   "clientConnectionConfig": {},
+     *         //   "connectionPoolConfig": {},
      *         //   "createTime": "my_createTime",
      *         //   "databaseFlags": {},
      *         //   "deleteTime": "my_deleteTime",
@@ -6752,6 +6812,7 @@ export namespace alloydb_v1 {
      *   //   "annotations": {},
      *   //   "availabilityType": "my_availabilityType",
      *   //   "clientConnectionConfig": {},
+     *   //   "connectionPoolConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "databaseFlags": {},
      *   //   "deleteTime": "my_deleteTime",
@@ -7372,6 +7433,7 @@ export namespace alloydb_v1 {
      *       //   "annotations": {},
      *       //   "availabilityType": "my_availabilityType",
      *       //   "clientConnectionConfig": {},
+     *       //   "connectionPoolConfig": {},
      *       //   "createTime": "my_createTime",
      *       //   "databaseFlags": {},
      *       //   "deleteTime": "my_deleteTime",
