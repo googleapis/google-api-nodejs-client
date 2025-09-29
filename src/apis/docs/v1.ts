@@ -2030,11 +2030,11 @@ export namespace docs_v1 {
    */
   export interface Schema$PersonProperties {
     /**
-     * Output only. The email address linked to this Person. This field is always present.
+     * The email address linked to this Person. This field is always present.
      */
     email?: string | null;
     /**
-     * Output only. The name of the person if it's displayed in the link text instead of the person's email address.
+     * The name of the person if it's displayed in the link text instead of the person's email address.
      */
     name?: string | null;
   }

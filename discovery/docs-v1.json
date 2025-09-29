@@ -221,7 +221,7 @@
       }
     }
   },
-  "revision": "20250325",
+  "revision": "20250917",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -2756,13 +2756,11 @@
       "id": "PersonProperties",
       "properties": {
         "email": {
-          "description": "Output only. The email address linked to this Person. This field is always present.",
-          "readOnly": true,
+          "description": "The email address linked to this Person. This field is always present.",
           "type": "string"
         },
         "name": {
-          "description": "Output only. The name of the person if it's displayed in the link text instead of the person's email address.",
-          "readOnly": true,
+          "description": "The name of the person if it's displayed in the link text instead of the person's email address.",
           "type": "string"
         }
       },
