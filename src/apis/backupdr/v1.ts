@@ -125,6 +125,15 @@ export namespace backupdr_v1 {
   }
 
   /**
+   * request message for AbandonBackup.
+   */
+  export interface Schema$AbandonBackupRequest {
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
    * A specification of the type and number of accelerator cards attached to the instance.
    */
   export interface Schema$AcceleratorConfig {
@@ -224,6 +233,36 @@ export namespace backupdr_v1 {
      * Optional. Corresponds to the label values of a reservation resource.
      */
     values?: string[] | null;
+  }
+  /**
+   * AlloyDbClusterBackupProperties represents AlloyDB cluster backup properties. .
+   */
+  export interface Schema$AlloyDbClusterBackupProperties {
+    /**
+     * Output only. The chain id of this backup. Backups belonging to the same chain are sharing the same chain id. This property is calculated and maintained by BackupDR.
+     */
+    chainId?: string | null;
+    /**
+     * Output only. The PostgreSQL major version of the AlloyDB cluster when the backup was taken.
+     */
+    databaseVersion?: string | null;
+    /**
+     * An optional text description for the backup.
+     */
+    description?: string | null;
+    /**
+     * Output only. Storage usage of this particular backup
+     */
+    storedBytes?: string | null;
+  }
+  /**
+   * AlloyDBClusterDataSourceProperties represents the properties of a AlloyDB cluster resource that are stored in the DataSource. .
+   */
+  export interface Schema$AlloyDBClusterDataSourceProperties {
+    /**
+     * Output only. Name of the AlloyDB cluster backed up by the datasource.
+     */
+    name?: string | null;
   }
   /**
    * An instance-attached disk resource.
@@ -328,6 +367,10 @@ export namespace backupdr_v1 {
    * Message describing a Backup object.
    */
   export interface Schema$Backup {
+    /**
+     * Output only. AlloyDB specific backup properties.
+     */
+    alloyDbBackupProperties?: Schema$AlloyDbClusterBackupProperties;
     /**
      * Output only. Backup Appliance specific backup properties.
      */
@@ -783,7 +826,7 @@ export namespace backupdr_v1 {
    */
   export interface Schema$BackupRule {
     /**
-     * Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault. Minimum value is 1 and maximum value is 36159 for custom retention on-demand backup. Minimum and maximum values are workload specific for all other rules.
+     * Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault. Minimum value is 1 and maximum value is 36159 for custom retention on-demand backup. Minimum and maximum values are workload specific for all other rules. Note: Longer retention can lead to higher storage costs post introductory trial. We recommend starting with a short duration of 3 days or less.
      */
     backupRetentionDays?: number | null;
     /**
@@ -812,7 +855,7 @@ export namespace backupdr_v1 {
      */
     backupCount?: string | null;
     /**
-     * Required. The default and minimum enforced retention for each backup within the backup vault. The enforced retention for each backup can be extended.
+     * Required. The default and minimum enforced retention for each backup within the backup vault. The enforced retention for each backup can be extended. Note: Longer minimum enforced retention period impacts potential storage costs post introductory trial. We recommend starting with a short duration of 3 days or less.
      */
     backupMinimumEnforcedRetentionDuration?: string | null;
     /**
@@ -1321,6 +1364,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$DataSourceGcpResource {
     /**
+     * Output only. AlloyDBClusterDataSourceProperties has a subset of AlloyDB cluster properties that are useful at the Datasource level. Currently none of its child properties are auditable. If new auditable properties are added, the AUDIT annotation should be added.
+     */
+    alloyDbClusterDatasourceProperties?: Schema$AlloyDBClusterDataSourceProperties;
+    /**
      * Output only. CloudSqlInstanceDataSourceProperties has a subset of Cloud SQL Instance properties that are useful at the Datasource level.
      */
     cloudSqlInstanceDatasourceProperties?: Schema$CloudSqlInstanceDataSourceProperties;
@@ -1627,6 +1674,36 @@ export namespace backupdr_v1 {
     title?: string | null;
   }
   /**
+   * Request message for FetchAccessToken.
+   */
+  export interface Schema$FetchAccessTokenRequest {
+    /**
+     * Required. The generation of the backup to update.
+     */
+    generationId?: number | null;
+  }
+  /**
+   * Response message for FetchAccessToken.
+   */
+  export interface Schema$FetchAccessTokenResponse {
+    /**
+     * The token is valid until this time.
+     */
+    expireTime?: string | null;
+    /**
+     * The location in bucket that can be used for reading.
+     */
+    readLocation?: string | null;
+    /**
+     * The downscoped token that was created.
+     */
+    token?: string | null;
+    /**
+     * The location in bucket that can be used for writing.
+     */
+    writeLocation?: string | null;
+  }
+  /**
    * Response for the FetchBackupPlanAssociationsForResourceType method.
    */
   export interface Schema$FetchBackupPlanAssociationsForResourceTypeResponse {
@@ -1653,6 +1730,24 @@ export namespace backupdr_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Request message for GetMsComplianceMetadata
+   */
+  export interface Schema$FetchMsComplianceMetadataRequest {
+    /**
+     * Required. The project id of the target project
+     */
+    projectId?: string | null;
+  }
+  /**
+   * Response message for GetMsComplianceMetadata
+   */
+  export interface Schema$FetchMsComplianceMetadataResponse {
+    /**
+     * The ms compliance metadata of the target project, if the project is an assured workloads project, values will be true, otherwise false.
+     */
+    isAssuredWorkload?: boolean | null;
+  }
+  /**
    * Response message for fetching usable BackupVaults.
    */
   export interface Schema$FetchUsableBackupVaultsResponse {
@@ -1668,6 +1763,39 @@ export namespace backupdr_v1 {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Message for finalizing a Backup.
+   */
+  export interface Schema$FinalizeBackupRequest {
+    /**
+     * Required. Resource ID of the Backup resource to be finalized. This must be the same backup_id that was used in the InitiateBackupRequest.
+     */
+    backupId?: string | null;
+    /**
+     * The point in time when this backup was captured from the source. This will be assigned to the consistency_time field of the newly created Backup.
+     */
+    consistencyTime?: string | null;
+    /**
+     * This will be assigned to the description field of the newly created Backup.
+     */
+    description?: string | null;
+    /**
+     * The latest timestamp of data available in this Backup. This will be set on the newly created Backup.
+     */
+    recoveryRangeEndTime?: string | null;
+    /**
+     * The earliest timestamp of data available in this Backup. This will set on the newly created Backup.
+     */
+    recoveryRangeStartTime?: string | null;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+    /**
+     * The ExpireTime on the backup will be set to FinalizeTime plus this duration. If the resulting ExpireTime is less than EnforcedRetentionEndTime, then ExpireTime is set to EnforcedRetentionEndTime.
+     */
+    retentionDuration?: string | null;
   }
   /**
    * GcpBackupConfig captures the Backup configuration details for Google Cloud resources. All Google Cloud resources regardless of type are protected with backup plan associations.
@@ -1774,6 +1902,36 @@ export namespace backupdr_v1 {
      * Required. The resource type to which the default service config will be applied. Examples include, "compute.googleapis.com/Instance" and "storage.googleapis.com/Bucket".
      */
     resourceType?: string | null;
+  }
+  /**
+   * request message for InitiateBackup.
+   */
+  export interface Schema$InitiateBackupRequest {
+    /**
+     * Required. Resource ID of the Backup resource.
+     */
+    backupId?: string | null;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
+   * Response message for InitiateBackup.
+   */
+  export interface Schema$InitiateBackupResponse {
+    /**
+     * The name of the backup that was created.
+     */
+    backup?: string | null;
+    /**
+     * The generation id of the base backup. It is needed for the incremental backups.
+     */
+    baseBackupGenerationId?: number | null;
+    /**
+     * The generation id of the new backup.
+     */
+    newBackupGenerationId?: number | null;
   }
   /**
    * Additional instance params.
@@ -2271,6 +2429,15 @@ export namespace backupdr_v1 {
     replicaZones?: string[] | null;
   }
   /**
+   * Message for deleting a DataSource.
+   */
+  export interface Schema$RemoveDataSourceRequest {
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
    * ResourceBackupConfig represents a resource along with its backup configurations.
    */
   export interface Schema$ResourceBackupConfig {
@@ -2456,6 +2623,23 @@ export namespace backupdr_v1 {
     updateMask?: string | null;
   }
   /**
+   * Request message for SetStatusInternal method.
+   */
+  export interface Schema$SetInternalStatusRequest {
+    /**
+     * Required. Output only. The new BackupConfigState to set for the DataSource.
+     */
+    backupConfigState?: string | null;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+    /**
+     * Required. The value required for this method to work. This field must be the 32-byte SHA256 hash of the DataSourceID. The DataSourceID used here is only the final piece of the fully qualified resource path for this DataSource (i.e. the part after '.../dataSources/'). This field exists to make this method difficult to call since it is intended for use only by Backup Appliances.
+     */
+    value?: string | null;
+  }
+  /**
    * Response message from SetStatusInternal method.
    */
   export interface Schema$SetInternalStatusResponse {}
@@ -2557,6 +2741,10 @@ export namespace backupdr_v1 {
    * Represents a Trial for a project.
    */
   export interface Schema$Trial {
+    /**
+     * Output only. The reason for ending the trial.
+     */
+    endReason?: string | null;
     /**
      * Output only. The time when the trial will expire.
      */
@@ -2841,13 +3029,14 @@ export namespace backupdr_v1 {
      *
      *   // Do the magic
      *   const res = await backupdr.projects.locations.getTrial({
-     *     // Required. The name of the trial to retrieve.
+     *     // Required. The project for which trial details need to be retrieved. Format: projects/{project\}/locations/{location\} Supported Locations are - us, eu and asia.
      *     name: 'projects/my-project/locations/my-location/trial',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
+     *   //   "endReason": "my_endReason",
      *   //   "endTime": "my_endTime",
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
@@ -2978,7 +3167,7 @@ export namespace backupdr_v1 {
      *
      *   // Do the magic
      *   const res = await backupdr.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3106,14 +3295,14 @@ export namespace backupdr_v1 {
   export interface Params$Resource$Projects$Locations$Gettrial
     extends StandardParameters {
     /**
-     * Required. The name of the trial to retrieve.
+     * Required. The project for which trial details need to be retrieved. Format: projects/{project\}/locations/{location\} Supported Locations are - us, eu and asia.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -6480,6 +6669,159 @@ export namespace backupdr_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Returns the caller's permissions on a BackupVault resource. A caller is not required to have Google IAM permission to make this request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await backupdr.projects.locations.backupVaults.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/backupVaults/my-backupVault',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Backupvaults$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Backupvaults$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Backupvaults$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Backupvaults$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Backupvaults$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupvaults$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupvaults$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupvaults$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Backupvaults$Create
@@ -6630,6 +6972,18 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$BackupVault;
   }
+  export interface Params$Resource$Projects$Locations$Backupvaults$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
 
   export class Resource$Projects$Locations$Backupvaults$Datasources {
     context: APIRequestContext;
@@ -6640,6 +6994,472 @@ export namespace backupdr_v1 {
         new Resource$Projects$Locations$Backupvaults$Datasources$Backups(
           this.context
         );
+    }
+
+    /**
+     * Internal only. Abandons a backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.backupVaults.dataSources.abandonBackup({
+     *       // Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
+     *       dataSource:
+     *         'projects/my-project/locations/my-location/backupVaults/my-backupVault/dataSources/my-dataSource',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requestId": "my_requestId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    abandonBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    abandonBackup(
+      params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    abandonBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    abandonBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    abandonBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    abandonBackup(callback: BodyResponseCallback<Schema$Operation>): void;
+    abandonBackup(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+dataSource}:abandonBackup').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataSource'],
+        pathParams: ['dataSource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Internal only. Fetch access token for a given data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.backupVaults.dataSources.fetchAccessToken(
+     *       {
+     *         // Required. The resource name for the location for which static IPs should be returned. Must be in the format 'projects/x/locations/x/backupVaults/x/dataSources'.
+     *         name: 'projects/my-project/locations/my-location/backupVaults/my-backupVault/dataSources/my-dataSource',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "generationId": 0
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expireTime": "my_expireTime",
+     *   //   "readLocation": "my_readLocation",
+     *   //   "token": "my_token",
+     *   //   "writeLocation": "my_writeLocation"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchAccessToken(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchAccessToken(
+      params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchAccessTokenResponse>>;
+    fetchAccessToken(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchAccessToken(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchAccessTokenResponse>,
+      callback: BodyResponseCallback<Schema$FetchAccessTokenResponse>
+    ): void;
+    fetchAccessToken(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken,
+      callback: BodyResponseCallback<Schema$FetchAccessTokenResponse>
+    ): void;
+    fetchAccessToken(
+      callback: BodyResponseCallback<Schema$FetchAccessTokenResponse>
+    ): void;
+    fetchAccessToken(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken
+        | BodyResponseCallback<Schema$FetchAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchAccessTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchAccessTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchAccessToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchAccessTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchAccessTokenResponse>(parameters);
+      }
+    }
+
+    /**
+     * Internal only. Finalize a backup that was started by a call to InitiateBackup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.backupVaults.dataSources.finalizeBackup({
+     *       // Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
+     *       dataSource:
+     *         'projects/my-project/locations/my-location/backupVaults/my-backupVault/dataSources/my-dataSource',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "backupId": "my_backupId",
+     *         //   "consistencyTime": "my_consistencyTime",
+     *         //   "description": "my_description",
+     *         //   "recoveryRangeEndTime": "my_recoveryRangeEndTime",
+     *         //   "recoveryRangeStartTime": "my_recoveryRangeStartTime",
+     *         //   "requestId": "my_requestId",
+     *         //   "retentionDuration": "my_retentionDuration"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    finalizeBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    finalizeBackup(
+      params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    finalizeBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    finalizeBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    finalizeBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    finalizeBackup(callback: BodyResponseCallback<Schema$Operation>): void;
+    finalizeBackup(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+dataSource}:finalizeBackup').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataSource'],
+        pathParams: ['dataSource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
     /**
@@ -6786,6 +7606,161 @@ export namespace backupdr_v1 {
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
+      }
+    }
+
+    /**
+     * Internal only. Initiates a backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.backupVaults.dataSources.initiateBackup({
+     *       // Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
+     *       dataSource:
+     *         'projects/my-project/locations/my-location/backupVaults/my-backupVault/dataSources/my-dataSource',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "backupId": "my_backupId",
+     *         //   "requestId": "my_requestId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backup": "my_backup",
+     *   //   "baseBackupGenerationId": 0,
+     *   //   "newBackupGenerationId": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    initiateBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    initiateBackup(
+      params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InitiateBackupResponse>>;
+    initiateBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    initiateBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InitiateBackupResponse>,
+      callback: BodyResponseCallback<Schema$InitiateBackupResponse>
+    ): void;
+    initiateBackup(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup,
+      callback: BodyResponseCallback<Schema$InitiateBackupResponse>
+    ): void;
+    initiateBackup(
+      callback: BodyResponseCallback<Schema$InitiateBackupResponse>
+    ): void;
+    initiateBackup(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup
+        | BodyResponseCallback<Schema$InitiateBackupResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InitiateBackupResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InitiateBackupResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$InitiateBackupResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+dataSource}:initiateBackup').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataSource'],
+        pathParams: ['dataSource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InitiateBackupResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InitiateBackupResponse>(parameters);
       }
     }
 
@@ -7104,14 +8079,367 @@ export namespace backupdr_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Deletes a DataSource. This is a custom method instead of a standard delete method because external clients will not delete DataSources except for BackupDR backup appliances.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await backupdr.projects.locations.backupVaults.dataSources.remove(
+     *     {
+     *       // Required. Name of the resource.
+     *       name: 'projects/my-project/locations/my-location/backupVaults/my-backupVault/dataSources/my-dataSource',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requestId": "my_requestId"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    remove(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    remove(
+      params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    remove(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    remove(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    remove(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    remove(callback: BodyResponseCallback<Schema$Operation>): void;
+    remove(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:remove').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Sets the internal status of a DataSource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.backupVaults.dataSources.setInternalStatus(
+     *       {
+     *         // Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
+     *         dataSource:
+     *           'projects/my-project/locations/my-location/backupVaults/my-backupVault/dataSources/my-dataSource',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "backupConfigState": "my_backupConfigState",
+     *           //   "requestId": "my_requestId",
+     *           //   "value": "my_value"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setInternalStatus(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setInternalStatus(
+      params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    setInternalStatus(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setInternalStatus(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setInternalStatus(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setInternalStatus(callback: BodyResponseCallback<Schema$Operation>): void;
+    setInternalStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+dataSource}:setInternalStatus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataSource'],
+        pathParams: ['dataSource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
+     */
+    dataSource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AbandonBackupRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken
+    extends StandardParameters {
+    /**
+     * Required. The resource name for the location for which static IPs should be returned. Must be in the format 'projects/x/locations/x/backupVaults/x/dataSources'.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FetchAccessTokenRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
+     */
+    dataSource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FinalizeBackupRequest;
+  }
   export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Get
     extends StandardParameters {
     /**
      * Required. Name of the data source resource name, in the format 'projects/{project_id\}/locations/{location\}/backupVaults/{resource_name\}/dataSource/{resource_name\}'
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
+     */
+    dataSource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InitiateBackupRequest;
   }
   export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$List
     extends StandardParameters {
@@ -7159,6 +8487,30 @@ export namespace backupdr_v1 {
      * Request body metadata
      */
     requestBody?: Schema$DataSource;
+  }
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveDataSourceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
+     */
+    dataSource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetInternalStatusRequest;
   }
 
   export class Resource$Projects$Locations$Backupvaults$Datasources$Backups {
@@ -7350,6 +8702,7 @@ export namespace backupdr_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "alloyDbBackupProperties": {},
      *   //   "backupApplianceBackupProperties": {},
      *   //   "backupApplianceLocks": [],
      *   //   "backupType": "my_backupType",
@@ -7662,6 +9015,7 @@ export namespace backupdr_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "alloyDbBackupProperties": {},
      *         //   "backupApplianceBackupProperties": {},
      *         //   "backupApplianceLocks": [],
      *         //   "backupType": "my_backupType",
@@ -9139,6 +10493,163 @@ export namespace backupdr_v1 {
     }
 
     /**
+     * Returns the Assured Workloads compliance metadata for a given project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.managementServers.msComplianceMetadata({
+     *       // Required. The project and location to be used to check CSS metadata for target project information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**.
+     *       parent: 'projects/my-project/locations/my-location/managementServers',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "projectId": "my_projectId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "isAssuredWorkload": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    msComplianceMetadata(
+      params: Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    msComplianceMetadata(
+      params?: Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchMsComplianceMetadataResponse>
+    >;
+    msComplianceMetadata(
+      params: Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    msComplianceMetadata(
+      params: Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>,
+      callback: BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+    ): void;
+    msComplianceMetadata(
+      params: Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata,
+      callback: BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+    ): void;
+    msComplianceMetadata(
+      callback: BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+    ): void;
+    msComplianceMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata
+        | BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchMsComplianceMetadataResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:msComplianceMetadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchMsComplianceMetadataResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchMsComplianceMetadataResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * ```js
@@ -9513,6 +11024,18 @@ export namespace backupdr_v1 {
      * Required. The project and location for which to retrieve management servers information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**. To retrieve management servers for all locations, use "-" for the '{location\}' value.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata
+    extends StandardParameters {
+    /**
+     * Required. The project and location to be used to check CSS metadata for target project information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FetchMsComplianceMetadataRequest;
   }
   export interface Params$Resource$Projects$Locations$Managementservers$Setiampolicy
     extends StandardParameters {
@@ -10543,7 +12066,7 @@ export namespace backupdr_v1 {
      *
      *   // Do the magic
      *   const res = await backupdr.projects.locations.trial.subscribe({
-     *     // Required. The parent resource where this trial will be created.
+     *     // Required. The project where this trial will be created. Format: projects/{project\}/locations/{location\} Supported Locations are - us, eu and asia.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -10556,6 +12079,7 @@ export namespace backupdr_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "endReason": "my_endReason",
      *   //   "endTime": "my_endTime",
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
@@ -10662,7 +12186,7 @@ export namespace backupdr_v1 {
   export interface Params$Resource$Projects$Locations$Trial$Subscribe
     extends StandardParameters {
     /**
-     * Required. The parent resource where this trial will be created.
+     * Required. The project where this trial will be created. Format: projects/{project\}/locations/{location\} Supported Locations are - us, eu and asia.
      */
     parent?: string;
 
