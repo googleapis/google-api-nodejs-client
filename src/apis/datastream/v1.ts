@@ -794,6 +794,15 @@ export namespace datastream_v1 {
    */
   export interface Schema$Merge {}
   /**
+   * MongoDB change stream position
+   */
+  export interface Schema$MongodbChangeStreamPosition {
+    /**
+     * Required. The timestamp (in epoch seconds) to start change stream from.
+     */
+    startTime?: string | null;
+  }
+  /**
    * MongoDB Cluster structure.
    */
   export interface Schema$MongodbCluster {
@@ -1929,6 +1938,10 @@ export namespace datastream_v1 {
    * CDC strategy to start replicating from a specific position in the source.
    */
   export interface Schema$SpecificStartPosition {
+    /**
+     * MongoDB change stream position to start replicating from.
+     */
+    mongodbChangeStreamPosition?: Schema$MongodbChangeStreamPosition;
     /**
      * MySQL GTID set to start replicating from.
      */
