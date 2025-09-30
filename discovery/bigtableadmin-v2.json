@@ -362,6 +362,7 @@
               ],
               "parameters": {
                 "pageToken": {
+                  "deprecated": true,
                   "description": "DEPRECATED: This field is unused and ignored.",
                   "location": "query",
                   "type": "string"
@@ -837,6 +838,7 @@
                   ],
                   "parameters": {
                     "pageToken": {
+                      "deprecated": true,
                       "description": "DEPRECATED: This field is unused and ignored.",
                       "location": "query",
                       "type": "string"
@@ -1786,7 +1788,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. The unique name of the materialized view. Format: `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`",
+                      "description": "Identifier. The unique name of the materialized view. Format: `projects/{project}/instances/{instance}/materializedViews/{materialized_view}` Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/instances/[^/]+/materializedViews/[^/]+$",
                       "required": true,
@@ -3029,7 +3031,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -3077,7 +3079,7 @@
       }
     }
   },
-  "revision": "20250811",
+  "revision": "20250912",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -3697,7 +3699,13 @@
       "id": "CreateBackupMetadata",
       "properties": {
         "endTime": {
-          "description": "If set, the time at which this operation finished or was cancelled.",
+          "deprecated": true,
+          "description": "If set, the time at which this operation finished or was cancelled. DEPRECATED: Use finish_time instead.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "finishTime": {
+          "description": "The time at which the operation failed or was completed successfully.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3705,12 +3713,18 @@
           "description": "The name of the backup being created.",
           "type": "string"
         },
+        "requestTime": {
+          "description": "The time at which the original request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "sourceTable": {
           "description": "The name of the table the backup is created from.",
           "type": "string"
         },
         "startTime": {
-          "description": "The time at which this operation started.",
+          "deprecated": true,
+          "description": "The time at which this operation started. DEPRECATED: Use request_time instead.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -3816,7 +3830,13 @@
       "id": "CreateLogicalViewMetadata",
       "properties": {
         "endTime": {
-          "description": "If set, the time at which this operation finished or was canceled.",
+          "deprecated": true,
+          "description": "DEPRECATED: Use finish_time instead.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "finishTime": {
+          "description": "The time at which the operation failed or was completed successfully.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3824,8 +3844,14 @@
           "$ref": "CreateLogicalViewRequest",
           "description": "The request that prompted the initiation of this CreateLogicalView operation."
         },
+        "requestTime": {
+          "description": "The time at which the original request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "startTime": {
-          "description": "The time at which this operation started.",
+          "deprecated": true,
+          "description": "DEPRECATED: Use request_time instead.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -3856,7 +3882,13 @@
       "id": "CreateMaterializedViewMetadata",
       "properties": {
         "endTime": {
-          "description": "If set, the time at which this operation finished or was canceled.",
+          "deprecated": true,
+          "description": "If set, the time at which this operation finished or was canceled. DEPRECATED: Use finish_time instead.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "finishTime": {
+          "description": "The time at which the operation failed or was completed successfully.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3864,8 +3896,14 @@
           "$ref": "CreateMaterializedViewRequest",
           "description": "The request that prompted the initiation of this CreateMaterializedView operation."
         },
+        "requestTime": {
+          "description": "The time at which the original request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "startTime": {
-          "description": "The time at which this operation started.",
+          "deprecated": true,
+          "description": "The time at which this operation started. DEPRECATED: Use request_time instead.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -3895,8 +3933,8 @@
       "description": "The metadata for the Operation returned by CreateSchemaBundle.",
       "id": "CreateSchemaBundleMetadata",
       "properties": {
-        "endTime": {
-          "description": "If set, the time at which this operation finished or was canceled.",
+        "finishTime": {
+          "description": "The time at which the operation failed or was completed successfully.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3904,8 +3942,8 @@
           "description": "The unique name identifying this schema bundle. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}`",
           "type": "string"
         },
-        "startTime": {
-          "description": "The time at which this operation started.",
+        "requestTime": {
+          "description": "The time at which the original request was received.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -4257,7 +4295,7 @@
       "id": "GoogleBigtableAdminV2TypeBytesEncodingRaw",
       "properties": {
         "escapeNulls": {
-          "description": "If set, allows NULL values to be encoded as the empty string \"\". The actual empty string, or any value which only contains the null byte 0x00, has one more null byte appended.",
+          "description": "If set, allows NULL values to be encoded as the empty string \"\". The actual empty string, or any value which only contains the null byte `0x00`, has one more null byte appended.",
           "type": "boolean"
         }
       },
@@ -4402,7 +4440,7 @@
       "id": "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes",
       "properties": {
         "nullEscapeChar": {
-          "description": "Single-character escape sequence used to support NULL values. If set, allows NULL values to be encoded as the empty string \"\". The actual empty string, or any value where every character equals `null_escape_char`, has one more `null_escape_char` appended. If `null_escape_char` is set and does not equal the ASCII null character 0x00, then the encoding will not support sorted mode. .",
+          "description": "Single-character escape sequence used to support NULL values. If set, allows NULL values to be encoded as the empty string \"\". The actual empty string, or any value where every character equals `null_escape_char`, has one more `null_escape_char` appended. If `null_escape_char` is set and does not equal the ASCII null character `0x00`, then the encoding will not support sorted mode. .",
           "type": "string"
         }
       },
@@ -4453,7 +4491,7 @@
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStructEncodingDelimitedBytes": {
-      "description": "Fields are encoded independently and concatenated with a configurable `delimiter` in between. A struct with no fields defined is encoded as a single `delimiter`. Sorted mode: - Fields are encoded in sorted mode. - Encoded field values must not contain any bytes <= `delimiter[0]` - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. Distinct mode: - Fields are encoded in distinct mode. - Encoded field values must not contain `delimiter[0]`.",
+      "description": "Fields are encoded independently and concatenated with a configurable `delimiter` in between. A struct with no fields defined is encoded as a single `delimiter`. Sorted mode: - Fields are encoded in sorted mode. - Encoded field values must not contain any bytes <= `delimiter[0]` - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. - This encoding does not support `DESC` field ordering. Distinct mode: - Fields are encoded in distinct mode. - Encoded field values must not contain `delimiter[0]`.",
       "id": "GoogleBigtableAdminV2TypeStructEncodingDelimitedBytes",
       "properties": {
         "delimiter": {
@@ -4465,13 +4503,13 @@
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStructEncodingOrderedCodeBytes": {
-      "description": "Fields are encoded independently and concatenated with the fixed byte pair {0x00, 0x01} in between. Any null (0x00) byte in an encoded field is replaced by the fixed byte pair {0x00, 0xFF}. Fields that encode to the empty string \"\" have special handling: - If *every* field encodes to \"\", or if the STRUCT has no fields defined, then the STRUCT is encoded as the fixed byte pair {0x00, 0x00}. - Otherwise, the STRUCT only encodes until the last non-empty field, omitting any trailing empty fields. Any empty fields that aren't omitted are replaced with the fixed byte pair {0x00, 0x00}. Examples: - STRUCT() -> \"\\00\\00\" - STRUCT(\"\") -> \"\\00\\00\" - STRUCT(\"\", \"\") -> \"\\00\\00\" - STRUCT(\"\", \"B\") -> \"\\00\\00\" + \"\\00\\01\" + \"B\" - STRUCT(\"A\", \"\") -> \"A\" - STRUCT(\"\", \"B\", \"\") -> \"\\00\\00\" + \"\\00\\01\" + \"B\" - STRUCT(\"A\", \"\", \"C\") -> \"A\" + \"\\00\\01\" + \"\\00\\00\" + \"\\00\\01\" + \"C\" Since null bytes are always escaped, this encoding can cause size blowup for encodings like `Int64.BigEndianBytes` that are likely to produce many such bytes. Sorted mode: - Fields are encoded in sorted mode. - All values supported by the field encodings are allowed - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. Distinct mode: - Fields are encoded in distinct mode. - All values supported by the field encodings are allowed.",
+      "description": "Fields are encoded independently, then escaped and delimited by appling the following rules in order: - While the last remaining field is `ASC` or `UNSPECIFIED`, and encodes to the empty string \"\", remove it. - In each remaining field, replace all null bytes `0x00` with the fixed byte pair `{0x00, 0xFF}`. - If any remaining field encodes to the empty string \"\", replace it with the fixed byte pair `{0x00, 0x00}`. - Append the fixed byte pair `{0x00, 0x01}` to each remaining field, except for the last remaining field if it is `ASC`. - Bitwise negate all `DESC` fields. - Concatenate the results, or emit the fixed byte pair `{0x00, 0x00}` if there are no remaining fields to concatenate. Examples: ``` - STRUCT() -> \"\\00\\00\" - STRUCT(\"\") -> \"\\00\\00\" - STRUCT(\"\", \"\") -> \"\\00\\00\" - STRUCT(\"\", \"B\") -> \"\\00\\00\" + \"\\00\\01\" + \"B\" - STRUCT(\"A\", \"\") -> \"A\" - STRUCT(\"\", \"B\", \"\") -> \"\\00\\00\" + \"\\00\\01\" + \"B\" - STRUCT(\"A\", \"\", \"C\") -> \"A\" + \"\\00\\01\" + \"\\00\\00\" + \"\\00\\01\" + \"C\" ``` Examples for struct with `DESC` fields: ``` - STRUCT(\"\" DESC) -> \"\\xFF\\xFF\" + \"\\xFF\\xFE\" - STRUCT(\"\" DESC, \"\") -> \"\\xFF\\xFF\" + \"\\xFF\\xFE\" - STRUCT(\"\" DESC, \"\", \"\") -> \"\\xFF\\xFF\" + \"\\xFF\\xFE\" - STRUCT(\"\" DESC, \"A\") -> \"\\xFF\\xFF\" + \"\\xFF\\xFE\" + \"A\" - STRUCT(\"A\", \"\" DESC, \"\") -> \"A\" + \"\\00\\01\" + \"\\xFF\\xFF\" + \"\\xFF\\xFE\" - STRUCT(\"\", \"A\" DESC) -> \"\\x00\\x00\" + \"\\x00\\x01\" + \"\\xBE\" + \"\\xFF\\xFE\" ``` Since null bytes are always escaped, this encoding can cause size blowup for encodings like `Int64.BigEndianBytes` that are likely to produce many such bytes. Sorted mode: - Fields are encoded in sorted mode. - All values supported by the field encodings are allowed. - Fields with unset or `UNSPECIFIED` order are treated as `ASC`. - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. Distinct mode: - Fields are encoded in distinct mode. - All values supported by the field encodings are allowed.",
       "id": "GoogleBigtableAdminV2TypeStructEncodingOrderedCodeBytes",
       "properties": {},
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStructEncodingSingleton": {
-      "description": "Uses the encoding of `fields[0].type` as-is. Only valid if `fields.size == 1`.",
+      "description": "Uses the encoding of `fields[0].type` as-is. Only valid if `fields.size == 1`. This encoding does not support `DESC` field ordering.",
       "id": "GoogleBigtableAdminV2TypeStructEncodingSingleton",
       "properties": {},
       "type": "object"
@@ -4722,6 +4760,7 @@
           "type": "array"
         },
         "nextPageToken": {
+          "deprecated": true,
           "description": "DEPRECATED: This field is unused and ignored.",
           "type": "string"
         }
@@ -4765,6 +4804,7 @@
           "type": "array"
         },
         "nextPageToken": {
+          "deprecated": true,
           "description": "DEPRECATED: This field is unused and ignored.",
           "type": "string"
         }
@@ -4941,19 +4981,19 @@
       "id": "MaterializedView",
       "properties": {
         "deletionProtection": {
-          "description": "Set to true to make the MaterializedView protected against deletion.",
+          "description": "Set to true to make the MaterializedView protected against deletion. Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.",
           "type": "boolean"
         },
         "etag": {
-          "description": "Optional. The etag for this materialized view. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag.",
+          "description": "Optional. The etag for this materialized view. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag. Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.",
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The unique name of the materialized view. Format: `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`",
+          "description": "Identifier. The unique name of the materialized view. Format: `projects/{project}/instances/{instance}/materializedViews/{materialized_view}` Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.",
           "type": "string"
         },
         "query": {
-          "description": "Required. Immutable. The materialized view's select query.",
+          "description": "Required. Immutable. The materialized view's select query. Views: `SCHEMA_VIEW`, `FULL`.",
           "type": "string"
         }
       },
@@ -5568,7 +5608,7 @@
       "type": "object"
     },
     "Type": {
-      "description": "`Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to or from the underlying data. Each encoding can operate in one of two modes: - Sorted: In this mode, Bigtable guarantees that `Encode(X) <= Encode(Y)` if and only if `X <= Y`. This is useful anywhere sort order is important, for example when encoding keys. - Distinct: In this mode, Bigtable guarantees that if `X != Y` then `Encode(X) != Encode(Y)`. However, the converse is not guaranteed. For example, both \"{'foo': '1', 'bar': '2'}\" and \"{'bar': '2', 'foo': '1'}\" are valid encodings of the same JSON value. The API clearly documents which mode is used wherever an encoding can be configured. Each encoding also documents which values are supported in which modes. For example, when encoding INT64 as a numeric STRING, negative numbers cannot be encoded in sorted mode. This is because `INT64(1) > INT64(-1)`, but `STRING(\"-00001\") > STRING(\"00001\")`.",
+      "description": "`Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to or from the underlying data. Each encoding can operate in one of two modes: - Sorted: In this mode, Bigtable guarantees that `Encode(X) <= Encode(Y)` if and only if `X <= Y`. This is useful anywhere sort order is important, for example when encoding keys. - Distinct: In this mode, Bigtable guarantees that if `X != Y` then `Encode(X) != Encode(Y)`. However, the converse is not guaranteed. For example, both `{'foo': '1', 'bar': '2'}` and `{'bar': '2', 'foo': '1'}` are valid encodings of the same JSON value. The API clearly documents which mode is used wherever an encoding can be configured. Each encoding also documents which values are supported in which modes. For example, when encoding INT64 as a numeric STRING, negative numbers cannot be encoded in sorted mode. This is because `INT64(1) > INT64(-1)`, but `STRING(\"-00001\") > STRING(\"00001\")`.",
       "id": "Type",
       "properties": {
         "aggregateType": {
@@ -5635,7 +5675,13 @@
       "id": "UndeleteTableMetadata",
       "properties": {
         "endTime": {
-          "description": "If set, the time at which this operation finished or was cancelled.",
+          "deprecated": true,
+          "description": "If set, the time at which this operation finished or was cancelled. DEPRECATED: Use finish_time instead.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "finishTime": {
+          "description": "The time at which the operation failed or was completed successfully.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -5643,8 +5689,14 @@
           "description": "The name of the table being restored.",
           "type": "string"
         },
+        "requestTime": {
+          "description": "The time at which the original request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "startTime": {
-          "description": "The time at which this operation started.",
+          "deprecated": true,
+          "description": "The time at which this operation started. DEPRECATED: Use request_time instead.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -5765,7 +5817,13 @@
       "id": "UpdateLogicalViewMetadata",
       "properties": {
         "endTime": {
-          "description": "If set, the time at which this operation finished or was canceled.",
+          "deprecated": true,
+          "description": "DEPRECATED: Use finish_time instead.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "finishTime": {
+          "description": "The time at which the operation failed or was completed successfully.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -5773,8 +5831,14 @@
           "$ref": "UpdateLogicalViewRequest",
           "description": "The request that prompted the initiation of this UpdateLogicalView operation."
         },
+        "requestTime": {
+          "description": "The time at which the original request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "startTime": {
-          "description": "The time at which this operation was started.",
+          "deprecated": true,
+          "description": "DEPRECATED: Use request_time instead.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -5801,8 +5865,8 @@
       "description": "The metadata for the Operation returned by UpdateSchemaBundle.",
       "id": "UpdateSchemaBundleMetadata",
       "properties": {
-        "endTime": {
-          "description": "If set, the time at which this operation finished or was canceled.",
+        "finishTime": {
+          "description": "The time at which the operation failed or was completed successfully.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -5810,8 +5874,8 @@
           "description": "The unique name identifying this schema bundle. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}`",
           "type": "string"
         },
-        "startTime": {
-          "description": "The time at which this operation started.",
+        "requestTime": {
+          "description": "The time at which the original request was received.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -5823,7 +5887,13 @@
       "id": "UpdateTableMetadata",
       "properties": {
         "endTime": {
-          "description": "If set, the time at which this operation finished or was canceled.",
+          "deprecated": true,
+          "description": "If set, the time at which this operation finished or was canceled. DEPRECATED: Use finish_time instead.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "finishTime": {
+          "description": "The time at which the operation failed or was completed successfully.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -5831,8 +5901,14 @@
           "description": "The name of the table being updated.",
           "type": "string"
         },
+        "requestTime": {
+          "description": "The time at which the original request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "startTime": {
-          "description": "The time at which this operation started.",
+          "deprecated": true,
+          "description": "The time at which this operation started. DEPRECATED: Use request_time instead.",
           "format": "google-datetime",
           "type": "string"
         }
