@@ -114,6 +114,42 @@
   },
   "protocol": "rest",
   "resources": {
+    "projects": {
+      "resources": {
+        "locations": {
+          "methods": {
+            "signSshPublicKey": {
+              "description": "Signs an SSH public key for a user to authenticate to a virtual machine on Google Compute Engine.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:signSshPublicKey",
+              "httpMethod": "POST",
+              "id": "oslogin.projects.locations.signSshPublicKey",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent for the signing request. Format: projects/{project}/locations/{location}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}:signSshPublicKey",
+              "request": {
+                "$ref": "SignSshPublicKeyRequest"
+              },
+              "response": {
+                "$ref": "SignSshPublicKeyResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    },
     "users": {
       "methods": {
         "getLoginProfile": {
@@ -349,7 +385,7 @@
       }
     }
   },
-  "revision": "20250518",
+  "revision": "20250921",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -458,6 +494,40 @@
         },
         "username": {
           "description": "The username of the POSIX account.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SignSshPublicKeyRequest": {
+      "description": "A request message for signing an SSH public key.",
+      "id": "SignSshPublicKeyRequest",
+      "properties": {
+        "appEngineInstance": {
+          "description": "The App Engine instance to sign the SSH public key for. Expected format: apps/{app}/services/{service}/versions/{version}/instances/{instance}",
+          "type": "string"
+        },
+        "computeInstance": {
+          "description": "The Compute instance to sign the SSH public key for. Expected format: projects/{project}/zones/{zone}/instances/{numeric_instance_id}",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account for the instance. If the instance in question does not have a service account, this field should be left empty. If the wrong service account is provided, this operation will return a signed certificate that will not be accepted by the VM.",
+          "type": "string"
+        },
+        "sshPublicKey": {
+          "description": "Required. The SSH public key to sign.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SignSshPublicKeyResponse": {
+      "description": "The response message for signing an SSH public key.",
+      "id": "SignSshPublicKeyResponse",
+      "properties": {
+        "signedSshPublicKey": {
+          "description": "The signed SSH public key to use in the SSH handshake.",
           "type": "string"
         }
       },

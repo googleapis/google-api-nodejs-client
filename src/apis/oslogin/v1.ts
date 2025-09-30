@@ -112,6 +112,7 @@ export namespace oslogin_v1 {
    */
   export class Oslogin {
     context: APIRequestContext;
+    projects: Resource$Projects;
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace oslogin_v1 {
         google,
       };
 
+      this.projects = new Resource$Projects(this.context);
       this.users = new Resource$Users(this.context);
     }
   }
@@ -208,6 +210,36 @@ export namespace oslogin_v1 {
     username?: string | null;
   }
   /**
+   * A request message for signing an SSH public key.
+   */
+  export interface Schema$SignSshPublicKeyRequest {
+    /**
+     * The App Engine instance to sign the SSH public key for. Expected format: apps/{app\}/services/{service\}/versions/{version\}/instances/{instance\}
+     */
+    appEngineInstance?: string | null;
+    /**
+     * The Compute instance to sign the SSH public key for. Expected format: projects/{project\}/zones/{zone\}/instances/{numeric_instance_id\}
+     */
+    computeInstance?: string | null;
+    /**
+     * Optional. The service account for the instance. If the instance in question does not have a service account, this field should be left empty. If the wrong service account is provided, this operation will return a signed certificate that will not be accepted by the VM.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Required. The SSH public key to sign.
+     */
+    sshPublicKey?: string | null;
+  }
+  /**
+   * The response message for signing an SSH public key.
+   */
+  export interface Schema$SignSshPublicKeyResponse {
+    /**
+     * The signed SSH public key to use in the SSH handshake.
+     */
+    signedSshPublicKey?: string | null;
+  }
+  /**
    * The SSH public key information associated with a Google account.
    */
   export interface Schema$SshPublicKey {
@@ -227,6 +259,187 @@ export namespace oslogin_v1 {
      * Output only. The canonical resource name.
      */
     name?: string | null;
+  }
+
+  export class Resource$Projects {
+    context: APIRequestContext;
+    locations: Resource$Projects$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Signs an SSH public key for a user to authenticate to a virtual machine on Google Compute Engine.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.projects.locations.signSshPublicKey({
+     *     // Required. The parent for the signing request. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appEngineInstance": "my_appEngineInstance",
+     *       //   "computeInstance": "my_computeInstance",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "sshPublicKey": "my_sshPublicKey"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "signedSshPublicKey": "my_signedSshPublicKey"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    signSshPublicKey(
+      params: Params$Resource$Projects$Locations$Signsshpublickey,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    signSshPublicKey(
+      params?: Params$Resource$Projects$Locations$Signsshpublickey,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SignSshPublicKeyResponse>>;
+    signSshPublicKey(
+      params: Params$Resource$Projects$Locations$Signsshpublickey,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    signSshPublicKey(
+      params: Params$Resource$Projects$Locations$Signsshpublickey,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SignSshPublicKeyResponse>,
+      callback: BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+    ): void;
+    signSshPublicKey(
+      params: Params$Resource$Projects$Locations$Signsshpublickey,
+      callback: BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+    ): void;
+    signSshPublicKey(
+      callback: BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+    ): void;
+    signSshPublicKey(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Signsshpublickey
+        | BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SignSshPublicKeyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Signsshpublickey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Signsshpublickey;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:signSshPublicKey').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SignSshPublicKeyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SignSshPublicKeyResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Signsshpublickey
+    extends StandardParameters {
+    /**
+     * Required. The parent for the signing request. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SignSshPublicKeyRequest;
   }
 
   export class Resource$Users {
