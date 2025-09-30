@@ -509,6 +509,14 @@ export namespace oracledatabase_v1 {
      */
     disasterRecoveryRoleChangedTime?: string | null;
     /**
+     * Optional. The encryption key used to encrypt the Autonomous Database. Updating this field will add a new entry in the `encryption_key_history_entries` field with the former version.
+     */
+    encryptionKey?: Schema$EncryptionKey;
+    /**
+     * Output only. The history of the encryption keys used to encrypt the Autonomous Database.
+     */
+    encryptionKeyHistoryEntries?: Schema$EncryptionKeyHistoryEntry[];
+    /**
      * Output only. This field indicates the number of seconds of data loss during a Data Guard failover.
      */
     failedDataRecoveryDuration?: string | null;
@@ -633,6 +641,10 @@ export namespace oracledatabase_v1 {
      */
     secretId?: string | null;
     /**
+     * Output only. An Oracle-managed Google Cloud service account on which customers can grant roles to access resources in the customer project.
+     */
+    serviceAgentEmail?: string | null;
+    /**
      * Output only. The SQL Web Developer URL for the Autonomous Database.
      */
     sqlWebDeveloperUrl?: string | null;
@@ -704,6 +716,15 @@ export namespace oracledatabase_v1 {
     workloadUri?: string | null;
   }
   /**
+   * The details of the database backup destination.
+   */
+  export interface Schema$BackupDestinationDetails {
+    /**
+     * Optional. The type of the database backup destination.
+     */
+    type?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -745,7 +766,7 @@ export namespace oracledatabase_v1 {
      */
     entitlementId?: string | null;
     /**
-     * Optional. Google Cloud Platform location where Oracle Exadata is hosted.
+     * Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
      */
     gcpOracleZone?: string | null;
     /**
@@ -915,9 +936,13 @@ export namespace oracledatabase_v1 {
      */
     exadataInfrastructure?: string | null;
     /**
-     * Output only. Google Cloud Platform location where Oracle Exadata is hosted. It is same as Google Cloud Platform Oracle zone of Exadata infrastructure.
+     * Output only. The GCP Oracle zone where Oracle CloudVmCluster is hosted. This will be the same as the gcp_oracle_zone of the CloudExadataInfrastructure. Example: us-east4-b-r2.
      */
     gcpOracleZone?: string | null;
+    /**
+     * Output only. The identity connector details which will allow OCI to securely access the resources in the customer project.
+     */
+    identityConnector?: Schema$IdentityConnector;
     /**
      * Optional. Labels or tags associated with the VM Cluster.
      */
@@ -1090,6 +1115,84 @@ export namespace oracledatabase_v1 {
     email?: string | null;
   }
   /**
+   * Details of the Database resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/Database/
+   */
+  export interface Schema$Database {
+    /**
+     * Required. The password for the default ADMIN user.
+     */
+    adminPassword?: string | null;
+    /**
+     * Optional. The character set for the database. The default is AL32UTF8.
+     */
+    characterSet?: string | null;
+    /**
+     * Output only. The date and time that the Database was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The database ID of the Database.
+     */
+    databaseId?: string | null;
+    /**
+     * Optional. The name of the DbHome resource associated with the Database.
+     */
+    dbHomeName?: string | null;
+    /**
+     * Optional. The database name. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted.
+     */
+    dbName?: string | null;
+    /**
+     * Optional. The DB_UNIQUE_NAME of the Oracle Database being backed up.
+     */
+    dbUniqueName?: string | null;
+    /**
+     * Output only. The GCP Oracle zone where the Database is created.
+     */
+    gcpOracleZone?: string | null;
+    /**
+     * Identifier. The name of the Database resource in the following format: projects/{project\}/locations/{region\}/databases/{database\}
+     */
+    name?: string | null;
+    /**
+     * Optional. The national character set for the database. The default is AL16UTF16.
+     */
+    ncharacterSet?: string | null;
+    /**
+     * Output only. HTTPS link to OCI resources exposed to Customer via UI Interface.
+     */
+    ociUrl?: string | null;
+    /**
+     * Output only. The Status of Operations Insights for this Database.
+     */
+    opsInsightsStatus?: string | null;
+    /**
+     * Optional. The properties of the Database.
+     */
+    properties?: Schema$DatabaseProperties;
+    /**
+     * Optional. The TDE wallet password for the database.
+     */
+    tdeWalletPassword?: string | null;
+  }
+  /**
+   * Details of the Database character set resource.
+   */
+  export interface Schema$DatabaseCharacterSet {
+    /**
+     * Output only. The character set name for the Database which is the ID in the resource name.
+     */
+    characterSet?: string | null;
+    /**
+     * Output only. The character set type for the Database.
+     */
+    characterSetType?: string | null;
+    /**
+     * Identifier. The name of the Database Character Set resource in the following format: projects/{project\}/locations/{region\}/databaseCharacterSets/{database_character_set\}
+     */
+    name?: string | null;
+  }
+  /**
    * The connection string profile to allow clients to group. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/DatabaseConnectionStringProfile
    */
   export interface Schema$DatabaseConnectionStringProfile {
@@ -1131,6 +1234,40 @@ export namespace oracledatabase_v1 {
     value?: string | null;
   }
   /**
+   * The configuration of the Database Management service.
+   */
+  export interface Schema$DatabaseManagementConfig {
+    /**
+     * Output only. The status of the Database Management service.
+     */
+    managementState?: string | null;
+    /**
+     * Output only. The Database Management type.
+     */
+    managementType?: string | null;
+  }
+  /**
+   * The properties of a Database.
+   */
+  export interface Schema$DatabaseProperties {
+    /**
+     * Output only. The Database Management config.
+     */
+    databaseManagementConfig?: Schema$DatabaseManagementConfig;
+    /**
+     * Optional. Backup options for the Database.
+     */
+    dbBackupConfig?: Schema$DbBackupConfig;
+    /**
+     * Required. The Oracle Database version.
+     */
+    dbVersion?: string | null;
+    /**
+     * Output only. State of the Database.
+     */
+    state?: string | null;
+  }
+  /**
    * Data collection options for diagnostics.
    */
   export interface Schema$DataCollectionOptions {
@@ -1146,6 +1283,90 @@ export namespace oracledatabase_v1 {
      * Optional. Indicates whether incident logs and trace collection are enabled for the VM cluster
      */
     incidentLogsEnabled?: boolean | null;
+  }
+  /**
+   * Data collection options for diagnostics. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/DataCollectionOptions
+   */
+  export interface Schema$DataCollectionOptionsCommon {
+    /**
+     * Optional. Indicates whether to enable data collection for diagnostics.
+     */
+    isDiagnosticsEventsEnabled?: boolean | null;
+    /**
+     * Optional. Indicates whether to enable health monitoring.
+     */
+    isHealthMonitoringEnabled?: boolean | null;
+    /**
+     * Optional. Indicates whether to enable incident logs and trace collection.
+     */
+    isIncidentLogsEnabled?: boolean | null;
+  }
+  /**
+   * Data collection options for DbSystem.
+   */
+  export interface Schema$DataCollectionOptionsDbSystem {
+    /**
+     * Optional. Indicates whether to enable data collection for diagnostics.
+     */
+    isDiagnosticsEventsEnabled?: boolean | null;
+    /**
+     * Optional. Indicates whether to enable incident logs and trace collection.
+     */
+    isIncidentLogsEnabled?: boolean | null;
+  }
+  /**
+   * Backup Options for the Database.
+   */
+  export interface Schema$DbBackupConfig {
+    /**
+     * Optional. If set to true, enables automatic backups on the database.
+     */
+    autoBackupEnabled?: boolean | null;
+    /**
+     * Optional. The day of the week on which the full backup should be performed on the database. If no value is provided, it will default to Sunday.
+     */
+    autoFullBackupDay?: string | null;
+    /**
+     * Optional. The window in which the full backup should be performed on the database. If no value is provided, the default is anytime.
+     */
+    autoFullBackupWindow?: string | null;
+    /**
+     * Optional. The window in which the incremental backup should be performed on the database. If no value is provided, the default is anytime except the auto full backup day.
+     */
+    autoIncrementalBackupWindow?: string | null;
+    /**
+     * Optional. This defines when the backups will be deleted after Database termination.
+     */
+    backupDeletionPolicy?: string | null;
+    /**
+     * Optional. Details of the database backup destinations.
+     */
+    backupDestinationDetails?: Schema$BackupDestinationDetails[];
+    /**
+     * Optional. The number of days an automatic backup is retained before being automatically deleted. This value determines the earliest point in time to which a database can be restored. Min: 1, Max: 60.
+     */
+    retentionPeriodDays?: number | null;
+  }
+  /**
+   * Details of the Database Home resource.
+   */
+  export interface Schema$DbHome {
+    /**
+     * Required. The Database resource.
+     */
+    database?: Schema$Database;
+    /**
+     * Required. A valid Oracle Database version. For a list of supported versions, use the ListDbVersions operation.
+     */
+    dbVersion?: string | null;
+    /**
+     * Optional. The display name for the Database Home. The name does not have to be unique within your project.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Whether unified auditing is enabled for the Database Home.
+     */
+    isUnifiedAuditingEnabled?: boolean | null;
   }
   /**
    * Details of the database node resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/DbNode/
@@ -1264,6 +1485,183 @@ export namespace oracledatabase_v1 {
     vmCount?: number | null;
   }
   /**
+   * Details of the DbSystem (BaseDB) resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/DbSystem/
+   */
+  export interface Schema$DbSystem {
+    /**
+     * Output only. The date and time that the DbSystem was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The display name for the System db. The name does not have to be unique within your project.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The ID of the subscription entitlement associated with the DbSystem
+     */
+    entitlementId?: string | null;
+    /**
+     * Optional. The GCP Oracle zone where Oracle DbSystem is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
+     */
+    gcpOracleZone?: string | null;
+    /**
+     * Optional. The labels or tags associated with the DbSystem.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The name of the DbSystem resource in the following format: projects/{project\}/locations/{region\}/dbSystems/{db_system\}
+     */
+    name?: string | null;
+    /**
+     * Output only. HTTPS link to OCI resources exposed to Customer via UI Interface.
+     */
+    ociUrl?: string | null;
+    /**
+     * Optional. The name of the OdbNetwork associated with the DbSystem. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.
+     */
+    odbNetwork?: string | null;
+    /**
+     * Required. The name of the OdbSubnet associated with the DbSystem for IP allocation. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
+     */
+    odbSubnet?: string | null;
+    /**
+     * Optional. The properties of the DbSystem.
+     */
+    properties?: Schema$DbSystemProperties;
+  }
+  /**
+   * Summary of the DbSystem initial storage size.
+   */
+  export interface Schema$DbSystemInitialStorageSize {
+    /**
+     * Output only. The name of the resource.
+     */
+    name?: string | null;
+    /**
+     * Output only. The properties of the DbSystem initial storage size summary.
+     */
+    properties?: Schema$DbSystemInitialStorageSizeProperties;
+  }
+  /**
+   * The properties of a DbSystem initial storage size summary.
+   */
+  export interface Schema$DbSystemInitialStorageSizeProperties {
+    /**
+     * Output only. List of storage disk details available for launches from backup.
+     */
+    launchFromBackupStorageSizeDetails?: Schema$StorageSizeDetails[];
+    /**
+     * Output only. VM shape platform type
+     */
+    shapeType?: string | null;
+    /**
+     * Output only. The storage option used in DB system.
+     */
+    storageManagement?: string | null;
+    /**
+     * Output only. List of storage disk details.
+     */
+    storageSizeDetails?: Schema$StorageSizeDetails[];
+  }
+  /**
+   * Details of the DbSystem Options.
+   */
+  export interface Schema$DbSystemOptions {
+    /**
+     * Optional. The storage option used in DB system.
+     */
+    storageManagement?: string | null;
+  }
+  /**
+   * The properties of a DbSystem.
+   */
+  export interface Schema$DbSystemProperties {
+    /**
+     * Required. The number of CPU cores to enable for the DbSystem.
+     */
+    computeCount?: number | null;
+    /**
+     * Optional. The compute model of the DbSystem.
+     */
+    computeModel?: string | null;
+    /**
+     * Required. The database edition of the DbSystem.
+     */
+    databaseEdition?: string | null;
+    /**
+     * Optional. Data collection options for diagnostics.
+     */
+    dataCollectionOptions?: Schema$DataCollectionOptionsDbSystem;
+    /**
+     * Optional. The data storage size in GB that is currently available to DbSystems.
+     */
+    dataStorageSizeGb?: number | null;
+    /**
+     * Optional. Details for creating a Database Home.
+     */
+    dbHome?: Schema$DbHome;
+    /**
+     * Optional. The options for the DbSystem.
+     */
+    dbSystemOptions?: Schema$DbSystemOptions;
+    /**
+     * Optional. The host domain name of the DbSystem.
+     */
+    domain?: string | null;
+    /**
+     * Output only. The hostname of the DbSystem.
+     */
+    hostname?: string | null;
+    /**
+     * Optional. Prefix for DB System host names.
+     */
+    hostnamePrefix?: string | null;
+    /**
+     * Required. The initial data storage size in GB.
+     */
+    initialDataStorageSizeGb?: number | null;
+    /**
+     * Required. The license model of the DbSystem.
+     */
+    licenseModel?: string | null;
+    /**
+     * Output only. State of the DbSystem.
+     */
+    lifecycleState?: string | null;
+    /**
+     * Optional. The memory size in GB.
+     */
+    memorySizeGb?: number | null;
+    /**
+     * Optional. The number of nodes in the DbSystem.
+     */
+    nodeCount?: number | null;
+    /**
+     * Output only. OCID of the DbSystem.
+     */
+    ocid?: string | null;
+    /**
+     * Optional. The private IP address of the DbSystem.
+     */
+    privateIp?: string | null;
+    /**
+     * Optional. The reco/redo storage size in GB.
+     */
+    recoStorageSizeGb?: number | null;
+    /**
+     * Required. Shape of DB System.
+     */
+    shape?: string | null;
+    /**
+     * Required. SSH public keys to be stored with the DbSystem.
+     */
+    sshPublicKeys?: string[] | null;
+    /**
+     * Optional. Time zone of the DbSystem.
+     */
+    timeZone?: Schema$TimeZone;
+  }
+  /**
    * Details of the Database System Shapes resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/DbSystemShapeSummary/
    */
   export interface Schema$DbSystemShape {
@@ -1317,9 +1715,82 @@ export namespace oracledatabase_v1 {
     shape?: string | null;
   }
   /**
+   * A valid Oracle Database version.
+   */
+  export interface Schema$DbVersion {
+    /**
+     * Output only. The name of the DbVersion resource in the following format: projects/{project\}/locations/{region\}/dbVersions/{db_version\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The properties of the DbVersion.
+     */
+    properties?: Schema$DbVersionProperties;
+  }
+  /**
+   * The properties of a DbVersion.
+   */
+  export interface Schema$DbVersionProperties {
+    /**
+     * Output only. True if this version of the Oracle Database software is the latest version for a release.
+     */
+    isLatestForMajorVersion?: boolean | null;
+    /**
+     * Output only. True if this version of the Oracle Database software is the preview version.
+     */
+    isPreviewDbVersion?: boolean | null;
+    /**
+     * Output only. True if this version of the Oracle Database software is supported for Upgrade.
+     */
+    isUpgradeSupported?: boolean | null;
+    /**
+     * Output only. True if this version of the Oracle Database software supports pluggable databases.
+     */
+    supportsPdb?: boolean | null;
+    /**
+     * Output only. A valid Oracle Database version.
+     */
+    version?: string | null;
+  }
+  /**
+   * Wrapper message for the value of a defined tag.
+   */
+  export interface Schema$DefinedTagValue {
+    /**
+     * The tags within the namespace.
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * The encryption key used to encrypt the Autonomous Database.
+   */
+  export interface Schema$EncryptionKey {
+    /**
+     * Optional. The KMS key used to encrypt the Autonomous Database. This field is required if the provider is GOOGLE_MANAGED. The name of the KMS key resource in the following format: `projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`.
+     */
+    kmsKey?: string | null;
+    /**
+     * Optional. The provider of the encryption key.
+     */
+    provider?: string | null;
+  }
+  /**
+   * The history of the encryption keys used to encrypt the Autonomous Database.
+   */
+  export interface Schema$EncryptionKeyHistoryEntry {
+    /**
+     * Output only. The date and time when the encryption key was activated on the Autonomous Database..
+     */
+    activationTime?: string | null;
+    /**
+     * Output only. The encryption key used to encrypt the Autonomous Database.
+     */
+    encryptionKey?: Schema$EncryptionKey;
+  }
   /**
    * Details of the Entitlement resource.
    */
@@ -1340,6 +1811,245 @@ export namespace oracledatabase_v1 {
      * Output only. Entitlement State.
      */
     state?: string | null;
+  }
+  /**
+   * ExadbVmCluster represents a cluster of VMs that are used to run Exadata workloads. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/ExadbVmCluster/
+   */
+  export interface Schema$ExadbVmCluster {
+    /**
+     * Required. Immutable. The name of the backup OdbSubnet associated with the ExadbVmCluster. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
+     */
+    backupOdbSubnet?: string | null;
+    /**
+     * Output only. The date and time that the ExadbVmCluster was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. Immutable. The display name for the ExadbVmCluster. The name does not have to be unique within your project. The name must be 1-255 characters long and can only contain alphanumeric characters.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The ID of the subscription entitlement associated with the ExadbVmCluster.
+     */
+    entitlementId?: string | null;
+    /**
+     * Output only. Immutable. The GCP Oracle zone where Oracle ExadbVmCluster is hosted. Example: us-east4-b-r2. During creation, the system will pick the zone assigned to the ExascaleDbStorageVault.
+     */
+    gcpOracleZone?: string | null;
+    /**
+     * Optional. The labels or tags associated with the ExadbVmCluster.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The name of the ExadbVmCluster resource in the following format: projects/{project\}/locations/{region\}/exadbVmClusters/{exadb_vm_cluster\}
+     */
+    name?: string | null;
+    /**
+     * Optional. Immutable. The name of the OdbNetwork associated with the ExadbVmCluster. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.
+     */
+    odbNetwork?: string | null;
+    /**
+     * Required. Immutable. The name of the OdbSubnet associated with the ExadbVmCluster for IP allocation. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
+     */
+    odbSubnet?: string | null;
+    /**
+     * Required. The properties of the ExadbVmCluster.
+     */
+    properties?: Schema$ExadbVmClusterProperties;
+  }
+  /**
+   * The properties of an ExadbVmCluster.
+   */
+  export interface Schema$ExadbVmClusterProperties {
+    /**
+     * Optional. Immutable. The number of additional ECPUs per node for an Exadata VM cluster on exascale infrastructure.
+     */
+    additionalEcpuCountPerNode?: number | null;
+    /**
+     * Optional. Immutable. The cluster name for Exascale vm cluster. The cluster name must begin with an alphabetic character and may contain hyphens(-) but can not contain underscores(_). It should be not more than 11 characters and is not case sensitive. OCI Cluster name.
+     */
+    clusterName?: string | null;
+    /**
+     * Optional. Immutable. Indicates user preference for data collection options.
+     */
+    dataCollectionOptions?: Schema$DataCollectionOptionsCommon;
+    /**
+     * Required. Immutable. The number of ECPUs enabled per node for an exadata vm cluster on exascale infrastructure.
+     */
+    enabledEcpuCountPerNode?: number | null;
+    /**
+     * Required. Immutable. The name of ExascaleDbStorageVault associated with the ExadbVmCluster. It can refer to an existing ExascaleDbStorageVault. Or a new one can be created during the ExadbVmCluster creation (requires storage_vault_properties to be set). Format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}
+     */
+    exascaleDbStorageVault?: string | null;
+    /**
+     * Output only. The Oracle Grid Infrastructure (GI) software version.
+     */
+    giVersion?: string | null;
+    /**
+     * Required. Immutable. Grid Infrastructure Version.
+     */
+    gridImageId?: string | null;
+    /**
+     * Output only. The hostname of the ExadbVmCluster.
+     */
+    hostname?: string | null;
+    /**
+     * Required. Immutable. Prefix for VM cluster host names.
+     */
+    hostnamePrefix?: string | null;
+    /**
+     * Optional. Immutable. The license type of the ExadbVmCluster.
+     */
+    licenseModel?: string | null;
+    /**
+     * Output only. State of the cluster.
+     */
+    lifecycleState?: string | null;
+    /**
+     * Output only. Memory per VM (GB) (Read-only): Shows the amount of memory allocated to each VM. Memory is calculated based on 2.75 GB per Total ECPUs.
+     */
+    memorySizeGb?: number | null;
+    /**
+     * Required. The number of nodes/VMs in the ExadbVmCluster.
+     */
+    nodeCount?: number | null;
+    /**
+     * Output only. Deep link to the OCI console to view this resource.
+     */
+    ociUri?: string | null;
+    /**
+     * Optional. Immutable. SCAN listener port - TCP
+     */
+    scanListenerPortTcp?: number | null;
+    /**
+     * Required. Immutable. The shape attribute of the VM cluster. The type of Exascale storage used for Exadata VM cluster. The default is SMART_STORAGE which supports Oracle Database 23ai and later
+     */
+    shapeAttribute?: string | null;
+    /**
+     * Required. Immutable. The SSH public keys for the ExadbVmCluster.
+     */
+    sshPublicKeys?: string[] | null;
+    /**
+     * Optional. Immutable. The time zone of the ExadbVmCluster.
+     */
+    timeZone?: Schema$TimeZone;
+    /**
+     * Required. Immutable. Total storage details for the ExadbVmCluster.
+     */
+    vmFileSystemStorage?: Schema$ExadbVmClusterStorageDetails;
+  }
+  /**
+   * The storage allocation for the exadbvmcluster, in gigabytes (GB).
+   */
+  export interface Schema$ExadbVmClusterStorageDetails {
+    /**
+     * Required. The storage allocation for the exadbvmcluster per node, in gigabytes (GB). This field is used to calculate the total storage allocation for the exadbvmcluster.
+     */
+    sizeInGbsPerNode?: number | null;
+  }
+  /**
+   * The storage details of the ExascaleDbStorageVault.
+   */
+  export interface Schema$ExascaleDbStorageDetails {
+    /**
+     * Output only. The available storage capacity for the ExascaleDbStorageVault, in gigabytes (GB).
+     */
+    availableSizeGbs?: number | null;
+    /**
+     * Required. The total storage allocation for the ExascaleDbStorageVault, in gigabytes (GB).
+     */
+    totalSizeGbs?: number | null;
+  }
+  /**
+   * ExascaleDbStorageVault represents a storage vault exadb vm cluster resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/ExascaleDbStorageVault/
+   */
+  export interface Schema$ExascaleDbStorageVault {
+    /**
+     * Output only. The date and time when the ExascaleDbStorageVault was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The display name for the ExascaleDbStorageVault. The name does not have to be unique within your project. The name must be 1-255 characters long and can only contain alphanumeric characters.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The ID of the subscription entitlement associated with the ExascaleDbStorageVault.
+     */
+    entitlementId?: string | null;
+    /**
+     * Optional. The GCP Oracle zone where Oracle ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
+     */
+    gcpOracleZone?: string | null;
+    /**
+     * Optional. The labels or tags associated with the ExascaleDbStorageVault.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The resource name of the ExascaleDbStorageVault. Format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}
+     */
+    name?: string | null;
+    /**
+     * Required. The properties of the ExascaleDbStorageVault.
+     */
+    properties?: Schema$ExascaleDbStorageVaultProperties;
+  }
+  /**
+   * The properties of the ExascaleDbStorageVault. next ID: 12
+   */
+  export interface Schema$ExascaleDbStorageVaultProperties {
+    /**
+     * Optional. The size of additional flash cache in percentage of high capacity database storage.
+     */
+    additionalFlashCachePercent?: number | null;
+    /**
+     * Output only. The shape attributes of the VM clusters attached to the ExascaleDbStorageVault.
+     */
+    attachedShapeAttributes?: string[] | null;
+    /**
+     * Output only. The shape attributes available for the VM clusters to be attached to the ExascaleDbStorageVault.
+     */
+    availableShapeAttributes?: string[] | null;
+    /**
+     * Optional. The description of the ExascaleDbStorageVault.
+     */
+    description?: string | null;
+    /**
+     * Required. The storage details of the ExascaleDbStorageVault.
+     */
+    exascaleDbStorageDetails?: Schema$ExascaleDbStorageDetails;
+    /**
+     * Output only. The OCID for the ExascaleDbStorageVault.
+     */
+    ocid?: string | null;
+    /**
+     * Output only. Deep link to the OCI console to view this resource.
+     */
+    ociUri?: string | null;
+    /**
+     * Output only. The state of the ExascaleDbStorageVault.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time zone of the ExascaleDbStorageVault.
+     */
+    timeZone?: Schema$TimeZone;
+    /**
+     * Output only. The number of VM clusters associated with the ExascaleDbStorageVault.
+     */
+    vmClusterCount?: number | null;
+    /**
+     * Output only. The list of VM cluster OCIDs associated with the ExascaleDbStorageVault.
+     */
+    vmClusterIds?: string[] | null;
+  }
+  /**
+   * The request for `OracleDatabase.FailoverAutonomousDatabase`.
+   */
+  export interface Schema$FailoverAutonomousDatabaseRequest {
+    /**
+     * Required. The peer database name to fail over to.
+     */
+    peerAutonomousDatabase?: string | null;
   }
   /**
    * The request for `AutonomousDatabase.GenerateWallet`.
@@ -1379,6 +2089,19 @@ export namespace oracledatabase_v1 {
      * Optional. version
      */
     version?: string | null;
+  }
+  /**
+   * The identity connector details which will allow OCI to securely access the resources in the customer project.
+   */
+  export interface Schema$IdentityConnector {
+    /**
+     * Output only. The connection state of the identity connector.
+     */
+    connectionState?: string | null;
+    /**
+     * Output only. A google managed service account on which customers can grant roles to access resources in the customer project. Example: `p176944527254-55-75119d87fd8f@gcp-sa-oci.iam.gserviceaccount.com`
+     */
+    serviceAgentEmail?: string | null;
   }
   /**
    * The response for `AutonomousDatabaseBackup.List`.
@@ -1459,6 +2182,32 @@ export namespace oracledatabase_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response for `DatabaseCharacterSet.List`.
+   */
+  export interface Schema$ListDatabaseCharacterSetsResponse {
+    /**
+     * The list of DatabaseCharacterSets.
+     */
+    databaseCharacterSets?: Schema$DatabaseCharacterSet[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response for `Database.List`.
+   */
+  export interface Schema$ListDatabasesResponse {
+    /**
+     * The list of Databases.
+     */
+    databases?: Schema$Database[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response for `DbNode.List`.
    */
   export interface Schema$ListDbNodesResponse {
@@ -1485,6 +2234,19 @@ export namespace oracledatabase_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response for `DbSystemInitialStorageSizes.List`.
+   */
+  export interface Schema$ListDbSystemInitialStorageSizesResponse {
+    /**
+     * The list of DbSystemInitialStorageSizes.
+     */
+    dbSystemInitialStorageSizes?: Schema$DbSystemInitialStorageSize[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response for `DbSystemShape.List`.
    */
   export interface Schema$ListDbSystemShapesResponse {
@@ -1492,6 +2254,32 @@ export namespace oracledatabase_v1 {
      * The list of Database System shapes.
      */
     dbSystemShapes?: Schema$DbSystemShape[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response for `DbSystem.List`.
+   */
+  export interface Schema$ListDbSystemsResponse {
+    /**
+     * The list of DbSystems.
+     */
+    dbSystems?: Schema$DbSystem[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response for `DbVersions.List`.
+   */
+  export interface Schema$ListDbVersionsResponse {
+    /**
+     * The list of DbVersions.
+     */
+    dbVersions?: Schema$DbVersion[];
     /**
      * A token identifying a page of results the server should return.
      */
@@ -1507,6 +2295,32 @@ export namespace oracledatabase_v1 {
     entitlements?: Schema$Entitlement[];
     /**
      * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response for `ExadbVmCluster.List`.
+   */
+  export interface Schema$ListExadbVmClustersResponse {
+    /**
+     * The list of ExadbVmClusters.
+     */
+    exadbVmClusters?: Schema$ExadbVmCluster[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response for `ExascaleDbStorageVault.List`.
+   */
+  export interface Schema$ListExascaleDbStorageVaultsResponse {
+    /**
+     * The ExascaleDbStorageVaults.
+     */
+    exascaleDbStorageVaults?: Schema$ExascaleDbStorageVault[];
+    /**
+     * A token identifying a page of results the server should return. If present, the next page token can be provided to a subsequent ListExascaleDbStorageVaults call to list the next page. If empty, there are no more pages.
      */
     nextPageToken?: string | null;
   }
@@ -1533,6 +2347,19 @@ export namespace oracledatabase_v1 {
     locations?: Schema$Location[];
     /**
      * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response for `MinorVersion.List`.
+   */
+  export interface Schema$ListMinorVersionsResponse {
+    /**
+     * The list of MinorVersions.
+     */
+    minorVersions?: Schema$MinorVersion[];
+    /**
+     * A token identifying a page of results the server should return.
      */
     nextPageToken?: string | null;
   }
@@ -1582,6 +2409,23 @@ export namespace oracledatabase_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * The response for `PluggableDatabase.List`.
+   */
+  export interface Schema$ListPluggableDatabasesResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of PluggableDatabases.
+     */
+    pluggableDatabases?: Schema$PluggableDatabase[];
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -1659,6 +2503,23 @@ export namespace oracledatabase_v1 {
     weeksOfMonth?: number[] | null;
   }
   /**
+   * MinorVersion represents a minor version of a GI. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/GiMinorVersionSummary/
+   */
+  export interface Schema$MinorVersion {
+    /**
+     * Optional. The ID of the Grid Image.
+     */
+    gridImageId?: string | null;
+    /**
+     * Identifier. The name of the MinorVersion resource with the format: projects/{project\}/locations/{region\}/giVersions/{gi_version\}/minorVersions/{minor_version\}
+     */
+    name?: string | null;
+    /**
+     * Optional. The valid Oracle grid infrastructure software version.
+     */
+    version?: string | null;
+  }
+  /**
    * Represents OdbNetwork resource.
    */
   export interface Schema$OdbNetwork {
@@ -1670,6 +2531,10 @@ export namespace oracledatabase_v1 {
      * Output only. The ID of the subscription entitlement associated with the OdbNetwork.
      */
     entitlementId?: string | null;
+    /**
+     * Optional. The GCP Oracle zone where OdbNetwork is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
+     */
+    gcpOracleZone?: string | null;
     /**
      * Optional. Labels or tags associated with the resource.
      */
@@ -1779,6 +2644,131 @@ export namespace oracledatabase_v1 {
     verb?: string | null;
   }
   /**
+   * The PluggableDatabase resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/PluggableDatabase/
+   */
+  export interface Schema$PluggableDatabase {
+    /**
+     * Output only. The date and time that the PluggableDatabase was created.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier. The name of the PluggableDatabase resource in the following format: projects/{project\}/locations/{region\}/pluggableDatabases/{pluggable_database\}
+     */
+    name?: string | null;
+    /**
+     * Output only. HTTPS link to OCI resources exposed to Customer via UI Interface.
+     */
+    ociUrl?: string | null;
+    /**
+     * Optional. The properties of the PluggableDatabase.
+     */
+    properties?: Schema$PluggableDatabaseProperties;
+  }
+  /**
+   * The connection strings used to connect to the Oracle Database.
+   */
+  export interface Schema$PluggableDatabaseConnectionStrings {
+    /**
+     * Optional. All connection strings to use to connect to the pluggable database.
+     */
+    allConnectionStrings?: {[key: string]: string} | null;
+    /**
+     * Optional. The default connection string to use to connect to the pluggable database.
+     */
+    pdbDefault?: string | null;
+    /**
+     * Optional. The default connection string to use to connect to the pluggable database using IP.
+     */
+    pdbIpDefault?: string | null;
+  }
+  /**
+   * The Pluggable Database Node Level Details.
+   */
+  export interface Schema$PluggableDatabaseNodeLevelDetails {
+    /**
+     * Required. The Node name of the Database home.
+     */
+    nodeName?: string | null;
+    /**
+     * Required. The mode that the pluggable database is in to open it.
+     */
+    openMode?: string | null;
+    /**
+     * Required. The OCID of the Pluggable Database.
+     */
+    pluggableDatabaseId?: string | null;
+  }
+  /**
+   * The properties of a PluggableDatabase.
+   */
+  export interface Schema$PluggableDatabaseProperties {
+    /**
+     * Required. The OCID of the compartment.
+     */
+    compartmentId?: string | null;
+    /**
+     * Optional. The Connection strings used to connect to the Oracle Database.
+     */
+    connectionStrings?: Schema$PluggableDatabaseConnectionStrings;
+    /**
+     * Required. The OCID of the CDB.
+     */
+    containerDatabaseOcid?: string | null;
+    /**
+     * Output only. The configuration of the Database Management service.
+     */
+    databaseManagementConfig?: Schema$DatabaseManagementConfig;
+    /**
+     * Optional. Defined tags for this resource. Each key is predefined and scoped to a namespace.
+     */
+    definedTags?: {[key: string]: Schema$DefinedTagValue} | null;
+    /**
+     * Optional. Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+     */
+    freeformTags?: {[key: string]: string} | null;
+    /**
+     * Optional. The restricted mode of the pluggable database. If a pluggable database is opened in restricted mode, the user needs both create a session and have restricted session privileges to connect to it.
+     */
+    isRestricted?: boolean | null;
+    /**
+     * Output only. Additional information about the current lifecycle state.
+     */
+    lifecycleDetails?: string | null;
+    /**
+     * Output only. The current state of the pluggable database.
+     */
+    lifecycleState?: string | null;
+    /**
+     * Output only. The OCID of the pluggable database.
+     */
+    ocid?: string | null;
+    /**
+     * Output only. The status of Operations Insights for this Database.
+     */
+    operationsInsightsState?: string | null;
+    /**
+     * Required. The database name.
+     */
+    pdbName?: string | null;
+    /**
+     * Optional. Pluggable Database Node Level Details
+     */
+    pdbNodeLevelDetails?: Schema$PluggableDatabaseNodeLevelDetails[];
+  }
+  /**
+   * The request for `ExadbVmCluster.RemoveVirtualMachine`.
+   */
+  export interface Schema$RemoveVirtualMachineExadbVmClusterRequest {
+    /**
+     * Required. The list of host names of db nodes to be removed from the ExadbVmCluster.
+     */
+    hostnames?: string[] | null;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
    * The request for `AutonomousDatabase.Restart`.
    */
   export interface Schema$RestartAutonomousDatabaseRequest {}
@@ -1847,6 +2837,19 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$StopAutonomousDatabaseRequest {}
   /**
+   * The initial storage size, in gigabytes, that is applicable for virtual machine DBSystem.
+   */
+  export interface Schema$StorageSizeDetails {
+    /**
+     * Output only. The data storage size, in gigabytes, that is applicable for virtual machine DBSystem.
+     */
+    dataStorageSizeInGbs?: number | null;
+    /**
+     * Output only. The RECO/REDO storage size, in gigabytes, that is applicable for virtual machine DBSystem.
+     */
+    recoStorageSizeInGbs?: number | null;
+  }
+  /**
    * The request for `OracleDatabase.SwitchoverAutonomousDatabase`.
    */
   export interface Schema$SwitchoverAutonomousDatabaseRequest {
@@ -1907,11 +2910,19 @@ export namespace oracledatabase_v1 {
     autonomousDbVersions: Resource$Projects$Locations$Autonomousdbversions;
     cloudExadataInfrastructures: Resource$Projects$Locations$Cloudexadatainfrastructures;
     cloudVmClusters: Resource$Projects$Locations$Cloudvmclusters;
+    databaseCharacterSets: Resource$Projects$Locations$Databasecharactersets;
+    databases: Resource$Projects$Locations$Databases;
+    dbSystemInitialStorageSizes: Resource$Projects$Locations$Dbsysteminitialstoragesizes;
+    dbSystems: Resource$Projects$Locations$Dbsystems;
     dbSystemShapes: Resource$Projects$Locations$Dbsystemshapes;
+    dbVersions: Resource$Projects$Locations$Dbversions;
     entitlements: Resource$Projects$Locations$Entitlements;
+    exadbVmClusters: Resource$Projects$Locations$Exadbvmclusters;
+    exascaleDbStorageVaults: Resource$Projects$Locations$Exascaledbstoragevaults;
     giVersions: Resource$Projects$Locations$Giversions;
     odbNetworks: Resource$Projects$Locations$Odbnetworks;
     operations: Resource$Projects$Locations$Operations;
+    pluggableDatabases: Resource$Projects$Locations$Pluggabledatabases;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.autonomousDatabaseBackups =
@@ -1931,12 +2942,28 @@ export namespace oracledatabase_v1 {
       this.cloudVmClusters = new Resource$Projects$Locations$Cloudvmclusters(
         this.context
       );
+      this.databaseCharacterSets =
+        new Resource$Projects$Locations$Databasecharactersets(this.context);
+      this.databases = new Resource$Projects$Locations$Databases(this.context);
+      this.dbSystemInitialStorageSizes =
+        new Resource$Projects$Locations$Dbsysteminitialstoragesizes(
+          this.context
+        );
+      this.dbSystems = new Resource$Projects$Locations$Dbsystems(this.context);
       this.dbSystemShapes = new Resource$Projects$Locations$Dbsystemshapes(
+        this.context
+      );
+      this.dbVersions = new Resource$Projects$Locations$Dbversions(
         this.context
       );
       this.entitlements = new Resource$Projects$Locations$Entitlements(
         this.context
       );
+      this.exadbVmClusters = new Resource$Projects$Locations$Exadbvmclusters(
+        this.context
+      );
+      this.exascaleDbStorageVaults =
+        new Resource$Projects$Locations$Exascaledbstoragevaults(this.context);
       this.giVersions = new Resource$Projects$Locations$Giversions(
         this.context
       );
@@ -1946,6 +2973,8 @@ export namespace oracledatabase_v1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.pluggableDatabases =
+        new Resource$Projects$Locations$Pluggabledatabases(this.context);
     }
 
     /**
@@ -2118,7 +3147,7 @@ export namespace oracledatabase_v1 {
      *
      *   // Do the magic
      *   const res = await oracledatabase.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2247,7 +3276,7 @@ export namespace oracledatabase_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -2957,6 +3986,158 @@ export namespace oracledatabase_v1 {
     }
 
     /**
+     * Initiates a failover to target autonomous database from the associated primary database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.autonomousDatabases.failover({
+     *       // Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
+     *       name: 'projects/my-project/locations/my-location/autonomousDatabases/my-autonomousDatabase',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "peerAutonomousDatabase": "my_peerAutonomousDatabase"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    failover(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Failover,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    failover(
+      params?: Params$Resource$Projects$Locations$Autonomousdatabases$Failover,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    failover(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Failover,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    failover(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Failover,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    failover(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Failover,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    failover(callback: BodyResponseCallback<Schema$Operation>): void;
+    failover(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autonomousdatabases$Failover
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autonomousdatabases$Failover;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autonomousdatabases$Failover;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:failover').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Generates a wallet for an Autonomous Database.
      * @example
      * ```js
@@ -3417,6 +4598,174 @@ export namespace oracledatabase_v1 {
         return createAPIRequest<Schema$ListAutonomousDatabasesResponse>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single Autonomous Database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.autonomousDatabases.patch(
+     *     {
+     *       // Identifier. The name of the Autonomous Database resource in the following format: projects/{project\}/locations/{region\}/autonomousDatabases/{autonomous_database\}
+     *       name: 'projects/my-project/locations/my-location/autonomousDatabases/my-autonomousDatabase',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. Field mask is used to specify the fields to be overwritten in the Exadata resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "adminPassword": "my_adminPassword",
+     *         //   "cidr": "my_cidr",
+     *         //   "createTime": "my_createTime",
+     *         //   "database": "my_database",
+     *         //   "disasterRecoverySupportedLocations": [],
+     *         //   "displayName": "my_displayName",
+     *         //   "entitlementId": "my_entitlementId",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "network": "my_network",
+     *         //   "odbNetwork": "my_odbNetwork",
+     *         //   "odbSubnet": "my_odbSubnet",
+     *         //   "peerAutonomousDatabases": [],
+     *         //   "properties": {},
+     *         //   "sourceConfig": {}
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Autonomousdatabases$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autonomousdatabases$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autonomousdatabases$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autonomousdatabases$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -4200,6 +5549,18 @@ export namespace oracledatabase_v1 {
      */
     requestId?: string;
   }
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Failover
+    extends StandardParameters {
+    /**
+     * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FailoverAutonomousDatabaseRequest;
+  }
   export interface Params$Resource$Projects$Locations$Autonomousdatabases$Generatewallet
     extends StandardParameters {
     /**
@@ -4241,6 +5602,26 @@ export namespace oracledatabase_v1 {
      * Required. The parent value for the Autonomous Database in the following format: projects/{project\}/locations/{location\}.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The name of the Autonomous Database resource in the following format: projects/{project\}/locations/{region\}/autonomousDatabases/{autonomous_database\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the Exadata resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutonomousDatabase;
   }
   export interface Params$Resource$Projects$Locations$Autonomousdatabases$Restart
     extends StandardParameters {
@@ -4978,6 +6359,10 @@ export namespace oracledatabase_v1 {
      *   // Do the magic
      *   const res =
      *     await oracledatabase.projects.locations.cloudExadataInfrastructures.list({
+     *       // Optional. An expression for filtering the results of the request.
+     *       filter: 'placeholder-value',
+     *       // Optional. An expression for ordering the results of the request.
+     *       orderBy: 'placeholder-value',
      *       // Optional. The maximum number of items to return. If unspecified, at most 50 Exadata infrastructures will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *       pageSize: 'placeholder-value',
      *       // Optional. A token identifying a page of results the server should return.
@@ -5145,6 +6530,14 @@ export namespace oracledatabase_v1 {
   }
   export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$List
     extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request.
+     */
+    filter?: string;
+    /**
+     * Optional. An expression for ordering the results of the request.
+     */
+    orderBy?: string;
     /**
      * Optional. The maximum number of items to return. If unspecified, at most 50 Exadata infrastructures will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -5391,6 +6784,7 @@ export namespace oracledatabase_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "exadataInfrastructure": "my_exadataInfrastructure",
      *       //   "gcpOracleZone": "my_gcpOracleZone",
+     *       //   "identityConnector": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
@@ -5698,6 +7092,7 @@ export namespace oracledatabase_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "exadataInfrastructure": "my_exadataInfrastructure",
      *   //   "gcpOracleZone": "my_gcpOracleZone",
+     *   //   "identityConnector": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
@@ -6181,6 +7576,1362 @@ export namespace oracledatabase_v1 {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Databasecharactersets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List DatabaseCharacterSets for the given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.databaseCharacterSets.list({
+     *       // Optional. An expression for filtering the results of the request. Only the **character_set_type** field is supported in the following format: `character_set_type="{characterSetType\}"`. Accepted values include `DATABASE` and `NATIONAL`.
+     *       filter: 'placeholder-value',
+     *       // Optional. The maximum number of DatabaseCharacterSets to return. The service may return fewer than this value. If unspecified, at most 50 DatabaseCharacterSets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListDatabaseCharacterSets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDatabaseCharacterSets` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent value for DatabaseCharacterSets in the following format: projects/{project\}/locations/{location\}.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "databaseCharacterSets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Databasecharactersets$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Databasecharactersets$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListDatabaseCharacterSetsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Databasecharactersets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Databasecharactersets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDatabaseCharacterSetsResponse>,
+      callback: BodyResponseCallback<Schema$ListDatabaseCharacterSetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Databasecharactersets$List,
+      callback: BodyResponseCallback<Schema$ListDatabaseCharacterSetsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDatabaseCharacterSetsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Databasecharactersets$List
+        | BodyResponseCallback<Schema$ListDatabaseCharacterSetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDatabaseCharacterSetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDatabaseCharacterSetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListDatabaseCharacterSetsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Databasecharactersets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Databasecharactersets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/databaseCharacterSets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDatabaseCharacterSetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDatabaseCharacterSetsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Databasecharactersets$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. Only the **character_set_type** field is supported in the following format: `character_set_type="{characterSetType\}"`. Accepted values include `DATABASE` and `NATIONAL`.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of DatabaseCharacterSets to return. The service may return fewer than this value. If unspecified, at most 50 DatabaseCharacterSets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListDatabaseCharacterSets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDatabaseCharacterSets` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for DatabaseCharacterSets in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Databases {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single Database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.databases.get({
+     *     // Required. The name of the Database resource in the following format: projects/{project\}/locations/{region\}/databases/{database\}
+     *     name: 'projects/my-project/locations/my-location/databases/my-database',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adminPassword": "my_adminPassword",
+     *   //   "characterSet": "my_characterSet",
+     *   //   "createTime": "my_createTime",
+     *   //   "databaseId": "my_databaseId",
+     *   //   "dbHomeName": "my_dbHomeName",
+     *   //   "dbName": "my_dbName",
+     *   //   "dbUniqueName": "my_dbUniqueName",
+     *   //   "gcpOracleZone": "my_gcpOracleZone",
+     *   //   "name": "my_name",
+     *   //   "ncharacterSet": "my_ncharacterSet",
+     *   //   "ociUrl": "my_ociUrl",
+     *   //   "opsInsightsStatus": "my_opsInsightsStatus",
+     *   //   "properties": {},
+     *   //   "tdeWalletPassword": "my_tdeWalletPassword"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Databases$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Databases$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Database>>;
+    get(
+      params: Params$Resource$Projects$Locations$Databases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Databases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Database>,
+      callback: BodyResponseCallback<Schema$Database>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Databases$Get,
+      callback: BodyResponseCallback<Schema$Database>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Database>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Databases$Get
+        | BodyResponseCallback<Schema$Database>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Database>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Database>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Databases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Databases$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Database>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Database>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the Databases for the given project, location and DbSystem.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.databases.list({
+     *     // Optional. An expression for filtering the results of the request. list for container databases is supported only with a valid dbSystem (full resource name) filter in this format: `dbSystem="projects/{project\}/locations/{location\}/dbSystems/{dbSystemId\}"`
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name in the following format: projects/{project\}/locations/{region\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "databases": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Databases$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Databases$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDatabasesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Databases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Databases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDatabasesResponse>,
+      callback: BodyResponseCallback<Schema$ListDatabasesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Databases$List,
+      callback: BodyResponseCallback<Schema$ListDatabasesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListDatabasesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Databases$List
+        | BodyResponseCallback<Schema$ListDatabasesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDatabasesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDatabasesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDatabasesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Databases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Databases$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/databases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDatabasesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDatabasesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Databases$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the Database resource in the following format: projects/{project\}/locations/{region\}/databases/{database\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Databases$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. list for container databases is supported only with a valid dbSystem (full resource name) filter in this format: `dbSystem="projects/{project\}/locations/{location\}/dbSystems/{dbSystemId\}"`
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name in the following format: projects/{project\}/locations/{region\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Dbsysteminitialstoragesizes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all the DbSystemInitialStorageSizes for the given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.dbSystemInitialStorageSizes.list({
+     *       // Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent value for the DbSystemInitialStorageSize resource with the format: projects/{project\}/locations/{location\}
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dbSystemInitialStorageSizes": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListDbSystemInitialStorageSizesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDbSystemInitialStorageSizesResponse>,
+      callback: BodyResponseCallback<Schema$ListDbSystemInitialStorageSizesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List,
+      callback: BodyResponseCallback<Schema$ListDbSystemInitialStorageSizesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDbSystemInitialStorageSizesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List
+        | BodyResponseCallback<Schema$ListDbSystemInitialStorageSizesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDbSystemInitialStorageSizesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDbSystemInitialStorageSizesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListDbSystemInitialStorageSizesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/dbSystemInitialStorageSizes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDbSystemInitialStorageSizesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDbSystemInitialStorageSizesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for the DbSystemInitialStorageSize resource with the format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Dbsystems {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new DbSystem in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.dbSystems.create({
+     *     // Required. The ID of the DbSystem to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     *     dbSystemId: 'placeholder-value',
+     *     // Required. The value for parent of the DbSystem in the following format: projects/{project\}/locations/{location\}.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "entitlementId": "my_entitlementId",
+     *       //   "gcpOracleZone": "my_gcpOracleZone",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "ociUrl": "my_ociUrl",
+     *       //   "odbNetwork": "my_odbNetwork",
+     *       //   "odbSubnet": "my_odbSubnet",
+     *       //   "properties": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Dbsystems$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Dbsystems$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Dbsystems$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dbsystems$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dbsystems$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dbsystems$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dbsystems$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dbsystems$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dbSystems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single DbSystem.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.dbSystems.delete({
+     *     // Required. The name of the DbSystem in the following format: projects/{project\}/locations/{location\}/dbSystems/{db_system\}.
+     *     name: 'projects/my-project/locations/my-location/dbSystems/my-dbSystem',
+     *     // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Dbsystems$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Dbsystems$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Dbsystems$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Dbsystems$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Dbsystems$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dbsystems$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dbsystems$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dbsystems$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single DbSystem.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.dbSystems.get({
+     *     // Required. The name of the DbSystem in the following format: projects/{project\}/locations/{location\}/dbSystems/{db_system\}.
+     *     name: 'projects/my-project/locations/my-location/dbSystems/my-dbSystem',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "entitlementId": "my_entitlementId",
+     *   //   "gcpOracleZone": "my_gcpOracleZone",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "ociUrl": "my_ociUrl",
+     *   //   "odbNetwork": "my_odbNetwork",
+     *   //   "odbSubnet": "my_odbSubnet",
+     *   //   "properties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Dbsystems$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Dbsystems$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DbSystem>>;
+    get(
+      params: Params$Resource$Projects$Locations$Dbsystems$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Dbsystems$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DbSystem>,
+      callback: BodyResponseCallback<Schema$DbSystem>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Dbsystems$Get,
+      callback: BodyResponseCallback<Schema$DbSystem>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DbSystem>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dbsystems$Get
+        | BodyResponseCallback<Schema$DbSystem>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DbSystem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DbSystem>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DbSystem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dbsystems$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dbsystems$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DbSystem>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DbSystem>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the DbSystems for the given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.dbSystems.list({
+     *     // Optional. An expression for filtering the results of the request.
+     *     filter: 'placeholder-value',
+     *     // Optional. An expression for ordering the results of the request.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of items to return. If unspecified, at most 50 DbSystems will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent value for DbSystems in the following format: projects/{project\}/locations/{location\}.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dbSystems": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Dbsystems$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Dbsystems$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDbSystemsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Dbsystems$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dbsystems$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDbSystemsResponse>,
+      callback: BodyResponseCallback<Schema$ListDbSystemsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dbsystems$List,
+      callback: BodyResponseCallback<Schema$ListDbSystemsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListDbSystemsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dbsystems$List
+        | BodyResponseCallback<Schema$ListDbSystemsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDbSystemsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDbSystemsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDbSystemsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dbsystems$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dbsystems$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dbSystems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDbSystemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDbSystemsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Dbsystems$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DbSystem to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     */
+    dbSystemId?: string;
+    /**
+     * Required. The value for parent of the DbSystem in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DbSystem;
+  }
+  export interface Params$Resource$Projects$Locations$Dbsystems$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the DbSystem in the following format: projects/{project\}/locations/{location\}/dbSystems/{db_system\}.
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dbsystems$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the DbSystem in the following format: projects/{project\}/locations/{location\}/dbSystems/{db_system\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dbsystems$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request.
+     */
+    filter?: string;
+    /**
+     * Optional. An expression for ordering the results of the request.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If unspecified, at most 50 DbSystems will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for DbSystems in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Dbsystemshapes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -6218,6 +8969,8 @@ export namespace oracledatabase_v1 {
      *
      *   // Do the magic
      *   const res = await oracledatabase.projects.locations.dbSystemShapes.list({
+     *     // Optional. An expression for filtering the results of the request. Only the gcp_oracle_zone_id field is supported in this format: `gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
+     *     filter: 'placeholder-value',
      *     // Optional. The maximum number of items to return. If unspecified, at most 50 database system shapes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results the server should return.
@@ -6338,6 +9091,10 @@ export namespace oracledatabase_v1 {
   export interface Params$Resource$Projects$Locations$Dbsystemshapes$List
     extends StandardParameters {
     /**
+     * Optional. An expression for filtering the results of the request. Only the gcp_oracle_zone_id field is supported in this format: `gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
+     */
+    filter?: string;
+    /**
      * Optional. The maximum number of items to return. If unspecified, at most 50 database system shapes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -6347,6 +9104,180 @@ export namespace oracledatabase_v1 {
     pageToken?: string;
     /**
      * Required. The parent value for Database System Shapes in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Dbversions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List DbVersions for the given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.dbVersions.list({
+     *     // Optional. Filter expression that matches a subset of the DbVersions to show. The supported filter for dbSystem creation is `db_system_shape = {db_system_shape\} AND storage_management = {storage_management\}`. If no filter is provided, all DbVersions will be returned.
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent value for the DbVersion resource with the format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dbVersions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Dbversions$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Dbversions$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDbVersionsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Dbversions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dbversions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDbVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListDbVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dbversions$List,
+      callback: BodyResponseCallback<Schema$ListDbVersionsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListDbVersionsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dbversions$List
+        | BodyResponseCallback<Schema$ListDbVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDbVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDbVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDbVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dbversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dbversions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dbVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDbVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDbVersionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Dbversions$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression that matches a subset of the DbVersions to show. The supported filter for dbSystem creation is `db_system_shape = {db_system_shape\} AND storage_management = {storage_management\}`. If no filter is provided, all DbVersions will be returned.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for the DbVersion resource with the format: projects/{project\}/locations/{location\}
      */
     parent?: string;
   }
@@ -6519,10 +9450,1710 @@ export namespace oracledatabase_v1 {
     parent?: string;
   }
 
-  export class Resource$Projects$Locations$Giversions {
+  export class Resource$Projects$Locations$Exadbvmclusters {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Creates a new Exadb (Exascale) VM Cluster resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.exadbVmClusters.create({
+     *     // Required. The ID of the ExadbVmCluster to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     *     exadbVmClusterId: 'placeholder-value',
+     *     // Required. The value for parent of the ExadbVmCluster in the following format: projects/{project\}/locations/{location\}.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupOdbSubnet": "my_backupOdbSubnet",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "entitlementId": "my_entitlementId",
+     *       //   "gcpOracleZone": "my_gcpOracleZone",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "odbNetwork": "my_odbNetwork",
+     *       //   "odbSubnet": "my_odbSubnet",
+     *       //   "properties": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Exadbvmclusters$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exadbvmclusters$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exadbvmclusters$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Exadbvmclusters$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/exadbVmClusters').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single Exadb (Exascale) VM Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.exadbVmClusters.delete({
+     *     // Required. The name of the ExadbVmCluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}.
+     *     name: 'projects/my-project/locations/my-location/exadbVmClusters/my-exadbVmCluster',
+     *     // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Exadbvmclusters$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exadbvmclusters$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exadbvmclusters$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Exadbvmclusters$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single Exadb (Exascale) VM Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.exadbVmClusters.get({
+     *     // Required. The name of the ExadbVmCluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}.
+     *     name: 'projects/my-project/locations/my-location/exadbVmClusters/my-exadbVmCluster',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backupOdbSubnet": "my_backupOdbSubnet",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "entitlementId": "my_entitlementId",
+     *   //   "gcpOracleZone": "my_gcpOracleZone",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "odbNetwork": "my_odbNetwork",
+     *   //   "odbSubnet": "my_odbSubnet",
+     *   //   "properties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Exadbvmclusters$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExadbVmCluster>>;
+    get(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ExadbVmCluster>,
+      callback: BodyResponseCallback<Schema$ExadbVmCluster>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Get,
+      callback: BodyResponseCallback<Schema$ExadbVmCluster>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ExadbVmCluster>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exadbvmclusters$Get
+        | BodyResponseCallback<Schema$ExadbVmCluster>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExadbVmCluster>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExadbVmCluster>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExadbVmCluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exadbvmclusters$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Exadbvmclusters$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExadbVmCluster>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExadbVmCluster>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the Exadb (Exascale) VM Clusters for the given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.exadbVmClusters.list({
+     *     // Optional. An expression for filtering the results of the request.
+     *     filter: 'placeholder-value',
+     *     // Optional. An expression for ordering the results of the request.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of items to return. If unspecified, at most 50 ExadbVmClusters will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent value for ExadbVmClusters in the following format: projects/{project\}/locations/{location\}.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exadbVmClusters": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Exadbvmclusters$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListExadbVmClustersResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExadbVmClustersResponse>,
+      callback: BodyResponseCallback<Schema$ListExadbVmClustersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$List,
+      callback: BodyResponseCallback<Schema$ListExadbVmClustersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListExadbVmClustersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exadbvmclusters$List
+        | BodyResponseCallback<Schema$ListExadbVmClustersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExadbVmClustersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExadbVmClustersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListExadbVmClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exadbvmclusters$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Exadbvmclusters$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/exadbVmClusters').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListExadbVmClustersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListExadbVmClustersResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a single Exadb (Exascale) VM Cluster. To add virtual machines to existing exadb vm cluster, only pass the node count.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.exadbVmClusters.patch({
+     *     // Identifier. The name of the ExadbVmCluster resource in the following format: projects/{project\}/locations/{region\}/exadbVmClusters/{exadb_vm_cluster\}
+     *     name: 'projects/my-project/locations/my-location/exadbVmClusters/my-exadbVmCluster',
+     *     // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. A mask specifying which fields in th VM Cluster should be updated. A field specified in the mask is overwritten. If a mask isn't provided then all the fields in the VM Cluster are overwritten.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupOdbSubnet": "my_backupOdbSubnet",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "entitlementId": "my_entitlementId",
+     *       //   "gcpOracleZone": "my_gcpOracleZone",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "odbNetwork": "my_odbNetwork",
+     *       //   "odbSubnet": "my_odbSubnet",
+     *       //   "properties": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Exadbvmclusters$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exadbvmclusters$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exadbvmclusters$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Exadbvmclusters$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Removes virtual machines from an existing exadb vm cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.exadbVmClusters.removeVirtualMachine(
+     *       {
+     *         // Required. The name of the ExadbVmCluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}.
+     *         name: 'projects/my-project/locations/my-location/exadbVmClusters/my-exadbVmCluster',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "hostnames": [],
+     *           //   "requestId": "my_requestId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeVirtualMachine(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Removevirtualmachine,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    removeVirtualMachine(
+      params?: Params$Resource$Projects$Locations$Exadbvmclusters$Removevirtualmachine,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    removeVirtualMachine(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Removevirtualmachine,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeVirtualMachine(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Removevirtualmachine,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    removeVirtualMachine(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Removevirtualmachine,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    removeVirtualMachine(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    removeVirtualMachine(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exadbvmclusters$Removevirtualmachine
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exadbvmclusters$Removevirtualmachine;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Exadbvmclusters$Removevirtualmachine;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:removeVirtualMachine').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the ExadbVmCluster to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     */
+    exadbVmClusterId?: string;
+    /**
+     * Required. The value for parent of the ExadbVmCluster in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExadbVmCluster;
+  }
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the ExadbVmCluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}.
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the ExadbVmCluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request.
+     */
+    filter?: string;
+    /**
+     * Optional. An expression for ordering the results of the request.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If unspecified, at most 50 ExadbVmClusters will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for ExadbVmClusters in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The name of the ExadbVmCluster resource in the following format: projects/{project\}/locations/{region\}/exadbVmClusters/{exadb_vm_cluster\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. A mask specifying which fields in th VM Cluster should be updated. A field specified in the mask is overwritten. If a mask isn't provided then all the fields in the VM Cluster are overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExadbVmCluster;
+  }
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Removevirtualmachine
+    extends StandardParameters {
+    /**
+     * Required. The name of the ExadbVmCluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveVirtualMachineExadbVmClusterRequest;
+  }
+
+  export class Resource$Projects$Locations$Exascaledbstoragevaults {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new ExascaleDB Storage Vault resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.exascaleDbStorageVaults.create({
+     *       // Required. The ID of the ExascaleDbStorageVault to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     *       exascaleDbStorageVaultId: 'placeholder-value',
+     *       // Required. The value for parent of the ExascaleDbStorageVault in the following format: projects/{project\}/locations/{location\}.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "entitlementId": "my_entitlementId",
+     *         //   "gcpOracleZone": "my_gcpOracleZone",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "properties": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/exascaleDbStorageVaults').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single ExascaleDB Storage Vault.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.exascaleDbStorageVaults.delete({
+     *       // Required. The name of the ExascaleDbStorageVault in the following format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}.
+     *       name: 'projects/my-project/locations/my-location/exascaleDbStorageVaults/my-exascaleDbStorageVault',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exascaledbstoragevaults$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exascaledbstoragevaults$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Exascaledbstoragevaults$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single ExascaleDB Storage Vault.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.exascaleDbStorageVaults.get({
+     *       // Required. The name of the ExascaleDbStorageVault in the following format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}.
+     *       name: 'projects/my-project/locations/my-location/exascaleDbStorageVaults/my-exascaleDbStorageVault',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "entitlementId": "my_entitlementId",
+     *   //   "gcpOracleZone": "my_gcpOracleZone",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "properties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExascaleDbStorageVault>>;
+    get(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExascaleDbStorageVault>,
+      callback: BodyResponseCallback<Schema$ExascaleDbStorageVault>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get,
+      callback: BodyResponseCallback<Schema$ExascaleDbStorageVault>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ExascaleDbStorageVault>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get
+        | BodyResponseCallback<Schema$ExascaleDbStorageVault>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExascaleDbStorageVault>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExascaleDbStorageVault>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExascaleDbStorageVault>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExascaleDbStorageVault>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExascaleDbStorageVault>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the ExascaleDB Storage Vaults for the given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.exascaleDbStorageVaults.list({
+     *       // Optional. An expression for filtering the results of the request. Filter the list as specified in https://google.aip.dev/160.
+     *       filter: 'placeholder-value',
+     *       // Optional. An expression for ordering the results of the request. Order results as specified in https://google.aip.dev/132.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of items to return. If unspecified, at most 50 ExascaleDbStorageVaults will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent value for ExascaleDbStorageVault in the following format: projects/{project\}/locations/{location\}.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exascaleDbStorageVaults": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Exascaledbstoragevaults$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListExascaleDbStorageVaultsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExascaleDbStorageVaultsResponse>,
+      callback: BodyResponseCallback<Schema$ListExascaleDbStorageVaultsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$List,
+      callback: BodyResponseCallback<Schema$ListExascaleDbStorageVaultsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListExascaleDbStorageVaultsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exascaledbstoragevaults$List
+        | BodyResponseCallback<Schema$ListExascaleDbStorageVaultsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExascaleDbStorageVaultsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExascaleDbStorageVaultsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListExascaleDbStorageVaultsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exascaledbstoragevaults$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Exascaledbstoragevaults$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/exascaleDbStorageVaults').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListExascaleDbStorageVaultsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListExascaleDbStorageVaultsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the ExascaleDbStorageVault to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     */
+    exascaleDbStorageVaultId?: string;
+    /**
+     * Required. The value for parent of the ExascaleDbStorageVault in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExascaleDbStorageVault;
+  }
+  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the ExascaleDbStorageVault in the following format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}.
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the ExascaleDbStorageVault in the following format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. Filter the list as specified in https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Optional. An expression for ordering the results of the request. Order results as specified in https://google.aip.dev/132.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If unspecified, at most 50 ExascaleDbStorageVaults will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for ExascaleDbStorageVault in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Giversions {
+    context: APIRequestContext;
+    minorVersions: Resource$Projects$Locations$Giversions$Minorversions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.minorVersions =
+        new Resource$Projects$Locations$Giversions$Minorversions(this.context);
     }
 
     /**
@@ -6556,7 +11187,7 @@ export namespace oracledatabase_v1 {
      *
      *   // Do the magic
      *   const res = await oracledatabase.projects.locations.giVersions.list({
-     *     // Optional. An expression for filtering the results of the request. Only the shape and gi_version fields are supported in this format: `shape="{shape\}"`.
+     *     // Optional. An expression for filtering the results of the request. Only the shape, gcp_oracle_zone and gi_version fields are supported in this format: `shape="{shape\}"`.
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of items to return. If unspecified, a maximum of 50 Oracle Grid Infrastructure (GI) versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      *     pageSize: 'placeholder-value',
@@ -6676,7 +11307,7 @@ export namespace oracledatabase_v1 {
   export interface Params$Resource$Projects$Locations$Giversions$List
     extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. Only the shape and gi_version fields are supported in this format: `shape="{shape\}"`.
+     * Optional. An expression for filtering the results of the request. Only the shape, gcp_oracle_zone and gi_version fields are supported in this format: `shape="{shape\}"`.
      */
     filter?: string;
     /**
@@ -6689,6 +11320,185 @@ export namespace oracledatabase_v1 {
     pageToken?: string;
     /**
      * Required. The parent value for Grid Infrastructure Version in the following format: Format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Giversions$Minorversions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all the valid minor versions for the given project, location, gi version and shape family.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.giVersions.minorVersions.list({
+     *       // Optional. An expression for filtering the results of the request. Only shapeFamily and gcp_oracle_zone_id are supported in this format: `shape_family="{shapeFamily\}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
+     *       filter: 'placeholder-value',
+     *       // Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent value for the MinorVersion resource with the format: projects/{project\}/locations/{location\}/giVersions/{gi_version\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/giVersions/my-giVersion',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "minorVersions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Giversions$Minorversions$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Giversions$Minorversions$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListMinorVersionsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Giversions$Minorversions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Giversions$Minorversions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMinorVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListMinorVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Giversions$Minorversions$List,
+      callback: BodyResponseCallback<Schema$ListMinorVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMinorVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Giversions$Minorversions$List
+        | BodyResponseCallback<Schema$ListMinorVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMinorVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMinorVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListMinorVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Giversions$Minorversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Giversions$Minorversions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/minorVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMinorVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMinorVersionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Giversions$Minorversions$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. Only shapeFamily and gcp_oracle_zone_id are supported in this format: `shape_family="{shapeFamily\}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for the MinorVersion resource with the format: projects/{project\}/locations/{location\}/giVersions/{gi_version\}
      */
     parent?: string;
   }
@@ -6747,6 +11557,7 @@ export namespace oracledatabase_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "entitlementId": "my_entitlementId",
+     *       //   "gcpOracleZone": "my_gcpOracleZone",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
@@ -7043,6 +11854,7 @@ export namespace oracledatabase_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "entitlementId": "my_entitlementId",
+     *   //   "gcpOracleZone": "my_gcpOracleZone",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
@@ -8481,13 +13293,16 @@ export namespace oracledatabase_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -8634,5 +13449,334 @@ export namespace oracledatabase_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Pluggabledatabases {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single PluggableDatabase.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.pluggableDatabases.get({
+     *     // Required. The name of the PluggableDatabase resource in the following format: projects/{project\}/locations/{region\}/pluggableDatabases/{pluggable_database\}
+     *     name: 'projects/my-project/locations/my-location/pluggableDatabases/my-pluggableDatabase',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "ociUrl": "my_ociUrl",
+     *   //   "properties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Pluggabledatabases$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Pluggabledatabases$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PluggableDatabase>>;
+    get(
+      params: Params$Resource$Projects$Locations$Pluggabledatabases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Pluggabledatabases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PluggableDatabase>,
+      callback: BodyResponseCallback<Schema$PluggableDatabase>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Pluggabledatabases$Get,
+      callback: BodyResponseCallback<Schema$PluggableDatabase>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PluggableDatabase>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Pluggabledatabases$Get
+        | BodyResponseCallback<Schema$PluggableDatabase>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PluggableDatabase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PluggableDatabase>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PluggableDatabase>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Pluggabledatabases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Pluggabledatabases$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PluggableDatabase>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PluggableDatabase>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the PluggableDatabases for the given project, location and Container Database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.pluggableDatabases.list({
+     *     // Optional. An expression for filtering the results of the request. List for pluggable databases is supported only with a valid container database (full resource name) filter in this format: `database="projects/{project\}/locations/{location\}/databases/{database\}"`
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of PluggableDatabases to return. The service may return fewer than this value.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListPluggableDatabases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPluggableDatabases` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of PluggableDatabases. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pluggableDatabases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Pluggabledatabases$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Pluggabledatabases$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPluggableDatabasesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Pluggabledatabases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Pluggabledatabases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPluggableDatabasesResponse>,
+      callback: BodyResponseCallback<Schema$ListPluggableDatabasesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Pluggabledatabases$List,
+      callback: BodyResponseCallback<Schema$ListPluggableDatabasesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPluggableDatabasesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Pluggabledatabases$List
+        | BodyResponseCallback<Schema$ListPluggableDatabasesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPluggableDatabasesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPluggableDatabasesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPluggableDatabasesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Pluggabledatabases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Pluggabledatabases$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/pluggableDatabases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPluggableDatabasesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPluggableDatabasesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Pluggabledatabases$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the PluggableDatabase resource in the following format: projects/{project\}/locations/{region\}/pluggableDatabases/{pluggable_database\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Pluggabledatabases$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. List for pluggable databases is supported only with a valid container database (full resource name) filter in this format: `database="projects/{project\}/locations/{location\}/databases/{database\}"`
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of PluggableDatabases to return. The service may return fewer than this value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListPluggableDatabases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPluggableDatabases` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of PluggableDatabases. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
   }
 }
