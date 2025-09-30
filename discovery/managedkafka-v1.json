@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2934,7 +2934,7 @@
       }
     }
   },
-  "revision": "20250814",
+  "revision": "20250911",
   "rootUrl": "https://managedkafka.googleapis.com/",
   "schemas": {
     "AccessConfig": {
@@ -3179,6 +3179,10 @@
         "tlsConfig": {
           "$ref": "TlsConfig",
           "description": "Optional. TLS configuration for the Kafka cluster."
+        },
+        "updateOptions": {
+          "$ref": "UpdateOptions",
+          "description": "Optional. UpdateOptions represents options that control how updates to the cluster are applied."
         },
         "updateTime": {
           "description": "Output only. The time when the cluster was last updated.",
@@ -4256,6 +4260,17 @@
             "$ref": "CertificateAuthorityServiceConfig"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateOptions": {
+      "description": "UpdateOptions specifies options that influence how a cluster update is applied. These options control the behavior of the update process, rather than defining the desired end-state of a cluster.",
+      "id": "UpdateOptions",
+      "properties": {
+        "allowBrokerDownscaleOnClusterUpscale": {
+          "description": "Optional. If true, allows an update operation that increases the total vCPU and/or memory allocation of the cluster to significantly decrease the per-broker vCPU and/or memory allocation. This can result in reduced performance and availability. By default, the update operation will fail if an upscale request results in a vCPU or memory allocation for the brokers that is smaller than 90% of the current broker size.",
+          "type": "boolean"
         }
       },
       "type": "object"
