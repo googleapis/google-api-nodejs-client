@@ -554,6 +554,9 @@ export namespace deploymentmanager_alpha {
      * REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
      */
     policy?: Schema$Policy;
+    /**
+     * Update mask for the policy.
+     */
     updateMask?: string | null;
   }
   /**
@@ -1104,6 +1107,10 @@ export namespace deploymentmanager_alpha {
      * List of zonal IGM IDs part of the RMIG.
      */
     zonalIgmIds?: string[] | null;
+    /**
+     * Map of zone to an ID of the zonal IGM belonging to the RMIG.
+     */
+    zoneToIgmIds?: {[key: string]: string} | null;
   }
   export interface Schema$SetCommonInstanceMetadataOperationMetadata {
     /**
