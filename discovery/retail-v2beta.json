@@ -1776,6 +1776,34 @@
                 },
                 "placements": {
                   "methods": {
+                    "conversationalSearch": {
+                      "description": "Performs a conversational search. This feature is only available for users who have Conversational Search enabled.",
+                      "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/placements/{placementsId}:conversationalSearch",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.placements.conversationalSearch",
+                      "parameterOrder": [
+                        "placement"
+                      ],
+                      "parameters": {
+                        "placement": {
+                          "description": "Required. The resource name of the search engine placement, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search` or `projects/*/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving config name and the set of models that will be used to make the search.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/placements/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2beta/{+placement}:conversationalSearch",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2betaConversationalSearchRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2betaConversationalSearchResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "predict": {
                       "description": "Makes a recommendation prediction.",
                       "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/placements/{placementsId}:predict",
@@ -1859,6 +1887,34 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudRetailV2betaServingConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "conversationalSearch": {
+                      "description": "Performs a conversational search. This feature is only available for users who have Conversational Search enabled.",
+                      "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}:conversationalSearch",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.conversationalSearch",
+                      "parameterOrder": [
+                        "placement"
+                      ],
+                      "parameters": {
+                        "placement": {
+                          "description": "Required. The resource name of the search engine placement, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search` or `projects/*/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving config name and the set of models that will be used to make the search.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2beta/{+placement}:conversationalSearch",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2betaConversationalSearchRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2betaConversationalSearchResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -2427,7 +2483,7 @@
       }
     }
   },
-  "revision": "20250807",
+  "revision": "20250911",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4911,6 +4967,261 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2betaConversationalSearchRequest": {
+      "description": "Request message for ConversationalSearchService.ConversationalSearch method.",
+      "id": "GoogleCloudRetailV2betaConversationalSearchRequest",
+      "properties": {
+        "branch": {
+          "description": "Required. The branch resource name, such as `projects/*/locations/global/catalogs/default_catalog/branches/0`. Use \"default_branch\" as the branch ID or leave this field empty, to search products under the default branch.",
+          "type": "string"
+        },
+        "conversationId": {
+          "description": "Optional. This field specifies the conversation id, which maintains the state of the conversation between client side and server side. Use the value from the previous ConversationalSearchResponse.conversation_id. For the initial request, this should be empty.",
+          "type": "string"
+        },
+        "conversationalFilteringSpec": {
+          "$ref": "GoogleCloudRetailV2betaConversationalSearchRequestConversationalFilteringSpec",
+          "description": "Optional. This field specifies all conversational filtering related parameters."
+        },
+        "pageCategories": {
+          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.page_categories; To represent full path of category, use '>' sign to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: \"pageCategories\" : [\"Sales > 2017 Black Friday Deals\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "query": {
+          "description": "Optional. Raw search query to be searched for. If this field is empty, the request is considered a category browsing request.",
+          "type": "string"
+        },
+        "safetySettings": {
+          "description": "Optional. The safety settings to be applied to the generated content.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2betaSafetySetting"
+          },
+          "type": "array"
+        },
+        "searchParams": {
+          "$ref": "GoogleCloudRetailV2betaConversationalSearchRequestSearchParams",
+          "description": "Optional. Search parameters."
+        },
+        "userInfo": {
+          "$ref": "GoogleCloudRetailV2betaUserInfo",
+          "description": "Optional. User information."
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.",
+          "type": "object"
+        },
+        "visitorId": {
+          "description": "Required. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This should be the same identifier as UserEvent.visitor_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaConversationalSearchRequestConversationalFilteringSpec": {
+      "description": "This field specifies all conversational filtering related parameters addition to conversational retail search.",
+      "id": "GoogleCloudRetailV2betaConversationalSearchRequestConversationalFilteringSpec",
+      "properties": {
+        "conversationalFilteringMode": {
+          "description": "Optional. Mode to control Conversational Filtering. Defaults to Mode.DISABLED if it's unset.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED",
+            "CONVERSATIONAL_FILTER_ONLY"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Disables Conversational Filtering when using Conversational Search.",
+            "Enables Conversational Filtering when using Conversational Search.",
+            "Enables Conversational Filtering without Conversational Search."
+          ],
+          "type": "string"
+        },
+        "enableConversationalFiltering": {
+          "deprecated": true,
+          "description": "Optional. This field is deprecated. Please use ConversationalFilteringSpec.conversational_filtering_mode instead.",
+          "type": "boolean"
+        },
+        "userAnswer": {
+          "$ref": "GoogleCloudRetailV2betaConversationalSearchRequestUserAnswer",
+          "description": "Optional. This field specifies the current user answer during the conversational filtering search. It can be either user selected from suggested answers or user input plain text."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaConversationalSearchRequestSearchParams": {
+      "description": "Search parameters.",
+      "id": "GoogleCloudRetailV2betaConversationalSearchRequestSearchParams",
+      "properties": {
+        "boostSpec": {
+          "$ref": "GoogleCloudRetailV2betaSearchRequestBoostSpec",
+          "description": "Optional. The boost spec to specify the boosting of search results. The syntax of the boost spec is the same as SearchRequest.boost_spec."
+        },
+        "canonicalFilter": {
+          "description": "Optional. The canonical filter string to restrict search results. The syntax of the canonical filter string is the same as SearchRequest.canonical_filter.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Optional. The filter string to restrict search results. The syntax of the filter string is the same as SearchRequest.filter.",
+          "type": "string"
+        },
+        "sortBy": {
+          "description": "Optional. The sort string to specify the sorting of search results. The syntax of the sort string is the same as SearchRequest.sort.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaConversationalSearchRequestUserAnswer": {
+      "description": "This field specifies the current user answer during the conversational filtering search. This can be either user selected from suggested answers or user input plain text.",
+      "id": "GoogleCloudRetailV2betaConversationalSearchRequestUserAnswer",
+      "properties": {
+        "selectedAnswer": {
+          "$ref": "GoogleCloudRetailV2betaConversationalSearchRequestUserAnswerSelectedAnswer",
+          "description": "Optional. This field specifies the selected answer during the conversational search. This should be a subset of ConversationalSearchResponse.followup_question.suggested_answers."
+        },
+        "textAnswer": {
+          "description": "This field specifies the incremental input text from the user during the conversational search.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaConversationalSearchRequestUserAnswerSelectedAnswer": {
+      "description": "This field specifies the selected answers during the conversational search.",
+      "id": "GoogleCloudRetailV2betaConversationalSearchRequestUserAnswerSelectedAnswer",
+      "properties": {
+        "productAttributeValue": {
+          "$ref": "GoogleCloudRetailV2betaProductAttributeValue",
+          "description": "Optional. This field specifies the selected answer which is a attribute key-value."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaConversationalSearchResponse": {
+      "description": "Response message for ConversationalSearchService.ConversationalSearch method.",
+      "id": "GoogleCloudRetailV2betaConversationalSearchResponse",
+      "properties": {
+        "conversationId": {
+          "description": "Conversation UUID. This field will be stored in client side storage to maintain the conversation session with server and will be used for next search request's ConversationalSearchRequest.conversation_id to restore conversation state in server.",
+          "type": "string"
+        },
+        "conversationalFilteringResult": {
+          "$ref": "GoogleCloudRetailV2betaConversationalSearchResponseConversationalFilteringResult",
+          "description": "This field specifies all related information that is needed on client side for UI rendering of conversational filtering search."
+        },
+        "conversationalTextResponse": {
+          "description": "The conversational answer-based text response generated by the Server.",
+          "type": "string"
+        },
+        "followupQuestion": {
+          "$ref": "GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestion",
+          "description": "The conversational followup question generated for Intent refinement."
+        },
+        "refinedSearch": {
+          "description": "The proposed refined search queries. They can be used to fetch the relevant search results. When using CONVERSATIONAL_FILTER_ONLY mode, the refined_query from search response will be populated here.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2betaConversationalSearchResponseRefinedSearch"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The state of the response generation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STREAMING",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Response generation is being streamed.",
+            "Response generation has succeeded."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "userQueryTypes": {
+          "description": "The types Retail classifies the search query as. Supported values are: - \"ORDER_SUPPORT\" - \"SIMPLE_PRODUCT_SEARCH\" - \"INTENT_REFINEMENT\" - \"PRODUCT_DETAILS\" - \"PRODUCT_COMPARISON\" - \"DEALS_AND_COUPONS\" - \"STORE_RELEVANT\" - \"BLOCKLISTED\" - \"BEST_PRODUCT\" - \"RETAIL_SUPPORT\" - \"DISABLED\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaConversationalSearchResponseConversationalFilteringResult": {
+      "description": "This field specifies all related information that is needed on client side for UI rendering of conversational filtering search.",
+      "id": "GoogleCloudRetailV2betaConversationalSearchResponseConversationalFilteringResult",
+      "properties": {
+        "additionalFilter": {
+          "$ref": "GoogleCloudRetailV2betaConversationalSearchResponseConversationalFilteringResultAdditionalFilter",
+          "description": "This is the incremental additional filters implied from the current user answer. User should add the suggested addition filters to the previous ConversationalSearchRequest.search_params.filter and SearchRequest.filter, and use the merged filter in the follow up requests."
+        },
+        "followupQuestion": {
+          "$ref": "GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestion",
+          "description": "The conversational filtering question."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaConversationalSearchResponseConversationalFilteringResultAdditionalFilter": {
+      "description": "Additional filter that client side need to apply.",
+      "id": "GoogleCloudRetailV2betaConversationalSearchResponseConversationalFilteringResultAdditionalFilter",
+      "properties": {
+        "productAttributeValue": {
+          "$ref": "GoogleCloudRetailV2betaProductAttributeValue",
+          "description": "Product attribute value, including an attribute key and an attribute value. Other types can be added here in the future."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestion": {
+      "description": "The conversational followup question generated for Intent refinement.",
+      "id": "GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestion",
+      "properties": {
+        "followupQuestion": {
+          "description": "The conversational followup question generated for Intent refinement.",
+          "type": "string"
+        },
+        "suggestedAnswers": {
+          "description": "The answer options provided to client for the follow-up question.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestionSuggestedAnswer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestionSuggestedAnswer": {
+      "description": "Suggested answers to the follow-up question. If it's numerical attribute, only ProductAttributeInterval will be set. If it's textual attribute, only productAttributeValue will be set.",
+      "id": "GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestionSuggestedAnswer",
+      "properties": {
+        "productAttributeValue": {
+          "$ref": "GoogleCloudRetailV2betaProductAttributeValue",
+          "description": "Product attribute value, including an attribute key and an attribute value. Other types can be added here in the future."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaConversationalSearchResponseRefinedSearch": {
+      "description": "The proposed refined search for intent-refinement/bundled shopping conversation. When using CONVERSATIONAL_FILTER_ONLY mode, the refined_query from search response will be populated here.",
+      "id": "GoogleCloudRetailV2betaConversationalSearchResponseRefinedSearch",
+      "properties": {
+        "query": {
+          "description": "The query to be used for search.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2betaCreateModelMetadata": {
       "description": "Metadata associated with a create operation.",
       "id": "GoogleCloudRetailV2betaCreateModelMetadata",
@@ -7151,6 +7462,67 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaSafetySetting": {
+      "description": "Safety settings.",
+      "id": "GoogleCloudRetailV2betaSafetySetting",
+      "properties": {
+        "category": {
+          "description": "Harm category.",
+          "enum": [
+            "HARM_CATEGORY_UNSPECIFIED",
+            "HARM_CATEGORY_HATE_SPEECH",
+            "HARM_CATEGORY_DANGEROUS_CONTENT",
+            "HARM_CATEGORY_HARASSMENT",
+            "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "HARM_CATEGORY_CIVIC_INTEGRITY"
+          ],
+          "enumDescriptions": [
+            "The harm category is unspecified.",
+            "The harm category is hate speech.",
+            "The harm category is dangerous content.",
+            "The harm category is harassment.",
+            "The harm category is sexually explicit content.",
+            "The harm category is civic integrity."
+          ],
+          "type": "string"
+        },
+        "method": {
+          "description": "Optional. Specify if the threshold is used for probability or severity score. If not specified, the threshold is used for probability score.",
+          "enum": [
+            "HARM_BLOCK_METHOD_UNSPECIFIED",
+            "SEVERITY",
+            "PROBABILITY"
+          ],
+          "enumDescriptions": [
+            "The harm block method is unspecified.",
+            "The harm block method uses both probability and severity scores.",
+            "The harm block method uses the probability score."
+          ],
+          "type": "string"
+        },
+        "threshold": {
+          "description": "The harm block threshold.",
+          "enum": [
+            "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
+            "BLOCK_LOW_AND_ABOVE",
+            "BLOCK_MEDIUM_AND_ABOVE",
+            "BLOCK_ONLY_HIGH",
+            "BLOCK_NONE",
+            "OFF"
+          ],
+          "enumDescriptions": [
+            "Unspecified harm block threshold.",
+            "Block low threshold and above (i.e. block more).",
+            "Block medium threshold and above.",
+            "Block only high threshold (i.e. block less).",
+            "Block none.",
+            "Turn off the safety filter."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
