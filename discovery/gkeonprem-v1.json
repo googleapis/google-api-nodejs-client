@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -3105,7 +3105,7 @@
       }
     }
   },
-  "revision": "20250813",
+  "revision": "20250908",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -5695,6 +5695,10 @@
           "$ref": "VmwareAdminPrivateRegistryConfig",
           "description": "Configuration for registry."
         },
+        "proxy": {
+          "$ref": "VmwareAdminProxy",
+          "description": "Configuration for proxy."
+        },
         "reconciling": {
           "description": "Output only. If set, there are currently changes in flight to the VMware admin cluster.",
           "readOnly": true,
@@ -5935,6 +5939,21 @@
         },
         "caCert": {
           "description": "When the container runtime pulls an image from private registry, the registry must prove its identity by presenting a certificate. The registry's certificate is signed by a certificate authority (CA). The container runtime uses the CA's certificate to validate the registry's certificate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VmwareAdminProxy": {
+      "description": "VmwareAdminProxy represents configuration for admin cluster proxy.",
+      "id": "VmwareAdminProxy",
+      "properties": {
+        "noProxy": {
+          "description": "A comma-separated list of IP addresses, IP address ranges, host names, and domain names that should not go through the proxy server. When Google Distributed Cloud sends a request to one of these addresses, hosts, or domains, the request is sent directly.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The HTTP address of proxy server.",
           "type": "string"
         }
       },
