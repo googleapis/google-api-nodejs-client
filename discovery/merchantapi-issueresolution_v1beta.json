@@ -268,7 +268,7 @@
       }
     }
   },
-  "revision": "20250621",
+  "revision": "20250830",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Action": {
@@ -653,14 +653,16 @@
             "REVIEW_PRODUCT_ISSUE_IN_MERCHANT_CENTER",
             "REVIEW_ACCOUNT_ISSUE_IN_MERCHANT_CENTER",
             "LEGAL_APPEAL_IN_HELP_CENTER",
-            "VERIFY_IDENTITY_IN_MERCHANT_CENTER"
+            "VERIFY_IDENTITY_IN_MERCHANT_CENTER",
+            "VERIFY_BUSINESS_VIDEO_IN_MERCHANT_CENTER"
           ],
           "enumDescriptions": [
             "Default value. Will never be provided by the API.",
             "Redirect to Merchant Center where the business can request a review for issue related to their product.",
             "Redirect to Merchant Center where the business can request a review for issue related to their account.",
             "Redirect to the form in Help Center where the business can request a legal appeal for the issue.",
-            "Redirect to Merchant Center where the business can perform identity verification."
+            "Redirect to Merchant Center where the business can perform identity verification.",
+            "Redirect to Merchant Center where the business can perform business video verification."
           ],
           "type": "string"
         },
