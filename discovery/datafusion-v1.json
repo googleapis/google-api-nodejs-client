@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -743,7 +743,7 @@
       }
     }
   },
-  "revision": "20250610",
+  "revision": "20250901",
   "rootUrl": "https://datafusion.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -998,11 +998,13 @@
           "items": {
             "enum": [
               "DISABLED_REASON_UNSPECIFIED",
-              "KMS_KEY_ISSUE"
+              "KMS_KEY_ISSUE",
+              "PROJECT_STATE_OFF"
             ],
             "enumDescriptions": [
               "This is an unknown reason for disabling.",
-              "The KMS key used by the instance is either revoked or denied access to"
+              "The KMS key used by the instance is either revoked or denied access to",
+              "The consumer project is in a non-ACTIVE state."
             ],
             "type": "string"
           },
@@ -1125,7 +1127,8 @@
             "UPDATING",
             "AUTO_UPDATING",
             "AUTO_UPGRADING",
-            "DISABLED"
+            "DISABLED",
+            "ENABLING"
           ],
           "enumDescriptions": [
             "Instance does not have a state yet",
@@ -1138,7 +1141,8 @@
             "Instance is being updated on customer request",
             "Instance is being auto-updated",
             "Instance is being auto-upgraded",
-            "Instance is disabled"
+            "Instance is disabled",
+            "Instance is being enabled."
           ],
           "readOnly": true,
           "type": "string"
