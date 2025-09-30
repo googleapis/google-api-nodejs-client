@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -879,7 +879,7 @@
       }
     }
   },
-  "revision": "20250813",
+  "revision": "20250910",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -1255,7 +1255,7 @@
           "readOnly": true
         },
         "kind": {
-          "description": "Output only. ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.",
+          "description": "Output only. ",
           "enum": [
             "RESOURCE_KIND_UNSPECIFIED",
             "RESOURCE_KIND_INSTANCE",
@@ -1288,7 +1288,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. resource name",
+          "description": "Output only. resource name Example: compute.googleapis.com/projects/wlm-obs-dev/zones/us-central1-a/instances/sap-pri",
           "readOnly": true,
           "type": "string"
         }
@@ -1687,8 +1687,12 @@
           "description": "The insights data for the agent status."
         },
         "instanceId": {
-          "description": "Required. The instance id where the insight is generated from",
+          "description": "Optional. The instance id where the insight is generated from",
           "type": "string"
+        },
+        "openShiftValidation": {
+          "$ref": "OpenShiftValidation",
+          "description": "The insights data for the OpenShift workload validation."
         },
         "sapDiscovery": {
           "$ref": "SapDiscovery",
@@ -1978,6 +1982,12 @@
       },
       "type": "object"
     },
+    "OpenShiftValidation": {
+      "description": "A presentation of OpenShift workload insight. The schema of OpenShift workloads validation related data.",
+      "id": "OpenShiftValidation",
+      "properties": {},
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -2185,6 +2195,20 @@
         "revisionId": {
           "description": "Output only. the version of the rule",
           "readOnly": true,
+          "type": "string"
+        },
+        "ruleType": {
+          "description": "The type of the rule.",
+          "enum": [
+            "RULE_TYPE_UNSPECIFIED",
+            "BASELINE",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Baseline rules",
+            "Custom rules"
+          ],
           "type": "string"
         },
         "secondaryCategory": {
@@ -3227,7 +3251,7 @@
           "type": "string"
         },
         "instanceName": {
-          "description": "Required. instance_name lists the human readable name of the instance that the data comes from.",
+          "description": "Optional. instance_name lists the human readable name of the instance that the data comes from.",
           "type": "string"
         },
         "projectId": {
