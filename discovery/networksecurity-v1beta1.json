@@ -1078,7 +1078,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2432,12 +2432,12 @@
                   ],
                   "parameters": {
                     "dnsThreatDetectorId": {
-                      "description": "Optional. Id of the requesting DnsThreatDetector object. If this field is not supplied, the service will generate an identifier.",
+                      "description": "Optional. The ID of the requesting DnsThreatDetector object. If this field is not supplied, the service generates an identifier.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Value for parent of the DnsThreatDetector resource.",
+                      "description": "Required. The value for the parent of the DnsThreatDetector resource.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2481,7 +2481,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single DnsThreatDetector.",
+                  "description": "Gets the details of a single DnsThreatDetector.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors/{dnsThreatDetectorsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.dnsThreatDetectors.get",
@@ -2490,7 +2490,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the DnsThreatDetector resource",
+                      "description": "Required. Name of the DnsThreatDetector resource.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dnsThreatDetectors/[^/]+$",
                       "required": true,
@@ -2515,18 +2515,18 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. The requested page size. The server may return fewer items than requested. If unspecified, the server picks an appropriate default.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A page token, received from a previous `ListDnsThreatDetectorsRequest` call. Provide this to retrieve the subsequent page.",
+                      "description": "Optional. A page token received from a previous `ListDnsThreatDetectorsRequest` call. Provide this to retrieve the subsequent page.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListDnsThreatDetectorsRequest",
+                      "description": "Required. The parent value for `ListDnsThreatDetectorsRequest`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2542,7 +2542,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the parameters of a single DnsThreatDetector.",
+                  "description": "Updates a single DnsThreatDetector.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors/{dnsThreatDetectorsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.dnsThreatDetectors.patch",
@@ -2558,7 +2558,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the DnsThreatDetector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not provided then all fields present in the request will be overwritten.",
+                      "description": "Optional. The field mask is used to specify the fields to be overwritten in the DnsThreatDetector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not provided then all fields present in the request will be overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -5513,7 +5513,7 @@
       }
     }
   },
-  "revision": "20250806",
+  "revision": "20250911",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -5837,7 +5837,7 @@
           "type": "array"
         },
         "principals": {
-          "description": "Optional. A list of identities derived from the client's certificate. This field will not match on a request unless frontend mutual TLS is enabled for the forwarding rule or Gateway and the client certificate has been successfully validated by mTLS. Each identity is a string whose value is matched against a list of URI SANs, DNS Name SANs, or the common name in the client's certificate. A match happens when any principal matches with the rule. Limited to 50 principals per Authorization Policy for Regional Internal Application Load Balancer, Regional External Application Load Balancer, Cross-region Internal Application Load Balancer, and Cloud Service Mesh. Limited to 25 principals per Authorization Policy for Global External Application Load Balancer.",
+          "description": "Optional. A list of identities derived from the client's certificate. This field will not match on a request unless frontend mutual TLS is enabled for the forwarding rule or Gateway and the client certificate has been successfully validated by mTLS. Each identity is a string whose value is matched against a list of URI SANs, DNS Name SANs, or the common name in the client's certificate. A match happens when any principal matches with the rule. Limited to 50 principals per Authorization Policy for regional internal Application Load Balancers, regional external Application Load Balancers, cross-region internal Application Load Balancers, and Cloud Service Mesh. This field is not supported for global external Application Load Balancers.",
           "items": {
             "$ref": "AuthzPolicyAuthzRulePrincipal"
           },
@@ -5904,7 +5904,7 @@
             "Unspecified principal selector. It will be treated as CLIENT_CERT_URI_SAN by default.",
             "The principal rule is matched against a list of URI SANs in the validated client's certificate. A match happens when there is any exact URI SAN value match. This is the default principal selector.",
             "The principal rule is matched against a list of DNS Name SANs in the validated client's certificate. A match happens when there is any exact DNS Name SAN value match. This is only applicable for Application Load Balancers except for classic Global External Application load balancer. CLIENT_CERT_DNS_NAME_SAN is not supported for INTERNAL_SELF_MANAGED load balancing scheme.",
-            "The principal rule is matched against the common name in the client's certificate. Authorization against multiple common names in the client certificate is not supported. Requests with multiple common names in the client certificate will be rejected if CLIENT_CERT_COMMON_NAME is set as the principal selector. A match happens when there is an exact common name value match. This is only applicable for Application Load Balancers except for classic Global External Application load balancer. CLIENT_CERT_COMMON_NAME is not supported for INTERNAL_SELF_MANAGED load balancing scheme."
+            "The principal rule is matched against the common name in the client's certificate. Authorization against multiple common names in the client certificate is not supported. Requests with multiple common names in the client certificate will be rejected if CLIENT_CERT_COMMON_NAME is set as the principal selector. A match happens when there is an exact common name value match. This is only applicable for Application Load Balancers except for global external Application Load Balancer and classic Application Load Balancer. CLIENT_CERT_COMMON_NAME is not supported for INTERNAL_SELF_MANAGED load balancing scheme."
           ],
           "type": "string"
         }
@@ -6075,7 +6075,7 @@
       "id": "AuthzPolicyTarget",
       "properties": {
         "loadBalancingScheme": {
-          "description": "Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
+          "description": "Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `INTERNAL_SELF_MANAGED`, and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
@@ -6091,7 +6091,7 @@
           "type": "string"
         },
         "resources": {
-          "description": "Required. A list of references to the Forwarding Rules on which this policy will be applied.",
+          "description": "Required. A list of references to the Forwarding Rules on which this policy will be applied. For policies created for Cloudrun, this field will reference the Cloud Run services.",
           "items": {
             "type": "string"
           },
@@ -6298,17 +6298,17 @@
       "type": "object"
     },
     "DnsThreatDetector": {
-      "description": "Message describing DnsThreatDetector object.",
+      "description": "A DNS threat detector sends DNS query logs to a _provider_ that then analyzes the logs to identify malicious activity in the DNS queries. By default, all VPC networks in your projects are included. You can exclude specific networks by supplying `excluded_networks`.",
       "id": "DnsThreatDetector",
       "properties": {
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. Create time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "excludedNetworks": {
-          "description": "Optional. A list of Network resource names which are exempt from the configuration in this DnsThreatDetector. Example: `projects/PROJECT_ID/global/networks/NETWORK_NAME`.",
+          "description": "Optional. A list of network resource names which aren't monitored by this DnsThreatDetector. Example: `projects/PROJECT_ID/global/networks/NETWORK_NAME`.",
           "items": {
             "type": "string"
           },
@@ -6318,7 +6318,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Any labels associated with the DnsThreatDetector, listed as key value pairs.",
           "type": "object"
         },
         "name": {
@@ -6333,12 +6333,12 @@
           ],
           "enumDescriptions": [
             "An unspecified provider.",
-            "The Infoblox DNS threat detecter."
+            "The Infoblox DNS threat detector provider."
           ],
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. Update time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6409,6 +6409,10 @@
         "description": {
           "description": "Optional. Description of the firewall endpoint. Max length 2048 characters.",
           "type": "string"
+        },
+        "endpointSettings": {
+          "$ref": "FirewallEndpointEndpointSettings",
+          "description": "Optional. Settings for the endpoint."
         },
         "labels": {
           "additionalProperties": {
@@ -6551,6 +6555,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "FirewallEndpointEndpointSettings": {
+      "description": "Settings for the endpoint.",
+      "id": "FirewallEndpointEndpointSettings",
+      "properties": {},
       "type": "object"
     },
     "GatewaySecurityPolicy": {
@@ -7456,7 +7466,7 @@
       "type": "object"
     },
     "ListDnsThreatDetectorsResponse": {
-      "description": "Message for response to listing DnsThreatDetectors.",
+      "description": "The response message to requesting a list of DnsThreatDetectors.",
       "id": "ListDnsThreatDetectorsResponse",
       "properties": {
         "dnsThreatDetectors": {
@@ -7467,7 +7477,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token, which can be sent as `page_token` to retrieve the next page.",
+          "description": "A token, which can be sent as `page_token`, to retrieve the next page.",
           "type": "string"
         },
         "unreachable": {
@@ -8272,6 +8282,18 @@
           "readOnly": true,
           "type": "string"
         },
+        "type": {
+          "description": "Immutable. The type of the endpoint group. If left unspecified, defaults to DIRECT.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "DIRECT"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "An endpoint group that sends packets to a single deployment group."
+          ],
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
@@ -8852,13 +8874,15 @@
             "PROFILE_TYPE_UNSPECIFIED",
             "THREAT_PREVENTION",
             "CUSTOM_MIRRORING",
-            "CUSTOM_INTERCEPT"
+            "CUSTOM_INTERCEPT",
+            "URL_FILTERING"
           ],
           "enumDescriptions": [
             "Profile type not specified.",
             "Profile type for threat prevention.",
             "Profile type for packet mirroring v2",
-            "Profile type for TPPI."
+            "Profile type for TPPI.",
+            "Profile type for URL filtering."
           ],
           "type": "string"
         },
@@ -8867,6 +8891,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "urlFilteringProfile": {
+          "$ref": "UrlFilteringProfile",
+          "description": "The URL filtering configuration for the SecurityProfile."
         }
       },
       "type": "object"
@@ -8923,6 +8951,10 @@
           "description": "Output only. Last resource update timestamp.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "urlFilteringProfile": {
+          "description": "Optional. Reference to a SecurityProfile with the UrlFiltering configuration.",
           "type": "string"
         }
       },
@@ -9223,6 +9255,53 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UrlFilter": {
+      "description": "A URL filter defines an action to take for some URL match.",
+      "id": "UrlFilter",
+      "properties": {
+        "filteringAction": {
+          "description": "Required. The action taken when this filter is applied.",
+          "enum": [
+            "URL_FILTERING_ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Filtering action not specified.",
+            "The connection matching this filter will be allowed to transmit.",
+            "The connection matching this filter will be dropped."
+          ],
+          "type": "string"
+        },
+        "priority": {
+          "description": "Required. The priority of this filter within the URL Filtering Profile. Lower integers indicate higher priorities. The priority of a filter must be unique within a URL Filtering Profile.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "urls": {
+          "description": "Required. The list of strings that a URL must match with for this filter to be applied.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UrlFilteringProfile": {
+      "description": "UrlFilteringProfile defines filters based on URL.",
+      "id": "UrlFilteringProfile",
+      "properties": {
+        "urlFilters": {
+          "description": "Optional. The list of filtering configs in which each config defines an action to take for some URL match.",
+          "items": {
+            "$ref": "UrlFilter"
+          },
+          "type": "array"
         }
       },
       "type": "object"
