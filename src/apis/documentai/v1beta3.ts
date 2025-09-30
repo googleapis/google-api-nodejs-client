@@ -1638,6 +1638,10 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock {
     /**
+     * Annotation of the text block.
+     */
+    annotations?: Schema$GoogleCloudDocumentaiV1beta3DocumentAnnotations;
+    /**
      * A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.
      */
     blocks?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock[];
@@ -3084,7 +3088,7 @@ export namespace documentai_v1beta3 {
      */
     externalProcessorVersionSource?: Schema$GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequestExternalProcessorVersionSource;
     /**
-     * The source processor version to import from. The source processor version and destination processor need to be in the same environment and region. Note that ProcessorVersions with `model_type` `MODEL_TYPE_LLM` are not supported.
+     * The source processor version to import from. The source processor version and destination processor need to be in the same environment and region.
      */
     processorVersionSource?: string | null;
   }
@@ -3866,7 +3870,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestCustomDocumentExtractionOptions {
     /**
-     * Training method to use for CDE training.
+     * Optional. Training method to use for CDE training.
      */
     trainingMethod?: string | null;
   }
@@ -4764,7 +4768,7 @@ export namespace documentai_v1beta3 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -4907,7 +4911,7 @@ export namespace documentai_v1beta3 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
