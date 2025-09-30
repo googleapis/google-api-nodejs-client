@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250929",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -530,7 +530,8 @@
             "FRAUD",
             "NUMBER_HARVESTING",
             "PAYMENTS_FRAUD",
-            "UNWANTED_CONTENT"
+            "UNWANTED_CONTENT",
+            "UNQUALIFIED_EDU"
           ],
           "enumDescriptions": [
             "Abuse reason is unspecified.",
@@ -541,7 +542,8 @@
             "This account is being suspended for fraud.",
             "This account is being suspended for number harvesting.",
             "This account is being suspended for payments fraud.",
-            "This account is being suspended for unwanted content."
+            "This account is being suspended for unwanted content.",
+            "This account is being suspended for being an unqualified educational institution."
           ],
           "type": "string"
         },

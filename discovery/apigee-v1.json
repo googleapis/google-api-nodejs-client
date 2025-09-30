@@ -9592,6 +9592,163 @@
             }
           }
         },
+        "securityFeedback": {
+          "methods": {
+            "create": {
+              "description": "Creates a new report containing customer feedback.",
+              "flatPath": "v1/organizations/{organizationsId}/securityFeedback",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.securityFeedback.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Name of the organization. Use the following structure in your request: `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "securityFeedbackId": {
+                  "description": "Optional. The id for this feedback report. If not provided, it will be set to a system-generated UUID.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/securityFeedback",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1SecurityFeedback"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityFeedback"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a specific feedback report. Used for \"undo\" of a feedback submission.",
+              "flatPath": "v1/organizations/{organizationsId}/securityFeedback/{securityFeedbackId}",
+              "httpMethod": "DELETE",
+              "id": "apigee.organizations.securityFeedback.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the SecurityFeedback to delete. Use the following structure in your request: `organizations/{org}/securityFeedback/{feedback_id}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityFeedback/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a specific customer feedback report.",
+              "flatPath": "v1/organizations/{organizationsId}/securityFeedback/{securityFeedbackId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.securityFeedback.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the SecurityFeedback. Format: `organizations/{org}/securityFeedback/{feedback_id}` Example: organizations/apigee-organization-name/securityFeedback/feedback-id",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityFeedback/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityFeedback"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists all feedback reports which have already been submitted.",
+              "flatPath": "v1/organizations/{organizationsId}/securityFeedback",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.securityFeedback.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of feedback reports to return. The service may return fewer than this value. LINT.IfChange(documented_page_size_limits) If unspecified, at most 10 feedback reports will be returned. The maximum value is 100; values above 100 will be coerced to 100. LINT.ThenChange( //depot/google3/edge/sense/boq/service/v1/securityfeedback/securityfeedback_rpc.go:page_size_limits )",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListSecurityFeedback` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSecurityFeedback` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the organization. Format: `organizations/{org}`. Example: organizations/apigee-organization-name/securityFeedback",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/securityFeedback",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListSecurityFeedbackResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a specific feedback report.",
+              "flatPath": "v1/organizations/{organizationsId}/securityFeedback/{securityFeedbackId}",
+              "httpMethod": "PATCH",
+              "id": "apigee.organizations.securityFeedback.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Identifier. The feedback name is intended to be a system-generated uuid.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityFeedback/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1SecurityFeedback"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityFeedback"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "securityMonitoringConditions": {
           "methods": {
             "create": {
@@ -11127,7 +11284,7 @@
       }
     }
   },
-  "revision": "20250808",
+  "revision": "20250908",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -11316,7 +11473,7 @@
       "properties": {
         "adjustment": {
           "$ref": "GoogleTypeMoney",
-          "description": "* A positive value of `adjustment` means that that the API provider wants to adjust the balance for an under-charged developer i.e. the balance of the developer will decrease. * A negative value of `adjustment` means that that the API provider wants to adjust the balance for an over-charged developer i.e. the balance of the developer will increase."
+          "description": "* A positive value of `adjustment` means that that the API provider wants to adjust the balance for an under-charged developer i.e. the balance of the developer will decrease. * A negative value of `adjustment` means that that the API provider wants to adjust the balance for an over-charged developer i.e. the balance of the developer will increase. NOTE: An adjustment cannot increase the balance of the developer beyond the balance as of the most recent credit. For example, if a developer's balance is updated to be $100, and they spend $10, a negative adjustment can only increase the balance of the developer to $100."
         }
       },
       "type": "object"
@@ -12512,7 +12669,7 @@
           "type": "string"
         },
         "scope": {
-          "description": "Required. Scope of the resources for the computation. For Apigee, the environment is the scope of the resources.",
+          "description": "Optional. Scope of the resources for the computation. For Apigee, the environment is the scope of the resources.",
           "type": "string"
         }
       },
@@ -15844,6 +16001,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListSecurityFeedbackResponse": {
+      "description": "Response for ListSecurityFeedback",
+      "id": "GoogleCloudApigeeV1ListSecurityFeedbackResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` in `ListSecurityFeedbackRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "securityFeedback": {
+          "description": "List of SecurityFeedback reports.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityFeedback"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListSecurityIncidentsResponse": {
       "description": "Response for ListSecurityIncidents.",
       "id": "GoogleCloudApigeeV1ListSecurityIncidentsResponse",
@@ -18419,6 +18594,107 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1SecurityFeedback": {
+      "description": "Represents a feedback report from an Advanced API Security customer.",
+      "id": "GoogleCloudApigeeV1SecurityFeedback",
+      "properties": {
+        "comment": {
+          "description": "Optional. Optional text the user can provide for additional, unstructured context.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time when this specific feedback id was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The display name of the feedback.",
+          "type": "string"
+        },
+        "feedbackContexts": {
+          "description": "Required. One or more attribute/value pairs for constraining the feedback.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityFeedbackFeedbackContext"
+          },
+          "type": "array"
+        },
+        "feedbackType": {
+          "description": "Required. The type of feedback being submitted.",
+          "enum": [
+            "FEEDBACK_TYPE_UNSPECIFIED",
+            "EXCLUDED_DETECTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified feedback type.",
+            "Feedback identifying attributes to be excluded from detections."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. The feedback name is intended to be a system-generated uuid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reason": {
+          "description": "Optional. The reason for the feedback.",
+          "enum": [
+            "REASON_UNSPECIFIED",
+            "INTERNAL_SYSTEM",
+            "NON_RISK_CLIENT",
+            "NAT",
+            "PENETRATION_TEST",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified reason.",
+            "The feedback is created for an internal system.",
+            "The feedback is created for a non-risk client.",
+            "The feedback is created for to label NAT.",
+            "The feedback is created for a penetration test.",
+            "The feedback is created for other reasons."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when this specific feedback id was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityFeedbackFeedbackContext": {
+      "description": "FeedbackContext captures the intent of the submitted feedback.",
+      "id": "GoogleCloudApigeeV1SecurityFeedbackFeedbackContext",
+      "properties": {
+        "attribute": {
+          "description": "Required. The attribute the user is providing feedback about.",
+          "enum": [
+            "ATTRIBUTE_UNSPECIFIED",
+            "ATTRIBUTE_ENVIRONMENTS",
+            "ATTRIBUTE_IP_ADDRESS_RANGES",
+            "ATTRIBUTE_API_KEYS"
+          ],
+          "enumDescriptions": [
+            "Unspecified attribute.",
+            "Values will be a list of environments.",
+            "Values will be a list of IP addresses. This could be either IPv4 or IPv6.",
+            "Values will be a list of API keys."
+          ],
+          "type": "string"
+        },
+        "values": {
+          "description": "Required. The values of the attribute the user is providing feedback about.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1SecurityIncident": {
       "description": "Represents an SecurityIncident resource.",
       "id": "GoogleCloudApigeeV1SecurityIncident",
@@ -18523,7 +18799,7 @@
           "type": "string"
         },
         "scope": {
-          "description": "Required. Scope of the security monitoring condition. For Apigee, the environment is the scope of the resources.",
+          "description": "Optional. Scope of the security monitoring condition. For Apigee, the environment is the scope of the resources.",
           "type": "string"
         },
         "totalDeployedResources": {
