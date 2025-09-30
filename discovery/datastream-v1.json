@@ -1261,7 +1261,7 @@
       }
     }
   },
-  "revision": "20250817",
+  "revision": "20250827",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -2153,6 +2153,18 @@
       "description": "Merge mode defines that all changes to a table will be merged at the destination table.",
       "id": "Merge",
       "properties": {},
+      "type": "object"
+    },
+    "MongodbChangeStreamPosition": {
+      "description": "MongoDB change stream position",
+      "id": "MongodbChangeStreamPosition",
+      "properties": {
+        "startTime": {
+          "description": "Required. The timestamp (in epoch seconds) to start change stream from.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "MongodbCluster": {
@@ -3547,6 +3559,10 @@
       "description": "CDC strategy to start replicating from a specific position in the source.",
       "id": "SpecificStartPosition",
       "properties": {
+        "mongodbChangeStreamPosition": {
+          "$ref": "MongodbChangeStreamPosition",
+          "description": "MongoDB change stream position to start replicating from."
+        },
         "mysqlGtidPosition": {
           "$ref": "MysqlGtidPosition",
           "description": "MySQL GTID set to start replicating from."
