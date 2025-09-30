@@ -22,5 +22,6 @@ node.owlbot_main(templates_excludes=[
   ".github/release-please.yml",
   '.kokoro/publish.sh',
   '.kokoro/release/publish.cfg',
-  '.github/workflows/ci.yaml'
+  '.github/workflows/ci.yaml',
+  '.github/workflows/issues-no-repro.yaml'
 ])
