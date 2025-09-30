@@ -102,7 +102,7 @@ export namespace content_v2_1 {
   /**
    * Content API for Shopping
    *
-   * Manage your product listings and accounts for Google Shopping
+   * This API is deprecated. Please use Merchant API instead: https://developers.google.com/merchant/api.
    *
    * @example
    * ```js
