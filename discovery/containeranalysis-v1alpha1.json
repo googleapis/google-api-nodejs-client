@@ -1452,7 +1452,7 @@
       }
     }
   },
-  "revision": "20250813",
+  "revision": "20250829",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -2530,7 +2530,7 @@
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage",
       "properties": {
         "packagePath": {
-          "description": "Path to the package.json. e.g. workspace/path/to/package",
+          "description": "Optional. Path to the package.json. e.g. workspace/path/to/package Only one of `archive` or `package_path` can be specified.",
           "type": "string"
         },
         "repository": {
