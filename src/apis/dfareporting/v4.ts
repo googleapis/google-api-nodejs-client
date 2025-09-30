@@ -820,6 +820,10 @@ export namespace dfareporting_v4 {
      */
     defaultEmail?: string | null;
     /**
+     * Optional. Whether the advertiser plans to serve EU political ads.
+     */
+    euPoliticalAdsDeclaration?: string | null;
+    /**
      * Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser's floodlight configuration ID in order to share that advertiser's floodlight configuration with this advertiser, so long as: - This advertiser's original floodlight configuration is not already associated with floodlight activities or floodlight activity groups. - This advertiser's original floodlight configuration is not already shared with another advertiser.
      */
     floodlightConfigurationId?: string | null;
@@ -1279,6 +1283,10 @@ export namespace dfareporting_v4 {
      */
     defaultLandingPageId?: string | null;
     endDate?: string | null;
+    /**
+     * Optional. Whether the campaign has EU political ads. Campaign Manager 360 doesn't allow campaigns with EU political ads to serve in the EU. They can still serve in other regions.
+     */
+    euPoliticalAdsDeclaration?: string | null;
     /**
      * Overrides that can be used to activate or deactivate advertiser event tags.
      */
@@ -5386,6 +5394,10 @@ export namespace dfareporting_v4 {
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
+     * Optional. Whether the placement is enabled for YouTube integration.
+     */
+    allowOnYoutube?: boolean | null;
+    /**
      * Campaign ID of this placement. This field is a required field on insertion.
      */
     campaignId?: string | null;
@@ -5541,6 +5553,10 @@ export namespace dfareporting_v4 {
      * Whether this placement opts out of tag wrapping.
      */
     wrappingOptOut?: boolean | null;
+    /**
+     * Optional. YouTube settings for the placement. The placement must be enabled for YouTube to use this field.
+     */
+    youtubeSettings?: Schema$YoutubeSettings;
   }
   /**
    * Placement Assignment.
@@ -7597,6 +7613,35 @@ export namespace dfareporting_v4 {
      * Settings for the transcodes of video creatives served to this placement. If this object is provided, the creative-level transcode settings will be overridden.
      */
     transcodeSettings?: Schema$TranscodeSetting;
+  }
+  /**
+   * Contains the YouTube settings.
+   */
+  export interface Schema$YoutubeSettings {
+    /**
+     * Optional. The IDs of the creatives to use for the business logo. Currently only one creative is supported.
+     */
+    businessLogoCreativeIds?: string[] | null;
+    /**
+     * Optional. The business name.
+     */
+    businessName?: string | null;
+    /**
+     * Optional. The call to actions. Currently only one call to action is supported.
+     */
+    callToActions?: string[] | null;
+    /**
+     * Optional. The descriptions. Currently only one description is supported.
+     */
+    descriptions?: string[] | null;
+    /**
+     * Optional. The headlines associated with the call to actions. Currently only one headline is supported.
+     */
+    headlines?: string[] | null;
+    /**
+     * Optional. The long headlines. Currently only one long headline is supported.
+     */
+    longHeadlines?: string[] | null;
   }
 
   export class Resource$Accountactiveadsummaries {
@@ -13372,6 +13417,7 @@ export namespace dfareporting_v4 {
      *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *   //   "floodlightConfigurationIdDimensionValue": {},
      *   //   "id": "my_id",
@@ -13523,6 +13569,7 @@ export namespace dfareporting_v4 {
      *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *       //   "floodlightConfigurationIdDimensionValue": {},
      *       //   "id": "my_id",
@@ -13546,6 +13593,7 @@ export namespace dfareporting_v4 {
      *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *   //   "floodlightConfigurationIdDimensionValue": {},
      *   //   "id": "my_id",
@@ -13862,6 +13910,7 @@ export namespace dfareporting_v4 {
      *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *       //   "floodlightConfigurationIdDimensionValue": {},
      *       //   "id": "my_id",
@@ -13885,6 +13934,7 @@ export namespace dfareporting_v4 {
      *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *   //   "floodlightConfigurationIdDimensionValue": {},
      *   //   "id": "my_id",
@@ -14036,6 +14086,7 @@ export namespace dfareporting_v4 {
      *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *       //   "floodlightConfigurationIdDimensionValue": {},
      *       //   "id": "my_id",
@@ -14059,6 +14110,7 @@ export namespace dfareporting_v4 {
      *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *   //   "floodlightConfigurationIdDimensionValue": {},
      *   //   "id": "my_id",
@@ -15904,6 +15956,7 @@ export namespace dfareporting_v4 {
      *   //   "defaultClickThroughEventTagProperties": {},
      *   //   "defaultLandingPageId": "my_defaultLandingPageId",
      *   //   "endDate": "my_endDate",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "eventTagOverrides": [],
      *   //   "externalId": "my_externalId",
      *   //   "id": "my_id",
@@ -16066,6 +16119,7 @@ export namespace dfareporting_v4 {
      *       //   "defaultClickThroughEventTagProperties": {},
      *       //   "defaultLandingPageId": "my_defaultLandingPageId",
      *       //   "endDate": "my_endDate",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "eventTagOverrides": [],
      *       //   "externalId": "my_externalId",
      *       //   "id": "my_id",
@@ -16100,6 +16154,7 @@ export namespace dfareporting_v4 {
      *   //   "defaultClickThroughEventTagProperties": {},
      *   //   "defaultLandingPageId": "my_defaultLandingPageId",
      *   //   "endDate": "my_endDate",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "eventTagOverrides": [],
      *   //   "externalId": "my_externalId",
      *   //   "id": "my_id",
@@ -16428,6 +16483,7 @@ export namespace dfareporting_v4 {
      *       //   "defaultClickThroughEventTagProperties": {},
      *       //   "defaultLandingPageId": "my_defaultLandingPageId",
      *       //   "endDate": "my_endDate",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "eventTagOverrides": [],
      *       //   "externalId": "my_externalId",
      *       //   "id": "my_id",
@@ -16462,6 +16518,7 @@ export namespace dfareporting_v4 {
      *   //   "defaultClickThroughEventTagProperties": {},
      *   //   "defaultLandingPageId": "my_defaultLandingPageId",
      *   //   "endDate": "my_endDate",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "eventTagOverrides": [],
      *   //   "externalId": "my_externalId",
      *   //   "id": "my_id",
@@ -16623,6 +16680,7 @@ export namespace dfareporting_v4 {
      *       //   "defaultClickThroughEventTagProperties": {},
      *       //   "defaultLandingPageId": "my_defaultLandingPageId",
      *       //   "endDate": "my_endDate",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "eventTagOverrides": [],
      *       //   "externalId": "my_externalId",
      *       //   "id": "my_id",
@@ -16657,6 +16715,7 @@ export namespace dfareporting_v4 {
      *   //   "defaultClickThroughEventTagProperties": {},
      *   //   "defaultLandingPageId": "my_defaultLandingPageId",
      *   //   "endDate": "my_endDate",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "eventTagOverrides": [],
      *   //   "externalId": "my_externalId",
      *   //   "id": "my_id",
@@ -33948,6 +34007,7 @@ export namespace dfareporting_v4 {
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "allowOnYoutube": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "comment": "my_comment",
@@ -33986,7 +34046,8 @@ export namespace dfareporting_v4 {
      *   //   "videoActiveViewOptOut": false,
      *   //   "videoSettings": {},
      *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
-     *   //   "wrappingOptOut": false
+     *   //   "wrappingOptOut": false,
+     *   //   "youtubeSettings": {}
      *   // }
      * }
      *
@@ -34129,6 +34190,7 @@ export namespace dfareporting_v4 {
      *       //   "additionalSizes": [],
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
+     *       //   "allowOnYoutube": false,
      *       //   "campaignId": "my_campaignId",
      *       //   "campaignIdDimensionValue": {},
      *       //   "comment": "my_comment",
@@ -34167,7 +34229,8 @@ export namespace dfareporting_v4 {
      *       //   "videoActiveViewOptOut": false,
      *       //   "videoSettings": {},
      *       //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
-     *       //   "wrappingOptOut": false
+     *       //   "wrappingOptOut": false,
+     *       //   "youtubeSettings": {}
      *       // }
      *     },
      *   });
@@ -34182,6 +34245,7 @@ export namespace dfareporting_v4 {
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "allowOnYoutube": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "comment": "my_comment",
@@ -34220,7 +34284,8 @@ export namespace dfareporting_v4 {
      *   //   "videoActiveViewOptOut": false,
      *   //   "videoSettings": {},
      *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
-     *   //   "wrappingOptOut": false
+     *   //   "wrappingOptOut": false,
+     *   //   "youtubeSettings": {}
      *   // }
      * }
      *
@@ -34548,6 +34613,7 @@ export namespace dfareporting_v4 {
      *       //   "additionalSizes": [],
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
+     *       //   "allowOnYoutube": false,
      *       //   "campaignId": "my_campaignId",
      *       //   "campaignIdDimensionValue": {},
      *       //   "comment": "my_comment",
@@ -34586,7 +34652,8 @@ export namespace dfareporting_v4 {
      *       //   "videoActiveViewOptOut": false,
      *       //   "videoSettings": {},
      *       //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
-     *       //   "wrappingOptOut": false
+     *       //   "wrappingOptOut": false,
+     *       //   "youtubeSettings": {}
      *       // }
      *     },
      *   });
@@ -34601,6 +34668,7 @@ export namespace dfareporting_v4 {
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "allowOnYoutube": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "comment": "my_comment",
@@ -34639,7 +34707,8 @@ export namespace dfareporting_v4 {
      *   //   "videoActiveViewOptOut": false,
      *   //   "videoSettings": {},
      *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
-     *   //   "wrappingOptOut": false
+     *   //   "wrappingOptOut": false,
+     *   //   "youtubeSettings": {}
      *   // }
      * }
      *
@@ -34781,6 +34850,7 @@ export namespace dfareporting_v4 {
      *       //   "additionalSizes": [],
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
+     *       //   "allowOnYoutube": false,
      *       //   "campaignId": "my_campaignId",
      *       //   "campaignIdDimensionValue": {},
      *       //   "comment": "my_comment",
@@ -34819,7 +34889,8 @@ export namespace dfareporting_v4 {
      *       //   "videoActiveViewOptOut": false,
      *       //   "videoSettings": {},
      *       //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
-     *       //   "wrappingOptOut": false
+     *       //   "wrappingOptOut": false,
+     *       //   "youtubeSettings": {}
      *       // }
      *     },
      *   });
@@ -34834,6 +34905,7 @@ export namespace dfareporting_v4 {
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "allowOnYoutube": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "comment": "my_comment",
@@ -34872,7 +34944,8 @@ export namespace dfareporting_v4 {
      *   //   "videoActiveViewOptOut": false,
      *   //   "videoSettings": {},
      *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
-     *   //   "wrappingOptOut": false
+     *   //   "wrappingOptOut": false,
+     *   //   "youtubeSettings": {}
      *   // }
      * }
      *

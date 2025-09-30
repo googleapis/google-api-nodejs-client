@@ -1310,6 +1310,23 @@ export namespace docs_v1 {
     location?: Schema$Location;
   }
   /**
+   * Inserts a person mention.
+   */
+  export interface Schema$InsertPersonRequest {
+    /**
+     * Inserts the person at the end of a header, footer, footnote or the document body.
+     */
+    endOfSegmentLocation?: Schema$EndOfSegmentLocation;
+    /**
+     * Inserts the person at a specific index in the document. The person mention must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table's start index (i.e. between the table and its preceding paragraph). People cannot be inserted inside an equation.
+     */
+    location?: Schema$Location;
+    /**
+     * The properties of the person mention to insert.
+     */
+    personProperties?: Schema$PersonProperties;
+  }
+  /**
    * Inserts a section break at the given location. A newline character will be inserted before the section break.
    */
   export interface Schema$InsertSectionBreakRequest {
@@ -2030,11 +2047,11 @@ export namespace docs_v1 {
    */
   export interface Schema$PersonProperties {
     /**
-     * Output only. The email address linked to this Person. This field is always present.
+     * The email address linked to this Person. This field is always present.
      */
     email?: string | null;
     /**
-     * Output only. The name of the person if it's displayed in the link text instead of the person's email address.
+     * The name of the person if it's displayed in the link text instead of the person's email address.
      */
     name?: string | null;
   }
@@ -2291,6 +2308,10 @@ export namespace docs_v1 {
      * Inserts a page break at the specified location.
      */
     insertPageBreak?: Schema$InsertPageBreakRequest;
+    /**
+     * Inserts a person mention.
+     */
+    insertPerson?: Schema$InsertPersonRequest;
     /**
      * Inserts a section break at the specified location.
      */

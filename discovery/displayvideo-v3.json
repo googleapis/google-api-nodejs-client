@@ -9268,7 +9268,7 @@
       }
     }
   },
-  "revision": "20250819",
+  "revision": "20250925",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -10438,7 +10438,8 @@
             "EXCHANGE_CORE",
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
-            "EXCHANGE_TUBI"
+            "EXCHANGE_TUBI",
+            "EXCHANGE_SNAP"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -10527,7 +10528,8 @@
             "Core.",
             "Commerce Grid.",
             "Spotify.",
-            "Tubi."
+            "Tubi.",
+            "Snap."
           ],
           "type": "string"
         },
@@ -10871,7 +10873,8 @@
             "APP_PLATFORM_ANDROID_TV",
             "APP_PLATFORM_GENERIC_CTV",
             "APP_PLATFORM_LG_TV",
-            "APP_PLATFORM_VIZIO_TV"
+            "APP_PLATFORM_VIZIO_TV",
+            "APP_PLATFORM_VIDAA"
           ],
           "enumDescriptions": [
             "Default value when app platform is not specified in this version. This enum is a placeholder for default value and does not represent a real platform option.",
@@ -10886,7 +10889,8 @@
             "The app platform is Android TV.",
             "The app platform is a CTV platform that is not explicitly listed elsewhere.",
             "The app platform is LG TV.",
-            "The app platform is VIZIO TV."
+            "The app platform is VIZIO TV.",
+            "The app platform is Vidaa."
           ],
           "type": "string"
         },
@@ -13575,7 +13579,8 @@
             "SDF_VERSION_7_1",
             "SDF_VERSION_8",
             "SDF_VERSION_8_1",
-            "SDF_VERSION_9"
+            "SDF_VERSION_9",
+            "SDF_VERSION_9_1"
           ],
           "enumDeprecated": [
             false,
@@ -13590,6 +13595,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -13613,7 +13619,8 @@
             "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
             "SDF version 8.1.",
-            "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version."
+            "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
+            "SDF version 9.1."
           ],
           "type": "string"
         }
@@ -15221,7 +15228,7 @@
       "id": "DuplicateLineItemRequest",
       "properties": {
         "containsEuPoliticalAds": {
-          "description": "Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned to the line item if the parent advertiser has declared that it does not serve EU political ads, or **the request will fail**.",
+          "description": "Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. This field must be assigned when creating a new line item. Otherwise, **the `advertisers.lineItems.create` request will fail**.",
           "enum": [
             "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
             "CONTAINS_EU_POLITICAL_ADVERTISING",
@@ -15531,7 +15538,8 @@
             "EXCHANGE_CORE",
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
-            "EXCHANGE_TUBI"
+            "EXCHANGE_TUBI",
+            "EXCHANGE_SNAP"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15620,7 +15628,8 @@
             "Core.",
             "Commerce Grid.",
             "Spotify.",
-            "Tubi."
+            "Tubi.",
+            "Snap."
           ],
           "type": "string"
         }
@@ -15734,7 +15743,8 @@
             "EXCHANGE_CORE",
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
-            "EXCHANGE_TUBI"
+            "EXCHANGE_TUBI",
+            "EXCHANGE_SNAP"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15823,7 +15833,8 @@
             "Core.",
             "Commerce Grid.",
             "Spotify.",
-            "Tubi."
+            "Tubi.",
+            "Snap."
           ],
           "type": "string"
         },
@@ -15938,7 +15949,8 @@
             "EXCHANGE_CORE",
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
-            "EXCHANGE_TUBI"
+            "EXCHANGE_TUBI",
+            "EXCHANGE_SNAP"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16027,7 +16039,8 @@
             "Core.",
             "Commerce Grid.",
             "Spotify.",
-            "Tubi."
+            "Tubi.",
+            "Snap."
           ],
           "type": "string"
         },
@@ -16143,7 +16156,8 @@
             "EXCHANGE_CORE",
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
-            "EXCHANGE_TUBI"
+            "EXCHANGE_TUBI",
+            "EXCHANGE_SNAP"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16232,7 +16246,8 @@
             "Core.",
             "Commerce Grid.",
             "Spotify.",
-            "Tubi."
+            "Tubi.",
+            "Snap."
           ],
           "readOnly": true,
           "type": "string"
@@ -16764,7 +16779,7 @@
       "id": "GenerateDefaultLineItemRequest",
       "properties": {
         "containsEuPoliticalAds": {
-          "description": "Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned to the line item if the parent advertiser has declared that it does not serve EU political ads, or **the request will fail**.",
+          "description": "Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. This field must be assigned when creating a new line item. Otherwise, **the `advertisers.lineItems.create` request will fail**.",
           "enum": [
             "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
             "CONTAINS_EU_POLITICAL_ADVERTISING",
@@ -17258,7 +17273,8 @@
             "EXCHANGE_CORE",
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
-            "EXCHANGE_TUBI"
+            "EXCHANGE_TUBI",
+            "EXCHANGE_SNAP"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -17347,7 +17363,8 @@
             "Core.",
             "Commerce Grid.",
             "Spotify.",
-            "Tubi."
+            "Tubi.",
+            "Snap."
           ],
           "type": "string"
         },
@@ -18201,7 +18218,8 @@
             "EXCHANGE_CORE",
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
-            "EXCHANGE_TUBI"
+            "EXCHANGE_TUBI",
+            "EXCHANGE_SNAP"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -18290,7 +18308,8 @@
             "Core.",
             "Commerce Grid.",
             "Spotify.",
-            "Tubi."
+            "Tubi.",
+            "Snap."
           ],
           "type": "string"
         },
@@ -18852,7 +18871,7 @@
           "type": "string"
         },
         "containsEuPoliticalAds": {
-          "description": "Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set when creating a new line item. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned if the parent advertiser has declared that it does not serve EU political ads, or **the `advertisers.lineItems.create` request will fail**.",
+          "description": "Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. This field must be assigned when creating a new line item. Otherwise, **the `advertisers.lineItems.create` request will fail**.",
           "enum": [
             "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
             "CONTAINS_EU_POLITICAL_ADVERTISING",
@@ -21486,7 +21505,8 @@
             "SDF_VERSION_7_1",
             "SDF_VERSION_8",
             "SDF_VERSION_8_1",
-            "SDF_VERSION_9"
+            "SDF_VERSION_9",
+            "SDF_VERSION_9_1"
           ],
           "enumDeprecated": [
             false,
@@ -21501,6 +21521,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -21524,7 +21545,8 @@
             "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
             "SDF version 8.1.",
-            "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version."
+            "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
+            "SDF version 9.1."
           ],
           "type": "string"
         }
@@ -21575,7 +21597,8 @@
             "SDF_VERSION_7_1",
             "SDF_VERSION_8",
             "SDF_VERSION_8_1",
-            "SDF_VERSION_9"
+            "SDF_VERSION_9",
+            "SDF_VERSION_9_1"
           ],
           "enumDeprecated": [
             false,
@@ -21590,6 +21613,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -21613,7 +21637,8 @@
             "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
             "SDF version 8.1.",
-            "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version."
+            "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
+            "SDF version 9.1."
           ],
           "type": "string"
         }

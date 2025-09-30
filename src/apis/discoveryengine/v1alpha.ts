@@ -151,6 +151,10 @@ export namespace discoveryengine_v1alpha {
      */
     notificationType?: string | null;
     /**
+     * The physical headers provided by RequestReceivedParameters in Scotty request. type is uploader_service.KeyValuePairs.
+     */
+    physicalHeaders?: string | null;
+    /**
      * The Scotty request ID.
      */
     requestId?: string | null;
@@ -866,6 +870,44 @@ export namespace discoveryengine_v1alpha {
     functionName?: string | null;
   }
   /**
+   * Access Control Configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AclConfig {
+    /**
+     * Identity provider config.
+     */
+    idpConfig?: Schema$GoogleCloudDiscoveryengineV1IdpConfig;
+    /**
+     * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+  }
+  /**
+   * Informations to support actions on the connector.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ActionConfig {
+    /**
+     * Optional. Action parameters in structured json format.
+     */
+    actionParams?: {[key: string]: any} | null;
+    /**
+     * Output only. The connector contains the necessary parameters and is configured to support actions.
+     */
+    isActionConfigured?: boolean | null;
+    /**
+     * Optional. Action parameters in json string format.
+     */
+    jsonActionParams?: string | null;
+    /**
+     * Optional. The Service Directory resource name (projects/x/locations/x/namespaces/x/services/x) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.
+     */
+    serviceName?: string | null;
+    /**
+     * Optional. Whether to use static secrets for the connector. If true, the secrets provided in the action_params will be ignored.
+     */
+    useStaticSecrets?: boolean | null;
+  }
+  /**
    * Configuration data for advance site search.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig {
@@ -877,6 +919,70 @@ export namespace discoveryengine_v1alpha {
      * If set true, initial indexing is disabled for the DataStore.
      */
     disableInitialIndex?: boolean | null;
+  }
+  /**
+   * The connector level alert config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AlertPolicyConfig {
+    /**
+     * Optional. The enrollment states of each alert.
+     */
+    alertEnrollments?: Schema$GoogleCloudDiscoveryengineV1AlertPolicyConfigAlertEnrollment[];
+    /**
+     * Immutable. The fully qualified resource name of the AlertPolicy.
+     */
+    alertPolicyName?: string | null;
+  }
+  /**
+   * The alert enrollment status.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AlertPolicyConfigAlertEnrollment {
+    /**
+     * Immutable. The id of an alert.
+     */
+    alertId?: string | null;
+    /**
+     * Required. The enrollment status of a customer.
+     */
+    enrollState?: string | null;
+  }
+  /**
+   * The resource level alert config. Used in: * UserLicense * EngineUserData The AlertPolicyConfig in data connector is of same usage. No easy way to migrate.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AlertPolicyResourceConfig {
+    /**
+     * Optional. The enrollment state of each alert.
+     */
+    alertEnrollments?: Schema$GoogleCloudDiscoveryengineV1AlertPolicyResourceConfigAlertEnrollment[];
+    /**
+     * Immutable. The fully qualified resource name of the AlertPolicy.
+     */
+    alertPolicy?: string | null;
+    /**
+     * Optional. The contact details for each alert policy.
+     */
+    contactDetails?: Schema$GoogleCloudDiscoveryengineV1ContactDetails[];
+    /**
+     * Optional. The language code used for notifications
+     */
+    languageCode?: string | null;
+  }
+  /**
+   * The alert enrollment status.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AlertPolicyResourceConfigAlertEnrollment {
+    /**
+     * Immutable. The id of an alert.
+     */
+    alertId?: string | null;
+    /**
+     * Required. The enrollment status of a customer.
+     */
+    enrollState?: string | null;
+    /**
+     * Optional. Parameters used to instantiate a notification. Used for notifications that are triggered when registered. Not stored. * Gemini Business welcome emails. * Gemini Business user invitation emails.
+     */
+    notificationParams?: {[key: string]: string} | null;
   }
   /**
    * Access Control Configuration.
@@ -913,13 +1019,17 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaActionConfig {
     /**
-     * Required. Params needed to support actions in the format of (Key, Value) pairs. Required parameters for sources that support OAUTH, i.e. `gmail`, `google_calendar`, `jira`, `workday`, `salesforce`, `confluence`: * Key: `client_id` * Value: type STRING. The client ID for the service provider to identify your application. * Key: `client_secret` * Value:type STRING. The client secret generated by the application's authorization server.
+     * Optional. Action parameters in structured json format.
      */
     actionParams?: {[key: string]: any} | null;
     /**
      * Output only. The connector contains the necessary parameters and is configured to support actions.
      */
     isActionConfigured?: boolean | null;
+    /**
+     * Optional. Action parameters in json string format.
+     */
+    jsonActionParams?: string | null;
     /**
      * Optional. The Service Directory resource name (projects/x/locations/x/namespaces/x/services/x) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.
      */
@@ -1172,6 +1282,44 @@ export namespace discoveryengine_v1alpha {
      * Required. The enrollment status of a customer.
      */
     enrollState?: string | null;
+  }
+  /**
+   * The resource level alert config. Used in: * UserLicense * EngineUserData The AlertPolicyConfig in data connector is of same usage. No easy way to migrate.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlertPolicyResourceConfig {
+    /**
+     * Optional. The enrollment state of each alert.
+     */
+    alertEnrollments?: Schema$GoogleCloudDiscoveryengineV1alphaAlertPolicyResourceConfigAlertEnrollment[];
+    /**
+     * Immutable. The fully qualified resource name of the AlertPolicy.
+     */
+    alertPolicy?: string | null;
+    /**
+     * Optional. The contact details for each alert policy.
+     */
+    contactDetails?: Schema$GoogleCloudDiscoveryengineV1alphaContactDetails[];
+    /**
+     * Optional. The language code used for notifications
+     */
+    languageCode?: string | null;
+  }
+  /**
+   * The alert enrollment status.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlertPolicyResourceConfigAlertEnrollment {
+    /**
+     * Immutable. The id of an alert.
+     */
+    alertId?: string | null;
+    /**
+     * Required. The enrollment status of a customer.
+     */
+    enrollState?: string | null;
+    /**
+     * Optional. Parameters used to instantiate a notification. Used for notifications that are triggered when registered. Not stored. * Gemini Business welcome emails. * Gemini Business user invitation emails.
+     */
+    notificationParams?: {[key: string]: string} | null;
   }
   /**
    * AlloyDB source import data from.
@@ -2111,6 +2259,10 @@ export namespace discoveryengine_v1alpha {
      */
     assistSkippedReasons?: string[] | null;
     /**
+     * Optional. The field contains information about the various policy checks' results like the banned phrases or the Model Armor checks. This field is populated only if the assist call was skipped due to a policy violation.
+     */
+    customerPolicyEnforcementResult?: Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerCustomerPolicyEnforcementResult;
+    /**
      * Immutable. Identifier. Resource name of the `AssistAnswer`. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}/assistAnswers/{assist_answer\}` This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
@@ -2124,6 +2276,54 @@ export namespace discoveryengine_v1alpha {
     state?: string | null;
   }
   /**
+   * Customer policy enforcement results. Contains the results of the various policy checks, like the banned phrases or the Model Armor checks.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerCustomerPolicyEnforcementResult {
+    /**
+     * Customer policy enforcement results. Populated only if the assist call was skipped due to a policy violation. It contains results from those filters that blocked the processing of the query.
+     */
+    policyResults?: Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerCustomerPolicyEnforcementResultPolicyEnforcementResult[];
+    /**
+     * Final verdict of the customer policy enforcement. If only one policy blocked the processing, the verdict is BLOCK.
+     */
+    verdict?: string | null;
+  }
+  /**
+   * Customer policy enforcement result for the banned phrase policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerCustomerPolicyEnforcementResultBannedPhraseEnforcementResult {
+    /**
+     * The banned phrases that were found in the query or the answer.
+     */
+    bannedPhrases?: string[] | null;
+  }
+  /**
+   * Customer policy enforcement result for the Model Armor policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerCustomerPolicyEnforcementResultModelArmorEnforcementResult {
+    /**
+     * The error returned by Model Armor if the policy enforcement failed for some reason.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * The Model Armor violation that was found.
+     */
+    modelArmorViolation?: string | null;
+  }
+  /**
+   * Customer policy enforcement result for a single policy type.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerCustomerPolicyEnforcementResultPolicyEnforcementResult {
+    /**
+     * The policy enforcement result for the banned phrase policy.
+     */
+    bannedPhraseEnforcementResult?: Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerCustomerPolicyEnforcementResultBannedPhraseEnforcementResult;
+    /**
+     * The policy enforcement result for the Model Armor policy.
+     */
+    modelArmorEnforcementResult?: Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerCustomerPolicyEnforcementResultModelArmorEnforcementResult;
+  }
+  /**
    * One part of the multi-part response of the assist call.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerReply {
@@ -2131,6 +2331,10 @@ export namespace discoveryengine_v1alpha {
      * Possibly grounded response text or media from the assistant.
      */
     groundedContent?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantGroundedContent;
+    /**
+     * Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple AssistantService.StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.
+     */
+    replyId?: string | null;
   }
   /**
    * Discovery Engine Assistant resource.
@@ -2248,6 +2452,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. List of banned phrases.
      */
     bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyBannedPhrase[];
+    /**
+     * Optional. Model Armor configuration to be used for sanitizing user prompts and assistant responses.
+     */
+    modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyModelArmorConfig;
   }
   /**
    * Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.
@@ -2265,6 +2473,23 @@ export namespace discoveryengine_v1alpha {
      * Required. The raw string content to be banned.
      */
     phrase?: string | null;
+  }
+  /**
+   * Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and assistant responses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyModelArmorConfig {
+    /**
+     * Optional. Defines the failure mode for Model Armor sanitization.
+     */
+    failureMode?: string | null;
+    /**
+     * Optional. The resource name of the Model Armor template for sanitizing assistant responses. Format: `projects/{project\}/locations/{location\}/templates/{template_id\}` If not specified, no sanitization will be applied to the assistant response.
+     */
+    responseTemplate?: string | null;
+    /**
+     * Optional. The resource name of the Model Armor template for sanitizing user prompts. Format: `projects/{project\}/locations/{location\}/templates/{template_id\}` If not specified, no sanitization will be applied to the user prompt.
+     */
+    userPromptTemplate?: string | null;
   }
   /**
    * Configuration for the generation of the assistant response.
@@ -2339,6 +2564,10 @@ export namespace discoveryengine_v1alpha {
      * Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.
      */
     domain?: string | null;
+    /**
+     * The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
+     */
+    mimeType?: string | null;
     /**
      * Page identifier.
      */
@@ -2416,6 +2645,10 @@ export namespace discoveryengine_v1alpha {
    * The configuration for the BAP connector.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaBAPConfig {
+    /**
+     * Optional. The actions enabled on the associated BAP connection.
+     */
+    enabledActions?: string[] | null;
     /**
      * Required. The supported connector modes for the associated BAP connection.
      */
@@ -2680,6 +2913,40 @@ export namespace discoveryengine_v1alpha {
      * Required. The table ID of the Cloud Bigtable that needs to be imported.
      */
     tableId?: string | null;
+  }
+  /**
+   * A data branch that stores Documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaBranch {
+    /**
+     * Output only. Stistics describing a branch. This field is not populated in BranchView.BASIC view.
+     */
+    branchStats?: Schema$GoogleCloudDiscoveryengineV1alphaBranchBranchStats;
+    /**
+     * Output only. Human readable name of the branch to display in the UI.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Indicates whether this branch is set as the default branch of its parent data store.
+     */
+    isDefault?: boolean | null;
+    /**
+     * Output only. Timestamp of last import through DocumentService.ImportDocuments. Empty value means no import has been made to this branch.
+     */
+    lastDocumentImportTime?: string | null;
+    /**
+     * Immutable. Full resource name of the branch, such as `projects/x/locations/global/dataStores/data_store/branches/branch_id`.
+     */
+    name?: string | null;
+  }
+  /**
+   * Statistics describing a branch.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaBranchBranchStats {
+    /**
+     * The number of documents in a given branch. The key is a group representing a set of documents, and the value is the number of document in that group. Note: keys in this map may change over time. Supported keys: ['all'].
+     */
+    documentCounts?: {[key: string]: string} | null;
   }
   /**
    * Request message for GroundedGenerationService.CheckGrounding method.
@@ -3277,6 +3544,15 @@ export namespace discoveryengine_v1alpha {
     totalCount?: string | null;
   }
   /**
+   * The contact info stored in resource level. If both project level and resource level is populated, the resource level contact info will override the project level contact info.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaContactDetails {
+    /**
+     * Optional. The email address of the contact.
+     */
+    emailAddress?: string | null;
+  }
+  /**
    * Defines a conditioned behavior to employ during serving. Must be attached to a ServingConfig to be considered at serving time. Permitted actions dependent on `SolutionType`.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaControl {
@@ -3764,6 +4040,10 @@ export namespace discoveryengine_v1alpha {
      */
     errors?: Schema$GoogleRpcStatus[];
     /**
+     * Optional. Any params and credentials used specifically for hybrid connectors supporting FEDERATED mode. This field should only be set if the connector is a hybrid connector and we want to enable FEDERATED mode.
+     */
+    federatedConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorFederatedConfig;
+    /**
      * Optional. If the connector is a hybrid connector, determines whether ingestion is enabled and appropriate resources are provisioned during connector creation. If the connector is not a hybrid connector, this field is ignored.
      */
     hybridIngestionDisabled?: boolean | null;
@@ -3783,6 +4063,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. Indicates whether incremental syncs are paused for this connector. This is independent of auto_run_disabled. Applicable to only 3P connectors. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled, i.e. set to true.
      */
     incrementalSyncDisabled?: boolean | null;
+    /**
+     * Required data connector parameters in json string format.
+     */
+    jsonParams?: string | null;
     /**
      * Input only. The KMS key to be used to protect the DataStores managed by this connector. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the DataStores created by this connector will be protected by the KMS key.
      */
@@ -3804,7 +4088,7 @@ export namespace discoveryengine_v1alpha {
      */
     nextSyncTime?: Schema$GoogleTypeDateTime;
     /**
-     * Required. Params needed to access the source in the format of (Key, Value) pairs. Required parameters for all data sources: * Key: `instance_uri` * Value: type STRING. The uri to access the data source. Required parameters for sources that support OAUTH, i.e. `salesforce`: * Key: `client_id` * Value: type STRING. The client ID for the third party service provider to identify your application. * Key: `client_secret` * Value:type STRING. The client secret generated by the third party authorization server. * Key: `access_token` * Value: type STRING. OAuth token for UCS to access to the protected resource. * Key: `refresh_token` * Value: type STRING. OAuth refresh token for UCS to obtain a new access token without user interaction. Required parameters for sources that support basic API token auth, i.e. `jira`, `confluence`: * Key: `user_account` * Value: type STRING. The username or email with the source. * Key: `api_token` * Value: type STRING. The API token generated for the source account, that is used for authenticating anywhere where you would have used a password. Example: ```json { "instance_uri": "https://xxx.atlassian.net", "user_account": "xxxx.xxx@xxx.com", "api_token": "test-token" \} ``` Optional parameter to specify the authorization type to use for multiple authorization types support: * Key: `auth_type` * Value: type STRING. The authorization type for the data source. Supported values: `BASIC_AUTH`, `OAUTH`, `OAUTH_ACCESS_TOKEN`, `OAUTH_TWO_LEGGED`, `OAUTH_JWT_BEARER`, `OAUTH_PASSWORD_GRANT`, `JWT`, `API_TOKEN`, `FEDERATED_CREDENTIAL`.
+     * Required data connector parameters in structured json format.
      */
     params?: {[key: string]: any} | null;
     /**
@@ -3823,6 +4107,10 @@ export namespace discoveryengine_v1alpha {
      * Required. The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.
      */
     refreshInterval?: string | null;
+    /**
+     * Optional. Specifies keys to be removed from the 'params' field. This is only active when 'params' is included in the 'update_mask' in an UpdateDataConnectorRequest. Deletion takes precedence if a key is both in 'remove_param_keys' and present in the 'params' field of the request.
+     */
+    removeParamKeys?: string[] | null;
     /**
      * Output only. State of the connector.
      */
@@ -3857,9 +4145,30 @@ export namespace discoveryengine_v1alpha {
      */
     authParams?: {[key: string]: any} | null;
     /**
+     * Optional. Any authentication parameters specific to EUA connectors in json string format.
+     */
+    jsonAuthParams?: string | null;
+    /**
      * Optional. The tenant project the connector is connected to.
      */
     tenant?: Schema$GoogleCloudDiscoveryengineV1alphaTenant;
+  }
+  /**
+   * Any params and credentials used specifically for hybrid connectors supporting FEDERATED mode.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorFederatedConfig {
+    /**
+     * Optional. Any additional parameters needed for FEDERATED.
+     */
+    additionalParams?: {[key: string]: any} | null;
+    /**
+     * Optional. Any authentication parameters specific to FEDERATED connectors.
+     */
+    authParams?: {[key: string]: any} | null;
+    /**
+     * Optional. Any authentication parameters specific to FEDERATED connectors in json string format.
+     */
+    jsonAuthParams?: string | null;
   }
   /**
    * The configuration for realtime sync to store additional params for realtime sync.
@@ -3908,11 +4217,15 @@ export namespace discoveryengine_v1alpha {
      */
     healthcareFhirConfig?: Schema$GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig;
     /**
+     * The parameters for the entity to facilitate data ingestion in json string format.
+     */
+    jsonParams?: string | null;
+    /**
      * Attributes for indexing. Key: Field name. Value: The key property to map a field to, such as `title`, and `description`. Supported key properties: * `title`: The title for data record. This would be displayed on search results. * `description`: The description for data record. This would be displayed on search results.
      */
     keyPropertyMappings?: {[key: string]: string} | null;
     /**
-     * The parameters for the entity to facilitate data ingestion. E.g. for BigQuery connectors: * Key: `document_id_column` * Value: type STRING. The value of the column ID.
+     * The parameters for the entity to facilitate data ingestion in structured json format.
      */
     params?: {[key: string]: any} | null;
     /**
@@ -3940,6 +4253,10 @@ export namespace discoveryengine_v1alpha {
      * Output only. CMEK-related information for the DataStore.
      */
     cmekConfig?: Schema$GoogleCloudDiscoveryengineV1alphaCmekConfig;
+    /**
+     * Optional. Configuration for configurable billing approach. See
+     */
+    configurableBillingApproach?: string | null;
     /**
      * Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.
      */
@@ -4194,11 +4511,15 @@ export namespace discoveryengine_v1alpha {
      */
     destinations?: Schema$GoogleCloudDiscoveryengineV1alphaDestinationConfigDestination[];
     /**
+     * Additional parameters for this destination config in json string format.
+     */
+    jsonParams?: string | null;
+    /**
      * Optional. Unique destination identifier that is supported by the connector.
      */
     key?: string | null;
     /**
-     * Optional. Additional parameters for this destination config.
+     * Optional. Additional parameters for this destination config in structured json format.
      */
     params?: {[key: string]: any} | null;
   }
@@ -4532,6 +4853,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngine {
     /**
+     * Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.
+     */
+    appType?: string | null;
+    /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
     chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig;
@@ -4543,6 +4868,10 @@ export namespace discoveryengine_v1alpha {
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineCommonConfig;
+    /**
+     * Optional. Configuration for configurable billing approach.
+     */
+    configurableBillingApproach?: string | null;
     /**
      * Output only. Timestamp the Recommendation Engine was created at.
      */
@@ -4560,7 +4889,7 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -5851,6 +6180,60 @@ export namespace discoveryengine_v1alpha {
     region?: string | null;
   }
   /**
+   * Information about users' licenses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig {
+    /**
+     * Optional. The alert policy config for this license config.
+     */
+    alertPolicyResourceConfig?: Schema$GoogleCloudDiscoveryengineV1alphaAlertPolicyResourceConfig;
+    /**
+     * Optional. Whether the license config should be auto renewed when it reaches the end date.
+     */
+    autoRenew?: boolean | null;
+    /**
+     * Optional. The planed end date.
+     */
+    endDate?: Schema$GoogleTypeDate;
+    /**
+     * Optional. Whether the license config is for free trial.
+     */
+    freeTrial?: boolean | null;
+    /**
+     * Required. Number of licenses purchased.
+     */
+    licenseCount?: string | null;
+    /**
+     * Immutable. Identifier. The fully qualified resource name of the license config. Format: `projects/{project\}/locations/{location\}/licenseConfigs/{license_config\}`
+     */
+    name?: string | null;
+    /**
+     * Required. The start date.
+     */
+    startDate?: Schema$GoogleTypeDate;
+    /**
+     * Output only. The state of the license config.
+     */
+    state?: string | null;
+    /**
+     * Required. Subscription term.
+     */
+    subscriptionTerm?: string | null;
+    /**
+     * Required. Subscription tier information for the license config.
+     */
+    subscriptionTier?: string | null;
+  }
+  /**
+   * Response for BranchService.ListBranches method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse {
+    /**
+     * The Branches.
+     */
+    branches?: Schema$GoogleCloudDiscoveryengineV1alphaBranch[];
+  }
+  /**
    * Response message for ChunkService.ListChunks method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListChunksResponse {
@@ -6333,6 +6716,10 @@ export namespace discoveryengine_v1alpha {
      */
     createTime?: string | null;
     /**
+     * Optional. Customer provided configurations.
+     */
+    customerProvidedConfig?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig;
+    /**
      * Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
      */
     name?: string | null;
@@ -6348,6 +6735,37 @@ export namespace discoveryengine_v1alpha {
         key: string
       ]: Schema$GoogleCloudDiscoveryengineV1alphaProjectServiceTerms;
     } | null;
+  }
+  /**
+   * Customer provided configurations.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig {
+    /**
+     * Optional. Configuration for NotebookLM settings.
+     */
+    notebooklmConfig?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfig;
+  }
+  /**
+   * Configuration for NotebookLM.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfig {
+    /**
+     * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
+     */
+    modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
+  }
+  /**
+   * Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig {
+    /**
+     * Optional. The resource name of the Model Armor Template for sanitizing LLM responses. Format: projects/{project\}/locations/{location\}/templates/{template_id\} If not specified, no sanitization will be applied to the LLM response.
+     */
+    responseTemplate?: string | null;
+    /**
+     * Optional. The resource name of the Model Armor Template for sanitizing user prompts. Format: projects/{project\}/locations/{location\}/templates/{template_id\} If not specified, no sanitization will be applied to the user prompt.
+     */
+    userPromptTemplate?: string | null;
   }
   /**
    * Metadata about the terms of service.
@@ -6403,6 +6821,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. Set to `true` to specify that caller has read and would like to give consent to the [Terms for Agent Space quality of service].
      */
     acceptBizQos?: boolean | null;
+    /**
+     * Optional. Indicates if the current request is for Biz edition (= true) or not (= false).
+     */
+    isBiz?: boolean | null;
   }
   /**
    * Metadata related to the progress of the PurgeCompletionSuggestions operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -7366,11 +7788,11 @@ export namespace discoveryengine_v1alpha {
      */
     languageCode?: string | null;
     /**
-     * Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     * Optional. Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
-     * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.
+     * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.
      */
     offset?: number | null;
     /**
@@ -7429,6 +7851,10 @@ export namespace discoveryengine_v1alpha {
      * Whether to turn on safe search. This is only supported for website search.
      */
     safeSearch?: boolean | null;
+    /**
+     * Optional. SearchAddonSpec is used to disable add-ons for search as per new repricing model. This field is only supported for search requests.
+     */
+    searchAddonSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAddonSpec;
     /**
      * Search as you type configuration. Only supported for the IndustryVertical.MEDIA vertical.
      */
@@ -7802,6 +8228,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec {
     /**
+     * Optional. Allowlist of fields that can be used for natural language filter extraction. By default, if this is unspecified, all indexable fields are eligible for natural language filter extraction (but are not guaranteed to be used). If any fields are specified in allowed_field_names, only the fields that are both marked as indexable in the schema and specified in the allowlist will be eligible for natural language filter extraction. Note: for multi-datastore search, this is not yet supported, and will be ignored.
+     */
+    allowedFieldNames?: string[] | null;
+    /**
      * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
      */
     extractedFilterBehavior?: string | null;
@@ -7844,6 +8274,23 @@ export namespace discoveryengine_v1alpha {
      * Optional. Whether to return the relevance score for search results. The higher the score, the more relevant the document is to the query.
      */
     returnRelevanceScore?: boolean | null;
+  }
+  /**
+   * SearchAddonSpec is used to disable add-ons for search as per new repricing model. By default if the SearchAddonSpec is not specified, we consider that the customer wants to enable them wherever applicable.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAddonSpec {
+    /**
+     * Optional. If true, generative answer add-on is disabled. Generative answer add-on includes natural language to filters and simple answers.
+     */
+    disableGenerativeAnswerAddOn?: boolean | null;
+    /**
+     * Optional. If true, disables event re-ranking and personalization to optimize KPIs & personalize results.
+     */
+    disableKpiPersonalizationAddOn?: boolean | null;
+    /**
+     * Optional. If true, semantic add-on is disabled. Semantic add-on includes embeddings and jetstream.
+     */
+    disableSemanticAddOn?: boolean | null;
   }
   /**
    * Specification for search as you type in search requests.
@@ -8614,6 +9061,10 @@ export namespace discoveryengine_v1alpha {
      */
     detailedAnswer?: Schema$GoogleCloudDiscoveryengineV1alphaAnswer;
     /**
+     * Output only. In ConversationalSearchService.GetSession API, if GetSessionRequest.include_answer_details is set to true, this field will be populated when getting assistant session.
+     */
+    detailedAssistAnswer?: Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswer;
+    /**
      * Optional. The user query. May not be set if this turn is merely regenerating an answer to a different turn
      */
     query?: Schema$GoogleCloudDiscoveryengineV1alphaQuery;
@@ -9294,7 +9745,7 @@ export namespace discoveryengine_v1alpha {
      */
     eventTime?: string | null;
     /**
-     * Required. User event type. Allowed values are: Generic values: * `search`: Search for Documents. * `view-item`: Detailed page view of a Document. * `view-item-list`: View of a panel or ordered list of Documents. * `view-home-page`: View of the home page. * `view-category-page`: View of a category page, e.g. Home \> Men \> Jeans * `add-feedback`: Add a user feedback. Retail-related values: * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping * `purchase`: Purchase an item(s) Media-related values: * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc. Custom conversion value: * `conversion`: Customer defined conversion event.
+     * Required. User event type. Allowed values are: Generic values: * `search`: Search for Documents. * `view-item`: Detailed page view of a Document. * `view-item-list`: View of a panel or ordered list of Documents. * `view-home-page`: View of the home page. * `view-category-page`: View of a category page, e.g. Home \> Men \> Jeans Retail-related values: * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping * `purchase`: Purchase an item(s) Media-related values: * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc. Custom conversion value: * `conversion`: Customer defined conversion event.
      */
     eventType?: string | null;
     /**
@@ -9620,6 +10071,10 @@ export namespace discoveryengine_v1alpha {
      */
     defaultWebGroundingToggleOff?: boolean | null;
     /**
+     * Optional. Output only. Whether to disable user location context.
+     */
+    disableLocationContext?: boolean | null;
+    /**
      * Whether or not the Google search grounding toggle is shown. Deprecated. Use web_grounding_type instead.
      */
     googleSearchGroundingEnabled?: boolean | null;
@@ -9678,6 +10133,10 @@ export namespace discoveryengine_v1alpha {
      * Output only. The content config of the data store.
      */
     contentConfig?: string | null;
+    /**
+     * Output only. The type of the data store config.
+     */
+    dataStoreConfigType?: string | null;
     /**
      * The display name of the data store.
      */
@@ -9819,6 +10278,10 @@ export namespace discoveryengine_v1alpha {
      */
     enableAutocomplete?: boolean | null;
     /**
+     * Optional. If set to true, the widget will enable the create agent button.
+     */
+    enableCreateAgentButton?: boolean | null;
+    /**
      * Optional. If set to true, the widget will enable people search.
      */
     enablePeopleSearch?: boolean | null;
@@ -9839,7 +10302,7 @@ export namespace discoveryengine_v1alpha {
      */
     enableVisualContentSummary?: boolean | null;
     /**
-     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.
+     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -10002,6 +10465,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. List of banned phrases.
      */
     bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase[];
+    /**
+     * Optional. Model Armor configuration to be used for sanitizing user prompts and assistant responses.
+     */
+    modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyModelArmorConfig;
   }
   /**
    * Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.
@@ -10019,6 +10486,23 @@ export namespace discoveryengine_v1alpha {
      * Required. The raw string content to be banned.
      */
     phrase?: string | null;
+  }
+  /**
+   * Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and assistant responses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyModelArmorConfig {
+    /**
+     * Optional. Defines the failure mode for Model Armor sanitization.
+     */
+    failureMode?: string | null;
+    /**
+     * Optional. The resource name of the Model Armor template for sanitizing assistant responses. Format: `projects/{project\}/locations/{location\}/templates/{template_id\}` If not specified, no sanitization will be applied to the assistant response.
+     */
+    responseTemplate?: string | null;
+    /**
+     * Optional. The resource name of the Model Armor template for sanitizing user prompts. Format: `projects/{project\}/locations/{location\}/templates/{template_id\}` If not specified, no sanitization will be applied to the user prompt.
+     */
+    userPromptTemplate?: string | null;
   }
   /**
    * Configuration for the generation of the assistant response.
@@ -10063,6 +10547,19 @@ export namespace discoveryengine_v1alpha {
      * The list of tools with corresponding tool information.
      */
     toolInfo?: Schema$GoogleCloudDiscoveryengineV1AssistantToolInfo[];
+  }
+  /**
+   * The configuration for the BAP connector.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1BAPConfig {
+    /**
+     * Optional. The actions enabled on the associated BAP connection.
+     */
+    enabledActions?: string[] | null;
+    /**
+     * Required. The supported connector modes for the associated BAP connection.
+     */
+    supportedConnectorModes?: string[] | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -10121,6 +10618,19 @@ export namespace discoveryengine_v1alpha {
     userLicenses?: Schema$GoogleCloudDiscoveryengineV1UserLicense[];
   }
   /**
+   * Access Control Configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAclConfig {
+    /**
+     * Identity provider config.
+     */
+    idpConfig?: Schema$GoogleCloudDiscoveryengineV1betaIdpConfig;
+    /**
+     * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+  }
+  /**
    * Configuration data for advance site search.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig {
@@ -10132,6 +10642,44 @@ export namespace discoveryengine_v1alpha {
      * If set true, initial indexing is disabled for the DataStore.
      */
     disableInitialIndex?: boolean | null;
+  }
+  /**
+   * The resource level alert config. Used in: * UserLicense * EngineUserData The AlertPolicyConfig in data connector is of same usage. No easy way to migrate.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfig {
+    /**
+     * Optional. The enrollment state of each alert.
+     */
+    alertEnrollments?: Schema$GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfigAlertEnrollment[];
+    /**
+     * Immutable. The fully qualified resource name of the AlertPolicy.
+     */
+    alertPolicy?: string | null;
+    /**
+     * Optional. The contact details for each alert policy.
+     */
+    contactDetails?: Schema$GoogleCloudDiscoveryengineV1betaContactDetails[];
+    /**
+     * Optional. The language code used for notifications
+     */
+    languageCode?: string | null;
+  }
+  /**
+   * The alert enrollment status.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfigAlertEnrollment {
+    /**
+     * Immutable. The id of an alert.
+     */
+    alertId?: string | null;
+    /**
+     * Required. The enrollment status of a customer.
+     */
+    enrollState?: string | null;
+    /**
+     * Optional. Parameters used to instantiate a notification. Used for notifications that are triggered when registered. Not stored. * Gemini Business welcome emails. * Gemini Business user invitation emails.
+     */
+    notificationParams?: {[key: string]: string} | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -10268,6 +10816,15 @@ export namespace discoveryengine_v1alpha {
      * Start of time range. Range is inclusive.
      */
     startTime?: string | null;
+  }
+  /**
+   * The contact info stored in resource level. If both project level and resource level is populated, the resource level contact info will override the project level contact info.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaContactDetails {
+    /**
+     * Optional. The email address of the contact.
+     */
+    emailAddress?: string | null;
   }
   /**
    * Defines a conditioned behavior to employ during serving. Must be attached to a ServingConfig to be considered at serving time. Permitted actions dependent on `SolutionType`.
@@ -10519,6 +11076,10 @@ export namespace discoveryengine_v1alpha {
      * Output only. CMEK-related information for the DataStore.
      */
     cmekConfig?: Schema$GoogleCloudDiscoveryengineV1betaCmekConfig;
+    /**
+     * Optional. Configuration for configurable billing approach. See
+     */
+    configurableBillingApproach?: string | null;
     /**
      * Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.
      */
@@ -10878,6 +11439,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaEngine {
     /**
+     * Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.
+     */
+    appType?: string | null;
+    /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
     chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig;
@@ -10889,6 +11454,10 @@ export namespace discoveryengine_v1alpha {
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineCommonConfig;
+    /**
+     * Optional. Configuration for configurable billing approach.
+     */
+    configurableBillingApproach?: string | null;
     /**
      * Output only. Timestamp the Recommendation Engine was created at.
      */
@@ -10906,7 +11475,7 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -11162,6 +11731,28 @@ export namespace discoveryengine_v1alpha {
     totalCount?: string | null;
   }
   /**
+   * Identity Provider Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaIdpConfig {
+    /**
+     * External Identity provider config.
+     */
+    externalIdpConfig?: Schema$GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig;
+    /**
+     * Identity provider type configured.
+     */
+    idpType?: string | null;
+  }
+  /**
+   * Third party IDP Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig {
+    /**
+     * Workforce pool name. Example: "locations/global/workforcePools/pool_id"
+     */
+    workforcePoolName?: string | null;
+  }
+  /**
    * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaImportCompletionSuggestionsMetadata {
@@ -11404,6 +11995,51 @@ export namespace discoveryengine_v1alpha {
     region?: string | null;
   }
   /**
+   * Information about users' licenses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaLicenseConfig {
+    /**
+     * Optional. The alert policy config for this license config.
+     */
+    alertPolicyResourceConfig?: Schema$GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfig;
+    /**
+     * Optional. Whether the license config should be auto renewed when it reaches the end date.
+     */
+    autoRenew?: boolean | null;
+    /**
+     * Optional. The planed end date.
+     */
+    endDate?: Schema$GoogleTypeDate;
+    /**
+     * Optional. Whether the license config is for free trial.
+     */
+    freeTrial?: boolean | null;
+    /**
+     * Required. Number of licenses purchased.
+     */
+    licenseCount?: string | null;
+    /**
+     * Immutable. Identifier. The fully qualified resource name of the license config. Format: `projects/{project\}/locations/{location\}/licenseConfigs/{license_config\}`
+     */
+    name?: string | null;
+    /**
+     * Required. The start date.
+     */
+    startDate?: Schema$GoogleTypeDate;
+    /**
+     * Output only. The state of the license config.
+     */
+    state?: string | null;
+    /**
+     * Required. Subscription term.
+     */
+    subscriptionTerm?: string | null;
+    /**
+     * Required. Subscription tier information for the license config.
+     */
+    subscriptionTier?: string | null;
+  }
+  /**
    * Configuration for Natural Language Query Understanding.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaNaturalLanguageQueryUnderstandingConfig {
@@ -11455,6 +12091,10 @@ export namespace discoveryengine_v1alpha {
      */
     createTime?: string | null;
     /**
+     * Optional. Customer provided configurations.
+     */
+    customerProvidedConfig?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig;
+    /**
      * Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
      */
     name?: string | null;
@@ -11468,6 +12108,37 @@ export namespace discoveryengine_v1alpha {
     serviceTermsMap?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1betaProjectServiceTerms;
     } | null;
+  }
+  /**
+   * Customer provided configurations.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig {
+    /**
+     * Optional. Configuration for NotebookLM settings.
+     */
+    notebooklmConfig?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfig;
+  }
+  /**
+   * Configuration for NotebookLM.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfig {
+    /**
+     * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
+     */
+    modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
+  }
+  /**
+   * Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig {
+    /**
+     * Optional. The resource name of the Model Armor Template for sanitizing LLM responses. Format: projects/{project\}/locations/{location\}/templates/{template_id\} If not specified, no sanitization will be applied to the LLM response.
+     */
+    responseTemplate?: string | null;
+    /**
+     * Optional. The resource name of the Model Armor Template for sanitizing user prompts. Format: projects/{project\}/locations/{location\}/templates/{template_id\} If not specified, no sanitization will be applied to the user prompt.
+     */
+    userPromptTemplate?: string | null;
   }
   /**
    * Metadata about the terms of service.
@@ -11729,11 +12400,11 @@ export namespace discoveryengine_v1alpha {
      */
     languageCode?: string | null;
     /**
-     * Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     * Optional. Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
-     * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.
+     * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.
      */
     offset?: number | null;
     /**
@@ -11792,6 +12463,10 @@ export namespace discoveryengine_v1alpha {
      * Whether to turn on safe search. This is only supported for website search.
      */
     safeSearch?: boolean | null;
+    /**
+     * Optional. SearchAddonSpec is used to disable add-ons for search as per new repricing model. This field is only supported for search requests.
+     */
+    searchAddonSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestSearchAddonSpec;
     /**
      * Search as you type configuration. Only supported for the IndustryVertical.MEDIA vertical.
      */
@@ -12161,6 +12836,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec {
     /**
+     * Optional. Allowlist of fields that can be used for natural language filter extraction. By default, if this is unspecified, all indexable fields are eligible for natural language filter extraction (but are not guaranteed to be used). If any fields are specified in allowed_field_names, only the fields that are both marked as indexable in the schema and specified in the allowlist will be eligible for natural language filter extraction. Note: for multi-datastore search, this is not yet supported, and will be ignored.
+     */
+    allowedFieldNames?: string[] | null;
+    /**
      * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
      */
     extractedFilterBehavior?: string | null;
@@ -12203,6 +12882,23 @@ export namespace discoveryengine_v1alpha {
      * Optional. Whether to return the relevance score for search results. The higher the score, the more relevant the document is to the query.
      */
     returnRelevanceScore?: boolean | null;
+  }
+  /**
+   * SearchAddonSpec is used to disable add-ons for search as per new repricing model. By default if the SearchAddonSpec is not specified, we consider that the customer wants to enable them wherever applicable.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestSearchAddonSpec {
+    /**
+     * Optional. If true, generative answer add-on is disabled. Generative answer add-on includes natural language to filters and simple answers.
+     */
+    disableGenerativeAnswerAddOn?: boolean | null;
+    /**
+     * Optional. If true, disables event re-ranking and personalization to optimize KPIs & personalize results.
+     */
+    disableKpiPersonalizationAddOn?: boolean | null;
+    /**
+     * Optional. If true, semantic add-on is disabled. Semantic add-on includes embeddings and jetstream.
+     */
+    disableSemanticAddOn?: boolean | null;
   }
   /**
    * Specification for search as you type in search requests.
@@ -12549,6 +13245,23 @@ export namespace discoveryengine_v1alpha {
     state?: string | null;
   }
   /**
+   * Collection is a container for configuring resources and access to a set of DataStores.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1Collection {
+    /**
+     * Output only. Timestamp the Collection was created at.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The Collection display name. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    displayName?: string | null;
+    /**
+     * Immutable. The full resource name of the Collection. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+  }
+  /**
    * Defines circumstances to be checked before allowing a behavior
    */
   export interface Schema$GoogleCloudDiscoveryengineV1Condition {
@@ -12590,6 +13303,15 @@ export namespace discoveryengine_v1alpha {
      * Start of time range. Range is inclusive.
      */
     startTime?: string | null;
+  }
+  /**
+   * The contact info stored in resource level. If both project level and resource level is populated, the resource level contact info will override the project level contact info.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ContactDetails {
+    /**
+     * Optional. The email address of the contact.
+     */
+    emailAddress?: string | null;
   }
   /**
    * Defines a conditioned behavior to employ during serving. Must be attached to a ServingConfig to be considered at serving time. Permitted actions dependent on `SolutionType`.
@@ -12809,6 +13531,268 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * Manages the connection to external data sources for all data stores grouped under a Collection. It's a singleton resource of Collection. The initialization is only supported through DataConnectorService.SetUpDataConnector method, which will create a new Collection and initialize its DataConnector.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DataConnector {
+    /**
+     * Optional. Whether the connector will be created with an ACL config. Currently this field only affects Cloud Storage and BigQuery connectors.
+     */
+    aclEnabled?: boolean | null;
+    /**
+     * Optional. Action configurations to make the connector support actions.
+     */
+    actionConfig?: Schema$GoogleCloudDiscoveryengineV1ActionConfig;
+    /**
+     * Output only. State of the action connector. This reflects whether the action connector is initializing, active or has encountered errors.
+     */
+    actionState?: string | null;
+    /**
+     * Optional. The connector level alert config.
+     */
+    alertPolicyConfigs?: Schema$GoogleCloudDiscoveryengineV1AlertPolicyConfig[];
+    /**
+     * Optional. Indicates whether the connector is disabled for auto run. It can be used to pause periodical and real time sync. Update: with the introduction of incremental_sync_disabled, auto_run_disabled is used to pause/disable only full syncs
+     */
+    autoRunDisabled?: boolean | null;
+    /**
+     * Optional. The configuration for establishing a BAP connection.
+     */
+    bapConfig?: Schema$GoogleCloudDiscoveryengineV1BAPConfig;
+    /**
+     * Output only. User actions that must be completed before the connector can start syncing data.
+     */
+    blockingReasons?: string[] | null;
+    /**
+     * Optional. The modes enabled for this connector. Default state is CONNECTOR_MODE_UNSPECIFIED.
+     */
+    connectorModes?: string[] | null;
+    /**
+     * Output only. The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is not mutable once set by system.
+     */
+    connectorType?: string | null;
+    /**
+     * Optional. Whether the END USER AUTHENTICATION connector is created in SaaS.
+     */
+    createEuaSaas?: boolean | null;
+    /**
+     * Output only. Timestamp the DataConnector was created at.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The name of the data source. Supported values: `salesforce`, `jira`, `confluence`, `bigquery`.
+     */
+    dataSource?: string | null;
+    /**
+     * Optional. Any target destinations used to connect to third-party services.
+     */
+    destinationConfigs?: Schema$GoogleCloudDiscoveryengineV1DestinationConfig[];
+    /**
+     * Optional. Any params and credentials used specifically for EUA connectors.
+     */
+    endUserConfig?: Schema$GoogleCloudDiscoveryengineV1DataConnectorEndUserConfig;
+    /**
+     * List of entities from the connected data source to ingest.
+     */
+    entities?: Schema$GoogleCloudDiscoveryengineV1DataConnectorSourceEntity[];
+    /**
+     * Output only. The errors from initialization or from the latest connector run.
+     */
+    errors?: Schema$GoogleRpcStatus[];
+    /**
+     * Optional. Any params and credentials used specifically for hybrid connectors supporting FEDERATED mode. This field should only be set if the connector is a hybrid connector and we want to enable FEDERATED mode.
+     */
+    federatedConfig?: Schema$GoogleCloudDiscoveryengineV1DataConnectorFederatedConfig;
+    /**
+     * Optional. If the connector is a hybrid connector, determines whether ingestion is enabled and appropriate resources are provisioned during connector creation. If the connector is not a hybrid connector, this field is ignored.
+     */
+    hybridIngestionDisabled?: boolean | null;
+    /**
+     * The refresh interval to sync the Access Control List information for the documents ingested by this connector. If not set, the access control list will be refreshed at the default interval of 30 minutes. The identity refresh interval can be at least 30 minutes and at most 7 days.
+     */
+    identityRefreshInterval?: string | null;
+    /**
+     * The configuration for the identity data synchronization runs. This contains the refresh interval to sync the Access Control List information for the documents ingested by this connector.
+     */
+    identityScheduleConfig?: Schema$GoogleCloudDiscoveryengineV1IdentityScheduleConfig;
+    /**
+     * Optional. The refresh interval specifically for incremental data syncs. If unset, incremental syncs will use the default from env, set to 3hrs. The minimum is 30 minutes and maximum is 7 days. Applicable to only 3P connectors. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.
+     */
+    incrementalRefreshInterval?: string | null;
+    /**
+     * Optional. Indicates whether incremental syncs are paused for this connector. This is independent of auto_run_disabled. Applicable to only 3P connectors. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled, i.e. set to true.
+     */
+    incrementalSyncDisabled?: boolean | null;
+    /**
+     * Required data connector parameters in json string format.
+     */
+    jsonParams?: string | null;
+    /**
+     * Input only. The KMS key to be used to protect the DataStores managed by this connector. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the DataStores created by this connector will be protected by the KMS key.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Output only. For periodic connectors only, the last time a data sync was completed.
+     */
+    lastSyncTime?: string | null;
+    /**
+     * Output only. The most recent timestamp when this DataConnector was paused, affecting all functionalities such as data synchronization. Pausing a connector has the following effects: - All functionalities, including data synchronization, are halted. - Any ongoing data synchronization job will be canceled. - No future data synchronization runs will be scheduled nor can be triggered.
+     */
+    latestPauseTime?: string | null;
+    /**
+     * Output only. The full resource name of the Data Connector. Format: `projects/x/locations/x/collections/x/dataConnector`.
+     */
+    name?: string | null;
+    /**
+     * Defines the scheduled time for the next data synchronization. This field requires hour , minute, and time_zone from the [IANA Time Zone Database](https://www.iana.org/time-zones). This is utilized when the data connector has a refresh interval greater than 1 day. When the hours or minutes are not specified, we will assume a sync time of 0:00. The user must provide a time zone to avoid ambiguity.
+     */
+    nextSyncTime?: Schema$GoogleTypeDateTime;
+    /**
+     * Required data connector parameters in structured json format.
+     */
+    params?: {[key: string]: any} | null;
+    /**
+     * Output only. The tenant project ID associated with private connectivity connectors. This project must be allowlisted by in order for the connector to function.
+     */
+    privateConnectivityProjectId?: string | null;
+    /**
+     * Output only. real-time sync state
+     */
+    realtimeState?: string | null;
+    /**
+     * Optional. The configuration for realtime sync.
+     */
+    realtimeSyncConfig?: Schema$GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfig;
+    /**
+     * Required. The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.
+     */
+    refreshInterval?: string | null;
+    /**
+     * Optional. Specifies keys to be removed from the 'params' field. This is only active when 'params' is included in the 'update_mask' in an UpdateDataConnectorRequest. Deletion takes precedence if a key is both in 'remove_param_keys' and present in the 'params' field of the request.
+     */
+    removeParamKeys?: string[] | null;
+    /**
+     * Output only. State of the connector.
+     */
+    state?: string | null;
+    /**
+     * Output only. The static IP addresses used by this connector.
+     */
+    staticIpAddresses?: string[] | null;
+    /**
+     * Optional. Whether customer has enabled static IP addresses for this connector.
+     */
+    staticIpEnabled?: boolean | null;
+    /**
+     * The data synchronization mode supported by the data connector.
+     */
+    syncMode?: string | null;
+    /**
+     * Output only. Timestamp the DataConnector was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Any params and credentials used specifically for EUA connectors.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DataConnectorEndUserConfig {
+    /**
+     * Optional. Any additional parameters needed for EUA.
+     */
+    additionalParams?: {[key: string]: any} | null;
+    /**
+     * Optional. Any authentication parameters specific to EUA connectors.
+     */
+    authParams?: {[key: string]: any} | null;
+    /**
+     * Optional. Any authentication parameters specific to EUA connectors in json string format.
+     */
+    jsonAuthParams?: string | null;
+    /**
+     * Optional. The tenant project the connector is connected to.
+     */
+    tenant?: Schema$GoogleCloudDiscoveryengineV1Tenant;
+  }
+  /**
+   * Any params and credentials used specifically for hybrid connectors supporting FEDERATED mode.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DataConnectorFederatedConfig {
+    /**
+     * Optional. Any additional parameters needed for FEDERATED.
+     */
+    additionalParams?: {[key: string]: any} | null;
+    /**
+     * Optional. Any authentication parameters specific to FEDERATED connectors.
+     */
+    authParams?: {[key: string]: any} | null;
+    /**
+     * Optional. Any authentication parameters specific to FEDERATED connectors in json string format.
+     */
+    jsonAuthParams?: string | null;
+  }
+  /**
+   * The configuration for realtime sync to store additional params for realtime sync.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfig {
+    /**
+     * Optional. The ID of the Secret Manager secret used for webhook secret.
+     */
+    realtimeSyncSecret?: string | null;
+    /**
+     * Optional. Streaming error details.
+     */
+    streamingError?: Schema$GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfigStreamingError;
+    /**
+     * Optional. Webhook url for the connector to specify additional params for realtime sync.
+     */
+    webhookUri?: string | null;
+  }
+  /**
+   * Streaming error details.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfigStreamingError {
+    /**
+     * Optional. Error details.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * Optional. Streaming error.
+     */
+    streamingErrorReason?: string | null;
+  }
+  /**
+   * Represents an entity in the data source. For example, the `Account` object in Salesforce.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DataConnectorSourceEntity {
+    /**
+     * Output only. The full resource name of the associated data store for the source entity. Format: `projects/x/locations/x/collections/x/dataStores/x`. When the connector is initialized by the DataConnectorService.SetUpDataConnector method, a DataStore is automatically created for each source entity.
+     */
+    dataStore?: string | null;
+    /**
+     * The name of the entity. Supported values by data source: * Salesforce: `Lead`, `Opportunity`, `Contact`, `Account`, `Case`, `Contract`, `Campaign` * Jira: `Issue` * Confluence: `Content`, `Space`
+     */
+    entityName?: string | null;
+    /**
+     * Optional. Configuration for `HEALTHCARE_FHIR` vertical.
+     */
+    healthcareFhirConfig?: Schema$GoogleCloudDiscoveryengineV1HealthcareFhirConfig;
+    /**
+     * The parameters for the entity to facilitate data ingestion in json string format.
+     */
+    jsonParams?: string | null;
+    /**
+     * Attributes for indexing. Key: Field name. Value: The key property to map a field to, such as `title`, and `description`. Supported key properties: * `title`: The title for data record. This would be displayed on search results. * `description`: The description for data record. This would be displayed on search results.
+     */
+    keyPropertyMappings?: {[key: string]: string} | null;
+    /**
+     * The parameters for the entity to facilitate data ingestion in structured json format.
+     */
+    params?: {[key: string]: any} | null;
+    /**
+     * Optional. The start schema to use for the DataStore created from this SourceEntity. If unset, a default vertical specialized schema will be used. This field is only used by SetUpDataConnector API, and will be ignored if used in other APIs. This field will be omitted from all API responses including GetDataConnector API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
+     */
+    startingSchema?: Schema$GoogleCloudDiscoveryengineV1Schema;
+  }
+  /**
    * DataStore captures global settings and configs at the DataStore level.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DataStore {
@@ -12828,6 +13812,10 @@ export namespace discoveryengine_v1alpha {
      * Output only. CMEK-related information for the DataStore.
      */
     cmekConfig?: Schema$GoogleCloudDiscoveryengineV1CmekConfig;
+    /**
+     * Optional. Configuration for configurable billing approach. See
+     */
+    configurableBillingApproach?: string | null;
     /**
      * Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.
      */
@@ -12941,6 +13929,19 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * Metadata related to the progress of the CollectionService.UpdateCollection operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DeleteCollectionMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DeleteDataStoreMetadata {
@@ -13017,6 +14018,40 @@ export namespace discoveryengine_v1alpha {
      * Operation last update time. If the operation is done, this is also the finish time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Defines target endpoints used to connect to third-party sources.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DestinationConfig {
+    /**
+     * Optional. The destinations for the corresponding key.
+     */
+    destinations?: Schema$GoogleCloudDiscoveryengineV1DestinationConfigDestination[];
+    /**
+     * Additional parameters for this destination config in json string format.
+     */
+    jsonParams?: string | null;
+    /**
+     * Optional. Unique destination identifier that is supported by the connector.
+     */
+    key?: string | null;
+    /**
+     * Optional. Additional parameters for this destination config in structured json format.
+     */
+    params?: {[key: string]: any} | null;
+  }
+  /**
+   * Defines a target endpoint
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DestinationConfigDestination {
+    /**
+     * Publicly routable host.
+     */
+    host?: string | null;
+    /**
+     * Optional. Target port number accepted by the destination.
+     */
+    port?: number | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -13171,6 +14206,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1Engine {
     /**
+     * Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.
+     */
+    appType?: string | null;
+    /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
     chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineChatEngineConfig;
@@ -13182,6 +14221,10 @@ export namespace discoveryengine_v1alpha {
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1EngineCommonConfig;
+    /**
+     * Optional. Configuration for configurable billing approach.
+     */
+    configurableBillingApproach?: string | null;
     /**
      * Output only. Timestamp the Recommendation Engine was created at.
      */
@@ -13199,7 +14242,7 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -13396,6 +14439,41 @@ export namespace discoveryengine_v1alpha {
     totalCount?: string | null;
   }
   /**
+   * The configuration for the identity data synchronization runs.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1IdentityScheduleConfig {
+    /**
+     * Optional. The UTC time when the next data sync is expected to start for the Data Connector. Customers are only able to specify the hour and minute to schedule the data sync. This is utilized when the data connector has a refresh interval greater than 1 day.
+     */
+    nextSyncTime?: Schema$GoogleTypeDateTime;
+    /**
+     * Optional. The refresh interval to sync the Access Control List information for the documents ingested by this connector. If not set, the access control list will be refreshed at the default interval of 30 minutes. The identity refresh interval can be at least 30 minutes and at most 7 days.
+     */
+    refreshInterval?: string | null;
+  }
+  /**
+   * Identity Provider Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1IdpConfig {
+    /**
+     * External Identity provider config.
+     */
+    externalIdpConfig?: Schema$GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig;
+    /**
+     * Identity provider type configured.
+     */
+    idpType?: string | null;
+  }
+  /**
+   * Third party IDP Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig {
+    /**
+     * Workforce pool name. Example: "locations/global/workforcePools/pool_id"
+     */
+    workforcePoolName?: string | null;
+  }
+  /**
    * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsMetadata {
@@ -13558,6 +14636,51 @@ export namespace discoveryengine_v1alpha {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * Information about users' licenses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1LicenseConfig {
+    /**
+     * Optional. The alert policy config for this license config.
+     */
+    alertPolicyResourceConfig?: Schema$GoogleCloudDiscoveryengineV1AlertPolicyResourceConfig;
+    /**
+     * Optional. Whether the license config should be auto renewed when it reaches the end date.
+     */
+    autoRenew?: boolean | null;
+    /**
+     * Optional. The planed end date.
+     */
+    endDate?: Schema$GoogleTypeDate;
+    /**
+     * Optional. Whether the license config is for free trial.
+     */
+    freeTrial?: boolean | null;
+    /**
+     * Required. Number of licenses purchased.
+     */
+    licenseCount?: string | null;
+    /**
+     * Immutable. Identifier. The fully qualified resource name of the license config. Format: `projects/{project\}/locations/{location\}/licenseConfigs/{license_config\}`
+     */
+    name?: string | null;
+    /**
+     * Required. The start date.
+     */
+    startDate?: Schema$GoogleTypeDate;
+    /**
+     * Output only. The state of the license config.
+     */
+    state?: string | null;
+    /**
+     * Required. Subscription term.
+     */
+    subscriptionTerm?: string | null;
+    /**
+     * Required. Subscription tier information for the license config.
+     */
+    subscriptionTier?: string | null;
+  }
+  /**
    * Metadata and configurations for a Google Cloud project in the service.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1Project {
@@ -13565,6 +14688,10 @@ export namespace discoveryengine_v1alpha {
      * Output only. The timestamp when this project is created.
      */
     createTime?: string | null;
+    /**
+     * Optional. Customer provided configurations.
+     */
+    customerProvidedConfig?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig;
     /**
      * Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
      */
@@ -13579,6 +14706,37 @@ export namespace discoveryengine_v1alpha {
     serviceTermsMap?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1ProjectServiceTerms;
     } | null;
+  }
+  /**
+   * Customer provided configurations.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig {
+    /**
+     * Optional. Configuration for NotebookLM settings.
+     */
+    notebooklmConfig?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfig;
+  }
+  /**
+   * Configuration for NotebookLM.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfig {
+    /**
+     * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
+     */
+    modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
+  }
+  /**
+   * Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig {
+    /**
+     * Optional. The resource name of the Model Armor Template for sanitizing LLM responses. Format: projects/{project\}/locations/{location\}/templates/{template_id\} If not specified, no sanitization will be applied to the LLM response.
+     */
+    responseTemplate?: string | null;
+    /**
+     * Optional. The resource name of the Model Armor Template for sanitizing user prompts. Format: projects/{project\}/locations/{location\}/templates/{template_id\} If not specified, no sanitization will be applied to the user prompt.
+     */
+    userPromptTemplate?: string | null;
   }
   /**
    * Metadata about the terms of service.
@@ -14008,6 +15166,10 @@ export namespace discoveryengine_v1alpha {
     demotionEventType?: string | null;
   }
   /**
+   * Metadata for DataConnectorService.SetUpDataConnector method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SetUpDataConnectorMetadata {}
+  /**
    * Metadata for single-regional CMEKs.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1SingleRegionKey {
@@ -14108,6 +15270,23 @@ export namespace discoveryengine_v1alpha {
      * This number is an estimation on how much total quota this project needs to successfully complete indexing.
      */
     totalRequiredQuota?: string | null;
+  }
+  /**
+   * Tenant information for a connector source. This includes some of the same information stored in the Credential message, but is limited to only what is needed to provide a list of accessible tenants to the user.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1Tenant {
+    /**
+     * Optional display name for the tenant, e.g. "My Slack Team".
+     */
+    displayName?: string | null;
+    /**
+     * The tenant's instance ID. Examples: Jira ("8594f221-9797-5f78-1fa4-485e198d7cd0"), Slack ("T123456").
+     */
+    id?: string | null;
+    /**
+     * The URI of the tenant, if applicable. For example, the URI of a Jira instance is https://my-jira-instance.atlassian.net, and a Slack tenant does not have a URI.
+     */
+    uri?: string | null;
   }
   /**
    * Metadata related to the progress of the TrainCustomModel operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -14241,6 +15420,19 @@ export namespace discoveryengine_v1alpha {
     type?: string | null;
   }
   /**
+   * Account and role information.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaAccountAndRole {
+    /**
+     * Required. The email address associated with the account.
+     */
+    email?: string | null;
+    /**
+     * Required. The role in the notebook.
+     */
+    role?: string | null;
+  }
+  /**
    * Metadata about an agentspace source.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaAgentspaceMetadata {
@@ -14252,6 +15444,52 @@ export namespace discoveryengine_v1alpha {
      * Output only. The title of the document.
      */
     documentTitle?: string | null;
+  }
+  /**
+   * An audio overview of a notebook. This is a summary of the notebook in audio format.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaAudioOverview {
+    /**
+     * Output only. Unique ID of the audio overview.
+     */
+    audioOverviewId?: string | null;
+    /**
+     * The options used to generate the audio overview.
+     */
+    generationOptions?: Schema$GoogleCloudNotebooklmV1alphaAudioOverviewGenerationOptions;
+    /**
+     * The language code of the generated audio overview. Use the BCP 47 language code (e.g. "en", "es", "hi", etc.).
+     */
+    languageCode?: string | null;
+    /**
+     * The mime type of the audio overview.
+     */
+    mimeType?: string | null;
+    /**
+     * Identifier. The full resource name of the notebook. Format: `projects/{project\}/locations/{location\}/notebooks/{notebook\}/audioOverviews/{audio_overview_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * The status of the audio overview.
+     */
+    status?: string | null;
+  }
+  /**
+   * Options used during audio overview generation.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaAudioOverviewGenerationOptions {
+    /**
+     * What the hosts of the show should focus on.
+     */
+    episodeFocus?: string | null;
+    /**
+     * The language that the audio overview was requested in.
+     */
+    languageCode?: string | null;
+    /**
+     * Optional. The sources in which the audio overview is grounded.
+     */
+    sourceIds?: Schema$GoogleCloudNotebooklmV1alphaSourceId[];
   }
   /**
    * Request for SourceService.BatchCreateSources method.
@@ -14272,6 +15510,24 @@ export namespace discoveryengine_v1alpha {
     sources?: Schema$GoogleCloudNotebooklmV1alphaSource[];
   }
   /**
+   * Request for NotebookService.BatchDeleteNotebooks method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaBatchDeleteNotebooksRequest {
+    /**
+     * Required. Full resource names of Notebook, such as `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`.
+     */
+    names?: string[] | null;
+  }
+  /**
+   * Request for SourceService.BatchDeleteSourcesRequest method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest {
+    /**
+     * Required. Names of sources to be deleted. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}/sources/{source\}
+     */
+    names?: string[] | null;
+  }
+  /**
    * Customer-managed encryption configuration for Notebooks.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaCmekConfig {
@@ -14279,6 +15535,187 @@ export namespace discoveryengine_v1alpha {
      * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
      */
     kmsKey?: string | null;
+  }
+  /**
+   * Request for AudioOverviewService.CreateAudioOverview method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewRequest {
+    /**
+     * Options for the audio overview generation.
+     */
+    generationOptions?: Schema$GoogleCloudNotebooklmV1alphaAudioOverviewGenerationOptions;
+  }
+  /**
+   * Response for AudioOverviewService.CreateAudioOverview method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse {
+    /**
+     * The generated audio overview.
+     */
+    audioOverview?: Schema$GoogleCloudNotebooklmV1alphaAudioOverview;
+  }
+  /**
+   * Failure reason containing details about why a source failed to ingest.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReason {
+    /**
+     * An audio file transcription specific error.
+     */
+    audioTranscriptionError?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionError;
+    /**
+     * Error if the user tries to add a source from a blocked domain.
+     */
+    domainBlocked?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonDomainBlocked;
+    /**
+     * A google drive specific error.
+     */
+    googleDriveError?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonGoogleDriveError;
+    /**
+     * Indicates an error occurred while ingesting the source.
+     */
+    ingestionError?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonIngestionError;
+    /**
+     * Indicates that the source is paywalled and cannot be ingested.
+     */
+    paywallError?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonPaywallError;
+    /**
+     * Indicates that the source is empty.
+     */
+    sourceEmpty?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonSourceEmpty;
+    /**
+     * Error if the user tries to update beyond their limits.
+     */
+    sourceLimitExceeded?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonSourceLimitExceeded;
+    /**
+     * Indicates source word count exceeded the user's limit.
+     */
+    sourceTooLong?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonSourceTooLong;
+    /**
+     * Indicates that the source is unreachable.
+     */
+    sourceUnreachable?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonSourceUnreachable;
+    /**
+     * Indicates an unknown error occurred.
+     */
+    unknown?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonUnknown;
+    /**
+     * Indicates an error occurred while uploading the source.
+     */
+    uploadError?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonUploadError;
+    /**
+     * A youtube specific error.
+     */
+    youtubeError?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonYoutubeError;
+  }
+  /**
+   * An audio file transcription specific error.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionError {
+    /**
+     * Could not detect language of the file (it may not be speech).
+     */
+    languageDetectionFailed?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionErrorLanguageDetectionFailed;
+    /**
+     * No audio was detected in the input file (it may have been a video).
+     */
+    noAudioDetected?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionErrorNoAudioDetected;
+  }
+  /**
+   * Could not detect language of the file (it may not be speech).
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionErrorLanguageDetectionFailed {}
+  /**
+   * No audio was detected in the input file.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionErrorNoAudioDetected {}
+  /**
+   * Error to indicate that the source was removed because the domain was blocked.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonDomainBlocked {}
+  /**
+   * A google drive specific error.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonGoogleDriveError {
+    /**
+     * The user was prevented from downloading the file.
+     */
+    downloadPrevented?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonGoogleDriveErrorDownloadPrevented;
+  }
+  /**
+   * The user was prevented from downloading the file.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonGoogleDriveErrorDownloadPrevented {}
+  /**
+   * Indicates an error occurred while ingesting the source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonIngestionError {}
+  /**
+   * Indicates that the source is paywalled and cannot be ingested.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonPaywallError {}
+  /**
+   * Indicates that the source is empty.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonSourceEmpty {}
+  /**
+   * Indicates that the user does not have space for this source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonSourceLimitExceeded {}
+  /**
+   * Indicates source word count exceeded the user's limit.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonSourceTooLong {
+    /**
+     * The number of words in the source.
+     */
+    wordCount?: number | null;
+    /**
+     * The word count limit for the current user at the time of the upload.
+     */
+    wordLimit?: number | null;
+  }
+  /**
+   * Indicates that the source is unreachable. This is primarily used for sources that are added via URL.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonSourceUnreachable {
+    /**
+     * Describes why the source is unreachable.
+     */
+    errorDetails?: string | null;
+  }
+  /**
+   * Indicates an unknown error occurred.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonUnknown {}
+  /**
+   * Indicates an error occurred while uploading the source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonUploadError {}
+  /**
+   * A youtube specific error.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonYoutubeError {
+    /**
+     * Error to indicate that the source was removed because the video was deleted.
+     */
+    videoDeleted?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonYoutubeErrorVideoDeleted;
+  }
+  /**
+   * Error to indicate that the source was removed because the video was deleted.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonYoutubeErrorVideoDeleted {}
+  /**
+   * Metadata about a google doc source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaGoogleDocsSourceMetadata {
+    /**
+     * Output only. The document id of the google doc.
+     */
+    documentId?: string | null;
+    /**
+     * Output only. Revision id for the doc.
+     */
+    revisionId?: string | null;
   }
   /**
    * Response for NotebookService.ListRecentlyViewedNotebooks method.
@@ -14306,7 +15743,7 @@ export namespace discoveryengine_v1alpha {
      */
     emoji?: string | null;
     /**
-     * The metadata of the notebook.
+     * Output only. The metadata of the notebook.
      */
     metadata?: Schema$GoogleCloudNotebooklmV1alphaNotebookMetadata;
     /**
@@ -14314,9 +15751,13 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string | null;
     /**
-     * Optional. Notebook id, which is the last segment of the notebook's resource name. This is to make it similar with notebooklm API.
+     * Output only. Notebook id, which is the last segment of the notebook's resource name.
      */
     notebookId?: string | null;
+    /**
+     * Output only. List of sources in the notebook. This is an output only field.
+     */
+    sources?: Schema$GoogleCloudNotebooklmV1alphaSource[];
     /**
      * Optional. The title of the notebook.
      */
@@ -14344,11 +15785,28 @@ export namespace discoveryengine_v1alpha {
     lastViewed?: string | null;
   }
   /**
+   * Request for NotebookService.ShareNotebook method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaShareNotebookRequest {
+    /**
+     * Required. The list of accounts and roles to share the notebook with.
+     */
+    accountAndRoles?: Schema$GoogleCloudNotebooklmV1alphaAccountAndRole[];
+    /**
+     * Required. Whether to notify the shared users via email.
+     */
+    notifyViaEmail?: boolean | null;
+  }
+  /**
+   * Response for NotebookService.ShareNotebook method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse {}
+  /**
    * Source represents a single source of content.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaSource {
     /**
-     * Metadata about the source.
+     * Output only. Metadata about the source.
      */
     metadata?: Schema$GoogleCloudNotebooklmV1alphaSourceMetadata;
     /**
@@ -14356,7 +15814,11 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string | null;
     /**
-     * Optional. Source id, which is the last segment of the source's resource name. This is to make it similar with notebooklm API.
+     * Output only. Status of the source, and any failure reasons.
+     */
+    settings?: Schema$GoogleCloudNotebooklmV1alphaSourceSettings;
+    /**
+     * Optional. Output only. Source id, which is the last segment of the source's resource name.
      */
     sourceId?: Schema$GoogleCloudNotebooklmV1alphaSourceId;
     /**
@@ -14382,6 +15844,10 @@ export namespace discoveryengine_v1alpha {
      */
     agentspaceMetadata?: Schema$GoogleCloudNotebooklmV1alphaAgentspaceMetadata;
     /**
+     * Metadata for a google doc source.
+     */
+    googleDocsMetadata?: Schema$GoogleCloudNotebooklmV1alphaGoogleDocsSourceMetadata;
+    /**
      * The timestamp the source was added.
      */
     sourceAddedTimestamp?: string | null;
@@ -14393,6 +15859,23 @@ export namespace discoveryengine_v1alpha {
      * The word count of the source.
      */
     wordCount?: number | null;
+    /**
+     * Metadata for a youtube video source.
+     */
+    youtubeMetadata?: Schema$GoogleCloudNotebooklmV1alphaYoutubeMetadata;
+  }
+  /**
+   * Allows extension of Source Settings in the BatchCreateSources (Formerly AddSource request).
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaSourceSettings {
+    /**
+     * Failure reason containing details about why a source failed to ingest.
+     */
+    failureReason?: Schema$GoogleCloudNotebooklmV1alphaFailureReason;
+    /**
+     * Status of the source.
+     */
+    status?: string | null;
   }
   /**
    * Request for the SourceService.UploadSourceFile method.
@@ -14432,23 +15915,104 @@ export namespace discoveryengine_v1alpha {
      * Agentspace content uploaded as source.
      */
     agentspaceContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent;
+    /**
+     * The content from Google Drive.
+     */
+    googleDriveContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentGoogleDriveContent;
+    /**
+     * The text content uploaded as source.
+     */
+    textContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentTextContent;
+    /**
+     * The video content uploaded as source.
+     */
+    videoContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentVideoContent;
+    /**
+     * The web content uploaded as source.
+     */
+    webContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentWebContent;
   }
   /**
    * Agentspace content uploaded as source.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent {
     /**
-     * Optional. The full document name in Agentspace.
+     * Optional. The full resource name of the Agentspace document. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document_id\}`.
      */
     documentName?: string | null;
     /**
-     * Optional. Engine to verify the permission of the document.
+     * Optional. Engine to verify the permission of the document. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`.
      */
     engineName?: string | null;
     /**
-     * Optional. The full idea name for IdeaForge.
+     * Optional. Resource name of the idea forge instance. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}/ideaForgeInstances/{instance\}`
      */
     ideaforgeIdeaName?: string | null;
+  }
+  /**
+   * The content from Google Drive.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContentGoogleDriveContent {
+    /**
+     * The document id of the selected document.
+     */
+    documentId?: string | null;
+    /**
+     * The mime type of the selected document. This can be used to differentiate type of content selected in the drive picker. Use application/vnd.google-apps.document for Google Docs or application/vnd.google-apps.presentation for Google Slides.
+     */
+    mimeType?: string | null;
+    /**
+     * The name to be displayed for the source.
+     */
+    sourceName?: string | null;
+  }
+  /**
+   * The text content uploaded as source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContentTextContent {
+    /**
+     * The name to be displayed for the source.
+     */
+    content?: string | null;
+    /**
+     * The display name of the text source.
+     */
+    sourceName?: string | null;
+  }
+  /**
+   * Video content uploaded as source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContentVideoContent {
+    /**
+     * The youtube url of the video content.
+     */
+    youtubeUrl?: string | null;
+  }
+  /**
+   * The web content uploaded as source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContentWebContent {
+    /**
+     * The name to be displayed for the source.
+     */
+    sourceName?: string | null;
+    /**
+     * If URL is supplied, will fetch the webpage in the backend.
+     */
+    url?: string | null;
+  }
+  /**
+   * Metadata about a youtube video source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaYoutubeMetadata {
+    /**
+     * Output only. The channel name of the youtube video.
+     */
+    channelName?: string | null;
+    /**
+     * Output only. The id of the youtube video.
+     */
+    videoId?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -14466,6 +16030,10 @@ export namespace discoveryengine_v1alpha {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$GoogleLongrunningOperation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -14935,6 +16503,7 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
      *   //   "name": "my_name",
      *   //   "provisionCompletionTime": "my_provisionCompletionTime",
      *   //   "serviceTermsMap": {}
@@ -15022,6 +16591,168 @@ export namespace discoveryengine_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaProject>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaProject>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the editable settings of a Discovery Engine Project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.patch({
+     *     // Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
+     *     name: 'projects/my-project',
+     *     // Optional. The list of fields to update. Supported fields: * `customer_provided_config`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "customerProvidedConfig": {},
+     *       //   "name": "my_name",
+     *       //   "provisionCompletionTime": "my_provisionCompletionTime",
+     *       //   "serviceTermsMap": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "name": "my_name",
+     *   //   "provisionCompletionTime": "my_provisionCompletionTime",
+     *   //   "serviceTermsMap": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaProject>
+    >;
+    patch(
+      params: Params$Resource$Projects$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProject>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProject>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProject>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProject>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProject>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProject>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProject>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaProject>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
             apiVersion: '',
           },
           options
@@ -15248,6 +16979,7 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
      *   //   "name": "my_name",
      *   //   "provisionCompletionTime": "my_provisionCompletionTime",
      *   //   "serviceTermsMap": {}
@@ -15367,6 +17099,21 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Patch extends StandardParameters {
+    /**
+     * Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update. Supported fields: * `customer_provided_config`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaProject;
+  }
   export interface Params$Resource$Projects$Provision
     extends StandardParameters {
     /**
@@ -15400,6 +17147,7 @@ export namespace discoveryengine_v1alpha {
     evaluations: Resource$Projects$Locations$Evaluations;
     groundingConfigs: Resource$Projects$Locations$Groundingconfigs;
     identityMappingStores: Resource$Projects$Locations$Identitymappingstores;
+    licenseConfigs: Resource$Projects$Locations$Licenseconfigs;
     notebooks: Resource$Projects$Locations$Notebooks;
     operations: Resource$Projects$Locations$Operations;
     podcasts: Resource$Projects$Locations$Podcasts;
@@ -15427,6 +17175,9 @@ export namespace discoveryengine_v1alpha {
       );
       this.identityMappingStores =
         new Resource$Projects$Locations$Identitymappingstores(this.context);
+      this.licenseConfigs = new Resource$Projects$Locations$Licenseconfigs(
+        this.context
+      );
       this.notebooks = new Resource$Projects$Locations$Notebooks(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
@@ -16530,6 +18281,202 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Creates a Collection and sets up the DataConnector for it. To stop a DataConnector after setup, use the CollectionService.DeleteCollection method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.setUpDataConnectorV2({
+     *     // Required. The display name of the Collection. Should be human readable, used to display collections in the Console Dashboard. UTF-8 encoded string with limit of 1024 characters.
+     *     collectionDisplayName: 'placeholder-value',
+     *     // Required. The ID to use for the Collection, which will become the final component of the Collection's resource name. A new Collection is created as part of the DataConnector setup. DataConnector is a singleton resource under Collection, managing all DataStores of the Collection. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     collectionId: 'placeholder-value',
+     *     // Required. The parent of Collection, in the format of `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "aclEnabled": false,
+     *       //   "actionConfig": {},
+     *       //   "actionState": "my_actionState",
+     *       //   "alertPolicyConfigs": [],
+     *       //   "autoRunDisabled": false,
+     *       //   "bapConfig": {},
+     *       //   "blockingReasons": [],
+     *       //   "connectorModes": [],
+     *       //   "connectorType": "my_connectorType",
+     *       //   "createEuaSaas": false,
+     *       //   "createTime": "my_createTime",
+     *       //   "dataSource": "my_dataSource",
+     *       //   "destinationConfigs": [],
+     *       //   "endUserConfig": {},
+     *       //   "entities": [],
+     *       //   "errors": [],
+     *       //   "federatedConfig": {},
+     *       //   "hybridIngestionDisabled": false,
+     *       //   "identityRefreshInterval": "my_identityRefreshInterval",
+     *       //   "identityScheduleConfig": {},
+     *       //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
+     *       //   "incrementalSyncDisabled": false,
+     *       //   "jsonParams": "my_jsonParams",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "lastSyncTime": "my_lastSyncTime",
+     *       //   "latestPauseTime": "my_latestPauseTime",
+     *       //   "name": "my_name",
+     *       //   "nextSyncTime": {},
+     *       //   "params": {},
+     *       //   "privateConnectivityProjectId": "my_privateConnectivityProjectId",
+     *       //   "realtimeState": "my_realtimeState",
+     *       //   "realtimeSyncConfig": {},
+     *       //   "refreshInterval": "my_refreshInterval",
+     *       //   "removeParamKeys": [],
+     *       //   "state": "my_state",
+     *       //   "staticIpAddresses": [],
+     *       //   "staticIpEnabled": false,
+     *       //   "syncMode": "my_syncMode",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setUpDataConnectorV2(
+      params: Params$Resource$Projects$Locations$Setupdataconnectorv2,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setUpDataConnectorV2(
+      params?: Params$Resource$Projects$Locations$Setupdataconnectorv2,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    setUpDataConnectorV2(
+      params: Params$Resource$Projects$Locations$Setupdataconnectorv2,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setUpDataConnectorV2(
+      params: Params$Resource$Projects$Locations$Setupdataconnectorv2,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setUpDataConnectorV2(
+      params: Params$Resource$Projects$Locations$Setupdataconnectorv2,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setUpDataConnectorV2(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setUpDataConnectorV2(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Setupdataconnectorv2
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Setupdataconnectorv2;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Setupdataconnectorv2;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}:setUpDataConnectorV2').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Default ACL configuration for use in a location of a customer's project. Updates will only reflect to new data stores. Existing data stores will still use the old value.
      * @example
      * ```js
@@ -16918,6 +18865,26 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaSetUpDataConnectorRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Setupdataconnectorv2
+    extends StandardParameters {
+    /**
+     * Required. The display name of the Collection. Should be human readable, used to display collections in the Console Dashboard. UTF-8 encoded string with limit of 1024 characters.
+     */
+    collectionDisplayName?: string;
+    /**
+     * Required. The ID to use for the Collection, which will become the final component of the Collection's resource name. A new Collection is created as part of the DataConnector setup. DataConnector is a singleton resource under Collection, managing all DataStores of the Collection. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    collectionId?: string;
+    /**
+     * Required. The parent of Collection, in the format of `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaDataConnector;
   }
   export interface Params$Resource$Projects$Locations$Updateaclconfig
     extends StandardParameters {
@@ -17963,11 +19930,13 @@ export namespace discoveryengine_v1alpha {
      *   //   "endUserConfig": {},
      *   //   "entities": [],
      *   //   "errors": [],
+     *   //   "federatedConfig": {},
      *   //   "hybridIngestionDisabled": false,
      *   //   "identityRefreshInterval": "my_identityRefreshInterval",
      *   //   "identityScheduleConfig": {},
      *   //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
      *   //   "incrementalSyncDisabled": false,
+     *   //   "jsonParams": "my_jsonParams",
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "lastSyncTime": "my_lastSyncTime",
      *   //   "latestPauseTime": "my_latestPauseTime",
@@ -17978,6 +19947,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "realtimeState": "my_realtimeState",
      *   //   "realtimeSyncConfig": {},
      *   //   "refreshInterval": "my_refreshInterval",
+     *   //   "removeParamKeys": [],
      *   //   "state": "my_state",
      *   //   "staticIpAddresses": [],
      *   //   "staticIpEnabled": false,
@@ -18458,11 +20428,13 @@ export namespace discoveryengine_v1alpha {
      *         //   "endUserConfig": {},
      *         //   "entities": [],
      *         //   "errors": [],
+     *         //   "federatedConfig": {},
      *         //   "hybridIngestionDisabled": false,
      *         //   "identityRefreshInterval": "my_identityRefreshInterval",
      *         //   "identityScheduleConfig": {},
      *         //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
      *         //   "incrementalSyncDisabled": false,
+     *         //   "jsonParams": "my_jsonParams",
      *         //   "kmsKeyName": "my_kmsKeyName",
      *         //   "lastSyncTime": "my_lastSyncTime",
      *         //   "latestPauseTime": "my_latestPauseTime",
@@ -18473,6 +20445,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "realtimeState": "my_realtimeState",
      *         //   "realtimeSyncConfig": {},
      *         //   "refreshInterval": "my_refreshInterval",
+     *         //   "removeParamKeys": [],
      *         //   "state": "my_state",
      *         //   "staticIpAddresses": [],
      *         //   "staticIpEnabled": false,
@@ -18501,11 +20474,13 @@ export namespace discoveryengine_v1alpha {
      *   //   "endUserConfig": {},
      *   //   "entities": [],
      *   //   "errors": [],
+     *   //   "federatedConfig": {},
      *   //   "hybridIngestionDisabled": false,
      *   //   "identityRefreshInterval": "my_identityRefreshInterval",
      *   //   "identityScheduleConfig": {},
      *   //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
      *   //   "incrementalSyncDisabled": false,
+     *   //   "jsonParams": "my_jsonParams",
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "lastSyncTime": "my_lastSyncTime",
      *   //   "latestPauseTime": "my_latestPauseTime",
@@ -18516,6 +20491,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "realtimeState": "my_realtimeState",
      *   //   "realtimeSyncConfig": {},
      *   //   "refreshInterval": "my_refreshInterval",
+     *   //   "removeParamKeys": [],
      *   //   "state": "my_state",
      *   //   "staticIpAddresses": [],
      *   //   "staticIpEnabled": false,
@@ -18719,7 +20695,7 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
-     * Uses the per-user refresh token minted with AcquireAndStoreRefreshToken to generate and return a new access token and its details. Takes the access token from cache if available. Rotates the stored refresh token if needed. Uses the end user identity to return the user specific access token. Does *not* return the credentials configured by the administrator. Used by Agentspace action execution and Agentspace UI.
+     * Uses the per-user refresh token minted with AcquireAndStoreRefreshToken to generate and return a new access token and its details. Takes the access token from cache if available. Rotates the stored refresh token if needed. Uses the end user identity to return the user specific access token. Does *not* return the credentials configured by the administrator. Used by action execution and UI.
      * @example
      * ```js
      * // Before running the sample:
@@ -19615,6 +21591,8 @@ export namespace discoveryengine_v1alpha {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -19622,7 +21600,8 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -19759,6 +21738,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores {
@@ -20058,6 +22041,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "advancedSiteSearchConfig": {},
      *         //   "billingEstimation": {},
      *         //   "cmekConfig": {},
+     *         //   "configurableBillingApproach": "my_configurableBillingApproach",
      *         //   "contentConfig": "my_contentConfig",
      *         //   "createTime": "my_createTime",
      *         //   "defaultSchemaId": "my_defaultSchemaId",
@@ -20380,6 +22364,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "advancedSiteSearchConfig": {},
      *   //   "billingEstimation": {},
      *   //   "cmekConfig": {},
+     *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "contentConfig": "my_contentConfig",
      *   //   "createTime": "my_createTime",
      *   //   "defaultSchemaId": "my_defaultSchemaId",
@@ -21009,6 +22994,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "advancedSiteSearchConfig": {},
      *         //   "billingEstimation": {},
      *         //   "cmekConfig": {},
+     *         //   "configurableBillingApproach": "my_configurableBillingApproach",
      *         //   "contentConfig": "my_contentConfig",
      *         //   "createTime": "my_createTime",
      *         //   "defaultSchemaId": "my_defaultSchemaId",
@@ -21038,6 +23024,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "advancedSiteSearchConfig": {},
      *   //   "billingEstimation": {},
      *   //   "cmekConfig": {},
+     *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "contentConfig": "my_contentConfig",
      *   //   "createTime": "my_createTime",
      *   //   "defaultSchemaId": "my_defaultSchemaId",
@@ -21809,6 +23796,316 @@ export namespace discoveryengine_v1alpha {
         );
       }
     }
+
+    /**
+     * Retrieves a Branch.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.get(
+     *       {
+     *         // Required. The name of the branch to retrieve. Format: `projects/x/locations/global/dataStores/default_data_store/branches/some_branch_id`. "default_branch" can be used as a special branch_id, it returns the default branch that has been set for the document.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche',
+     *         // The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     *         view: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "branchStats": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
+     *   //   "lastDocumentImportTime": "my_lastDocumentImportTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Branches$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Branches$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Branches$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaBranch>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaBranch>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all Branchs under the specified parent DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.list(
+     *       {
+     *         // Required. The parent data store resource name.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *         // The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     *         view: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "branches": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Branches$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Branches$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Branches$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/branches').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Batchgetdocumentsmetadata
@@ -21825,6 +24122,28 @@ export namespace discoveryengine_v1alpha {
      * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the branch to retrieve. Format: `projects/x/locations/global/dataStores/default_data_store/branches/some_branch_id`. "default_branch" can be used as a special branch_id, it returns the default branch that has been set for the document.
+     */
+    name?: string;
+    /**
+     * The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$List
+    extends StandardParameters {
+    /**
+     * Required. The parent data store resource name.
+     */
+    parent?: string;
+    /**
+     * The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     */
+    view?: string;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Branches$Documents {
@@ -23948,6 +26267,8 @@ export namespace discoveryengine_v1alpha {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -23955,7 +26276,8 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -24104,6 +26426,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Completionconfig {
@@ -26963,6 +29289,8 @@ export namespace discoveryengine_v1alpha {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -26970,7 +29298,8 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -27107,6 +29436,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Operations {
@@ -27303,6 +29636,8 @@ export namespace discoveryengine_v1alpha {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -27310,7 +29645,8 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -27447,6 +29783,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Schemas {
@@ -28498,6 +30838,8 @@ export namespace discoveryengine_v1alpha {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -28505,7 +30847,8 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -28642,6 +30985,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Servingconfigs {
@@ -29597,6 +31944,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
+     *           //   "searchAddonSpec": {},
      *           //   "searchAsYouTypeSpec": {},
      *           //   "servingConfig": "my_servingConfig",
      *           //   "session": "my_session",
@@ -29810,6 +32158,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
+     *           //   "searchAddonSpec": {},
      *           //   "searchAsYouTypeSpec": {},
      *           //   "servingConfig": "my_servingConfig",
      *           //   "session": "my_session",
@@ -32691,6 +35040,8 @@ export namespace discoveryengine_v1alpha {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -32698,7 +35049,8 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -32835,6 +35187,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps {
@@ -34564,6 +36920,8 @@ export namespace discoveryengine_v1alpha {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -34571,7 +36929,8 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -34708,6 +37067,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries {
@@ -36107,9 +38470,11 @@ export namespace discoveryengine_v1alpha {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
      *         //   "commonConfig": {},
+     *         //   "configurableBillingApproach": "my_configurableBillingApproach",
      *         //   "createTime": "my_createTime",
      *         //   "dataStoreIds": [],
      *         //   "disableAnalytics": false,
@@ -36422,9 +38787,11 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},
+     *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
      *   //   "disableAnalytics": false,
@@ -36745,9 +39112,11 @@ export namespace discoveryengine_v1alpha {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
      *         //   "commonConfig": {},
+     *         //   "configurableBillingApproach": "my_configurableBillingApproach",
      *         //   "createTime": "my_createTime",
      *         //   "dataStoreIds": [],
      *         //   "disableAnalytics": false,
@@ -36768,9 +39137,11 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},
+     *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
      *   //   "disableAnalytics": false,
@@ -36936,9 +39307,11 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},
+     *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
      *   //   "disableAnalytics": false,
@@ -37107,9 +39480,11 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},
+     *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
      *   //   "disableAnalytics": false,
@@ -40697,6 +43072,8 @@ export namespace discoveryengine_v1alpha {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -40704,7 +43081,8 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -40841,6 +43219,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Servingconfigs {
@@ -41796,6 +44178,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
+     *           //   "searchAddonSpec": {},
      *           //   "searchAsYouTypeSpec": {},
      *           //   "servingConfig": "my_servingConfig",
      *           //   "session": "my_session",
@@ -42009,6 +44392,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
+     *           //   "searchAddonSpec": {},
      *           //   "searchAsYouTypeSpec": {},
      *           //   "servingConfig": "my_servingConfig",
      *           //   "session": "my_session",
@@ -44089,13 +46473,16 @@ export namespace discoveryengine_v1alpha {
      *       pageSize: 'placeholder-value',
      *       // The standard list page token.
      *       pageToken: 'placeholder-value',
+     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *       returnPartialSuccess: 'placeholder-value',
      *     });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -44232,6 +46619,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Datastores {
@@ -44510,6 +46901,7 @@ export namespace discoveryengine_v1alpha {
      *       //   "advancedSiteSearchConfig": {},
      *       //   "billingEstimation": {},
      *       //   "cmekConfig": {},
+     *       //   "configurableBillingApproach": "my_configurableBillingApproach",
      *       //   "contentConfig": "my_contentConfig",
      *       //   "createTime": "my_createTime",
      *       //   "defaultSchemaId": "my_defaultSchemaId",
@@ -44828,6 +47220,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "advancedSiteSearchConfig": {},
      *   //   "billingEstimation": {},
      *   //   "cmekConfig": {},
+     *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "contentConfig": "my_contentConfig",
      *   //   "createTime": "my_createTime",
      *   //   "defaultSchemaId": "my_defaultSchemaId",
@@ -45450,6 +47843,7 @@ export namespace discoveryengine_v1alpha {
      *       //   "advancedSiteSearchConfig": {},
      *       //   "billingEstimation": {},
      *       //   "cmekConfig": {},
+     *       //   "configurableBillingApproach": "my_configurableBillingApproach",
      *       //   "contentConfig": "my_contentConfig",
      *       //   "createTime": "my_createTime",
      *       //   "defaultSchemaId": "my_defaultSchemaId",
@@ -45479,6 +47873,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "advancedSiteSearchConfig": {},
      *   //   "billingEstimation": {},
      *   //   "cmekConfig": {},
+     *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "contentConfig": "my_contentConfig",
      *   //   "createTime": "my_createTime",
      *   //   "defaultSchemaId": "my_defaultSchemaId",
@@ -46075,6 +48470,312 @@ export namespace discoveryengine_v1alpha {
         );
       }
     }
+
+    /**
+     * Retrieves a Branch.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.branches.get({
+     *     // Required. The name of the branch to retrieve. Format: `projects/x/locations/global/dataStores/default_data_store/branches/some_branch_id`. "default_branch" can be used as a special branch_id, it returns the default branch that has been set for the document.
+     *     name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche',
+     *     // The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "branchStats": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
+     *   //   "lastDocumentImportTime": "my_lastDocumentImportTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datastores$Branches$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Branches$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaBranch>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Branches$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Branches$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaBranch>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaBranch>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all Branchs under the specified parent DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.branches.list(
+     *     {
+     *       // Required. The parent data store resource name.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *       // The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     *       view: 'placeholder-value',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "branches": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datastores$Branches$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Branches$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Branches$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Branches$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/branches').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListBranchesResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Datastores$Branches$Batchgetdocumentsmetadata
@@ -46091,6 +48792,28 @@ export namespace discoveryengine_v1alpha {
      * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the branch to retrieve. Format: `projects/x/locations/global/dataStores/default_data_store/branches/some_branch_id`. "default_branch" can be used as a special branch_id, it returns the default branch that has been set for the document.
+     */
+    name?: string;
+    /**
+     * The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$List
+    extends StandardParameters {
+    /**
+     * Required. The parent data store resource name.
+     */
+    parent?: string;
+    /**
+     * The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     */
+    view?: string;
   }
 
   export class Resource$Projects$Locations$Datastores$Branches$Documents {
@@ -48212,6 +50935,8 @@ export namespace discoveryengine_v1alpha {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -48219,7 +50944,8 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -48368,6 +51094,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Datastores$Completionconfig {
@@ -51034,13 +53764,16 @@ export namespace discoveryengine_v1alpha {
      *       pageSize: 'placeholder-value',
      *       // The standard list page token.
      *       pageToken: 'placeholder-value',
+     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *       returnPartialSuccess: 'placeholder-value',
      *     });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -51177,6 +53910,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Datastores$Operations {
@@ -51370,13 +54107,16 @@ export namespace discoveryengine_v1alpha {
      *       pageSize: 'placeholder-value',
      *       // The standard list page token.
      *       pageToken: 'placeholder-value',
+     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *       returnPartialSuccess: 'placeholder-value',
      *     });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -51513,6 +54253,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Datastores$Schemas {
@@ -53297,6 +56041,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "relevanceScoreSpec": {},
      *         //   "relevanceThreshold": "my_relevanceThreshold",
      *         //   "safeSearch": false,
+     *         //   "searchAddonSpec": {},
      *         //   "searchAsYouTypeSpec": {},
      *         //   "servingConfig": "my_servingConfig",
      *         //   "session": "my_session",
@@ -53509,6 +56254,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
+     *           //   "searchAddonSpec": {},
      *           //   "searchAsYouTypeSpec": {},
      *           //   "servingConfig": "my_servingConfig",
      *           //   "session": "my_session",
@@ -60748,6 +63494,8 @@ export namespace discoveryengine_v1alpha {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -60755,7 +63503,8 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -60892,20 +63641,1042 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Licenseconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a LicenseConfig
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.licenseConfigs.create({
+     *     // Optional. The ID to use for the LicenseConfig, which will become the final component of the LicenseConfig's resource name. We are using the tier (product edition) name as the license config id such as `search` or `search_and_assistant`.
+     *     licenseConfigId: 'placeholder-value',
+     *     // Required. The parent resource name, such as `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alertPolicyResourceConfig": {},
+     *       //   "autoRenew": false,
+     *       //   "endDate": {},
+     *       //   "freeTrial": false,
+     *       //   "licenseCount": "my_licenseCount",
+     *       //   "name": "my_name",
+     *       //   "startDate": {},
+     *       //   "state": "my_state",
+     *       //   "subscriptionTerm": "my_subscriptionTerm",
+     *       //   "subscriptionTier": "my_subscriptionTier"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertPolicyResourceConfig": {},
+     *   //   "autoRenew": false,
+     *   //   "endDate": {},
+     *   //   "freeTrial": false,
+     *   //   "licenseCount": "my_licenseCount",
+     *   //   "name": "my_name",
+     *   //   "startDate": {},
+     *   //   "state": "my_state",
+     *   //   "subscriptionTerm": "my_subscriptionTerm",
+     *   //   "subscriptionTier": "my_subscriptionTier"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Licenseconfigs$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Licenseconfigs$Create
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Licenseconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Licenseconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/licenseConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a LicenseConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.licenseConfigs.get({
+     *     // Required. Full resource name of LicenseConfig, such as `projects/{project\}/locations/{location\}/licenseConfigs/x`. If the caller does not have permission to access the LicenseConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested LicenseConfig does not exist, a NOT_FOUND error is returned.
+     *     name: 'projects/my-project/locations/my-location/licenseConfigs/my-licenseConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertPolicyResourceConfig": {},
+     *   //   "autoRenew": false,
+     *   //   "endDate": {},
+     *   //   "freeTrial": false,
+     *   //   "licenseCount": "my_licenseCount",
+     *   //   "name": "my_name",
+     *   //   "startDate": {},
+     *   //   "state": "my_state",
+     *   //   "subscriptionTerm": "my_subscriptionTerm",
+     *   //   "subscriptionTier": "my_subscriptionTier"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Licenseconfigs$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Licenseconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Licenseconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Licenseconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the LicenseConfig
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.licenseConfigs.patch({
+     *     // Immutable. Identifier. The fully qualified resource name of the license config. Format: `projects/{project\}/locations/{location\}/licenseConfigs/{license_config\}`
+     *     name: 'projects/my-project/locations/my-location/licenseConfigs/my-licenseConfig',
+     *     // Optional. Indicates which fields in the provided LicenseConfig to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alertPolicyResourceConfig": {},
+     *       //   "autoRenew": false,
+     *       //   "endDate": {},
+     *       //   "freeTrial": false,
+     *       //   "licenseCount": "my_licenseCount",
+     *       //   "name": "my_name",
+     *       //   "startDate": {},
+     *       //   "state": "my_state",
+     *       //   "subscriptionTerm": "my_subscriptionTerm",
+     *       //   "subscriptionTier": "my_subscriptionTier"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertPolicyResourceConfig": {},
+     *   //   "autoRenew": false,
+     *   //   "endDate": {},
+     *   //   "freeTrial": false,
+     *   //   "licenseCount": "my_licenseCount",
+     *   //   "name": "my_name",
+     *   //   "startDate": {},
+     *   //   "state": "my_state",
+     *   //   "subscriptionTerm": "my_subscriptionTerm",
+     *   //   "subscriptionTier": "my_subscriptionTier"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Licenseconfigs$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Licenseconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Licenseconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Licenseconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Licenseconfigs$Create
+    extends StandardParameters {
+    /**
+     * Optional. The ID to use for the LicenseConfig, which will become the final component of the LicenseConfig's resource name. We are using the tier (product edition) name as the license config id such as `search` or `search_and_assistant`.
+     */
+    licenseConfigId?: string;
+    /**
+     * Required. The parent resource name, such as `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Licenseconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of LicenseConfig, such as `projects/{project\}/locations/{location\}/licenseConfigs/x`. If the caller does not have permission to access the LicenseConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested LicenseConfig does not exist, a NOT_FOUND error is returned.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Licenseconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. The fully qualified resource name of the license config. Format: `projects/{project\}/locations/{location\}/licenseConfigs/{license_config\}`
+     */
+    name?: string;
+    /**
+     * Optional. Indicates which fields in the provided LicenseConfig to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfig;
   }
 
   export class Resource$Projects$Locations$Notebooks {
     context: APIRequestContext;
+    audioOverviews: Resource$Projects$Locations$Notebooks$Audiooverviews;
     sources: Resource$Projects$Locations$Notebooks$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.audioOverviews =
+        new Resource$Projects$Locations$Notebooks$Audiooverviews(this.context);
       this.sources = new Resource$Projects$Locations$Notebooks$Sources(
         this.context
       );
     }
 
     /**
-     * Lists the recently viewed notebooks. Needs a side channel with the user's EUC.
+     * Batch deletes Notebooks.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.notebooks.batchDelete({
+     *     // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "names": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Batchdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchDelete(
+      params?: Params$Resource$Projects$Locations$Notebooks$Batchdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Batchdelete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Batchdelete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebooks$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/notebooks:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Creates a notebook.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.notebooks.create({
+     *     // Required. The parent resource name, such as `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cmekConfig": {},
+     *       //   "emoji": "my_emoji",
+     *       //   "metadata": {},
+     *       //   "name": "my_name",
+     *       //   "notebookId": "my_notebookId",
+     *       //   "sources": [],
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cmekConfig": {},
+     *   //   "emoji": "my_emoji",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "notebookId": "my_notebookId",
+     *   //   "sources": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Notebooks$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Create
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebooks$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/notebooks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaNotebook>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaNotebook>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a notebook.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.notebooks.get({
+     *     // Required. Full resource name of Notebook, such as `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`.
+     *     name: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cmekConfig": {},
+     *   //   "emoji": "my_emoji",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "notebookId": "my_notebookId",
+     *   //   "sources": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Notebooks$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Get
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebooks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaNotebook>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaNotebook>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists the notebooks ordered by last view time.
      * @example
      * ```js
      * // Before running the sample:
@@ -60936,7 +64707,7 @@ export namespace discoveryengine_v1alpha {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.notebooks.listRecentlyViewed({
-     *       // Optional. Maximum number of Notebooks to return. If unspecified, defaults to "200". The maximum allowed value is "500". If this field is negative, will use the default value.
+     *       // Optional. Maximum number of Notebooks to return. If unspecified, defaults to "500". The maximum allowed value is "500". If this field is negative, will use the default value.
      *       pageSize: 'placeholder-value',
      *       // Optional. The page token, provide this to retrieve the subsequent page.
      *       pageToken: 'placeholder-value',
@@ -61057,12 +64828,198 @@ export namespace discoveryengine_v1alpha {
         );
       }
     }
+
+    /**
+     * Shares a notebook to other accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.notebooks.share({
+     *     // Required. Full resource name of Notebook, such as `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`.
+     *     name: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountAndRoles": [],
+     *       //   "notifyViaEmail": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    share(
+      params: Params$Resource$Projects$Locations$Notebooks$Share,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    share(
+      params?: Params$Resource$Projects$Locations$Notebooks$Share,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+    >;
+    share(
+      params: Params$Resource$Projects$Locations$Notebooks$Share,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    share(
+      params: Params$Resource$Projects$Locations$Notebooks$Share,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+    ): void;
+    share(
+      params: Params$Resource$Projects$Locations$Notebooks$Share,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+    ): void;
+    share(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+    ): void;
+    share(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Share
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Share;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebooks$Share;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:share').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>(
+          parameters
+        );
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Notebooks$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaBatchDeleteNotebooksRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource name, such as `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaNotebook;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Get
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of Notebook, such as `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed
     extends StandardParameters {
     /**
-     * Optional. Maximum number of Notebooks to return. If unspecified, defaults to "200". The maximum allowed value is "500". If this field is negative, will use the default value.
+     * Optional. Maximum number of Notebooks to return. If unspecified, defaults to "500". The maximum allowed value is "500". If this field is negative, will use the default value.
      */
     pageSize?: number;
     /**
@@ -61073,6 +65030,338 @@ export namespace discoveryengine_v1alpha {
      * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Share
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of Notebook, such as `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaShareNotebookRequest;
+  }
+
+  export class Resource$Projects$Locations$Notebooks$Audiooverviews {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Generates a new audio overview.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.notebooks.audioOverviews.create({
+     *       // Required. The parent resource where this notebook will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     *       parent: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "generationOptions": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audioOverview": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/audioOverviews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an audio overview.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.notebooks.audioOverviews.delete({
+     *       // Required. The full resource name of the AudioOverview, such as `projects/{project\}/locations/{location\}/notebooks/{notebook\}/audioOverviews/{audio_overview_id\}`.
+     *       name: 'projects/my-project/locations/my-location/notebooks/my-notebook/audioOverviews/my-audioOverview',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this notebook will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the AudioOverview, such as `projects/{project\}/locations/{location\}/notebooks/{notebook\}/audioOverviews/{audio_overview_id\}`.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Notebooks$Sources {
@@ -61234,6 +65523,303 @@ export namespace discoveryengine_v1alpha {
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes multiple sources
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.notebooks.sources.batchDelete({
+     *       // Required. The parent resource where the sources will be deleted. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     *       parent: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "names": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchDelete(
+      params?: Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/sources:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.notebooks.sources.get({
+     *     // Required. The resource name for source Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}/sources/{source\}
+     *     name: 'projects/my-project/locations/my-location/notebooks/my-notebook/sources/my-source',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "settings": {},
+     *   //   "sourceId": {},
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Notebooks$Sources$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaSource>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Sources$Get
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaSource>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Sources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebooks$Sources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaSource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaSource>(
           parameters
         );
       }
@@ -61413,6 +65999,25 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where the sources will be deleted. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Sources$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name for source Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}/sources/{source\}
+     */
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile
     extends StandardParameters {
@@ -61619,13 +66224,16 @@ export namespace discoveryengine_v1alpha {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -61761,6 +66369,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Podcasts {
@@ -65249,13 +69861,16 @@ export namespace discoveryengine_v1alpha {
      *       pageSize: 'placeholder-value',
      *       // The standard list page token.
      *       pageToken: 'placeholder-value',
+     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *       returnPartialSuccess: 'placeholder-value',
      *     });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -65392,6 +70007,10 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Userstores$Userlicenses {
@@ -65767,13 +70386,16 @@ export namespace discoveryengine_v1alpha {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -65909,5 +70531,9 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 }

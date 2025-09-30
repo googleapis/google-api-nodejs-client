@@ -2770,9 +2770,17 @@ export namespace datamigration_v1 {
      */
     cloudSqlId?: string | null;
     /**
+     * Optional. The project id of the Cloud SQL instance. If not provided, the project id of the connection profile will be used.
+     */
+    cloudSqlProjectId?: string | null;
+    /**
      * Required. The name of the specific database within the host.
      */
     database?: string | null;
+    /**
+     * Optional. The Database Mirroring (DBM) port of the source SQL Server instance.
+     */
+    dbmPort?: number | null;
     /**
      * Forward SSH tunnel connectivity.
      */
@@ -2815,6 +2823,19 @@ export namespace datamigration_v1 {
     username?: string | null;
   }
   /**
+   * Configuration for distributed availability group (DAG) for the SQL Server homogeneous migration.
+   */
+  export interface Schema$SqlServerDagConfig {
+    /**
+     * Required. The name of the linked server that points to the source SQL Server instance. Only used by DAG migrations.
+     */
+    linkedServer?: string | null;
+    /**
+     * Required. The name of the source availability group. Only used by DAG migrations.
+     */
+    sourceAg?: string | null;
+  }
+  /**
    * Specifies the backup details for a single database in Cloud Storage for homogeneous migration to Cloud SQL for SQL Server.
    */
   export interface Schema$SqlServerDatabaseBackup {
@@ -2852,6 +2873,10 @@ export namespace datamigration_v1 {
      * Required. Pattern that describes the default backup naming strategy. The specified pattern should ensure lexicographical order of backups. The pattern must define one of the following capture group sets: Capture group set #1 yy/yyyy - year, 2 or 4 digits mm - month number, 1-12 dd - day of month, 1-31 hh - hour of day, 00-23 mi - minutes, 00-59 ss - seconds, 00-59 Example: For backup file TestDB_20230802_155400.trn, use pattern: (?.*)_backup_(?\d{4\})(?\d{2\})(?\d{2\})_(?\d{2\})(?\d{2\})(?\d{2\}).trn Capture group set #2 timestamp - unix timestamp Example: For backup file TestDB.1691448254.trn, use pattern: (?.*)\.(?\d*).trn or (?.*)\.(?\d*).trn
      */
     backupFilePattern?: string | null;
+    /**
+     * Optional. Configuration for distributed availability group (DAG) for the SQL Server homogeneous migration.
+     */
+    dagConfig?: Schema$SqlServerDagConfig;
     /**
      * Required. Backup details per database in Cloud Storage.
      */

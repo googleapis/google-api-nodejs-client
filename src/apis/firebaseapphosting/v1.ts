@@ -125,6 +125,31 @@ export namespace firebaseapphosting_v1 {
   }
 
   /**
+   * The URI of an storage archive or a signed URL to use as the build source.
+   */
+  export interface Schema$ArchiveSource {
+    /**
+     * Optional. The author contained in the metadata of a version control change.
+     */
+    author?: Schema$SourceUserMetadata;
+    /**
+     * Optional. An optional message that describes the uploaded version of the source code.
+     */
+    description?: string | null;
+    /**
+     * Signed URL to an archive in a storage bucket.
+     */
+    externalSignedUri?: string | null;
+    /**
+     * Optional. Relative path in the archive.
+     */
+    rootDirectory?: string | null;
+    /**
+     * URI to an archive in Cloud Storage. The object must be a zipped (.zip) or gzipped archive file (.tar.gz) containing source to deploy.
+     */
+    userStorageUri?: string | null;
+  }
+  /**
    * A backend is the primary resource of App Hosting.
    */
   export interface Schema$Backend {
@@ -180,6 +205,10 @@ export namespace firebaseapphosting_v1 {
      * Output only. A field that, if true, indicates that the system is working to make adjustments to the backend during a LRO.
      */
     reconciling?: boolean | null;
+    /**
+     * Optional. A field that, if true, indicates that incoming request logs are disabled for this backend. Incoming request logs are enabled by default.
+     */
+    requestLogsDisabled?: boolean | null;
     /**
      * Required. The name of the service account used for Cloud Build and Cloud Run. Should have the role roles/firebaseapphosting.computeRunner or equivalent permissions.
      */
@@ -278,6 +307,10 @@ export namespace firebaseapphosting_v1 {
    * The source for the build.
    */
   export interface Schema$BuildSource {
+    /**
+     * An archive source.
+     */
+    archive?: Schema$ArchiveSource;
     /**
      * A codebase source.
      */
@@ -849,7 +882,7 @@ export namespace firebaseapphosting_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Immutable. The name of a build that already exists. It doesn't have to be built; a rollout will wait for a build to be ready before updating traffic.
+     * Required. Immutable. The name of a build that already exists. It doesn't have to be built; a rollout will wait for a build to be ready before updating traffic.
      */
     build?: string | null;
     /**
@@ -956,6 +989,23 @@ export namespace firebaseapphosting_v1 {
      * Optional. Redirect behavior for a domain, if provided.
      */
     redirect?: Schema$Redirect;
+  }
+  /**
+   * Metadata for the user who started the build.
+   */
+  export interface Schema$SourceUserMetadata {
+    /**
+     * Output only. The user-chosen displayname. May be empty.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The account email linked to the EUC that created the build. May be a service account or other robot account.
+     */
+    email?: string | null;
+    /**
+     * Output only. The URI of a profile photo associated with the user who created the build.
+     */
+    imageUri?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1254,7 +1304,7 @@ export namespace firebaseapphosting_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseapphosting.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1383,7 +1433,7 @@ export namespace firebaseapphosting_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -1483,6 +1533,7 @@ export namespace firebaseapphosting_v1 {
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
      *       //   "reconciling": false,
+     *       //   "requestLogsDisabled": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingLocality": "my_servingLocality",
      *       //   "uid": "my_uid",
@@ -1797,6 +1848,7 @@ export namespace firebaseapphosting_v1 {
      *   //   "mode": "my_mode",
      *   //   "name": "my_name",
      *   //   "reconciling": false,
+     *   //   "requestLogsDisabled": false,
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "servingLocality": "my_servingLocality",
      *   //   "uid": "my_uid",
@@ -2109,6 +2161,7 @@ export namespace firebaseapphosting_v1 {
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
      *       //   "reconciling": false,
+     *       //   "requestLogsDisabled": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingLocality": "my_servingLocality",
      *       //   "uid": "my_uid",

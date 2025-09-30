@@ -230,7 +230,7 @@ export namespace sqladmin_v1 {
     name?: string | null;
   }
   /**
-   * A backup resource. Next ID: 30
+   * A backup resource.
    */
   export interface Schema$Backup {
     /**
@@ -1139,6 +1139,10 @@ export namespace sqladmin_v1 {
      */
     database?: string | null;
     /**
+     * Optional. Controls how the API should respond when the SQL execution result exceeds 10 MB. The default mode is to throw an error.
+     */
+    partialResultMode?: string | null;
+    /**
      * Optional. The maximum number of rows returned per SQL statement.
      */
     rowLimit?: string | null;
@@ -1146,6 +1150,10 @@ export namespace sqladmin_v1 {
      * Required. SQL statements to run on the database. It can be a single statement or a sequence of statements separated by semicolons.
      */
     sqlStatement?: string | null;
+    /**
+     * Optional. The name of an existing database user to connect to the database. When `auto_iam_authn` is set to true, this field is ignored and the API caller's IAM user is used.
+     */
+    user?: string | null;
   }
   /**
    * Database instance export context.
@@ -1610,6 +1618,15 @@ export namespace sqladmin_v1 {
     serverCerts?: Schema$SslCert[];
   }
   /**
+   * Request for Pre-checks for MVU
+   */
+  export interface Schema$InstancesPreCheckMajorVersionUpgradeRequest {
+    /**
+     * Required. Contains details about the pre-check major version upgrade operation.
+     */
+    preCheckMajorVersionUpgradeContext?: Schema$PreCheckMajorVersionUpgradeContext;
+  }
+  /**
    * Database Instance reencrypt request.
    */
   export interface Schema$InstancesReencryptRequest {
@@ -1809,6 +1826,19 @@ export namespace sqladmin_v1 {
     updateTrack?: string | null;
   }
   /**
+   * Represents a notice or warning message from the database.
+   */
+  export interface Schema$Message {
+    /**
+     * The full message string. For PostgreSQL, this is a formatted string that may include severity, code, and the notice/warning message. For MySQL, this contains the warning message.
+     */
+    message?: string | null;
+    /**
+     * The severity of the message (e.g., "NOTICE" for PostgreSQL, "WARNING" for MySQL).
+     */
+    severity?: string | null;
+  }
+  /**
    * The additional metadata information regarding the execution of the SQL statements.
    */
   export interface Schema$Metadata {
@@ -1972,6 +2002,10 @@ export namespace sqladmin_v1 {
      * The type of the operation. Valid values are: * `CREATE` * `DELETE` * `UPDATE` * `RESTART` * `IMPORT` * `EXPORT` * `BACKUP_VOLUME` * `RESTORE_VOLUME` * `CREATE_USER` * `DELETE_USER` * `CREATE_DATABASE` * `DELETE_DATABASE`
      */
     operationType?: string | null;
+    /**
+     * This field is only populated when the operation_type is PRE_CHECK_MAJOR_VERSION_UPGRADE. The PreCheckMajorVersionUpgradeContext message itself contains the details for that pre-check, such as the target database version for the upgrade and the results of the check (including any warnings or errors found).
+     */
+    preCheckMajorVersionUpgradeContext?: Schema$PreCheckMajorVersionUpgradeContext;
     /**
      * The URI of this resource.
      */
@@ -2200,6 +2234,40 @@ export namespace sqladmin_v1 {
     state?: string | null;
   }
   /**
+   * Pre-check major version upgrade context.
+   */
+  export interface Schema$PreCheckMajorVersionUpgradeContext {
+    /**
+     * Optional. This is always `sql#preCheckMajorVersionUpgradeContext`.
+     */
+    kind?: string | null;
+    /**
+     * Output only. The responses from the precheck operation.
+     */
+    preCheckResponse?: Schema$PreCheckResponse[];
+    /**
+     * Required. The target database version to upgrade to.
+     */
+    targetDatabaseVersion?: string | null;
+  }
+  /**
+   * Structured PreCheckResponse containing message, type, and required actions.
+   */
+  export interface Schema$PreCheckResponse {
+    /**
+     * The actions that the user needs to take. Use repeated for multiple actions.
+     */
+    actionsRequired?: string[] | null;
+    /**
+     * The message to be displayed to the user.
+     */
+    message?: string | null;
+    /**
+     * The type of message whether it is an info, warning, or error.
+     */
+    messageType?: string | null;
+  }
+  /**
    * Settings for an automatically-setup Private Service Connect consumer endpoint that is used to connect to a Cloud SQL instance.
    */
   export interface Schema$PscAutoConnectionConfig {
@@ -2265,6 +2333,39 @@ export namespace sqladmin_v1 {
      * Rows returned by the SQL statement.
      */
     rows?: Schema$Row[];
+  }
+  /**
+   * The read pool auto-scale configuration.
+   */
+  export interface Schema$ReadPoolAutoScaleConfig {
+    /**
+     * Indicates whether read pool auto scaling supports scale in operations (removing nodes).
+     */
+    disableScaleIn?: boolean | null;
+    /**
+     * Indicates whether read pool auto scaling is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Maximum number of read pool nodes to be maintained.
+     */
+    maxNodeCount?: number | null;
+    /**
+     * Minimum number of read pool nodes to be maintained.
+     */
+    minNodeCount?: number | null;
+    /**
+     * The cooldown period for scale-in operations.
+     */
+    scaleInCooldownSeconds?: number | null;
+    /**
+     * The cooldown period for scale-out operations.
+     */
+    scaleOutCooldownSeconds?: number | null;
+    /**
+     * Optional. Target metrics for read pool auto scaling.
+     */
+    targetMetrics?: Schema$TargetMetric[];
   }
   /**
    * Read-replica configuration for connecting to the primary instance.
@@ -2504,6 +2605,10 @@ export namespace sqladmin_v1 {
      */
     pricingPlan?: string | null;
     /**
+     * Optional. The read pool auto-scale configuration for the instance.
+     */
+    readPoolAutoScaleConfig?: Schema$ReadPoolAutoScaleConfig;
+    /**
      * Optional. Configuration value for recreation of replica after certain replication lag
      */
     replicationLagMaxSeconds?: number | null;
@@ -2604,6 +2709,10 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$SqlInstancesExecuteSqlResponse {
     /**
+     * A list of notices and warnings generated during query execution. For PostgreSQL, this includes all notices and warnings. For MySQL, this includes warnings generated by the last executed statement. To retrieve all warnings for a multi-statement query, `SHOW WARNINGS` must be executed after each statement.
+     */
+    messages?: Schema$Message[];
+    /**
      * The additional metadata information regarding the execution of the SQL statements.
      */
     metadata?: Schema$Metadata;
@@ -2633,6 +2742,10 @@ export namespace sqladmin_v1 {
    * Instance get latest recovery time response.
    */
   export interface Schema$SqlInstancesGetLatestRecoveryTimeResponse {
+    /**
+     * Timestamp, identifies the earliest recovery time of the source instance.
+     */
+    earliestRecoveryTime?: string | null;
     /**
      * This is always `sql#getLatestRecoveryTime`.
      */
@@ -2954,6 +3067,19 @@ export namespace sqladmin_v1 {
     value?: string | null;
   }
   /**
+   * Target metric for read pool auto scaling.
+   */
+  export interface Schema$TargetMetric {
+    /**
+     * The metric name to be used for auto scaling.
+     */
+    metric?: string | null;
+    /**
+     * The target value for the metric.
+     */
+    targetValue?: number | null;
+  }
+  /**
    * A Google Cloud SQL service tier resource.
    */
   export interface Schema$Tier {
@@ -3020,6 +3146,10 @@ export namespace sqladmin_v1 {
      * Optional. The host from which the user can connect. For `insert` operations, host defaults to an empty string. For `update` operations, host is specified as part of the request URL. The host name cannot be updated after insertion. For a MySQL instance, it's required; for a PostgreSQL or SQL Server instance, it's optional.
      */
     host?: string | null;
+    /**
+     * Indicates if a group is active or inactive for IAM database authentication.
+     */
+    iamStatus?: string | null;
     /**
      * The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for `update` because it is already specified on the URL.
      */
@@ -3168,6 +3298,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -3515,6 +3646,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -3921,6 +4053,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -4079,6 +4212,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -4575,6 +4709,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -5156,6 +5291,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -5482,6 +5618,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -5801,6 +5938,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -5978,6 +6116,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -6553,6 +6692,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -6713,6 +6853,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -6883,6 +7024,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -7049,6 +7191,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -7215,6 +7358,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -7381,6 +7525,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -7532,8 +7677,10 @@ export namespace sqladmin_v1 {
      *       // {
      *       //   "autoIamAuthn": false,
      *       //   "database": "my_database",
+     *       //   "partialResultMode": "my_partialResultMode",
      *       //   "rowLimit": "my_rowLimit",
-     *       //   "sqlStatement": "my_sqlStatement"
+     *       //   "sqlStatement": "my_sqlStatement",
+     *       //   "user": "my_user"
      *       // }
      *     },
      *   });
@@ -7541,6 +7688,7 @@ export namespace sqladmin_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "messages": [],
      *   //   "metadata": {},
      *   //   "results": []
      *   // }
@@ -7705,6 +7853,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -7871,6 +8020,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -8225,6 +8375,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -8439,6 +8590,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -9111,6 +9263,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -9281,6 +9434,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -9388,6 +9542,177 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Execute MVU Pre-checks
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.preCheckMajorVersionUpgrade({
+     *     // Required. Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Required. Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "preCheckMajorVersionUpgradeContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    preCheckMajorVersionUpgrade(
+      params: Params$Resource$Instances$Precheckmajorversionupgrade,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    preCheckMajorVersionUpgrade(
+      params?: Params$Resource$Instances$Precheckmajorversionupgrade,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    preCheckMajorVersionUpgrade(
+      params: Params$Resource$Instances$Precheckmajorversionupgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    preCheckMajorVersionUpgrade(
+      params: Params$Resource$Instances$Precheckmajorversionupgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    preCheckMajorVersionUpgrade(
+      params: Params$Resource$Instances$Precheckmajorversionupgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    preCheckMajorVersionUpgrade(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    preCheckMajorVersionUpgrade(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Precheckmajorversionupgrade
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Precheckmajorversionupgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Precheckmajorversionupgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/preCheckMajorVersionUpgrade'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Promotes the read replica instance to be an independent Cloud SQL primary instance. Using this operation might cause your instance to restart.
      * @example
      * ```js
@@ -9443,6 +9768,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -9611,6 +9937,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -9904,6 +10231,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.resetSslConfig({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Reset SSL mode to use.
+     *     mode: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -9922,6 +10251,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -10082,6 +10412,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -10253,6 +10584,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -10421,6 +10753,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -10589,6 +10922,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -10751,6 +11085,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -10911,6 +11246,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -11073,6 +11409,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -11240,6 +11577,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -11458,6 +11796,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -11823,6 +12162,22 @@ export namespace sqladmin_v1 {
      */
     requestBody?: Schema$PointInTimeRestoreContext;
   }
+  export interface Params$Resource$Instances$Precheckmajorversionupgrade
+    extends StandardParameters {
+    /**
+     * Required. Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Required. Project ID of the project that contains the instance.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstancesPreCheckMajorVersionUpgradeRequest;
+  }
   export interface Params$Resource$Instances$Promotereplica
     extends StandardParameters {
     /**
@@ -11871,6 +12226,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Reset SSL mode to use.
+     */
+    mode?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -12203,6 +12562,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -12711,6 +13071,7 @@ export namespace sqladmin_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "earliestRecoveryTime": "my_earliestRecoveryTime",
      *   //   "kind": "my_kind",
      *   //   "latestRecoveryTime": "my_latestRecoveryTime"
      *   // }
@@ -12883,6 +13244,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -13051,6 +13413,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -13219,6 +13582,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -13392,6 +13756,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -13996,6 +14361,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -14837,6 +15203,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -14991,6 +15358,7 @@ export namespace sqladmin_v1 {
      *   //   "dualPasswordType": "my_dualPasswordType",
      *   //   "etag": "my_etag",
      *   //   "host": "my_host",
+     *   //   "iamStatus": "my_iamStatus",
      *   //   "instance": "my_instance",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
@@ -15142,6 +15510,7 @@ export namespace sqladmin_v1 {
      *       //   "dualPasswordType": "my_dualPasswordType",
      *       //   "etag": "my_etag",
      *       //   "host": "my_host",
+     *       //   "iamStatus": "my_iamStatus",
      *       //   "instance": "my_instance",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
@@ -15168,6 +15537,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
@@ -15464,6 +15834,7 @@ export namespace sqladmin_v1 {
      *       //   "dualPasswordType": "my_dualPasswordType",
      *       //   "etag": "my_etag",
      *       //   "host": "my_host",
+     *       //   "iamStatus": "my_iamStatus",
      *       //   "instance": "my_instance",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
@@ -15490,6 +15861,7 @@ export namespace sqladmin_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",

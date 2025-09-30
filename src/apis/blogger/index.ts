@@ -14,28 +14,23 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {blogger_v2} from './v2';
 import {blogger_v3} from './v3';
 
 export const VERSIONS = {
-  v2: blogger_v2.Blogger,
   v3: blogger_v3.Blogger,
 };
 
-export function blogger(version: 'v2'): blogger_v2.Blogger;
-export function blogger(options: blogger_v2.Options): blogger_v2.Blogger;
 export function blogger(version: 'v3'): blogger_v3.Blogger;
 export function blogger(options: blogger_v3.Options): blogger_v3.Blogger;
-export function blogger<T = blogger_v2.Blogger | blogger_v3.Blogger>(
+export function blogger<T = blogger_v3.Blogger>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v2' | blogger_v2.Options | 'v3' | blogger_v3.Options
+  versionOrOptions: 'v3' | blogger_v3.Options
 ) {
   return getAPI<T>('blogger', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
-export {blogger_v2};
 export {blogger_v3};
 export {
   AuthPlus,

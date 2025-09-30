@@ -169,7 +169,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1290,7 +1290,7 @@
       }
     }
   },
-  "revision": "20250820",
+  "revision": "20250922",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -3767,6 +3767,10 @@
       "description": "Represents a text type block.",
       "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
       "properties": {
+        "annotations": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentAnnotations",
+          "description": "Annotation of the text block."
+        },
         "blocks": {
           "description": "A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.",
           "items": {
@@ -5753,7 +5757,7 @@
           "description": "The source processor version to import from. It can be from a different environment and region than the destination processor."
         },
         "processorVersionSource": {
-          "description": "The source processor version to import from. The source processor version and destination processor need to be in the same environment and region. Note that ProcessorVersions with `model_type` `MODEL_TYPE_LLM` are not supported.",
+          "description": "The source processor version to import from. The source processor version and destination processor need to be in the same environment and region.",
           "type": "string"
         }
       },
@@ -6856,7 +6860,7 @@
       "id": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestCustomDocumentExtractionOptions",
       "properties": {
         "trainingMethod": {
-          "description": "Training method to use for CDE training.",
+          "description": "Optional. Training method to use for CDE training.",
           "enum": [
             "TRAINING_METHOD_UNSPECIFIED",
             "MODEL_BASED",

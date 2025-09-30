@@ -646,6 +646,10 @@ export namespace places_v1 {
      */
     businessStatus?: string | null;
     /**
+     * The consumer alert message for the place when we detect suspicious review activity on a business or a business violates our policies.
+     */
+    consumerAlert?: Schema$GoogleMapsPlacesV1PlaceConsumerAlert;
+    /**
      * List of places in which the current place is located.
      */
     containingPlaces?: Schema$GoogleMapsPlacesV1PlaceContainingPlace[];
@@ -960,6 +964,53 @@ export namespace places_v1 {
      * URI to the Place's data provider.
      */
     providerUri?: string | null;
+  }
+  /**
+   * The consumer alert message for the place when we detect suspicious review activity on a business or a business violates our policies.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceConsumerAlert {
+    /**
+     * The details of the consumer alert message.ƒ
+     */
+    details?: Schema$GoogleMapsPlacesV1PlaceConsumerAlertDetails;
+    /**
+     * The language code of the consumer alert message. This is a BCP 47 language code.
+     */
+    languageCode?: string | null;
+    /**
+     * The overview of the consumer alert message.
+     */
+    overview?: string | null;
+  }
+  /**
+   * The details of the consumer alert message.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceConsumerAlertDetails {
+    /**
+     * The link to show together with the description to provide more information.
+     */
+    aboutLink?: Schema$GoogleMapsPlacesV1PlaceConsumerAlertDetailsLink;
+    /**
+     * The description of the consumer alert message.
+     */
+    description?: string | null;
+    /**
+     * The title to show together with the description.
+     */
+    title?: string | null;
+  }
+  /**
+   * The link to show together with the description to provide more information.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceConsumerAlertDetailsLink {
+    /**
+     * The title to show for the link.
+     */
+    title?: string | null;
+    /**
+     * The uri of the link.
+     */
+    uri?: string | null;
   }
   /**
    * Info about the place in which this place is located.
@@ -1309,6 +1360,10 @@ export namespace places_v1 {
      * The localized text of the review.
      */
     text?: Schema$GoogleTypeLocalizedText;
+    /**
+     * The date when the author visited the place. This is trucated to the year and month of the visit.
+     */
+    visitDate?: Schema$GoogleTypeDate;
   }
   /**
    * Encapsulates a set of optional conditions to satisfy when calculating the routes.
@@ -1944,6 +1999,7 @@ export namespace places_v1 {
      *   //   "allowsDogs": false,
      *   //   "attributions": [],
      *   //   "businessStatus": "my_businessStatus",
+     *   //   "consumerAlert": {},
      *   //   "containingPlaces": [],
      *   //   "curbsidePickup": false,
      *   //   "currentOpeningHours": {},

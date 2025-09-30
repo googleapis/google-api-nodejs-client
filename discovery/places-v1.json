@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20250810",
+  "revision": "20250921",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -1056,6 +1056,10 @@
           ],
           "type": "string"
         },
+        "consumerAlert": {
+          "$ref": "GoogleMapsPlacesV1PlaceConsumerAlert",
+          "description": "The consumer alert message for the place when we detect suspicious review activity on a business or a business violates our policies."
+        },
         "containingPlaces": {
           "description": "List of places in which the current place is located.",
           "items": {
@@ -1418,6 +1422,59 @@
         },
         "providerUri": {
           "description": "URI to the Place's data provider.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1PlaceConsumerAlert": {
+      "description": "The consumer alert message for the place when we detect suspicious review activity on a business or a business violates our policies.",
+      "id": "GoogleMapsPlacesV1PlaceConsumerAlert",
+      "properties": {
+        "details": {
+          "$ref": "GoogleMapsPlacesV1PlaceConsumerAlertDetails",
+          "description": "The details of the consumer alert message.ƒ"
+        },
+        "languageCode": {
+          "description": "The language code of the consumer alert message. This is a BCP 47 language code.",
+          "type": "string"
+        },
+        "overview": {
+          "description": "The overview of the consumer alert message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1PlaceConsumerAlertDetails": {
+      "description": "The details of the consumer alert message.",
+      "id": "GoogleMapsPlacesV1PlaceConsumerAlertDetails",
+      "properties": {
+        "aboutLink": {
+          "$ref": "GoogleMapsPlacesV1PlaceConsumerAlertDetailsLink",
+          "description": "The link to show together with the description to provide more information."
+        },
+        "description": {
+          "description": "The description of the consumer alert message.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The title to show together with the description.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1PlaceConsumerAlertDetailsLink": {
+      "description": "The link to show together with the description to provide more information.",
+      "id": "GoogleMapsPlacesV1PlaceConsumerAlertDetailsLink",
+      "properties": {
+        "title": {
+          "description": "The title to show for the link.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The uri of the link.",
           "type": "string"
         }
       },
@@ -1850,6 +1907,10 @@
         "text": {
           "$ref": "GoogleTypeLocalizedText",
           "description": "The localized text of the review."
+        },
+        "visitDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "The date when the author visited the place. This is trucated to the year and month of the visit."
         }
       },
       "type": "object"

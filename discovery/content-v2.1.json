@@ -12,7 +12,7 @@
   "baseUrl": "https://shoppingcontent.googleapis.com/content/v2.1/",
   "batchPath": "batch",
   "canonicalName": "Shopping Content",
-  "description": "Manage your product listings and accounts for Google Shopping",
+  "description": "This API is deprecated. Please use Merchant API instead: https://developers.google.com/merchant/api. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/shopping-content/v2/",
   "fullyEncodeReservedExpansion": true,
@@ -4570,7 +4570,7 @@
       }
     }
   },
-  "revision": "20250723",
+  "revision": "20250921",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {

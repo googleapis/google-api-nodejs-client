@@ -787,7 +787,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -3432,7 +3432,7 @@
       }
     }
   },
-  "revision": "20250723",
+  "revision": "20250922",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -5493,7 +5493,7 @@
           "type": "string"
         },
         "endpointMatchers": {
-          "description": "Required. Endpoint matchers associated with an application. A combination of hostname and ports as endpoint matchers is used to match the application. Match conditions for OR logic. An array of match conditions to allow for multiple matching criteria. The rule is considered a match if one of the conditions is met. The conditions can be one of the following combinations (Hostname), (Hostname & Ports) EXAMPLES: Hostname - (\"*.example.com\"), (\"xyz.example.com\") Hostname and Ports - (\"example.com\" and \"22\"), (\"example.com\" and \"22,33\") etc",
+          "description": "Required. Endpoint matchers associated with an application. A combination of hostname and ports as endpoint matchers is used to match the application. Match conditions for OR logic. An array of match conditions to allow for multiple matching criteria. The rule is considered a match if one of the conditions is met. The conditions should be the following combination: (Hostname & Ports) EXAMPLES: Hostname and Ports - (\"*.example.com\", \"443\"), (\"example.com\" and \"22\"), (\"example.com\" and \"22,33\") etc",
           "items": {
             "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpointMatcher"
           },
@@ -5501,6 +5501,20 @@
         },
         "name": {
           "description": "Identifier. Name of the resource.",
+          "type": "string"
+        },
+        "schema": {
+          "description": "Optional. Type of the external application.",
+          "enum": [
+            "SCHEMA_UNSPECIFIED",
+            "PROXY_GATEWAY",
+            "API_GATEWAY"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Proxy which routes traffic to actual applications, like Netscaler Gateway.",
+            "Service Discovery API endpoint when Service Discovery is enabled in Gateway."
+          ],
           "type": "string"
         },
         "updateTime": {
@@ -5527,9 +5541,31 @@
           "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaEgressPolicy",
           "description": "Optional. Routing policy information."
         },
+        "external": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamExternal",
+          "description": "List of the external endpoints to forward traffic to."
+        },
         "network": {
           "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamNetwork",
           "description": "Network to forward traffic to."
+        },
+        "proxyProtocol": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig",
+          "description": "Optional. Enables proxy protocol configuration for the upstream."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamExternal": {
+      "description": "Endpoints to forward traffic to.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamExternal",
+      "properties": {
+        "endpoints": {
+          "description": "Required. List of the endpoints to forward traffic to.",
+          "items": {
+            "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpoint"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5540,6 +5576,110 @@
       "properties": {
         "name": {
           "description": "Required. Network name is of the format: `projects/{project}/global/networks/{network}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeaders": {
+      "description": "Contextual headers configuration.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeaders",
+      "properties": {
+        "deviceInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfo",
+          "description": "Optional. Device info configuration."
+        },
+        "groupInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedGroupInfo",
+          "description": "Optional. Group info configuration."
+        },
+        "outputType": {
+          "description": "Optional. Default output type for all enabled headers.",
+          "enum": [
+            "OUTPUT_TYPE_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecified output type.",
+            "Protobuf output type.",
+            "JSON output type.",
+            "Explicitly disable header output."
+          ],
+          "type": "string"
+        },
+        "userInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedUserInfo",
+          "description": "Optional. User info configuration."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfo": {
+      "description": "Delegated device info configuration.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfo",
+      "properties": {
+        "outputType": {
+          "description": "Optional. The output type of the delegated device info.",
+          "enum": [
+            "OUTPUT_TYPE_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecified output type.",
+            "Protobuf output type.",
+            "JSON output type.",
+            "Explicitly disable header output."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedGroupInfo": {
+      "description": "Delegated group info configuration.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedGroupInfo",
+      "properties": {
+        "outputType": {
+          "description": "Optional. The output type of the delegated group info.",
+          "enum": [
+            "OUTPUT_TYPE_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecified output type.",
+            "Protobuf output type.",
+            "JSON output type.",
+            "Explicitly disable header output."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedUserInfo": {
+      "description": "Delegated user info configuration.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedUserInfo",
+      "properties": {
+        "outputType": {
+          "description": "Optional. The output type of the delegated user info.",
+          "enum": [
+            "OUTPUT_TYPE_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecified output type.",
+            "Protobuf output type.",
+            "JSON output type.",
+            "Explicitly disable header output."
+          ],
           "type": "string"
         }
       },
@@ -5559,6 +5699,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpoint": {
+      "description": "Internet Gateway endpoint to forward traffic to.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpoint",
+      "properties": {
+        "hostname": {
+          "description": "Required. Hostname of the endpoint.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Required. Port of the endpoint.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpointMatcher": {
       "description": "EndpointMatcher contains the information of the endpoint that will match the application.",
       "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpointMatcher",
@@ -5568,7 +5724,7 @@
           "type": "string"
         },
         "ports": {
-          "description": "Optional. Ports of the application.",
+          "description": "Required. Ports of the application.",
           "items": {
             "format": "int32",
             "type": "integer"
@@ -5654,6 +5810,47 @@
       },
       "type": "object"
     },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig": {
+      "description": "The configuration for the proxy.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig",
+      "properties": {
+        "allowedClientHeaders": {
+          "description": "Optional. List of the allowed client header names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clientIp": {
+          "description": "Optional. Client IP configuration. The client IP address is included if true.",
+          "type": "boolean"
+        },
+        "contextualHeaders": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeaders",
+          "description": "Optional. Configuration for the contextual headers."
+        },
+        "gatewayIdentity": {
+          "description": "Optional. Gateway identity configuration.",
+          "enum": [
+            "GATEWAY_IDENTITY_UNSPECIFIED",
+            "RESOURCE_NAME"
+          ],
+          "enumDescriptions": [
+            "Unspecified gateway identity.",
+            "Resource name for gateway identity, in the format: projects/{project_id}/locations/{location_id}/securityGateways/{security_gateway_id}"
+          ],
+          "type": "string"
+        },
+        "metadataHeaders": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Custom resource specific headers along with the values. The names should conform to RFC 9110: > Field names SHOULD constrain themselves to alphanumeric characters, \"-\", and \".\", and SHOULD begin with a letter. Field values SHOULD contain only ASCII printable characters and tab.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway": {
       "description": "The information about a security gateway resource.",
       "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway",
@@ -5691,6 +5888,14 @@
         "name": {
           "description": "Identifier. Name of the resource.",
           "type": "string"
+        },
+        "proxyProtocolConfig": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig",
+          "description": "Optional. Shared proxy configuration for all apps."
+        },
+        "serviceDiscovery": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscovery",
+          "description": "Optional. Settings related to the Service Discovery."
         },
         "state": {
           "description": "Output only. The operational state of the SecurityGateway.",
@@ -5763,6 +5968,39 @@
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscovery": {
+      "description": "Settings related to the Service Discovery.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscovery",
+      "properties": {
+        "apiGateway": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGateway",
+          "description": "Required. External API configuration."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGateway": {
+      "description": "If Service Discovery is done through API, defines its settings.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGateway",
+      "properties": {
+        "resourceOverride": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGatewayOperationDescriptor",
+          "description": "Required. Enables fetching resource model updates to alter service behavior per Chrome profile."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGatewayOperationDescriptor": {
+      "description": "API operation descriptor.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGatewayOperationDescriptor",
+      "properties": {
+        "path": {
+          "description": "Required. Contains uri path fragment where HTTP request is sent.",
           "type": "string"
         }
       },

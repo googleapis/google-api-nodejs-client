@@ -277,7 +277,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of pools to return. If unspecified, at most 50 pools will be returned. The maximum value is 1000; values above 1000 are truncated to 1000.",
+                  "description": "The maximum number of pools to return. The default value is 50. The maximum value is 100.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -4155,7 +4155,7 @@
       }
     }
   },
-  "revision": "20250815",
+  "revision": "20250919",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
@@ -6242,7 +6242,7 @@
           "description": "Optional. Configure access restrictions on the workforce pool users. This is an optional field. If specified web sign-in can be restricted to given set of services or programmatic sign-in can be disabled for pool users."
         },
         "description": {
-          "description": "Optional. A user-specified description of the pool. Cannot exceed 256 characters.",
+          "description": "Optional. A description of the pool. Cannot exceed 256 characters.",
           "type": "string"
         },
         "disabled": {
@@ -6250,7 +6250,7 @@
           "type": "boolean"
         },
         "displayName": {
-          "description": "Optional. A user-specified display name of the pool in Google Cloud Console. Cannot exceed 32 characters.",
+          "description": "Optional. A display name for the pool. Cannot exceed 32 characters.",
           "type": "string"
         },
         "expireTime": {
@@ -6306,7 +6306,7 @@
           "type": "object"
         },
         "description": {
-          "description": "Optional. A user-specified description of the provider. Cannot exceed 256 characters.",
+          "description": "Optional. A description of the provider. Cannot exceed 256 characters.",
           "type": "string"
         },
         "detailedAuditLogging": {
@@ -6318,18 +6318,18 @@
           "type": "boolean"
         },
         "displayName": {
-          "description": "Optional. A user-specified display name for the provider. Cannot exceed 32 characters.",
+          "description": "Optional. A display name for the provider. Cannot exceed 32 characters.",
           "type": "string"
         },
         "expireTime": {
-          "description": "Output only. Time after which the workload pool provider will be permanently purged and cannot be recovered.",
+          "description": "Output only. Time after which the workforce identity pool provider will be permanently purged and cannot be recovered.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "extendedAttributesOauth2Client": {
           "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client",
-          "description": "Optional. The configuration for OAuth 2.0 client used to get the extended group memberships for user identities. Only the `AZURE_AD_GROUPS_ID` attribute type is supported. Extended groups supports a subset of Google Cloud services. When the user accesses these services, extended group memberships override the mapped `google.groups` attribute. Extended group memberships cannot be used in attribute mapping or attribute condition expressions. To keep extended group memberships up to date, extended groups are retrieved when the user signs in and at regular intervals during the user's active session. Each user identity in the workforce identity pool must map to a specific, unique Microsoft Entra ID user."
+          "description": "Optional. The configuration for OAuth 2.0 client used to get the extended group memberships for user identities. Only the `AZURE_AD_GROUPS_ID` attribute type is supported. Extended groups supports a subset of Google Cloud services. When the user accesses these services, extended group memberships override the mapped `google.groups` attribute. Extended group memberships cannot be used in attribute mapping or attribute condition expressions. To keep extended group memberships up to date, extended groups are retrieved when the user signs in and at regular intervals during the user's active session. Each user identity in the workforce identity pool must map to a unique Microsoft Entra ID user."
         },
         "extraAttributesOauth2Client": {
           "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client",
@@ -6430,11 +6430,11 @@
           "type": "object"
         },
         "description": {
-          "description": "Optional. The user-specified description of the scim tenant. Cannot exceed 256 characters.",
+          "description": "Optional. The description of the scim tenant. Cannot exceed 256 characters.",
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. The user-specified display name of the scim tenant. Cannot exceed 32 characters.",
+          "description": "Optional. The display name of the scim tenant. Cannot exceed 32 characters.",
           "type": "string"
         },
         "name": {
@@ -6470,7 +6470,7 @@
       "id": "WorkforcePoolProviderScimToken",
       "properties": {
         "displayName": {
-          "description": "Optional. The user-specified display name of the scim token. Cannot exceed 32 characters.",
+          "description": "Optional. The display name of the scim token. Cannot exceed 32 characters.",
           "type": "string"
         },
         "name": {

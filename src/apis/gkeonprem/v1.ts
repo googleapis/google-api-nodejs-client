@@ -1985,6 +1985,10 @@ export namespace gkeonprem_v1 {
      */
     privateRegistryConfig?: Schema$VmwareAdminPrivateRegistryConfig;
     /**
+     * Configuration for proxy.
+     */
+    proxy?: Schema$VmwareAdminProxy;
+    /**
      * Output only. If set, there are currently changes in flight to the VMware admin cluster.
      */
     reconciling?: boolean | null;
@@ -2166,6 +2170,19 @@ export namespace gkeonprem_v1 {
      * When the container runtime pulls an image from private registry, the registry must prove its identity by presenting a certificate. The registry's certificate is signed by a certificate authority (CA). The container runtime uses the CA's certificate to validate the registry's certificate.
      */
     caCert?: string | null;
+  }
+  /**
+   * VmwareAdminProxy represents configuration for admin cluster proxy.
+   */
+  export interface Schema$VmwareAdminProxy {
+    /**
+     * A comma-separated list of IP addresses, IP address ranges, host names, and domain names that should not go through the proxy server. When Google Distributed Cloud sends a request to one of these addresses, hosts, or domains, the request is sent directly.
+     */
+    noProxy?: string | null;
+    /**
+     * The HTTP address of proxy server.
+     */
+    url?: string | null;
   }
   /**
    * VmwareSeesawConfig represents configuration parameters for an already existing Seesaw load balancer. IMPORTANT: Please note that the Anthos On-Prem API will not generate or update Seesaw configurations it can only bind a pre-existing configuration to a new user cluster. IMPORTANT: When attempting to create a user cluster with a pre-existing Seesaw load balancer you will need to follow some preparation steps before calling the 'CreateVmwareCluster' API method. First you will need to create the user cluster's namespace via kubectl. The namespace will need to use the following naming convention : -gke-onprem-mgmt or -gke-onprem-mgmt depending on whether you used the 'VmwareCluster.local_name' to disambiguate collisions; for more context see the documentation of 'VmwareCluster.local_name'. Once the namespace is created you will need to create a secret resource via kubectl. This secret will contain copies of your Seesaw credentials. The Secret must be called 'user-cluster-creds' and contain Seesaw's SSH and Cert credentials. The credentials must be keyed with the following names: 'seesaw-ssh-private-key', 'seesaw-ssh-public-key', 'seesaw-ssh-ca-key', 'seesaw-ssh-ca-cert'.
@@ -3146,7 +3163,7 @@ export namespace gkeonprem_v1 {
      *
      *   // Do the magic
      *   const res = await gkeonprem.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3274,7 +3291,7 @@ export namespace gkeonprem_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -10424,6 +10441,7 @@ export namespace gkeonprem_v1 {
      *       //   "platformConfig": {},
      *       //   "preparedSecrets": {},
      *       //   "privateRegistryConfig": {},
+     *       //   "proxy": {},
      *       //   "reconciling": false,
      *       //   "state": "my_state",
      *       //   "status": {},
@@ -10757,6 +10775,7 @@ export namespace gkeonprem_v1 {
      *   //   "platformConfig": {},
      *   //   "preparedSecrets": {},
      *   //   "privateRegistryConfig": {},
+     *   //   "proxy": {},
      *   //   "reconciling": false,
      *   //   "state": "my_state",
      *   //   "status": {},
@@ -11222,6 +11241,7 @@ export namespace gkeonprem_v1 {
      *       //   "platformConfig": {},
      *       //   "preparedSecrets": {},
      *       //   "privateRegistryConfig": {},
+     *       //   "proxy": {},
      *       //   "reconciling": false,
      *       //   "state": "my_state",
      *       //   "status": {},

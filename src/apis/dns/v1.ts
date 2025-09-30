@@ -714,7 +714,7 @@ export namespace dns_v1 {
      */
     description?: string | null;
     /**
-     * Configurations related to DNS64 for this Policy.
+     * Configurations related to DNS64 for this policy.
      */
     dns64Config?: Schema$PolicyDns64Config;
     /**
@@ -773,7 +773,7 @@ export namespace dns_v1 {
   }
   export interface Schema$PolicyDns64ConfigScope {
     /**
-     * Controls whether DNS64 is enabled globally at the network level.
+     * Controls whether DNS64 is enabled globally for all networks bound to the policy.
      */
     allQueries?: boolean | null;
     kind?: string | null;
@@ -4064,7 +4064,7 @@ export namespace dns_v1 {
     }
 
     /**
-     * Creates a new Policy.
+     * Creates a new policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -4229,7 +4229,7 @@ export namespace dns_v1 {
     }
 
     /**
-     * Deletes a previously created Policy. Fails if the policy is still being referenced by a network.
+     * Deletes a previously created policy. Fails if the policy is still being referenced by a network.
      * @example
      * ```js
      * // Before running the sample:
@@ -4364,7 +4364,7 @@ export namespace dns_v1 {
     }
 
     /**
-     * Fetches the representation of an existing Policy.
+     * Fetches the representation of an existing policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -4516,7 +4516,7 @@ export namespace dns_v1 {
     }
 
     /**
-     * Enumerates all Policies associated with a project.
+     * Enumerates all policies associated with a project.
      * @example
      * ```js
      * // Before running the sample:
@@ -4665,7 +4665,7 @@ export namespace dns_v1 {
     }
 
     /**
-     * Applies a partial update to an existing Policy.
+     * Applies a partial update to an existing policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -4825,7 +4825,7 @@ export namespace dns_v1 {
     }
 
     /**
-     * Updates an existing Policy.
+     * Updates an existing policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -5767,13 +5767,13 @@ export namespace dns_v1 {
      *     managedZone: 'placeholder-value',
      *     // Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
      *     maxResults: 'placeholder-value',
-     *     // Restricts the list to return only records with this fully qualified domain name.
+     *     // Restricts the list to return only records with this fully qualified domain name. Mutually exclusive with the {@code filter\} field.
      *     name: 'placeholder-value',
      *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      *     pageToken: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
-     *     // Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
+     *     // Restricts the list to return only records of this type. If present, the "name" parameter must also be present. Mutually exclusive with the {@code filter\} field.
      *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6133,7 +6133,7 @@ export namespace dns_v1 {
      */
     maxResults?: number;
     /**
-     * Restricts the list to return only records with this fully qualified domain name.
+     * Restricts the list to return only records with this fully qualified domain name. Mutually exclusive with the {@code filter\} field.
      */
     name?: string;
     /**
@@ -6145,7 +6145,7 @@ export namespace dns_v1 {
      */
     project?: string;
     /**
-     * Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
+     * Restricts the list to return only records of this type. If present, the "name" parameter must also be present. Mutually exclusive with the {@code filter\} field.
      */
     type?: string;
   }

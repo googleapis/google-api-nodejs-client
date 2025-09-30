@@ -338,11 +338,11 @@ export namespace workloadmanager_v1 {
      */
     instanceProperties?: Schema$InstanceProperties;
     /**
-     * Output only. ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.
+     * Output only.
      */
     kind?: string | null;
     /**
-     * Output only. resource name
+     * Output only. resource name Example: compute.googleapis.com/projects/wlm-obs-dev/zones/us-central1-a/instances/sap-pri
      */
     name?: string | null;
   }
@@ -583,9 +583,13 @@ export namespace workloadmanager_v1 {
      */
     agentStatus?: Schema$AgentStatus;
     /**
-     * Required. The instance id where the insight is generated from
+     * Optional. The instance id where the insight is generated from
      */
     instanceId?: string | null;
+    /**
+     * The insights data for the OpenShift workload validation.
+     */
+    openShiftValidation?: Schema$OpenShiftValidation;
     /**
      * The insights data for SAP system discovery. This is a copy of SAP System proto and should get updated whenever that one changes.
      */
@@ -787,6 +791,10 @@ export namespace workloadmanager_v1 {
     message?: string | null;
   }
   /**
+   * A presentation of OpenShift workload insight. The schema of OpenShift workloads validation related data.
+   */
+  export interface Schema$OpenShiftValidation {}
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -940,6 +948,10 @@ export namespace workloadmanager_v1 {
      * Output only. the version of the rule
      */
     revisionId?: string | null;
+    /**
+     * The type of the rule.
+     */
+    ruleType?: string | null;
     /**
      * the secondary category
      */
@@ -1592,7 +1604,7 @@ export namespace workloadmanager_v1 {
      */
     agentVersion?: string | null;
     /**
-     * Required. instance_name lists the human readable name of the instance that the data comes from.
+     * Optional. instance_name lists the human readable name of the instance that the data comes from.
      */
     instanceName?: string | null;
     /**
@@ -1897,7 +1909,7 @@ export namespace workloadmanager_v1 {
      *
      *   // Do the magic
      *   const res = await workloadmanager.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2026,7 +2038,7 @@ export namespace workloadmanager_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**

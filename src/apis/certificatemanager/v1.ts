@@ -138,6 +138,10 @@ export namespace certificatemanager_v1 {
    */
   export interface Schema$AuthorizationAttemptInfo {
     /**
+     * Output only. The timestamp, when the authorization attempt was made.
+     */
+    attemptTime?: string | null;
+    /**
      * Output only. Human readable explanation for reaching the state. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use FailureReason enum.
      */
     details?: string | null;
@@ -153,6 +157,10 @@ export namespace certificatemanager_v1 {
      * Output only. State of the domain for managed certificate issuance.
      */
     state?: string | null;
+    /**
+     * Output only. Troubleshooting information for the authorization attempt. This field is only populated if the authorization attempt failed.
+     */
+    troubleshooting?: Schema$Troubleshooting;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -341,6 +349,23 @@ export namespace certificatemanager_v1 {
     updateTime?: string | null;
   }
   /**
+   * CNAME troubleshooting information.
+   */
+  export interface Schema$CNAME {
+    /**
+     * Output only. The expected value of the CNAME record for the domain, equals to `dns_resource_record.data` in the corresponding `DnsAuthorization`.
+     */
+    expectedData?: string | null;
+    /**
+     * Output only. The name of the CNAME record for the domain, equals to `dns_resource_record.name` in the corresponding `DnsAuthorization`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The resolved CNAME chain. Empty list if the CNAME record for `CNAME.name` is not found. Otherwise the first item is the value of the CNAME record for `CNAME.name`. If the CNAME chain is longer, the second item is the value of the CNAME record for the first item, and so on.
+     */
+    resolvedData?: string[] | null;
+  }
+  /**
    * A DnsAuthorization resource describes a way to perform domain authorization for certificate issuance.
    */
   export interface Schema$DnsAuthorization {
@@ -436,6 +461,23 @@ export namespace certificatemanager_v1 {
      * Output only. Ports.
      */
     ports?: number[] | null;
+  }
+  /**
+   * IPs troubleshooting information.
+   */
+  export interface Schema$IPs {
+    /**
+     * Output only. The list of IP addresses resolved from the domain's A/AAAA records. Can contain both ipv4 and ipv6 addresses.
+     */
+    resolved?: string[] | null;
+    /**
+     * Output only. The list of IP addresses, where the certificate is attached and port 443 is open.
+     */
+    serving?: string[] | null;
+    /**
+     * Output only. The list of IP addresses, where the certificate is attached, but port 443 is not open.
+     */
+    servingOnAltPorts?: string[] | null;
   }
   /**
    * Response for the `ListCertificateIssuanceConfigs` method.
@@ -721,6 +763,23 @@ export namespace certificatemanager_v1 {
     message?: string | null;
   }
   /**
+   * Troubleshooting information for the authorization attempt.
+   */
+  export interface Schema$Troubleshooting {
+    /**
+     * Output only. CNAME troubleshooting information.
+     */
+    cname?: Schema$CNAME;
+    /**
+     * Output only. IPs troubleshooting information.
+     */
+    ips?: Schema$IPs;
+    /**
+     * Output only. The list of issues discovered during the authorization attempt.
+     */
+    issues?: string[] | null;
+  }
+  /**
    * Defines a trust anchor.
    */
   export interface Schema$TrustAnchor {
@@ -998,7 +1057,7 @@ export namespace certificatemanager_v1 {
      *
      *   // Do the magic
      *   const res = await certificatemanager.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1127,7 +1186,7 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
