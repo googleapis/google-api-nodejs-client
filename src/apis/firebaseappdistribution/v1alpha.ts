@@ -185,6 +185,10 @@ export namespace firebaseappdistribution_v1alpha {
      * Optional. A description of criteria the agent should use to determine if the goal has been successfully completed
      */
     successCriteria?: string | null;
+    /**
+     * Output only. The test case that contained this step. Note: The test case may have changed or been deleted since this step was created. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
+     */
+    testCase?: string | null;
   }
   /**
    * Captures the results of an AiStep
@@ -353,6 +357,10 @@ export namespace firebaseappdistribution_v1alpha {
      * Output only. The state of the test.
      */
     state?: string | null;
+    /**
+     * Output only. The time at which the video started recording.
+     */
+    videoStartTime?: string | null;
     /**
      * Output only. A URI to a video of the test run.
      */
@@ -524,7 +532,11 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaGoalAction {
     /**
-     * Output only. Debug information explaining why the agent to the specific action
+     * Output only. The type of caching used to determine the action.
+     */
+    cachingType?: string | null;
+    /**
+     * Output only. Debug information explaining why the agent to the specific action.
      */
     debugInfo?: Schema$GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo;
     /**
@@ -536,20 +548,24 @@ export namespace firebaseappdistribution_v1alpha {
      */
     explanation?: string | null;
     /**
+     * Output only. The time at which the action started.
+     */
+    startTime?: string | null;
+    /**
      * Output only. An action taken by the AI to end the goal.
      */
     terminalAction?: Schema$GoogleFirebaseAppdistroV1alphaTerminalAction;
   }
   /**
-   * Information to help the customer understand why the agent took this action
+   * Information to help the customer understand why the agent took this action.
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo {
     /**
-     * Output only. URI of the screenshot with elements labeled which was used by the agent
+     * Output only. URI of the screenshot with elements labeled which was used by the agent.
      */
     annotatedScreenshotUri?: string | null;
     /**
-     * Output only. Structured data explaining the agent's choice
+     * Output only. Structured data explaining the agent's choice.
      */
     jsonUri?: string | null;
   }
@@ -690,7 +706,7 @@ export namespace firebaseappdistribution_v1alpha {
     releaseNotes?: string | null;
   }
   /**
-   * The results of running an automated test on a release.
+   * Instance of an automated test for a release.
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaReleaseTest {
     /**
@@ -803,7 +819,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     createTime?: string | null;
     /**
-     * Output only. Other test cases that depend on this test cse as a prerequisite.
+     * Output only. Other test cases that depend on this test case as a prerequisite.
      */
     dependentTestCases?: string[] | null;
     /**
@@ -4173,6 +4189,8 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.testCases.patch({
+     *     // Optional. If set to true, and the test case is not found, a new test case will be created.
+     *     allowMissing: 'placeholder-value',
      *     // Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
      *     name: 'projects/my-project/apps/my-app/testCases/my-testCase',
      *
@@ -4365,6 +4383,10 @@ export namespace firebaseappdistribution_v1alpha {
   }
   export interface Params$Resource$Projects$Apps$Testcases$Patch
     extends StandardParameters {
+    /**
+     * Optional. If set to true, and the test case is not found, a new test case will be created.
+     */
+    allowMissing?: boolean;
     /**
      * Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
      */
