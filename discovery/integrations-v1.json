@@ -2011,6 +2011,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "test": {
+                      "description": "Execute the integration in draft state",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}:test",
+                      "httpMethod": "POST",
+                      "id": "integrations.projects.locations.integrations.versions.test",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. Auto-generated primary key.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:test",
+                      "request": {
+                        "$ref": "GoogleCloudIntegrationsV1alphaTestIntegrationsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudIntegrationsV1alphaTestIntegrationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "unpublish": {
                       "description": "Sets the status of the ACTIVE integration to SNAPSHOT with a new tag \"PREVIOUSLY_PUBLISHED\" after validating it. The \"HEAD\" and \"PUBLISH_REQUESTED\" tags do not change. This RPC throws an exception if the version being snapshot is not ACTIVE. Audit fields added include action, action_by, action_timestamp.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}:unpublish",
@@ -4640,7 +4668,7 @@
       }
     }
   },
-  "revision": "20250720",
+  "revision": "20250922",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
