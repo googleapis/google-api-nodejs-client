@@ -789,7 +789,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1CloneDatabaseRequest {
     /**
-     * Required. The ID to use for the database, which will become the final component of the database's resource name. This database ID must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database ID is also valid.
+     * Required. The ID to use for the database, which will become the final component of the database's resource name. This database ID must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database ID is also valid if the database is Standard edition.
      */
     databaseId?: string | null;
     /**
@@ -876,6 +876,10 @@ export namespace firestore_v1 {
      */
     etag?: string | null;
     /**
+     * Optional. The Firestore API data access mode to use for this database. If not set on write: - the default value is DATA_ACCESS_MODE_DISABLED for Enterprise Edition. - the default value is DATA_ACCESS_MODE_ENABLED for Standard Edition.
+     */
+    firestoreDataAccessMode?: string | null;
+    /**
      * Output only. Background: Free tier is the ability of a Firestore database to use a small amount of resources every day without being charged. Once usage exceeds the free tier limit further usage is charged. Whether this database can make use of the free tier. Only one database per project can be eligible for the free tier. The first (or next) database that is created in a project without a free tier database will be marked as eligible for the free tier. Databases that are created while there is a free tier database will not be eligible for the free tier.
      */
     freeTier?: boolean | null;
@@ -888,6 +892,10 @@ export namespace firestore_v1 {
      */
     locationId?: string | null;
     /**
+     * Optional. The MongoDB compatible API data access mode to use for this database. If not set on write, the default value is DATA_ACCESS_MODE_ENABLED for Enterprise Edition. The value is always DATA_ACCESS_MODE_DISABLED for Standard Edition.
+     */
+    mongodbCompatibleDataAccessMode?: string | null;
+    /**
      * The resource name of the Database. Format: `projects/{project\}/databases/{database\}`
      */
     name?: string | null;
@@ -899,6 +907,10 @@ export namespace firestore_v1 {
      * Output only. The database resource's prior database ID. This field is only populated for deleted databases.
      */
     previousId?: string | null;
+    /**
+     * Immutable. The default Realtime Updates mode to use for this database.
+     */
+    realtimeUpdatesMode?: string | null;
     /**
      * Output only. Information about the provenance of this database.
      */
@@ -1420,7 +1432,7 @@ export namespace firestore_v1 {
      */
     backup?: string | null;
     /**
-     * Required. The ID to use for the database, which will become the final component of the database's resource name. This database ID must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database ID is also valid.
+     * Required. The ID to use for the database, which will become the final component of the database's resource name. This database ID must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database ID is also valid if the database is Standard edition.
      */
     databaseId?: string | null;
     /**
@@ -2629,7 +2641,7 @@ export namespace firestore_v1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.create({
-     *     // Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database ID is also valid.
+     *     // Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database ID is also valid if the database is Standard edition.
      *     databaseId: 'placeholder-value',
      *     // Required. A parent name of the form `projects/{project_id\}`
      *     parent: 'projects/my-project',
@@ -2647,12 +2659,15 @@ export namespace firestore_v1 {
      *       //   "deleteTime": "my_deleteTime",
      *       //   "earliestVersionTime": "my_earliestVersionTime",
      *       //   "etag": "my_etag",
+     *       //   "firestoreDataAccessMode": "my_firestoreDataAccessMode",
      *       //   "freeTier": false,
      *       //   "keyPrefix": "my_keyPrefix",
      *       //   "locationId": "my_locationId",
+     *       //   "mongodbCompatibleDataAccessMode": "my_mongodbCompatibleDataAccessMode",
      *       //   "name": "my_name",
      *       //   "pointInTimeRecoveryEnablement": "my_pointInTimeRecoveryEnablement",
      *       //   "previousId": "my_previousId",
+     *       //   "realtimeUpdatesMode": "my_realtimeUpdatesMode",
      *       //   "sourceInfo": {},
      *       //   "tags": {},
      *       //   "type": "my_type",
@@ -3129,12 +3144,15 @@ export namespace firestore_v1 {
      *   //   "deleteTime": "my_deleteTime",
      *   //   "earliestVersionTime": "my_earliestVersionTime",
      *   //   "etag": "my_etag",
+     *   //   "firestoreDataAccessMode": "my_firestoreDataAccessMode",
      *   //   "freeTier": false,
      *   //   "keyPrefix": "my_keyPrefix",
      *   //   "locationId": "my_locationId",
+     *   //   "mongodbCompatibleDataAccessMode": "my_mongodbCompatibleDataAccessMode",
      *   //   "name": "my_name",
      *   //   "pointInTimeRecoveryEnablement": "my_pointInTimeRecoveryEnablement",
      *   //   "previousId": "my_previousId",
+     *   //   "realtimeUpdatesMode": "my_realtimeUpdatesMode",
      *   //   "sourceInfo": {},
      *   //   "tags": {},
      *   //   "type": "my_type",
@@ -3605,12 +3623,15 @@ export namespace firestore_v1 {
      *       //   "deleteTime": "my_deleteTime",
      *       //   "earliestVersionTime": "my_earliestVersionTime",
      *       //   "etag": "my_etag",
+     *       //   "firestoreDataAccessMode": "my_firestoreDataAccessMode",
      *       //   "freeTier": false,
      *       //   "keyPrefix": "my_keyPrefix",
      *       //   "locationId": "my_locationId",
+     *       //   "mongodbCompatibleDataAccessMode": "my_mongodbCompatibleDataAccessMode",
      *       //   "name": "my_name",
      *       //   "pointInTimeRecoveryEnablement": "my_pointInTimeRecoveryEnablement",
      *       //   "previousId": "my_previousId",
+     *       //   "realtimeUpdatesMode": "my_realtimeUpdatesMode",
      *       //   "sourceInfo": {},
      *       //   "tags": {},
      *       //   "type": "my_type",
@@ -3915,7 +3936,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Create
     extends StandardParameters {
     /**
-     * Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database ID is also valid.
+     * Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database ID is also valid if the database is Standard edition.
      */
     databaseId?: string;
     /**
@@ -10927,7 +10948,7 @@ export namespace firestore_v1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -11055,7 +11076,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
