@@ -201,6 +201,10 @@ export namespace recaptchaenterprise_v1 {
      */
     hashedAccountId?: string | null;
     /**
+     * Optional. If using an external multi-factor authentication provider, provide phone authentication details for fraud detection purposes.
+     */
+    phoneAuthenticationEvent?: Schema$GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent;
+    /**
      * Optional. Reasons for the annotation that are assigned to the event.
      */
     reasons?: string[] | null;
@@ -794,6 +798,19 @@ export namespace recaptchaenterprise_v1 {
      * Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha/docs/billing-information.
      */
     skipBillingCheck?: boolean | null;
+  }
+  /**
+   * Details on a phone authentication event
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent {
+    /**
+     * Optional. The time at which the multi-factor authentication event (challenge or verification) occurred.
+     */
+    eventTime?: string | null;
+    /**
+     * Required. Phone number in E.164 format for which a multi-factor authentication challenge was initiated, succeeded, or failed.
+     */
+    phoneNumber?: string | null;
   }
   /**
    * Assessment for Phone Fraud
@@ -1399,6 +1416,7 @@ export namespace recaptchaenterprise_v1 {
      *       //   "accountId": "my_accountId",
      *       //   "annotation": "my_annotation",
      *       //   "hashedAccountId": "my_hashedAccountId",
+     *       //   "phoneAuthenticationEvent": {},
      *       //   "reasons": [],
      *       //   "transactionEvent": {}
      *       // }
