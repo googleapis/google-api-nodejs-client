@@ -1499,7 +1499,7 @@ export namespace iam_v1 {
      */
     accessRestrictions?: Schema$AccessRestrictions;
     /**
-     * Optional. A user-specified description of the pool. Cannot exceed 256 characters.
+     * Optional. A description of the pool. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
@@ -1507,7 +1507,7 @@ export namespace iam_v1 {
      */
     disabled?: boolean | null;
     /**
-     * Optional. A user-specified display name of the pool in Google Cloud Console. Cannot exceed 32 characters.
+     * Optional. A display name for the pool. Cannot exceed 32 characters.
      */
     displayName?: string | null;
     /**
@@ -1544,7 +1544,7 @@ export namespace iam_v1 {
      */
     attributeMapping?: {[key: string]: string} | null;
     /**
-     * Optional. A user-specified description of the provider. Cannot exceed 256 characters.
+     * Optional. A description of the provider. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
@@ -1556,15 +1556,15 @@ export namespace iam_v1 {
      */
     disabled?: boolean | null;
     /**
-     * Optional. A user-specified display name for the provider. Cannot exceed 32 characters.
+     * Optional. A display name for the provider. Cannot exceed 32 characters.
      */
     displayName?: string | null;
     /**
-     * Output only. Time after which the workload pool provider will be permanently purged and cannot be recovered.
+     * Output only. Time after which the workforce identity pool provider will be permanently purged and cannot be recovered.
      */
     expireTime?: string | null;
     /**
-     * Optional. The configuration for OAuth 2.0 client used to get the extended group memberships for user identities. Only the `AZURE_AD_GROUPS_ID` attribute type is supported. Extended groups supports a subset of Google Cloud services. When the user accesses these services, extended group memberships override the mapped `google.groups` attribute. Extended group memberships cannot be used in attribute mapping or attribute condition expressions. To keep extended group memberships up to date, extended groups are retrieved when the user signs in and at regular intervals during the user's active session. Each user identity in the workforce identity pool must map to a specific, unique Microsoft Entra ID user.
+     * Optional. The configuration for OAuth 2.0 client used to get the extended group memberships for user identities. Only the `AZURE_AD_GROUPS_ID` attribute type is supported. Extended groups supports a subset of Google Cloud services. When the user accesses these services, extended group memberships override the mapped `google.groups` attribute. Extended group memberships cannot be used in attribute mapping or attribute condition expressions. To keep extended group memberships up to date, extended groups are retrieved when the user signs in and at regular intervals during the user's active session. Each user identity in the workforce identity pool must map to a unique Microsoft Entra ID user.
      */
     extendedAttributesOauth2Client?: Schema$GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client;
     /**
@@ -1626,11 +1626,11 @@ export namespace iam_v1 {
      */
     claimMapping?: {[key: string]: string} | null;
     /**
-     * Optional. The user-specified description of the scim tenant. Cannot exceed 256 characters.
+     * Optional. The description of the scim tenant. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
-     * Optional. The user-specified display name of the scim tenant. Cannot exceed 32 characters.
+     * Optional. The display name of the scim tenant. Cannot exceed 32 characters.
      */
     displayName?: string | null;
     /**
@@ -1651,7 +1651,7 @@ export namespace iam_v1 {
    */
   export interface Schema$WorkforcePoolProviderScimToken {
     /**
-     * Optional. The user-specified display name of the scim token. Cannot exceed 32 characters.
+     * Optional. The display name of the scim token. Cannot exceed 32 characters.
      */
     displayName?: string | null;
     /**
@@ -2814,7 +2814,7 @@ export namespace iam_v1 {
      *   const res = await iam.locations.workforcePools.list({
      *     // The location of the pool. Format: `locations/{location\}`.
      *     location: 'locations/my-location',
-     *     // The maximum number of pools to return. If unspecified, at most 50 pools will be returned. The maximum value is 1000; values above 1000 are truncated to 1000.
+     *     // The maximum number of pools to return. The default value is 50. The maximum value is 100.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListWorkforcePools` call. Provide this to retrieve the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -3583,7 +3583,7 @@ export namespace iam_v1 {
      */
     location?: string;
     /**
-     * The maximum number of pools to return. If unspecified, at most 50 pools will be returned. The maximum value is 1000; values above 1000 are truncated to 1000.
+     * The maximum number of pools to return. The default value is 50. The maximum value is 100.
      */
     pageSize?: number;
     /**
