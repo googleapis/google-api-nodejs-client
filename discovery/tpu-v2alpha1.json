@@ -172,7 +172,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -813,6 +813,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getMaintenanceInfo": {
+                  "description": "Gets the maintenance info for a queued resource.",
+                  "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/queuedResources/{queuedResourcesId}:getMaintenanceInfo",
+                  "httpMethod": "GET",
+                  "id": "tpu.projects.locations.queuedResources.getMaintenanceInfo",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The QueuedResource name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/queuedResources/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha1/{+name}:getMaintenanceInfo",
+                  "response": {
+                    "$ref": "GetMaintenanceInfoResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists queued resources.",
                   "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/queuedResources",
@@ -1027,7 +1052,7 @@
       }
     }
   },
-  "revision": "20250815",
+  "revision": "20250918",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1177,6 +1202,10 @@
         "sourceImage": {
           "description": "Optional. Image from which boot disk is to be created. If not specified, the default image for the runtime version will be used. Example: `projects/$PROJECT_ID/global/images/$IMAGE_NAME`.",
           "type": "string"
+        },
+        "storagePool": {
+          "description": "Optional. The storage pool in which the boot disk is created. You can provide this as a partial or full URL to the resource.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1264,6 +1293,20 @@
           "description": "The guest attributes for the TPU workers.",
           "items": {
             "$ref": "GuestAttributes"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GetMaintenanceInfoResponse": {
+      "description": "Response for GetMaintenanceInfo.",
+      "id": "GetMaintenanceInfoResponse",
+      "properties": {
+        "nodeUpcomingMaintenances": {
+          "description": "The list of upcoming maintenance entries.",
+          "items": {
+            "$ref": "NodeUpcomingMaintenanceInfo"
           },
           "type": "array"
         }
@@ -1851,6 +1894,26 @@
         "parent": {
           "description": "Required. The parent resource name.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NodeUpcomingMaintenanceInfo": {
+      "description": "A tuple containing node name / ID and maintenance info.",
+      "id": "NodeUpcomingMaintenanceInfo",
+      "properties": {
+        "nodeName": {
+          "description": "Unqualified node name.",
+          "type": "string"
+        },
+        "nodeUid": {
+          "description": "UID of this node.",
+          "format": "int64",
+          "type": "string"
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance",
+          "description": "Upcoming maintenance info for this node."
         }
       },
       "type": "object"
