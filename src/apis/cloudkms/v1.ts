@@ -1477,7 +1477,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Returns the AutokeyConfig for a folder.
+     * Returns the AutokeyConfig for a folder or project.
      * @example
      * ```js
      * // Before running the sample:
@@ -1510,7 +1510,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.folders.getAutokeyConfig({
-     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
+     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      *     name: 'folders/my-folder/autokeyConfig',
      *   });
      *   console.log(res.data);
@@ -2084,7 +2084,7 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Folders$Getautokeyconfig
     extends StandardParameters {
     /**
-     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
+     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      */
     name?: string;
   }
@@ -2472,6 +2472,148 @@ export namespace cloudkms_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.locations = new Resource$Projects$Locations(this.context);
+    }
+
+    /**
+     * Returns the AutokeyConfig for a folder or project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.getAutokeyConfig({
+     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     name: 'projects/my-project/autokeyConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "keyProject": "my_keyProject",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAutokeyConfig(
+      params: Params$Resource$Projects$Getautokeyconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getAutokeyConfig(
+      params?: Params$Resource$Projects$Getautokeyconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>;
+    getAutokeyConfig(
+      params: Params$Resource$Projects$Getautokeyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAutokeyConfig(
+      params: Params$Resource$Projects$Getautokeyconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$AutokeyConfig>,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    getAutokeyConfig(
+      params: Params$Resource$Projects$Getautokeyconfig,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    getAutokeyConfig(
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    getAutokeyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getautokeyconfig
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getautokeyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getautokeyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutokeyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutokeyConfig>(parameters);
+      }
     }
 
     /**
@@ -3081,6 +3223,161 @@ export namespace cloudkms_v1 {
     }
 
     /**
+     * Updates the AutokeyConfig for a folder. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.updateAutokeyConfig({
+     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     name: 'projects/my-project/autokeyConfig',
+     *     // Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "keyProject": "my_keyProject",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "keyProject": "my_keyProject",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAutokeyConfig(
+      params: Params$Resource$Projects$Updateautokeyconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateAutokeyConfig(
+      params?: Params$Resource$Projects$Updateautokeyconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>;
+    updateAutokeyConfig(
+      params: Params$Resource$Projects$Updateautokeyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAutokeyConfig(
+      params: Params$Resource$Projects$Updateautokeyconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$AutokeyConfig>,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    updateAutokeyConfig(
+      params: Params$Resource$Projects$Updateautokeyconfig,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    updateAutokeyConfig(
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    updateAutokeyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updateautokeyconfig
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updateautokeyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Updateautokeyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutokeyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutokeyConfig>(parameters);
+      }
+    }
+
+    /**
      * Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
      * @example
      * ```js
@@ -3240,6 +3537,13 @@ export namespace cloudkms_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Getautokeyconfig
+    extends StandardParameters {
+    /**
+     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Getkajpolicyconfig
     extends StandardParameters {
     /**
@@ -3267,6 +3571,22 @@ export namespace cloudkms_v1 {
      * Required. The number or id of the project to get the effective KeyAccessJustificationsPolicyConfig. In the format of "projects/{|\}"
      */
     project?: string;
+  }
+  export interface Params$Resource$Projects$Updateautokeyconfig
+    extends StandardParameters {
+    /**
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     */
+    name?: string;
+    /**
+     * Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutokeyConfig;
   }
   export interface Params$Resource$Projects$Updatekajpolicyconfig
     extends StandardParameters {
@@ -3774,7 +4094,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -4070,7 +4390,7 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
