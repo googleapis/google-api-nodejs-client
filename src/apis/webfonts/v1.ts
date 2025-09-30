@@ -142,6 +142,19 @@ export namespace webfonts_v1 {
     tag?: string | null;
   }
   /**
+   * Metadata for a tag.
+   */
+  export interface Schema$Tag {
+    /**
+     * The name of the tag.
+     */
+    name?: string | null;
+    /**
+     * The weight of the tag.
+     */
+    weight?: number | null;
+  }
+  /**
    * Metadata describing a family of fonts.
    */
   export interface Schema$Webfont {
@@ -181,6 +194,10 @@ export namespace webfonts_v1 {
      * The scripts supported by the font.
      */
     subsets?: string[] | null;
+    /**
+     * The tags that apply to this family.
+     */
+    tags?: Schema$Tag[];
     /**
      * The available variants for the font.
      */
