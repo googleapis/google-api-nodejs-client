@@ -316,6 +316,7 @@
     "src/apis/dlp": {},
     "src/apis/css": {},
     "src/apis/policysimulator": {},
-    "src/apis/apigateway": {}
+    "src/apis/apigateway": {},
+    "src/apis/cloudcommerceprocurement": {}
   }
 }
