@@ -747,6 +747,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "allowMissing": {
+                      "description": "Optional. If set to true, and the test case is not found, a new test case will be created.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
                       "location": "path",
@@ -807,7 +812,7 @@
       }
     }
   },
-  "revision": "20250822",
+  "revision": "20250925",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -1000,6 +1005,11 @@
         },
         "successCriteria": {
           "description": "Optional. A description of criteria the agent should use to determine if the goal has been successfully completed",
+          "type": "string"
+        },
+        "testCase": {
+          "description": "Output only. The test case that contained this step. Note: The test case may have changed or been deleted since this step was created. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1311,6 +1321,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "videoStartTime": {
+          "description": "Output only. The time at which the video started recording.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "videoUri": {
           "description": "Output only. A URI to a video of the test run.",
           "readOnly": true,
@@ -1599,9 +1615,26 @@
       "description": "An action taken by the AI agent while attempting to accomplish a goal.",
       "id": "GoogleFirebaseAppdistroV1alphaGoalAction",
       "properties": {
+        "cachingType": {
+          "description": "Output only. The type of caching used to determine the action.",
+          "enum": [
+            "CACHING_TYPE_UNSPECIFIED",
+            "NO_CACHING",
+            "CACHE_AND_MODEL",
+            "CACHE_ONLY"
+          ],
+          "enumDescriptions": [
+            "Caching type unspecified.",
+            "The model alone was used to determine the action with no caching.",
+            "The model used information from a previous successful run to determine the action.",
+            "The action was replayed from a previous successful run without model input."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "debugInfo": {
           "$ref": "GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo",
-          "description": "Output only. Debug information explaining why the agent to the specific action",
+          "description": "Output only. Debug information explaining why the agent to the specific action.",
           "readOnly": true
         },
         "deviceAction": {
@@ -1614,6 +1647,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "startTime": {
+          "description": "Output only. The time at which the action started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "terminalAction": {
           "$ref": "GoogleFirebaseAppdistroV1alphaTerminalAction",
           "description": "Output only. An action taken by the AI to end the goal.",
@@ -1623,16 +1662,16 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo": {
-      "description": "Information to help the customer understand why the agent took this action",
+      "description": "Information to help the customer understand why the agent took this action.",
       "id": "GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo",
       "properties": {
         "annotatedScreenshotUri": {
-          "description": "Output only. URI of the screenshot with elements labeled which was used by the agent",
+          "description": "Output only. URI of the screenshot with elements labeled which was used by the agent.",
           "readOnly": true,
           "type": "string"
         },
         "jsonUri": {
-          "description": "Output only. Structured data explaining the agent's choice",
+          "description": "Output only. Structured data explaining the agent's choice.",
           "readOnly": true,
           "type": "string"
         }
@@ -1809,7 +1848,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaReleaseTest": {
-      "description": "The results of running an automated test on a release.",
+      "description": "Instance of an automated test for a release.",
       "id": "GoogleFirebaseAppdistroV1alphaReleaseTest",
       "properties": {
         "aiInstructions": {
@@ -1978,7 +2017,7 @@
           "type": "string"
         },
         "dependentTestCases": {
-          "description": "Output only. Other test cases that depend on this test cse as a prerequisite.",
+          "description": "Output only. Other test cases that depend on this test case as a prerequisite.",
           "items": {
             "type": "string"
           },
