@@ -530,6 +530,10 @@ export namespace storage_v1 {
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string | null;
+    /**
+     * The list of bucket resource names that could not be reached during the listing operation.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The storage layout configuration of a bucket.
@@ -4566,6 +4570,8 @@ export namespace storage_v1 {
      *     project: 'placeholder-value',
      *     // Set of properties to return. Defaults to noAcl.
      *     projection: 'placeholder-value',
+     *     // If true, return a list of bucket resource names for buckets that are in unreachable locations.
+     *     returnPartialSuccess: 'placeholder-value',
      *     // If true, only soft-deleted bucket versions will be returned. The default is false. For more information, see [Soft Delete](https://cloud.google.com/storage/docs/soft-delete).
      *     softDeleted: 'placeholder-value',
      *     // The project to be billed for this request.
@@ -4577,7 +4583,8 @@ export namespace storage_v1 {
      *   // {
      *   //   "items": [],
      *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken"
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -6098,6 +6105,10 @@ export namespace storage_v1 {
      * Set of properties to return. Defaults to noAcl.
      */
     projection?: string;
+    /**
+     * If true, return a list of bucket resource names for buckets that are in unreachable locations.
+     */
+    returnPartialSuccess?: boolean;
     /**
      * If true, only soft-deleted bucket versions will be returned. The default is false. For more information, see [Soft Delete](https://cloud.google.com/storage/docs/soft-delete).
      */
