@@ -192,7 +192,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2117,7 +2117,7 @@
       }
     }
   },
-  "revision": "20250815",
+  "revision": "20250907",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2510,8 +2510,7 @@
             "IN_PROGRESS",
             "SOAKING",
             "FORCED_SOAKING",
-            "COMPLETE",
-            "FORCED_COMPLETE"
+            "COMPLETE"
           ],
           "enumDescriptions": [
             "Required by https://linter.aip.dev/126/unspecified.",
@@ -2520,8 +2519,7 @@
             "The upgrade is in progress. At the scope level, this means the upgrade is in progress for at least one cluster in the scope.",
             "The upgrade has finished and is soaking until the soaking time is up. At the scope level, this means at least one cluster is in soaking while the rest are either soaking or complete.",
             "A cluster will be forced to enter soaking if an upgrade doesn't finish within a certain limit, despite it's actual status.",
-            "The upgrade has passed all post conditions (soaking). At the scope level, this means all eligible clusters are in COMPLETE status.",
-            "The upgrade was forced into soaking and the soaking time has passed. This is the equivalent of COMPLETE status for upgrades that were forced into soaking."
+            "The upgrade has passed all post conditions (soaking). At the scope level, this means all eligible clusters are in COMPLETE status."
           ],
           "type": "string"
         },
@@ -6083,8 +6081,12 @@
           "description": "Optional. The Connect agent version to use for connect_resources. Defaults to the latest GKE Connect version. The version must be a currently supported version, obsolete versions will be rejected.",
           "type": "string"
         },
+        "k8sGitVersion": {
+          "description": "Optional. Git version of the Kubernetes cluster. This is only used to gate the Connect Agent migration to svc.id.goog on GDC-SO 1.33.100 patch and above.",
+          "type": "string"
+        },
         "k8sVersion": {
-          "description": "Optional. Major version of the Kubernetes cluster. This is only used to determine which version to use for the CustomResourceDefinition resources, `apiextensions/v1beta1` or`apiextensions/v1`.",
+          "description": "Optional. Major and minor version of the Kubernetes cluster. This is only used to determine which version to use for the CustomResourceDefinition resources, `apiextensions/v1beta1` or`apiextensions/v1`.",
           "type": "string"
         },
         "v1beta1Crd": {
