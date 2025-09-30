@@ -4407,7 +4407,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -8027,6 +8027,130 @@
                     "https://www.googleapis.com/auth/dialogflow"
                   ]
                 }
+              },
+              "resources": {
+                "evaluations": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates evaluation of a generator.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/generators/{generatorsId}/evaluations",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.generators.evaluations.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The generator resource name. Format: `projects//locations//generators/`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/generators/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/evaluations",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowV2GeneratorEvaluation"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes an evaluation of generator.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/generators/{generatorsId}/evaluations/{evaluationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "dialogflow.projects.locations.generators.evaluations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The generator evaluation resource name. Format: `projects//locations//generators// evaluations/`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/generators/[^/]+/evaluations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets an evaluation of generator.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/generators/{generatorsId}/evaluations/{evaluationsId}",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.generators.evaluations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The generator evaluation resource name. Format: `projects//locations//generators//evaluations/`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/generators/[^/]+/evaluations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowV2GeneratorEvaluation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists evaluations of generator.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/generators/{generatorsId}/evaluations",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.generators.evaluations.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Maximum number of evaluations to return in a single page. By default 100 and at most 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value returned from a previous list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The generator resource name. Format: `projects//locations//generators/` Wildcard value `-` is supported on generator_id to list evaluations across all generators under same project.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/generators/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/evaluations",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "knowledgeBases": {
@@ -8962,7 +9086,7 @@
       }
     }
   },
-  "revision": "20250812",
+  "revision": "20250919",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -15948,6 +16072,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2EvaluationStatus": {
+      "description": "A common evalaution pipeline status.",
+      "id": "GoogleCloudDialogflowV2EvaluationStatus",
+      "properties": {
+        "done": {
+          "description": "Output only. If the value is `false`, it means the evaluation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "pipelineStatus": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Output only. The error result of the evaluation in case of failure in evaluation pipeline.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2EventInput": {
       "description": "Events allow for matching intents by event name instead of the natural language input. For instance, input `` can trigger a personalized welcome response. The parameter `name` may be used by the agent in the response: `\"Hello #welcome_event.name! What can I do for you today?\"`.",
       "id": "GoogleCloudDialogflowV2EventInput",
@@ -16490,6 +16631,199 @@
         "updateTime": {
           "description": "Output only. Update time of this generator.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GeneratorEvaluation": {
+      "description": "Represents evaluation result of a generator.",
+      "id": "GoogleCloudDialogflowV2GeneratorEvaluation",
+      "properties": {
+        "completeTime": {
+          "description": "Output only. Completion time of this generator evaluation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Creation time of this generator evaluation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The display name of the generator evaluation. At most 64 bytes long.",
+          "type": "string"
+        },
+        "evaluationStatus": {
+          "$ref": "GoogleCloudDialogflowV2EvaluationStatus",
+          "description": "Output only. The result status of the evaluation pipeline. Provides the status information including if the evaluation is still in progress, completed or failed with certain error and user actionable message.",
+          "readOnly": true
+        },
+        "generatorEvaluationConfig": {
+          "$ref": "GoogleCloudDialogflowV2GeneratorEvaluationConfig",
+          "description": "Required. The configuration of the evaluation task."
+        },
+        "initialGenerator": {
+          "$ref": "GoogleCloudDialogflowV2Generator",
+          "description": "Required. The initial generator that was used when creating this evaluation. This is a copy of the generator read from storage when creating the evaluation."
+        },
+        "name": {
+          "description": "Output only. Identifier. The resource name of the evaluation. Format: `projects//locations//generators// evaluations/`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "summarizationMetrics": {
+          "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetrics",
+          "description": "Output only. Only available when the summarization generator is provided.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GeneratorEvaluationConfig": {
+      "description": "Generator evaluation input config.",
+      "id": "GoogleCloudDialogflowV2GeneratorEvaluationConfig",
+      "properties": {
+        "inputDataConfig": {
+          "$ref": "GoogleCloudDialogflowV2GeneratorEvaluationConfigInputDataConfig",
+          "description": "Required. The config/source of input data."
+        },
+        "outputGcsBucketPath": {
+          "description": "Required. The output Cloud Storage bucket path to store eval files, e.g. per_summary_accuracy_score report. This path is provided by customer and files stored in it are visible to customer, no internal data should be stored in this path.",
+          "type": "string"
+        },
+        "summarizationConfig": {
+          "$ref": "GoogleCloudDialogflowV2GeneratorEvaluationConfigSummarizationConfig",
+          "description": "Evaluation configs for summarization generator."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GeneratorEvaluationConfigAgentAssistInputDataConfig": {
+      "description": "The distinctive configs for Agent Assist conversations as the conversation source.",
+      "id": "GoogleCloudDialogflowV2GeneratorEvaluationConfigAgentAssistInputDataConfig",
+      "properties": {
+        "endTime": {
+          "description": "Required. The end of the time range for conversations to be evaluated. Only conversations ended at or before this timestamp will be sampled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Required. The start of the time range for conversations to be evaluated. Only conversations created at or after this timestamp will be sampled.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GeneratorEvaluationConfigDatasetInputDataConfig": {
+      "description": "The distinctive configs for dataset as the conversation source.",
+      "id": "GoogleCloudDialogflowV2GeneratorEvaluationConfigDatasetInputDataConfig",
+      "properties": {
+        "dataset": {
+          "description": "Required. The identifier of the dataset to be evaluated. Format: `projects//locations//datasets/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GeneratorEvaluationConfigInputDataConfig": {
+      "description": "Input data config details",
+      "id": "GoogleCloudDialogflowV2GeneratorEvaluationConfigInputDataConfig",
+      "properties": {
+        "agentAssistInputDataConfig": {
+          "$ref": "GoogleCloudDialogflowV2GeneratorEvaluationConfigAgentAssistInputDataConfig",
+          "description": "The distinctive configs for Agent Assist conversations as the conversation source."
+        },
+        "datasetInputDataConfig": {
+          "$ref": "GoogleCloudDialogflowV2GeneratorEvaluationConfigDatasetInputDataConfig",
+          "description": "The distinctive configs for dataset as the conversation source."
+        },
+        "endTime": {
+          "deprecated": true,
+          "description": "Optional. The end timestamp to fetch conversation data.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "inputDataSourceType": {
+          "deprecated": true,
+          "description": "Required. The source type of input data.",
+          "enum": [
+            "INPUT_DATA_SOURCE_TYPE_UNSPECIFIED",
+            "AGENT_ASSIST_CONVERSATIONS",
+            "INSIGHTS_CONVERSATIONS"
+          ],
+          "enumDescriptions": [
+            "Unspecified InputDataSourceType. Should not be used.",
+            "Fetch data from Agent Assist storage. If this source type is chosen, input_data_config.start_time and input_data_config.end_timestamp must be provided.",
+            "Fetch data from Insights storage. If this source type is chosen, input_data_config.start_time and input_data_config.end_timestamp must be provided."
+          ],
+          "type": "string"
+        },
+        "isSummaryGenerationAllowed": {
+          "deprecated": true,
+          "description": "Optional. Whether the summary generation is allowed when the pre-existing qualified summaries are insufficient to cover the sample size.",
+          "type": "boolean"
+        },
+        "sampleSize": {
+          "description": "Optional. Desired number of conversation-summary pairs to be evaluated.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTime": {
+          "deprecated": true,
+          "description": "Optional. The start timestamp to fetch conversation data.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "summaryGenerationOption": {
+          "description": "Optional. Option to control whether summaries are generated during evaluation.",
+          "enum": [
+            "SUMMARY_GENERATION_OPTION_UNSPECIFIED",
+            "ALWAYS_GENERATE",
+            "GENERATE_IF_MISSING",
+            "DO_NOT_GENERATE"
+          ],
+          "enumDescriptions": [
+            "Default option will not be used",
+            "Always Generate summary for all conversations.",
+            "Gnerate only missing summaries.",
+            "Do not generate new summaries. Only use existing summaries found."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GeneratorEvaluationConfigSummarizationConfig": {
+      "description": "Evaluation configs for summarization generator.",
+      "id": "GoogleCloudDialogflowV2GeneratorEvaluationConfigSummarizationConfig",
+      "properties": {
+        "accuracyEvaluationVersion": {
+          "deprecated": true,
+          "description": "Optional. Version for summarization accuracy. This will determine the prompt and model used at backend.",
+          "type": "string"
+        },
+        "completenessEvaluationVersion": {
+          "deprecated": true,
+          "description": "Optional. Version for summarization completeness. This will determine the prompt and model used at backend.",
+          "type": "string"
+        },
+        "enableAccuracyEvaluation": {
+          "deprecated": true,
+          "description": "Optional. Enable accuracy evaluation.",
+          "type": "boolean"
+        },
+        "enableCompletenessEvaluation": {
+          "deprecated": true,
+          "description": "Optional. Enable completeness evaluation.",
+          "type": "boolean"
+        },
+        "evaluatorVersion": {
+          "description": "Output only. Version for summarization evaluation.",
           "readOnly": true,
           "type": "string"
         }
@@ -18535,6 +18869,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse": {
+      "description": "Response of ListGeneratorEvaluations.",
+      "id": "GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse",
+      "properties": {
+        "generatorEvaluations": {
+          "description": "The list of evaluations to return.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2GeneratorEvaluation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2ListGeneratorsResponse": {
       "description": "Response of ListGenerators.",
       "id": "GoogleCloudDialogflowV2ListGeneratorsResponse",
@@ -20235,6 +20587,346 @@
         },
         "version": {
           "description": "Optional. Version of the feature. If not set, default to latest version. Current candidates are [\"1.0\"].",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetrics": {
+      "description": "Evaluation metrics for summarization generator.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetrics",
+      "properties": {
+        "conversationDetails": {
+          "description": "Output only. List of conversation details.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetail"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "overallMetrics": {
+          "description": "Output only. A list of aggregated(average) scores per metric section.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsOverallScoresByMetric"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "overallSectionTokens": {
+          "description": "Output only. Overall token per section. This is an aggregated(sum) result of input token of summary acorss all conversations that are selected for summarization evaluation.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsSectionToken"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "summarizationEvaluationMergedResultsUri": {
+          "description": "Output only. User bucket uri for merged evaluation score and aggregation score csv.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "summarizationEvaluationResults": {
+          "description": "Output only. A list of evaluation results per conversation(&summary), metric and section.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsSummarizationEvaluationResult"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsAccuracyDecomposition": {
+      "description": "Decomposition details for accuracy.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsAccuracyDecomposition",
+      "properties": {
+        "accuracyReasoning": {
+          "description": "Output only. The accuracy reasoning of the breakdown point.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "isAccurate": {
+          "description": "Output only. Whether the breakdown point is accurate or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "point": {
+          "description": "Output only. The breakdown point of the summary.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsAdherenceDecomposition": {
+      "deprecated": true,
+      "description": "Decomposition details for adherence.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsAdherenceDecomposition",
+      "properties": {
+        "adherenceReasoning": {
+          "description": "Output only. The adherence reasoning of the breakdown point.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "isAdherent": {
+          "description": "Output only. Whether the breakdown point is adherent or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "point": {
+          "description": "Output only. The breakdown point of the given instructions.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsAdherenceRubric": {
+      "description": "Rubric result of the adherence evaluation. A rubric is ued to determine if the summary adheres to all aspects of the given instructions.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsAdherenceRubric",
+      "properties": {
+        "isAddressed": {
+          "description": "Output only. A boolean that indicates whether the rubric question is addressed or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "question": {
+          "description": "Output only. The question generated from instruction that used to evaluate summary.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reasoning": {
+          "description": "Output only. The reasoning of the rubric question is addressed or not.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsCompletenessRubric": {
+      "description": "Rubric details of the completeness evaluation result.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsCompletenessRubric",
+      "properties": {
+        "isAddressed": {
+          "description": "Output only. A boolean that indicates whether the rubric question is addressed or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "question": {
+          "description": "Output only. The question generated from instruction that used to evaluate summary.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetail": {
+      "description": "Aggregated evaluation result on conversation level. This conatins evaluation results of all the metrics and sections.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetail",
+      "properties": {
+        "messageEntries": {
+          "description": "Output only. Conversation transcript that used for summarization evaluation as a reference.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2MessageEntry"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "metricDetails": {
+          "description": "Output only. List of metric details.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetailMetricDetail"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "sectionTokens": {
+          "description": "Output only. Conversation level token count per section. This is an aggregated(sum) result of input token of summary acorss all metrics for a single conversation.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsSectionToken"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "summarySections": {
+          "description": "Output only. Summary sections that used for summarization evaluation as a reference.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarySuggestionSummarySection"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetailMetricDetail": {
+      "description": "Aggregated result on metric level. This conatins the evaluation results of all the sections.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetailMetricDetail",
+      "properties": {
+        "metric": {
+          "description": "Output only. Metrics name. e.g. accuracy, adherence, completeness.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Aggregated(average) score on this metric across all sections.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "sectionDetails": {
+          "description": "Output only. List of section details.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetailMetricDetailSectionDetail"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetailMetricDetailSectionDetail": {
+      "description": "Section level result.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetailMetricDetailSectionDetail",
+      "properties": {
+        "evaluationResults": {
+          "description": "Output only. List of evaluation result. The list only contains one kind of the evaluation result.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsEvaluationResult"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "score": {
+          "description": "Output only. Aggregated(average) score on this section across all evaluation results. Either decompositions or rubrics.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "section": {
+          "description": "Output only. The name of the summary instruction.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sectionSummary": {
+          "description": "Output only. Summary for this section",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsDecomposition": {
+      "deprecated": true,
+      "description": "Decomposition details",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsDecomposition",
+      "properties": {
+        "accuracyDecomposition": {
+          "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsAccuracyDecomposition",
+          "description": "only available for accuracy metric."
+        },
+        "adherenceDecomposition": {
+          "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsAdherenceDecomposition",
+          "description": "only available for adherence metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsEvaluationResult": {
+      "description": "Evaluation result that contains one of accuracy, adherence or completeness evaluation result.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsEvaluationResult",
+      "properties": {
+        "accuracyDecomposition": {
+          "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsAccuracyDecomposition",
+          "description": "Only available for accuracy metric."
+        },
+        "adherenceRubric": {
+          "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsAdherenceRubric",
+          "description": "Only available for adherence metric."
+        },
+        "completenessRubric": {
+          "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsCompletenessRubric",
+          "description": "Only available for completeness metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsOverallScoresByMetric": {
+      "description": "Overall performance per metric. This is the aggregated score for each metric across all conversations that are selected for summarization evaluation.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsOverallScoresByMetric",
+      "properties": {
+        "metric": {
+          "description": "Output only. Metric name. e.g. accuracy, adherence, completeness.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsSectionToken": {
+      "description": "A pair of section name and input token count of the input summary section.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsSectionToken",
+      "properties": {
+        "section": {
+          "description": "Output only. The name of the summary instruction.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tokenCount": {
+          "description": "Output only. Token count.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarizationEvaluationMetricsSummarizationEvaluationResult": {
+      "description": "Evaluation result per conversation(&summary), metric and section.",
+      "id": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsSummarizationEvaluationResult",
+      "properties": {
+        "decompositions": {
+          "deprecated": true,
+          "description": "Output only. List of decompostion details",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsDecomposition"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "evaluationResults": {
+          "description": "Output only. List of evaluation results.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetricsEvaluationResult"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "metric": {
+          "description": "Output only. metric name, e.g. accuracy, completeness, adherence, etc.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. score calculated from decompositions",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "section": {
+          "description": "Output only. section/task name, e.g. action, situation, etc",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sectionSummary": {
+          "description": "Output only. Summary of this section",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sessionId": {
+          "deprecated": true,
+          "description": "Output only. conversation session id",
+          "readOnly": true,
           "type": "string"
         }
       },

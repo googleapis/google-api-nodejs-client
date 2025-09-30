@@ -7198,6 +7198,19 @@ export namespace dialogflow_v2 {
     maxResultCount?: number | null;
   }
   /**
+   * A common evalaution pipeline status.
+   */
+  export interface Schema$GoogleCloudDialogflowV2EvaluationStatus {
+    /**
+     * Output only. If the value is `false`, it means the evaluation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+     */
+    done?: boolean | null;
+    /**
+     * Output only. The error result of the evaluation in case of failure in evaluation pipeline.
+     */
+    pipelineStatus?: Schema$GoogleRpcStatus;
+  }
+  /**
    * Events allow for matching intents by event name instead of the natural language input. For instance, input `` can trigger a personalized welcome response. The parameter `name` may be used by the agent in the response: `"Hello #welcome_event.name! What can I do for you today?"`.
    */
   export interface Schema$GoogleCloudDialogflowV2EventInput {
@@ -7598,6 +7611,144 @@ export namespace dialogflow_v2 {
      * Output only. Update time of this generator.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Represents evaluation result of a generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GeneratorEvaluation {
+    /**
+     * Output only. Completion time of this generator evaluation.
+     */
+    completeTime?: string | null;
+    /**
+     * Output only. Creation time of this generator evaluation.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The display name of the generator evaluation. At most 64 bytes long.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The result status of the evaluation pipeline. Provides the status information including if the evaluation is still in progress, completed or failed with certain error and user actionable message.
+     */
+    evaluationStatus?: Schema$GoogleCloudDialogflowV2EvaluationStatus;
+    /**
+     * Required. The configuration of the evaluation task.
+     */
+    generatorEvaluationConfig?: Schema$GoogleCloudDialogflowV2GeneratorEvaluationConfig;
+    /**
+     * Required. The initial generator that was used when creating this evaluation. This is a copy of the generator read from storage when creating the evaluation.
+     */
+    initialGenerator?: Schema$GoogleCloudDialogflowV2Generator;
+    /**
+     * Output only. Identifier. The resource name of the evaluation. Format: `projects//locations//generators// evaluations/`
+     */
+    name?: string | null;
+    /**
+     * Output only. Only available when the summarization generator is provided.
+     */
+    summarizationMetrics?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetrics;
+  }
+  /**
+   * Generator evaluation input config.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GeneratorEvaluationConfig {
+    /**
+     * Required. The config/source of input data.
+     */
+    inputDataConfig?: Schema$GoogleCloudDialogflowV2GeneratorEvaluationConfigInputDataConfig;
+    /**
+     * Required. The output Cloud Storage bucket path to store eval files, e.g. per_summary_accuracy_score report. This path is provided by customer and files stored in it are visible to customer, no internal data should be stored in this path.
+     */
+    outputGcsBucketPath?: string | null;
+    /**
+     * Evaluation configs for summarization generator.
+     */
+    summarizationConfig?: Schema$GoogleCloudDialogflowV2GeneratorEvaluationConfigSummarizationConfig;
+  }
+  /**
+   * The distinctive configs for Agent Assist conversations as the conversation source.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GeneratorEvaluationConfigAgentAssistInputDataConfig {
+    /**
+     * Required. The end of the time range for conversations to be evaluated. Only conversations ended at or before this timestamp will be sampled.
+     */
+    endTime?: string | null;
+    /**
+     * Required. The start of the time range for conversations to be evaluated. Only conversations created at or after this timestamp will be sampled.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * The distinctive configs for dataset as the conversation source.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GeneratorEvaluationConfigDatasetInputDataConfig {
+    /**
+     * Required. The identifier of the dataset to be evaluated. Format: `projects//locations//datasets/`.
+     */
+    dataset?: string | null;
+  }
+  /**
+   * Input data config details
+   */
+  export interface Schema$GoogleCloudDialogflowV2GeneratorEvaluationConfigInputDataConfig {
+    /**
+     * The distinctive configs for Agent Assist conversations as the conversation source.
+     */
+    agentAssistInputDataConfig?: Schema$GoogleCloudDialogflowV2GeneratorEvaluationConfigAgentAssistInputDataConfig;
+    /**
+     * The distinctive configs for dataset as the conversation source.
+     */
+    datasetInputDataConfig?: Schema$GoogleCloudDialogflowV2GeneratorEvaluationConfigDatasetInputDataConfig;
+    /**
+     * Optional. The end timestamp to fetch conversation data.
+     */
+    endTime?: string | null;
+    /**
+     * Required. The source type of input data.
+     */
+    inputDataSourceType?: string | null;
+    /**
+     * Optional. Whether the summary generation is allowed when the pre-existing qualified summaries are insufficient to cover the sample size.
+     */
+    isSummaryGenerationAllowed?: boolean | null;
+    /**
+     * Optional. Desired number of conversation-summary pairs to be evaluated.
+     */
+    sampleSize?: number | null;
+    /**
+     * Optional. The start timestamp to fetch conversation data.
+     */
+    startTime?: string | null;
+    /**
+     * Optional. Option to control whether summaries are generated during evaluation.
+     */
+    summaryGenerationOption?: string | null;
+  }
+  /**
+   * Evaluation configs for summarization generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GeneratorEvaluationConfigSummarizationConfig {
+    /**
+     * Optional. Version for summarization accuracy. This will determine the prompt and model used at backend.
+     */
+    accuracyEvaluationVersion?: string | null;
+    /**
+     * Optional. Version for summarization completeness. This will determine the prompt and model used at backend.
+     */
+    completenessEvaluationVersion?: string | null;
+    /**
+     * Optional. Enable accuracy evaluation.
+     */
+    enableAccuracyEvaluation?: boolean | null;
+    /**
+     * Optional. Enable completeness evaluation.
+     */
+    enableCompletenessEvaluation?: boolean | null;
+    /**
+     * Output only. Version for summarization evaluation.
+     */
+    evaluatorVersion?: string | null;
   }
   /**
    * Suggestion generated using a Generator.
@@ -9084,6 +9235,19 @@ export namespace dialogflow_v2 {
     nextPageToken?: string | null;
   }
   /**
+   * Response of ListGeneratorEvaluations.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse {
+    /**
+     * The list of evaluations to return.
+     */
+    generatorEvaluations?: Schema$GoogleCloudDialogflowV2GeneratorEvaluation[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response of ListGenerators.
    */
   export interface Schema$GoogleCloudDialogflowV2ListGeneratorsResponse {
@@ -10246,6 +10410,239 @@ export namespace dialogflow_v2 {
      * Optional. Version of the feature. If not set, default to latest version. Current candidates are ["1.0"].
      */
     version?: string | null;
+  }
+  /**
+   * Evaluation metrics for summarization generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetrics {
+    /**
+     * Output only. List of conversation details.
+     */
+    conversationDetails?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetail[];
+    /**
+     * Output only. A list of aggregated(average) scores per metric section.
+     */
+    overallMetrics?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsOverallScoresByMetric[];
+    /**
+     * Output only. Overall token per section. This is an aggregated(sum) result of input token of summary acorss all conversations that are selected for summarization evaluation.
+     */
+    overallSectionTokens?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsSectionToken[];
+    /**
+     * Output only. User bucket uri for merged evaluation score and aggregation score csv.
+     */
+    summarizationEvaluationMergedResultsUri?: string | null;
+    /**
+     * Output only. A list of evaluation results per conversation(&summary), metric and section.
+     */
+    summarizationEvaluationResults?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsSummarizationEvaluationResult[];
+  }
+  /**
+   * Decomposition details for accuracy.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsAccuracyDecomposition {
+    /**
+     * Output only. The accuracy reasoning of the breakdown point.
+     */
+    accuracyReasoning?: string | null;
+    /**
+     * Output only. Whether the breakdown point is accurate or not.
+     */
+    isAccurate?: boolean | null;
+    /**
+     * Output only. The breakdown point of the summary.
+     */
+    point?: string | null;
+  }
+  /**
+   * Decomposition details for adherence.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsAdherenceDecomposition {
+    /**
+     * Output only. The adherence reasoning of the breakdown point.
+     */
+    adherenceReasoning?: string | null;
+    /**
+     * Output only. Whether the breakdown point is adherent or not.
+     */
+    isAdherent?: boolean | null;
+    /**
+     * Output only. The breakdown point of the given instructions.
+     */
+    point?: string | null;
+  }
+  /**
+   * Rubric result of the adherence evaluation. A rubric is ued to determine if the summary adheres to all aspects of the given instructions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsAdherenceRubric {
+    /**
+     * Output only. A boolean that indicates whether the rubric question is addressed or not.
+     */
+    isAddressed?: boolean | null;
+    /**
+     * Output only. The question generated from instruction that used to evaluate summary.
+     */
+    question?: string | null;
+    /**
+     * Output only. The reasoning of the rubric question is addressed or not.
+     */
+    reasoning?: string | null;
+  }
+  /**
+   * Rubric details of the completeness evaluation result.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsCompletenessRubric {
+    /**
+     * Output only. A boolean that indicates whether the rubric question is addressed or not.
+     */
+    isAddressed?: boolean | null;
+    /**
+     * Output only. The question generated from instruction that used to evaluate summary.
+     */
+    question?: string | null;
+  }
+  /**
+   * Aggregated evaluation result on conversation level. This conatins evaluation results of all the metrics and sections.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetail {
+    /**
+     * Output only. Conversation transcript that used for summarization evaluation as a reference.
+     */
+    messageEntries?: Schema$GoogleCloudDialogflowV2MessageEntry[];
+    /**
+     * Output only. List of metric details.
+     */
+    metricDetails?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetailMetricDetail[];
+    /**
+     * Output only. Conversation level token count per section. This is an aggregated(sum) result of input token of summary acorss all metrics for a single conversation.
+     */
+    sectionTokens?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsSectionToken[];
+    /**
+     * Output only. Summary sections that used for summarization evaluation as a reference.
+     */
+    summarySections?: Schema$GoogleCloudDialogflowV2SummarySuggestionSummarySection[];
+  }
+  /**
+   * Aggregated result on metric level. This conatins the evaluation results of all the sections.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetailMetricDetail {
+    /**
+     * Output only. Metrics name. e.g. accuracy, adherence, completeness.
+     */
+    metric?: string | null;
+    /**
+     * Output only. Aggregated(average) score on this metric across all sections.
+     */
+    score?: number | null;
+    /**
+     * Output only. List of section details.
+     */
+    sectionDetails?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetailMetricDetailSectionDetail[];
+  }
+  /**
+   * Section level result.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsConversationDetailMetricDetailSectionDetail {
+    /**
+     * Output only. List of evaluation result. The list only contains one kind of the evaluation result.
+     */
+    evaluationResults?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsEvaluationResult[];
+    /**
+     * Output only. Aggregated(average) score on this section across all evaluation results. Either decompositions or rubrics.
+     */
+    score?: number | null;
+    /**
+     * Output only. The name of the summary instruction.
+     */
+    section?: string | null;
+    /**
+     * Output only. Summary for this section
+     */
+    sectionSummary?: string | null;
+  }
+  /**
+   * Decomposition details
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsDecomposition {
+    /**
+     * only available for accuracy metric.
+     */
+    accuracyDecomposition?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsAccuracyDecomposition;
+    /**
+     * only available for adherence metric.
+     */
+    adherenceDecomposition?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsAdherenceDecomposition;
+  }
+  /**
+   * Evaluation result that contains one of accuracy, adherence or completeness evaluation result.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsEvaluationResult {
+    /**
+     * Only available for accuracy metric.
+     */
+    accuracyDecomposition?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsAccuracyDecomposition;
+    /**
+     * Only available for adherence metric.
+     */
+    adherenceRubric?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsAdherenceRubric;
+    /**
+     * Only available for completeness metric.
+     */
+    completenessRubric?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsCompletenessRubric;
+  }
+  /**
+   * Overall performance per metric. This is the aggregated score for each metric across all conversations that are selected for summarization evaluation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsOverallScoresByMetric {
+    /**
+     * Output only. Metric name. e.g. accuracy, adherence, completeness.
+     */
+    metric?: string | null;
+  }
+  /**
+   * A pair of section name and input token count of the input summary section.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsSectionToken {
+    /**
+     * Output only. The name of the summary instruction.
+     */
+    section?: string | null;
+    /**
+     * Output only. Token count.
+     */
+    tokenCount?: string | null;
+  }
+  /**
+   * Evaluation result per conversation(&summary), metric and section.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsSummarizationEvaluationResult {
+    /**
+     * Output only. List of decompostion details
+     */
+    decompositions?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsDecomposition[];
+    /**
+     * Output only. List of evaluation results.
+     */
+    evaluationResults?: Schema$GoogleCloudDialogflowV2SummarizationEvaluationMetricsEvaluationResult[];
+    /**
+     * Output only. metric name, e.g. accuracy, completeness, adherence, etc.
+     */
+    metric?: string | null;
+    /**
+     * Output only. score calculated from decompositions
+     */
+    score?: number | null;
+    /**
+     * Output only. section/task name, e.g. action, situation, etc
+     */
+    section?: string | null;
+    /**
+     * Output only. Summary of this section
+     */
+    sectionSummary?: string | null;
+    /**
+     * Output only. conversation session id
+     */
+    sessionId?: string | null;
   }
   /**
    * Represents the section of summarization.
@@ -33355,7 +33752,7 @@ export namespace dialogflow_v2 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -33690,7 +34087,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -51666,8 +52063,12 @@ export namespace dialogflow_v2 {
 
   export class Resource$Projects$Locations$Generators {
     context: APIRequestContext;
+    evaluations: Resource$Projects$Locations$Generators$Evaluations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.evaluations = new Resource$Projects$Locations$Generators$Evaluations(
+        this.context
+      );
     }
 
     /**
@@ -52530,6 +52931,671 @@ export namespace dialogflow_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Generator;
+  }
+
+  export class Resource$Projects$Locations$Generators$Evaluations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates evaluation of a generator.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.generators.evaluations.create(
+     *     {
+     *       // Required. The generator resource name. Format: `projects//locations//generators/`
+     *       parent:
+     *         'projects/my-project/locations/my-location/generators/my-generator',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "completeTime": "my_completeTime",
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "evaluationStatus": {},
+     *         //   "generatorEvaluationConfig": {},
+     *         //   "initialGenerator": {},
+     *         //   "name": "my_name",
+     *         //   "summarizationMetrics": {}
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Generators$Evaluations$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Generators$Evaluations$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Generators$Evaluations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Generators$Evaluations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/evaluations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an evaluation of generator.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.generators.evaluations.delete(
+     *     {
+     *       // Required. The generator evaluation resource name. Format: `projects//locations//generators// evaluations/`
+     *       name: 'projects/my-project/locations/my-location/generators/my-generator/evaluations/my-evaluation',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Generators$Evaluations$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Generators$Evaluations$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Generators$Evaluations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Generators$Evaluations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets an evaluation of generator.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.generators.evaluations.get({
+     *     // Required. The generator evaluation resource name. Format: `projects//locations//generators//evaluations/`
+     *     name: 'projects/my-project/locations/my-location/generators/my-generator/evaluations/my-evaluation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completeTime": "my_completeTime",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "evaluationStatus": {},
+     *   //   "generatorEvaluationConfig": {},
+     *   //   "initialGenerator": {},
+     *   //   "name": "my_name",
+     *   //   "summarizationMetrics": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Generators$Evaluations$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2GeneratorEvaluation>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GeneratorEvaluation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2GeneratorEvaluation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2GeneratorEvaluation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2GeneratorEvaluation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Generators$Evaluations$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GeneratorEvaluation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GeneratorEvaluation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GeneratorEvaluation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2GeneratorEvaluation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Generators$Evaluations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Generators$Evaluations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2GeneratorEvaluation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2GeneratorEvaluation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists evaluations of generator.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.generators.evaluations.list({
+     *     // Optional. Maximum number of evaluations to return in a single page. By default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The generator resource name. Format: `projects//locations//generators/` Wildcard value `-` is supported on generator_id to list evaluations across all generators under same project.
+     *     parent: 'projects/my-project/locations/my-location/generators/my-generator',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "generatorEvaluations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Generators$Evaluations$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Generators$Evaluations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Generators$Evaluations$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Generators$Evaluations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Generators$Evaluations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/evaluations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2ListGeneratorEvaluationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Generators$Evaluations$Create
+    extends StandardParameters {
+    /**
+     * Required. The generator resource name. Format: `projects//locations//generators/`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2GeneratorEvaluation;
+  }
+  export interface Params$Resource$Projects$Locations$Generators$Evaluations$Delete
+    extends StandardParameters {
+    /**
+     * Required. The generator evaluation resource name. Format: `projects//locations//generators// evaluations/`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Generators$Evaluations$Get
+    extends StandardParameters {
+    /**
+     * Required. The generator evaluation resource name. Format: `projects//locations//generators//evaluations/`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Generators$Evaluations$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of evaluations to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The generator resource name. Format: `projects//locations//generators/` Wildcard value `-` is supported on generator_id to list evaluations across all generators under same project.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Knowledgebases {
