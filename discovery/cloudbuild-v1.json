@@ -2573,7 +2573,7 @@
       }
     }
   },
-  "revision": "20250801",
+  "revision": "20250903",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -4911,7 +4911,7 @@
       "id": "NpmPackage",
       "properties": {
         "packagePath": {
-          "description": "Path to the package.json. e.g. workspace/path/to/package",
+          "description": "Optional. Path to the package.json. e.g. workspace/path/to/package Only one of `archive` or `package_path` can be specified.",
           "type": "string"
         },
         "repository": {
