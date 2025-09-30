@@ -4,6 +4,22 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [161.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v160.0.0...googleapis-v161.0.0) (2025-09-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3795](https://github.com/googleapis/google-api-nodejs-client/issues/3795)) ([c47e53a](https://github.com/googleapis/google-api-nodejs-client/commit/c47e53adc5fabc62081bfcec5c5d5642a0fdbbb2))
+
+
+### Bug Fixes
+
+* ignore workflow file ([22f9c31](https://github.com/googleapis/google-api-nodejs-client/commit/22f9c31bc4037a2193770dc0819d223991447dfa))
+
 ## [160.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v159.0.0...googleapis-v160.0.0) (2025-09-16)
 
 

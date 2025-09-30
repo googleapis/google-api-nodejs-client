@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/apigateway",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "apigateway",
   "main": "build/index.js",
   "types": "build/index.d.ts",
