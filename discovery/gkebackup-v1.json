@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2227,7 +2227,7 @@
       }
     }
   },
-  "revision": "20250813",
+  "revision": "20250922",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3021,7 +3021,7 @@
         },
         "startTime": {
           "$ref": "TimeOfDay",
-          "description": "Required. Specifies the start time of the window using time of the day in UTC."
+          "description": "Optional. Specifies the start time of the window using time of the day in UTC."
         }
       },
       "type": "object"
