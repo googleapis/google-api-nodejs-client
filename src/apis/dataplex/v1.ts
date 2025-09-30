@@ -1098,6 +1098,79 @@ export namespace dataplex_v1 {
     typeInferenceDisabled?: boolean | null;
   }
   /**
+   * The output of a DataDocumentation scan.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDocumentationResult {
+    /**
+     * Output only. Table result for insights.
+     */
+    tableResult?: Schema$GoogleCloudDataplexV1DataDocumentationResultTableResult;
+  }
+  /**
+   * Column of a table with generated metadata and nested fields.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDocumentationResultField {
+    /**
+     * Output only. Generated description for columns and fields.
+     */
+    description?: string | null;
+    /**
+     * Output only. Nested fields.
+     */
+    fields?: Schema$GoogleCloudDataplexV1DataDocumentationResultField[];
+    /**
+     * Output only. The name of the column.
+     */
+    name?: string | null;
+  }
+  /**
+   * A sample SQL query in data documentation.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDocumentationResultQuery {
+    /**
+     * Output only. The description for the query.
+     */
+    description?: string | null;
+    /**
+     * Output only. The SQL query string which can be executed.
+     */
+    sql?: string | null;
+  }
+  /**
+   * Schema of the table with generated metadata of columns.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDocumentationResultSchema {
+    /**
+     * Output only. The list of columns.
+     */
+    fields?: Schema$GoogleCloudDataplexV1DataDocumentationResultField[];
+  }
+  /**
+   * Generated metadata about the table.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDocumentationResultTableResult {
+    /**
+     * Output only. The service-qualified full resource name of the cloud resource. Ex: bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+     */
+    name?: string | null;
+    /**
+     * Output only. Generated description of the table.
+     */
+    overview?: string | null;
+    /**
+     * Output only. Sample SQL queries for the table.
+     */
+    queries?: Schema$GoogleCloudDataplexV1DataDocumentationResultQuery[];
+    /**
+     * Output only. Schema of the table with generated metadata of the columns in the schema.
+     */
+    schema?: Schema$GoogleCloudDataplexV1DataDocumentationResultSchema;
+  }
+  /**
+   * DataDocumentation scan related spec.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDocumentationSpec {}
+  /**
    * DataProfileResult defines the output of DataProfileScan. Each field of the table will have field type specific profile result.
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResult {
@@ -1802,7 +1875,7 @@ export namespace dataplex_v1 {
     scoreThreshold?: number | null;
   }
   /**
-   * Represents a user-visible job which provides the insights for the related data source.For example: Data quality: generates queries based on the rules and runs against the data to get data quality check results. For more information, see Auto data quality overview (https://cloud.google.com/dataplex/docs/auto-data-quality-overview). Data profile: analyzes the data in tables and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc). For more information, see About data profiling (https://cloud.google.com/dataplex/docs/data-profiling-overview). Data discovery: scans data in Cloud Storage buckets to extract and then catalog metadata. For more information, see Discover and catalog Cloud Storage data (https://cloud.google.com/bigquery/docs/automatic-discovery).
+   * Represents a user-visible job which provides the insights for the related data source.For example: Data quality: generates queries based on the rules and runs against the data to get data quality check results. For more information, see Auto data quality overview (https://cloud.google.com/dataplex/docs/auto-data-quality-overview). Data profile: analyzes the data in tables and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc). For more information, see About data profiling (https://cloud.google.com/dataplex/docs/data-profiling-overview). Data discovery: scans data in Cloud Storage buckets to extract and then catalog metadata. For more information, see Discover and catalog Cloud Storage data (https://cloud.google.com/bigquery/docs/automatic-discovery). Data documentation: analyzes the table details and generates insights including descriptions and sample SQL queries for the table. For more information, see Generate data insights in BigQuery (https://cloud.google.com/bigquery/docs/data-insights).
    */
   export interface Schema$GoogleCloudDataplexV1DataScan {
     /**
@@ -1821,6 +1894,14 @@ export namespace dataplex_v1 {
      * Settings for a data discovery scan.
      */
     dataDiscoverySpec?: Schema$GoogleCloudDataplexV1DataDiscoverySpec;
+    /**
+     * Output only. The result of a data documentation scan.
+     */
+    dataDocumentationResult?: Schema$GoogleCloudDataplexV1DataDocumentationResult;
+    /**
+     * Settings for a data documentation scan.
+     */
+    dataDocumentationSpec?: Schema$GoogleCloudDataplexV1DataDocumentationSpec;
     /**
      * Output only. The result of a data profile scan.
      */
@@ -2097,6 +2178,14 @@ export namespace dataplex_v1 {
      */
     dataDiscoverySpec?: Schema$GoogleCloudDataplexV1DataDiscoverySpec;
     /**
+     * Output only. The result of a data documentation scan.
+     */
+    dataDocumentationResult?: Schema$GoogleCloudDataplexV1DataDocumentationResult;
+    /**
+     * Output only. Settings for a data documentation scan.
+     */
+    dataDocumentationSpec?: Schema$GoogleCloudDataplexV1DataDocumentationSpec;
+    /**
      * Output only. The result of a data profile scan.
      */
     dataProfileResult?: Schema$GoogleCloudDataplexV1DataProfileResult;
@@ -2150,7 +2239,7 @@ export namespace dataplex_v1 {
      */
     entity?: string | null;
     /**
-     * Immutable. The service-qualified full resource name of the cloud resource for a DataScan job to scan against. The field could either be: Cloud Storage bucket for DataDiscoveryScan Format: //storage.googleapis.com/projects/PROJECT_ID/buckets/BUCKET_ID or BigQuery table of type "TABLE" for DataProfileScan/DataQualityScan Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+     * Immutable. The service-qualified full resource name of the cloud resource for a DataScan job to scan against. The field could either be: Cloud Storage bucket for DataDiscoveryScan Format: //storage.googleapis.com/projects/PROJECT_ID/buckets/BUCKET_ID or BigQuery table of type "TABLE" for DataProfileScan/DataQualityScan/DataDocumentationScan Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      */
     resource?: string | null;
   }
@@ -3800,7 +3889,7 @@ export namespace dataplex_v1 {
      */
     aspectTypes?: string[] | null;
     /**
-     * Required. The entry group that is in scope for the import job, specified as a relative resource name in the format projects/{project_number_or_id\}/locations/{location_id\}/entryGroups/{entry_group_id\}. Only entries and aspects that belong to the specified entry group are affected by the job.Must contain exactly one element. The entry group and the job must be in the same location.
+     * Required. The entry groups that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/entryGroups/{entry_group_id\}. Only entries and aspects that belong to the specified entry groups are affected by the job.The entry groups and the job must be in the same location.
      */
     entryGroups?: string[] | null;
     /**
@@ -7073,7 +7162,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -7199,7 +7288,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Looks up an entry by name using the permission on the source system.
+     * Looks up an entry by name using the permission on the source system. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).
      * @example
      * ```js
      * // Before running the sample:
@@ -7527,7 +7616,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -10349,152 +10438,6 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.dataProducts.getIamPolicy({
-     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/dataProducts/my-dataProduct',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Dataproducts$Getiampolicy,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Dataproducts$Getiampolicy,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Dataproducts$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Dataproducts$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Dataproducts$Getiampolicy,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Dataproducts$Getiampolicy
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Dataproducts$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Dataproducts$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleIamV1Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
-      }
-    }
-
-    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
      * @example
      * ```js
@@ -10807,17 +10750,6 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dataproducts$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-  }
   export interface Params$Resource$Projects$Locations$Dataproducts$Setiampolicy
     extends StandardParameters {
     /**
@@ -10847,153 +10779,6 @@ export namespace dataplex_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
-    }
-
-    /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataplex.projects.locations.dataProducts.dataAssets.getIamPolicy({
-     *       // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/dataProducts/my-dataProduct/dataAssets/my-dataAsset',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Dataproducts$Dataassets$Getiampolicy,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Dataproducts$Dataassets$Getiampolicy,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Dataproducts$Dataassets$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Dataproducts$Dataassets$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Dataproducts$Dataassets$Getiampolicy,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Dataproducts$Dataassets$Getiampolicy
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Dataproducts$Dataassets$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Dataproducts$Dataassets$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleIamV1Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
-      }
     }
 
     /**
@@ -11311,17 +11096,6 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dataproducts$Dataassets$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-  }
   export interface Params$Resource$Projects$Locations$Dataproducts$Dataassets$Setiampolicy
     extends StandardParameters {
     /**
@@ -11401,6 +11175,8 @@ export namespace dataplex_v1 {
      *       //   "data": {},
      *       //   "dataDiscoveryResult": {},
      *       //   "dataDiscoverySpec": {},
+     *       //   "dataDocumentationResult": {},
+     *       //   "dataDocumentationSpec": {},
      *       //   "dataProfileResult": {},
      *       //   "dataProfileSpec": {},
      *       //   "dataQualityResult": {},
@@ -11872,6 +11648,8 @@ export namespace dataplex_v1 {
      *   //   "data": {},
      *   //   "dataDiscoveryResult": {},
      *   //   "dataDiscoverySpec": {},
+     *   //   "dataDocumentationResult": {},
+     *   //   "dataDocumentationSpec": {},
      *   //   "dataProfileResult": {},
      *   //   "dataProfileSpec": {},
      *   //   "dataQualityResult": {},
@@ -12335,6 +12113,8 @@ export namespace dataplex_v1 {
      *       //   "data": {},
      *       //   "dataDiscoveryResult": {},
      *       //   "dataDiscoverySpec": {},
+     *       //   "dataDocumentationResult": {},
+     *       //   "dataDocumentationSpec": {},
      *       //   "dataProfileResult": {},
      *       //   "dataProfileSpec": {},
      *       //   "dataQualityResult": {},
@@ -13268,6 +13048,8 @@ export namespace dataplex_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "dataDiscoveryResult": {},
      *   //   "dataDiscoverySpec": {},
+     *   //   "dataDocumentationResult": {},
+     *   //   "dataDocumentationSpec": {},
      *   //   "dataProfileResult": {},
      *   //   "dataProfileSpec": {},
      *   //   "dataQualityResult": {},
@@ -18014,7 +17796,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets an Entry.
+     * Gets an Entry. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).
      * @example
      * ```js
      * // Before running the sample:
@@ -18166,7 +17948,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists Entries within an EntryGroup.
+     * Lists Entries within an EntryGroup. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).
      * @example
      * ```js
      * // Before running the sample:
