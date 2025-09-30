@@ -15,6 +15,218 @@
   "description": "Google Cloud NetApp Volumes is a fully-managed, cloud-based data storage service that provides advanced data management capabilities and highly scalable performance with global availability.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/netapp/",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.africa-south1.rep.googleapis.com/",
+      "location": "africa-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.asia-east1.rep.googleapis.com/",
+      "location": "asia-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.asia-east2.rep.googleapis.com/",
+      "location": "asia-east2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.asia-northeast1.rep.googleapis.com/",
+      "location": "asia-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.asia-northeast2.rep.googleapis.com/",
+      "location": "asia-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.asia-northeast3.rep.googleapis.com/",
+      "location": "asia-northeast3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.asia-south1.rep.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.asia-south2.rep.googleapis.com/",
+      "location": "asia-south2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.asia-southeast1.rep.googleapis.com/",
+      "location": "asia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.asia-southeast2.rep.googleapis.com/",
+      "location": "asia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.australia-southeast1.rep.googleapis.com/",
+      "location": "australia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.australia-southeast2.rep.googleapis.com/",
+      "location": "australia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-central2.rep.googleapis.com/",
+      "location": "europe-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-north1.rep.googleapis.com/",
+      "location": "europe-north1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-southwest1.rep.googleapis.com/",
+      "location": "europe-southwest1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-west1.rep.googleapis.com/",
+      "location": "europe-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-west12.rep.googleapis.com/",
+      "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-west2.rep.googleapis.com/",
+      "location": "europe-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-west4.rep.googleapis.com/",
+      "location": "europe-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-west6.rep.googleapis.com/",
+      "location": "europe-west6"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.me-central1.rep.googleapis.com/",
+      "location": "me-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.me-central2.rep.googleapis.com/",
+      "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.me-west1.rep.googleapis.com/",
+      "location": "me-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.northamerica-northeast1.rep.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.northamerica-south1.rep.googleapis.com/",
+      "location": "northamerica-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.southamerica-east1.rep.googleapis.com/",
+      "location": "southamerica-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.southamerica-west1.rep.googleapis.com/",
+      "location": "southamerica-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://netapp.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -144,7 +356,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1592,6 +1804,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "restore": {
+                  "description": "Restore files from a backup to a volume.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:restore",
+                  "httpMethod": "POST",
+                  "id": "netapp.projects.locations.volumes.restore",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The volume resource name, in the format `projects/{project_id}/locations/{location}/volumes/{volume_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:restore",
+                  "request": {
+                    "$ref": "RestoreBackupFilesRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "revert": {
                   "description": "Revert an existing volume to a specified snapshot. Warning! This operation will permanently revert all changes made after the snapshot was created.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:revert",
@@ -2270,7 +2510,7 @@
       }
     }
   },
-  "revision": "20250817",
+  "revision": "20250917",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -2726,6 +2966,90 @@
             "BackupVault is not valid and cannot be used.",
             "BackupVault is being updated."
           ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CacheConfig": {
+      "description": "Configuration of the cache volume.",
+      "id": "CacheConfig",
+      "properties": {
+        "cifsChangeNotifyEnabled": {
+          "description": "Optional. Flag indicating whether a CIFS change notification is enabled for the FlexCache volume.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CacheParameters": {
+      "description": "Cache Parameters for the volume.",
+      "id": "CacheParameters",
+      "properties": {
+        "cacheConfig": {
+          "$ref": "CacheConfig",
+          "description": "Optional. Configuration of the cache volume."
+        },
+        "cacheState": {
+          "description": "Output only. State of the cache volume indicating the peering status.",
+          "enum": [
+            "CACHE_STATE_UNSPECIFIED",
+            "PENDING_CLUSTER_PEERING",
+            "PENDING_SVM_PEERING",
+            "PEERED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Default unspecified state.",
+            "State indicating waiting for cluster peering to be established.",
+            "State indicating waiting for SVM peering to be established.",
+            "State indicating successful establishment of peering with origin volumes's ONTAP cluster.",
+            "Terminal state wherein peering with origin volume's ONTAP cluster has failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "command": {
+          "description": "Output only. Copy-paste-able commands to be used on user's ONTAP to accept peering requests.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "enableGlobalFileLock": {
+          "description": "Optional. Field indicating whether cache volume as global file lock enabled.",
+          "type": "boolean"
+        },
+        "passphrase": {
+          "description": "Output only. Temporary passphrase generated to accept cluster peering command.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "peerClusterName": {
+          "description": "Required. Name of the origin volume's ONTAP cluster.",
+          "type": "string"
+        },
+        "peerIpAddresses": {
+          "description": "Required. List of IC LIF addresses of the origin volume's ONTAP cluster.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "peerSvmName": {
+          "description": "Required. Name of the origin volume's SVM.",
+          "type": "string"
+        },
+        "peerVolumeName": {
+          "description": "Required. Name of the origin volume for the cache volume.",
+          "type": "string"
+        },
+        "peeringCommandExpiryTime": {
+          "description": "Optional. Expiration time for the peering command to be executed on user's ONTAP.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "stateDetails": {
+          "description": "Output only. Detailed description of the current cache state.",
           "readOnly": true,
           "type": "string"
         }
@@ -3838,6 +4162,28 @@
       },
       "type": "object"
     },
+    "RestoreBackupFilesRequest": {
+      "description": "RestoreBackupFilesRequest restores files from a backup to a volume.",
+      "id": "RestoreBackupFilesRequest",
+      "properties": {
+        "backup": {
+          "description": "Required. The backup resource name, in the format `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}`",
+          "type": "string"
+        },
+        "fileList": {
+          "description": "Required. List of files to be restored in the form of their absolute path as in source volume.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "restoreDestinationPath": {
+          "description": "Optional. Absolute directory path in the destination volume.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RestoreParameters": {
       "description": "The RestoreParameters if volume is created from a snapshot or backup.",
       "id": "RestoreParameters",
@@ -3900,6 +4246,11 @@
           "description": "Comma separated list of allowed clients IP addresses",
           "type": "string"
         },
+        "anonUid": {
+          "description": "Optional. An integer representing the anonymous user ID. Range is 0 to 4294967295. Required when squash_mode is ROOT_SQUASH or ALL_SQUASH.",
+          "format": "int64",
+          "type": "string"
+        },
         "hasRootAccess": {
           "description": "Whether Unix root access will be granted.",
           "type": "string"
@@ -3935,6 +4286,22 @@
         "nfsv4": {
           "description": "NFS V4 protocol.",
           "type": "boolean"
+        },
+        "squashMode": {
+          "description": "Optional. Defines how user identity squashing is applied for this export rule. This field is the preferred way to configure squashing behavior and takes precedence over `has_root_access` if both are provided.",
+          "enum": [
+            "SQUASH_MODE_UNSPECIFIED",
+            "NO_ROOT_SQUASH",
+            "ROOT_SQUASH",
+            "ALL_SQUASH"
+          ],
+          "enumDescriptions": [
+            "Defaults to NO_ROOT_SQUASH.",
+            "The root user (UID 0) retains full access. Other users are unaffected.",
+            "The root user (UID 0) is squashed to anonymous user ID. Other users are unaffected.",
+            "All users are squashed to anonymous user ID."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -4089,6 +4456,12 @@
           "format": "int64",
           "type": "string"
         },
+        "coldTierSizeUsedGib": {
+          "description": "Output only. Total cold tier data rounded down to the nearest GiB used by the storage pool.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Create time of the storage pool",
           "format": "google-datetime",
@@ -4130,6 +4503,12 @@
         "hotTierSizeGib": {
           "description": "Optional. Total hot tier capacity for the Storage Pool. It is applicable only to Flex service level. It should be less than the minimum storage pool size and cannot be more than the current storage pool size. It cannot be decreased once set.",
           "format": "int64",
+          "type": "string"
+        },
+        "hotTierSizeUsedGib": {
+          "description": "Output only. Total hot tier data rounded down to the nearest GiB used by the storage pool.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "kmsConfig": {
@@ -4427,6 +4806,10 @@
           "$ref": "BackupConfig",
           "description": "BackupConfig of the volume."
         },
+        "cacheParameters": {
+          "$ref": "CacheParameters",
+          "description": "Optional. Cache parameters for the volume."
+        },
         "capacityGib": {
           "description": "Required. Capacity in GIB of the volume",
           "format": "int64",
@@ -4471,6 +4854,12 @@
           "description": "Output only. Indicates whether the volume is part of a replication relationship.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "hotTierSizeUsedGib": {
+          "description": "Output only. Total hot tier data rounded down to the nearest GiB used by the Volume. This field is only used for flex Service Level",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "hybridReplicationParameters": {
           "$ref": "HybridReplicationParameters",
