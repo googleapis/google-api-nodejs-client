@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -343,6 +343,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "failover": {
+                  "description": "Initiates a failover to target autonomous database from the associated primary database.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases/{autonomousDatabasesId}:failover",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.autonomousDatabases.failover",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Autonomous Database in the following format: projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autonomousDatabases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:failover",
+                  "request": {
+                    "$ref": "FailoverAutonomousDatabaseRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "generateWallet": {
                   "description": "Generates a wallet for an Autonomous Database.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases/{autonomousDatabasesId}:generateWallet",
@@ -437,6 +465,45 @@
                   "path": "v1/{+parent}/autonomousDatabases",
                   "response": {
                     "$ref": "ListAutonomousDatabasesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single Autonomous Database.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases/{autonomousDatabasesId}",
+                  "httpMethod": "PATCH",
+                  "id": "oracledatabase.projects.locations.autonomousDatabases.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The name of the Autonomous Database resource in the following format: projects/{project}/locations/{region}/autonomousDatabases/{autonomous_database}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autonomousDatabases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Exadata resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "AutonomousDatabase"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -733,6 +800,16 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. An expression for ordering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of items to return. If unspecified, at most 50 Exadata infrastructures will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                       "format": "int32",
@@ -989,6 +1066,161 @@
                 }
               }
             },
+            "databaseCharacterSets": {
+              "methods": {
+                "list": {
+                  "description": "List DatabaseCharacterSets for the given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/databaseCharacterSets",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.databaseCharacterSets.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. Only the **character_set_type** field is supported in the following format: `character_set_type=\"{characterSetType}\"`. Accepted values include `DATABASE` and `NATIONAL`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of DatabaseCharacterSets to return. The service may return fewer than this value. If unspecified, at most 50 DatabaseCharacterSets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListDatabaseCharacterSets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDatabaseCharacterSets` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for DatabaseCharacterSets in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/databaseCharacterSets",
+                  "response": {
+                    "$ref": "ListDatabaseCharacterSetsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "databases": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single Database.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/databases/{databasesId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.databases.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Database resource in the following format: projects/{project}/locations/{region}/databases/{database}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/databases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Database"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the Databases for the given project, location and DbSystem.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/databases",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.databases.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. list for container databases is supported only with a valid dbSystem (full resource name) filter in this format: `dbSystem=\"projects/{project}/locations/{location}/dbSystems/{dbSystemId}\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name in the following format: projects/{project}/locations/{region}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/databases",
+                  "response": {
+                    "$ref": "ListDatabasesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "dbSystemInitialStorageSizes": {
+              "methods": {
+                "list": {
+                  "description": "Lists all the DbSystemInitialStorageSizes for the given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dbSystemInitialStorageSizes",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.dbSystemInitialStorageSizes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for the DbSystemInitialStorageSize resource with the format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dbSystemInitialStorageSizes",
+                  "response": {
+                    "$ref": "ListDbSystemInitialStorageSizesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "dbSystemShapes": {
               "methods": {
                 "list": {
@@ -1000,6 +1232,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. Only the gcp_oracle_zone_id field is supported in this format: `gcp_oracle_zone_id=\"{gcp_oracle_zone_id}\"`.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of items to return. If unspecified, at most 50 database system shapes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                       "format": "int32",
@@ -1022,6 +1259,194 @@
                   "path": "v1/{+parent}/dbSystemShapes",
                   "response": {
                     "$ref": "ListDbSystemShapesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "dbSystems": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new DbSystem in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dbSystems",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.dbSystems.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "dbSystemId": {
+                      "description": "Required. The ID of the DbSystem to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The value for parent of the DbSystem in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dbSystems",
+                  "request": {
+                    "$ref": "DbSystem"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single DbSystem.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dbSystems/{dbSystemsId}",
+                  "httpMethod": "DELETE",
+                  "id": "oracledatabase.projects.locations.dbSystems.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the DbSystem in the following format: projects/{project}/locations/{location}/dbSystems/{db_system}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dbSystems/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single DbSystem.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dbSystems/{dbSystemsId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.dbSystems.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the DbSystem in the following format: projects/{project}/locations/{location}/dbSystems/{db_system}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dbSystems/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "DbSystem"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the DbSystems for the given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dbSystems",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.dbSystems.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. An expression for ordering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If unspecified, at most 50 DbSystems will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for DbSystems in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dbSystems",
+                  "response": {
+                    "$ref": "ListDbSystemsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "dbVersions": {
+              "methods": {
+                "list": {
+                  "description": "List DbVersions for the given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dbVersions",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.dbVersions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression that matches a subset of the DbVersions to show. The supported filter for dbSystem creation is `db_system_shape = {db_system_shape} AND storage_management = {storage_management}`. If no filter is provided, all DbVersions will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for the DbVersion resource with the format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dbVersions",
+                  "response": {
+                    "$ref": "ListDbVersionsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1069,6 +1494,359 @@
                 }
               }
             },
+            "exadbVmClusters": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new Exadb (Exascale) VM Cluster resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exadbVmClusters",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.exadbVmClusters.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "exadbVmClusterId": {
+                      "description": "Required. The ID of the ExadbVmCluster to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The value for parent of the ExadbVmCluster in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/exadbVmClusters",
+                  "request": {
+                    "$ref": "ExadbVmCluster"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single Exadb (Exascale) VM Cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exadbVmClusters/{exadbVmClustersId}",
+                  "httpMethod": "DELETE",
+                  "id": "oracledatabase.projects.locations.exadbVmClusters.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ExadbVmCluster in the following format: projects/{project}/locations/{location}/exadbVmClusters/{exadb_vm_cluster}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/exadbVmClusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single Exadb (Exascale) VM Cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exadbVmClusters/{exadbVmClustersId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.exadbVmClusters.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ExadbVmCluster in the following format: projects/{project}/locations/{location}/exadbVmClusters/{exadb_vm_cluster}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/exadbVmClusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "ExadbVmCluster"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the Exadb (Exascale) VM Clusters for the given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exadbVmClusters",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.exadbVmClusters.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. An expression for ordering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If unspecified, at most 50 ExadbVmClusters will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for ExadbVmClusters in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/exadbVmClusters",
+                  "response": {
+                    "$ref": "ListExadbVmClustersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a single Exadb (Exascale) VM Cluster. To add virtual machines to existing exadb vm cluster, only pass the node count.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exadbVmClusters/{exadbVmClustersId}",
+                  "httpMethod": "PATCH",
+                  "id": "oracledatabase.projects.locations.exadbVmClusters.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The name of the ExadbVmCluster resource in the following format: projects/{project}/locations/{region}/exadbVmClusters/{exadb_vm_cluster}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/exadbVmClusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. A mask specifying which fields in th VM Cluster should be updated. A field specified in the mask is overwritten. If a mask isn't provided then all the fields in the VM Cluster are overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "ExadbVmCluster"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "removeVirtualMachine": {
+                  "description": "Removes virtual machines from an existing exadb vm cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exadbVmClusters/{exadbVmClustersId}:removeVirtualMachine",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.exadbVmClusters.removeVirtualMachine",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ExadbVmCluster in the following format: projects/{project}/locations/{location}/exadbVmClusters/{exadb_vm_cluster}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/exadbVmClusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:removeVirtualMachine",
+                  "request": {
+                    "$ref": "RemoveVirtualMachineExadbVmClusterRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "exascaleDbStorageVaults": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new ExascaleDB Storage Vault resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exascaleDbStorageVaults",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.exascaleDbStorageVaults.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "exascaleDbStorageVaultId": {
+                      "description": "Required. The ID of the ExascaleDbStorageVault to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The value for parent of the ExascaleDbStorageVault in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/exascaleDbStorageVaults",
+                  "request": {
+                    "$ref": "ExascaleDbStorageVault"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single ExascaleDB Storage Vault.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exascaleDbStorageVaults/{exascaleDbStorageVaultsId}",
+                  "httpMethod": "DELETE",
+                  "id": "oracledatabase.projects.locations.exascaleDbStorageVaults.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ExascaleDbStorageVault in the following format: projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/exascaleDbStorageVaults/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single ExascaleDB Storage Vault.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exascaleDbStorageVaults/{exascaleDbStorageVaultsId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.exascaleDbStorageVaults.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ExascaleDbStorageVault in the following format: projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/exascaleDbStorageVaults/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "ExascaleDbStorageVault"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the ExascaleDB Storage Vaults for the given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exascaleDbStorageVaults",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.exascaleDbStorageVaults.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. Filter the list as specified in https://google.aip.dev/160.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. An expression for ordering the results of the request. Order results as specified in https://google.aip.dev/132.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If unspecified, at most 50 ExascaleDbStorageVaults will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for ExascaleDbStorageVault in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/exascaleDbStorageVaults",
+                  "response": {
+                    "$ref": "ListExascaleDbStorageVaultsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "giVersions": {
               "methods": {
                 "list": {
@@ -1081,7 +1859,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. An expression for filtering the results of the request. Only the shape and gi_version fields are supported in this format: `shape=\"{shape}\"`.",
+                      "description": "Optional. An expression for filtering the results of the request. Only the shape, gcp_oracle_zone and gi_version fields are supported in this format: `shape=\"{shape}\"`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1111,6 +1889,53 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "minorVersions": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists all the valid minor versions for the given project, location, gi version and shape family.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/giVersions/{giVersionsId}/minorVersions",
+                      "httpMethod": "GET",
+                      "id": "oracledatabase.projects.locations.giVersions.minorVersions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. An expression for filtering the results of the request. Only shapeFamily and gcp_oracle_zone_id are supported in this format: `shape_family=\"{shapeFamily}\" AND gcp_oracle_zone_id=\"{gcp_oracle_zone_id}\"`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent value for the MinorVersion resource with the format: projects/{project}/locations/{location}/giVersions/{gi_version}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/giVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/minorVersions",
+                      "response": {
+                        "$ref": "ListMinorVersionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -1513,11 +2338,86 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "pluggableDatabases": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single PluggableDatabase.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/pluggableDatabases/{pluggableDatabasesId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.pluggableDatabases.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the PluggableDatabase resource in the following format: projects/{project}/locations/{region}/pluggableDatabases/{pluggable_database}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/pluggableDatabases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "PluggableDatabase"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the PluggableDatabases for the given project, location and Container Database.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/pluggableDatabases",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.pluggableDatabases.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. List for pluggable databases is supported only with a valid container database (full resource name) filter in this format: `database=\"projects/{project}/locations/{location}/databases/{database}\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of PluggableDatabases to return. The service may return fewer than this value.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListPluggableDatabases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPluggableDatabases` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of PluggableDatabases. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/pluggableDatabases",
+                  "response": {
+                    "$ref": "ListPluggableDatabasesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1530,7 +2430,7 @@
       }
     }
   },
-  "revision": "20250813",
+  "revision": "20250925",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -2122,6 +3022,18 @@
           "readOnly": true,
           "type": "string"
         },
+        "encryptionKey": {
+          "$ref": "EncryptionKey",
+          "description": "Optional. The encryption key used to encrypt the Autonomous Database. Updating this field will add a new entry in the `encryption_key_history_entries` field with the former version."
+        },
+        "encryptionKeyHistoryEntries": {
+          "description": "Output only. The history of the encryption keys used to encrypt the Autonomous Database.",
+          "items": {
+            "$ref": "EncryptionKeyHistoryEntry"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "failedDataRecoveryDuration": {
           "description": "Output only. This field indicates the number of seconds of data loss during a Data Guard failover.",
           "format": "google-duration",
@@ -2385,6 +3297,11 @@
           "description": "Optional. The ID of the Oracle Cloud Infrastructure vault secret.",
           "type": "string"
         },
+        "serviceAgentEmail": {
+          "description": "Output only. An Oracle-managed Google Cloud service account on which customers can grant roles to access resources in the customer project.",
+          "readOnly": true,
+          "type": "string"
+        },
         "sqlWebDeveloperUrl": {
           "description": "Output only. The SQL Web Developer URL for the Autonomous Database.",
           "readOnly": true,
@@ -2593,6 +3510,33 @@
       },
       "type": "object"
     },
+    "BackupDestinationDetails": {
+      "description": "The details of the database backup destination.",
+      "id": "BackupDestinationDetails",
+      "properties": {
+        "type": {
+          "description": "Optional. The type of the database backup destination.",
+          "enum": [
+            "BACKUP_DESTINATION_TYPE_UNSPECIFIED",
+            "NFS",
+            "RECOVERY_APPLIANCE",
+            "OBJECT_STORE",
+            "LOCAL",
+            "DBRS"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Backup destination type is NFS.",
+            "Backup destination type is Recovery Appliance.",
+            "Backup destination type is Object Store.",
+            "Backup destination type is Local.",
+            "Backup destination type is DBRS."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -2646,7 +3590,7 @@
           "type": "string"
         },
         "gcpOracleZone": {
-          "description": "Optional. Google Cloud Platform location where Oracle Exadata is hosted.",
+          "description": "Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
           "type": "string"
         },
         "labels": {
@@ -2898,9 +3842,14 @@
           "type": "string"
         },
         "gcpOracleZone": {
-          "description": "Output only. Google Cloud Platform location where Oracle Exadata is hosted. It is same as Google Cloud Platform Oracle zone of Exadata infrastructure.",
+          "description": "Output only. The GCP Oracle zone where Oracle CloudVmCluster is hosted. This will be the same as the gcp_oracle_zone of the CloudExadataInfrastructure. Example: us-east4-b-r2.",
           "readOnly": true,
           "type": "string"
+        },
+        "identityConnector": {
+          "$ref": "IdentityConnector",
+          "description": "Output only. The identity connector details which will allow OCI to securely access the resources in the customer project.",
+          "readOnly": true
         },
         "labels": {
           "additionalProperties": {
@@ -3184,6 +4133,157 @@
       },
       "type": "object"
     },
+    "DataCollectionOptionsCommon": {
+      "description": "Data collection options for diagnostics. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/DataCollectionOptions",
+      "id": "DataCollectionOptionsCommon",
+      "properties": {
+        "isDiagnosticsEventsEnabled": {
+          "description": "Optional. Indicates whether to enable data collection for diagnostics.",
+          "type": "boolean"
+        },
+        "isHealthMonitoringEnabled": {
+          "description": "Optional. Indicates whether to enable health monitoring.",
+          "type": "boolean"
+        },
+        "isIncidentLogsEnabled": {
+          "description": "Optional. Indicates whether to enable incident logs and trace collection.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DataCollectionOptionsDbSystem": {
+      "description": "Data collection options for DbSystem.",
+      "id": "DataCollectionOptionsDbSystem",
+      "properties": {
+        "isDiagnosticsEventsEnabled": {
+          "description": "Optional. Indicates whether to enable data collection for diagnostics.",
+          "type": "boolean"
+        },
+        "isIncidentLogsEnabled": {
+          "description": "Optional. Indicates whether to enable incident logs and trace collection.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Database": {
+      "description": "Details of the Database resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/Database/",
+      "id": "Database",
+      "properties": {
+        "adminPassword": {
+          "description": "Required. The password for the default ADMIN user.",
+          "type": "string"
+        },
+        "characterSet": {
+          "description": "Optional. The character set for the database. The default is AL32UTF8.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The date and time that the Database was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "databaseId": {
+          "description": "Optional. The database ID of the Database.",
+          "type": "string"
+        },
+        "dbHomeName": {
+          "description": "Optional. The name of the DbHome resource associated with the Database.",
+          "type": "string"
+        },
+        "dbName": {
+          "description": "Optional. The database name. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted.",
+          "type": "string"
+        },
+        "dbUniqueName": {
+          "description": "Optional. The DB_UNIQUE_NAME of the Oracle Database being backed up.",
+          "type": "string"
+        },
+        "gcpOracleZone": {
+          "description": "Output only. The GCP Oracle zone where the Database is created.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the Database resource in the following format: projects/{project}/locations/{region}/databases/{database}",
+          "type": "string"
+        },
+        "ncharacterSet": {
+          "description": "Optional. The national character set for the database. The default is AL16UTF16.",
+          "type": "string"
+        },
+        "ociUrl": {
+          "description": "Output only. HTTPS link to OCI resources exposed to Customer via UI Interface.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "opsInsightsStatus": {
+          "description": "Output only. The Status of Operations Insights for this Database.",
+          "enum": [
+            "OPERATIONS_INSIGHTS_STATUS_UNSPECIFIED",
+            "ENABLING",
+            "ENABLED",
+            "DISABLING",
+            "NOT_ENABLED",
+            "FAILED_ENABLING",
+            "FAILED_DISABLING"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Indicates that the operations insights are being enabled.",
+            "Indicates that the operations insights are enabled.",
+            "Indicates that the operations insights are being disabled.",
+            "Indicates that the operations insights are not enabled.",
+            "Indicates that the operations insights failed to enable.",
+            "Indicates that the operations insights failed to disable."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "DatabaseProperties",
+          "description": "Optional. The properties of the Database."
+        },
+        "tdeWalletPassword": {
+          "description": "Optional. The TDE wallet password for the database.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseCharacterSet": {
+      "description": "Details of the Database character set resource.",
+      "id": "DatabaseCharacterSet",
+      "properties": {
+        "characterSet": {
+          "description": "Output only. The character set name for the Database which is the ID in the resource name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "characterSetType": {
+          "description": "Output only. The character set type for the Database.",
+          "enum": [
+            "CHARACTER_SET_TYPE_UNSPECIFIED",
+            "DATABASE",
+            "NATIONAL"
+          ],
+          "enumDescriptions": [
+            "Character set type is not specified.",
+            "Character set type is set to database.",
+            "Character set type is set to national."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the Database Character Set resource in the following format: projects/{project}/locations/{region}/databaseCharacterSets/{database_character_set}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DatabaseConnectionStringProfile": {
       "description": "The connection string profile to allow clients to group. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/DatabaseConnectionStringProfile",
       "id": "DatabaseConnectionStringProfile",
@@ -3300,6 +4400,258 @@
           "description": "Output only. The value of the connection string.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseManagementConfig": {
+      "description": "The configuration of the Database Management service.",
+      "id": "DatabaseManagementConfig",
+      "properties": {
+        "managementState": {
+          "description": "Output only. The status of the Database Management service.",
+          "enum": [
+            "MANAGEMENT_STATE_UNSPECIFIED",
+            "ENABLING",
+            "ENABLED",
+            "DISABLING",
+            "DISABLED",
+            "UPDATING",
+            "FAILED_ENABLING",
+            "FAILED_DISABLING",
+            "FAILED_UPDATING"
+          ],
+          "enumDescriptions": [
+            "The status is not specified.",
+            "The Database Management service is enabling.",
+            "The Database Management service is enabled.",
+            "The Database Management service is disabling.",
+            "The Database Management service is disabled.",
+            "The Database Management service is updating.",
+            "The Database Management service failed to enable.",
+            "The Database Management service failed to disable.",
+            "The Database Management service failed to update."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "managementType": {
+          "description": "Output only. The Database Management type.",
+          "enum": [
+            "MANAGEMENT_TYPE_UNSPECIFIED",
+            "BASIC",
+            "ADVANCED"
+          ],
+          "enumDescriptions": [
+            "The type is not specified.",
+            "Basic Database Management.",
+            "Advanced Database Management."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseProperties": {
+      "description": "The properties of a Database.",
+      "id": "DatabaseProperties",
+      "properties": {
+        "databaseManagementConfig": {
+          "$ref": "DatabaseManagementConfig",
+          "description": "Output only. The Database Management config.",
+          "readOnly": true
+        },
+        "dbBackupConfig": {
+          "$ref": "DbBackupConfig",
+          "description": "Optional. Backup options for the Database."
+        },
+        "dbVersion": {
+          "description": "Required. The Oracle Database version.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the Database.",
+          "enum": [
+            "DATABASE_LIFECYCLE_STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "AVAILABLE",
+            "UPDATING",
+            "BACKUP_IN_PROGRESS",
+            "UPGRADING",
+            "CONVERTING",
+            "TERMINATING",
+            "TERMINATED",
+            "RESTORE_FAILED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Indicates that the resource is in provisioning state.",
+            "Indicates that the resource is in available state.",
+            "Indicates that the resource is in updating state.",
+            "Indicates that the resource is in backup in progress state.",
+            "Indicates that the resource is in upgrading state.",
+            "Indicates that the resource is in converting state.",
+            "Indicates that the resource is in terminating state.",
+            "Indicates that the resource is in terminated state.",
+            "Indicates that the resource is in restore failed state.",
+            "Indicates that the resource is in failed state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DbBackupConfig": {
+      "description": "Backup Options for the Database.",
+      "id": "DbBackupConfig",
+      "properties": {
+        "autoBackupEnabled": {
+          "description": "Optional. If set to true, enables automatic backups on the database.",
+          "type": "boolean"
+        },
+        "autoFullBackupDay": {
+          "description": "Optional. The day of the week on which the full backup should be performed on the database. If no value is provided, it will default to Sunday.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "type": "string"
+        },
+        "autoFullBackupWindow": {
+          "description": "Optional. The window in which the full backup should be performed on the database. If no value is provided, the default is anytime.",
+          "enum": [
+            "BACKUP_WINDOW_UNSPECIFIED",
+            "SLOT_ONE",
+            "SLOT_TWO",
+            "SLOT_THREE",
+            "SLOT_FOUR",
+            "SLOT_FIVE",
+            "SLOT_SIX",
+            "SLOT_SEVEN",
+            "SLOT_EIGHT",
+            "SLOT_NINE",
+            "SLOT_TEN",
+            "SLOT_ELEVEN",
+            "SLOT_TWELVE"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "12:00 AM - 2:00 AM",
+            "2:00 AM - 4:00 AM",
+            "4:00 AM - 6:00 AM",
+            "6:00 AM - 8:00 AM",
+            "8:00 AM - 10:00 AM",
+            "10:00 AM - 12:00 PM",
+            "12:00 PM - 2:00 PM",
+            "2:00 PM - 4:00 PM",
+            "4:00 PM - 6:00 PM",
+            "6:00 PM - 8:00 PM",
+            "8:00 PM - 10:00 PM",
+            "10:00 PM - 12:00 AM"
+          ],
+          "type": "string"
+        },
+        "autoIncrementalBackupWindow": {
+          "description": "Optional. The window in which the incremental backup should be performed on the database. If no value is provided, the default is anytime except the auto full backup day.",
+          "enum": [
+            "BACKUP_WINDOW_UNSPECIFIED",
+            "SLOT_ONE",
+            "SLOT_TWO",
+            "SLOT_THREE",
+            "SLOT_FOUR",
+            "SLOT_FIVE",
+            "SLOT_SIX",
+            "SLOT_SEVEN",
+            "SLOT_EIGHT",
+            "SLOT_NINE",
+            "SLOT_TEN",
+            "SLOT_ELEVEN",
+            "SLOT_TWELVE"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "12:00 AM - 2:00 AM",
+            "2:00 AM - 4:00 AM",
+            "4:00 AM - 6:00 AM",
+            "6:00 AM - 8:00 AM",
+            "8:00 AM - 10:00 AM",
+            "10:00 AM - 12:00 PM",
+            "12:00 PM - 2:00 PM",
+            "2:00 PM - 4:00 PM",
+            "4:00 PM - 6:00 PM",
+            "6:00 PM - 8:00 PM",
+            "8:00 PM - 10:00 PM",
+            "10:00 PM - 12:00 AM"
+          ],
+          "type": "string"
+        },
+        "backupDeletionPolicy": {
+          "description": "Optional. This defines when the backups will be deleted after Database termination.",
+          "enum": [
+            "BACKUP_DELETION_POLICY_UNSPECIFIED",
+            "DELETE_IMMEDIATELY",
+            "DELETE_AFTER_RETENTION_PERIOD"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Keeps the backup for predefined time i.e. 72 hours and then delete permanently.",
+            "Keeps the backups as per the policy defined for database backups."
+          ],
+          "type": "string"
+        },
+        "backupDestinationDetails": {
+          "description": "Optional. Details of the database backup destinations.",
+          "items": {
+            "$ref": "BackupDestinationDetails"
+          },
+          "type": "array"
+        },
+        "retentionPeriodDays": {
+          "description": "Optional. The number of days an automatic backup is retained before being automatically deleted. This value determines the earliest point in time to which a database can be restored. Min: 1, Max: 60.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DbHome": {
+      "description": "Details of the Database Home resource.",
+      "id": "DbHome",
+      "properties": {
+        "database": {
+          "$ref": "Database",
+          "description": "Required. The Database resource."
+        },
+        "dbVersion": {
+          "description": "Required. A valid Oracle Database version. For a list of supported versions, use the ListDbVersions operation.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The display name for the Database Home. The name does not have to be unique within your project.",
+          "type": "string"
+        },
+        "isUnifiedAuditingEnabled": {
+          "description": "Optional. Whether unified auditing is enabled for the Database Home.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3489,6 +4841,310 @@
       },
       "type": "object"
     },
+    "DbSystem": {
+      "description": "Details of the DbSystem (BaseDB) resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/DbSystem/",
+      "id": "DbSystem",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The date and time that the DbSystem was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name for the System db. The name does not have to be unique within your project.",
+          "type": "string"
+        },
+        "entitlementId": {
+          "description": "Output only. The ID of the subscription entitlement associated with the DbSystem",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gcpOracleZone": {
+          "description": "Optional. The GCP Oracle zone where Oracle DbSystem is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels or tags associated with the DbSystem.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The name of the DbSystem resource in the following format: projects/{project}/locations/{region}/dbSystems/{db_system}",
+          "type": "string"
+        },
+        "ociUrl": {
+          "description": "Output only. HTTPS link to OCI resources exposed to Customer via UI Interface.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "odbNetwork": {
+          "description": "Optional. The name of the OdbNetwork associated with the DbSystem. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.",
+          "type": "string"
+        },
+        "odbSubnet": {
+          "description": "Required. The name of the OdbSubnet associated with the DbSystem for IP allocation. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "DbSystemProperties",
+          "description": "Optional. The properties of the DbSystem."
+        }
+      },
+      "type": "object"
+    },
+    "DbSystemInitialStorageSize": {
+      "description": "Summary of the DbSystem initial storage size.",
+      "id": "DbSystemInitialStorageSize",
+      "properties": {
+        "name": {
+          "description": "Output only. The name of the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "DbSystemInitialStorageSizeProperties",
+          "description": "Output only. The properties of the DbSystem initial storage size summary.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "DbSystemInitialStorageSizeProperties": {
+      "description": "The properties of a DbSystem initial storage size summary.",
+      "id": "DbSystemInitialStorageSizeProperties",
+      "properties": {
+        "launchFromBackupStorageSizeDetails": {
+          "description": "Output only. List of storage disk details available for launches from backup.",
+          "items": {
+            "$ref": "StorageSizeDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "shapeType": {
+          "description": "Output only. VM shape platform type",
+          "enum": [
+            "SHAPE_TYPE_UNSPECIFIED",
+            "STANDARD_X86"
+          ],
+          "enumDescriptions": [
+            "Unspecified shape type.",
+            "Standard X86."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "storageManagement": {
+          "description": "Output only. The storage option used in DB system.",
+          "enum": [
+            "STORAGE_MANAGEMENT_UNSPECIFIED",
+            "ASM",
+            "LVM"
+          ],
+          "enumDescriptions": [
+            "Unspecified storage management.",
+            "Automatic Storage Management.",
+            "Logical Volume Management."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "storageSizeDetails": {
+          "description": "Output only. List of storage disk details.",
+          "items": {
+            "$ref": "StorageSizeDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DbSystemOptions": {
+      "description": "Details of the DbSystem Options.",
+      "id": "DbSystemOptions",
+      "properties": {
+        "storageManagement": {
+          "description": "Optional. The storage option used in DB system.",
+          "enum": [
+            "STORAGE_MANAGEMENT_UNSPECIFIED",
+            "ASM",
+            "LVM"
+          ],
+          "enumDescriptions": [
+            "The storage management is unspecified.",
+            "Automatic storage management.",
+            "Logical Volume management."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DbSystemProperties": {
+      "description": "The properties of a DbSystem.",
+      "id": "DbSystemProperties",
+      "properties": {
+        "computeCount": {
+          "description": "Required. The number of CPU cores to enable for the DbSystem.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "computeModel": {
+          "description": "Optional. The compute model of the DbSystem.",
+          "enum": [
+            "COMPUTE_MODEL_UNSPECIFIED",
+            "ECPU",
+            "OCPU"
+          ],
+          "enumDescriptions": [
+            "The compute model is unspecified.",
+            "The compute model is virtual.",
+            "The compute model is physical."
+          ],
+          "type": "string"
+        },
+        "dataCollectionOptions": {
+          "$ref": "DataCollectionOptionsDbSystem",
+          "description": "Optional. Data collection options for diagnostics."
+        },
+        "dataStorageSizeGb": {
+          "description": "Optional. The data storage size in GB that is currently available to DbSystems.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "databaseEdition": {
+          "description": "Required. The database edition of the DbSystem.",
+          "enum": [
+            "DB_SYSTEM_DATABASE_EDITION_UNSPECIFIED",
+            "STANDARD_EDITION",
+            "ENTERPRISE_EDITION",
+            "ENTERPRISE_EDITION_HIGH_PERFORMANCE"
+          ],
+          "enumDescriptions": [
+            "The database edition is unspecified.",
+            "The database edition is Standard.",
+            "The database edition is Enterprise.",
+            "The database edition is Enterprise Edition."
+          ],
+          "type": "string"
+        },
+        "dbHome": {
+          "$ref": "DbHome",
+          "description": "Optional. Details for creating a Database Home."
+        },
+        "dbSystemOptions": {
+          "$ref": "DbSystemOptions",
+          "description": "Optional. The options for the DbSystem."
+        },
+        "domain": {
+          "description": "Optional. The host domain name of the DbSystem.",
+          "type": "string"
+        },
+        "hostname": {
+          "description": "Output only. The hostname of the DbSystem.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "hostnamePrefix": {
+          "description": "Optional. Prefix for DB System host names.",
+          "type": "string"
+        },
+        "initialDataStorageSizeGb": {
+          "description": "Required. The initial data storage size in GB.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "licenseModel": {
+          "description": "Required. The license model of the DbSystem.",
+          "enum": [
+            "LICENSE_MODEL_UNSPECIFIED",
+            "LICENSE_INCLUDED",
+            "BRING_YOUR_OWN_LICENSE"
+          ],
+          "enumDescriptions": [
+            "The license model is unspecified.",
+            "The license model is included.",
+            "The license model is bring your own license."
+          ],
+          "type": "string"
+        },
+        "lifecycleState": {
+          "description": "Output only. State of the DbSystem.",
+          "enum": [
+            "DB_SYSTEM_LIFECYCLE_STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "AVAILABLE",
+            "UPDATING",
+            "TERMINATING",
+            "TERMINATED",
+            "FAILED",
+            "MIGRATED",
+            "MAINTENANCE_IN_PROGRESS",
+            "NEEDS_ATTENTION",
+            "UPGRADING"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Indicates that the resource is in provisioning state.",
+            "Indicates that the resource is in available state.",
+            "Indicates that the resource is in updating state.",
+            "Indicates that the resource is in terminating state.",
+            "Indicates that the resource is in terminated state.",
+            "Indicates that the resource is in failed state.",
+            "Indicates that the resource has been migrated.",
+            "Indicates that the resource is in maintenance in progress state.",
+            "Indicates that the resource needs attention.",
+            "Indicates that the resource is upgrading."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "memorySizeGb": {
+          "description": "Optional. The memory size in GB.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nodeCount": {
+          "description": "Optional. The number of nodes in the DbSystem.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ocid": {
+          "description": "Output only. OCID of the DbSystem.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "privateIp": {
+          "description": "Optional. The private IP address of the DbSystem.",
+          "type": "string"
+        },
+        "recoStorageSizeGb": {
+          "description": "Optional. The reco/redo storage size in GB.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "shape": {
+          "description": "Required. Shape of DB System.",
+          "type": "string"
+        },
+        "sshPublicKeys": {
+          "description": "Required. SSH public keys to be stored with the DbSystem.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "timeZone": {
+          "$ref": "TimeZone",
+          "description": "Optional. Time zone of the DbSystem."
+        }
+      },
+      "type": "object"
+    },
     "DbSystemShape": {
       "description": "Details of the Database System Shapes resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/DbSystemShapeSummary/",
       "id": "DbSystemShape",
@@ -3554,10 +5210,116 @@
       },
       "type": "object"
     },
+    "DbVersion": {
+      "description": "A valid Oracle Database version.",
+      "id": "DbVersion",
+      "properties": {
+        "name": {
+          "description": "Output only. The name of the DbVersion resource in the following format: projects/{project}/locations/{region}/dbVersions/{db_version}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "DbVersionProperties",
+          "description": "Output only. The properties of the DbVersion.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "DbVersionProperties": {
+      "description": "The properties of a DbVersion.",
+      "id": "DbVersionProperties",
+      "properties": {
+        "isLatestForMajorVersion": {
+          "description": "Output only. True if this version of the Oracle Database software is the latest version for a release.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isPreviewDbVersion": {
+          "description": "Output only. True if this version of the Oracle Database software is the preview version.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isUpgradeSupported": {
+          "description": "Output only. True if this version of the Oracle Database software is supported for Upgrade.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "supportsPdb": {
+          "description": "Output only. True if this version of the Oracle Database software supports pluggable databases.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Output only. A valid Oracle Database version.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DefinedTagValue": {
+      "description": "Wrapper message for the value of a defined tag.",
+      "id": "DefinedTagValue",
+      "properties": {
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The tags within the namespace.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EncryptionKey": {
+      "description": "The encryption key used to encrypt the Autonomous Database.",
+      "id": "EncryptionKey",
+      "properties": {
+        "kmsKey": {
+          "description": "Optional. The KMS key used to encrypt the Autonomous Database. This field is required if the provider is GOOGLE_MANAGED. The name of the KMS key resource in the following format: `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.",
+          "type": "string"
+        },
+        "provider": {
+          "description": "Optional. The provider of the encryption key.",
+          "enum": [
+            "PROVIDER_UNSPECIFIED",
+            "GOOGLE_MANAGED",
+            "ORACLE_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Google Managed KMS key, if selected, please provide the KMS key name.",
+            "Oracle Managed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EncryptionKeyHistoryEntry": {
+      "description": "The history of the encryption keys used to encrypt the Autonomous Database.",
+      "id": "EncryptionKeyHistoryEntry",
+      "properties": {
+        "activationTime": {
+          "description": "Output only. The date and time when the encryption key was activated on the Autonomous Database..",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "encryptionKey": {
+          "$ref": "EncryptionKey",
+          "description": "Output only. The encryption key used to encrypt the Autonomous Database.",
+          "readOnly": true
+        }
+      },
       "type": "object"
     },
     "Entitlement": {
@@ -3596,6 +5358,386 @@
             "Entitlement is not approved in private marketplace."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExadbVmCluster": {
+      "description": "ExadbVmCluster represents a cluster of VMs that are used to run Exadata workloads. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/ExadbVmCluster/",
+      "id": "ExadbVmCluster",
+      "properties": {
+        "backupOdbSubnet": {
+          "description": "Required. Immutable. The name of the backup OdbSubnet associated with the ExadbVmCluster. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The date and time that the ExadbVmCluster was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. Immutable. The display name for the ExadbVmCluster. The name does not have to be unique within your project. The name must be 1-255 characters long and can only contain alphanumeric characters.",
+          "type": "string"
+        },
+        "entitlementId": {
+          "description": "Output only. The ID of the subscription entitlement associated with the ExadbVmCluster.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gcpOracleZone": {
+          "description": "Output only. Immutable. The GCP Oracle zone where Oracle ExadbVmCluster is hosted. Example: us-east4-b-r2. During creation, the system will pick the zone assigned to the ExascaleDbStorageVault.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels or tags associated with the ExadbVmCluster.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The name of the ExadbVmCluster resource in the following format: projects/{project}/locations/{region}/exadbVmClusters/{exadb_vm_cluster}",
+          "type": "string"
+        },
+        "odbNetwork": {
+          "description": "Optional. Immutable. The name of the OdbNetwork associated with the ExadbVmCluster. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.",
+          "type": "string"
+        },
+        "odbSubnet": {
+          "description": "Required. Immutable. The name of the OdbSubnet associated with the ExadbVmCluster for IP allocation. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "ExadbVmClusterProperties",
+          "description": "Required. The properties of the ExadbVmCluster."
+        }
+      },
+      "type": "object"
+    },
+    "ExadbVmClusterProperties": {
+      "description": "The properties of an ExadbVmCluster.",
+      "id": "ExadbVmClusterProperties",
+      "properties": {
+        "additionalEcpuCountPerNode": {
+          "description": "Optional. Immutable. The number of additional ECPUs per node for an Exadata VM cluster on exascale infrastructure.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "clusterName": {
+          "description": "Optional. Immutable. The cluster name for Exascale vm cluster. The cluster name must begin with an alphabetic character and may contain hyphens(-) but can not contain underscores(_). It should be not more than 11 characters and is not case sensitive. OCI Cluster name.",
+          "type": "string"
+        },
+        "dataCollectionOptions": {
+          "$ref": "DataCollectionOptionsCommon",
+          "description": "Optional. Immutable. Indicates user preference for data collection options."
+        },
+        "enabledEcpuCountPerNode": {
+          "description": "Required. Immutable. The number of ECPUs enabled per node for an exadata vm cluster on exascale infrastructure.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "exascaleDbStorageVault": {
+          "description": "Required. Immutable. The name of ExascaleDbStorageVault associated with the ExadbVmCluster. It can refer to an existing ExascaleDbStorageVault. Or a new one can be created during the ExadbVmCluster creation (requires storage_vault_properties to be set). Format: projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}",
+          "type": "string"
+        },
+        "giVersion": {
+          "description": "Output only. The Oracle Grid Infrastructure (GI) software version.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gridImageId": {
+          "description": "Required. Immutable. Grid Infrastructure Version.",
+          "type": "string"
+        },
+        "hostname": {
+          "description": "Output only. The hostname of the ExadbVmCluster.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "hostnamePrefix": {
+          "description": "Required. Immutable. Prefix for VM cluster host names.",
+          "type": "string"
+        },
+        "licenseModel": {
+          "description": "Optional. Immutable. The license type of the ExadbVmCluster.",
+          "enum": [
+            "LICENSE_MODEL_UNSPECIFIED",
+            "LICENSE_INCLUDED",
+            "BRING_YOUR_OWN_LICENSE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Default is license included.",
+            "Bring your own license."
+          ],
+          "type": "string"
+        },
+        "lifecycleState": {
+          "description": "Output only. State of the cluster.",
+          "enum": [
+            "EXADB_VM_CLUSTER_LIFECYCLE_STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "AVAILABLE",
+            "UPDATING",
+            "TERMINATING",
+            "TERMINATED",
+            "FAILED",
+            "MAINTENANCE_IN_PROGRESS"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Indicates that the resource is in provisioning state.",
+            "Indicates that the resource is in available state.",
+            "Indicates that the resource is in updating state.",
+            "Indicates that the resource is in terminating state.",
+            "Indicates that the resource is in terminated state.",
+            "Indicates that the resource is in failed state.",
+            "Indicates that the resource is in maintenance in progress state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "memorySizeGb": {
+          "description": "Output only. Memory per VM (GB) (Read-only): Shows the amount of memory allocated to each VM. Memory is calculated based on 2.75 GB per Total ECPUs.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "nodeCount": {
+          "description": "Required. The number of nodes/VMs in the ExadbVmCluster.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ociUri": {
+          "description": "Output only. Deep link to the OCI console to view this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "scanListenerPortTcp": {
+          "description": "Optional. Immutable. SCAN listener port - TCP",
+          "format": "int32",
+          "type": "integer"
+        },
+        "shapeAttribute": {
+          "description": "Required. Immutable. The shape attribute of the VM cluster. The type of Exascale storage used for Exadata VM cluster. The default is SMART_STORAGE which supports Oracle Database 23ai and later",
+          "enum": [
+            "SHAPE_ATTRIBUTE_UNSPECIFIED",
+            "SMART_STORAGE",
+            "BLOCK_STORAGE"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Indicates that the resource is in smart storage.",
+            "Indicates that the resource is in block storage."
+          ],
+          "type": "string"
+        },
+        "sshPublicKeys": {
+          "description": "Required. Immutable. The SSH public keys for the ExadbVmCluster.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "timeZone": {
+          "$ref": "TimeZone",
+          "description": "Optional. Immutable. The time zone of the ExadbVmCluster."
+        },
+        "vmFileSystemStorage": {
+          "$ref": "ExadbVmClusterStorageDetails",
+          "description": "Required. Immutable. Total storage details for the ExadbVmCluster."
+        }
+      },
+      "type": "object"
+    },
+    "ExadbVmClusterStorageDetails": {
+      "description": "The storage allocation for the exadbvmcluster, in gigabytes (GB).",
+      "id": "ExadbVmClusterStorageDetails",
+      "properties": {
+        "sizeInGbsPerNode": {
+          "description": "Required. The storage allocation for the exadbvmcluster per node, in gigabytes (GB). This field is used to calculate the total storage allocation for the exadbvmcluster.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ExascaleDbStorageDetails": {
+      "description": "The storage details of the ExascaleDbStorageVault.",
+      "id": "ExascaleDbStorageDetails",
+      "properties": {
+        "availableSizeGbs": {
+          "description": "Output only. The available storage capacity for the ExascaleDbStorageVault, in gigabytes (GB).",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "totalSizeGbs": {
+          "description": "Required. The total storage allocation for the ExascaleDbStorageVault, in gigabytes (GB).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ExascaleDbStorageVault": {
+      "description": "ExascaleDbStorageVault represents a storage vault exadb vm cluster resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/ExascaleDbStorageVault/",
+      "id": "ExascaleDbStorageVault",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The date and time when the ExascaleDbStorageVault was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name for the ExascaleDbStorageVault. The name does not have to be unique within your project. The name must be 1-255 characters long and can only contain alphanumeric characters.",
+          "type": "string"
+        },
+        "entitlementId": {
+          "description": "Output only. The ID of the subscription entitlement associated with the ExascaleDbStorageVault.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gcpOracleZone": {
+          "description": "Optional. The GCP Oracle zone where Oracle ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels or tags associated with the ExascaleDbStorageVault.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the ExascaleDbStorageVault. Format: projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}",
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "ExascaleDbStorageVaultProperties",
+          "description": "Required. The properties of the ExascaleDbStorageVault."
+        }
+      },
+      "type": "object"
+    },
+    "ExascaleDbStorageVaultProperties": {
+      "description": "The properties of the ExascaleDbStorageVault. next ID: 12",
+      "id": "ExascaleDbStorageVaultProperties",
+      "properties": {
+        "additionalFlashCachePercent": {
+          "description": "Optional. The size of additional flash cache in percentage of high capacity database storage.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "attachedShapeAttributes": {
+          "description": "Output only. The shape attributes of the VM clusters attached to the ExascaleDbStorageVault.",
+          "items": {
+            "enum": [
+              "SHAPE_ATTRIBUTE_UNSPECIFIED",
+              "SMART_STORAGE",
+              "BLOCK_STORAGE"
+            ],
+            "enumDescriptions": [
+              "Default unspecified value.",
+              "Indicates that the resource is in smart storage.",
+              "Indicates that the resource is in block storage."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "availableShapeAttributes": {
+          "description": "Output only. The shape attributes available for the VM clusters to be attached to the ExascaleDbStorageVault.",
+          "items": {
+            "enum": [
+              "SHAPE_ATTRIBUTE_UNSPECIFIED",
+              "SMART_STORAGE",
+              "BLOCK_STORAGE"
+            ],
+            "enumDescriptions": [
+              "Default unspecified value.",
+              "Indicates that the resource is in smart storage.",
+              "Indicates that the resource is in block storage."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "description": {
+          "description": "Optional. The description of the ExascaleDbStorageVault.",
+          "type": "string"
+        },
+        "exascaleDbStorageDetails": {
+          "$ref": "ExascaleDbStorageDetails",
+          "description": "Required. The storage details of the ExascaleDbStorageVault."
+        },
+        "ociUri": {
+          "description": "Output only. Deep link to the OCI console to view this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ocid": {
+          "description": "Output only. The OCID for the ExascaleDbStorageVault.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the ExascaleDbStorageVault.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "AVAILABLE",
+            "UPDATING",
+            "TERMINATING",
+            "TERMINATED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state of the ExascaleDbStorageVault is unspecified.",
+            "The ExascaleDbStorageVault is being provisioned.",
+            "The ExascaleDbStorageVault is available.",
+            "The ExascaleDbStorageVault is being updated.",
+            "The ExascaleDbStorageVault is being deleted.",
+            "The ExascaleDbStorageVault has been deleted.",
+            "The ExascaleDbStorageVault has failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "timeZone": {
+          "$ref": "TimeZone",
+          "description": "Output only. The time zone of the ExascaleDbStorageVault.",
+          "readOnly": true
+        },
+        "vmClusterCount": {
+          "description": "Output only. The number of VM clusters associated with the ExascaleDbStorageVault.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "vmClusterIds": {
+          "description": "Output only. The list of VM cluster OCIDs associated with the ExascaleDbStorageVault.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FailoverAutonomousDatabaseRequest": {
+      "description": "The request for `OracleDatabase.FailoverAutonomousDatabase`.",
+      "id": "FailoverAutonomousDatabaseRequest",
+      "properties": {
+        "peerAutonomousDatabase": {
+          "description": "Required. The peer database name to fail over to.",
           "type": "string"
         }
       },
@@ -3653,6 +5795,37 @@
         },
         "version": {
           "description": "Optional. version",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityConnector": {
+      "description": "The identity connector details which will allow OCI to securely access the resources in the customer project.",
+      "id": "IdentityConnector",
+      "properties": {
+        "connectionState": {
+          "description": "Output only. The connection state of the identity connector.",
+          "enum": [
+            "CONNECTION_STATE_UNSPECIFIED",
+            "CONNECTED",
+            "PARTIALLY_CONNECTED",
+            "DISCONNECTED",
+            "UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "The identity pool connection is connected.",
+            "The identity pool connection is partially connected.",
+            "The identity pool connection is disconnected.",
+            "The identity pool connection is in an unknown state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAgentEmail": {
+          "description": "Output only. A google managed service account on which customers can grant roles to access resources in the customer project. Example: `p176944527254-55-75119d87fd8f@gcp-sa-oci.iam.gserviceaccount.com`",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3766,6 +5939,42 @@
       },
       "type": "object"
     },
+    "ListDatabaseCharacterSetsResponse": {
+      "description": "The response for `DatabaseCharacterSet.List`.",
+      "id": "ListDatabaseCharacterSetsResponse",
+      "properties": {
+        "databaseCharacterSets": {
+          "description": "The list of DatabaseCharacterSets.",
+          "items": {
+            "$ref": "DatabaseCharacterSet"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListDatabasesResponse": {
+      "description": "The response for `Database.List`.",
+      "id": "ListDatabasesResponse",
+      "properties": {
+        "databases": {
+          "description": "The list of Databases.",
+          "items": {
+            "$ref": "Database"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListDbNodesResponse": {
       "description": "The response for `DbNode.List`.",
       "id": "ListDbNodesResponse",
@@ -3802,6 +6011,24 @@
       },
       "type": "object"
     },
+    "ListDbSystemInitialStorageSizesResponse": {
+      "description": "The response for `DbSystemInitialStorageSizes.List`.",
+      "id": "ListDbSystemInitialStorageSizesResponse",
+      "properties": {
+        "dbSystemInitialStorageSizes": {
+          "description": "The list of DbSystemInitialStorageSizes.",
+          "items": {
+            "$ref": "DbSystemInitialStorageSize"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListDbSystemShapesResponse": {
       "description": "The response for `DbSystemShape.List`.",
       "id": "ListDbSystemShapesResponse",
@@ -3810,6 +6037,42 @@
           "description": "The list of Database System shapes.",
           "items": {
             "$ref": "DbSystemShape"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListDbSystemsResponse": {
+      "description": "The response for `DbSystem.List`.",
+      "id": "ListDbSystemsResponse",
+      "properties": {
+        "dbSystems": {
+          "description": "The list of DbSystems.",
+          "items": {
+            "$ref": "DbSystem"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListDbVersionsResponse": {
+      "description": "The response for `DbVersions.List`.",
+      "id": "ListDbVersionsResponse",
+      "properties": {
+        "dbVersions": {
+          "description": "The list of DbVersions.",
+          "items": {
+            "$ref": "DbVersion"
           },
           "type": "array"
         },
@@ -3833,6 +6096,42 @@
         },
         "nextPageToken": {
           "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListExadbVmClustersResponse": {
+      "description": "The response for `ExadbVmCluster.List`.",
+      "id": "ListExadbVmClustersResponse",
+      "properties": {
+        "exadbVmClusters": {
+          "description": "The list of ExadbVmClusters.",
+          "items": {
+            "$ref": "ExadbVmCluster"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListExascaleDbStorageVaultsResponse": {
+      "description": "The response for `ExascaleDbStorageVault.List`.",
+      "id": "ListExascaleDbStorageVaultsResponse",
+      "properties": {
+        "exascaleDbStorageVaults": {
+          "description": "The ExascaleDbStorageVaults.",
+          "items": {
+            "$ref": "ExascaleDbStorageVault"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return. If present, the next page token can be provided to a subsequent ListExascaleDbStorageVaults call to list the next page. If empty, there are no more pages.",
           "type": "string"
         }
       },
@@ -3869,6 +6168,24 @@
         },
         "nextPageToken": {
           "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListMinorVersionsResponse": {
+      "description": "The response for `MinorVersion.List`.",
+      "id": "ListMinorVersionsResponse",
+      "properties": {
+        "minorVersions": {
+          "description": "The list of MinorVersions.",
+          "items": {
+            "$ref": "MinorVersion"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
           "type": "string"
         }
       },
@@ -3936,6 +6253,31 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListPluggableDatabasesResponse": {
+      "description": "The response for `PluggableDatabase.List`.",
+      "id": "ListPluggableDatabasesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "pluggableDatabases": {
+          "description": "The list of PluggableDatabases.",
+          "items": {
+            "$ref": "PluggableDatabase"
           },
           "type": "array"
         }
@@ -4120,6 +6462,25 @@
       },
       "type": "object"
     },
+    "MinorVersion": {
+      "description": "MinorVersion represents a minor version of a GI. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/GiMinorVersionSummary/",
+      "id": "MinorVersion",
+      "properties": {
+        "gridImageId": {
+          "description": "Optional. The ID of the Grid Image.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the MinorVersion resource with the format: projects/{project}/locations/{region}/giVersions/{gi_version}/minorVersions/{minor_version}",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. The valid Oracle grid infrastructure software version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OdbNetwork": {
       "description": "Represents OdbNetwork resource.",
       "id": "OdbNetwork",
@@ -4133,6 +6494,10 @@
         "entitlementId": {
           "description": "Output only. The ID of the subscription entitlement associated with the OdbNetwork.",
           "readOnly": true,
+          "type": "string"
+        },
+        "gcpOracleZone": {
+          "description": "Optional. The GCP Oracle zone where OdbNetwork is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
           "type": "string"
         },
         "labels": {
@@ -4318,6 +6683,228 @@
       },
       "type": "object"
     },
+    "PluggableDatabase": {
+      "description": "The PluggableDatabase resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/PluggableDatabase/",
+      "id": "PluggableDatabase",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The date and time that the PluggableDatabase was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the PluggableDatabase resource in the following format: projects/{project}/locations/{region}/pluggableDatabases/{pluggable_database}",
+          "type": "string"
+        },
+        "ociUrl": {
+          "description": "Output only. HTTPS link to OCI resources exposed to Customer via UI Interface.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "PluggableDatabaseProperties",
+          "description": "Optional. The properties of the PluggableDatabase."
+        }
+      },
+      "type": "object"
+    },
+    "PluggableDatabaseConnectionStrings": {
+      "description": "The connection strings used to connect to the Oracle Database.",
+      "id": "PluggableDatabaseConnectionStrings",
+      "properties": {
+        "allConnectionStrings": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. All connection strings to use to connect to the pluggable database.",
+          "type": "object"
+        },
+        "pdbDefault": {
+          "description": "Optional. The default connection string to use to connect to the pluggable database.",
+          "type": "string"
+        },
+        "pdbIpDefault": {
+          "description": "Optional. The default connection string to use to connect to the pluggable database using IP.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PluggableDatabaseNodeLevelDetails": {
+      "description": "The Pluggable Database Node Level Details.",
+      "id": "PluggableDatabaseNodeLevelDetails",
+      "properties": {
+        "nodeName": {
+          "description": "Required. The Node name of the Database home.",
+          "type": "string"
+        },
+        "openMode": {
+          "description": "Required. The mode that the pluggable database is in to open it.",
+          "enum": [
+            "PLUGGABLE_DATABASE_OPEN_MODE_UNSPECIFIED",
+            "READ_ONLY",
+            "READ_WRITE",
+            "MOUNTED",
+            "MIGRATE"
+          ],
+          "enumDescriptions": [
+            "The open mode is unspecified.",
+            "The pluggable database is opened in read-only mode.",
+            "The pluggable database is opened in read-write mode.",
+            "The pluggable database is mounted.",
+            "The pluggable database is migrated."
+          ],
+          "type": "string"
+        },
+        "pluggableDatabaseId": {
+          "description": "Required. The OCID of the Pluggable Database.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PluggableDatabaseProperties": {
+      "description": "The properties of a PluggableDatabase.",
+      "id": "PluggableDatabaseProperties",
+      "properties": {
+        "compartmentId": {
+          "description": "Required. The OCID of the compartment.",
+          "type": "string"
+        },
+        "connectionStrings": {
+          "$ref": "PluggableDatabaseConnectionStrings",
+          "description": "Optional. The Connection strings used to connect to the Oracle Database."
+        },
+        "containerDatabaseOcid": {
+          "description": "Required. The OCID of the CDB.",
+          "type": "string"
+        },
+        "databaseManagementConfig": {
+          "$ref": "DatabaseManagementConfig",
+          "description": "Output only. The configuration of the Database Management service.",
+          "readOnly": true
+        },
+        "definedTags": {
+          "additionalProperties": {
+            "$ref": "DefinedTagValue"
+          },
+          "description": "Optional. Defined tags for this resource. Each key is predefined and scoped to a namespace.",
+          "type": "object"
+        },
+        "freeformTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.",
+          "type": "object"
+        },
+        "isRestricted": {
+          "description": "Optional. The restricted mode of the pluggable database. If a pluggable database is opened in restricted mode, the user needs both create a session and have restricted session privileges to connect to it.",
+          "type": "boolean"
+        },
+        "lifecycleDetails": {
+          "description": "Output only. Additional information about the current lifecycle state.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lifecycleState": {
+          "description": "Output only. The current state of the pluggable database.",
+          "enum": [
+            "PLUGGABLE_DATABASE_LIFECYCLE_STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "AVAILABLE",
+            "TERMINATING",
+            "TERMINATED",
+            "UPDATING",
+            "FAILED",
+            "RELOCATING",
+            "RELOCATED",
+            "REFRESHING",
+            "RESTORE_IN_PROGRESS",
+            "RESTORE_FAILED",
+            "BACKUP_IN_PROGRESS",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "The lifecycle state is unspecified.",
+            "The pluggable database is provisioning.",
+            "The pluggable database is available.",
+            "The pluggable database is terminating.",
+            "The pluggable database is terminated.",
+            "The pluggable database is updating.",
+            "The pluggable database is in a failed state.",
+            "The pluggable database is relocating.",
+            "The pluggable database is relocated.",
+            "The pluggable database is refreshing.",
+            "The pluggable database is restoring.",
+            "The pluggable database restore failed.",
+            "The pluggable database is backing up.",
+            "The pluggable database is disabled."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "ocid": {
+          "description": "Output only. The OCID of the pluggable database.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "operationsInsightsState": {
+          "description": "Output only. The status of Operations Insights for this Database.",
+          "enum": [
+            "OPERATIONS_INSIGHTS_STATE_UNSPECIFIED",
+            "ENABLING",
+            "ENABLED",
+            "DISABLING",
+            "NOT_ENABLED",
+            "FAILED_ENABLING",
+            "FAILED_DISABLING"
+          ],
+          "enumDescriptions": [
+            "The status is not specified.",
+            "Operations Insights is enabling.",
+            "Operations Insights is enabled.",
+            "Operations Insights is disabling.",
+            "Operations Insights is not enabled.",
+            "Operations Insights failed to enable.",
+            "Operations Insights failed to disable."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "pdbName": {
+          "description": "Required. The database name.",
+          "type": "string"
+        },
+        "pdbNodeLevelDetails": {
+          "description": "Optional. Pluggable Database Node Level Details",
+          "items": {
+            "$ref": "PluggableDatabaseNodeLevelDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveVirtualMachineExadbVmClusterRequest": {
+      "description": "The request for `ExadbVmCluster.RemoveVirtualMachine`.",
+      "id": "RemoveVirtualMachineExadbVmClusterRequest",
+      "properties": {
+        "hostnames": {
+          "description": "Required. The list of host names of db nodes to be removed from the ExadbVmCluster.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requestId": {
+          "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RestartAutonomousDatabaseRequest": {
       "description": "The request for `AutonomousDatabase.Restart`.",
       "id": "RestartAutonomousDatabaseRequest",
@@ -4430,6 +7017,25 @@
       "description": "The request for `AutonomousDatabase.Stop`.",
       "id": "StopAutonomousDatabaseRequest",
       "properties": {},
+      "type": "object"
+    },
+    "StorageSizeDetails": {
+      "description": "The initial storage size, in gigabytes, that is applicable for virtual machine DBSystem.",
+      "id": "StorageSizeDetails",
+      "properties": {
+        "dataStorageSizeInGbs": {
+          "description": "Output only. The data storage size, in gigabytes, that is applicable for virtual machine DBSystem.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "recoStorageSizeInGbs": {
+          "description": "Output only. The RECO/REDO storage size, in gigabytes, that is applicable for virtual machine DBSystem.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "SwitchoverAutonomousDatabaseRequest": {
