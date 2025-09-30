@@ -600,7 +600,7 @@
           ]
         },
         "search": {
-          "description": "Returns a list of spaces in a Google Workspace organization based on an administrator's search. Requires [user authentication with administrator privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges) and one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.admin.spaces.readonly` - `https://www.googleapis.com/auth/chat.admin.spaces` In the request, set `use_admin_access` to `true`.",
+          "description": "Returns a list of spaces in a Google Workspace organization based on an administrator's search. In the request, set `use_admin_access` to `true`. For an example, see [Search for and manage spaces](https://developers.google.com/workspace/chat/search-manage-admin). Requires [user authentication with administrator privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges) and one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.admin.spaces.readonly` - `https://www.googleapis.com/auth/chat.admin.spaces`",
           "flatPath": "v1/spaces:search",
           "httpMethod": "GET",
           "id": "chat.spaces.search",
@@ -1277,7 +1277,7 @@
         "spaceEvents": {
           "methods": {
             "get": {
-              "description": "Returns an event from a Google Chat space. The [event payload](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.spaceEvents#SpaceEvent.FIELDS.oneof_payload) contains the most recent version of the resource that changed. For example, if you request an event about a new message but the message was later updated, the server returns the updated `Message` resource in the event payload. Note: The `permissionSettings` field is not returned in the Space object of the Space event data for this request. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with an [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes) appropriate for reading the requested data: - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces` - `https://www.googleapis.com/auth/chat.messages.readonly` - `https://www.googleapis.com/auth/chat.messages` - `https://www.googleapis.com/auth/chat.messages.reactions.readonly` - `https://www.googleapis.com/auth/chat.messages.reactions` - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` To get an event, the authenticated user must be a member of the space. For an example, see [Get details about an event from a Google Chat space](https://developers.google.com/workspace/chat/get-space-event).",
+              "description": "Returns an event from a Google Chat space. The [event payload](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.spaceEvents#SpaceEvent.FIELDS.oneof_payload) contains the most recent version of the resource that changed. For example, if you request an event about a new message but the message was later updated, the server returns the updated `Message` resource in the event payload. Note: The `permissionSettings` field is not returned in the Space object of the Space event data for this request. Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize) with an [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes) appropriate for reading the requested data: - [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with [administrator approval](https://support.google.com/a?p=chat-app-auth) in [Developer Preview](https://developers.google.com/workspace/preview) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.app.spaces` - `https://www.googleapis.com/auth/chat.app.messages.readonly` - `https://www.googleapis.com/auth/chat.app.memberships` - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces` - `https://www.googleapis.com/auth/chat.messages.readonly` - `https://www.googleapis.com/auth/chat.messages` - `https://www.googleapis.com/auth/chat.messages.reactions.readonly` - `https://www.googleapis.com/auth/chat.messages.reactions` - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` To get an event, the authenticated caller must be a member of the space. For an example, see [Get details about an event from a Google Chat space](https://developers.google.com/workspace/chat/get-space-event).",
               "flatPath": "v1/spaces/{spacesId}/spaceEvents/{spaceEventsId}",
               "httpMethod": "GET",
               "id": "chat.spaces.spaceEvents.get",
@@ -1311,7 +1311,7 @@
               ]
             },
             "list": {
-              "description": "Lists events from a Google Chat space. For each event, the [payload](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.spaceEvents#SpaceEvent.FIELDS.oneof_payload) contains the most recent version of the Chat resource. For example, if you list events about new space members, the server returns `Membership` resources that contain the latest membership details. If new members were removed during the requested period, the event payload contains an empty `Membership` resource. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with an [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes) appropriate for reading the requested data: - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces` - `https://www.googleapis.com/auth/chat.messages.readonly` - `https://www.googleapis.com/auth/chat.messages` - `https://www.googleapis.com/auth/chat.messages.reactions.readonly` - `https://www.googleapis.com/auth/chat.messages.reactions` - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` To list events, the authenticated user must be a member of the space. For an example, see [List events from a Google Chat space](https://developers.google.com/workspace/chat/list-space-events).",
+              "description": "Lists events from a Google Chat space. For each event, the [payload](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.spaceEvents#SpaceEvent.FIELDS.oneof_payload) contains the most recent version of the Chat resource. For example, if you list events about new space members, the server returns `Membership` resources that contain the latest membership details. If new members were removed during the requested period, the event payload contains an empty `Membership` resource. Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize) with an [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes) appropriate for reading the requested data: - [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with [administrator approval](https://support.google.com/a?p=chat-app-auth) in [Developer Preview](https://developers.google.com/workspace/preview) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.app.spaces` - `https://www.googleapis.com/auth/chat.app.messages.readonly` - `https://www.googleapis.com/auth/chat.app.memberships` - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces` - `https://www.googleapis.com/auth/chat.messages.readonly` - `https://www.googleapis.com/auth/chat.messages` - `https://www.googleapis.com/auth/chat.messages.reactions.readonly` - `https://www.googleapis.com/auth/chat.messages.reactions` - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` To list events, the authenticated caller must be a member of the space. For an example, see [List events from a Google Chat space](https://developers.google.com/workspace/chat/list-space-events).",
               "flatPath": "v1/spaces/{spacesId}/spaceEvents",
               "httpMethod": "GET",
               "id": "chat.spaces.spaceEvents.list",
@@ -1528,7 +1528,7 @@
       }
     }
   },
-  "revision": "20250819",
+  "revision": "20250923",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -2075,7 +2075,7 @@
           "type": "string"
         },
         "invokedFunction": {
-          "description": "Name of the invoked function associated with the widget. Only set for Chat apps.",
+          "description": "Name of the function to invoke. This field doesn't populate for Google Workspace Add-ons that extend Google Chat. Instead, to receive function data like identifiers, add-ons that extend Chat should use the `parameters` field. See [Build interactive interfaces for Chat apps](https://developers.google.com/workspace/add-ons/chat/build).",
           "type": "string"
         },
         "parameters": {
@@ -2326,12 +2326,12 @@
           ],
           "enumDescriptions": [
             "Default value for the enum. DO NOT USE.",
-            "A user sends the Chat app a message, or invokes the Chat app in a space, such as any of the following examples: * Any message in a direct message (DM) space with the Chat app. * A message in a multi-person space where a person @mentions the Chat app, or uses one of its [slash commands](https://developers.google.com/workspace/chat/commands#types). * If you've configured link previews for your Chat app, a user posts a message that contains a link that matches the configured URL pattern.",
+            "A user sends the Chat app a message, or invokes the Chat app in a space. Examples of message events include: * Any message in a direct message (DM) space with the Chat app. * A message in a multi-person space where a person @mentions the Chat app, or uses one of its [slash commands](https://developers.google.com/workspace/chat/commands#types). * If you've configured link previews for your Chat app, a user posts a message that contains a link that matches the configured URL pattern.",
             "A user adds the Chat app to a space, or a Google Workspace administrator installs the Chat app in direct message spaces for users in their organization. Chat apps typically respond to this interaction event by posting a welcome message in the space. When administrators install Chat apps, the `space.adminInstalled` field is set to `true` and users can't uninstall them. To learn about Chat apps installed by administrators, see Google Workspace Admin Help's documentation, [Install Marketplace apps in your domain](https://support.google.com/a/answer/172482).",
             "A user removes the Chat app from a space, or a Google Workspace administrator uninstalls the Chat app for a user in their organization. Chat apps can't respond with messages to this event, because they have already been removed. When administrators uninstall Chat apps, the `space.adminInstalled` field is set to `false`. If a user installed the Chat app before the administrator, the Chat app remains installed for the user and the Chat app doesn't receive a `REMOVED_FROM_SPACE` interaction event.",
             "A user clicks an interactive element of a card or dialog from a Chat app, such as a button. To receive an interaction event, the button must trigger another interaction with the Chat app. For example, a Chat app doesn't receive a `CARD_CLICKED` interaction event if a user clicks a button that opens a link to a website, but receives interaction events in the following examples: * The user clicks a `Send feedback` button on a card, which opens a dialog for the user to input information. * The user clicks a `Submit` button after inputting information into a card or dialog. If a user clicks a button to open, submit, or cancel a dialog, the `CARD_CLICKED` interaction event's `isDialogEvent` field is set to `true` and includes a [`DialogEventType`](https://developers.google.com/workspace/chat/api/reference/rest/v1/DialogEventType).",
-            "A user updates a widget in a card message or dialog.",
-            "A user uses a Chat app [quick command](https://developers.google.com/workspace/chat/commands#types)."
+            "A user updates a widget in a card message or dialog. This event is triggered when a user interacts with a widget that has an associated action.",
+            "A user uses a Chat app [command](https://developers.google.com/workspace/chat/commands#types), including slash commands and quick commands."
           ],
           "type": "string"
         },
@@ -2754,7 +2754,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Carousel": {
-      "description": "[Developer Preview](https://developers.google.com/workspace/preview): A carousel, also known as a slider, rotates and displays a list of widgets in a slideshow format, with buttons navigating to the previous or next widget. For example, this is a JSON representation of a carousel that contains three text paragraph widgets. ``` { \"carouselCards\": [ { \"widgets\": [ { \"textParagraph\": { \"text\": \"First text paragraph in carousel\", } } ] }, { \"widgets\": [ { \"textParagraph\": { \"text\": \"Second text paragraph in carousel\", } } ] }, { \"widgets\": [ { \"textParagraph\": { \"text\": \"Third text paragraph in carousel\", } } ] } ] } ``` [Google Chat apps](https://developers.google.com/workspace/chat):",
+      "description": "A carousel, also known as a slider, rotates and displays a list of widgets in a slideshow format, with buttons navigating to the previous or next widget. For example, this is a JSON representation of a carousel that contains three text paragraph widgets. ``` { \"carouselCards\": [ { \"widgets\": [ { \"textParagraph\": { \"text\": \"First text paragraph in carousel\", } } ] }, { \"widgets\": [ { \"textParagraph\": { \"text\": \"Second text paragraph in carousel\", } } ] }, { \"widgets\": [ { \"textParagraph\": { \"text\": \"Third text paragraph in carousel\", } } ] } ] } ``` [Google Chat apps](https://developers.google.com/workspace/chat):",
       "id": "GoogleAppsCardV1Carousel",
       "properties": {
         "carouselCards": {
@@ -2768,7 +2768,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1CarouselCard": {
-      "description": "[Developer Preview](https://developers.google.com/workspace/preview): A card that can be displayed as a carousel item. [Google Chat apps](https://developers.google.com/workspace/chat):",
+      "description": "A card that can be displayed as a carousel item. [Google Chat apps](https://developers.google.com/workspace/chat):",
       "id": "GoogleAppsCardV1CarouselCard",
       "properties": {
         "footerWidgets": {
@@ -3049,9 +3049,17 @@
           "description": "The text that appears below `text`. Always wraps.",
           "type": "string"
         },
+        "bottomLabelText": {
+          "$ref": "GoogleAppsCardV1TextParagraph",
+          "description": "`TextParagraph` equivalent of `bottom_label`. Always wraps. Allows for more complex formatting than `bottom_label`. [Google Chat apps](https://developers.google.com/workspace/chat):"
+        },
         "button": {
           "$ref": "GoogleAppsCardV1Button",
           "description": "A button that a user can click to trigger an action."
+        },
+        "contentText": {
+          "$ref": "GoogleAppsCardV1TextParagraph",
+          "description": "`TextParagraph` equivalent of `text`. Allows for more complex formatting than `text`. [Google Chat apps](https://developers.google.com/workspace/chat):"
         },
         "endIcon": {
           "$ref": "GoogleAppsCardV1Icon",
@@ -3070,6 +3078,22 @@
           "$ref": "GoogleAppsCardV1Icon",
           "description": "The icon displayed in front of the text."
         },
+        "startIconVerticalAlignment": {
+          "description": "Optional. Vertical alignment of the start icon. If not set, the icon will be vertically centered. [Google Chat apps](https://developers.google.com/workspace/chat):",
+          "enum": [
+            "VERTICAL_ALIGNMENT_UNSPECIFIED",
+            "TOP",
+            "MIDDLE",
+            "BOTTOM"
+          ],
+          "enumDescriptions": [
+            "Unspecified type. Do not use.",
+            "Alignment to the top position.",
+            "Alignment to the middle position.",
+            "Alignment to the bottom position."
+          ],
+          "type": "string"
+        },
         "switchControl": {
           "$ref": "GoogleAppsCardV1SwitchControl",
           "description": "A switch widget that a user can click to change its state and trigger an action."
@@ -3081,6 +3105,10 @@
         "topLabel": {
           "description": "The text that appears above `text`. Always truncates.",
           "type": "string"
+        },
+        "topLabelText": {
+          "$ref": "GoogleAppsCardV1TextParagraph",
+          "description": "`TextParagraph` equivalent of `top_label`. Always truncates. Allows for more complex formatting than `top_label`. [Google Chat apps](https://developers.google.com/workspace/chat):"
         },
         "wrapText": {
           "description": "The wrap text setting. If `true`, the text wraps and displays on multiple lines. Otherwise, the text is truncated. Only applies to `text`, not `topLabel` and `bottomLabel`.",
@@ -3368,7 +3396,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1NestedWidget": {
-      "description": "[Developer Preview](https://developers.google.com/workspace/preview): A list of widgets that can be displayed in a containing layout, such as a `CarouselCard`. [Google Chat apps](https://developers.google.com/workspace/chat):",
+      "description": "A list of widgets that can be displayed in a containing layout, such as a `CarouselCard`. [Google Chat apps](https://developers.google.com/workspace/chat):",
       "id": "GoogleAppsCardV1NestedWidget",
       "properties": {
         "buttonList": {
@@ -3774,6 +3802,20 @@
         },
         "text": {
           "description": "The text that's shown in the widget.",
+          "type": "string"
+        },
+        "textSyntax": {
+          "description": "The syntax of the text. If not set, the text is rendered as HTML. [Google Chat apps](https://developers.google.com/workspace/chat):",
+          "enum": [
+            "TEXT_SYNTAX_UNSPECIFIED",
+            "HTML",
+            "MARKDOWN"
+          ],
+          "enumDescriptions": [
+            "The text is rendered as HTML if unspecified.",
+            "The text is rendered as HTML. This is the default value.",
+            "The text is rendered as Markdown."
+          ],
           "type": "string"
         }
       },
@@ -4776,7 +4818,7 @@
       "properties": {
         "message": {
           "$ref": "Message",
-          "description": "The deleted message. Only the `name`, `createTime`, `deleteTime`, and `deletionMetadata` fields are populated."
+          "description": "The deleted message. Only the `name`, `createTime`, and `deletionMetadata` fields are populated."
         }
       },
       "type": "object"
