@@ -2891,6 +2891,10 @@ export namespace walletobjects_v1 {
      */
     notificationType?: string | null;
     /**
+     * The physical headers provided by RequestReceivedParameters in Scotty request. type is uploader_service.KeyValuePairs.
+     */
+    physicalHeaders?: string | null;
+    /**
      * The Scotty request ID.
      */
     requestId?: string | null;

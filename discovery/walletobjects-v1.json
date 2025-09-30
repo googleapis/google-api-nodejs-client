@@ -2711,7 +2711,7 @@
       }
     }
   },
-  "revision": "20250804",
+  "revision": "20250909",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -7330,6 +7330,11 @@
             "Such requests occur after an END and signal that the response has been sent back to the client. RESPONSE_SENT is only sent to the backend if it is configured to receive them. The response does not need to contain anything.",
             "Such requests indicate that an error occurred while processing the request. ERROR is only sent to the backend if it is configured to receive them. It is not guaranteed that all errors will result in this notification to the backend, even if the backend requests them. Since these requests are just for informational purposes, the response does not need to contain anything."
           ],
+          "type": "string"
+        },
+        "physicalHeaders": {
+          "description": "The physical headers provided by RequestReceivedParameters in Scotty request. type is uploader_service.KeyValuePairs.",
+          "format": "byte",
           "type": "string"
         },
         "requestId": {
