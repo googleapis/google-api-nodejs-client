@@ -310,6 +310,15 @@ export namespace playintegrity_v1 {
     requestTime?: string | null;
   }
   /**
+   * Contains additional information generated for testing responses.
+   */
+  export interface Schema$PcTestingDetails {
+    /**
+     * Indicates that the information contained in this payload is a testing response that is statically overridden for a tester.
+     */
+    isTestingResponse?: boolean | null;
+  }
+  /**
    * Contains PC device attestation details.
    */
   export interface Schema$PcTokenPayloadExternal {
@@ -325,6 +334,10 @@ export namespace playintegrity_v1 {
      * Required. Details about the integrity request.
      */
     requestDetails?: Schema$PcRequestDetails;
+    /**
+     * Indicates that this payload is generated for testing purposes and contains any additional data that is linked with testing status.
+     */
+    testingDetails?: Schema$PcTestingDetails;
   }
   /**
    * Recent device activity can help developers identify devices that have exhibited hyperactive attestation activity, which could be a sign of an attack or token farming.
