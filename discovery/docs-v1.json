@@ -221,7 +221,7 @@
       }
     }
   },
-  "revision": "20250325",
+  "revision": "20250925",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -1753,6 +1753,25 @@
       },
       "type": "object"
     },
+    "InsertPersonRequest": {
+      "description": "Inserts a person mention.",
+      "id": "InsertPersonRequest",
+      "properties": {
+        "endOfSegmentLocation": {
+          "$ref": "EndOfSegmentLocation",
+          "description": "Inserts the person at the end of a header, footer, footnote or the document body."
+        },
+        "location": {
+          "$ref": "Location",
+          "description": "Inserts the person at a specific index in the document. The person mention must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table's start index (i.e. between the table and its preceding paragraph). People cannot be inserted inside an equation."
+        },
+        "personProperties": {
+          "$ref": "PersonProperties",
+          "description": "The properties of the person mention to insert."
+        }
+      },
+      "type": "object"
+    },
     "InsertSectionBreakRequest": {
       "description": "Inserts a section break at the given location. A newline character will be inserted before the section break.",
       "id": "InsertSectionBreakRequest",
@@ -2756,13 +2775,11 @@
       "id": "PersonProperties",
       "properties": {
         "email": {
-          "description": "Output only. The email address linked to this Person. This field is always present.",
-          "readOnly": true,
+          "description": "The email address linked to this Person. This field is always present.",
           "type": "string"
         },
         "name": {
-          "description": "Output only. The name of the person if it's displayed in the link text instead of the person's email address.",
-          "readOnly": true,
+          "description": "The name of the person if it's displayed in the link text instead of the person's email address.",
           "type": "string"
         }
       },
@@ -3076,6 +3093,10 @@
         "insertPageBreak": {
           "$ref": "InsertPageBreakRequest",
           "description": "Inserts a page break at the specified location."
+        },
+        "insertPerson": {
+          "$ref": "InsertPersonRequest",
+          "description": "Inserts a person mention."
         },
         "insertSectionBreak": {
           "$ref": "InsertSectionBreakRequest",
