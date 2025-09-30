@@ -1042,13 +1042,17 @@ export namespace beyondcorp_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. Endpoint matchers associated with an application. A combination of hostname and ports as endpoint matchers is used to match the application. Match conditions for OR logic. An array of match conditions to allow for multiple matching criteria. The rule is considered a match if one of the conditions is met. The conditions can be one of the following combinations (Hostname), (Hostname & Ports) EXAMPLES: Hostname - ("*.example.com"), ("xyz.example.com") Hostname and Ports - ("example.com" and "22"), ("example.com" and "22,33") etc
+     * Required. Endpoint matchers associated with an application. A combination of hostname and ports as endpoint matchers is used to match the application. Match conditions for OR logic. An array of match conditions to allow for multiple matching criteria. The rule is considered a match if one of the conditions is met. The conditions should be the following combination: (Hostname & Ports) EXAMPLES: Hostname and Ports - ("*.example.com", "443"), ("example.com" and "22"), ("example.com" and "22,33") etc
      */
     endpointMatchers?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1EndpointMatcher[];
     /**
      * Identifier. Name of the resource.
      */
     name?: string | null;
+    /**
+     * Optional. Type of the external application.
+     */
+    schema?: string | null;
     /**
      * Output only. Timestamp when the resource was last modified.
      */
@@ -1067,9 +1071,26 @@ export namespace beyondcorp_v1 {
      */
     egressPolicy?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1EgressPolicy;
     /**
+     * List of the external endpoints to forward traffic to.
+     */
+    external?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ApplicationUpstreamExternal;
+    /**
      * Network to forward traffic to.
      */
     network?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ApplicationUpstreamNetwork;
+    /**
+     * Optional. Enables proxy protocol configuration for the upstream.
+     */
+    proxyProtocol?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig;
+  }
+  /**
+   * Endpoints to forward traffic to.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ApplicationUpstreamExternal {
+    /**
+     * Required. List of the endpoints to forward traffic to.
+     */
+    endpoints?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Endpoint[];
   }
   /**
    * Network to forward traffic to.
@@ -1081,6 +1102,54 @@ export namespace beyondcorp_v1 {
     name?: string | null;
   }
   /**
+   * Contextual headers configuration.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders {
+    /**
+     * Optional. Device info configuration.
+     */
+    deviceInfo?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo;
+    /**
+     * Optional. Group info configuration.
+     */
+    groupInfo?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo;
+    /**
+     * Optional. Default output type for all enabled headers.
+     */
+    outputType?: string | null;
+    /**
+     * Optional. User info configuration.
+     */
+    userInfo?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo;
+  }
+  /**
+   * Delegated device info configuration.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo {
+    /**
+     * Optional. The output type of the delegated device info.
+     */
+    outputType?: string | null;
+  }
+  /**
+   * Delegated group info configuration.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo {
+    /**
+     * Optional. The output type of the delegated group info.
+     */
+    outputType?: string | null;
+  }
+  /**
+   * Delegated user info configuration.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo {
+    /**
+     * Optional. The output type of the delegated user info.
+     */
+    outputType?: string | null;
+  }
+  /**
    * Routing policy information.
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1EgressPolicy {
@@ -1088,6 +1157,19 @@ export namespace beyondcorp_v1 {
      * Required. List of the regions where the application sends traffic.
      */
     regions?: string[] | null;
+  }
+  /**
+   * Internet Gateway endpoint to forward traffic to.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Endpoint {
+    /**
+     * Required. Hostname of the endpoint.
+     */
+    hostname?: string | null;
+    /**
+     * Required. Port of the endpoint.
+     */
+    port?: number | null;
   }
   /**
    * EndpointMatcher contains the information of the endpoint that will match the application.
@@ -1098,7 +1180,7 @@ export namespace beyondcorp_v1 {
      */
     hostname?: string | null;
     /**
-     * Optional. Ports of the application.
+     * Required. Ports of the application.
      */
     ports?: number[] | null;
   }
@@ -1155,6 +1237,31 @@ export namespace beyondcorp_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * The configuration for the proxy.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig {
+    /**
+     * Optional. List of the allowed client header names.
+     */
+    allowedClientHeaders?: string[] | null;
+    /**
+     * Optional. Client IP configuration. The client IP address is included if true.
+     */
+    clientIp?: boolean | null;
+    /**
+     * Optional. Configuration for the contextual headers.
+     */
+    contextualHeaders?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders;
+    /**
+     * Optional. Gateway identity configuration.
+     */
+    gatewayIdentity?: string | null;
+    /**
+     * Optional. Custom resource specific headers along with the values. The names should conform to RFC 9110: \> Field names SHOULD constrain themselves to alphanumeric characters, "-", and ".", and SHOULD begin with a letter. Field values SHOULD contain only ASCII printable characters and tab.
+     */
+    metadataHeaders?: {[key: string]: string} | null;
+  }
+  /**
    * The information about a security gateway resource.
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway {
@@ -1184,6 +1291,14 @@ export namespace beyondcorp_v1 {
      * Identifier. Name of the resource.
      */
     name?: string | null;
+    /**
+     * Optional. Shared proxy configuration for all apps.
+     */
+    proxyProtocolConfig?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig;
+    /**
+     * Optional. Settings related to the Service Discovery.
+     */
+    serviceDiscovery?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ServiceDiscovery;
     /**
      * Output only. The operational state of the SecurityGateway.
      */
@@ -1225,6 +1340,33 @@ export namespace beyondcorp_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Settings related to the Service Discovery.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ServiceDiscovery {
+    /**
+     * Required. External API configuration.
+     */
+    apiGateway?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ServiceDiscoveryApiGateway;
+  }
+  /**
+   * If Service Discovery is done through API, defines its settings.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ServiceDiscoveryApiGateway {
+    /**
+     * Required. Enables fetching resource model updates to alter service behavior per Chrome profile.
+     */
+    resourceOverride?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ServiceDiscoveryApiGatewayOperationDescriptor;
+  }
+  /**
+   * API operation descriptor.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ServiceDiscoveryApiGatewayOperationDescriptor {
+    /**
+     * Required. Contains uri path fragment where HTTP request is sent.
+     */
+    path?: string | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -2344,7 +2486,7 @@ export namespace beyondcorp_v1 {
      *
      *   // Do the magic
      *   const res = await beyondcorp.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2480,7 +2622,7 @@ export namespace beyondcorp_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -7636,6 +7778,8 @@ export namespace beyondcorp_v1 {
      *       //   "externalIps": [],
      *       //   "hubs": {},
      *       //   "name": "my_name",
+     *       //   "proxyProtocolConfig": {},
+     *       //   "serviceDiscovery": {},
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -7944,6 +8088,8 @@ export namespace beyondcorp_v1 {
      *   //   "externalIps": [],
      *   //   "hubs": {},
      *   //   "name": "my_name",
+     *   //   "proxyProtocolConfig": {},
+     *   //   "serviceDiscovery": {},
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -8404,6 +8550,8 @@ export namespace beyondcorp_v1 {
      *       //   "externalIps": [],
      *       //   "hubs": {},
      *       //   "name": "my_name",
+     *       //   "proxyProtocolConfig": {},
+     *       //   "serviceDiscovery": {},
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -9007,6 +9155,7 @@ export namespace beyondcorp_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "endpointMatchers": [],
      *         //   "name": "my_name",
+     *         //   "schema": "my_schema",
      *         //   "updateTime": "my_updateTime",
      *         //   "upstreams": []
      *         // }
@@ -9315,6 +9464,7 @@ export namespace beyondcorp_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "endpointMatchers": [],
      *   //   "name": "my_name",
+     *   //   "schema": "my_schema",
      *   //   "updateTime": "my_updateTime",
      *   //   "upstreams": []
      *   // }
@@ -9779,6 +9929,7 @@ export namespace beyondcorp_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "endpointMatchers": [],
      *         //   "name": "my_name",
+     *         //   "schema": "my_schema",
      *         //   "updateTime": "my_updateTime",
      *         //   "upstreams": []
      *         // }
