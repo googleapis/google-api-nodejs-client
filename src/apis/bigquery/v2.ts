@@ -890,7 +890,7 @@ export namespace bigquery_v2 {
     dataMaskingApplied?: boolean | null;
   }
   /**
-   * Data policy option proto, it currently supports name only, will support precedence later.
+   * Data policy option. For more information, see [Mask data by applying data policies to a column](https://cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column/).
    */
   export interface Schema$DataPolicyOption {
     /**
@@ -1673,7 +1673,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$ExternalServiceCost {
     /**
-     * The billing method used for the external job. This field is only used when billed on the services sku, set to "SERVICES_SKU". Otherwise, it is unspecified for backward compatibility.
+     * The billing method used for the external job. This field, set to `SERVICES_SKU`, is only used when billing under the services SKU. Otherwise, it is unspecified for backward compatibility.
      */
     billingMethod?: string | null;
     /**
@@ -2027,6 +2027,40 @@ export namespace bigquery_v2 {
     trialId?: string | null;
   }
   /**
+   * Statistics related to Incremental Query Results. Populated as part of JobStatistics2. This feature is not yet available.
+   */
+  export interface Schema$IncrementalResultStats {
+    /**
+     * Reason why incremental query results are/were not written by the query.
+     */
+    disabledReason?: string | null;
+    /**
+     * The time at which the result table's contents were modified. May be absent if no results have been written or the query has completed.
+     */
+    resultSetLastModifyTime?: string | null;
+    /**
+     * The time at which the result table's contents were completely replaced. May be absent if no results have been written or the query has completed.
+     */
+    resultSetLastReplaceTime?: string | null;
+  }
+  /**
+   * Statistics for index pruning.
+   */
+  export interface Schema$IndexPruningStats {
+    /**
+     * The base table reference.
+     */
+    baseTable?: Schema$TableReference;
+    /**
+     * The number of parallel inputs after index pruning.
+     */
+    postIndexPruningParallelInputCount?: string | null;
+    /**
+     * The number of parallel inputs before index pruning.
+     */
+    preIndexPruningParallelInputCount?: string | null;
+  }
+  /**
    * Reason about why no search index was used in the search query (or sub-query).
    */
   export interface Schema$IndexUnusedReason {
@@ -2219,7 +2253,7 @@ export namespace bigquery_v2 {
      */
     extract?: Schema$JobConfigurationExtract;
     /**
-     * Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery will attempt to stop a longer job, but may not always succeed in canceling it before the job completes. For example, a job that takes more than 60 seconds to complete has a better chance of being stopped than a job that takes 10 seconds to complete.
+     * Optional. Job timeout in milliseconds relative to the job creation time. If this time limit is exceeded, BigQuery attempts to stop the job, but might not always succeed in canceling it before the job completes. For example, a job that takes more than 60 seconds to complete has a better chance of being stopped than a job that takes 10 seconds to complete.
      */
     jobTimeoutMs?: string | null;
     /**
@@ -2234,6 +2268,10 @@ export namespace bigquery_v2 {
      * [Pick one] Configures a load job.
      */
     load?: Schema$JobConfigurationLoad;
+    /**
+     * Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to allow for this job. If set, the number of slots used to execute the job will be throttled to try and keep its slot consumption below the requested rate.
+     */
+    maxSlots?: number | null;
     /**
      * [Pick one] Configures a query job.
      */
@@ -2425,7 +2463,7 @@ export namespace bigquery_v2 {
      */
     schemaInlineFormat?: string | null;
     /**
-     * Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
+     * Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or supplied in the job configuration. Schema update options are supported in three cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE_DATA; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
      */
     schemaUpdateOptions?: string[] | null;
     /**
@@ -2546,7 +2584,7 @@ export namespace bigquery_v2 {
      */
     rangePartitioning?: Schema$RangePartitioning;
     /**
-     * Allows the schema of the destination table to be updated as a side effect of the query job. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
+     * Allows the schema of the destination table to be updated as a side effect of the query job. Schema update options are supported in three cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE_DATA; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
      */
     schemaUpdateOptions?: string[] | null;
     /**
@@ -2851,6 +2889,10 @@ export namespace bigquery_v2 {
      */
     externalServiceCosts?: Schema$ExternalServiceCost[];
     /**
+     * Output only. Statistics related to incremental query results, if enabled for the query. This feature is not yet available.
+     */
+    incrementalResultStats?: Schema$IncrementalResultStats;
+    /**
      * Output only. Statistics for a LOAD query.
      */
     loadQueryStatistics?: Schema$LoadQueryStatistics;
@@ -2943,7 +2985,7 @@ export namespace bigquery_v2 {
      */
     totalPartitionsProcessed?: string | null;
     /**
-     * Output only. Total slot-milliseconds for the job that run on external services and billed on the service SKU. This field is only populated for jobs that have external service costs, and is the total of the usage for costs whose billing method is "SERVICES_SKU".
+     * Output only. Total slot milliseconds for the job that ran on external services and billed on the services SKU. This field is only populated for jobs that have external service costs, and is the total of the usage for costs whose billing method is `"SERVICES_SKU"`.
      */
     totalServicesSkuSlotMs?: string | null;
     /**
@@ -3564,6 +3606,23 @@ export namespace bigquery_v2 {
     projectId?: string | null;
   }
   /**
+   * The column metadata index pruning statistics.
+   */
+  export interface Schema$PruningStats {
+    /**
+     * The number of parallel inputs matched.
+     */
+    postCmetaPruningParallelInputCount?: string | null;
+    /**
+     * The number of partitions matched.
+     */
+    postCmetaPruningPartitionCount?: string | null;
+    /**
+     * The number of parallel inputs scanned.
+     */
+    preCmetaPruningParallelInputCount?: string | null;
+  }
+  /**
    * Options for a user-defined Python function.
    */
   export interface Schema$PythonOptions {
@@ -3712,6 +3771,10 @@ export namespace bigquery_v2 {
      * Optional. The maximum number of rows of data to return per page of results. Setting this flag to a small value such as 1000 and then paging through results might improve reliability when the query result set is large. In addition to this limit, responses are also limited to 10 MB. By default, there is no maximum row count, and only the byte limit applies.
      */
     maxResults?: number | null;
+    /**
+     * Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to allow for this job. If set, the number of slots used to execute the job will be throttled to try and keep its slot consumption below the requested rate. This limit is best effort.
+     */
+    maxSlots?: number | null;
     /**
      * GoogleSQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
      */
@@ -4014,7 +4077,7 @@ export namespace bigquery_v2 {
      */
     dataGovernanceType?: string | null;
     /**
-     * Required. The body of the routine. For functions, this is the expression in the AS clause. If language=SQL, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, "\n", y))` The definition_body is `concat(x, "\n", y)` (\n is not replaced with linebreak). If language=JAVASCRIPT, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return "\n";\n'` The definition_body is `return "\n";\n` Note that both \n are replaced with linebreaks.
+     * Required. The body of the routine. For functions, this is the expression in the AS clause. If `language = "SQL"`, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, "\n", y))` The definition_body is `concat(x, "\n", y)` (\n is not replaced with linebreak). If `language="JAVASCRIPT"`, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return "\n";\n'` The definition_body is `return "\n";\n` Note that both \n are replaced with linebreaks. If `definition_body` references another routine, then that routine must be fully qualified with its project ID.
      */
     definitionBody?: string | null;
     /**
@@ -4234,6 +4297,10 @@ export namespace bigquery_v2 {
    * Statistics for a search query. Populated as part of JobStatistics2.
    */
   export interface Schema$SearchStatistics {
+    /**
+     * Search index pruning statistics, one for each base table that has a search index. If a base table does not have a search index or the index does not help with pruning on the base table, then there is no pruning statistics for that table.
+     */
+    indexPruningStats?: Schema$IndexPruningStats[];
     /**
      * When `indexUsageMode` is `UNUSED` or `PARTIALLY_USED`, this field explains why indexes were not used in all or part of the search query. If `indexUsageMode` is `FULLY_USED`, this field is not populated.
      */
@@ -4887,7 +4954,7 @@ export namespace bigquery_v2 {
      */
     collation?: string | null;
     /**
-     * Optional. Data policy options, will replace the data_policies.
+     * Optional. Data policies attached to this field, used for field-level access control.
      */
     dataPolicies?: Schema$DataPolicyOption[];
     /**
@@ -4938,6 +5005,10 @@ export namespace bigquery_v2 {
      * Optional. See documentation for precision.
      */
     scale?: string | null;
+    /**
+     * Optional. Precision (maximum number of total digits in base 10) for seconds of TIMESTAMP type. Possible values include: * 6 (Default, for TIMESTAMP type with microsecond precision) * 12 (For TIMESTAMP type with picosecond precision)
+     */
+    timestampPrecision?: string | null;
     /**
      * Required. The field data type. Possible values include: * STRING * BYTES * INTEGER (or INT64) * FLOAT (or FLOAT64) * BOOLEAN (or BOOL) * TIMESTAMP * DATE * TIME * DATETIME * GEOGRAPHY * NUMERIC * BIGNUMERIC * JSON * RECORD (or STRUCT) * RANGE Use of RECORD/STRUCT indicates that the field contains a nested schema.
      */
@@ -4990,6 +5061,10 @@ export namespace bigquery_v2 {
      * Free form human-readable reason metadata caching was unused for the job.
      */
     explanation?: string | null;
+    /**
+     * The column metadata index pruning statistics.
+     */
+    pruningStats?: Schema$PruningStats;
     /**
      * Duration since last refresh as of this job for managed tables (indicates metadata cache staleness as seen by this job).
      */
@@ -5222,6 +5297,10 @@ export namespace bigquery_v2 {
      */
     enableGlobalExplain?: boolean | null;
     /**
+     * The idle TTL of the endpoint before the resources get destroyed. The default value is 6.5 hours.
+     */
+    endpointIdleTtl?: string | null;
+    /**
      * Feedback type that specifies which algorithm to run for matrix factorization.
      */
     feedbackType?: string | null;
@@ -5257,6 +5336,10 @@ export namespace bigquery_v2 {
      * The target evaluation metrics to optimize the hyperparameters for.
      */
     hparamTuningObjectives?: string[] | null;
+    /**
+     * The id of a Hugging Face model. For example, `google/gemma-2-2b-it`.
+     */
+    huggingFaceModelId?: string | null;
     /**
      * Include drift when fitting an ARIMA model.
      */
@@ -5322,6 +5405,10 @@ export namespace bigquery_v2 {
      */
     lossType?: string | null;
     /**
+     * The type of the machine used to deploy and serve the model.
+     */
+    machineType?: string | null;
+    /**
      * The maximum number of iterations in training. Used only for iterative training algorithms.
      */
     maxIterations?: string | null;
@@ -5329,6 +5416,10 @@ export namespace bigquery_v2 {
      * Maximum number of trials to run in parallel.
      */
     maxParallelTrials?: string | null;
+    /**
+     * The maximum number of machine replicas that will be deployed on an endpoint. The default value is equal to min_replica_count.
+     */
+    maxReplicaCount?: string | null;
     /**
      * The maximum number of time points in a time series that can be used in modeling the trend component of the time series. Don't use this option with the `timeSeriesLengthFraction` or `minTimeSeriesLength` options.
      */
@@ -5346,6 +5437,10 @@ export namespace bigquery_v2 {
      */
     minRelativeProgress?: number | null;
     /**
+     * The minimum number of machine replicas that will be always deployed on an endpoint. This value must be greater than or equal to 1. The default value is 1.
+     */
+    minReplicaCount?: string | null;
+    /**
      * Minimum split loss for boosted tree models.
      */
     minSplitLoss?: number | null;
@@ -5357,6 +5452,10 @@ export namespace bigquery_v2 {
      * Minimum sum of instance weight needed in a child for boosted tree models.
      */
     minTreeChildWeight?: string | null;
+    /**
+     * The name of a Vertex model garden publisher model. Format is `publishers/{publisher\}/models/{model\}@{optional_version_id\}`.
+     */
+    modelGardenModelName?: string | null;
     /**
      * The model registry.
      */
@@ -5405,6 +5504,18 @@ export namespace bigquery_v2 {
      * The solver for PCA.
      */
     pcaSolver?: string | null;
+    /**
+     * Corresponds to the label key of a reservation resource used by Vertex AI. To target a SPECIFIC_RESERVATION by name, use `compute.googleapis.com/reservation-name` as the key and specify the name of your reservation as its value.
+     */
+    reservationAffinityKey?: string | null;
+    /**
+     * Specifies the reservation affinity type used to configure a Vertex AI resource. The default value is `NO_RESERVATION`.
+     */
+    reservationAffinityType?: string | null;
+    /**
+     * Corresponds to the label values of a reservation resource used by Vertex AI. This must be the full resource name of the reservation or reservation block.
+     */
+    reservationAffinityValues?: string[] | null;
     /**
      * Number of paths for the sampled Shapley explain method.
      */
@@ -8024,6 +8135,7 @@ export namespace bigquery_v2 {
      *       //   "labels": {},
      *       //   "location": "my_location",
      *       //   "maxResults": 0,
+     *       //   "maxSlots": 0,
      *       //   "maximumBytesBilled": "my_maximumBytesBilled",
      *       //   "parameterMode": "my_parameterMode",
      *       //   "preserveNulls": false,
@@ -10797,7 +10909,6 @@ export namespace bigquery_v2 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
      *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
@@ -10944,7 +11055,6 @@ export namespace bigquery_v2 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
      *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
@@ -11391,7 +11501,6 @@ export namespace bigquery_v2 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
      *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
@@ -11863,7 +11972,6 @@ export namespace bigquery_v2 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
      *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
