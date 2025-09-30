@@ -220,6 +220,10 @@ export namespace tpu_v2alpha1 {
      * Optional. Image from which boot disk is to be created. If not specified, the default image for the runtime version will be used. Example: `projects/$PROJECT_ID/global/images/$IMAGE_NAME`.
      */
     sourceImage?: string | null;
+    /**
+     * Optional. The storage pool in which the boot disk is created. You can provide this as a partial or full URL to the resource.
+     */
+    storagePool?: string | null;
   }
   /**
    * Further data for the creating state.
@@ -285,6 +289,15 @@ export namespace tpu_v2alpha1 {
      * The guest attributes for the TPU workers.
      */
     guestAttributes?: Schema$GuestAttributes[];
+  }
+  /**
+   * Response for GetMaintenanceInfo.
+   */
+  export interface Schema$GetMaintenanceInfoResponse {
+    /**
+     * The list of upcoming maintenance entries.
+     */
+    nodeUpcomingMaintenances?: Schema$NodeUpcomingMaintenanceInfo[];
   }
   /**
    * Guaranteed tier definition.
@@ -679,6 +692,23 @@ export namespace tpu_v2alpha1 {
      * Required. The parent resource name.
      */
     parent?: string | null;
+  }
+  /**
+   * A tuple containing node name / ID and maintenance info.
+   */
+  export interface Schema$NodeUpcomingMaintenanceInfo {
+    /**
+     * Unqualified node name.
+     */
+    nodeName?: string | null;
+    /**
+     * UID of this node.
+     */
+    nodeUid?: string | null;
+    /**
+     * Upcoming maintenance info for this node.
+     */
+    upcomingMaintenance?: Schema$UpcomingMaintenance;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1476,7 +1506,7 @@ export namespace tpu_v2alpha1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1616,7 +1646,7 @@ export namespace tpu_v2alpha1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -4701,6 +4731,148 @@ export namespace tpu_v2alpha1 {
     }
 
     /**
+     * Gets the maintenance info for a queued resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tpu = google.tpu('v2alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tpu.projects.locations.queuedResources.getMaintenanceInfo({
+     *     // Required. The QueuedResource name.
+     *     name: 'projects/my-project/locations/my-location/queuedResources/my-queuedResource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nodeUpcomingMaintenances": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getMaintenanceInfo(
+      params: Params$Resource$Projects$Locations$Queuedresources$Getmaintenanceinfo,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getMaintenanceInfo(
+      params?: Params$Resource$Projects$Locations$Queuedresources$Getmaintenanceinfo,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetMaintenanceInfoResponse>>;
+    getMaintenanceInfo(
+      params: Params$Resource$Projects$Locations$Queuedresources$Getmaintenanceinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getMaintenanceInfo(
+      params: Params$Resource$Projects$Locations$Queuedresources$Getmaintenanceinfo,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetMaintenanceInfoResponse>,
+      callback: BodyResponseCallback<Schema$GetMaintenanceInfoResponse>
+    ): void;
+    getMaintenanceInfo(
+      params: Params$Resource$Projects$Locations$Queuedresources$Getmaintenanceinfo,
+      callback: BodyResponseCallback<Schema$GetMaintenanceInfoResponse>
+    ): void;
+    getMaintenanceInfo(
+      callback: BodyResponseCallback<Schema$GetMaintenanceInfoResponse>
+    ): void;
+    getMaintenanceInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queuedresources$Getmaintenanceinfo
+        | BodyResponseCallback<Schema$GetMaintenanceInfoResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetMaintenanceInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetMaintenanceInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetMaintenanceInfoResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queuedresources$Getmaintenanceinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Queuedresources$Getmaintenanceinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha1/{+name}:getMaintenanceInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetMaintenanceInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetMaintenanceInfoResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists queued resources.
      * @example
      * ```js
@@ -5188,6 +5360,13 @@ export namespace tpu_v2alpha1 {
     extends StandardParameters {
     /**
      * Required. The resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queuedresources$Getmaintenanceinfo
+    extends StandardParameters {
+    /**
+     * Required. The QueuedResource name.
      */
     name?: string;
   }
