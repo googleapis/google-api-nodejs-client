@@ -402,7 +402,7 @@ export namespace redis_v1 {
    */
   export interface Schema$Cluster {
     /**
-     * Optional. Immutable. Allows customers to specify if they are okay with deploying a multi-zone cluster in less than 3 zones. Once set, if there is a zonal outage during the cluster creation, the cluster will only be deployed in 2 zones, and stay within the 2 zones for its lifecycle.
+     * Optional. Immutable. Deprecated, do not use.
      */
     allowFewerZonesDeployment?: boolean | null;
     /**
@@ -453,6 +453,10 @@ export namespace redis_v1 {
      * Optional. The KMS key used to encrypt the at-rest data of the cluster.
      */
     kmsKey?: string | null;
+    /**
+     * Optional. Labels to represent user-provided metadata.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Optional. ClusterMaintenancePolicy determines when to allow or deny updates.
      */
@@ -701,7 +705,7 @@ export namespace redis_v1 {
     internalResourceMetadata?: Schema$InternalResourceMetadata[];
   }
   /**
-   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 11
+   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 13
    */
   export interface Schema$DatabaseResourceFeed {
     /**
@@ -712,6 +716,10 @@ export namespace redis_v1 {
      * Config based signal data is used to ingest signals that are generated based on the configuration of the database resource.
      */
     configBasedSignalData?: Schema$ConfigBasedSignalData;
+    /**
+     * Database resource signal data is used to ingest signals from database resource signal feeds.
+     */
+    databaseResourceSignalData?: Schema$DatabaseResourceSignalData;
     /**
      * Required. Timestamp when feed is generated.
      */
@@ -817,7 +825,7 @@ export namespace redis_v1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 26
+   * Common model for database resource instance metadata. Next ID: 27
    */
   export interface Schema$DatabaseResourceMetadata {
     /**
@@ -916,6 +924,10 @@ export namespace redis_v1 {
      * User-provided labels associated with the resource
      */
     userLabelSet?: Schema$UserLabels;
+    /**
+     * The resource zone. This is only applicable for zonal resources and will be empty for regional and multi-regional resources.
+     */
+    zone?: string | null;
   }
   /**
    * Common model for database resource recommendation signal data.
@@ -951,6 +963,35 @@ export namespace redis_v1 {
     resourceName?: string | null;
     /**
      * Required. Type of signal, for example, `SIGNAL_TYPE_IDLE`, `SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES`, etc.
+     */
+    signalType?: string | null;
+  }
+  /**
+   * Database resource signal data. This is used to send signals to Condor which are based on the DB/Instance/Fleet level configurations. These will be used to send signals for all inventory types. Next ID: 7
+   */
+  export interface Schema$DatabaseResourceSignalData {
+    /**
+     * Required. Full Resource name of the source resource.
+     */
+    fullResourceName?: string | null;
+    /**
+     * Required. Last time signal was refreshed
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Database resource id.
+     */
+    resourceId?: Schema$DatabaseResourceId;
+    /**
+     * Signal data for boolean signals.
+     */
+    signalBoolValue?: boolean | null;
+    /**
+     * Required. Output only. Signal state of the signal
+     */
+    signalState?: string | null;
+    /**
+     * Required. Signal type of the signal
      */
     signalType?: string | null;
   }
@@ -2242,7 +2283,7 @@ export namespace redis_v1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2370,7 +2411,7 @@ export namespace redis_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3560,6 +3601,7 @@ export namespace redis_v1 {
      *       //   "encryptionInfo": {},
      *       //   "gcsSource": {},
      *       //   "kmsKey": "my_kmsKey",
+     *       //   "labels": {},
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
      *       //   "managedBackupSource": {},
@@ -3884,6 +3926,7 @@ export namespace redis_v1 {
      *   //   "encryptionInfo": {},
      *   //   "gcsSource": {},
      *   //   "kmsKey": "my_kmsKey",
+     *   //   "labels": {},
      *   //   "maintenancePolicy": {},
      *   //   "maintenanceSchedule": {},
      *   //   "managedBackupSource": {},
@@ -4342,6 +4385,7 @@ export namespace redis_v1 {
      *       //   "encryptionInfo": {},
      *       //   "gcsSource": {},
      *       //   "kmsKey": "my_kmsKey",
+     *       //   "labels": {},
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
      *       //   "managedBackupSource": {},
