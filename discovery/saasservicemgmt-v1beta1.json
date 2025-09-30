@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -378,6 +378,213 @@
                   },
                   "response": {
                     "$ref": "Release"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "replicationsInternal": {
+              "methods": {
+                "create": {
+                  "description": "Create a new replication internal.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/replicationsInternal",
+                  "httpMethod": "POST",
+                  "id": "saasservicemgmt.projects.locations.replicationsInternal.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent of the replication internal.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "replicationInternalId": {
+                      "description": "Required. The ID value for the new replication internal.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/replicationsInternal",
+                  "request": {
+                    "$ref": "ReplicationInternal"
+                  },
+                  "response": {
+                    "$ref": "ReplicationInternal"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a single replication internal.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/replicationsInternal/{replicationsInternalId}",
+                  "httpMethod": "DELETE",
+                  "id": "saasservicemgmt.projects.locations.replicationsInternal.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "The etag known to the client for the expected state of the replication internal. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the replication internal. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The resource name of the resource within a service.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/replicationsInternal/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieve a single replication internal.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/replicationsInternal/{replicationsInternalId}",
+                  "httpMethod": "GET",
+                  "id": "saasservicemgmt.projects.locations.replicationsInternal.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the resource within a service.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/replicationsInternal/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "ReplicationInternal"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Retrieve a collection of replication internals.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/replicationsInternal",
+                  "httpMethod": "GET",
+                  "id": "saasservicemgmt.projects.locations.replicationsInternal.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filter the list as specified in https://google.aip.dev/160.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Order results as specified in https://google.aip.dev/132.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of replication internals to send per page.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The page token: If the next_page_token from a previous response is provided, this request will send the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent of the replication internal.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/replicationsInternal",
+                  "response": {
+                    "$ref": "ListReplicationsInternalResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a single replication internal.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/replicationsInternal/{replicationsInternalId}",
+                  "httpMethod": "PATCH",
+                  "id": "saasservicemgmt.projects.locations.replicationsInternal.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "The etag known to the client for the expected state of the replication internal. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the replication internal. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Identifier. The resource name (full URI of the resource) following the standard naming scheme: \"projects/{project}/locations/{location}/replicationInternal/{replication_internal_id}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/replicationsInternal/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Field mask is used to specify the fields to be overwritten in the ReplicationInternal resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields in the ReplicationInternal will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "ReplicationInternal"
+                  },
+                  "response": {
+                    "$ref": "ReplicationInternal"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1804,7 +2011,7 @@
       }
     }
   },
-  "revision": "20250806",
+  "revision": "20250917",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -1967,6 +2174,31 @@
           "description": "The resulting releases.",
           "items": {
             "$ref": "Release"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListReplicationsInternalResponse": {
+      "description": "The response structure for the ListReplicationsInternal method.",
+      "id": "ListReplicationsInternalResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If present, the next page token can be provided to a subsequent ListReplicationsInternal call to list the next page. If empty, there are no more pages.",
+          "type": "string"
+        },
+        "replicationsInternal": {
+          "description": "The resulting replication internals.",
+          "items": {
+            "$ref": "ReplicationInternal"
           },
           "type": "array"
         },
@@ -2292,6 +2524,143 @@
       },
       "type": "object"
     },
+    "ReplicationInternal": {
+      "description": "ReplicationInternal is a resource that represents the replication of a resource to multiple locations. This is an internal resource to achieve replication before GA and will not expose to the public API.",
+      "id": "ReplicationInternal",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels on the resource, which can be used for categorization. similar to Kubernetes resource labels.",
+          "type": "object"
+        },
+        "maxRetryCount": {
+          "description": "Optional. The maximum number of retries for the replication. If the replication fails from a retryable error, it will be retried for this number of times.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Identifier. The resource name (full URI of the resource) following the standard naming scheme: \"projects/{project}/locations/{location}/replicationInternal/{replication_internal_id}\"",
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Required. The payload of the request for replication. It could be any request type that is supported by the replication service. e.g. CreateUnitKindRequest, UpdateUnitKindRequest, DeleteReleaseRequest, etc.",
+          "type": "object"
+        },
+        "state": {
+          "description": "Output only. The state of the replication.",
+          "enum": [
+            "REPLICATION_STATE_UNSPECIFIED",
+            "REPLICATION_STATE_PENDING",
+            "REPLICATION_STATE_RUNNING",
+            "REPLICATION_STATE_FAILED",
+            "REPLICATION_STATE_SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Replication is pending.",
+            "Replication is running.",
+            "Replication has failed.",
+            "Replication has succeeded."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stats": {
+          "additionalProperties": {
+            "$ref": "ReplicationStats"
+          },
+          "description": "Output only. The stats of the replication. One key for each location in target_locations",
+          "readOnly": true,
+          "type": "object"
+        },
+        "targetLocations": {
+          "description": "Optional. The target locations to replicate the resource to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "uid": {
+          "description": "Output only. The unique identifier of the resource. UID is unique in the time and space for this resource within the scope of the service. It is typically generated by the server on successful creation of a resource and must not be changed. UID is used to uniquely identify resources with resource name reuses. This should be a UUID4.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReplicationStats": {
+      "description": "ReplicationStats contains the stats of the replication. It contains the resources that are pending, finished, failed, and the errors if any.",
+      "id": "ReplicationStats",
+      "properties": {
+        "errors": {
+          "description": "The errors that occurred during replication, one error for each failed resource.",
+          "items": {
+            "$ref": "Status"
+          },
+          "type": "array"
+        },
+        "failedResources": {
+          "description": "The resources that are failed replication.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "finishedResources": {
+          "description": "The resources that are finished replication.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pendingResources": {
+          "description": "The resources that are pending replication.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "retryCount": {
+          "description": "The number of retries for the failed resources.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Rollout": {
       "description": "Represents a single rollout execution and its results",
       "id": "Rollout",
@@ -2349,7 +2718,7 @@
           "type": "string"
         },
         "rolloutOrchestrationStrategy": {
-          "description": "Optional. The strategy used for executing this Rollout. This strategy will override whatever strategy is specified in the RolloutType. If not specified on creation, the strategy from RolloutType will be used. There are two supported values strategies which are used to control - \"Google.Cloud.Simple.AllAtOnce\" - \"Google.Cloud.Simple.OneLocationAtATime\" A rollout with one of these simple strategies will rollout across all locations defined in the targeted UnitKind's Saas Locations.",
+          "description": "Optional. The strategy used for executing this Rollout. This strategy will override whatever strategy is specified in the RolloutKind. If not specified on creation, the strategy from RolloutKind will be used. There are two supported values strategies which are used to control - \"Google.Cloud.Simple.AllAtOnce\" - \"Google.Cloud.Simple.OneLocationAtATime\" A rollout with one of these simple strategies will rollout across all locations defined in the targeted UnitKind's Saas Locations.",
           "type": "string"
         },
         "rootRollout": {
@@ -2414,7 +2783,7 @@
           "type": "string"
         },
         "unitFilter": {
-          "description": "Optional. CEL(https://github.com/google/cel-spec) formatted filter string against Unit. The filter will be applied to determine the eligible unit population. This filter can only reduce, but not expand the scope of the rollout. If not provided, the unit_filter from the RolloutType will be used.",
+          "description": "Optional. CEL(https://github.com/google/cel-spec) formatted filter string against Unit. The filter will be applied to determine the eligible unit population. This filter can only reduce, but not expand the scope of the rollout. If not provided, the unit_filter from the RolloutKind will be used.",
           "type": "string"
         },
         "updateTime": {
@@ -2617,6 +2986,33 @@
         "startTime": {
           "description": "Optional. Start of operation. If not set, will be set to the start of the next window. (optional)",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
