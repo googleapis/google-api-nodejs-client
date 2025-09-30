@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20250817",
+  "revision": "20250922",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -844,7 +844,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The name of the function to call. Matches [FunctionDeclaration.name].",
+          "description": "Optional. The name of the function to call. Matches [FunctionDeclaration.name].",
           "type": "string"
         }
       },
@@ -875,7 +875,7 @@
             "Default model behavior, model decides to predict either function calls or natural language response.",
             "Model is constrained to always predicting function calls only. If \"allowed_function_names\" are set, the predicted function calls will be limited to any one of \"allowed_function_names\", else the predicted function calls will be any one of the provided \"function_declarations\".",
             "Model will not predict any function calls. Model behavior is same as when not passing any function declarations.",
-            "Model is constrained to predict either function calls or natural language response."
+            "Model is constrained to predict either function calls or natural language response. If \"allowed_function_names\" are set, the predicted function calls will be limited to any one of \"allowed_function_names\", else the predicted function calls will be any one of the provided \"function_declarations\"."
           ],
           "type": "string"
         }
@@ -1032,11 +1032,11 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback": {
-      "description": "Content filter results for a prompt sent in the request.",
+      "description": "Content filter results for a prompt sent in the request. Note: This is sent only in the first stream chunk and only if no candidates were generated due to content violations.",
       "id": "GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback",
       "properties": {
         "blockReason": {
-          "description": "Output only. Blocked reason.",
+          "description": "Output only. The reason why the prompt was blocked.",
           "enum": [
             "BLOCKED_REASON_UNSPECIFIED",
             "SAFETY",
@@ -1044,27 +1044,29 @@
             "BLOCKLIST",
             "PROHIBITED_CONTENT",
             "MODEL_ARMOR",
-            "IMAGE_SAFETY"
+            "IMAGE_SAFETY",
+            "JAILBREAK"
           ],
           "enumDescriptions": [
-            "Unspecified blocked reason.",
-            "Candidates blocked due to safety.",
-            "Candidates blocked due to other reason.",
-            "Candidates blocked due to the terms which are included from the terminology blocklist.",
-            "Candidates blocked due to prohibited content.",
-            "The user prompt was blocked by Model Armor.",
-            "Candidates blocked due to unsafe image generation content."
+            "The blocked reason is unspecified.",
+            "The prompt was blocked for safety reasons.",
+            "The prompt was blocked for other reasons. For example, it may be due to the prompt's language, or because it contains other harmful content.",
+            "The prompt was blocked because it contains a term from the terminology blocklist.",
+            "The prompt was blocked because it contains prohibited content.",
+            "The prompt was blocked by Model Armor.",
+            "The prompt was blocked because it contains content that is unsafe for image generation.",
+            "The prompt was blocked as a jailbreak attempt."
           ],
           "readOnly": true,
           "type": "string"
         },
         "blockReasonMessage": {
-          "description": "Output only. A readable block reason message.",
+          "description": "Output only. A readable message that explains the reason why the prompt was blocked.",
           "readOnly": true,
           "type": "string"
         },
         "safetyRatings": {
-          "description": "Output only. Safety ratings.",
+          "description": "Output only. A list of safety ratings for the prompt. There is one rating per category.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1SafetyRating"
           },
@@ -1075,11 +1077,11 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata": {
-      "description": "Usage metadata about response(s).",
+      "description": "Usage metadata about the content generation request and response. This message provides a detailed breakdown of token usage and other relevant metrics.",
       "id": "GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata",
       "properties": {
         "cacheTokensDetails": {
-          "description": "Output only. List of modalities of the cached content in the request input.",
+          "description": "Output only. A detailed breakdown of the token count for each modality in the cached content.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1ModalityTokenCount"
           },
@@ -1087,18 +1089,18 @@
           "type": "array"
         },
         "cachedContentTokenCount": {
-          "description": "Output only. Number of tokens in the cached part in the input (the cached content).",
+          "description": "Output only. The number of tokens in the cached content that was used for this request.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
         "candidatesTokenCount": {
-          "description": "Number of tokens in the response(s).",
+          "description": "The total number of tokens in the generated candidates.",
           "format": "int32",
           "type": "integer"
         },
         "candidatesTokensDetails": {
-          "description": "Output only. List of modalities that were returned in the response.",
+          "description": "Output only. A detailed breakdown of the token count for each modality in the generated candidates.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1ModalityTokenCount"
           },
@@ -1106,12 +1108,12 @@
           "type": "array"
         },
         "promptTokenCount": {
-          "description": "Number of tokens in the request. When `cached_content` is set, this is still the total effective prompt size meaning this includes the number of tokens in the cached content.",
+          "description": "The total number of tokens in the prompt. This includes any text, images, or other media provided in the request. When `cached_content` is set, this also includes the number of tokens in the cached content.",
           "format": "int32",
           "type": "integer"
         },
         "promptTokensDetails": {
-          "description": "Output only. List of modalities that were processed in the request input.",
+          "description": "Output only. A detailed breakdown of the token count for each modality in the prompt.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1ModalityTokenCount"
           },
@@ -1119,19 +1121,19 @@
           "type": "array"
         },
         "thoughtsTokenCount": {
-          "description": "Output only. Number of tokens present in thoughts output.",
+          "description": "Output only. The number of tokens that were part of the model's generated \"thoughts\" output, if applicable.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
         "toolUsePromptTokenCount": {
-          "description": "Output only. Number of tokens present in tool-use prompt(s).",
+          "description": "Output only. The number of tokens in the results from tool executions, which are provided back to the model as input, if applicable.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
         "toolUsePromptTokensDetails": {
-          "description": "Output only. List of modalities that were processed for tool-use request inputs.",
+          "description": "Output only. A detailed breakdown by modality of the token counts from the results of tool executions, which are provided back to the model as input.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1ModalityTokenCount"
           },
@@ -1139,12 +1141,12 @@
           "type": "array"
         },
         "totalTokenCount": {
-          "description": "Total token count for prompt, response candidates, and tool-use prompts (if present).",
+          "description": "The total number of tokens for the entire request. This is the sum of `prompt_token_count`, `candidates_token_count`, `tool_use_prompt_token_count`, and `thoughts_token_count`.",
           "format": "int32",
           "type": "integer"
         },
         "trafficType": {
-          "description": "Output only. Traffic type. This shows whether a request consumes Pay-As-You-Go or Provisioned Throughput quota.",
+          "description": "Output only. The traffic type for this request.",
           "enum": [
             "TRAFFIC_TYPE_UNSPECIFIED",
             "ON_DEMAND",
@@ -1152,7 +1154,7 @@
           ],
           "enumDescriptions": [
             "Unspecified request traffic type.",
-            "Type for Pay-As-You-Go traffic.",
+            "The request was processed using Pay-As-You-Go quota.",
             "Type for Provisioned Throughput traffic."
           ],
           "readOnly": true,
@@ -1211,6 +1213,7 @@
         },
         "modelConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1GenerationConfigModelConfig",
+          "deprecated": true,
           "description": "Optional. Config for model selection."
         },
         "presencePenalty": {
@@ -1386,7 +1389,12 @@
     "GoogleCloudAiplatformV1beta1GoogleMaps": {
       "description": "Tool to retrieve public maps data for grounding, powered by Google.",
       "id": "GoogleCloudAiplatformV1beta1GoogleMaps",
-      "properties": {},
+      "properties": {
+        "enableWidget": {
+          "description": "Optional. If true, include the widget context token in the response.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1GoogleSearchRetrieval": {
@@ -1432,15 +1440,15 @@
           "type": "string"
         },
         "text": {
-          "description": "Text of the chunk.",
+          "description": "Text of the place answer.",
           "type": "string"
         },
         "title": {
-          "description": "Title of the chunk.",
+          "description": "Title of the place.",
           "type": "string"
         },
         "uri": {
-          "description": "URI reference of the chunk.",
+          "description": "URI reference of the place.",
           "type": "string"
         }
       },
@@ -1450,10 +1458,6 @@
       "description": "Sources used to generate the place answer.",
       "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources",
       "properties": {
-        "flagContentUri": {
-          "description": "A link where users can flag a problem with the generated answer.",
-          "type": "string"
-        },
         "reviewSnippets": {
           "description": "Snippets of reviews that are used to generate the answer.",
           "items": {
@@ -1464,47 +1468,20 @@
       },
       "type": "object"
     },
-    "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution": {
-      "description": "Author attribution for a photo or review.",
-      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution",
-      "properties": {
-        "displayName": {
-          "description": "Name of the author of the Photo or Review.",
-          "type": "string"
-        },
-        "photoUri": {
-          "description": "Profile photo URI of the author of the Photo or Review.",
-          "type": "string"
-        },
-        "uri": {
-          "description": "URI of the author of the Photo or Review.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet": {
       "description": "Encapsulates a review snippet.",
       "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet",
       "properties": {
-        "authorAttribution": {
-          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution",
-          "description": "This review's author."
-        },
-        "flagContentUri": {
-          "description": "A link where users can flag a problem with the review.",
-          "type": "string"
-        },
         "googleMapsUri": {
           "description": "A link to show the review on Google Maps.",
           "type": "string"
         },
-        "relativePublishTimeDescription": {
-          "description": "A string of formatted recent time, expressing the review time relative to the current time in a form appropriate for the language and country.",
+        "reviewId": {
+          "description": "Id of the review referencing the place.",
           "type": "string"
         },
-        "review": {
-          "description": "A reference representing this place review which may be used to look up this place review again.",
+        "title": {
+          "description": "Title of the review.",
           "type": "string"
         }
       },
@@ -1596,12 +1573,35 @@
           "$ref": "GoogleCloudAiplatformV1beta1SearchEntryPoint",
           "description": "Optional. Google search entry for the following-up web searches."
         },
+        "sourceFlaggingUris": {
+          "description": "Optional. Output only. List of source flagging uris. This is currently populated only for Google Maps grounding.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1GroundingMetadataSourceFlaggingUri"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "webSearchQueries": {
           "description": "Optional. Web search queries for the following-up web search.",
           "items": {
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingMetadataSourceFlaggingUri": {
+      "description": "Source content flagging uri for a place or review. This is currently populated only for Google Maps grounding.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingMetadataSourceFlaggingUri",
+      "properties": {
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the source (place or review).",
+          "type": "string"
+        },
+        "sourceId": {
+          "description": "Id of the place or review.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1993,7 +1993,8 @@
             "HARM_CATEGORY_IMAGE_HATE",
             "HARM_CATEGORY_IMAGE_DANGEROUS_CONTENT",
             "HARM_CATEGORY_IMAGE_HARASSMENT",
-            "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT"
+            "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT",
+            "HARM_CATEGORY_JAILBREAK"
           ],
           "enumDeprecated": [
             false,
@@ -2002,6 +2003,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2017,7 +2019,8 @@
             "The harm category is image hate.",
             "The harm category is image dangerous content.",
             "The harm category is image harassment.",
-            "The harm category is image sexually explicit content."
+            "The harm category is image sexually explicit content.",
+            "The harm category is for jailbreak prompts."
           ],
           "readOnly": true,
           "type": "string"
@@ -2112,7 +2115,8 @@
             "HARM_CATEGORY_IMAGE_HATE",
             "HARM_CATEGORY_IMAGE_DANGEROUS_CONTENT",
             "HARM_CATEGORY_IMAGE_HARASSMENT",
-            "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT"
+            "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT",
+            "HARM_CATEGORY_JAILBREAK"
           ],
           "enumDeprecated": [
             false,
@@ -2121,6 +2125,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2136,7 +2141,8 @@
             "The harm category is image hate.",
             "The harm category is image dangerous content.",
             "The harm category is image harassment.",
-            "The harm category is image sexually explicit content."
+            "The harm category is image sexually explicit content.",
+            "The harm category is for jailbreak prompts."
           ],
           "type": "string"
         },
@@ -2420,7 +2426,8 @@
         },
         "googleSearchRetrieval": {
           "$ref": "GoogleCloudAiplatformV1beta1GoogleSearchRetrieval",
-          "description": "Optional. GoogleSearchRetrieval tool type. Specialized retrieval tool that is powered by Google search."
+          "deprecated": true,
+          "description": "Optional. Specialized retrieval tool that is powered by Google Search."
         },
         "retrieval": {
           "$ref": "GoogleCloudAiplatformV1beta1Retrieval",
