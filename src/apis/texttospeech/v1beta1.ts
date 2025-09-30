@@ -254,6 +254,28 @@ export namespace texttospeech_v1beta1 {
     turns?: Schema$Turn[];
   }
   /**
+   * Configuration for a single speaker in a Gemini TTS multi-speaker setup. Enables dialogue between two speakers.
+   */
+  export interface Schema$MultispeakerPrebuiltVoice {
+    /**
+     * Required. The speaker alias of the voice. This is the user-chosen speaker name that is used in the multispeaker text input, such as "Speaker1".
+     */
+    speakerAlias?: string | null;
+    /**
+     * Required. The speaker ID of the voice. See https://cloud.google.com/text-to-speech/docs/gemini-tts#voice_options for available values.
+     */
+    speakerId?: string | null;
+  }
+  /**
+   * Configuration for a multi-speaker text-to-speech setup. Enables the use of up to two distinct voices in a single synthesis request.
+   */
+  export interface Schema$MultiSpeakerVoiceConfig {
+    /**
+     * Required. A list of configurations for the voices of the speakers. Exactly two speaker voice configurations must be provided.
+     */
+    speakerVoiceConfigs?: Schema$MultispeakerPrebuiltVoice[];
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -311,6 +333,10 @@ export namespace texttospeech_v1beta1 {
      * The multi-speaker input to be synthesized. Only applicable for multi-speaker synthesis.
      */
     multiSpeakerMarkup?: Schema$MultiSpeakerMarkup;
+    /**
+     * This system instruction is supported only for controllable/promptable voice models. If this system instruction is used, we pass the unedited text to Gemini-TTS. Otherwise, a default system instruction is used. AI Studio calls this system instruction, Style Instructions.
+     */
+    prompt?: string | null;
     /**
      * The SSML document to be synthesized. The SSML document must be valid and well-formed. Otherwise the RPC will fail and return google.rpc.Code.INVALID_ARGUMENT. For more information, see [SSML](https://cloud.google.com/text-to-speech/docs/ssml).
      */
@@ -472,6 +498,10 @@ export namespace texttospeech_v1beta1 {
      * Optional. The name of the model. If set, the service will choose the model matching the specified configuration.
      */
     modelName?: string | null;
+    /**
+     * Optional. The configuration for a Gemini multi-speaker text-to-speech setup. Enables the use of two distinct voices in a single synthesis request.
+     */
+    multiSpeakerVoiceConfig?: Schema$MultiSpeakerVoiceConfig;
     /**
      * The name of the voice. If both the name and the gender are not set, the service will choose a voice based on the other parameters such as language_code.
      */
