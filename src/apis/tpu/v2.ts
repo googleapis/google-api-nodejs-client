@@ -185,9 +185,27 @@ export namespace tpu_v2 {
     sourceDisk?: string | null;
   }
   /**
+   * Sets the boot disk configuration for the TPU node.
+   */
+  export interface Schema$BootDiskConfig {
+    /**
+     * Optional. Customer encryption key for boot disk.
+     */
+    customerEncryptionKey?: Schema$CustomerEncryptionKey;
+  }
+  /**
    * Further data for the creating state.
    */
   export interface Schema$CreatingData {}
+  /**
+   * Defines the customer encryption key for disk encryption.
+   */
+  export interface Schema$CustomerEncryptionKey {
+    /**
+     * The name of the encryption key that is stored in Google Cloud KMS. For example: "kmsKeyName": "projects/KMS_PROJECT_ID/locations/REGION/keyRings/KEY_REGION/cryptoKeys/KEY The fully-qualifed key name may be returned for resource GET requests. For example: "kmsKeyName": "projects/KMS_PROJECT_ID/locations/REGION/keyRings/KEY_REGION/cryptoKeys/KEY/cryptoKeyVersions/1
+     */
+    kmsKeyName?: string | null;
+  }
   /**
    * Further data for the deleting state.
    */
@@ -491,6 +509,10 @@ export namespace tpu_v2 {
      * Output only. The API version that created this Node.
      */
     apiVersion?: string | null;
+    /**
+     * Optional. Boot disk configuration.
+     */
+    bootDiskConfig?: Schema$BootDiskConfig;
     /**
      * The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user's provided network, or the provided network is peered with another network that is using that CIDR block.
      */
@@ -1288,7 +1310,7 @@ export namespace tpu_v2 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1428,7 +1450,7 @@ export namespace tpu_v2 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -1825,6 +1847,7 @@ export namespace tpu_v2 {
      *       //   "acceleratorConfig": {},
      *       //   "acceleratorType": "my_acceleratorType",
      *       //   "apiVersion": "my_apiVersion",
+     *       //   "bootDiskConfig": {},
      *       //   "cidrBlock": "my_cidrBlock",
      *       //   "createTime": "my_createTime",
      *       //   "dataDisks": [],
@@ -2137,6 +2160,7 @@ export namespace tpu_v2 {
      *   //   "acceleratorConfig": {},
      *   //   "acceleratorType": "my_acceleratorType",
      *   //   "apiVersion": "my_apiVersion",
+     *   //   "bootDiskConfig": {},
      *   //   "cidrBlock": "my_cidrBlock",
      *   //   "createTime": "my_createTime",
      *   //   "dataDisks": [],
@@ -2592,6 +2616,7 @@ export namespace tpu_v2 {
      *       //   "acceleratorConfig": {},
      *       //   "acceleratorType": "my_acceleratorType",
      *       //   "apiVersion": "my_apiVersion",
+     *       //   "bootDiskConfig": {},
      *       //   "cidrBlock": "my_cidrBlock",
      *       //   "createTime": "my_createTime",
      *       //   "dataDisks": [],
