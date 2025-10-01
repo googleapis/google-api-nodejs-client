@@ -310,7 +310,7 @@ export namespace networksecurity_v1beta1 {
      */
     ipBlocks?: Schema$AuthzPolicyAuthzRuleIpBlock[];
     /**
-     * Optional. A list of identities derived from the client's certificate. This field will not match on a request unless frontend mutual TLS is enabled for the forwarding rule or Gateway and the client certificate has been successfully validated by mTLS. Each identity is a string whose value is matched against a list of URI SANs, DNS Name SANs, or the common name in the client's certificate. A match happens when any principal matches with the rule. Limited to 50 principals per Authorization Policy for Regional Internal Application Load Balancer, Regional External Application Load Balancer, Cross-region Internal Application Load Balancer, and Cloud Service Mesh. Limited to 25 principals per Authorization Policy for Global External Application Load Balancer.
+     * Optional. A list of identities derived from the client's certificate. This field will not match on a request unless frontend mutual TLS is enabled for the forwarding rule or Gateway and the client certificate has been successfully validated by mTLS. Each identity is a string whose value is matched against a list of URI SANs, DNS Name SANs, or the common name in the client's certificate. A match happens when any principal matches with the rule. Limited to 50 principals per Authorization Policy for regional internal Application Load Balancers, regional external Application Load Balancers, cross-region internal Application Load Balancers, and Cloud Service Mesh. This field is not supported for global external Application Load Balancers.
      */
     principals?: Schema$AuthzPolicyAuthzRulePrincipal[];
     /**
@@ -478,11 +478,11 @@ export namespace networksecurity_v1beta1 {
    */
   export interface Schema$AuthzPolicyTarget {
     /**
-     * Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
+     * Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `INTERNAL_SELF_MANAGED`, and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
      */
     loadBalancingScheme?: string | null;
     /**
-     * Required. A list of references to the Forwarding Rules on which this policy will be applied.
+     * Required. A list of references to the Forwarding Rules on which this policy will be applied. For policies created for Cloudrun, this field will reference the Cloud Run services.
      */
     resources?: string[] | null;
   }
@@ -630,19 +630,19 @@ export namespace networksecurity_v1beta1 {
     ports?: number[] | null;
   }
   /**
-   * Message describing DnsThreatDetector object.
+   * A DNS threat detector sends DNS query logs to a _provider_ that then analyzes the logs to identify malicious activity in the DNS queries. By default, all VPC networks in your projects are included. You can exclude specific networks by supplying `excluded_networks`.
    */
   export interface Schema$DnsThreatDetector {
     /**
-     * Output only. [Output only] Create time stamp
+     * Output only. Create time stamp.
      */
     createTime?: string | null;
     /**
-     * Optional. A list of Network resource names which are exempt from the configuration in this DnsThreatDetector. Example: `projects/PROJECT_ID/global/networks/NETWORK_NAME`.
+     * Optional. A list of network resource names which aren't monitored by this DnsThreatDetector. Example: `projects/PROJECT_ID/global/networks/NETWORK_NAME`.
      */
     excludedNetworks?: string[] | null;
     /**
-     * Optional. Labels as key value pairs
+     * Optional. Any labels associated with the DnsThreatDetector, listed as key value pairs.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -654,7 +654,7 @@ export namespace networksecurity_v1beta1 {
      */
     provider?: string | null;
     /**
-     * Output only. [Output only] Update time stamp
+     * Output only. Update time stamp.
      */
     updateTime?: string | null;
   }
@@ -707,6 +707,10 @@ export namespace networksecurity_v1beta1 {
      * Optional. Description of the firewall endpoint. Max length 2048 characters.
      */
     description?: string | null;
+    /**
+     * Optional. Settings for the endpoint.
+     */
+    endpointSettings?: Schema$FirewallEndpointEndpointSettings;
     /**
      * Optional. Labels as key value pairs
      */
@@ -794,6 +798,10 @@ export namespace networksecurity_v1beta1 {
      */
     network?: string | null;
   }
+  /**
+   * Settings for the endpoint.
+   */
+  export interface Schema$FirewallEndpointEndpointSettings {}
   /**
    * The GatewaySecurityPolicy resource contains a collection of GatewaySecurityPolicyRules and associated metadata.
    */
@@ -1360,7 +1368,7 @@ export namespace networksecurity_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
-   * Message for response to listing DnsThreatDetectors.
+   * The response message to requesting a list of DnsThreatDetectors.
    */
   export interface Schema$ListDnsThreatDetectorsResponse {
     /**
@@ -1368,7 +1376,7 @@ export namespace networksecurity_v1beta1 {
      */
     dnsThreatDetectors?: Schema$DnsThreatDetector[];
     /**
-     * A token, which can be sent as `page_token` to retrieve the next page.
+     * A token, which can be sent as `page_token`, to retrieve the next page.
      */
     nextPageToken?: string | null;
     /**
@@ -1871,6 +1879,10 @@ export namespace networksecurity_v1beta1 {
      */
     state?: string | null;
     /**
+     * Immutable. The type of the endpoint group. If left unspecified, defaults to DIRECT.
+     */
+    type?: string | null;
+    /**
      * Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.
      */
     updateTime?: string | null;
@@ -2246,6 +2258,10 @@ export namespace networksecurity_v1beta1 {
      * Output only. Last resource update timestamp.
      */
     updateTime?: string | null;
+    /**
+     * The URL filtering configuration for the SecurityProfile.
+     */
+    urlFilteringProfile?: Schema$UrlFilteringProfile;
   }
   /**
    * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes.
@@ -2291,6 +2307,10 @@ export namespace networksecurity_v1beta1 {
      * Output only. Last resource update timestamp.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Reference to a SecurityProfile with the UrlFiltering configuration.
+     */
+    urlFilteringProfile?: string | null;
   }
   /**
    * ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target HTTPS proxy or endpoint config selector resource. ServerTlsPolicy in the form accepted by Application Load Balancers can be attached only to TargetHttpsProxy with an `EXTERNAL`, `EXTERNAL_MANAGED` or `INTERNAL_MANAGED` load balancing scheme. Traffic Director compatible ServerTlsPolicies can be attached to EndpointPolicy and TargetHttpsProxy with Traffic Director `INTERNAL_SELF_MANAGED` load balancing scheme.
@@ -2450,6 +2470,32 @@ export namespace networksecurity_v1beta1 {
      * Output only. The timestamp when the resource was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A URL filter defines an action to take for some URL match.
+   */
+  export interface Schema$UrlFilter {
+    /**
+     * Required. The action taken when this filter is applied.
+     */
+    filteringAction?: string | null;
+    /**
+     * Required. The priority of this filter within the URL Filtering Profile. Lower integers indicate higher priorities. The priority of a filter must be unique within a URL Filtering Profile.
+     */
+    priority?: number | null;
+    /**
+     * Required. The list of strings that a URL must match with for this filter to be applied.
+     */
+    urls?: string[] | null;
+  }
+  /**
+   * UrlFilteringProfile defines filters based on URL.
+   */
+  export interface Schema$UrlFilteringProfile {
+    /**
+     * Optional. The list of filtering configs in which each config defines an action to take for some URL match.
+     */
+    urlFilters?: Schema$UrlFilter[];
   }
   /**
    * UrlList proto helps users to set reusable, independently manageable lists of hosts, host patterns, URLs, URL patterns.
@@ -4100,6 +4146,7 @@ export namespace networksecurity_v1beta1 {
      *         //   "billingProjectId": "my_billingProjectId",
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
+     *         //   "endpointSettings": {},
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "reconciling": false,
@@ -4406,6 +4453,7 @@ export namespace networksecurity_v1beta1 {
      *   //   "billingProjectId": "my_billingProjectId",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "endpointSettings": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "reconciling": false,
@@ -4714,6 +4762,7 @@ export namespace networksecurity_v1beta1 {
      *         //   "billingProjectId": "my_billingProjectId",
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
+     *         //   "endpointSettings": {},
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "reconciling": false,
@@ -5585,7 +5634,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": "my_threatPreventionProfile",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": "my_urlFilteringProfile"
      *         // }
      *       },
      *     });
@@ -5889,7 +5939,8 @@ export namespace networksecurity_v1beta1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "threatPreventionProfile": "my_threatPreventionProfile",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "urlFilteringProfile": "my_urlFilteringProfile"
      *   // }
      * }
      *
@@ -6194,7 +6245,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": "my_threatPreventionProfile",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": "my_urlFilteringProfile"
      *         // }
      *       },
      *     });
@@ -6427,7 +6479,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": {},
      *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": {}
      *         // }
      *       },
      *     });
@@ -6731,7 +6784,8 @@ export namespace networksecurity_v1beta1 {
      *   //   "name": "my_name",
      *   //   "threatPreventionProfile": {},
      *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "urlFilteringProfile": {}
      *   // }
      * }
      *
@@ -7030,7 +7084,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": {},
      *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": {}
      *         // }
      *       },
      *     });
@@ -7468,7 +7523,7 @@ export namespace networksecurity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -7597,7 +7652,7 @@ export namespace networksecurity_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -14503,9 +14558,9 @@ export namespace networksecurity_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.projects.locations.dnsThreatDetectors.create({
-     *       // Optional. Id of the requesting DnsThreatDetector object. If this field is not supplied, the service will generate an identifier.
+     *       // Optional. The ID of the requesting DnsThreatDetector object. If this field is not supplied, the service generates an identifier.
      *       dnsThreatDetectorId: 'placeholder-value',
-     *       // Required. Value for parent of the DnsThreatDetector resource.
+     *       // Required. The value for the parent of the DnsThreatDetector resource.
      *       parent: 'projects/my-project/locations/my-location',
      *
      *       // Request body metadata
@@ -14767,7 +14822,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Gets details of a single DnsThreatDetector.
+     * Gets the details of a single DnsThreatDetector.
      * @example
      * ```js
      * // Before running the sample:
@@ -14797,7 +14852,7 @@ export namespace networksecurity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.dnsThreatDetectors.get({
-     *     // Required. Name of the DnsThreatDetector resource
+     *     // Required. Name of the DnsThreatDetector resource.
      *     name: 'projects/my-project/locations/my-location/dnsThreatDetectors/my-dnsThreatDetector',
      *   });
      *   console.log(res.data);
@@ -14938,11 +14993,11 @@ export namespace networksecurity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.dnsThreatDetectors.list({
-     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     // Optional. The requested page size. The server may return fewer items than requested. If unspecified, the server picks an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous `ListDnsThreatDetectorsRequest` call. Provide this to retrieve the subsequent page.
+     *     // Optional. A page token received from a previous `ListDnsThreatDetectorsRequest` call. Provide this to retrieve the subsequent page.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent value for ListDnsThreatDetectorsRequest
+     *     // Required. The parent value for `ListDnsThreatDetectorsRequest`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -15059,7 +15114,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Updates the parameters of a single DnsThreatDetector.
+     * Updates a single DnsThreatDetector.
      * @example
      * ```js
      * // Before running the sample:
@@ -15092,7 +15147,7 @@ export namespace networksecurity_v1beta1 {
      *     {
      *       // Immutable. Identifier. Name of the DnsThreatDetector resource.
      *       name: 'projects/my-project/locations/my-location/dnsThreatDetectors/my-dnsThreatDetector',
-     *       // Optional. Field mask is used to specify the fields to be overwritten in the DnsThreatDetector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not provided then all fields present in the request will be overwritten.
+     *       // Optional. The field mask is used to specify the fields to be overwritten in the DnsThreatDetector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not provided then all fields present in the request will be overwritten.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -15220,11 +15275,11 @@ export namespace networksecurity_v1beta1 {
   export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$Create
     extends StandardParameters {
     /**
-     * Optional. Id of the requesting DnsThreatDetector object. If this field is not supplied, the service will generate an identifier.
+     * Optional. The ID of the requesting DnsThreatDetector object. If this field is not supplied, the service generates an identifier.
      */
     dnsThreatDetectorId?: string;
     /**
-     * Required. Value for parent of the DnsThreatDetector resource.
+     * Required. The value for the parent of the DnsThreatDetector resource.
      */
     parent?: string;
 
@@ -15243,22 +15298,22 @@ export namespace networksecurity_v1beta1 {
   export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$Get
     extends StandardParameters {
     /**
-     * Required. Name of the DnsThreatDetector resource
+     * Required. Name of the DnsThreatDetector resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$List
     extends StandardParameters {
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. The requested page size. The server may return fewer items than requested. If unspecified, the server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional. A page token, received from a previous `ListDnsThreatDetectorsRequest` call. Provide this to retrieve the subsequent page.
+     * Optional. A page token received from a previous `ListDnsThreatDetectorsRequest` call. Provide this to retrieve the subsequent page.
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListDnsThreatDetectorsRequest
+     * Required. The parent value for `ListDnsThreatDetectorsRequest`.
      */
     parent?: string;
   }
@@ -15269,7 +15324,7 @@ export namespace networksecurity_v1beta1 {
      */
     name?: string;
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the DnsThreatDetector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not provided then all fields present in the request will be overwritten.
+     * Optional. The field mask is used to specify the fields to be overwritten in the DnsThreatDetector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not provided then all fields present in the request will be overwritten.
      */
     updateMask?: string;
 
@@ -23970,6 +24025,7 @@ export namespace networksecurity_v1beta1 {
      *         //   "name": "my_name",
      *         //   "reconciling": false,
      *         //   "state": "my_state",
+     *         //   "type": "my_type",
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -24273,6 +24329,7 @@ export namespace networksecurity_v1beta1 {
      *   //   "name": "my_name",
      *   //   "reconciling": false,
      *   //   "state": "my_state",
+     *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -24583,6 +24640,7 @@ export namespace networksecurity_v1beta1 {
      *         //   "name": "my_name",
      *         //   "reconciling": false,
      *         //   "state": "my_state",
+     *         //   "type": "my_type",
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
