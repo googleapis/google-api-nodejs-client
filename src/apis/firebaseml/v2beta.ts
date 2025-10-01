@@ -447,6 +447,10 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1EnterpriseWebSearch {
     /**
+     * Optional. Sites with confidence level chosen & above this value will be blocked from the search results.
+     */
+    blockingConfidence?: string | null;
+    /**
      * Optional. List of domains to be excluded from the search results. The default limit is 2000 domains.
      */
     excludeDomains?: string[] | null;
@@ -1612,6 +1616,10 @@ export namespace firebaseml_v2beta {
    * GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolGoogleSearch {
+    /**
+     * Optional. Sites with confidence level chosen & above this value will be blocked from the search results.
+     */
+    blockingConfidence?: string | null;
     /**
      * Optional. List of domains to be excluded from the search results. The default limit is 2000 domains. Example: ["amazon.com", "facebook.com"].
      */

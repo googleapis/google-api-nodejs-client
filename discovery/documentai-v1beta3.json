@@ -291,6 +291,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta3/{+name}",
@@ -1290,7 +1295,7 @@
       }
     }
   },
-  "revision": "20250922",
+  "revision": "20250929",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -1309,9 +1314,15 @@
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule": {
       "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule",
       "properties": {
+        "childAlignmentRule": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleChildAlignmentRule"
+        },
         "description": {
           "description": "Description of the validation rule. This has no use but for documentation",
           "type": "string"
+        },
+        "entityAlignmentRule": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleEntityAlignmentRule"
         },
         "fieldOccurrences": {
           "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldOccurrences"
@@ -1329,6 +1340,53 @@
       },
       "type": "object"
     },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleAlignmentRule": {
+      "description": "A rule for checking field alignment. Horizontal alignment checks if fields are on the same row by comparing y-coordinates of bounding box centers, while vertical alignment checks if fields are on the same column by comparing x-coordinates of bounding box centers.",
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleAlignmentRule",
+      "properties": {
+        "alignmentType": {
+          "enum": [
+            "ALIGNMENT_TYPE_UNSPECIFIED",
+            "ALIGNMENT_TYPE_HORIZONTAL",
+            "ALIGNMENT_TYPE_VERTICAL"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "tolerance": {
+          "description": "The tolerance to use when comparing coordinates.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleChildAlignmentRule": {
+      "description": "A rule that aligns specified child fields with a parent field.",
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleChildAlignmentRule",
+      "properties": {
+        "alignmentRule": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleAlignmentRule",
+          "description": "The alignment rule to apply to the child fields."
+        },
+        "childFields": {
+          "description": "The child fields to be aligned within the parent field.",
+          "items": {
+            "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField"
+          },
+          "type": "array"
+        },
+        "parentField": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField",
+          "description": "The full path of the parent field."
+        }
+      },
+      "type": "object"
+    },
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant": {
       "description": "The constant value used in the validation rules.",
       "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant",
@@ -1336,6 +1394,24 @@
         "floatValue": {
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleEntityAlignmentRule": {
+      "description": "A rule that aligns specified fields with each other.",
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleEntityAlignmentRule",
+      "properties": {
+        "alignmentRule": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleAlignmentRule",
+          "description": "The alignment rule to apply to the fields."
+        },
+        "fields": {
+          "description": "The fields to be aligned.",
+          "items": {
+            "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7033,6 +7109,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }

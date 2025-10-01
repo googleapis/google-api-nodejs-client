@@ -641,6 +641,36 @@ export namespace workloadmanager_v1 {
     upcomingMaintenanceEvent?: Schema$UpcomingMaintenanceEvent;
   }
   /**
+   * Message represent an rule that failed to be validated.
+   */
+  export interface Schema$InvalidRule {
+    /**
+     * display name of the invalid rule
+     */
+    displayName?: string | null;
+    /**
+     * cloud storage destination of the invalid rule
+     */
+    gcsUri?: string | null;
+    /**
+     * name of the invalid rule
+     */
+    name?: string | null;
+    /**
+     * The error message of valdating rule formats.
+     */
+    valiadtionError?: string | null;
+  }
+  /**
+   * Message wrappes a list of invalid rules.
+   */
+  export interface Schema$InvalidRulesWrapper {
+    /**
+     * The invalid rules that failed to be validated.
+     */
+    invalidRules?: Schema$InvalidRule[];
+  }
+  /**
    * List discovered profile Response returns discovered profiles from agents
    */
   export interface Schema$ListDiscoveredProfilesResponse {
@@ -735,9 +765,9 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$ListRulesResponse {
     /**
-     * A token identifying a page of results the server should return.
+     * A wrapper of the invalid rules that failed to be validated.
      */
-    nextPageToken?: string | null;
+    invalidRulesWrapper?: Schema$InvalidRulesWrapper;
     /**
      * all rules in response
      */
@@ -2856,6 +2886,170 @@ export namespace workloadmanager_v1 {
         return createAPIRequest<Schema$ListEvaluationsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates the parameters of a single Evaluation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.evaluations.patch({
+     *     // name of resource names have the form 'projects/{project_id\}/locations/{location_id\}/evaluations/{evaluation_id\}'
+     *     name: 'projects/my-project/locations/my-location/evaluations/my-evaluation',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Field mask is used to specify the fields to be overwritten in the Evaluation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigQueryDestination": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "customRulesBucket": "my_customRulesBucket",
+     *       //   "description": "my_description",
+     *       //   "evaluationType": "my_evaluationType",
+     *       //   "kmsKey": "my_kmsKey",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "resourceFilter": {},
+     *       //   "resourceStatus": {},
+     *       //   "ruleNames": [],
+     *       //   "ruleVersions": [],
+     *       //   "schedule": "my_schedule",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Evaluations$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Evaluations$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Evaluations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Evaluations$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Evaluations$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Evaluations$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Evaluations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Evaluations$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Evaluations$Create
@@ -2922,6 +3116,26 @@ export namespace workloadmanager_v1 {
      * Required. Parent value for ListEvaluationsRequest
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Evaluations$Patch
+    extends StandardParameters {
+    /**
+     * name of resource names have the form 'projects/{project_id\}/locations/{location_id\}/evaluations/{evaluation_id\}'
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the Evaluation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Evaluation;
   }
 
   export class Resource$Projects$Locations$Evaluations$Executions {
@@ -4953,7 +5167,7 @@ export namespace workloadmanager_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "invalidRulesWrapper": {},
      *   //   "rules": []
      *   // }
      * }

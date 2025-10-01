@@ -2878,10 +2878,6 @@ export namespace dataproc_v1 {
      */
     clusterUuid?: string | null;
     /**
-     * Optional. Whether the request is submitted by Dataproc super user. If true, IAM will check 'dataproc.clusters.repair' permission instead of 'dataproc.clusters.update' permission. This is to give Dataproc superuser the ability to repair clusters without granting the overly broad update permission.
-     */
-    dataprocSuperUser?: boolean | null;
-    /**
      * Optional. Timeout for graceful YARN decommissioning. Graceful decommissioning facilitates the removal of cluster nodes without interrupting jobs in progress. The timeout specifies the amount of time to wait for jobs finish before forcefully removing nodes. The default timeout is 0 for forceful decommissioning, and the maximum timeout period is 1 day. (see JSON Mapping—Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).graceful_decommission_timeout is supported in Dataproc image versions 1.2+.
      */
     gracefulDecommissionTimeout?: string | null;
@@ -4417,6 +4413,10 @@ export namespace dataproc_v1 {
      */
     milliDcuSeconds?: string | null;
     /**
+     * Optional. Slot usage in (milliSlot x seconds).
+     */
+    milliSlotSeconds?: string | null;
+    /**
      * Optional. Shuffle storage usage in (GB x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */
     shuffleStorageGbSeconds?: string | null;
@@ -4445,6 +4445,10 @@ export namespace dataproc_v1 {
      * Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at premium tier (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */
     milliDcuPremium?: string | null;
+    /**
+     * Optional. Milli (one-thousandth) Slot usage of the workload.
+     */
+    milliSlot?: string | null;
     /**
      * Optional. Shuffle Storage in gigabytes (GB). (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
      */
@@ -20481,7 +20485,6 @@ export namespace dataproc_v1 {
      *       // {
      *       //   "cluster": {},
      *       //   "clusterUuid": "my_clusterUuid",
-     *       //   "dataprocSuperUser": false,
      *       //   "gracefulDecommissionTimeout": "my_gracefulDecommissionTimeout",
      *       //   "nodePools": [],
      *       //   "parentOperationId": "my_parentOperationId",

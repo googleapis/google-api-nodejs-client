@@ -250,6 +250,36 @@ export namespace networkconnectivity_v1 {
     role?: string | null;
   }
   /**
+   * Request for CheckConsumerConfig.
+   */
+  export interface Schema$CheckConsumerConfigRequest {
+    /**
+     * Required. Full resource name of the consumer network. Example: - projects/{project\}/global/networks/{network\}.
+     */
+    consumerNetwork?: string | null;
+    /**
+     * The project number or ID where the PSC endpoint is to be created.
+     */
+    endpointProject?: string | null;
+    /**
+     * The requested IP Version
+     */
+    requestedIpVersion?: string | null;
+    /**
+     * Required. The service class identifier of the producer.
+     */
+    serviceClass?: string | null;
+  }
+  /**
+   * Response for CheckConsumerConfig.
+   */
+  export interface Schema$CheckConsumerConfigResponse {
+    /**
+     * List of validation errors. If the list is empty, the consumer config is valid.
+     */
+    errors?: string[] | null;
+  }
+  /**
    * Allow the producer to specify which consumers can connect to it.
    */
   export interface Schema$ConsumerPscConfig {
@@ -483,6 +513,10 @@ export namespace networkconnectivity_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$GoogleLongrunningOperation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1645,7 +1679,7 @@ export namespace networkconnectivity_v1 {
      */
     name?: string | null;
     /**
-     * The name of the VPC network for this private regional endpoint. Format: `projects/{project\}/global/networks/{network\}`
+     * Optional. The name of the VPC network for this private regional endpoint. Format: `projects/{project\}/global/networks/{network\}`
      */
     network?: string | null;
     /**
@@ -1653,7 +1687,7 @@ export namespace networkconnectivity_v1 {
      */
     pscForwardingRule?: string | null;
     /**
-     * The name of the subnetwork from which the IP address will be allocated. Format: `projects/{project\}/regions/{region\}/subnetworks/{subnetwork\}`
+     * Optional. The name of the subnetwork from which the IP address will be allocated. Format: `projects/{project\}/regions/{region\}/subnetworks/{subnetwork\}`
      */
     subnetwork?: string | null;
     /**
@@ -2305,7 +2339,7 @@ export namespace networkconnectivity_v1 {
     /**
      * Optional. [Preview only] List of IP Prefixes that will be advertised to the remote provider. Both IPv4 and IPv6 addresses are supported.
      */
-    advertisedRoutes?: string | null;
+    advertisedRoutes?: string[] | null;
     /**
      * Required. Bandwidth of the Transport. This must be one of the supported bandwidths for the remote profile.
      */
@@ -2448,6 +2482,159 @@ export namespace networkconnectivity_v1 {
       this.transports = new Resource$Projects$Locations$Transports(
         this.context
       );
+    }
+
+    /**
+     * CheckConsumerConfig validates the consumer network and project for potential PSC connection creation. This method performs several checks, including: - Validating the existence and permissions of the service class. - Ensuring the consumer network exists and is accessible. - Verifying XPN relationships if applicable. - Checking for compatible IP versions between the consumer network and the requested version. This method performs a dynamic IAM check for the `networkconnectivity.serviceClasses.use` permission on the service class resource in the Prepare phase.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkconnectivity.projects.locations.checkConsumerConfig({
+     *     // Required. The location resource path. Example: - projects/{project\}/locations/{location\}
+     *     location: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "consumerNetwork": "my_consumerNetwork",
+     *       //   "endpointProject": "my_endpointProject",
+     *       //   "requestedIpVersion": "my_requestedIpVersion",
+     *       //   "serviceClass": "my_serviceClass"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errors": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkConsumerConfig(
+      params: Params$Resource$Projects$Locations$Checkconsumerconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    checkConsumerConfig(
+      params?: Params$Resource$Projects$Locations$Checkconsumerconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckConsumerConfigResponse>>;
+    checkConsumerConfig(
+      params: Params$Resource$Projects$Locations$Checkconsumerconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkConsumerConfig(
+      params: Params$Resource$Projects$Locations$Checkconsumerconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckConsumerConfigResponse>,
+      callback: BodyResponseCallback<Schema$CheckConsumerConfigResponse>
+    ): void;
+    checkConsumerConfig(
+      params: Params$Resource$Projects$Locations$Checkconsumerconfig,
+      callback: BodyResponseCallback<Schema$CheckConsumerConfigResponse>
+    ): void;
+    checkConsumerConfig(
+      callback: BodyResponseCallback<Schema$CheckConsumerConfigResponse>
+    ): void;
+    checkConsumerConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Checkconsumerconfig
+        | BodyResponseCallback<Schema$CheckConsumerConfigResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckConsumerConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckConsumerConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckConsumerConfigResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Checkconsumerconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Checkconsumerconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+location}:checkConsumerConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckConsumerConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckConsumerConfigResponse>(parameters);
+      }
     }
 
     /**
@@ -2739,6 +2926,18 @@ export namespace networkconnectivity_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Checkconsumerconfig
+    extends StandardParameters {
+    /**
+     * Required. The location resource path. Example: - projects/{project\}/locations/{location\}
+     */
+    location?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckConsumerConfigRequest;
+  }
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
@@ -12047,13 +12246,16 @@ export namespace networkconnectivity_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -12208,6 +12410,10 @@ export namespace networkconnectivity_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Regionalendpoints {
@@ -19328,7 +19534,7 @@ export namespace networkconnectivity_v1 {
      *       // request body parameters
      *       // {
      *       //   "adminEnabled": false,
-     *       //   "advertisedRoutes": "my_advertisedRoutes",
+     *       //   "advertisedRoutes": [],
      *       //   "bandwidth": "my_bandwidth",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -19642,7 +19848,7 @@ export namespace networkconnectivity_v1 {
      *   // Example response
      *   // {
      *   //   "adminEnabled": false,
-     *   //   "advertisedRoutes": "my_advertisedRoutes",
+     *   //   "advertisedRoutes": [],
      *   //   "bandwidth": "my_bandwidth",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -19946,7 +20152,7 @@ export namespace networkconnectivity_v1 {
      *       // request body parameters
      *       // {
      *       //   "adminEnabled": false,
-     *       //   "advertisedRoutes": "my_advertisedRoutes",
+     *       //   "advertisedRoutes": [],
      *       //   "bandwidth": "my_bandwidth",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",

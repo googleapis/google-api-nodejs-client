@@ -10075,7 +10075,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "The maximum number of Metadata Stores to return. The service may return fewer. Must be in range 1-1000, inclusive. Defaults to 100.",
+                      "description": "The maximum number of Metadata Stores to return. The service may return fewer. Must be in range 1-100, inclusive. Defaults to 100.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -10213,7 +10213,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The maximum number of Artifacts to return. The service may return fewer. Must be in range 1-1000, inclusive. Defaults to 100.",
+                          "description": "The maximum number of Artifacts to return. The service may return fewer. Must be in range 1-100, inclusive. Defaults to 100.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -10668,7 +10668,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The maximum number of Contexts to return. The service may return fewer. Must be in range 1-1000, inclusive. Defaults to 100.",
+                          "description": "The maximum number of Contexts to return. The service may return fewer. Must be in range 1-100, inclusive. Defaults to 100.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -11107,7 +11107,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The maximum number of Executions to return. The service may return fewer. Must be in range 1-1000, inclusive. Defaults to 100.",
+                          "description": "The maximum number of Executions to return. The service may return fewer. Must be in range 1-100, inclusive. Defaults to 100.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -11455,7 +11455,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The maximum number of MetadataSchemas to return. The service may return fewer. Must be in range 1-1000, inclusive. Defaults to 100.",
+                          "description": "The maximum number of MetadataSchemas to return. The service may return fewer. Must be in range 1-100, inclusive. Defaults to 100.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -20930,7 +20930,7 @@
       }
     }
   },
-  "revision": "20250920",
+  "revision": "20250926",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -39846,7 +39846,7 @@
         },
         "packageSpec": {
           "$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec",
-          "description": "Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes."
+          "description": "Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes. The `deployment_source` field should not be set if `package_spec` is specified."
         },
         "serviceAccount": {
           "description": "Optional. The service account that the Reasoning Engine artifact runs as. It should have \"roles/storage.objectViewer\" for reading the user project's Cloud Storage and \"roles/aiplatform.user\" for using Vertex extensions. If not specified, the Vertex AI Reasoning Engine Service Agent in the project will be used.",
@@ -39903,7 +39903,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec": {
-      "description": "User provided package spec like pickled object and package requirements.",
+      "description": "User-provided package specification, containing pickled object and package requirements.",
       "id": "GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec",
       "properties": {
         "dependencyFilesGcsUri": {

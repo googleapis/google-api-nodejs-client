@@ -5012,7 +5012,7 @@
       }
     }
   },
-  "revision": "20250923",
+  "revision": "20250930",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -9619,10 +9619,6 @@
           "description": "Optional. Specifying the cluster_uuid means the RPC will fail (with error NOT_FOUND) if a cluster with the specified UUID does not exist.",
           "type": "string"
         },
-        "dataprocSuperUser": {
-          "description": "Optional. Whether the request is submitted by Dataproc super user. If true, IAM will check 'dataproc.clusters.repair' permission instead of 'dataproc.clusters.update' permission. This is to give Dataproc superuser the ability to repair clusters without granting the overly broad update permission.",
-          "type": "boolean"
-        },
         "gracefulDecommissionTimeout": {
           "description": "Optional. Timeout for graceful YARN decommissioning. Graceful decommissioning facilitates the removal of cluster nodes without interrupting jobs in progress. The timeout specifies the amount of time to wait for jobs finish before forcefully removing nodes. The default timeout is 0 for forceful decommissioning, and the maximum timeout period is 1 day. (see JSON Mapping—Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).graceful_decommission_timeout is supported in Dataproc image versions 1.2+.",
           "format": "google-duration",
@@ -12604,6 +12600,11 @@
           "format": "int64",
           "type": "string"
         },
+        "milliSlotSeconds": {
+          "description": "Optional. Slot usage in (milliSlot x seconds).",
+          "format": "int64",
+          "type": "string"
+        },
         "shuffleStorageGbSeconds": {
           "description": "Optional. Shuffle storage usage in (GB x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).",
           "format": "int64",
@@ -12637,6 +12638,11 @@
         },
         "milliDcuPremium": {
           "description": "Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at premium tier (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).",
+          "format": "int64",
+          "type": "string"
+        },
+        "milliSlot": {
+          "description": "Optional. Milli (one-thousandth) Slot usage of the workload.",
           "format": "int64",
           "type": "string"
         },

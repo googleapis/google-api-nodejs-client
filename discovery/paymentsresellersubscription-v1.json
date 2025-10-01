@@ -523,7 +523,7 @@
       }
     }
   },
-  "revision": "20250814",
+  "revision": "20250929",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "Amount": {
@@ -563,6 +563,7 @@
             "CANCELLATION_REASON_USER_DELINQUENCY",
             "CANCELLATION_REASON_SYSTEM_ERROR",
             "CANCELLATION_REASON_SYSTEM_CANCEL",
+            "CANCELLATION_REASON_BILLING_SYSTEM_SWITCH",
             "CANCELLATION_REASON_OTHER"
           ],
           "enumDescriptions": [
@@ -576,6 +577,7 @@
             "Cancellation due to user delinquency",
             "Used for notification only, do not use in Cancel API. Cancellation due to an unrecoverable system error.",
             "Used for notification only, do not use in Cancel API. The subscription is cancelled by Google automatically since it is no longer valid.",
+            "Cancellation due to a billing system switch.",
             "Other reason."
           ],
           "type": "string"
@@ -1423,6 +1425,7 @@
             "CANCELLATION_REASON_USER_DELINQUENCY",
             "CANCELLATION_REASON_SYSTEM_ERROR",
             "CANCELLATION_REASON_SYSTEM_CANCEL",
+            "CANCELLATION_REASON_BILLING_SYSTEM_SWITCH",
             "CANCELLATION_REASON_OTHER"
           ],
           "enumDescriptions": [
@@ -1436,6 +1439,7 @@
             "Cancellation due to user delinquency",
             "Used for notification only, do not use in Cancel API. Cancellation due to an unrecoverable system error.",
             "Used for notification only, do not use in Cancel API. The subscription is cancelled by Google automatically since it is no longer valid.",
+            "Cancellation due to a billing system switch.",
             "Other reason."
           ],
           "readOnly": true,

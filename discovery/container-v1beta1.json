@@ -2685,7 +2685,7 @@
       }
     }
   },
-  "revision": "20250916",
+  "revision": "20250923",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3191,7 +3191,13 @@
     "AutoscaledRolloutPolicy": {
       "description": "Autoscaled rollout policy utilizes the cluster autoscaler during blue-green upgrade to scale both the blue and green pools.",
       "id": "AutoscaledRolloutPolicy",
-      "properties": {},
+      "properties": {
+        "waitForDrainDuration": {
+          "description": "Optional. Time to wait after cordoning the blue pool before draining the nodes. Defaults to 3 days. The value can be set between 0 and 7 days, inclusive.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "AvailableVersion": {
