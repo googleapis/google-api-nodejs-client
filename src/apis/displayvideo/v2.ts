@@ -2409,7 +2409,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$DuplicateLineItemRequest {
     /**
-     * Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned to the line item if the parent advertiser has declared that it does not serve EU political ads, or **the request will fail**.
+     * Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. This field must be assigned when creating a new line item. Otherwise, **the `advertisers.lineItems.create` request will fail**.
      */
     containsEuPoliticalAds?: string | null;
     /**
@@ -2715,7 +2715,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$GenerateDefaultLineItemRequest {
     /**
-     * Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned to the line item if the parent advertiser has declared that it does not serve EU political ads, or **the request will fail**.
+     * Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. This field must be assigned when creating a new line item. Otherwise, **the `advertisers.lineItems.create` request will fail**.
      */
     containsEuPoliticalAds?: string | null;
     /**
@@ -3510,7 +3510,7 @@ export namespace displayvideo_v2 {
      */
     campaignId?: string | null;
     /**
-     * Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set when creating a new line item. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned if the parent advertiser has declared that it does not serve EU political ads, or **the `advertisers.lineItems.create` request will fail**.
+     * Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. This field must be assigned when creating a new line item. Otherwise, **the `advertisers.lineItems.create` request will fail**.
      */
     containsEuPoliticalAds?: string | null;
     /**
@@ -5860,7 +5860,7 @@ export namespace displayvideo_v2 {
      */
     brandLiftVendorConfigs?: Schema$ThirdPartyVendorConfig[];
     /**
-     * The third-party vendors measuring brand safety. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_ZERF` * `THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE`
+     * The third-party vendors measuring brand safety. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_ZEFR` * `THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE`
      */
     brandSafetyVendorConfigs?: Schema$ThirdPartyVendorConfig[];
     /**
