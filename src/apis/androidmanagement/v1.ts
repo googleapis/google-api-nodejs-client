@@ -167,7 +167,7 @@ export namespace androidmanagement_v1 {
      */
     contentProtectionPolicy?: string | null;
     /**
-     * Controls access to developer settings: developer options and safe boot. Replaces safeBootDisabled (deprecated) and debuggingFeaturesAllowed (deprecated).
+     * Controls access to developer settings: developer options and safe boot. Replaces safeBootDisabled (deprecated) and debuggingFeaturesAllowed (deprecated). On personally-owned devices with a work profile, setting this policy will not disable safe boot. In this case, a NonComplianceDetail with MANAGEMENT_MODE is reported.
      */
     developerSettings?: string | null;
     /**
@@ -455,6 +455,10 @@ export namespace androidmanagement_v1 {
      */
     credentialProviderPolicy?: string | null;
     /**
+     * Optional. Configuration for this custom app.install_type must be set to CUSTOM for this to be set.
+     */
+    customAppConfig?: Schema$CustomAppConfig;
+    /**
      * The default policy for all permissions requested by the app. If specified, this overrides the policy-level default_permission_policy which applies to all apps. It does not override the permission_grants which applies to all apps.
      */
     defaultPermissionPolicy?: string | null;
@@ -467,7 +471,7 @@ export namespace androidmanagement_v1 {
      */
     disabled?: boolean | null;
     /**
-     * Configuration to enable this app as an extension app, with the capability of interacting with Android Device Policy offline.This field can be set for at most one app.The signing key certificate fingerprint of the app on the device must match one of the entries in signingKeyFingerprintsSha256 or the signing key certificate fingerprints obtained from Play Store for the app to be able to communicate with Android Device Policy. If the app is not on Play Store and signingKeyFingerprintsSha256 is not set, a NonComplianceDetail with INVALID_VALUE is reported.
+     * Configuration to enable this app as an extension app, with the capability of interacting with Android Device Policy offline.This field can be set for at most one app. If there is any app with COMPANION_APP role, this field cannot be set.The signing key certificate fingerprint of the app on the device must match one of the entries in ApplicationPolicy.signingKeyCerts or ExtensionConfig.signingKeyFingerprintsSha256 (deprecated) or the signing key certificate fingerprints obtained from Play Store for the app to be able to communicate with Android Device Policy. If the app is not on Play Store and if ApplicationPolicy.signingKeyCerts and ExtensionConfig.signingKeyFingerprintsSha256 (deprecated) are not set, a NonComplianceDetail with INVALID_VALUE is reported.
      */
     extensionConfig?: Schema$ExtensionConfig;
     /**
@@ -510,6 +514,14 @@ export namespace androidmanagement_v1 {
      * Optional. ID of the preferential network the application uses. There must be a configuration for the specified network ID in preferentialNetworkServiceConfigs. If set to PREFERENTIAL_NETWORK_ID_UNSPECIFIED, the application will use the default network ID specified in defaultPreferentialNetworkId. See the documentation of defaultPreferentialNetworkId for the list of apps excluded from this defaulting. This applies on both work profiles and fully managed devices on Android 13 and above.
      */
     preferentialNetworkId?: string | null;
+    /**
+     * Optional. Roles the app has.Apps having certain roles can be exempted from power and background execution restrictions, suspension and hibernation on Android 14 and above. The user control can also be disallowed for apps with certain roles on Android 11 and above. Refer to the documentation of each RoleType for more details.The app is notified about the roles that are set for it if the app has a notification receiver service with . The app is notified whenever its roles are updated or after the app is installed when it has nonempty list of roles. The app can use this notification to bootstrap itself after the installation. See Integrate with the AMAPI SDK (https://developers.google.com/android/management/sdk-integration) and Manage app roles (https://developers.google.com/android/management/app-roles) guides for more details on the requirements for the service.For the exemptions to be applied and the app to be notified about the roles, the signing key certificate fingerprint of the app on the device must match one of the signing key certificate fingerprints obtained from Play Store or one of the entries in ApplicationPolicy.signingKeyCerts. Otherwise, a NonComplianceDetail with APP_SIGNING_CERT_MISMATCH is reported.There must not be duplicate roles with the same roleType. Multiple apps cannot hold a role with the same roleType. A role with type ROLE_TYPE_UNSPECIFIED is not allowed.
+     */
+    roles?: Schema$Role[];
+    /**
+     * Optional. Signing key certificates of the app.This field is required in the following cases: The app has installType set to CUSTOM (i.e. a custom app). The app has roles set to a nonempty list and the app does not exist on the Play Store. The app has extensionConfig set (i.e. an extension app) but ExtensionConfig.signingKeyFingerprintsSha256 (deprecated) is not set and the app does not exist on the Play Store.If this field is not set for a custom app, the policy is rejected. If it is not set when required for a non-custom app, a NonComplianceDetail with INVALID_VALUE is reported.For other cases, this field is optional and the signing key certificates obtained from Play Store are used.See following policy settings to see how this field is used: choosePrivateKeyRules ApplicationPolicy.InstallType.CUSTOM ApplicationPolicy.extensionConfig ApplicationPolicy.roles
+     */
+    signingKeyCerts?: Schema$ApplicationSigningKeyCert[];
     /**
      * Optional. Specifies whether user control is permitted for the app. User control includes user actions like force-stopping and clearing app data. Certain types of apps have special treatment, see USER_CONTROL_SETTINGS_UNSPECIFIED and USER_CONTROL_ALLOWED for more details.
      */
@@ -593,6 +605,15 @@ export namespace androidmanagement_v1 {
      * Whether removed apps are included in application reports.
      */
     includeRemovedApps?: boolean | null;
+  }
+  /**
+   * The application signing key certificate.
+   */
+  export interface Schema$ApplicationSigningKeyCert {
+    /**
+     * Required. The SHA-256 hash value of the signing key certificate of the app. This must be a valid SHA-256 hash value, i.e. 32 bytes. Otherwise, the policy is rejected.
+     */
+    signingKeyCertFingerprintSha256?: string | null;
   }
   /**
    * Information about a process. It contains process name, start time, app Uid, app Pid, seinfo tag, hash of the base APK.
@@ -769,7 +790,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$ChoosePrivateKeyRule {
     /**
-     * The package names to which this rule applies. The hash of the signing certificate for each app is verified against the hash provided by Play. If no package names are specified, then the alias is provided to all apps that call KeyChain.choosePrivateKeyAlias (https://developer.android.com/reference/android/security/KeyChain#choosePrivateKeyAlias%28android.app.Activity,%20android.security.KeyChainAliasCallback,%20java.lang.String[],%20java.security.Principal[],%20java.lang.String,%20int,%20java.lang.String%29) or any overloads (but not without calling KeyChain.choosePrivateKeyAlias, even on Android 11 and above). Any app with the same Android UID as a package specified here will have access when they call KeyChain.choosePrivateKeyAlias.
+     * The package names to which this rule applies. The signing key certificate fingerprint of the app is verified against the signing key certificate fingerprints provided by Play Store and ApplicationPolicy.signingKeyCerts . If no package names are specified, then the alias is provided to all apps that call KeyChain.choosePrivateKeyAlias (https://developer.android.com/reference/android/security/KeyChain#choosePrivateKeyAlias%28android.app.Activity,%20android.security.KeyChainAliasCallback,%20java.lang.String[],%20java.security.Principal[],%20java.lang.String,%20int,%20java.lang.String%29) or any overloads (but not without calling KeyChain.choosePrivateKeyAlias, even on Android 11 and above). Any app with the same Android UID as a package specified here will have access when they call KeyChain.choosePrivateKeyAlias.
      */
     packageNames?: string[] | null;
     /**
@@ -1020,6 +1041,15 @@ export namespace androidmanagement_v1 {
     success?: boolean | null;
   }
   /**
+   * Configuration for a custom app.
+   */
+  export interface Schema$CustomAppConfig {
+    /**
+     * Optional. User uninstall settings of the custom app.
+     */
+    userUninstallSettings?: string | null;
+  }
+  /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values. A month and day, with a zero year (for example, an anniversary). A year on its own, with a zero month and a zero day. A year and month, with a zero day (for example, a credit card expiration date).Related types: google.type.TimeOfDay google.type.DateTime google.protobuf.Timestamp
    */
   export interface Schema$Date {
@@ -1049,7 +1079,7 @@ export namespace androidmanagement_v1 {
      */
     applicationReports?: Schema$ApplicationReport[];
     /**
-     * The password requirements currently applied to the device. The applied requirements may be slightly different from those specified in passwordPolicies in some cases. fieldPath is set based on passwordPolicies.
+     * The password requirements currently applied to the device. This field exists because the applied requirements may be slightly different from those specified in passwordPolicies in some cases. Note that this field does not provide information about password compliance. For non-compliance information, see nonComplianceDetails. NonComplianceDetail.fieldPath, is set based on passwordPolicies, not based on this field.
      */
     appliedPasswordPolicies?: Schema$PasswordRequirements[];
     /**
@@ -1689,7 +1719,7 @@ export namespace androidmanagement_v1 {
      */
     model?: string | null;
     /**
-     * The device serial number.
+     * The device serial number. However, for personally-owned devices running Android 12 and above, this is the same as the enterpriseSpecificId.
      */
     serialNumber?: string | null;
     /**
@@ -1988,6 +2018,10 @@ export namespace androidmanagement_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response to a request to list policies for a given enterprise.
@@ -3159,6 +3193,15 @@ export namespace androidmanagement_v1 {
      * Output only. Status of a REQUEST_DEVICE_INFO command.
      */
     status?: string | null;
+  }
+  /**
+   * Role an app can have.
+   */
+  export interface Schema$Role {
+    /**
+     * Required. The type of the role an app can have.
+     */
+    roleType?: string | null;
   }
   /**
    * Controls for the screen brightness settings.
@@ -6284,13 +6327,16 @@ export namespace androidmanagement_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -6422,6 +6468,10 @@ export namespace androidmanagement_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Enterprises$Enrollmenttokens {
