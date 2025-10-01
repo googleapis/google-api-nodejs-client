@@ -136,9 +136,13 @@ export namespace servicemanagement_v1 {
     description?: string | null;
   }
   /**
-   * Api is a light-weight descriptor for an API Interface. Interfaces are also described as "protocol buffer services" in some contexts, such as by the "service" keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as "APIs" in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology.
+   * Api is a light-weight descriptor for an API Interface. Interfaces are also described as "protocol buffer services" in some contexts, such as by the "service" keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as "APIs" in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology. New usages of this message as an alternative to ServiceDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Api {
+    /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     */
+    edition?: string | null;
     /**
      * The methods of this interface, in unspecified order.
      */
@@ -328,6 +332,9 @@ export namespace servicemanagement_v1 {
      * The map between request protocol and the backend address.
      */
     overridesByRequestProtocol?: {[key: string]: Schema$BackendRule} | null;
+    /**
+     * no-lint
+     */
     pathTranslation?: string | null;
     /**
      * The protocol used for sending a request to the backend. The supported values are "http/1.1" and "h2". The default value is inferred from the scheme in the address field: SCHEME PROTOCOL http:// http/1.1 https:// http/1.1 grpc:// h2 grpcs:// h2 For secure HTTP backends (https://) that support HTTP/2, set this field to "h2" for improved performance. Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends. See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values.
@@ -812,7 +819,7 @@ export namespace servicemanagement_v1 {
     target?: string | null;
   }
   /**
-   * Enum type definition.
+   * Enum type definition. New usages of this message as an alternative to EnumDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Enum {
     /**
@@ -841,7 +848,7 @@ export namespace servicemanagement_v1 {
     syntax?: string | null;
   }
   /**
-   * Enum value definition.
+   * Enum value definition. New usages of this message as an alternative to EnumValueDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$EnumValue {
     /**
@@ -896,7 +903,7 @@ export namespace servicemanagement_v1 {
     title?: string | null;
   }
   /**
-   * A single field of a message type.
+   * A single field of a message type. New usages of this message as an alternative to FieldDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Field {
     /**
@@ -1031,7 +1038,7 @@ export namespace servicemanagement_v1 {
      */
     common?: Schema$CommonLanguageSettings;
     /**
-     * Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. publishing: go_settings: renamed_services: Publisher: TopicAdmin
+     * Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. Example: publishing: go_settings: renamed_services: Publisher: TopicAdmin
      */
     renamedServices?: {[key: string]: string} | null;
   }
@@ -1282,9 +1289,13 @@ export namespace servicemanagement_v1 {
     serviceName?: string | null;
   }
   /**
-   * Method represents a method of an API interface.
+   * Method represents a method of an API interface. New usages of this message as an alternative to MethodDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Method {
+    /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS. This field should be ignored, instead the edition should be inherited from Api. This is similar to Field and EnumValue.
+     */
+    edition?: string | null;
     /**
      * The simple name of this method.
      */
@@ -1310,7 +1321,7 @@ export namespace servicemanagement_v1 {
      */
     responseTypeUrl?: string | null;
     /**
-     * The source syntax of this method.
+     * The source syntax of this method. This field should be ignored, instead the syntax should be inherited from Api. This is similar to Field and EnumValue.
      */
     syntax?: string | null;
   }
@@ -1577,7 +1588,7 @@ export namespace servicemanagement_v1 {
     steps?: Schema$Step[];
   }
   /**
-   * A protocol buffer option, which can be attached to a message, field, enumeration, etc.
+   * A protocol buffer option, which can be attached to a message, field, enumeration, etc. New usages of this message as an alternative to FileOptions, MessageOptions, FieldOptions, EnumOptions, EnumValueOptions, ServiceOptions, or MethodOptions are strongly discouraged.
    */
   export interface Schema$Option {
     /**
@@ -1614,6 +1625,10 @@ export namespace servicemanagement_v1 {
      * Some settings.
      */
     common?: Schema$CommonLanguageSettings;
+    /**
+     * The package name to use in Php. Clobbers the php_namespace option set in the protobuf. This should be used **only** by APIs who have already set the language_settings.php.package_name" field in gapic.yaml. API teams should use the protobuf php_namespace option where possible. Example of a YAML configuration:: publishing: library_settings: php_settings: library_package: Google\Cloud\PubSub\V1
+     */
+    libraryPackage?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -1801,10 +1816,6 @@ export namespace servicemanagement_v1 {
      * Google Service Control selects service configurations based on traffic percentage.
      */
     trafficPercentStrategy?: Schema$TrafficPercentStrategy;
-    /**
-     * The TPC universe which the rollout will be rolled out to.
-     */
-    universe?: string | null;
   }
   /**
    * Settings for Ruby client libraries.
@@ -2099,7 +2110,7 @@ export namespace servicemanagement_v1 {
     percentages?: {[key: string]: number} | null;
   }
   /**
-   * A protocol buffer message type.
+   * A protocol buffer message type. New usages of this message as an alternative to DescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Type {
     /**
@@ -5434,8 +5445,7 @@ export namespace servicemanagement_v1 {
      *       //   "rolloutId": "my_rolloutId",
      *       //   "serviceName": "my_serviceName",
      *       //   "status": "my_status",
-     *       //   "trafficPercentStrategy": {},
-     *       //   "universe": "my_universe"
+     *       //   "trafficPercentStrategy": {}
      *       // }
      *     },
      *   });
@@ -5598,8 +5608,7 @@ export namespace servicemanagement_v1 {
      *   //   "rolloutId": "my_rolloutId",
      *   //   "serviceName": "my_serviceName",
      *   //   "status": "my_status",
-     *   //   "trafficPercentStrategy": {},
-     *   //   "universe": "my_universe"
+     *   //   "trafficPercentStrategy": {}
      *   // }
      * }
      *
