@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20250706",
+  "revision": "20250917",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -946,6 +946,10 @@
           "description": "Optional. A stable hashed account identifier to apply to the assessment. This is an alternative to setting `hashed_account_id` in `CreateAssessment`, for example when a stable account identifier is not yet known in the initial request.",
           "format": "byte",
           "type": "string"
+        },
+        "phoneAuthenticationEvent": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent",
+          "description": "Optional. If using an external multi-factor authentication provider, provide phone authentication details for fraud detection purposes."
         },
         "reasons": {
           "description": "Optional. Reasons for the annotation that are assigned to the event.",
@@ -1789,6 +1793,22 @@
         "skipBillingCheck": {
           "description": "Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha/docs/billing-information.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent": {
+      "description": "Details on a phone authentication event",
+      "id": "GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent",
+      "properties": {
+        "eventTime": {
+          "description": "Optional. The time at which the multi-factor authentication event (challenge or verification) occurred.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Required. Phone number in E.164 format for which a multi-factor authentication challenge was initiated, succeeded, or failed.",
+          "type": "string"
         }
       },
       "type": "object"
