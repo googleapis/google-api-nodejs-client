@@ -346,6 +346,23 @@ export namespace firebasedataconnect_v1 {
     errors?: Schema$GraphqlError[];
   }
   /**
+   * The Impersonate request to Firebase Data Connect.
+   */
+  export interface Schema$ImpersonateRequest {
+    /**
+     * Optional. Additional GraphQL request information.
+     */
+    extensions?: Schema$GraphqlRequestExtensions;
+    /**
+     * Required. The name of the GraphQL operation name. Required because all Connector operations must be named. See https://graphql.org/learn/queries/#operation-name.
+     */
+    operationName?: string | null;
+    /**
+     * Optional. Values for GraphQL variables provided in this request.
+     */
+    variables?: {[key: string]: any} | null;
+  }
+  /**
    * Impersonation configures the Firebase Auth context to impersonate.
    */
   export interface Schema$Impersonation {
@@ -872,7 +889,7 @@ export namespace firebasedataconnect_v1 {
      *
      *   // Do the magic
      *   const res = await firebasedataconnect.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1001,7 +1018,7 @@ export namespace firebasedataconnect_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -2412,6 +2429,160 @@ export namespace firebasedataconnect_v1 {
     }
 
     /**
+     * Execute introspection query against the Firebase Data Connect's generated GraphQL schema. GraphQL introspection query provides metadata such as what tables the schema have, what queries and mutations can be performed on the schema, and so on. Read more at https://graphql.org/learn/introspection. IntrospectGraphql can read schema metadata but cannot read rows from Cloud SQL instance, which can be done via ExecuteGraphqlRead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.introspectGraphql({
+     *       // Required. The relative resource name of Firebase Data Connect service, in the format: ``` projects/{project\}/locations/{location\}/services/{service\} ```
+     *       name: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "extensions": {},
+     *         //   "operationName": "my_operationName",
+     *         //   "query": "my_query",
+     *         //   "variables": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "data": {},
+     *   //   "errors": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    introspectGraphql(
+      params: Params$Resource$Projects$Locations$Services$Introspectgraphql,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    introspectGraphql(
+      params?: Params$Resource$Projects$Locations$Services$Introspectgraphql,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GraphqlResponse>>;
+    introspectGraphql(
+      params: Params$Resource$Projects$Locations$Services$Introspectgraphql,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    introspectGraphql(
+      params: Params$Resource$Projects$Locations$Services$Introspectgraphql,
+      options: MethodOptions | BodyResponseCallback<Schema$GraphqlResponse>,
+      callback: BodyResponseCallback<Schema$GraphqlResponse>
+    ): void;
+    introspectGraphql(
+      params: Params$Resource$Projects$Locations$Services$Introspectgraphql,
+      callback: BodyResponseCallback<Schema$GraphqlResponse>
+    ): void;
+    introspectGraphql(
+      callback: BodyResponseCallback<Schema$GraphqlResponse>
+    ): void;
+    introspectGraphql(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Introspectgraphql
+        | BodyResponseCallback<Schema$GraphqlResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GraphqlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GraphqlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GraphqlResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Introspectgraphql;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Introspectgraphql;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:introspectGraphql').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GraphqlResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GraphqlResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists Services in a given project and location.
      * @example
      * ```js
@@ -2806,6 +2977,18 @@ export namespace firebasedataconnect_v1 {
      * Required. The name of the service to retrieve, in the format: ``` projects/{project\}/locations/{location\}/services/{service\} ```
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Introspectgraphql
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of Firebase Data Connect service, in the format: ``` projects/{project\}/locations/{location\}/services/{service\} ```
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GraphqlRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$List
     extends StandardParameters {
@@ -3642,6 +3825,316 @@ export namespace firebasedataconnect_v1 {
     }
 
     /**
+     * Impersonate a mutation defined on a Firebase Data Connect connector. It grants the admin SDK access to mutations defined in the given connector. The caller can choose to impersonate a particular Firebase Auth user, or skip @auth completely.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.connectors.impersonateMutation(
+     *       {
+     *         // Required. The resource name of the connector to find the predefined query/mutation, in the format: ``` projects/{project\}/locations/{location\}/services/{service\}/connectors/{connector\} ```
+     *         name: 'projects/my-project/locations/my-location/services/my-service/connectors/my-connector',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "extensions": {},
+     *           //   "operationName": "my_operationName",
+     *           //   "variables": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "data": {},
+     *   //   "errors": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    impersonateMutation(
+      params: Params$Resource$Projects$Locations$Services$Connectors$Impersonatemutation,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    impersonateMutation(
+      params?: Params$Resource$Projects$Locations$Services$Connectors$Impersonatemutation,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GraphqlResponse>>;
+    impersonateMutation(
+      params: Params$Resource$Projects$Locations$Services$Connectors$Impersonatemutation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    impersonateMutation(
+      params: Params$Resource$Projects$Locations$Services$Connectors$Impersonatemutation,
+      options: MethodOptions | BodyResponseCallback<Schema$GraphqlResponse>,
+      callback: BodyResponseCallback<Schema$GraphqlResponse>
+    ): void;
+    impersonateMutation(
+      params: Params$Resource$Projects$Locations$Services$Connectors$Impersonatemutation,
+      callback: BodyResponseCallback<Schema$GraphqlResponse>
+    ): void;
+    impersonateMutation(
+      callback: BodyResponseCallback<Schema$GraphqlResponse>
+    ): void;
+    impersonateMutation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Connectors$Impersonatemutation
+        | BodyResponseCallback<Schema$GraphqlResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GraphqlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GraphqlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GraphqlResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Connectors$Impersonatemutation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Connectors$Impersonatemutation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:impersonateMutation').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GraphqlResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GraphqlResponse>(parameters);
+      }
+    }
+
+    /**
+     * Impersonate a query defined on a Firebase Data Connect connector. It grants the admin SDK access to queries defined in the given connector. The caller can choose to impersonate a particular Firebase Auth user, or skip @auth completely.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.connectors.impersonateQuery(
+     *       {
+     *         // Required. The resource name of the connector to find the predefined query/mutation, in the format: ``` projects/{project\}/locations/{location\}/services/{service\}/connectors/{connector\} ```
+     *         name: 'projects/my-project/locations/my-location/services/my-service/connectors/my-connector',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "extensions": {},
+     *           //   "operationName": "my_operationName",
+     *           //   "variables": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "data": {},
+     *   //   "errors": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    impersonateQuery(
+      params: Params$Resource$Projects$Locations$Services$Connectors$Impersonatequery,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    impersonateQuery(
+      params?: Params$Resource$Projects$Locations$Services$Connectors$Impersonatequery,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GraphqlResponse>>;
+    impersonateQuery(
+      params: Params$Resource$Projects$Locations$Services$Connectors$Impersonatequery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    impersonateQuery(
+      params: Params$Resource$Projects$Locations$Services$Connectors$Impersonatequery,
+      options: MethodOptions | BodyResponseCallback<Schema$GraphqlResponse>,
+      callback: BodyResponseCallback<Schema$GraphqlResponse>
+    ): void;
+    impersonateQuery(
+      params: Params$Resource$Projects$Locations$Services$Connectors$Impersonatequery,
+      callback: BodyResponseCallback<Schema$GraphqlResponse>
+    ): void;
+    impersonateQuery(
+      callback: BodyResponseCallback<Schema$GraphqlResponse>
+    ): void;
+    impersonateQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Connectors$Impersonatequery
+        | BodyResponseCallback<Schema$GraphqlResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GraphqlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GraphqlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GraphqlResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Connectors$Impersonatequery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Connectors$Impersonatequery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:impersonateQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GraphqlResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GraphqlResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists Connectors in a given project and location.
      * @example
      * ```js
@@ -4041,6 +4534,30 @@ export namespace firebasedataconnect_v1 {
      * Required. The name of the connector to retrieve, in the format: ``` projects/{project\}/locations/{location\}/services/{service\}/connectors/{connector\} ```
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Connectors$Impersonatemutation
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the connector to find the predefined query/mutation, in the format: ``` projects/{project\}/locations/{location\}/services/{service\}/connectors/{connector\} ```
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImpersonateRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Connectors$Impersonatequery
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the connector to find the predefined query/mutation, in the format: ``` projects/{project\}/locations/{location\}/services/{service\}/connectors/{connector\} ```
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImpersonateRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$Connectors$List
     extends StandardParameters {
