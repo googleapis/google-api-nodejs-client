@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1619,7 +1619,7 @@
       }
     }
   },
-  "revision": "20250807",
+  "revision": "20250910",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2328,10 +2328,12 @@
       "id": "ConnectionPoolConfig",
       "properties": {
         "defaultPoolSize": {
+          "deprecated": true,
           "description": "Optional. Deprecated. Use 'flags' instead. The default pool size. Defaults to 20. Note: This field should not be added to client libraries if not present already.",
           "type": "string"
         },
         "enable": {
+          "deprecated": true,
           "description": "Optional. Deprecated; Prefer 'enabled' as this will be removed soon.",
           "type": "boolean"
         },
@@ -2347,6 +2349,7 @@
           "type": "object"
         },
         "ignoreStartupParameters": {
+          "deprecated": true,
           "description": "Optional. Deprecated. Use 'flags' instead. The list of startup parameters to ignore. Defaults to [\"extra_float_digits\"] Note: This field should not be added to client libraries if not present already.",
           "items": {
             "type": "string"
@@ -2354,18 +2357,22 @@
           "type": "array"
         },
         "maxClientConn": {
+          "deprecated": true,
           "description": "Optional. Deprecated. Use 'flags' instead. The maximum number of client connections allowed. Note: This field should not be added to client libraries if not present already.",
           "type": "string"
         },
         "maxPreparedStatements": {
+          "deprecated": true,
           "description": "Optional. Deprecated. Use 'flags' instead. The maximum number of prepared statements allowed. MCP makes sure that any statement prepared by a client, up to this limit, is available on the backing server connection in transaction and statement pooling mode. Even if the statement was originally prepared on another server connection. Defaults to 0. Note: This field should not be added to client libraries if not present already.",
           "type": "string"
         },
         "minPoolSize": {
+          "deprecated": true,
           "description": "Optional. Deprecated. Use 'flags' instead. The minimum pool size. Defaults to 0. Note: This field should not be added to client libraries if not present already.",
           "type": "string"
         },
         "poolMode": {
+          "deprecated": true,
           "description": "Optional. Deprecated. Use 'flags' instead. The pool mode. Defaults to `POOL_MODE_TRANSACTION`. Note: This field should not be added to client libraries if not present already.",
           "enum": [
             "POOL_MODE_UNSPECIFIED",
@@ -2386,14 +2393,17 @@
           "type": "integer"
         },
         "queryWaitTimeout": {
+          "deprecated": true,
           "description": "Optional. Deprecated. Use 'flags' instead. The maximum number of seconds queries are allowed to spend waiting for execution. If the query is not assigned to a server during that time, the client is disconnected. 0 disables. Note: This field should not be added to client libraries if not present already.",
           "type": "string"
         },
         "serverIdleTimeout": {
+          "deprecated": true,
           "description": "Optional. Deprecated. Use 'flags' instead. The maximum number of seconds a server is allowed to be idle before it is disconnected. 0 disables. Note: This field should not be added to client libraries if not present already.",
           "type": "string"
         },
         "statsUsers": {
+          "deprecated": true,
           "description": "Optional. Deprecated. Use 'flags' instead. The list of users that are allowed to connect to the MCP stats console. The users must exist in the database. Note: This field should not be added to client libraries if not present already.",
           "items": {
             "type": "string"
@@ -4396,7 +4406,7 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed": {
-      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 11",
+      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 13",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed",
       "properties": {
         "backupdrMetadata": {
@@ -4406,6 +4416,10 @@
         "configBasedSignalData": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData",
           "description": "Config based signal data is used to ingest signals that are generated based on the configuration of the database resource."
+        },
+        "databaseResourceSignalData": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData",
+          "description": "Database resource signal data is used to ingest signals from database resource signal feeds."
         },
         "feedTimestamp": {
           "description": "Required. Timestamp when feed is generated.",
@@ -4421,7 +4435,8 @@
             "SECURITY_FINDING_DATA",
             "RECOMMENDATION_SIGNAL_DATA",
             "CONFIG_BASED_SIGNAL_DATA",
-            "BACKUPDR_METADATA"
+            "BACKUPDR_METADATA",
+            "DATABASE_RESOURCE_SIGNAL_DATA"
           ],
           "enumDescriptions": [
             "",
@@ -4430,7 +4445,8 @@
             "Database resource security health signal data",
             "Database resource recommendation signal data",
             "Database config based signal data",
-            "Database resource metadata from BackupDR"
+            "Database resource metadata from BackupDR",
+            "Database resource signal data"
           ],
           "type": "string"
         },
@@ -4946,7 +4962,7 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 26",
+      "description": "Common model for database resource instance metadata. Next ID: 27",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -4999,12 +5015,14 @@
           "enum": [
             "EDITION_UNSPECIFIED",
             "EDITION_ENTERPRISE",
-            "EDITION_ENTERPRISE_PLUS"
+            "EDITION_ENTERPRISE_PLUS",
+            "EDITION_STANDARD"
           ],
           "enumDescriptions": [
             "Default, to make it consistent with instance edition enum.",
             "Represents the enterprise edition.",
-            "Represents the enterprise plus edition."
+            "Represents the enterprise plus edition.",
+            "Represents the standard edition."
           ],
           "type": "string"
         },
@@ -5149,6 +5167,10 @@
         "userLabelSet": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainUserLabels",
           "description": "User-provided labels associated with the resource"
+        },
+        "zone": {
+          "description": "The resource zone. This is only applicable for zonal resources and will be empty for regional and multi-regional resources.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5519,6 +5541,67 @@
             "Replication delay.",
             "Outdated version.",
             "Outdated client."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData": {
+      "description": "Database resource signal data. This is used to send signals to Condor which are based on the DB/Instance/Fleet level configurations. These will be used to send signals for all inventory types. Next ID: 7",
+      "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData",
+      "properties": {
+        "fullResourceName": {
+          "description": "Required. Full Resource name of the source resource.",
+          "type": "string"
+        },
+        "lastRefreshTime": {
+          "description": "Required. Last time signal was refreshed",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourceId": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
+          "description": "Database resource id."
+        },
+        "signalBoolValue": {
+          "description": "Signal data for boolean signals.",
+          "type": "boolean"
+        },
+        "signalState": {
+          "description": "Required. Output only. Signal state of the signal",
+          "enum": [
+            "SIGNAL_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "INACTIVE",
+            "DISMISSED"
+          ],
+          "enumDescriptions": [
+            "Unspecified signal state.",
+            "Signal is active and requires attention.",
+            "Signal is inactive and does not require attention.",
+            "Signal is dismissed by the user and should not be shown to the user again."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "signalType": {
+          "description": "Required. Signal type of the signal",
+          "enum": [
+            "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+            "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+            "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS"
+          ],
+          "enumDescriptions": [
+            "Unspecified signal type.",
+            "Outdated Minor Version",
+            "Represents database auditing is disabled.",
+            "Represents if a database has a password configured for the root account or not.",
+            "Represents if a resource is exposed to public access.",
+            "Represents if a resources requires all incoming connections to use SSL or not."
           ],
           "type": "string"
         }
