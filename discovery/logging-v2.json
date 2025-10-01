@@ -30,8 +30,133 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.africa-south1.rep.googleapis.com/",
+      "location": "africa-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.asia-east1.rep.googleapis.com/",
+      "location": "asia-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.asia-east2.rep.googleapis.com/",
+      "location": "asia-east2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.asia-northeast1.rep.googleapis.com/",
+      "location": "asia-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.asia-northeast2.rep.googleapis.com/",
+      "location": "asia-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.asia-northeast3.rep.googleapis.com/",
+      "location": "asia-northeast3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.asia-south1.rep.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.asia-south2.rep.googleapis.com/",
+      "location": "asia-south2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.asia-southeast1.rep.googleapis.com/",
+      "location": "asia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.asia-southeast2.rep.googleapis.com/",
+      "location": "asia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.australia-southeast1.rep.googleapis.com/",
+      "location": "australia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.australia-southeast2.rep.googleapis.com/",
+      "location": "australia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-central2.rep.googleapis.com/",
+      "location": "europe-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-north1.rep.googleapis.com/",
+      "location": "europe-north1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-north3.rep.googleapis.com/",
+      "location": "europe-north3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-southwest1.rep.googleapis.com/",
+      "location": "europe-southwest1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-west1.rep.googleapis.com/",
+      "location": "europe-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-west12.rep.googleapis.com/",
+      "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-west2.rep.googleapis.com/",
+      "location": "europe-west2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.europe-west3.rep.googleapis.com/",
       "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-west4.rep.googleapis.com/",
+      "location": "europe-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.europe-west6.rep.googleapis.com/",
+      "location": "europe-west6"
     },
     {
       "description": "Regional Endpoint",
@@ -45,8 +170,43 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.me-central1.rep.googleapis.com/",
+      "location": "me-central1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.me-central2.rep.googleapis.com/",
       "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.me-west1.rep.googleapis.com/",
+      "location": "me-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.northamerica-northeast1.rep.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.northamerica-south1.rep.googleapis.com/",
+      "location": "northamerica-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.southamerica-east1.rep.googleapis.com/",
+      "location": "southamerica-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.southamerica-west1.rep.googleapis.com/",
+      "location": "southamerica-west1"
     },
     {
       "description": "Regional Endpoint",
@@ -112,6 +272,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://logging.eu.rep.googleapis.com/",
       "location": "eu"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.in.rep.googleapis.com/",
+      "location": "in"
     },
     {
       "description": "Regional Endpoint",
@@ -470,7 +635,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2302,7 +2467,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -3066,7 +3231,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent project in which to create the log scope \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
+                      "description": "Required. The parent resource in which to create the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3095,7 +3260,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the log scope to delete: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "description": "Required. The resource name of the log scope to delete: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+/logScopes/[^/]+$",
                       "required": true,
@@ -3121,7 +3286,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "description": "Required. The resource name of the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+/logScopes/[^/]+$",
                       "required": true,
@@ -3889,7 +4054,7 @@
           ],
           "parameters": {
             "extraLocationTypes": {
-              "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+              "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -5132,7 +5297,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -5896,7 +6061,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent project in which to create the log scope \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
+                      "description": "Required. The parent resource in which to create the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -5925,7 +6090,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the log scope to delete: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "description": "Required. The resource name of the log scope to delete: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/logScopes/[^/]+$",
                       "required": true,
@@ -5951,7 +6116,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "description": "Required. The resource name of the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/logScopes/[^/]+$",
                       "required": true,
@@ -6940,7 +7105,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -7704,7 +7869,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent project in which to create the log scope \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
+                      "description": "Required. The parent resource in which to create the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -7733,7 +7898,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the log scope to delete: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "description": "Required. The resource name of the log scope to delete: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/logScopes/[^/]+$",
                       "required": true,
@@ -7759,7 +7924,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "description": "Required. The resource name of the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/logScopes/[^/]+$",
                       "required": true,
@@ -8962,7 +9127,7 @@
       }
     }
   },
-  "revision": "20250704",
+  "revision": "20250919",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AppHub": {
@@ -10512,7 +10677,7 @@
           "type": "string"
         },
         "resourceNames": {
-          "description": "Required. Names of one or more parent resources: projects/[PROJECT_ID]May alternatively be one or more views: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]A log scope can include a maximum of 5 projects and a maximum of 100 resources in total.",
+          "description": "Required. Names of one or more parent resources (organizations and folders are not supported.): projects/[PROJECT_ID]May alternatively be one or more views: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]A log scope can include a maximum of 5 projects and a maximum of 100 resources in total.",
           "items": {
             "type": "string"
           },
@@ -11038,7 +11203,8 @@
           "description": "Logging query that can be executed in Logs Explorer or via Logging API."
         },
         "name": {
-          "description": "Optional. Resource name of the recent query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.",
+          "description": "Output only. Resource name of the recent query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.",
+          "readOnly": true,
           "type": "string"
         },
         "opsAnalyticsQuery": {
