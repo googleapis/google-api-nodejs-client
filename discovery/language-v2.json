@@ -208,7 +208,7 @@
       }
     }
   },
-  "revision": "20250518",
+  "revision": "20250824",
   "rootUrl": "https://language.googleapis.com/",
   "schemas": {
     "AnalyzeEntitiesRequest": {
@@ -522,6 +522,7 @@
             "CUSTOM",
             "E2",
             "G2",
+            "G4",
             "C3",
             "M2",
             "M1",
@@ -540,6 +541,7 @@
             "",
             "",
             "",
+            "GPU-based machine, skip quota reporting.",
             "GPU-based machine, skip quota reporting.",
             "",
             "MEMORY_OPTIMIZED_UPGRADE_PREMIUM",
@@ -702,6 +704,7 @@
             "G2_STANDARD_32",
             "G2_STANDARD_48",
             "G2_STANDARD_96",
+            "G4_STANDARD_48",
             "C3_STANDARD_4",
             "C3_STANDARD_8",
             "C3_STANDARD_22",
@@ -722,6 +725,7 @@
             "C3_HIGHMEM_176"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1086,9 +1090,11 @@
             "NVIDIA_TESLA_V100",
             "NVIDIA_H100_80GB",
             "NVIDIA_H100_MEGA_80GB",
-            "NVIDIA_H200_141GB"
+            "NVIDIA_H200_141GB",
+            "NVIDIA_RTX_PRO_6000"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1257,6 +1263,7 @@
             "G2_STANDARD_32",
             "G2_STANDARD_48",
             "G2_STANDARD_96",
+            "G4_STANDARD_48",
             "C3_STANDARD_4",
             "C3_STANDARD_8",
             "C3_STANDARD_22",
@@ -1277,6 +1284,7 @@
             "C3_HIGHMEM_176"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1704,6 +1712,7 @@
             "G2_STANDARD_32",
             "G2_STANDARD_48",
             "G2_STANDARD_96",
+            "G4_STANDARD_48",
             "C3_STANDARD_4",
             "C3_STANDARD_8",
             "C3_STANDARD_22",
@@ -1724,6 +1733,7 @@
             "C3_HIGHMEM_176"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1911,6 +1921,7 @@
             "CUSTOM",
             "E2",
             "G2",
+            "G4",
             "C3",
             "M2",
             "M1",
@@ -1926,6 +1937,7 @@
             "",
             "",
             "COMPUTE_OPTIMIZED",
+            "",
             "",
             "",
             "",
