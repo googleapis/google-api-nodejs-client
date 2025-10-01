@@ -1696,7 +1696,7 @@
           "supportsMediaUpload": true
         },
         "list": {
-          "description": " Lists the user's files. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for files & folders](/workspace/drive/api/guides/search-files) guide. *Note:* This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.",
+          "description": " Lists the user's files. For more information, see [Search for files and folders](/workspace/drive/api/guides/search-files). This method accepts the `q` parameter, which is a search query combining one or more search terms. This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.",
           "flatPath": "files",
           "httpMethod": "GET",
           "id": "drive.files.list",
@@ -2202,7 +2202,7 @@
           ]
         },
         "update": {
-          "description": " Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an */upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`*/*` Note: Specify a valid MIME type, rather than the literal `*/*` value. The literal `*/*` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads).",
+          "description": " Updates a file's metadata, content, or both. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an */upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:* `*/*` (Specify a valid MIME type, rather than the literal `*/*` value. The literal `*/*` is only used to indicate that any valid MIME type can be uploaded. For more information, see [Google Workspace and Google Drive supported MIME types](/workspace/drive/api/guides/mime-types).) For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads).",
           "flatPath": "files/{fileId}",
           "httpMethod": "PUT",
           "id": "drive.files.update",
@@ -3893,7 +3893,7 @@
       }
     }
   },
-  "revision": "20250506",
+  "revision": "20250829",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -4561,19 +4561,19 @@
       "type": "object"
     },
     "Comment": {
-      "description": "A comment on a file in Google Drive. Some resource methods (such as `comments.update`) require a `commentId`. Use the `comments.list` method to retrieve the ID for a comment in a file.",
+      "description": "A comment on a file in Google Drive.",
       "id": "Comment",
       "properties": {
         "anchor": {
-          "description": "A region of the document represented as a JSON string. For details on defining anchor properties, refer to [Add comments and replies](https://developers.google.com/workspace/drive/api/v2/manage-comments).",
+          "description": "A region of the document represented as a JSON string. For details on defining anchor properties, refer to [Manage comments and replies](https://developers.google.com/workspace/drive/api/v3/manage-comments).",
           "type": "string"
         },
         "author": {
           "$ref": "User",
-          "description": "Output only. The author of the comment. The author's email address and permission ID will not be populated."
+          "description": "The user who wrote this comment."
         },
         "commentId": {
-          "description": "Output only. The ID of the comment.",
+          "description": "The ID of the comment.",
           "type": "string"
         },
         "content": {
@@ -4588,7 +4588,7 @@
           "type": "string"
         },
         "context": {
-          "description": "The context of the file which is being commented on.",
+          "description": "Context of a file which is being commented on.",
           "properties": {
             "type": {
               "description": "The MIME type of the context snippet.",
@@ -4607,24 +4607,24 @@
           "type": "string"
         },
         "deleted": {
-          "description": "Output only. Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.",
+          "description": "Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.",
           "type": "boolean"
         },
         "fileId": {
-          "description": "Output only. The file which this comment is addressing.",
+          "description": "The file which this comment is addressing.",
           "type": "string"
         },
         "fileTitle": {
-          "description": "Output only. The title of the file which this comment is addressing.",
+          "description": "The title of the file which this comment is addressing.",
           "type": "string"
         },
         "htmlContent": {
-          "description": "Output only. HTML formatted content for this comment.",
+          "description": "HTML formatted content for this comment.",
           "type": "string"
         },
         "kind": {
           "default": "drive#comment",
-          "description": "Output only. This is always `drive#comment`.",
+          "description": "This is always drive#comment.",
           "type": "string"
         },
         "modifiedDate": {
@@ -4633,18 +4633,18 @@
           "type": "string"
         },
         "replies": {
-          "description": "Output only. Replies to this post.",
+          "description": "Replies to this post.",
           "items": {
             "$ref": "CommentReply"
           },
           "type": "array"
         },
         "selfLink": {
-          "description": "Output only. A link back to this comment.",
+          "description": "A link back to this comment.",
           "type": "string"
         },
         "status": {
-          "description": "Output only. The status of this comment. Status can be changed by posting a reply to a comment with the desired status. * `open` - The comment is still open. * `resolved` - The comment has been resolved by one of its replies.",
+          "description": "The status of this comment. Status can be changed by posting a reply to a comment with the desired status. Possible values are: * `open` - The comment is still open. * `resolved` - The comment has been resolved by one of its replies.",
           "type": "string"
         }
       },
@@ -4663,7 +4663,7 @@
         },
         "kind": {
           "default": "drive#commentList",
-          "description": "This is always `drive#commentList`.",
+          "description": "This is always drive#commentList.",
           "type": "string"
         },
         "nextLink": {
@@ -4682,12 +4682,12 @@
       "type": "object"
     },
     "CommentReply": {
-      "description": "A comment on a file in Google Drive. Some resource methods (such as `replies.update`) require a `replyId`. Use the `replies.list` method to retrieve the ID for a reply.",
+      "description": "A reply to a comment on a file in Google Drive.",
       "id": "CommentReply",
       "properties": {
         "author": {
           "$ref": "User",
-          "description": "Output only. The author of the reply. The author's email address and permission ID will not be populated."
+          "description": "The user who wrote this reply."
         },
         "content": {
           "annotations": {
@@ -4705,16 +4705,16 @@
           "type": "string"
         },
         "deleted": {
-          "description": "Output only. Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.",
+          "description": "Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.",
           "type": "boolean"
         },
         "htmlContent": {
-          "description": "Output only. HTML formatted content for this reply.",
+          "description": "HTML formatted content for this reply.",
           "type": "string"
         },
         "kind": {
           "default": "drive#commentReply",
-          "description": "Output only. This is always `drive#commentReply`.",
+          "description": "This is always drive#commentReply.",
           "type": "string"
         },
         "modifiedDate": {
@@ -4723,11 +4723,11 @@
           "type": "string"
         },
         "replyId": {
-          "description": "Output only. The ID of the reply.",
+          "description": "The ID of the reply.",
           "type": "string"
         },
         "verb": {
-          "description": "The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are: * `resolve` - To resolve a comment. * `reopen` - To reopen (un-resolve) a comment.",
+          "description": "The action this reply performed to the parent comment. When creating a new reply this is the action to be perform tSo the parent comment. Possible values are: * `resolve` - To resolve a comment. * `reopen` - To reopen (un-resolve) a comment.",
           "type": "string"
         }
       },
