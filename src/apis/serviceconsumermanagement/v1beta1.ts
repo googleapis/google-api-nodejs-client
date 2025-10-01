@@ -127,9 +127,13 @@ export namespace serviceconsumermanagement_v1beta1 {
   }
 
   /**
-   * Api is a light-weight descriptor for an API Interface. Interfaces are also described as "protocol buffer services" in some contexts, such as by the "service" keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as "APIs" in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology.
+   * Api is a light-weight descriptor for an API Interface. Interfaces are also described as "protocol buffer services" in some contexts, such as by the "service" keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as "APIs" in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology. New usages of this message as an alternative to ServiceDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Api {
+    /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     */
+    edition?: string | null;
     /**
      * The methods of this interface, in unspecified order.
      */
@@ -293,6 +297,9 @@ export namespace serviceconsumermanagement_v1beta1 {
      * The map between request protocol and the backend address.
      */
     overridesByRequestProtocol?: {[key: string]: Schema$BackendRule} | null;
+    /**
+     * no-lint
+     */
     pathTranslation?: string | null;
     /**
      * The protocol used for sending a request to the backend. The supported values are "http/1.1" and "h2". The default value is inferred from the scheme in the address field: SCHEME PROTOCOL http:// http/1.1 https:// http/1.1 grpc:// h2 grpcs:// h2 For secure HTTP backends (https://) that support HTTP/2, set this field to "h2" for improved performance. Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends. See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values.
@@ -666,7 +673,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     target?: string | null;
   }
   /**
-   * Enum type definition.
+   * Enum type definition. New usages of this message as an alternative to EnumDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Enum {
     /**
@@ -695,7 +702,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     syntax?: string | null;
   }
   /**
-   * Enum value definition.
+   * Enum value definition. New usages of this message as an alternative to EnumValueDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$EnumValue {
     /**
@@ -729,7 +736,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     unversionedPackageDisabled?: boolean | null;
   }
   /**
-   * A single field of a message type.
+   * A single field of a message type. New usages of this message as an alternative to FieldDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Field {
     /**
@@ -799,7 +806,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     common?: Schema$CommonLanguageSettings;
     /**
-     * Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. publishing: go_settings: renamed_services: Publisher: TopicAdmin
+     * Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. Example: publishing: go_settings: renamed_services: Publisher: TopicAdmin
      */
     renamedServices?: {[key: string]: string} | null;
   }
@@ -985,9 +992,13 @@ export namespace serviceconsumermanagement_v1beta1 {
     totalPollTimeout?: string | null;
   }
   /**
-   * Method represents a method of an API interface.
+   * Method represents a method of an API interface. New usages of this message as an alternative to MethodDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Method {
+    /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS. This field should be ignored, instead the edition should be inherited from Api. This is similar to Field and EnumValue.
+     */
+    edition?: string | null;
     /**
      * The simple name of this method.
      */
@@ -1013,7 +1024,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     responseTypeUrl?: string | null;
     /**
-     * The source syntax of this method.
+     * The source syntax of this method. This field should be ignored, instead the syntax should be inherited from Api. This is similar to Field and EnumValue.
      */
     syntax?: string | null;
   }
@@ -1246,7 +1257,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A protocol buffer option, which can be attached to a message, field, enumeration, etc.
+   * A protocol buffer option, which can be attached to a message, field, enumeration, etc. New usages of this message as an alternative to FileOptions, MessageOptions, FieldOptions, EnumOptions, EnumValueOptions, ServiceOptions, or MethodOptions are strongly discouraged.
    */
   export interface Schema$Option {
     /**
@@ -1626,7 +1637,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     rules?: Schema$SystemParameterRule[];
   }
   /**
-   * A protocol buffer message type.
+   * A protocol buffer message type. New usages of this message as an alternative to DescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Type {
     /**
