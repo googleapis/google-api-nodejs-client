@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -596,6 +596,34 @@
                   "path": "v1beta1/{+name}:restore",
                   "request": {
                     "$ref": "RestoreInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "resumeReplica": {
+                  "description": "Resume the standby instance (replica). WARNING: Any data written to the standby instance while paused will be lost when the replica is resumed.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:resumeReplica",
+                  "httpMethod": "POST",
+                  "id": "file.projects.locations.instances.resumeReplica",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the instance, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:resumeReplica",
+                  "request": {
+                    "$ref": "ResumeReplicaRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -1103,7 +1131,7 @@
       }
     }
   },
-  "revision": "20250810",
+  "revision": "20250910",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2582,6 +2610,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ResumeReplicaRequest": {
+      "description": "ResumeReplicaRequest resumes a Filestore standby instance (replica).",
+      "id": "ResumeReplicaRequest",
+      "properties": {},
       "type": "object"
     },
     "RevertInstanceRequest": {
