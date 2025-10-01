@@ -9302,7 +9302,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20250930",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -16375,7 +16375,8 @@
             "YOUTUBE_USERS",
             "THIRD_PARTY",
             "COMMERCE",
-            "LINEAR"
+            "LINEAR",
+            "AGENCY"
           ],
           "enumDeprecated": [
             false,
@@ -16384,6 +16385,7 @@
             false,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -16401,7 +16403,8 @@
             "Audience was created based on past interactions with videos, YouTube ads, or YouTube channel.",
             "Audience has been licensed for use from a third party.",
             "Audience provided by commerce partners for a fee.",
-            "Audience for Linear TV content."
+            "Audience for Linear TV content.",
+            "Audience provided by an agency."
           ],
           "readOnly": true,
           "type": "string"
