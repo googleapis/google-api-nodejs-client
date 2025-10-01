@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20250922",
+  "revision": "20250929",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -707,6 +707,28 @@
       "description": "Tool to search public web data, powered by Vertex AI Search and Sec4 compliance.",
       "id": "GoogleCloudAiplatformV1beta1EnterpriseWebSearch",
       "properties": {
+        "blockingConfidence": {
+          "description": "Optional. Sites with confidence level chosen & above this value will be blocked from the search results.",
+          "enum": [
+            "PHISH_BLOCK_THRESHOLD_UNSPECIFIED",
+            "BLOCK_LOW_AND_ABOVE",
+            "BLOCK_MEDIUM_AND_ABOVE",
+            "BLOCK_HIGH_AND_ABOVE",
+            "BLOCK_HIGHER_AND_ABOVE",
+            "BLOCK_VERY_HIGH_AND_ABOVE",
+            "BLOCK_ONLY_EXTREMELY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Defaults to unspecified.",
+            "Blocks Low and above confidence URL that is risky.",
+            "Blocks Medium and above confidence URL that is risky.",
+            "Blocks High and above confidence URL that is risky.",
+            "Blocks Higher and above confidence URL that is risky.",
+            "Blocks Very high and above confidence URL that is risky.",
+            "Blocks Extremely high confidence URL that is risky."
+          ],
+          "type": "string"
+        },
         "excludeDomains": {
           "description": "Optional. List of domains to be excluded from the search results. The default limit is 2000 domains.",
           "items": {
@@ -2465,6 +2487,28 @@
       "description": "GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.",
       "id": "GoogleCloudAiplatformV1beta1ToolGoogleSearch",
       "properties": {
+        "blockingConfidence": {
+          "description": "Optional. Sites with confidence level chosen & above this value will be blocked from the search results.",
+          "enum": [
+            "PHISH_BLOCK_THRESHOLD_UNSPECIFIED",
+            "BLOCK_LOW_AND_ABOVE",
+            "BLOCK_MEDIUM_AND_ABOVE",
+            "BLOCK_HIGH_AND_ABOVE",
+            "BLOCK_HIGHER_AND_ABOVE",
+            "BLOCK_VERY_HIGH_AND_ABOVE",
+            "BLOCK_ONLY_EXTREMELY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Defaults to unspecified.",
+            "Blocks Low and above confidence URL that is risky.",
+            "Blocks Medium and above confidence URL that is risky.",
+            "Blocks High and above confidence URL that is risky.",
+            "Blocks Higher and above confidence URL that is risky.",
+            "Blocks Very high and above confidence URL that is risky.",
+            "Blocks Extremely high confidence URL that is risky."
+          ],
+          "type": "string"
+        },
         "excludeDomains": {
           "description": "Optional. List of domains to be excluded from the search results. The default limit is 2000 domains. Example: [\"amazon.com\", \"facebook.com\"].",
           "items": {
