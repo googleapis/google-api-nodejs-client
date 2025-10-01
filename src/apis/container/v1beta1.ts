@@ -484,7 +484,12 @@ export namespace container_v1beta1 {
   /**
    * Autoscaled rollout policy utilizes the cluster autoscaler during blue-green upgrade to scale both the blue and green pools.
    */
-  export interface Schema$AutoscaledRolloutPolicy {}
+  export interface Schema$AutoscaledRolloutPolicy {
+    /**
+     * Optional. Time to wait after cordoning the blue pool before draining the nodes. Defaults to 3 days. The value can be set between 0 and 7 days, inclusive.
+     */
+    waitForDrainDuration?: string | null;
+  }
   /**
    * AutoUpgradeOptions defines the set of options for the user to control how the Auto Upgrades will proceed.
    */
