@@ -109,6 +109,34 @@
       "resources": {
         "locations": {
           "methods": {
+            "checkConsumerConfig": {
+              "description": "CheckConsumerConfig validates the consumer network and project for potential PSC connection creation. This method performs several checks, including: - Validating the existence and permissions of the service class. - Ensuring the consumer network exists and is accessible. - Verifying XPN relationships if applicable. - Checking for compatible IP versions between the consumer network and the requested version. This method performs a dynamic IAM check for the `networkconnectivity.serviceClasses.use` permission on the service class resource in the Prepare phase.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:checkConsumerConfig",
+              "httpMethod": "POST",
+              "id": "networkconnectivity.projects.locations.checkConsumerConfig",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. The location resource path. Example: - projects/{project}/locations/{location}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+location}:checkConsumerConfig",
+              "request": {
+                "$ref": "CheckConsumerConfigRequest"
+              },
+              "response": {
+                "$ref": "CheckConsumerConfigResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "get": {
               "description": "Gets information about a location.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
@@ -2102,6 +2130,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}/operations",
@@ -3763,7 +3796,7 @@
       }
     }
   },
-  "revision": "20250910",
+  "revision": "20250925",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -3948,6 +3981,77 @@
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CheckConsumerConfigRequest": {
+      "description": "Request for CheckConsumerConfig.",
+      "id": "CheckConsumerConfigRequest",
+      "properties": {
+        "consumerNetwork": {
+          "description": "Required. Full resource name of the consumer network. Example: - projects/{project}/global/networks/{network}.",
+          "type": "string"
+        },
+        "endpointProject": {
+          "description": "The project number or ID where the PSC endpoint is to be created.",
+          "type": "string"
+        },
+        "requestedIpVersion": {
+          "description": "The requested IP Version",
+          "enum": [
+            "IP_VERSION_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
+          ],
+          "enumDescriptions": [
+            "Default value. We will use IPv4 or IPv6 depending on the IP version of first available subnetwork.",
+            "Will use IPv4 only.",
+            "Will use IPv6 only."
+          ],
+          "type": "string"
+        },
+        "serviceClass": {
+          "description": "Required. The service class identifier of the producer.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CheckConsumerConfigResponse": {
+      "description": "Response for CheckConsumerConfig.",
+      "id": "CheckConsumerConfigResponse",
+      "properties": {
+        "errors": {
+          "description": "List of validation errors. If the list is empty, the consumer config is valid.",
+          "items": {
+            "enum": [
+              "ERROR_UNSPECIFIED",
+              "NETWORK_PROJECT_INVALID",
+              "NETWORK_PROJECT_APIS_NOT_ENABLED",
+              "NETWORK_INVALID",
+              "CONNECTION_POLICY_MISSING",
+              "IP_VERSION_NOT_SUPPORTED",
+              "NETWORK_PROJECT_SERVICE_AGENT_NOT_FOUND",
+              "ENDPOINT_PROJECT_INVALID",
+              "ENDPOINT_PROJECT_API_NOT_ENABLED",
+              "ENDPOINT_PROJECT_IS_NOT_SERVICE_PROJECT"
+            ],
+            "enumDescriptions": [
+              "An invalid error as the default case.",
+              "Invalid Network project.",
+              "Network Connectivity APIs not enabled in network project.",
+              "Invalid network.",
+              "No ServiceConnectionPolicy found for this network and ServiceClass.",
+              "IP version not supported in any of the subnetworks.",
+              "Service Agent missing for network project.",
+              "Invalid endpoint project.",
+              "Network Connectivity API is not enabled in the endpoint project.",
+              "Endpoint project is not a service project of the network project."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4319,6 +4423,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -6103,7 +6214,7 @@
           "type": "string"
         },
         "network": {
-          "description": "The name of the VPC network for this private regional endpoint. Format: `projects/{project}/global/networks/{network}`",
+          "description": "Optional. The name of the VPC network for this private regional endpoint. Format: `projects/{project}/global/networks/{network}`",
           "type": "string"
         },
         "pscForwardingRule": {
@@ -6112,7 +6223,7 @@
           "type": "string"
         },
         "subnetwork": {
-          "description": "The name of the subnetwork from which the IP address will be allocated. Format: `projects/{project}/regions/{region}/subnetworks/{subnetwork}`",
+          "description": "Optional. The name of the subnetwork from which the IP address will be allocated. Format: `projects/{project}/regions/{region}/subnetworks/{subnetwork}`",
           "type": "string"
         },
         "targetGoogleApi": {
@@ -7246,7 +7357,10 @@
         },
         "advertisedRoutes": {
           "description": "Optional. [Preview only] List of IP Prefixes that will be advertised to the remote provider. Both IPv4 and IPv6 addresses are supported.",
-          "type": "string"
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "bandwidth": {
           "description": "Required. Bandwidth of the Transport. This must be one of the supported bandwidths for the remote profile.",
