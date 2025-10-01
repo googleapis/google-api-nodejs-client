@@ -202,6 +202,10 @@ export namespace firebaseapphosting_v1beta {
      */
     name?: string | null;
     /**
+     * Optional. Override environment variables for this Backend.
+     */
+    overrideEnv?: Schema$EnvironmentVariable[];
+    /**
      * Output only. A field that, if true, indicates that the system is working to make adjustments to the backend during a LRO.
      */
     reconciling?: boolean | null;
@@ -890,7 +894,7 @@ export namespace firebaseapphosting_v1beta {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Immutable. The name of a build that already exists. It doesn't have to be built; a rollout will wait for a build to be ready before updating traffic.
+     * Required. Immutable. The name of a build that already exists. It doesn't have to be built; a rollout will wait for a build to be ready before updating traffic.
      */
     build?: string | null;
     /**
@@ -1312,7 +1316,7 @@ export namespace firebaseapphosting_v1beta {
      *
      *   // Do the magic
      *   const res = await firebaseapphosting.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1441,7 +1445,7 @@ export namespace firebaseapphosting_v1beta {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -1540,6 +1544,7 @@ export namespace firebaseapphosting_v1beta {
      *       //   "managedResources": [],
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "overrideEnv": [],
      *       //   "reconciling": false,
      *       //   "requestLogsDisabled": false,
      *       //   "serviceAccount": "my_serviceAccount",
@@ -1855,6 +1860,7 @@ export namespace firebaseapphosting_v1beta {
      *   //   "managedResources": [],
      *   //   "mode": "my_mode",
      *   //   "name": "my_name",
+     *   //   "overrideEnv": [],
      *   //   "reconciling": false,
      *   //   "requestLogsDisabled": false,
      *   //   "serviceAccount": "my_serviceAccount",
@@ -2168,6 +2174,7 @@ export namespace firebaseapphosting_v1beta {
      *       //   "managedResources": [],
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "overrideEnv": [],
      *       //   "reconciling": false,
      *       //   "requestLogsDisabled": false,
      *       //   "serviceAccount": "my_serviceAccount",
