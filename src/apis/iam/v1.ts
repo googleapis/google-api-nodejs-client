@@ -691,28 +691,28 @@ export namespace iam_v1 {
     workforcePoolProviderKeys?: Schema$WorkforcePoolProviderKey[];
   }
   /**
-   * Response message for ListWorkforcePoolProviderScimTenants.
+   * Agentspace only. Response message for ListWorkforcePoolProviderScimTenants.
    */
   export interface Schema$ListWorkforcePoolProviderScimTenantsResponse {
     /**
-     * Optional. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     * Optional. Agentspace only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
-     * Output only. A list of scim tenants.
+     * Output only. Agentspace only. A list of SCIM tenants.
      */
     workforcePoolProviderScimTenants?: Schema$WorkforcePoolProviderScimTenant[];
   }
   /**
-   * Response message for ListWorkforcePoolProviderScimTokens.
+   * Agentspace only. Response message for ListWorkforcePoolProviderScimTokens.
    */
   export interface Schema$ListWorkforcePoolProviderScimTokensResponse {
     /**
-     * Optional. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     * Optional. Agentspace only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
-     * Output only. A list of scim tokens.
+     * Output only. Agentspace only. A list of SCIM tokens.
      */
     workforcePoolProviderScimTokens?: Schema$WorkforcePoolProviderScimToken[];
   }
@@ -1446,11 +1446,11 @@ export namespace iam_v1 {
    */
   export interface Schema$UndeleteWorkforcePoolProviderRequest {}
   /**
-   * Request message for UndeleteWorkforcePoolProviderScimTenant.
+   * Agentspace only. Request message for UndeleteWorkforcePoolProviderScimTenant.
    */
   export interface Schema$UndeleteWorkforcePoolProviderScimTenantRequest {}
   /**
-   * Request message for UndeleteWorkforcePoolProviderScimToken.
+   * Agentspace only. Request message for UndeleteWorkforcePoolProviderScimToken.
    */
   export interface Schema$UndeleteWorkforcePoolProviderScimTokenRequest {}
   /**
@@ -1540,7 +1540,7 @@ export namespace iam_v1 {
      */
     attributeCondition?: string | null;
     /**
-     * Required. Maps attributes from the authentication credentials issued by an external identity provider to Google Cloud attributes, such as `subject` and `segment`. Each key must be a string specifying the Google Cloud IAM attribute to map to. The following keys are supported: * `google.subject`: The principal IAM is authenticating. You can reference this value in IAM bindings. This is also the subject that appears in Cloud Logging logs. This is a required field and the mapped subject cannot exceed 127 bytes. * `google.groups`: Groups the authenticating user belongs to. You can grant groups access to resources using an IAM `principalSet` binding; access applies to all members of the group. * `google.display_name`: The name of the authenticated user. This is an optional field and the mapped display name cannot exceed 100 bytes. If not set, `google.subject` will be displayed instead. This attribute cannot be referenced in IAM bindings. * `google.profile_photo`: The URL that specifies the authenticated user's thumbnail photo. This is an optional field. When set, the image will be visible as the user's profile picture. If not set, a generic user icon will be displayed instead. This attribute cannot be referenced in IAM bindings. * `google.posix_username`: The Linux username used by OS Login. This is an optional field and the mapped POSIX username cannot exceed 32 characters, The key must match the regex "^a-zA-Z0-9._{0,31\}$". This attribute cannot be referenced in IAM bindings. You can also provide custom attributes by specifying `attribute.{custom_attribute\}`, where {custom_attribute\} is the name of the custom attribute to be mapped. You can define a maximum of 50 custom attributes. The maximum length of a mapped attribute key is 100 characters, and the key may only contain the characters [a-z0-9_]. You can reference these attributes in IAM policies to define fine-grained access for a workforce pool to Google Cloud resources. For example: * `google.subject`: `principal://iam.googleapis.com/locations/global/workforcePools/{pool\}/subject/{value\}` * `google.groups`: `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool\}/group/{value\}` * `attribute.{custom_attribute\}`: `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool\}/attribute.{custom_attribute\}/{value\}` Each value must be a [Common Expression Language] (https://opensource.google/projects/cel) function that maps an identity provider credential to the normalized attribute specified by the corresponding map key. You can use the `assertion` keyword in the expression to access a JSON representation of the authentication credential issued by the provider. The maximum length of an attribute mapping expression is 2048 characters. When evaluated, the total size of all mapped attributes must not exceed 4KB. For OIDC providers, you must supply a custom mapping that includes the `google.subject` attribute. For example, the following maps the `sub` claim of the incoming credential to the `subject` attribute on a Google token: ``` {"google.subject": "assertion.sub"\} ```
+     * Required. Maps attributes from the authentication credentials issued by an external identity provider to Google Cloud attributes, such as `subject` and `segment`. Each key must be a string specifying the Google Cloud IAM attribute to map to. The following keys are supported: * `google.subject`: The principal IAM is authenticating. You can reference this value in IAM bindings. This is also the subject that appears in Cloud Logging logs. This is a required field and the mapped subject cannot exceed 127 bytes. * `google.groups`: Groups the authenticating user belongs to. You can grant groups access to resources using an IAM `principalSet` binding; access applies to all members of the group. * `google.display_name`: The name of the authenticated user. This is an optional field and the mapped display name cannot exceed 100 bytes. If not set, `google.subject` will be displayed instead. This attribute cannot be referenced in IAM bindings. * `google.profile_photo`: The URL that specifies the authenticated user's thumbnail photo. This is an optional field. When set, the image will be visible as the user's profile picture. If not set, a generic user icon will be displayed instead. This attribute cannot be referenced in IAM bindings. * `google.posix_username`: The Linux username used by OS Login. This is an optional field and the mapped POSIX username cannot exceed 32 characters, The key must match the regex "^a-zA-Z0-9._{0,31\}$". This attribute cannot be referenced in IAM bindings. You can also provide custom attributes by specifying `attribute.{custom_attribute\}`, where {custom_attribute\} is the name of the custom attribute to be mapped. You can define a maximum of 50 custom attributes. The maximum length of a mapped attribute key is 100 characters, and the key may only contain the characters [a-z0-9_]. You can reference these attributes in IAM policies to define fine-grained access for a workforce pool to Google Cloud resources. For example: * `google.subject`: `principal://iam.googleapis.com/locations/global/workforcePools/{pool\}/subject/{value\}` * `google.groups`: `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool\}/group/{value\}` * `attribute.{custom_attribute\}`: `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool\}/attribute.{custom_attribute\}/{value\}` Each value must be a [Common Expression Language] (https://opensource.google/projects/cel) function that maps an identity provider credential to the normalized attribute specified by the corresponding map key. You can use the `assertion` keyword in the expression to access a JSON representation of the authentication credential issued by the provider. The maximum length of an attribute mapping expression is 2048 characters. When evaluated, the total size of all mapped attributes must not exceed 16 KB. For OIDC providers, you must supply a custom mapping that includes the `google.subject` attribute. For example, the following maps the `sub` claim of the incoming credential to the `subject` attribute on a Google token: ``` {"google.subject": "assertion.sub"\} ```
      */
     attributeMapping?: {[key: string]: string} | null;
     /**
@@ -1614,56 +1614,60 @@ export namespace iam_v1 {
     use?: string | null;
   }
   /**
-   * Represents a scim tenant. Used for provisioning and managing identity data (such as Users and Groups) in cross-domain environments.
+   * Agentspace only. Represents a SCIM tenant. Used for provisioning and managing identity data (such as Users and Groups) in cross-domain environments.
    */
   export interface Schema$WorkforcePoolProviderScimTenant {
     /**
-     * Output only. Represents the base URI as defined in [RFC 7644, Section 1.3](https://datatracker.ietf.org/doc/html/rfc7644#section-1.3). Clients must use this as the root address for managing resources under the tenant. Format: https://iamscim.googleapis.com/{version\}/{tenant_id\}/
+     * Output only. Agentspace only. Represents the base URI as defined in [RFC 7644, Section 1.3](https://datatracker.ietf.org/doc/html/rfc7644#section-1.3). Clients must use this as the root address for managing resources under the tenant. Format: https://iamscim.googleapis.com/{version\}/{tenant_id\}/
      */
     baseUri?: string | null;
     /**
-     * Optional. Maps BYOID claims to SCIM claims.
+     * Optional. Agentspace only. Maps BYOID claims to SCIM claims.
      */
     claimMapping?: {[key: string]: string} | null;
     /**
-     * Optional. The description of the scim tenant. Cannot exceed 256 characters.
+     * Optional. Agentspace only. The description of the SCIM tenant. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
-     * Optional. The display name of the scim tenant. Cannot exceed 32 characters.
+     * Optional. Agentspace only. The display name of the SCIM tenant. Cannot exceed 32 characters.
      */
     displayName?: string | null;
     /**
-     * Identifier. The resource name of the SCIM Tenant. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}`
+     * Identifier. Agentspace only. The resource name of the SCIM Tenant. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}`
      */
     name?: string | null;
     /**
-     * Output only. The timestamp when the scim tenant is going to be purged.
+     * Output only. Agentspace only. The timestamp that represents the time when the SCIM tenant is purged.
      */
     purgeTime?: string | null;
     /**
-     * Output only. The state of the tenant.
+     * Output only. Service Agent created by SCIM Tenant API. SCIM tokens created under this tenant will be attached to this service agent.
+     */
+    serviceAgent?: string | null;
+    /**
+     * Output only. Agentspace only. The state of the tenant.
      */
     state?: string | null;
   }
   /**
-   * Represents a token for the WorkforcePoolProviderScimTenant. Used for authenticating SCIM Provisioning requests.
+   * Agentspace only. Represents a token for the WorkforcePoolProviderScimTenant. Used for authenticating SCIM provisioning requests.
    */
   export interface Schema$WorkforcePoolProviderScimToken {
     /**
-     * Optional. The display name of the scim token. Cannot exceed 32 characters.
+     * Optional. Agentspace only. The display name of the SCIM token. Cannot exceed 32 characters.
      */
     displayName?: string | null;
     /**
-     * Identifier. The resource name of the SCIM Token. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     * Identifier. Agentspace only. The resource name of the SCIM Token. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      */
     name?: string | null;
     /**
-     * Output only. The token string. Provide this to the IdP for authentication. Will be set only during creation.
+     * Output only. Agentspace only. The token string. Provide this to the IdP for authentication. Will be set only during creation.
      */
     securityToken?: string | null;
     /**
-     * Output only. The state of the token.
+     * Output only. Agentspace only. The state of the token.
      */
     state?: string | null;
   }
@@ -1725,7 +1729,7 @@ export namespace iam_v1 {
      */
     expireTime?: string | null;
     /**
-     * Identifier. The resource name of the managed identity.
+     * Output only. The resource name of the managed identity.
      */
     name?: string | null;
     /**
@@ -1799,7 +1803,7 @@ export namespace iam_v1 {
      */
     expireTime?: string | null;
     /**
-     * Identifier. The resource name of the provider.
+     * Output only. The resource name of the provider.
      */
     name?: string | null;
     /**
@@ -5946,7 +5950,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Creates a new WorkforcePoolProviderScimTenant in a WorkforcePoolProvider. You cannot reuse the name of a deleted scim tenant until 30 days after deletion.
+     * Agentspace only. Creates a new WorkforcePoolProviderScimTenant in a WorkforcePoolProvider. You cannot reuse the name of a deleted SCIM tenant until 30 days after deletion.
      * @example
      * ```js
      * // Before running the sample:
@@ -5976,10 +5980,10 @@ export namespace iam_v1 {
      *
      *   // Do the magic
      *   const res = await iam.locations.workforcePools.providers.scimTenants.create({
-     *     // Required. The parent to create scim tenant. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
+     *     // Required. Agentspace only. The parent to create SCIM tenant. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
      *     parent:
      *       'locations/my-location/workforcePools/my-workforcePool/providers/my-provider',
-     *     // Required. The ID to use for the scim tenant, which becomes the final component of the resource name. This value should be 4-32 characters, and may contain the characters [a-z0-9-].
+     *     // Required. Agentspace only. The ID to use for the SCIM tenant, which becomes the final component of the resource name. This value should be 4-32 characters, containing the characters [a-z0-9-].
      *     workforcePoolProviderScimTenantId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5992,6 +5996,7 @@ export namespace iam_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "purgeTime": "my_purgeTime",
+     *       //   "serviceAgent": "my_serviceAgent",
      *       //   "state": "my_state"
      *       // }
      *     },
@@ -6006,6 +6011,7 @@ export namespace iam_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "purgeTime": "my_purgeTime",
+     *   //   "serviceAgent": "my_serviceAgent",
      *   //   "state": "my_state"
      *   // }
      * }
@@ -6113,7 +6119,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Deletes a WorkforcePoolProviderScimTenant. You can undelete a scim tenant for 30 days. After 30 days, deletion is permanent. You cannot update deleted scim tenants. However, you can view and list them.
+     * Agentspace only. Deletes a WorkforcePoolProviderScimTenant. You can undelete a SCIM tenant for 30 days. After 30 days, deletion is permanent. You cannot update deleted SCIM tenants. However, you can view and list them.
      * @example
      * ```js
      * // Before running the sample:
@@ -6143,7 +6149,7 @@ export namespace iam_v1 {
      *
      *   // Do the magic
      *   const res = await iam.locations.workforcePools.providers.scimTenants.delete({
-     *     // Required. The name of the scim tenant to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     *     // Required. Agentspace only. The name of the scim tenant to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
      *     name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
      *   });
      *   console.log(res.data);
@@ -6156,6 +6162,7 @@ export namespace iam_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "purgeTime": "my_purgeTime",
+     *   //   "serviceAgent": "my_serviceAgent",
      *   //   "state": "my_state"
      *   // }
      * }
@@ -6260,7 +6267,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Gets an individual WorkforcePoolProviderScimTenant.
+     * Agentspace only. Gets an individual WorkforcePoolProviderScimTenant.
      * @example
      * ```js
      * // Before running the sample:
@@ -6290,7 +6297,7 @@ export namespace iam_v1 {
      *
      *   // Do the magic
      *   const res = await iam.locations.workforcePools.providers.scimTenants.get({
-     *     // Required. The name of the scim tenant to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     *     // Required. Agentspace only. The name of the SCIM tenant to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
      *     name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
      *   });
      *   console.log(res.data);
@@ -6303,6 +6310,7 @@ export namespace iam_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "purgeTime": "my_purgeTime",
+     *   //   "serviceAgent": "my_serviceAgent",
      *   //   "state": "my_state"
      *   // }
      * }
@@ -6407,7 +6415,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Lists all non-deleted WorkforcePoolProviderScimTenants in a WorkforcePoolProvider. If `show_deleted` is set to `true`, then deleted scim tenants are also listed.
+     * Agentspace only. Lists all non-deleted WorkforcePoolProviderScimTenants in a WorkforcePoolProvider. If `show_deleted` is set to `true`, then deleted SCIM tenants are also listed.
      * @example
      * ```js
      * // Before running the sample:
@@ -6437,14 +6445,14 @@ export namespace iam_v1 {
      *
      *   // Do the magic
      *   const res = await iam.locations.workforcePools.providers.scimTenants.list({
-     *     // Optional. The maximum number of scim tenants to return. If unspecified, at most 1 scim tenant will be returned.
+     *     // Optional. Agentspace only. The maximum number of SCIM tenants to return. If unspecified, at most 1 scim tenant will be returned.
      *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous `ListScimTenants` call. Provide this to retrieve the subsequent page.
+     *     // Optional. Agentspace only. A page token, received from a previous `ListScimTenants` call. Provide this to retrieve the subsequent page.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent to list scim tenants. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
+     *     // Required. Agentspace only. The parent to list SCIM tenants. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
      *     parent:
      *       'locations/my-location/workforcePools/my-workforcePool/providers/my-provider',
-     *     // Optional. Whether to return soft-deleted scim tenants.
+     *     // Optional. Agentspace only. Whether to return soft-deleted SCIM tenants.
      *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6563,7 +6571,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Updates an existing WorkforcePoolProviderScimTenant.
+     * Agentspace only. Updates an existing WorkforcePoolProviderScimTenant.
      * @example
      * ```js
      * // Before running the sample:
@@ -6593,9 +6601,9 @@ export namespace iam_v1 {
      *
      *   // Do the magic
      *   const res = await iam.locations.workforcePools.providers.scimTenants.patch({
-     *     // Identifier. The resource name of the SCIM Tenant. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}`
+     *     // Identifier. Agentspace only. The resource name of the SCIM Tenant. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}`
      *     name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
-     *     // Optional. The list of fields to update.
+     *     // Optional. Agentspace only. The list of fields to update.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6608,6 +6616,7 @@ export namespace iam_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "purgeTime": "my_purgeTime",
+     *       //   "serviceAgent": "my_serviceAgent",
      *       //   "state": "my_state"
      *       // }
      *     },
@@ -6622,6 +6631,7 @@ export namespace iam_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "purgeTime": "my_purgeTime",
+     *   //   "serviceAgent": "my_serviceAgent",
      *   //   "state": "my_state"
      *   // }
      * }
@@ -6726,7 +6736,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Undeletes a WorkforcePoolProviderScimTenant, as long as it was deleted fewer than 30 days ago.
+     * Agentspace only. Undeletes a WorkforcePoolProviderScimTenant, that was deleted fewer than 30 days ago.
      * @example
      * ```js
      * // Before running the sample:
@@ -6757,7 +6767,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res = await iam.locations.workforcePools.providers.scimTenants.undelete(
      *     {
-     *       // Required. The name of the scim tenant to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     *       // Required. Agentspace only. The name of the SCIM tenant to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
      *       name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
      *
      *       // Request body metadata
@@ -6777,6 +6787,7 @@ export namespace iam_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "purgeTime": "my_purgeTime",
+     *   //   "serviceAgent": "my_serviceAgent",
      *   //   "state": "my_state"
      *   // }
      * }
@@ -6887,11 +6898,11 @@ export namespace iam_v1 {
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create
     extends StandardParameters {
     /**
-     * Required. The parent to create scim tenant. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
+     * Required. Agentspace only. The parent to create SCIM tenant. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
      */
     parent?: string;
     /**
-     * Required. The ID to use for the scim tenant, which becomes the final component of the resource name. This value should be 4-32 characters, and may contain the characters [a-z0-9-].
+     * Required. Agentspace only. The ID to use for the SCIM tenant, which becomes the final component of the resource name. This value should be 4-32 characters, containing the characters [a-z0-9-].
      */
     workforcePoolProviderScimTenantId?: string;
 
@@ -6903,44 +6914,44 @@ export namespace iam_v1 {
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the scim tenant to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     * Required. Agentspace only. The name of the scim tenant to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
      */
     name?: string;
   }
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get
     extends StandardParameters {
     /**
-     * Required. The name of the scim tenant to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     * Required. Agentspace only. The name of the SCIM tenant to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
      */
     name?: string;
   }
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List
     extends StandardParameters {
     /**
-     * Optional. The maximum number of scim tenants to return. If unspecified, at most 1 scim tenant will be returned.
+     * Optional. Agentspace only. The maximum number of SCIM tenants to return. If unspecified, at most 1 scim tenant will be returned.
      */
     pageSize?: number;
     /**
-     * Optional. A page token, received from a previous `ListScimTenants` call. Provide this to retrieve the subsequent page.
+     * Optional. Agentspace only. A page token, received from a previous `ListScimTenants` call. Provide this to retrieve the subsequent page.
      */
     pageToken?: string;
     /**
-     * Required. The parent to list scim tenants. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
+     * Required. Agentspace only. The parent to list SCIM tenants. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
      */
     parent?: string;
     /**
-     * Optional. Whether to return soft-deleted scim tenants.
+     * Optional. Agentspace only. Whether to return soft-deleted SCIM tenants.
      */
     showDeleted?: boolean;
   }
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the SCIM Tenant. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}`
+     * Identifier. Agentspace only. The resource name of the SCIM Tenant. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}`
      */
     name?: string;
     /**
-     * Optional. The list of fields to update.
+     * Optional. Agentspace only. The list of fields to update.
      */
     updateMask?: string;
 
@@ -6952,7 +6963,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete
     extends StandardParameters {
     /**
-     * Required. The name of the scim tenant to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     * Required. Agentspace only. The name of the SCIM tenant to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
      */
     name?: string;
 
@@ -6969,7 +6980,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Creates a new WorkforcePoolProviderScimToken in a WorkforcePoolProviderScimTenant. You cannot reuse the name of a deleted SCIM token until 30 days after deletion.
+     * Agentspace only. Creates a new WorkforcePoolProviderScimToken in a WorkforcePoolProviderScimTenant. You cannot reuse the name of a deleted SCIM token until 30 days after deletion.
      * @example
      * ```js
      * // Before running the sample:
@@ -7000,10 +7011,10 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res =
      *     await iam.locations.workforcePools.providers.scimTenants.tokens.create({
-     *       // Required. The parent tenant to create scim token. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
+     *       // Required. Agentspace only. The parent tenant to create SCIM token. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
      *       parent:
      *         'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
-     *       // Required. The ID to use for the scim token, which becomes the final component of the resource name. This value should be 4-32 characters and follow this pattern: "([a-z]([a-z0-9\\-]{2,30\}[a-z0-9]))"
+     *       // Required. Agentspace only. The ID to use for the SCIM token, which becomes the final component of the resource name. This value should be 4-32 characters and follow the pattern: "([a-z]([a-z0-9\\-]{2,30\}[a-z0-9]))"
      *       workforcePoolProviderScimTokenId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -7131,7 +7142,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Deletes a WorkforcePoolProviderScimToken. You can undelete a scim token for 30 days. After 30 days, deletion is permanent. You cannot update deleted scim tokens. However, you can view and list them.
+     * Agentspace only. Deletes a WorkforcePoolProviderScimToken. You can undelete a SCIM token for 30 days. After 30 days, the SCIM token is permanently deleted. You cannot update deleted SCIM tokens, however, you can view and list them.
      * @example
      * ```js
      * // Before running the sample:
@@ -7162,7 +7173,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res =
      *     await iam.locations.workforcePools.providers.scimTenants.tokens.delete({
-     *       // Required. The name of the scim token to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     *       // Required. Agentspace only. The name of the SCIM token to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      *       name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant/tokens/my-token',
      *     });
      *   console.log(res.data);
@@ -7276,7 +7287,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Gets an individual WorkforcePoolProviderScimToken.
+     * Agentspace only. Gets an individual WorkforcePoolProviderScimToken.
      * @example
      * ```js
      * // Before running the sample:
@@ -7307,7 +7318,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res =
      *     await iam.locations.workforcePools.providers.scimTenants.tokens.get({
-     *       // Required. The name of the scim token to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     *       // Required. Agentspace only. The name of the SCIM token to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      *       name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant/tokens/my-token',
      *     });
      *   console.log(res.data);
@@ -7421,7 +7432,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Lists all non-deleted WorkforcePoolProviderScimTokenss in a WorkforcePoolProviderScimTenant. If `show_deleted` is set to `true`, then deleted SCIM tokens are also listed.
+     * Agentspace only. Lists all non-deleted WorkforcePoolProviderScimTokenss in a WorkforcePoolProviderScimTenant. If `show_deleted` is set to `true`, then deleted SCIM tokens are also listed.
      * @example
      * ```js
      * // Before running the sample:
@@ -7452,14 +7463,14 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res =
      *     await iam.locations.workforcePools.providers.scimTenants.tokens.list({
-     *       // Optional. The maximum number of scim tokens to return. If unspecified, at most 2 scim tokens will be returned.
+     *       // Optional. Agentspace only. The maximum number of scim tokens to return. If unspecified, at most 2 SCIM tokens will be returned.
      *       pageSize: 'placeholder-value',
-     *       // Optional. A page token, received from a previous `ListWorkforcePoolProviderScimTokens` call. Provide this to retrieve the subsequent page.
+     *       // Optional. Agentspace only. A page token, received from a previous `ListWorkforcePoolProviderScimTokens` call. Provide this to retrieve the subsequent page.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent to list scim tokens. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
+     *       // Required. Agentspace only. The parent to list SCIM tokens. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
      *       parent:
      *         'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
-     *       // Optional. Whether to return soft-deleted scim tokens.
+     *       // Optional. Agentspace only. Whether to return soft-deleted scim tokens.
      *       showDeleted: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -7578,7 +7589,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Updates an existing WorkforcePoolProviderScimToken.
+     * Agentspace only. Updates an existing WorkforcePoolProviderScimToken.
      * @example
      * ```js
      * // Before running the sample:
@@ -7609,9 +7620,9 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res =
      *     await iam.locations.workforcePools.providers.scimTenants.tokens.patch({
-     *       // Identifier. The resource name of the SCIM Token. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     *       // Identifier. Agentspace only. The resource name of the SCIM Token. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      *       name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant/tokens/my-token',
-     *       // Optional. The list of fields to update.
+     *       // Optional. Agentspace only. The list of fields to update.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -7736,7 +7747,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Undeletes a WorkforcePoolProviderScimToken, as long as it was deleted fewer than 30 days ago.
+     * Agentspace only. Undeletes a WorkforcePoolProviderScimToken,that was deleted fewer than 30 days ago.
      * @example
      * ```js
      * // Before running the sample:
@@ -7767,7 +7778,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res =
      *     await iam.locations.workforcePools.providers.scimTenants.tokens.undelete({
-     *       // Required. The name of the scim token to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     *       // Required. Agentspace only. The name of the SCIM token to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      *       name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant/tokens/my-token',
      *
      *       // Request body metadata
@@ -7893,11 +7904,11 @@ export namespace iam_v1 {
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create
     extends StandardParameters {
     /**
-     * Required. The parent tenant to create scim token. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
+     * Required. Agentspace only. The parent tenant to create SCIM token. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
      */
     parent?: string;
     /**
-     * Required. The ID to use for the scim token, which becomes the final component of the resource name. This value should be 4-32 characters and follow this pattern: "([a-z]([a-z0-9\\-]{2,30\}[a-z0-9]))"
+     * Required. Agentspace only. The ID to use for the SCIM token, which becomes the final component of the resource name. This value should be 4-32 characters and follow the pattern: "([a-z]([a-z0-9\\-]{2,30\}[a-z0-9]))"
      */
     workforcePoolProviderScimTokenId?: string;
 
@@ -7909,44 +7920,44 @@ export namespace iam_v1 {
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the scim token to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     * Required. Agentspace only. The name of the SCIM token to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      */
     name?: string;
   }
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get
     extends StandardParameters {
     /**
-     * Required. The name of the scim token to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     * Required. Agentspace only. The name of the SCIM token to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      */
     name?: string;
   }
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List
     extends StandardParameters {
     /**
-     * Optional. The maximum number of scim tokens to return. If unspecified, at most 2 scim tokens will be returned.
+     * Optional. Agentspace only. The maximum number of scim tokens to return. If unspecified, at most 2 SCIM tokens will be returned.
      */
     pageSize?: number;
     /**
-     * Optional. A page token, received from a previous `ListWorkforcePoolProviderScimTokens` call. Provide this to retrieve the subsequent page.
+     * Optional. Agentspace only. A page token, received from a previous `ListWorkforcePoolProviderScimTokens` call. Provide this to retrieve the subsequent page.
      */
     pageToken?: string;
     /**
-     * Required. The parent to list scim tokens. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
+     * Required. Agentspace only. The parent to list SCIM tokens. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
      */
     parent?: string;
     /**
-     * Optional. Whether to return soft-deleted scim tokens.
+     * Optional. Agentspace only. Whether to return soft-deleted scim tokens.
      */
     showDeleted?: boolean;
   }
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the SCIM Token. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     * Identifier. Agentspace only. The resource name of the SCIM Token. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      */
     name?: string;
     /**
-     * Optional. The list of fields to update.
+     * Optional. Agentspace only. The list of fields to update.
      */
     updateMask?: string;
 
@@ -7958,7 +7969,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete
     extends StandardParameters {
     /**
-     * Required. The name of the scim token to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     * Required. Agentspace only. The name of the SCIM token to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      */
     name?: string;
 
@@ -14888,7 +14899,7 @@ export namespace iam_v1 {
      *   const res =
      *     await iam.projects.locations.workloadIdentityPools.namespaces.managedIdentities.patch(
      *       {
-     *         // Identifier. The resource name of the managed identity.
+     *         // Output only. The resource name of the managed identity.
      *         name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/namespaces/my-namespace/managedIdentities/my-managedIdentitie',
      *         // Required. The list of fields to update.
      *         updateMask: 'placeholder-value',
@@ -15556,7 +15567,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the managed identity.
+     * Output only. The resource name of the managed identity.
      */
     name?: string;
     /**
@@ -16908,7 +16919,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res =
      *     await iam.projects.locations.workloadIdentityPools.providers.patch({
-     *       // Identifier. The resource name of the provider.
+     *       // Output only. The resource name of the provider.
      *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
      *       // Required. The list of fields to update.
      *       updateMask: 'placeholder-value',
@@ -17239,7 +17250,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the provider.
+     * Output only. The resource name of the provider.
      */
     name?: string;
     /**
