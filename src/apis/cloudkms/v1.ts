@@ -1619,7 +1619,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     * Gets the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.
      * @example
      * ```js
      * // Before running the sample:
@@ -1922,7 +1922,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     * Updates the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.
      * @example
      * ```js
      * // Before running the sample:
@@ -2135,7 +2135,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     * Gets the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.
      * @example
      * ```js
      * // Before running the sample:
@@ -2283,7 +2283,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     * Updates the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.
      * @example
      * ```js
      * // Before running the sample:
@@ -2617,7 +2617,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     * Gets the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.
      * @example
      * ```js
      * // Before running the sample:
@@ -3378,7 +3378,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     * Updates the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.
      * @example
      * ```js
      * // Before running the sample:
