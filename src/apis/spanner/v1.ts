@@ -157,6 +157,10 @@ export namespace spanner_v1 {
    */
   export interface Schema$AdaptMessageResponse {
     /**
+     * Optional. Indicates whether this is the last AdaptMessageResponse in the stream. This field may be optionally set by the server. Clients should not rely on this field being set in all cases.
+     */
+    last?: boolean | null;
+    /**
      * Optional. Uninterpreted bytes from the underlying wire protocol.
      */
     payload?: string | null;
@@ -304,7 +308,7 @@ export namespace spanner_v1 {
      */
     incrementalBackupChainId?: string | null;
     /**
-     * Output only. The instance partition(s) storing the backup. This is the same as the list of the instance partition(s) that the database had footprint in at the backup's `version_time`.
+     * Output only. The instance partition storing the backup. This is the same as the list of the instance partitions that the database recorded at the backup's `version_time`.
      */
     instancePartitions?: Schema$BackupInstancePartition[];
     /**
@@ -648,6 +652,10 @@ export namespace spanner_v1 {
      * If specified, transaction has not committed yet. You must retry the commit with the new precommit token.
      */
     precommitToken?: Schema$MultiplexedSessionPrecommitToken;
+    /**
+     * If `TransactionOptions.isolation_level` is set to `IsolationLevel.REPEATABLE_READ`, then the snapshot timestamp is the timestamp at which all reads in the transaction ran. This timestamp is never returned.
+     */
+    snapshotTimestamp?: string | null;
   }
   /**
    * Additional statistics about a commit.
@@ -688,7 +696,7 @@ export namespace spanner_v1 {
      */
     encryptionType?: string | null;
     /**
-     * Optional. The Cloud KMS key that will be used to protect the backup. This field should be set only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
+     * Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Set this field only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
      */
     kmsKeyName?: string | null;
     /**
@@ -747,7 +755,7 @@ export namespace spanner_v1 {
      */
     encryptionType?: string | null;
     /**
-     * Optional. The Cloud KMS key that will be used to protect the backup. This field should be set only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
+     * Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Set this field only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
      */
     kmsKeyName?: string | null;
     /**
@@ -1083,15 +1091,15 @@ export namespace spanner_v1 {
    */
   export interface Schema$DdlStatementActionInfo {
     /**
-     * The action for the DDL statement, e.g. CREATE, ALTER, DROP, GRANT, etc. This field is a non-empty string.
+     * The action for the DDL statement, for example, CREATE, ALTER, DROP, GRANT, etc. This field is a non-empty string.
      */
     action?: string | null;
     /**
-     * The entity name(s) being operated on the DDL statement. E.g. 1. For statement "CREATE TABLE t1(...)", `entity_names` = ["t1"]. 2. For statement "GRANT ROLE r1, r2 ...", `entity_names` = ["r1", "r2"]. 3. For statement "ANALYZE", `entity_names` = [].
+     * The entity names being operated on the DDL statement. For example, 1. For statement "CREATE TABLE t1(...)", `entity_names` = ["t1"]. 2. For statement "GRANT ROLE r1, r2 ...", `entity_names` = ["r1", "r2"]. 3. For statement "ANALYZE", `entity_names` = [].
      */
     entityNames?: string[] | null;
     /**
-     * The entity type for the DDL statement, e.g. TABLE, INDEX, VIEW, etc. This field can be empty string for some DDL statement, e.g. for statement "ANALYZE", `entity_type` = "".
+     * The entity type for the DDL statement, for example, TABLE, INDEX, VIEW, etc. This field can be empty string for some DDL statement, for example, for statement "ANALYZE", `entity_type` = "".
      */
     entityType?: string | null;
   }
@@ -1583,7 +1591,7 @@ export namespace spanner_v1 {
    */
   export interface Schema$InstanceEncryptionConfig {
     /**
-     * Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. `kms_key_name` should only be used if the location of the KMS key matches the database instance’s configuration (location) exactly. E.g. The KMS location is in us-central1 or nam3 and the database instance is also in us-central1 or nam3. The Cloud KMS key to be used for encrypting and decrypting the database. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
+     * Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
      */
     kmsKeyName?: string | null;
     /**
@@ -1662,7 +1670,7 @@ export namespace spanner_v1 {
    */
   export interface Schema$InstanceReplicaSelection {
     /**
-     * Required. Name of the location of the replicas (e.g., "us-central1").
+     * Required. Name of the location of the replicas (for example, "us-central1").
      */
     location?: string | null;
   }
@@ -2710,7 +2718,7 @@ export namespace spanner_v1 {
      */
     encryptionType?: string | null;
     /**
-     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the restored database. This field should be set only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
+     * Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Set this field only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
      */
     kmsKeyName?: string | null;
     /**
@@ -2943,7 +2951,7 @@ export namespace spanner_v1 {
    */
   export interface Schema$SingleRegionQuorum {
     /**
-     * Required. The location of the serving region, e.g. "us-central1". The location must be one of the regions within the dual-region instance configuration of your database. The list of valid locations is available using the GetInstanceConfig API. This should only be used if you plan to change quorum to the single-region quorum type.
+     * Required. The location of the serving region, for example, "us-central1". The location must be one of the regions within the dual-region instance configuration of your database. The list of valid locations is available using the GetInstanceConfig API. This should only be used if you plan to change quorum to the single-region quorum type.
      */
     servingLocation?: string | null;
   }
@@ -3138,12 +3146,12 @@ export namespace spanner_v1 {
      */
     statements?: string[] | null;
     /**
-     * Output only. When true, indicates that the operation is throttled e.g. due to resource constraints. When resources become available the operation will resume and this field will be false again.
+     * Output only. When true, indicates that the operation is throttled, for example, due to resource constraints. When resources become available the operation will resume and this field will be false again.
      */
     throttled?: boolean | null;
   }
   /**
-   * Enqueues the given DDL statements to be applied, in order but not necessarily all at once, to the database schema at some point (or points) in the future. The server checks that the statements are executable (syntactically valid, name tables that exist, etc.) before enqueueing them, but they may still fail upon later execution (e.g., if a statement from another batch of statements is applied first and it conflicts in some way, or if there is some data-related problem like a `NULL` value in a column to which `NOT NULL` would be added). If a statement fails, all subsequent statements in the batch are automatically cancelled. Each batch of statements is assigned a name which can be used with the Operations API to monitor progress. See the operation_id field for more details.
+   * Enqueues the given DDL statements to be applied, in order but not necessarily all at once, to the database schema at some point (or points) in the future. The server checks that the statements are executable (syntactically valid, name tables that exist, etc.) before enqueueing them, but they may still fail upon later execution (for example, if a statement from another batch of statements is applied first and it conflicts in some way, or if there is some data-related problem like a `NULL` value in a column to which `NOT NULL` would be added). If a statement fails, all subsequent statements in the batch are automatically cancelled. Each batch of statements is assigned a name which can be used with the Operations API to monitor progress. See the operation_id field for more details.
    */
   export interface Schema$UpdateDatabaseDdlRequest {
     /**
@@ -7478,11 +7486,11 @@ export namespace spanner_v1 {
      *     backupId: 'placeholder-value',
      *     // Required. The encryption type of the backup.
      *     'encryptionConfig.encryptionType': 'placeholder-value',
-     *     // Optional. The Cloud KMS key that will be used to protect the backup. This field should be set only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
+     *     // Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Set this field only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
      *     'encryptionConfig.kmsKeyName': 'placeholder-value',
      *     // Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by `kms_key_names` must fully cover all regions of the backup's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations.
      *     'encryptionConfig.kmsKeyNames': 'placeholder-value',
-     *     // Required. The name of the instance in which the backup will be created. This must be the same instance that contains the database the backup will be created from. The backup will be stored in the location(s) specified in the instance configuration of this instance. Values are of the form `projects//instances/`.
+     *     // Required. The name of the instance in which the backup is created. This must be the same instance that contains the database the backup is created from. The backup will be stored in the locations specified in the instance configuration of this instance. Values are of the form `projects//instances/`.
      *     parent: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -8241,7 +8249,7 @@ export namespace spanner_v1 {
      *   const res = await spanner.projects.instances.backups.patch({
      *     // Output only for the CreateBackup operation. Required for the UpdateBackup operation. A globally unique identifier for the backup which cannot be changed. Values are of the form `projects//instances//backups/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length. The backup is stored in the location(s) specified in the instance configuration of the instance containing the backup, identified by the prefix of the backup name of the form `projects//instances/`.
      *     name: 'projects/my-project/instances/my-instance/backups/my-backup',
-     *     // Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
+     *     // Required. A mask specifying which fields (for example, `expire_time`) in the backup resource should be updated. This mask is relative to the backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8715,7 +8723,7 @@ export namespace spanner_v1 {
      */
     'encryptionConfig.encryptionType'?: string;
     /**
-     * Optional. The Cloud KMS key that will be used to protect the backup. This field should be set only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
+     * Optional. This field is maintained for backwards compatibility. For new callers, we recommend using `kms_key_names` to specify the KMS key. Only use `kms_key_name` if the location of the KMS key matches the database instance's configuration (location) exactly. For example, if the KMS location is in `us-central1` or `nam3`, then the database instance must also be in `us-central1` or `nam3`. The Cloud KMS key that is used to encrypt and decrypt the restored database. Set this field only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`.
      */
     'encryptionConfig.kmsKeyName'?: string;
     /**
@@ -8723,7 +8731,7 @@ export namespace spanner_v1 {
      */
     'encryptionConfig.kmsKeyNames'?: string[];
     /**
-     * Required. The name of the instance in which the backup will be created. This must be the same instance that contains the database the backup will be created from. The backup will be stored in the location(s) specified in the instance configuration of this instance. Values are of the form `projects//instances/`.
+     * Required. The name of the instance in which the backup is created. This must be the same instance that contains the database the backup is created from. The backup will be stored in the locations specified in the instance configuration of this instance. Values are of the form `projects//instances/`.
      */
     parent?: string;
 
@@ -8784,7 +8792,7 @@ export namespace spanner_v1 {
      */
     name?: string;
     /**
-     * Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
+     * Required. A mask specifying which fields (for example, `expire_time`) in the backup resource should be updated. This mask is relative to the backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
      */
     updateMask?: string;
 
@@ -11586,7 +11594,7 @@ export namespace spanner_v1 {
     }
 
     /**
-     * Updates the schema of a Cloud Spanner database by creating/altering/dropping tables, columns, indexes, etc. The returned long-running operation will have a name of the format `/operations/` and can be used to track execution of the schema change(s). The metadata field type is UpdateDatabaseDdlMetadata. The operation has no response.
+     * Updates the schema of a Cloud Spanner database by creating/altering/dropping tables, columns, indexes, etc. The returned long-running operation will have a name of the format `/operations/` and can be used to track execution of the schema changes. The metadata field type is UpdateDatabaseDdlMetadata. The operation has no response.
      * @example
      * ```js
      * // Before running the sample:
@@ -14390,6 +14398,7 @@ export namespace spanner_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "last": false,
      *   //   "payload": "my_payload",
      *   //   "stateUpdates": {}
      *   // }
@@ -15016,7 +15025,8 @@ export namespace spanner_v1 {
      *   // {
      *   //   "commitStats": {},
      *   //   "commitTimestamp": "my_commitTimestamp",
-     *   //   "precommitToken": {}
+     *   //   "precommitToken": {},
+     *   //   "snapshotTimestamp": "my_snapshotTimestamp"
      *   // }
      * }
      *
