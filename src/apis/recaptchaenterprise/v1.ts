@@ -908,7 +908,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1RiskAnalysis {
     /**
-     * Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE keys
+     * Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE keys.
      */
     challenge?: string | null;
     /**

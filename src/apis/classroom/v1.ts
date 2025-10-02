@@ -388,7 +388,7 @@ export namespace classroom_v1 {
      */
     enrollmentCode?: string | null;
     /**
-     * The gradebook settings that specify how a student's overall grade for the course will be calculated and who it will be displayed to. Read-only
+     * The gradebook settings that specify how a student's overall grade for the course will be calculated and who it will be displayed to. Read-only.
      */
     gradebookSettings?: Schema$GradebookSettings;
     /**

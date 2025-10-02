@@ -1626,6 +1626,10 @@ export namespace bigquery_v2 {
      */
     timestampFormat?: string | null;
     /**
+     * Precisions (maximum number of total digits in base 10) for seconds of TIMESTAMP types that are allowed to the destination table for autodetection mode. Available for the formats: CSV. For the CSV Format, Possible values include: Not Specified, [], or [6]: timestamp(6) for all auto detected TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP columns that have less than 6 digits of subseconds. timestamp(12) for all auto detected TIMESTAMP columns that have more than 6 digits of subseconds. [12]: timestamp(12) for all auto detected TIMESTAMP columns. The order of the elements in this array is ignored. Inputs that have higher precision than the highest target precision in this array will be truncated.
+     */
+    timestampTargetPrecision?: number[] | null;
+    /**
      * Optional. Time zone used when parsing timestamp values that do not have specific time zone information (e.g. 2024-04-20 12:34:56). The expected format is a IANA timezone string (e.g. America/Los_Angeles).
      */
     timeZone?: string | null;
@@ -2269,7 +2273,7 @@ export namespace bigquery_v2 {
      */
     load?: Schema$JobConfigurationLoad;
     /**
-     * Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to allow for this job. If set, the number of slots used to execute the job will be throttled to try and keep its slot consumption below the requested rate.
+     * Optional. A target limit on the rate of slot consumption by this job. If set to a value \> 0, BigQuery will attempt to limit the rate of slot consumption by this job to keep it below the configured limit, even if the job is eligible for more slots based on fair scheduling. The unused slots will be available for other jobs and queries to use. Note: This feature is not yet generally available.
      */
     maxSlots?: number | null;
     /**
@@ -2494,6 +2498,10 @@ export namespace bigquery_v2 {
      * Optional. Date format used for parsing TIMESTAMP values.
      */
     timestampFormat?: string | null;
+    /**
+     * Precisions (maximum number of total digits in base 10) for seconds of TIMESTAMP types that are allowed to the destination table for autodetection mode. Available for the formats: CSV. For the CSV Format, Possible values include: Not Specified, [], or [6]: timestamp(6) for all auto detected TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP columns that have less than 6 digits of subseconds. timestamp(12) for all auto detected TIMESTAMP columns that have more than 6 digits of subseconds. [12]: timestamp(12) for all auto detected TIMESTAMP columns. The order of the elements in this array is ignored. Inputs that have higher precision than the highest target precision in this array will be truncated.
+     */
+    timestampTargetPrecision?: number[] | null;
     /**
      * Optional. Default time zone that will apply when parsing timestamp values that have no specific time zone.
      */
@@ -2779,6 +2787,10 @@ export namespace bigquery_v2 {
      * Output only. Quotas which delayed this job's start time.
      */
     quotaDeferments?: string[] | null;
+    /**
+     * Output only. The reservation group path of the reservation assigned to this job. This field has a limit of 10 nested reservation groups. This is to maintain consistency between reservatins info schema and jobs info schema. The first reservation group is the root reservation group and the last is the leaf or lowest level reservation group.
+     */
+    reservationGroupPath?: string[] | null;
     /**
      * Output only. Job resource usage breakdown by reservation. This field reported misleading information and will no longer be populated.
      */
@@ -3772,7 +3784,7 @@ export namespace bigquery_v2 {
      */
     maxResults?: number | null;
     /**
-     * Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to allow for this job. If set, the number of slots used to execute the job will be throttled to try and keep its slot consumption below the requested rate. This limit is best effort.
+     * Optional. A target limit on the rate of slot consumption by this query. If set to a value \> 0, BigQuery will attempt to limit the rate of slot consumption by this query to keep it below the configured limit, even if the query is eligible for more slots based on fair scheduling. The unused slots will be available for other jobs and queries to use. Note: This feature is not yet generally available.
      */
     maxSlots?: number | null;
     /**

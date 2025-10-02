@@ -229,7 +229,7 @@
           ]
         },
         "getKajPolicyConfig": {
-          "description": "Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "description": "Gets the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.",
           "flatPath": "v1/folders/{foldersId}/kajPolicyConfig",
           "httpMethod": "GET",
           "id": "cloudkms.folders.getKajPolicyConfig",
@@ -290,7 +290,7 @@
           ]
         },
         "updateKajPolicyConfig": {
-          "description": "Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "description": "Updates the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.",
           "flatPath": "v1/folders/{foldersId}/kajPolicyConfig",
           "httpMethod": "PATCH",
           "id": "cloudkms.folders.updateKajPolicyConfig",
@@ -329,7 +329,7 @@
     "organizations": {
       "methods": {
         "getKajPolicyConfig": {
-          "description": "Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "description": "Gets the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.",
           "flatPath": "v1/organizations/{organizationsId}/kajPolicyConfig",
           "httpMethod": "GET",
           "id": "cloudkms.organizations.getKajPolicyConfig",
@@ -355,7 +355,7 @@
           ]
         },
         "updateKajPolicyConfig": {
-          "description": "Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "description": "Updates the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.",
           "flatPath": "v1/organizations/{organizationsId}/kajPolicyConfig",
           "httpMethod": "PATCH",
           "id": "cloudkms.organizations.updateKajPolicyConfig",
@@ -420,7 +420,7 @@
           ]
         },
         "getKajPolicyConfig": {
-          "description": "Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "description": "Gets the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.",
           "flatPath": "v1/projects/{projectsId}/kajPolicyConfig",
           "httpMethod": "GET",
           "id": "cloudkms.projects.getKajPolicyConfig",
@@ -559,7 +559,7 @@
           ]
         },
         "updateKajPolicyConfig": {
-          "description": "Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "description": "Updates the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.",
           "flatPath": "v1/projects/{projectsId}/kajPolicyConfig",
           "httpMethod": "PATCH",
           "id": "cloudkms.projects.updateKajPolicyConfig",
@@ -2496,7 +2496,7 @@
       }
     }
   },
-  "revision": "20250911",
+  "revision": "20250926",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
