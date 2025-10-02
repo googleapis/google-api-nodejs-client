@@ -3755,6 +3755,151 @@ export namespace dialogflow_v2beta1 {
     service?: string | null;
   }
   /**
+   * Agent Coaching instructions that customer can configure.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AgentCoachingInstruction {
+    /**
+     * Optional. The action that human agent should take. For example, "apologize for the slow shipping". If the users only want to use agent coaching for intent detection, agent_action can be empty
+     */
+    agentAction?: string | null;
+    /**
+     * Optional. The condition of the instruction. For example, "the customer wants to cancel an order". If the users want the instruction to be triggered unconditionally, the condition can be empty.
+     */
+    condition?: string | null;
+    /**
+     * Optional. The detailed description of this instruction.
+     */
+    displayDetails?: string | null;
+    /**
+     * Optional. Display name for the instruction.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Duplication check for the AgentCoachingInstruction.
+     */
+    duplicateCheckResult?: Schema$GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResult;
+    /**
+     * Optional. The action that system should take. For example, "call GetOrderTime with order_number={order number provided by the customer\}". If the users don't have plugins or don't want to trigger plugins, the system_action can be empty
+     */
+    systemAction?: string | null;
+  }
+  /**
+   * Duplication check for the suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResult {
+    /**
+     * Output only. The duplicate suggestions.
+     */
+    duplicateSuggestions?: Schema$GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion[];
+  }
+  /**
+   * The duplicate suggestion details.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion {
+    /**
+     * Output only. The answer record id of the past duplicate suggestion.
+     */
+    answerRecord?: string | null;
+    /**
+     * Output only. The similarity score of between the past and current suggestion.
+     */
+    similarityScore?: number | null;
+    /**
+     * Output only. The index of the duplicate suggestion in the past suggestion list.
+     */
+    suggestionIndex?: number | null;
+  }
+  /**
+   * Suggestion for coaching agents.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AgentCoachingSuggestion {
+    /**
+     * Optional. Suggested actions for the agent to take.
+     */
+    agentActionSuggestions?: Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionAgentActionSuggestion[];
+    /**
+     * Optional. Instructions applicable based on the current context.
+     */
+    applicableInstructions?: Schema$GoogleCloudDialogflowV2AgentCoachingInstruction[];
+    /**
+     * Optional. Sample response for the Agent.
+     */
+    sampleResponses?: Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionSampleResponse[];
+  }
+  /**
+   * Actions suggested for the agent. This is based on applicable instructions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionAgentActionSuggestion {
+    /**
+     * Optional. The suggested action for the agent.
+     */
+    agentAction?: string | null;
+    /**
+     * Output only. Duplicate check result for the agent action suggestion.
+     */
+    duplicateCheckResult?: Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResult;
+    /**
+     * Output only. Sources for the agent action suggestion.
+     */
+    sources?: Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionSources;
+  }
+  /**
+   * Duplication check for the suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResult {
+    /**
+     * Output only. The duplicate suggestions.
+     */
+    duplicateSuggestions?: Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion[];
+  }
+  /**
+   * The duplicate suggestion details. Keeping answer_record and sources together as they are identifiers for duplicate suggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion {
+    /**
+     * Output only. The answer record id of the past duplicate suggestion.
+     */
+    answerRecord?: string | null;
+    /**
+     * Output only. The similarity score of between the past and current suggestion.
+     */
+    similarityScore?: number | null;
+    /**
+     * Output only. Sources for the suggestion.
+     */
+    sources?: Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionSources;
+    /**
+     * Output only. The index of the duplicate suggestion in the past suggestion list.
+     */
+    suggestionIndex?: number | null;
+  }
+  /**
+   * Sample response that the agent can use. This could be based on applicable instructions and ingested data from other systems.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionSampleResponse {
+    /**
+     * Output only. Duplicate check result for the sample response.
+     */
+    duplicateCheckResult?: Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResult;
+    /**
+     * Optional. Sample response for Agent in text.
+     */
+    responseText?: string | null;
+    /**
+     * Output only. Sources for the Sample Response.
+     */
+    sources?: Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionSources;
+  }
+  /**
+   * Sources for the suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AgentCoachingSuggestionSources {
+    /**
+     * Output only. Source instruction indexes for the suggestion. This is the index of the applicable_instructions field.
+     */
+    instructionIndexes?: number[] | null;
+  }
+  /**
    * Represents a part of a message possibly annotated with an entity. The part can be an entity or purely a part of the message between two entities or message start/end.
    */
   export interface Schema$GoogleCloudDialogflowV2AnnotatedMessagePart {
@@ -3976,6 +4121,172 @@ export namespace dialogflow_v2beta1 {
      * Output only. The generator suggestion.
      */
     generatorSuggestion?: Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestion;
+  }
+  /**
+   * Agent Coaching context that customer can configure.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentCoachingContext {
+    /**
+     * Optional. Customized instructions for agent coaching.
+     */
+    instructions?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingInstruction[];
+    /**
+     * Optional. Output language code.
+     */
+    outputLanguageCode?: string | null;
+    /**
+     * Optional. The overarching guidance for the agent coaching. This should be set only for v1.5 and later versions.
+     */
+    overarchingGuidance?: string | null;
+    /**
+     * Optional. Version of the feature. If not set, default to latest version. Current candidates are ["2.5"].
+     */
+    version?: string | null;
+  }
+  /**
+   * Agent Coaching instructions that customer can configure.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentCoachingInstruction {
+    /**
+     * Optional. The action that human agent should take. For example, "apologize for the slow shipping". If the users only want to use agent coaching for intent detection, agent_action can be empty
+     */
+    agentAction?: string | null;
+    /**
+     * Optional. The condition of the instruction. For example, "the customer wants to cancel an order". If the users want the instruction to be triggered unconditionally, the condition can be empty.
+     */
+    condition?: string | null;
+    /**
+     * Optional. The detailed description of this instruction.
+     */
+    displayDetails?: string | null;
+    /**
+     * Optional. Display name for the instruction.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Duplication check for the AgentCoachingInstruction.
+     */
+    duplicateCheckResult?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResult;
+    /**
+     * Optional. The action that system should take. For example, "call GetOrderTime with order_number={order number provided by the customer\}". If the users don't have plugins or don't want to trigger plugins, the system_action can be empty
+     */
+    systemAction?: string | null;
+  }
+  /**
+   * Duplication check for the suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResult {
+    /**
+     * Output only. The duplicate suggestions.
+     */
+    duplicateSuggestions?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion[];
+  }
+  /**
+   * The duplicate suggestion details.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion {
+    /**
+     * Output only. The answer record id of the past duplicate suggestion.
+     */
+    answerRecord?: string | null;
+    /**
+     * Output only. The similarity score of between the past and current suggestion.
+     */
+    similarityScore?: number | null;
+    /**
+     * Output only. The index of the duplicate suggestion in the past suggestion list.
+     */
+    suggestionIndex?: number | null;
+  }
+  /**
+   * Suggestion for coaching agents.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestion {
+    /**
+     * Optional. Suggested actions for the agent to take.
+     */
+    agentActionSuggestions?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionAgentActionSuggestion[];
+    /**
+     * Optional. Instructions applicable based on the current context.
+     */
+    applicableInstructions?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingInstruction[];
+    /**
+     * Optional. Sample response for the Agent.
+     */
+    sampleResponses?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSampleResponse[];
+  }
+  /**
+   * Actions suggested for the agent. This is based on applicable instructions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionAgentActionSuggestion {
+    /**
+     * Optional. The suggested action for the agent.
+     */
+    agentAction?: string | null;
+    /**
+     * Output only. Duplicate check result for the agent action suggestion.
+     */
+    duplicateCheckResult?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResult;
+    /**
+     * Output only. Sources for the agent action suggestion.
+     */
+    sources?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources;
+  }
+  /**
+   * Duplication check for the suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResult {
+    /**
+     * Output only. The duplicate suggestions.
+     */
+    duplicateSuggestions?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion[];
+  }
+  /**
+   * The duplicate suggestion details. Keeping answer_record and sources together as they are identifiers for duplicate suggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion {
+    /**
+     * Output only. The answer record id of the past duplicate suggestion.
+     */
+    answerRecord?: string | null;
+    /**
+     * Output only. The similarity score of between the past and current suggestion.
+     */
+    similarityScore?: number | null;
+    /**
+     * Output only. Sources for the suggestion.
+     */
+    sources?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources;
+    /**
+     * Output only. The index of the duplicate suggestion in the past suggestion list.
+     */
+    suggestionIndex?: number | null;
+  }
+  /**
+   * Sample response that the agent can use. This could be based on applicable instructions and ingested data from other systems.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSampleResponse {
+    /**
+     * Output only. Duplicate check result for the sample response.
+     */
+    duplicateCheckResult?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResult;
+    /**
+     * Optional. Sample response for Agent in text.
+     */
+    responseText?: string | null;
+    /**
+     * Output only. Sources for the Sample Response.
+     */
+    sources?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources;
+  }
+  /**
+   * Sources for the suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources {
+    /**
+     * Output only. Source instruction indexes for the suggestion. This is the index of the applicable_instructions field.
+     */
+    instructionIndexes?: number[] | null;
   }
   /**
    * The request message for Participants.AnalyzeContent.
@@ -4589,6 +4900,10 @@ export namespace dialogflow_v2beta1 {
    * Contents ingested.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ConversationContextReferenceContextContent {
+    /**
+     * If the context content was generated from a tool call, specify the answer record associated with the tool call. Format: `projects//locations//answerRecords/`.
+     */
+    answerRecord?: string | null;
     /**
      * Required. The information ingested in a single request.
      */
@@ -5428,6 +5743,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Generator {
     /**
+     * Input of Agent Coaching feature.
+     */
+    agentCoachingContext?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingContext;
+    /**
      * Output only. Creation time of this generator.
      */
     createTime?: string | null;
@@ -5451,6 +5770,10 @@ export namespace dialogflow_v2beta1 {
      * Optional. The published Large Language Model name. * To use the latest model version, specify the model name without version number. Example: `text-bison` * To use a stable model version, specify the version number as well. Example: `text-bison@002`.
      */
     publishedModel?: string | null;
+    /**
+     * Optional. Configuration for suggestion deduping. This is only applicable to AI Coach feature.
+     */
+    suggestionDedupingConfig?: Schema$GoogleCloudDialogflowV2beta1SuggestionDedupingConfig;
     /**
      * Input of Summarization feature.
      */
@@ -5500,6 +5823,14 @@ export namespace dialogflow_v2beta1 {
      * Output only. Identifier. The resource name of the evaluation. Format: `projects//locations//generators// evaluations/`
      */
     name?: string | null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Isolation status of the model. The field is an aggregated value of ZI status of its underlying dependencies. See more details in go/zicy-resource-placement#resource-status
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation status of the model. The field is an aggregated value of ZS status of its underlying dependencies. See more details in go/zicy-resource-placement#resource-status
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Only available when the summarization generator is provided.
      */
@@ -5611,6 +5942,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestion {
     /**
+     * Optional. Suggestion to coach the agent.
+     */
+    agentCoachingSuggestion?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingSuggestion;
+    /**
      * Optional. Free form suggestion.
      */
     freeFormSuggestion?: Schema$GoogleCloudDialogflowV2beta1FreeFormSuggestion;
@@ -5701,6 +6036,10 @@ export namespace dialogflow_v2beta1 {
      */
     disableHighLatencyFeaturesSyncDelivery?: boolean | null;
     /**
+     * Optional. If true, enable asynchronous execution of tools.
+     */
+    enableAsyncToolCall?: boolean | null;
+    /**
      * Configuration of different suggestion features. One feature can have only one config.
      */
     featureConfigs?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig[];
@@ -5712,6 +6051,14 @@ export namespace dialogflow_v2beta1 {
      * If `group_suggestion_responses` is false, and there are multiple `feature_configs` in `event based suggestion` or StreamingAnalyzeContent, we will try to deliver suggestions to customers as soon as we get new suggestion. Different type of suggestions based on the same context will be in separate Pub/Sub event or `StreamingAnalyzeContentResponse`. If `group_suggestion_responses` set to true. All the suggestions to the same participant based on the same context will be grouped into a single Pub/Sub event or StreamingAnalyzeContentResponse.
      */
     groupSuggestionResponses?: boolean | null;
+    /**
+     * Optional. Enable skipping event based suggestion if the suggestion is empty. For example, with this field disabled, Knowledge Assist feature sends a Pub/Sub message when there are no suggestions. Enabling this field will change the behavior to skip the Pub/Sub message in this situation.
+     */
+    skipEmptyEventBasedSuggestion?: boolean | null;
+    /**
+     * Optional. If true, use unredacted transcript data (Supported features: AI_COACH) and use unredacted ingested context (Supported features: All Agent Assist features)
+     */
+    useUnredactedConversationData?: boolean | null;
   }
   /**
    * Config for suggestion features.
@@ -5746,9 +6093,17 @@ export namespace dialogflow_v2beta1 {
      */
     enableQuerySuggestionWhenNoAnswer?: boolean | null;
     /**
+     * Optional. Enable returning detailed reasons for suggestion results. For example, with this field disabled, Knowledge Search feature returns NotFound error when no answer is found for the input query. Enabling this field will change the behavior to return an OK response with detailed information indicating the lack of results. Supported features: KNOWLEDGE_SEARCH, KNOWLEDGE_ASSIST
+     */
+    enableResponseDebugInfo?: boolean | null;
+    /**
      * Configs of query.
      */
     queryConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfig;
+    /**
+     * Optional. Settings for Responsible AI checks. Supported features: KNOWLEDGE_ASSIST
+     */
+    raiSettings?: Schema$GoogleCloudDialogflowV2beta1RaiSettings;
     /**
      * The suggestion feature.
      */
@@ -7743,6 +8098,28 @@ export namespace dialogflow_v2beta1 {
     webhookSource?: string | null;
   }
   /**
+   * Settings for Responsible AI checks.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1RaiSettings {
+    /**
+     * Configuration for a set of RAI categories.
+     */
+    raiCategoryConfigs?: Schema$GoogleCloudDialogflowV2beta1RaiSettingsRaiCategoryConfig[];
+  }
+  /**
+   * Configuration for a specific RAI category.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1RaiSettingsRaiCategoryConfig {
+    /**
+     * Optional. The RAI category.
+     */
+    category?: string | null;
+    /**
+     * Optional. The sensitivity level for this category.
+     */
+    sensitivityLevel?: string | null;
+  }
+  /**
    * Request message for Documents.ReloadDocument.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ReloadDocumentRequest {
@@ -8506,6 +8883,19 @@ export namespace dialogflow_v2beta1 {
     uri?: string | null;
   }
   /**
+   * Config for suggestion deduping. NEXT_ID: 3
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestionDedupingConfig {
+    /**
+     * Optional. Whether to enable suggestion deduping.
+     */
+    enableDeduping?: boolean | null;
+    /**
+     * Optional. The threshold for similarity between two suggestions. Acceptable value is [0.0, 1.0], default to 0.8
+     */
+    similarityThreshold?: number | null;
+  }
+  /**
    * Represents suggested answer from "frequently asked questions".
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestionFaqAnswer {
@@ -8544,11 +8934,15 @@ export namespace dialogflow_v2beta1 {
     type?: string | null;
   }
   /**
-   * Represents the selection of a suggestion.
+   * Represents the action to take for a tool call that requires confirmation.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestionInput {
     /**
-     * Required. The ID of a suggestion selected by the human agent. The suggestion(s) were generated in a previous call to request Dialogflow assist. The format is: `projects//locations//answerRecords/` where is an alphanumeric string.
+     * Optional. The type of action to take with the tool.
+     */
+    action?: string | null;
+    /**
+     * Required. Format: `projects//locations//answerRecords/` The answer record associated with the tool call.
      */
     answerRecord?: string | null;
     /**
@@ -8556,9 +8950,13 @@ export namespace dialogflow_v2beta1 {
      */
     intentInput?: Schema$GoogleCloudDialogflowV2beta1IntentInput;
     /**
-     * In Dialogflow assist for v3, the user can submit a form by sending a SuggestionInput. The form is uniquely determined by the answer_record field, which identifies a v3 QueryResult containing the current page. The form parameters are specified via the parameters field. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: * MapKey type: string * MapKey value: parameter name * MapValue type: If parameter's entity type is a composite entity then use map, otherwise, depending on the parameter value type, it could be one of string, number, boolean, null, list or map. * MapValue value: If parameter's entity type is a composite entity then use map from composite entity property names to property values, otherwise, use parameter value.
+     * Parameters to be used for the tool call. If not provided, the tool will be called without any parameters.
      */
     parameters?: {[key: string]: any} | null;
+    /**
+     * Optional. Time when the current suggest input is sent. For tool calls, this timestamp (along with the answer record) will be included in the corresponding tool call result so that it can be identified.
+     */
+    sendTime?: string | null;
     /**
      * Optional. If the customer edited the suggestion before using it, include the revised text here.
      */
@@ -9054,6 +9452,10 @@ export namespace dialogflow_v2beta1 {
      */
     action?: string | null;
     /**
+     * Optional. The answer record associated with this tool call.
+     */
+    answerRecord?: string | null;
+    /**
      * Output only. Create time of the tool call.
      */
     createTime?: string | null;
@@ -9062,9 +9464,21 @@ export namespace dialogflow_v2beta1 {
      */
     inputParameters?: {[key: string]: any} | null;
     /**
+     * Output only. State of the tool call
+     */
+    state?: string | null;
+    /**
      * Optional. The tool associated with this call. Format: `projects//locations//tools/`.
      */
     tool?: string | null;
+    /**
+     * Optional. A human readable description of the tool.
+     */
+    toolDisplayDetails?: string | null;
+    /**
+     * Optional. A human readable short name of the tool, to be shown on the UI.
+     */
+    toolDisplayName?: string | null;
   }
   /**
    * The result of calling a tool's action.
@@ -9074,6 +9488,10 @@ export namespace dialogflow_v2beta1 {
      * Optional. The name of the tool's action associated with this call.
      */
     action?: string | null;
+    /**
+     * Optional. The answer record associated with this tool call result.
+     */
+    answerRecord?: string | null;
     /**
      * Only populated if the response content is utf-8 encoded.
      */
@@ -9614,6 +10032,10 @@ export namespace dialogflow_v2beta1 {
    * Suggestion generated using a Generator.
    */
   export interface Schema$GoogleCloudDialogflowV2GeneratorSuggestion {
+    /**
+     * Optional. Suggestion to coach the agent.
+     */
+    agentCoachingSuggestion?: Schema$GoogleCloudDialogflowV2AgentCoachingSuggestion;
     /**
      * Optional. Free form suggestion.
      */
@@ -10883,6 +11305,10 @@ export namespace dialogflow_v2beta1 {
      */
     action?: string | null;
     /**
+     * Optional. The answer record associated with this tool call.
+     */
+    answerRecord?: string | null;
+    /**
      * Output only. Create time of the tool call.
      */
     createTime?: string | null;
@@ -10891,9 +11317,21 @@ export namespace dialogflow_v2beta1 {
      */
     inputParameters?: {[key: string]: any} | null;
     /**
+     * Output only. State of the tool call.
+     */
+    state?: string | null;
+    /**
      * Optional. The tool associated with this call. Format: `projects//locations//tools/`.
      */
     tool?: string | null;
+    /**
+     * Optional. A human readable description of the tool.
+     */
+    toolDisplayDetails?: string | null;
+    /**
+     * Optional. A human readable short name of the tool, to be shown on the UI.
+     */
+    toolDisplayName?: string | null;
   }
   /**
    * The result of calling a tool's action.
@@ -10903,6 +11341,10 @@ export namespace dialogflow_v2beta1 {
      * Optional. The name of the tool's action associated with this call.
      */
     action?: string | null;
+    /**
+     * Optional. The answer record associated with this tool call result.
+     */
+    answerRecord?: string | null;
     /**
      * Only populated if the response content is utf-8 encoded.
      */
@@ -11112,6 +11554,10 @@ export namespace dialogflow_v2beta1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$GoogleLongrunningOperation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -29498,12 +29944,14 @@ export namespace dialogflow_v2beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "agentCoachingContext": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "freeFormContext": {},
      *       //   "inferenceParameter": {},
      *       //   "name": "my_name",
      *       //   "publishedModel": "my_publishedModel",
+     *       //   "suggestionDedupingConfig": {},
      *       //   "summarizationContext": {},
      *       //   "tools": [],
      *       //   "triggerEvent": "my_triggerEvent",
@@ -29515,12 +29963,14 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "agentCoachingContext": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
      *   //   "inferenceParameter": {},
      *   //   "name": "my_name",
      *   //   "publishedModel": "my_publishedModel",
+     *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
      *   //   "triggerEvent": "my_triggerEvent",
@@ -48922,12 +49372,14 @@ export namespace dialogflow_v2beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "agentCoachingContext": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "freeFormContext": {},
      *       //   "inferenceParameter": {},
      *       //   "name": "my_name",
      *       //   "publishedModel": "my_publishedModel",
+     *       //   "suggestionDedupingConfig": {},
      *       //   "summarizationContext": {},
      *       //   "tools": [],
      *       //   "triggerEvent": "my_triggerEvent",
@@ -48939,12 +49391,14 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "agentCoachingContext": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
      *   //   "inferenceParameter": {},
      *   //   "name": "my_name",
      *   //   "publishedModel": "my_publishedModel",
+     *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
      *   //   "triggerEvent": "my_triggerEvent",
@@ -49233,12 +49687,14 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "agentCoachingContext": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
      *   //   "inferenceParameter": {},
      *   //   "name": "my_name",
      *   //   "publishedModel": "my_publishedModel",
+     *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
      *   //   "triggerEvent": "my_triggerEvent",
@@ -49546,12 +50002,14 @@ export namespace dialogflow_v2beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "agentCoachingContext": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "freeFormContext": {},
      *       //   "inferenceParameter": {},
      *       //   "name": "my_name",
      *       //   "publishedModel": "my_publishedModel",
+     *       //   "suggestionDedupingConfig": {},
      *       //   "summarizationContext": {},
      *       //   "tools": [],
      *       //   "triggerEvent": "my_triggerEvent",
@@ -49563,12 +50021,14 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "agentCoachingContext": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
      *   //   "inferenceParameter": {},
      *   //   "name": "my_name",
      *   //   "publishedModel": "my_publishedModel",
+     *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
      *   //   "triggerEvent": "my_triggerEvent",
@@ -49797,6 +50257,8 @@ export namespace dialogflow_v2beta1 {
      *         //   "generatorEvaluationConfig": {},
      *         //   "initialGenerator": {},
      *         //   "name": "my_name",
+     *         //   "satisfiesPzi": false,
+     *         //   "satisfiesPzs": false,
      *         //   "summarizationMetrics": {}
      *         // }
      *       },
@@ -50100,6 +50562,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "generatorEvaluationConfig": {},
      *   //   "initialGenerator": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
      *   //   "summarizationMetrics": {}
      *   // }
      * }
@@ -52801,13 +53265,16 @@ export namespace dialogflow_v2beta1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -52949,6 +53416,10 @@ export namespace dialogflow_v2beta1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Phonenumbers {
@@ -55353,13 +55824,16 @@ export namespace dialogflow_v2beta1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -55501,6 +55975,10 @@ export namespace dialogflow_v2beta1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Phonenumbers {
