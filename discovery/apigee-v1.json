@@ -9309,6 +9309,11 @@
                   "description": "The standard list page token.",
                   "location": "query",
                   "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+name}/operations",
@@ -11284,7 +11289,7 @@
       }
     }
   },
-  "revision": "20250908",
+  "revision": "20250929",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -11901,12 +11906,14 @@
           "enum": [
             "QUOTA_COUNTER_SCOPE_UNSPECIFIED",
             "PROXY",
-            "OPERATION"
+            "OPERATION",
+            "PRODUCT"
           ],
           "enumDescriptions": [
             "When quota is not explicitly defined for each operation(REST/GraphQL), the limits set at product level will be used as a local counter for quota evaluation by all the operations, independent of proxy association.",
             "When quota is not explicitly defined for each operation(REST/GraphQL), set at product level will be used as a global counter for quota evaluation by all the operations associated with a particular proxy.",
-            "When quota is not explicitly defined for each operation(REST/GraphQL), the limits set at product level will be used as a local counter for quota evaluation by all the operations, independent of proxy association. This behavior mimics the same as QUOTA_COUNTER_SCOPE_UNSPECIFIED."
+            "When quota is not explicitly defined for each operation(REST/GraphQL), the limits set at product level will be used as a local counter for quota evaluation by all the operations, independent of proxy association. This behavior mimics the same as QUOTA_COUNTER_SCOPE_UNSPECIFIED.",
+            "When quota is not explicitly defined for each operation(REST/GraphQL), the limits set at product level will be used as a global counter for quota evaluation by all the operations."
           ],
           "type": "string"
         },
@@ -15194,6 +15201,11 @@
           "description": "Optional. Comma-separated list of CIDR blocks of length 22 and/or 28 used to create the Apigee instance. Providing CIDR ranges is optional. You can provide just /22 or /28 or both (or neither). Ranges you provide should be freely available as part of a larger named range you have allocated to the Service Networking peering. If this parameter is not provided, Apigee automatically requests an available /22 and /28 CIDR block from Service Networking. Use the /22 CIDR block for configuring your firewall needs to allow traffic from Apigee. Input formats: `a.b.c.d/22` or `e.f.g.h/28` or `a.b.c.d/22,e.f.g.h/28`",
           "type": "string"
         },
+        "isVersionLocked": {
+          "description": "Output only. Indicates whether the instance is version locked. If true, the instance will not be updated by automated runtime rollouts. This is only supported for Apigee X instances.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "lastModifiedAt": {
           "description": "Output only. Time the instance was last modified in milliseconds since epoch.",
           "format": "int64",
@@ -15203,6 +15215,10 @@
         "location": {
           "description": "Required. Compute Engine location where the instance resides.",
           "type": "string"
+        },
+        "maintenanceUpdatePolicy": {
+          "$ref": "GoogleCloudApigeeV1MaintenanceUpdatePolicy",
+          "description": "Optional. Apigee customers can set the preferred window to perform maintenance on the instance (day of the week and time of day)."
         },
         "name": {
           "description": "Required. Resource ID of the instance. Values must match the regular expression `^a-z{0,30}[a-z\\d]$`.",
@@ -15242,6 +15258,11 @@
           "description": "Output only. Version of the runtime system running in the instance. The runtime system is the set of components that serve the API Proxy traffic in your Environments.",
           "readOnly": true,
           "type": "string"
+        },
+        "scheduledMaintenance": {
+          "$ref": "GoogleCloudApigeeV1ScheduledMaintenance",
+          "description": "Output only. Time and date of the scheduled maintenance for this instance. This field is only populated for instances that have opted into Maintenance Window and if there is an upcoming maintenance. Cleared once the maintenance is complete.",
+          "readOnly": true
         },
         "serviceAttachment": {
           "description": "Output only. Resource name of the service attachment created for the instance in the format: `projects/*/regions/*/serviceAttachments/*` Apigee customers can privately forward traffic to this service attachment using the PSC endpoints.",
@@ -16171,6 +16192,69 @@
             "$ref": "GoogleCloudApigeeV1TraceConfigOverride"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1MaintenanceUpdatePolicy": {
+      "description": "MaintenanceUpdatePolicy specifies the preferred window to perform maintenance on the instance (day of the week and time of day).",
+      "id": "GoogleCloudApigeeV1MaintenanceUpdatePolicy",
+      "properties": {
+        "maintenanceChannel": {
+          "description": "Optional. Maintenance channel to specify relative scheduling for maintenance.",
+          "enum": [
+            "MAINTENANCE_CHANNEL_UNSPECIFIED",
+            "WEEK1",
+            "WEEK2"
+          ],
+          "enumDescriptions": [
+            "Unspecified maintenance channel.",
+            "Receive 1 weeks notice before maintenance occurs",
+            "Receive 2 weeks notice before maintenance occurs"
+          ],
+          "type": "string"
+        },
+        "maintenanceWindows": {
+          "description": "Optional. Preferred windows to perform maintenance. Currently limited to 1.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1MaintenanceUpdatePolicyMaintenanceWindow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1MaintenanceUpdatePolicyMaintenanceWindow": {
+      "description": "MaintenanceWindow specifies the preferred day of the week and time of day to perform maintenance.",
+      "id": "GoogleCloudApigeeV1MaintenanceUpdatePolicyMaintenanceWindow",
+      "properties": {
+        "day": {
+          "description": "Required. Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "type": "string"
+        },
+        "startTime": {
+          "$ref": "GoogleTypeTimeOfDay",
+          "description": "Required. The start time (UTC) of the maintenance window."
         }
       },
       "type": "object"
@@ -18003,6 +18087,19 @@
           "description": "Field sampling rate. This value is only applicable when using the PROBABILITY sampler. The supported values are > 0 and <= 0.5.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ScheduledMaintenance": {
+      "description": "Scheduled maintenance information for an instance.",
+      "id": "GoogleCloudApigeeV1ScheduledMaintenance",
+      "properties": {
+        "startTime": {
+          "description": "Output only. The start time (UTC) of the scheduled maintenance.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -20132,6 +20229,13 @@
             "$ref": "GoogleLongrunningOperation"
           },
           "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -20294,6 +20398,33 @@
           "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeTimeOfDay": {
+      "description": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.",
+      "id": "GoogleTypeTimeOfDay",
+      "properties": {
+        "hours": {
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
