@@ -768,6 +768,10 @@ export namespace firebaseml_v2beta {
      */
     frequencyPenalty?: number | null;
     /**
+     * Optional. Config for image generation features.
+     */
+    imageConfig?: Schema$GoogleCloudAiplatformV1beta1ImageConfig;
+    /**
      * Optional. Logit probabilities.
      */
     logprobs?: number | null;
@@ -1087,6 +1091,15 @@ export namespace firebaseml_v2beta {
      * Segment of the content this support belongs to.
      */
     segment?: Schema$GoogleCloudAiplatformV1beta1Segment;
+  }
+  /**
+   * Config for image generation features.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ImageConfig {
+    /**
+     * Optional. The desired aspect ratio for the generated images. The following aspect ratios are supported: "1:1" "2:3", "3:2" "3:4", "4:3" "4:5", "5:4" "9:16", "16:9" "21:9"
+     */
+    aspectRatio?: string | null;
   }
   /**
    * Logprobs Result
