@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20250917",
+  "revision": "20250928",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1942,7 +1942,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
       "properties": {
         "challenge": {
-          "description": "Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE keys",
+          "description": "Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE keys.",
           "enum": [
             "CHALLENGE_UNSPECIFIED",
             "NOCAPTCHA",
