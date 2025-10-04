@@ -1092,6 +1092,11 @@
                       "description": "Token identifying which result to start with, which is returned by a previous list call.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v2/{+name}/operations",
@@ -1319,7 +1324,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project}/locations/{location}/services/{service_id}",
+                      "description": "Identifier. The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project}/locations/{location}/services/{service_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                       "required": true,
@@ -1937,7 +1942,7 @@
       }
     }
   },
-  "revision": "20250905",
+  "revision": "20250929",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -3950,7 +3955,7 @@
           "description": "Optional. Settings for multi-region deployment."
         },
         "name": {
-          "description": "The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project}/locations/{location}/services/{service_id}",
+          "description": "Identifier. The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project}/locations/{location}/services/{service_id}",
           "type": "string"
         },
         "observedGeneration": {
@@ -4103,6 +4108,10 @@
         "buildpackBuild": {
           "$ref": "GoogleCloudRunV2BuildpacksBuild",
           "description": "Build the source using Buildpacks."
+        },
+        "client": {
+          "description": "Optional. The client that initiated the build request.",
+          "type": "string"
         },
         "dockerBuild": {
           "$ref": "GoogleCloudRunV2DockerBuild",
@@ -6559,6 +6568,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
