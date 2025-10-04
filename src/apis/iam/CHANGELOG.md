@@ -1,5 +1,16 @@
 # Changelog
 
+## [34.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v33.0.0...iam-v34.0.0) (2025-10-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3802](https://github.com/googleapis/google-api-nodejs-client/issues/3802)) ([3c6fe72](https://github.com/googleapis/google-api-nodejs-client/commit/3c6fe7274a6123b60a09ef78e0f62d57ac2524bb))
+
 ## [33.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v32.0.0...iam-v33.0.0) (2025-09-30)
 
 
