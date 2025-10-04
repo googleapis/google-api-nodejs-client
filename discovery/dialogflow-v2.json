@@ -8656,6 +8656,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v2/{+name}/operations",
@@ -9008,6 +9013,11 @@
                   "description": "The standard list page token.",
                   "location": "query",
                   "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v2/{+name}/operations",
@@ -9086,7 +9096,7 @@
       }
     }
   },
-  "revision": "20250919",
+  "revision": "20250930",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -14217,6 +14227,233 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2AgentCoachingContext": {
+      "description": "Agent Coaching context that customer can configure.",
+      "id": "GoogleCloudDialogflowV2AgentCoachingContext",
+      "properties": {
+        "instructions": {
+          "description": "Optional. Customized instructions for agent coaching.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2AgentCoachingInstruction"
+          },
+          "type": "array"
+        },
+        "outputLanguageCode": {
+          "description": "Optional. Output language code.",
+          "type": "string"
+        },
+        "overarchingGuidance": {
+          "description": "Optional. The overarching guidance for the agent coaching. This should be set only for v1.5 and later versions.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. Version of the feature. If not set, default to latest version. Current candidates are [\"1.2\"].",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2AgentCoachingInstruction": {
+      "description": "Agent Coaching instructions that customer can configure.",
+      "id": "GoogleCloudDialogflowV2AgentCoachingInstruction",
+      "properties": {
+        "agentAction": {
+          "description": "Optional. The action that human agent should take. For example, \"apologize for the slow shipping\". If the users only want to use agent coaching for intent detection, agent_action can be empty",
+          "type": "string"
+        },
+        "condition": {
+          "description": "Optional. The condition of the instruction. For example, \"the customer wants to cancel an order\". If the users want the instruction to be triggered unconditionally, the condition can be empty.",
+          "type": "string"
+        },
+        "displayDetails": {
+          "description": "Optional. The detailed description of this instruction.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name for the instruction.",
+          "type": "string"
+        },
+        "duplicateCheckResult": {
+          "$ref": "GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResult",
+          "description": "Output only. Duplication check for the AgentCoachingInstruction.",
+          "readOnly": true
+        },
+        "systemAction": {
+          "description": "Optional. The action that system should take. For example, \"call GetOrderTime with order_number={order number provided by the customer}\". If the users don't have plugins or don't want to trigger plugins, the system_action can be empty",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResult": {
+      "description": "Duplication check for the suggestion.",
+      "id": "GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResult",
+      "properties": {
+        "duplicateSuggestions": {
+          "description": "Output only. The duplicate suggestions.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion": {
+      "description": "The duplicate suggestion details.",
+      "id": "GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion",
+      "properties": {
+        "answerRecord": {
+          "description": "Output only. The answer record id of the past duplicate suggestion.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "similarityScore": {
+          "description": "Output only. The similarity score of between the past and current suggestion.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "suggestionIndex": {
+          "description": "Output only. The index of the duplicate suggestion in the past suggestion list.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2AgentCoachingSuggestion": {
+      "description": "Suggestion for coaching agents.",
+      "id": "GoogleCloudDialogflowV2AgentCoachingSuggestion",
+      "properties": {
+        "agentActionSuggestions": {
+          "description": "Optional. Suggested actions for the agent to take.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2AgentCoachingSuggestionAgentActionSuggestion"
+          },
+          "type": "array"
+        },
+        "applicableInstructions": {
+          "description": "Optional. Instructions applicable based on the current context.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2AgentCoachingInstruction"
+          },
+          "type": "array"
+        },
+        "sampleResponses": {
+          "description": "Optional. Sample response for the Agent.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2AgentCoachingSuggestionSampleResponse"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2AgentCoachingSuggestionAgentActionSuggestion": {
+      "description": "Actions suggested for the agent. This is based on applicable instructions.",
+      "id": "GoogleCloudDialogflowV2AgentCoachingSuggestionAgentActionSuggestion",
+      "properties": {
+        "agentAction": {
+          "description": "Optional. The suggested action for the agent.",
+          "type": "string"
+        },
+        "duplicateCheckResult": {
+          "$ref": "GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResult",
+          "description": "Output only. Duplicate check result for the agent action suggestion.",
+          "readOnly": true
+        },
+        "sources": {
+          "$ref": "GoogleCloudDialogflowV2AgentCoachingSuggestionSources",
+          "description": "Output only. Sources for the agent action suggestion.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResult": {
+      "description": "Duplication check for the suggestion.",
+      "id": "GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResult",
+      "properties": {
+        "duplicateSuggestions": {
+          "description": "Output only. The duplicate suggestions.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion": {
+      "description": "The duplicate suggestion details. Keeping answer_record and sources together as they are identifiers for duplicate suggestions.",
+      "id": "GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion",
+      "properties": {
+        "answerRecord": {
+          "description": "Output only. The answer record id of the past duplicate suggestion.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "similarityScore": {
+          "description": "Output only. The similarity score of between the past and current suggestion.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "sources": {
+          "$ref": "GoogleCloudDialogflowV2AgentCoachingSuggestionSources",
+          "description": "Output only. Sources for the suggestion.",
+          "readOnly": true
+        },
+        "suggestionIndex": {
+          "description": "Output only. The index of the duplicate suggestion in the past suggestion list.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2AgentCoachingSuggestionSampleResponse": {
+      "description": "Sample response that the agent can use. This could be based on applicable instructions and ingested data from other systems.",
+      "id": "GoogleCloudDialogflowV2AgentCoachingSuggestionSampleResponse",
+      "properties": {
+        "duplicateCheckResult": {
+          "$ref": "GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResult",
+          "description": "Output only. Duplicate check result for the sample response.",
+          "readOnly": true
+        },
+        "responseText": {
+          "description": "Optional. Sample response for Agent in text.",
+          "type": "string"
+        },
+        "sources": {
+          "$ref": "GoogleCloudDialogflowV2AgentCoachingSuggestionSources",
+          "description": "Output only. Sources for the Sample Response.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2AgentCoachingSuggestionSources": {
+      "description": "Sources for the suggestion.",
+      "id": "GoogleCloudDialogflowV2AgentCoachingSuggestionSources",
+      "properties": {
+        "instructionIndexes": {
+          "description": "Output only. Source instruction indexes for the suggestion. This is the index of the applicable_instructions field.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2AnalyzeContentRequest": {
       "description": "The request message for Participants.AnalyzeContent.",
       "id": "GoogleCloudDialogflowV2AnalyzeContentRequest",
@@ -15041,6 +15278,10 @@
       "description": "Contents ingested.",
       "id": "GoogleCloudDialogflowV2ConversationContextReferenceContextContent",
       "properties": {
+        "answerRecord": {
+          "description": "If the context content was generated from a tool call, specify the answer record associated with the tool call. Format: `projects//locations//answerRecords/`.",
+          "type": "string"
+        },
         "content": {
           "description": "Required. The information ingested in a single request.",
           "type": "string"
@@ -16572,6 +16813,10 @@
       "description": "LLM generator.",
       "id": "GoogleCloudDialogflowV2Generator",
       "properties": {
+        "agentCoachingContext": {
+          "$ref": "GoogleCloudDialogflowV2AgentCoachingContext",
+          "description": "Input of prebuilt Agent Coaching feature."
+        },
         "createTime": {
           "description": "Output only. Creation time of this generator.",
           "format": "google-datetime",
@@ -16598,6 +16843,10 @@
         "publishedModel": {
           "description": "Optional. The published Large Language Model name. * To use the latest model version, specify the model name without version number. Example: `text-bison` * To use a stable model version, specify the version number as well. Example: `text-bison@002`.",
           "type": "string"
+        },
+        "suggestionDedupingConfig": {
+          "$ref": "GoogleCloudDialogflowV2SuggestionDedupingConfig",
+          "description": "Optional. Configuration for suggestion deduping. This is only applicable to AI Coach feature."
         },
         "summarizationContext": {
           "$ref": "GoogleCloudDialogflowV2SummarizationContext",
@@ -16674,6 +16923,16 @@
           "description": "Output only. Identifier. The resource name of the evaluation. Format: `projects//locations//generators// evaluations/`",
           "readOnly": true,
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. A read only boolean field reflecting Zone Isolation status of the model. The field is an aggregated value of ZI status of its underlying dependencies. See more details in go/zicy-resource-placement#resource-status",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. A read only boolean field reflecting Zone Separation status of the model. The field is an aggregated value of ZS status of its underlying dependencies. See more details in go/zicy-resource-placement#resource-status",
+          "readOnly": true,
+          "type": "boolean"
         },
         "summarizationMetrics": {
           "$ref": "GoogleCloudDialogflowV2SummarizationEvaluationMetrics",
@@ -16834,6 +17093,10 @@
       "description": "Suggestion generated using a Generator.",
       "id": "GoogleCloudDialogflowV2GeneratorSuggestion",
       "properties": {
+        "agentCoachingSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2AgentCoachingSuggestion",
+          "description": "Optional. Suggestion to coach the agent."
+        },
         "freeFormSuggestion": {
           "$ref": "GoogleCloudDialogflowV2FreeFormSuggestion",
           "description": "Optional. Free form suggestion."
@@ -16940,6 +17203,10 @@
           "description": "Optional. When disable_high_latency_features_sync_delivery is true and using the AnalyzeContent API, we will not deliver the responses from high latency features in the API response. The human_agent_assistant_config.notification_config must be configured and enable_event_based_suggestion must be set to true to receive the responses from high latency features in Pub/Sub. High latency feature(s): KNOWLEDGE_ASSIST",
           "type": "boolean"
         },
+        "enableAsyncToolCall": {
+          "description": "Optional. If true, enable asynchronous execution of tools.",
+          "type": "boolean"
+        },
         "featureConfigs": {
           "description": "Configuration of different suggestion features. One feature can have only one config.",
           "items": {
@@ -16956,6 +17223,14 @@
         },
         "groupSuggestionResponses": {
           "description": "If `group_suggestion_responses` is false, and there are multiple `feature_configs` in `event based suggestion` or StreamingAnalyzeContent, we will try to deliver suggestions to customers as soon as we get new suggestion. Different type of suggestions based on the same context will be in separate Pub/Sub event or `StreamingAnalyzeContentResponse`. If `group_suggestion_responses` set to true. All the suggestions to the same participant based on the same context will be grouped into a single Pub/Sub event or StreamingAnalyzeContentResponse.",
+          "type": "boolean"
+        },
+        "skipEmptyEventBasedSuggestion": {
+          "description": "Optional. Enable skipping event based suggestion if the suggestion is empty. For example, with this field disabled, Knowledge Assist feature sends a Pub/Sub message when there are no suggestions. Enabling this field will change the behavior to skip the Pub/Sub message in this situation.",
+          "type": "boolean"
+        },
+        "useUnredactedConversationData": {
+          "description": "Optional. If true, use unredacted transcript data (Supported features: AI_COACH) and use unredacted ingested context (Supported features: All Agent Assist features)",
           "type": "boolean"
         }
       },
@@ -16993,9 +17268,17 @@
           "description": "Optional. Enable query suggestion even if we can't find its answer. By default, queries are suggested only if we find its answer. Supported features: KNOWLEDGE_ASSIST",
           "type": "boolean"
         },
+        "enableResponseDebugInfo": {
+          "description": "Optional. Enable returning detailed reasons for suggestion results. For example, with this field disabled, Knowledge Search feature returns NotFound error when no answer is found for the input query. Enabling this field will change the behavior to return an OK response with detailed information indicating the lack of results. Supported features: KNOWLEDGE_SEARCH, KNOWLEDGE_ASSIST",
+          "type": "boolean"
+        },
         "queryConfig": {
           "$ref": "GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfig",
           "description": "Configs of query."
+        },
+        "raiSettings": {
+          "$ref": "GoogleCloudDialogflowV2RaiSettings",
+          "description": "Optional. Settings for Responsible AI checks. Supported features: KNOWLEDGE_ASSIST"
         },
         "suggestionFeature": {
           "$ref": "GoogleCloudDialogflowV2SuggestionFeature",
@@ -19468,6 +19751,63 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2RaiSettings": {
+      "description": "Settings for Responsible AI checks.",
+      "id": "GoogleCloudDialogflowV2RaiSettings",
+      "properties": {
+        "raiCategoryConfigs": {
+          "description": "Configuration for a set of RAI categories.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2RaiSettingsRaiCategoryConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2RaiSettingsRaiCategoryConfig": {
+      "description": "Configuration for a specific RAI category.",
+      "id": "GoogleCloudDialogflowV2RaiSettingsRaiCategoryConfig",
+      "properties": {
+        "category": {
+          "description": "Optional. The RAI category.",
+          "enum": [
+            "RAI_CATEGORY_UNSPECIFIED",
+            "DANGEROUS_CONTENT",
+            "SEXUALLY_EXPLICIT",
+            "HARASSMENT",
+            "HATE_SPEECH"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Dangerous content.",
+            "Sexually explicit content.",
+            "Harassment content.",
+            "Hate speech content."
+          ],
+          "type": "string"
+        },
+        "sensitivityLevel": {
+          "description": "Optional. The sensitivity level for this category.",
+          "enum": [
+            "SENSITIVITY_LEVEL_UNSPECIFIED",
+            "BLOCK_MOST",
+            "BLOCK_SOME",
+            "BLOCK_FEW",
+            "BLOCK_NONE"
+          ],
+          "enumDescriptions": [
+            "Default value. If unspecified, the default behavior is: - DANGEROUS_CONTENT: BLOCK_FEW - SEXUALLY_EXPLICIT: BLOCK_SOME - HARASSMENT: BLOCK_SOME - HATE_SPEECH: BLOCK_SOME",
+            "Block most potentially sensitive responses.",
+            "Block some potentially sensitive responses.",
+            "Block a few potentially sensitive responses.",
+            "No filtering for this category."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2ReloadDocumentRequest": {
       "description": "Request message for Documents.ReloadDocument.",
       "id": "GoogleCloudDialogflowV2ReloadDocumentRequest",
@@ -20492,6 +20832,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2SuggestionDedupingConfig": {
+      "description": "Config for suggestion deduping. NEXT_ID: 3",
+      "id": "GoogleCloudDialogflowV2SuggestionDedupingConfig",
+      "properties": {
+        "enableDeduping": {
+          "description": "Optional. Whether to enable suggestion deduping.",
+          "type": "boolean"
+        },
+        "similarityThreshold": {
+          "description": "Optional. The threshold for similarity between two suggestions. Acceptable value is [0.0, 1.0], default to 0.8",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2SuggestionFeature": {
       "description": "The type of Human Agent Assistant API suggestion to perform, and the maximum number of results to return for that type. Multiple `Feature` objects can be specified in the `features` list.",
       "id": "GoogleCloudDialogflowV2SuggestionFeature",
@@ -20522,11 +20878,40 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2SuggestionInput": {
-      "description": "Represents the selection of a suggestion.",
+      "description": "Represents the action to take for a tool call that requires confirmation.",
       "id": "GoogleCloudDialogflowV2SuggestionInput",
       "properties": {
+        "action": {
+          "description": "Optional. The type of action to take with the tool.",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "CANCEL",
+            "REVISE",
+            "CONFIRM"
+          ],
+          "enumDescriptions": [
+            "Action not specified.",
+            "Indicates the user chooses to not make the tool call. It is only applicable to tool calls that are waiting for user confirmation.",
+            "Makes the tool call with provided parameters. This action is intended for tool calls that only read but not write data.",
+            "Makes the tool call with provided parameters. This action is intended for tool calls that may write data."
+          ],
+          "type": "string"
+        },
         "answerRecord": {
-          "description": "Required. The ID of a suggestion selected by the human agent. The suggestion(s) were generated in a previous call to request Dialogflow assist. The format is: `projects//locations//answerRecords/` where is an alphanumeric string.",
+          "description": "Required. Format: `projects//locations//answerRecords/` The answer record associated with the tool call.",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Parameters to be used for the tool call. If not provided, the tool will be called without any parameters.",
+          "type": "object"
+        },
+        "sendTime": {
+          "description": "Optional. Time when the current suggest input is sent. For tool calls, this timestamp (along with the answer record) will be included in the corresponding tool call result so that it can be identified.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -21126,6 +21511,10 @@
           "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
+        "answerRecord": {
+          "description": "Optional. The answer record associated with this tool call.",
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Create time of the tool call.",
           "format": "google-datetime",
@@ -21140,8 +21529,31 @@
           "description": "Optional. The action's input parameters.",
           "type": "object"
         },
+        "state": {
+          "description": "Output only. State of the tool call.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "TRIGGERED",
+            "NEEDS_CONFIRMATION"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The tool call has been triggered.",
+            "The tool call requires confirmation from a human."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "tool": {
           "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "type": "string"
+        },
+        "toolDisplayDetails": {
+          "description": "Optional. A human readable description of the tool.",
+          "type": "string"
+        },
+        "toolDisplayName": {
+          "description": "Optional. A human readable short name of the tool, to be shown on the UI.",
           "type": "string"
         }
       },
@@ -21153,6 +21565,10 @@
       "properties": {
         "action": {
           "description": "Optional. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "answerRecord": {
+          "description": "Optional. The answer record associated with this tool call result.",
           "type": "string"
         },
         "content": {
@@ -21414,6 +21830,207 @@
         "source": {
           "description": "Optional. A custom field used to identify the webhook source. Arbitrary strings are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_source sent to the integration or API caller.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1AgentCoachingInstruction": {
+      "description": "Agent Coaching instructions that customer can configure.",
+      "id": "GoogleCloudDialogflowV2beta1AgentCoachingInstruction",
+      "properties": {
+        "agentAction": {
+          "description": "Optional. The action that human agent should take. For example, \"apologize for the slow shipping\". If the users only want to use agent coaching for intent detection, agent_action can be empty",
+          "type": "string"
+        },
+        "condition": {
+          "description": "Optional. The condition of the instruction. For example, \"the customer wants to cancel an order\". If the users want the instruction to be triggered unconditionally, the condition can be empty.",
+          "type": "string"
+        },
+        "displayDetails": {
+          "description": "Optional. The detailed description of this instruction.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name for the instruction.",
+          "type": "string"
+        },
+        "duplicateCheckResult": {
+          "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResult",
+          "description": "Output only. Duplication check for the AgentCoachingInstruction.",
+          "readOnly": true
+        },
+        "systemAction": {
+          "description": "Optional. The action that system should take. For example, \"call GetOrderTime with order_number={order number provided by the customer}\". If the users don't have plugins or don't want to trigger plugins, the system_action can be empty",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResult": {
+      "description": "Duplication check for the suggestion.",
+      "id": "GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResult",
+      "properties": {
+        "duplicateSuggestions": {
+          "description": "Output only. The duplicate suggestions.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion": {
+      "description": "The duplicate suggestion details.",
+      "id": "GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion",
+      "properties": {
+        "answerRecord": {
+          "description": "Output only. The answer record id of the past duplicate suggestion.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "similarityScore": {
+          "description": "Output only. The similarity score of between the past and current suggestion.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "suggestionIndex": {
+          "description": "Output only. The index of the duplicate suggestion in the past suggestion list.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1AgentCoachingSuggestion": {
+      "description": "Suggestion for coaching agents.",
+      "id": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestion",
+      "properties": {
+        "agentActionSuggestions": {
+          "description": "Optional. Suggested actions for the agent to take.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionAgentActionSuggestion"
+          },
+          "type": "array"
+        },
+        "applicableInstructions": {
+          "description": "Optional. Instructions applicable based on the current context.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingInstruction"
+          },
+          "type": "array"
+        },
+        "sampleResponses": {
+          "description": "Optional. Sample response for the Agent.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSampleResponse"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionAgentActionSuggestion": {
+      "description": "Actions suggested for the agent. This is based on applicable instructions.",
+      "id": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionAgentActionSuggestion",
+      "properties": {
+        "agentAction": {
+          "description": "Optional. The suggested action for the agent.",
+          "type": "string"
+        },
+        "duplicateCheckResult": {
+          "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResult",
+          "description": "Output only. Duplicate check result for the agent action suggestion.",
+          "readOnly": true
+        },
+        "sources": {
+          "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources",
+          "description": "Output only. Sources for the agent action suggestion.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResult": {
+      "description": "Duplication check for the suggestion.",
+      "id": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResult",
+      "properties": {
+        "duplicateSuggestions": {
+          "description": "Output only. The duplicate suggestions.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion": {
+      "description": "The duplicate suggestion details. Keeping answer_record and sources together as they are identifiers for duplicate suggestions.",
+      "id": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion",
+      "properties": {
+        "answerRecord": {
+          "description": "Output only. The answer record id of the past duplicate suggestion.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "similarityScore": {
+          "description": "Output only. The similarity score of between the past and current suggestion.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "sources": {
+          "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources",
+          "description": "Output only. Sources for the suggestion.",
+          "readOnly": true
+        },
+        "suggestionIndex": {
+          "description": "Output only. The index of the duplicate suggestion in the past suggestion list.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSampleResponse": {
+      "description": "Sample response that the agent can use. This could be based on applicable instructions and ingested data from other systems.",
+      "id": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSampleResponse",
+      "properties": {
+        "duplicateCheckResult": {
+          "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResult",
+          "description": "Output only. Duplicate check result for the sample response.",
+          "readOnly": true
+        },
+        "responseText": {
+          "description": "Optional. Sample response for Agent in text.",
+          "type": "string"
+        },
+        "sources": {
+          "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources",
+          "description": "Output only. Sources for the Sample Response.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources": {
+      "description": "Sources for the suggestion.",
+      "id": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources",
+      "properties": {
+        "instructionIndexes": {
+          "description": "Output only. Source instruction indexes for the suggestion. This is the index of the applicable_instructions field.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -21877,6 +22494,10 @@
       "description": "Suggestion generated using a Generator.",
       "id": "GoogleCloudDialogflowV2beta1GeneratorSuggestion",
       "properties": {
+        "agentCoachingSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingSuggestion",
+          "description": "Optional. Suggestion to coach the agent."
+        },
         "freeFormSuggestion": {
           "$ref": "GoogleCloudDialogflowV2beta1FreeFormSuggestion",
           "description": "Optional. Free form suggestion."
@@ -24183,6 +24804,10 @@
           "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
+        "answerRecord": {
+          "description": "Optional. The answer record associated with this tool call.",
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Create time of the tool call.",
           "format": "google-datetime",
@@ -24197,8 +24822,31 @@
           "description": "Optional. The action's input parameters.",
           "type": "object"
         },
+        "state": {
+          "description": "Output only. State of the tool call",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "TRIGGERED",
+            "NEEDS_CONFIRMATION"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The tool call has been triggered.",
+            "The tool call requires confirmation from a human."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "tool": {
           "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "type": "string"
+        },
+        "toolDisplayDetails": {
+          "description": "Optional. A human readable description of the tool.",
+          "type": "string"
+        },
+        "toolDisplayName": {
+          "description": "Optional. A human readable short name of the tool, to be shown on the UI.",
           "type": "string"
         }
       },
@@ -24210,6 +24858,10 @@
       "properties": {
         "action": {
           "description": "Optional. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "answerRecord": {
+          "description": "Optional. The answer record associated with this tool call result.",
           "type": "string"
         },
         "content": {
@@ -24479,6 +25131,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
