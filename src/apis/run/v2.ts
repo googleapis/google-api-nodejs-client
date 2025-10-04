@@ -1453,7 +1453,7 @@ export namespace run_v2 {
      */
     multiRegionSettings?: Schema$GoogleCloudRunV2MultiRegionSettings;
     /**
-     * The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project\}/locations/{location\}/services/{service_id\}
+     * Identifier. The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project\}/locations/{location\}/services/{service_id\}
      */
     name?: string | null;
     /**
@@ -1564,6 +1564,10 @@ export namespace run_v2 {
      * Build the source using Buildpacks.
      */
     buildpackBuild?: Schema$GoogleCloudRunV2BuildpacksBuild;
+    /**
+     * Optional. The client that initiated the build request.
+     */
+    client?: string | null;
     /**
      * Build the source using Docker. This means the source has a Dockerfile.
      */
@@ -3227,6 +3231,10 @@ export namespace run_v2 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$GoogleLongrunningOperation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -4021,6 +4029,7 @@ export namespace run_v2 {
      *       // request body parameters
      *       // {
      *       //   "buildpackBuild": {},
+     *       //   "client": "my_client",
      *       //   "dockerBuild": {},
      *       //   "imageUri": "my_imageUri",
      *       //   "machineType": "my_machineType",
@@ -7240,13 +7249,16 @@ export namespace run_v2 {
      *     pageSize: 'placeholder-value',
      *     // Token identifying which result to start with, which is returned by a previous list call.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -7538,6 +7550,10 @@ export namespace run_v2 {
      * Token identifying which result to start with, which is returned by a previous list call.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Operations$Wait
     extends StandardParameters {
@@ -8406,7 +8422,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.services.patch({
      *     // Optional. If set to true, and if the Service does not exist, it will create a new one. The caller must have 'run.services.create' permissions if this is set to true and the Service does not exist.
      *     allowMissing: 'placeholder-value',
-     *     // The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project\}/locations/{location\}/services/{service_id\}
+     *     // Identifier. The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project\}/locations/{location\}/services/{service_id\}
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *     // Optional. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -8953,7 +8969,7 @@ export namespace run_v2 {
      */
     allowMissing?: boolean;
     /**
-     * The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project\}/locations/{location\}/services/{service_id\}
+     * Identifier. The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project\}/locations/{location\}/services/{service_id\}
      */
     name?: string;
     /**
