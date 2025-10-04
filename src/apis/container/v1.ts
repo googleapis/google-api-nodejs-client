@@ -218,7 +218,7 @@ export namespace container_v1 {
      */
     cloudRunConfig?: Schema$CloudRunConfig;
     /**
-     * Configuration for the ConfigConnector add-on, a Kubernetes extension to manage hosted GCP services through the Kubernetes API
+     * Configuration for the ConfigConnector add-on, a Kubernetes extension to manage hosted Google Cloud services through the Kubernetes API.
      */
     configConnectorConfig?: Schema$ConfigConnectorConfig;
     /**
@@ -230,7 +230,7 @@ export namespace container_v1 {
      */
     gcePersistentDiskCsiDriverConfig?: Schema$GcePersistentDiskCsiDriverConfig;
     /**
-     * Configuration for the GCP Filestore CSI driver.
+     * Configuration for the Filestore CSI driver.
      */
     gcpFilestoreCsiDriverConfig?: Schema$GcpFilestoreCsiDriverConfig;
     /**
@@ -457,6 +457,15 @@ export namespace container_v1 {
     upgradeSettings?: Schema$UpgradeSettings;
   }
   /**
+   * Autoscaled rollout policy utilizes the cluster autoscaler during blue-green upgrade to scale both the blue and green pools.
+   */
+  export interface Schema$AutoscaledRolloutPolicy {
+    /**
+     * Optional. Time to wait after cordoning the blue pool before draining the nodes. Defaults to 3 days. The value can be set between 0 and 7 days, inclusive.
+     */
+    waitForDrainDuration?: string | null;
+  }
+  /**
    * AutoUpgradeOptions defines the set of options for the user to control how the Auto Upgrades will proceed.
    */
   export interface Schema$AutoUpgradeOptions {
@@ -533,6 +542,10 @@ export namespace container_v1 {
    * Settings for blue-green upgrade.
    */
   export interface Schema$BlueGreenSettings {
+    /**
+     * Autoscaled policy for cluster autoscaler enabled blue-green upgrade.
+     */
+    autoscaledRolloutPolicy?: Schema$AutoscaledRolloutPolicy;
     /**
      * Time needed after draining entire blue pool. After this period, blue pool will be cleaned up.
      */
@@ -746,7 +759,7 @@ export namespace container_v1 {
      */
     endpoint?: string | null;
     /**
-     * GKE Enterprise Configuration.
+     * GKE Enterprise Configuration. Deprecated: GKE Enterprise features are now available without an Enterprise tier.
      */
     enterpriseConfig?: Schema$EnterpriseConfig;
     /**
@@ -958,7 +971,7 @@ export namespace container_v1 {
      */
     verticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
     /**
-     * Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.
+     * Configuration for the use of Kubernetes Service Accounts in IAM policies.
      */
     workloadIdentityConfig?: Schema$WorkloadIdentityConfig;
     /**
@@ -1101,7 +1114,7 @@ export namespace container_v1 {
      */
     desiredEnablePrivateEndpoint?: boolean | null;
     /**
-     * The desired enterprise configuration for the cluster.
+     * The desired enterprise configuration for the cluster. Deprecated: GKE Enterprise features are now available without an Enterprise tier.
      */
     desiredEnterpriseConfig?: Schema$DesiredEnterpriseConfig;
     /**
@@ -1555,7 +1568,7 @@ export namespace container_v1 {
     additionalIpRangesConfigs?: Schema$AdditionalIPRangesConfig[];
   }
   /**
-   * DesiredEnterpriseConfig is a wrapper used for updating enterprise_config.
+   * DesiredEnterpriseConfig is a wrapper used for updating enterprise_config. Deprecated: GKE Enterprise features are now available without an Enterprise tier.
    */
   export interface Schema$DesiredEnterpriseConfig {
     /**
@@ -1598,9 +1611,17 @@ export namespace container_v1 {
    */
   export interface Schema$DNSEndpointConfig {
     /**
-     * Controls whether user traffic is allowed over this endpoint. Note that GCP-managed services may still use the endpoint even if this is false.
+     * Controls whether user traffic is allowed over this endpoint. Note that Google-managed services may still use the endpoint even if this is false.
      */
     allowExternalTraffic?: boolean | null;
+    /**
+     * Controls whether the k8s certs auth is allowed via DNS.
+     */
+    enableK8sCertsViaDns?: boolean | null;
+    /**
+     * Controls whether the k8s token auth is allowed via DNS.
+     */
+    enableK8sTokensViaDns?: boolean | null;
     /**
      * Output only. The cluster's DNS endpoint configuration. A DNS format address. This is accessible from the public internet. Ex: uid.us-central1.gke.goog. Always present, but the behavior may change according to the value of DNSEndpointConfig.allow_external_traffic.
      */
@@ -1611,7 +1632,7 @@ export namespace container_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * EnterpriseConfig is the cluster enterprise configuration.
+   * EnterpriseConfig is the cluster enterprise configuration. Deprecated: GKE Enterprise features are now available without an Enterprise tier.
    */
   export interface Schema$EnterpriseConfig {
     /**
@@ -1790,11 +1811,11 @@ export namespace container_v1 {
     enabled?: boolean | null;
   }
   /**
-   * Configuration for the GCP Filestore CSI driver.
+   * Configuration for the Filestore CSI driver.
    */
   export interface Schema$GcpFilestoreCsiDriverConfig {
     /**
-     * Whether the GCP Filestore CSI driver is enabled for this cluster.
+     * Whether the Filestore CSI driver is enabled for this cluster.
      */
     enabled?: boolean | null;
   }
@@ -3600,7 +3621,7 @@ export namespace container_v1 {
     values?: string[] | null;
   }
   /**
-   * Collection of [GCP labels](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-labels).
+   * Collection of [Resource Manager labels](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-labels).
    */
   export interface Schema$ResourceLabels {
     /**
@@ -4766,7 +4787,7 @@ export namespace container_v1 {
     osVersion?: string | null;
   }
   /**
-   * Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.
+   * Configuration for the use of Kubernetes Service Accounts in IAM policies.
    */
   export interface Schema$WorkloadIdentityConfig {
     /**

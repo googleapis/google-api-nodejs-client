@@ -2660,7 +2660,7 @@
       }
     }
   },
-  "revision": "20250812",
+  "revision": "20250923",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2779,7 +2779,7 @@
         },
         "configConnectorConfig": {
           "$ref": "ConfigConnectorConfig",
-          "description": "Configuration for the ConfigConnector add-on, a Kubernetes extension to manage hosted GCP services through the Kubernetes API"
+          "description": "Configuration for the ConfigConnector add-on, a Kubernetes extension to manage hosted Google Cloud services through the Kubernetes API."
         },
         "dnsCacheConfig": {
           "$ref": "DnsCacheConfig",
@@ -2791,7 +2791,7 @@
         },
         "gcpFilestoreCsiDriverConfig": {
           "$ref": "GcpFilestoreCsiDriverConfig",
-          "description": "Configuration for the GCP Filestore CSI driver."
+          "description": "Configuration for the Filestore CSI driver."
         },
         "gcsFuseCsiDriverConfig": {
           "$ref": "GcsFuseCsiDriverConfig",
@@ -3122,6 +3122,18 @@
       },
       "type": "object"
     },
+    "AutoscaledRolloutPolicy": {
+      "description": "Autoscaled rollout policy utilizes the cluster autoscaler during blue-green upgrade to scale both the blue and green pools.",
+      "id": "AutoscaledRolloutPolicy",
+      "properties": {
+        "waitForDrainDuration": {
+          "description": "Optional. Time to wait after cordoning the blue pool before draining the nodes. Defaults to 3 days. The value can be set between 0 and 7 days, inclusive.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BestEffortProvisioning": {
       "description": "Best effort provisioning.",
       "id": "BestEffortProvisioning",
@@ -3232,6 +3244,10 @@
       "description": "Settings for blue-green upgrade.",
       "id": "BlueGreenSettings",
       "properties": {
+        "autoscaledRolloutPolicy": {
+          "$ref": "AutoscaledRolloutPolicy",
+          "description": "Autoscaled policy for cluster autoscaler enabled blue-green upgrade."
+        },
         "nodePoolSoakDuration": {
           "description": "Time needed after draining entire blue pool. After this period, blue pool will be cleaned up.",
           "format": "google-duration",
@@ -3500,7 +3516,8 @@
         },
         "enterpriseConfig": {
           "$ref": "EnterpriseConfig",
-          "description": "GKE Enterprise Configuration."
+          "deprecated": true,
+          "description": "GKE Enterprise Configuration. Deprecated: GKE Enterprise features are now available without an Enterprise tier."
         },
         "etag": {
           "description": "This checksum is computed by the server based on the value of cluster fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.",
@@ -3762,7 +3779,7 @@
         },
         "workloadIdentityConfig": {
           "$ref": "WorkloadIdentityConfig",
-          "description": "Configuration for the use of Kubernetes Service Accounts in GCP IAM policies."
+          "description": "Configuration for the use of Kubernetes Service Accounts in IAM policies."
         },
         "zone": {
           "deprecated": true,
@@ -3948,7 +3965,8 @@
         },
         "desiredEnterpriseConfig": {
           "$ref": "DesiredEnterpriseConfig",
-          "description": "The desired enterprise configuration for the cluster."
+          "deprecated": true,
+          "description": "The desired enterprise configuration for the cluster. Deprecated: GKE Enterprise features are now available without an Enterprise tier."
         },
         "desiredFleet": {
           "$ref": "Fleet",
@@ -4523,7 +4541,15 @@
       "id": "DNSEndpointConfig",
       "properties": {
         "allowExternalTraffic": {
-          "description": "Controls whether user traffic is allowed over this endpoint. Note that GCP-managed services may still use the endpoint even if this is false.",
+          "description": "Controls whether user traffic is allowed over this endpoint. Note that Google-managed services may still use the endpoint even if this is false.",
+          "type": "boolean"
+        },
+        "enableK8sCertsViaDns": {
+          "description": "Controls whether the k8s certs auth is allowed via DNS.",
+          "type": "boolean"
+        },
+        "enableK8sTokensViaDns": {
+          "description": "Controls whether the k8s token auth is allowed via DNS.",
           "type": "boolean"
         },
         "endpoint": {
@@ -4651,7 +4677,8 @@
       "type": "object"
     },
     "DesiredEnterpriseConfig": {
-      "description": "DesiredEnterpriseConfig is a wrapper used for updating enterprise_config.",
+      "deprecated": true,
+      "description": "DesiredEnterpriseConfig is a wrapper used for updating enterprise_config. Deprecated: GKE Enterprise features are now available without an Enterprise tier.",
       "id": "DesiredEnterpriseConfig",
       "properties": {
         "desiredTier": {
@@ -4689,7 +4716,8 @@
       "type": "object"
     },
     "EnterpriseConfig": {
-      "description": "EnterpriseConfig is the cluster enterprise configuration.",
+      "deprecated": true,
+      "description": "EnterpriseConfig is the cluster enterprise configuration. Deprecated: GKE Enterprise features are now available without an Enterprise tier.",
       "id": "EnterpriseConfig",
       "properties": {
         "clusterTier": {
@@ -5018,11 +5046,11 @@
       "type": "object"
     },
     "GcpFilestoreCsiDriverConfig": {
-      "description": "Configuration for the GCP Filestore CSI driver.",
+      "description": "Configuration for the Filestore CSI driver.",
       "id": "GcpFilestoreCsiDriverConfig",
       "properties": {
         "enabled": {
-          "description": "Whether the GCP Filestore CSI driver is enabled for this cluster.",
+          "description": "Whether the Filestore CSI driver is enabled for this cluster.",
           "type": "boolean"
         }
       },
@@ -5534,7 +5562,7 @@
           "enumDescriptions": [
             "Default value. GKE will not modify the kernel configuration.",
             "It means that an application requesting THP will stall on allocation failure and directly reclaim pages and compact memory in an effort to allocate a THP immediately.",
-            "It means that an application will wake kswapd in the background to reclaim pages and wake kcompactd to compact memory so that THP is available in the near future. It’s the responsibility of khugepaged to then install the THP pages later.",
+            "It means that an application will wake kswapd in the background to reclaim pages and wake kcompactd to compact memory so that THP is available in the near future. It's the responsibility of khugepaged to then install the THP pages later.",
             "It means that an application will enter direct reclaim and compaction like always, but only for regions that have used madvise(MADV_HUGEPAGE); all other regions will wake kswapd in the background to reclaim pages and wake kcompactd to compact memory so that THP is available in the near future.",
             "It means that an application will enter direct reclaim like always but only for regions that are have used madvise(MADV_HUGEPAGE). This is the default kernel configuration.",
             "It means that an application will never enter direct reclaim or compaction."
@@ -7652,7 +7680,7 @@
       "type": "object"
     },
     "ResourceLabels": {
-      "description": "Collection of [GCP labels](https://{$universe.dns_names.final_documentation_domain}/resource-manager/docs/creating-managing-labels).",
+      "description": "Collection of [Resource Manager labels](https://{$universe.dns_names.final_documentation_domain}/resource-manager/docs/creating-managing-labels).",
       "id": "ResourceLabels",
       "properties": {
         "labels": {
@@ -9288,7 +9316,7 @@
       "type": "object"
     },
     "WorkloadIdentityConfig": {
-      "description": "Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.",
+      "description": "Configuration for the use of Kubernetes Service Accounts in IAM policies.",
       "id": "WorkloadIdentityConfig",
       "properties": {
         "workloadPool": {
