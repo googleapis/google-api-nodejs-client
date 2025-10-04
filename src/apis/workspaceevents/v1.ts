@@ -472,6 +472,7 @@ export namespace workspaceevents_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/chat.app.memberships',
+     *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.app.spaces',
      *       'https://www.googleapis.com/auth/chat.memberships',
      *       'https://www.googleapis.com/auth/chat.memberships.readonly',
@@ -1140,6 +1141,7 @@ export namespace workspaceevents_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/chat.app.memberships',
+     *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.app.spaces',
      *       'https://www.googleapis.com/auth/chat.memberships',
      *       'https://www.googleapis.com/auth/chat.memberships.readonly',
@@ -1323,6 +1325,7 @@ export namespace workspaceevents_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/chat.app.memberships',
+     *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.app.spaces',
      *       'https://www.googleapis.com/auth/chat.memberships',
      *       'https://www.googleapis.com/auth/chat.memberships.readonly',
