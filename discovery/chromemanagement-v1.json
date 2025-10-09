@@ -350,6 +350,160 @@
             }
           }
         },
+        "certificateProvisioningProcesses": {
+          "methods": {
+            "claim": {
+              "description": "Claims a certificate provisioning process. For each certificate provisioning process, this operation can succeed only for one `caller_instance_id`.",
+              "flatPath": "v1/customers/{customersId}/certificateProvisioningProcesses/{certificateProvisioningProcessesId}:claim",
+              "httpMethod": "POST",
+              "id": "chromemanagement.customers.certificateProvisioningProcesses.claim",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of the `CertificateProvisioningProcess` to claim. The name pattern is given as `customers/{customer}/certificateProvisioningProcesses/{certificate_provisioning_process}` with `{customer}` being the obfuscated customer id and `{certificate_provisioning_process}` being the certificate provisioning process id.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/certificateProvisioningProcesses/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:claim",
+              "request": {
+                "$ref": "GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRequest"
+              },
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse"
+              }
+            },
+            "get": {
+              "description": "Retrieves a certificate provisioning process.",
+              "flatPath": "v1/customers/{customersId}/certificateProvisioningProcesses/{certificateProvisioningProcessesId}",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.certificateProvisioningProcesses.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer}/certificateProvisioningProcesses/{certificate_provisioning_process}` with `{customer}` being the obfuscated customer id and `{certificate_provisioning_process}` being the certificate provisioning process id.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/certificateProvisioningProcesses/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1CertificateProvisioningProcess"
+              }
+            },
+            "setFailure": {
+              "description": "Marks a certificate provisioning process as failed.",
+              "flatPath": "v1/customers/{customersId}/certificateProvisioningProcesses/{certificateProvisioningProcessesId}:setFailure",
+              "httpMethod": "POST",
+              "id": "chromemanagement.customers.certificateProvisioningProcesses.setFailure",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer}/certificateProvisioningProcesses/{certificate_provisioning_process}` with `{customer}` being the obfuscated customer id and `{certificate_provisioning_process}` being the certificate provisioning process id.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/certificateProvisioningProcesses/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:setFailure",
+              "request": {
+                "$ref": "GoogleChromeManagementVersionsV1SetFailureRequest"
+              },
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1SetFailureResponse"
+              }
+            },
+            "signData": {
+              "description": "Requests the client that initiated a certificate provisioning process to sign data. This should only be called after `ClaimCertificateProvisioningProcess` has been successfully executed.",
+              "flatPath": "v1/customers/{customersId}/certificateProvisioningProcesses/{certificateProvisioningProcessesId}:signData",
+              "httpMethod": "POST",
+              "id": "chromemanagement.customers.certificateProvisioningProcesses.signData",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer}/certificateProvisioningProcesses/{certificate_provisioning_process}` with `{customer}` being the obfuscated customer id and `{certificate_provisioning_process}` being the certificate provisioning process id.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/certificateProvisioningProcesses/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:signData",
+              "request": {
+                "$ref": "GoogleChromeManagementVersionsV1SignDataRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              }
+            },
+            "uploadCertificate": {
+              "description": "Uploads a successfully issued certificate for a certificate provisioning process.",
+              "flatPath": "v1/customers/{customersId}/certificateProvisioningProcesses/{certificateProvisioningProcessesId}:uploadCertificate",
+              "httpMethod": "POST",
+              "id": "chromemanagement.customers.certificateProvisioningProcesses.uploadCertificate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer}/certificateProvisioningProcesses/{certificate_provisioning_process}` with `{customer}` being the obfuscated customer id and `{certificate_provisioning_process}` being the certificate provisioning process id.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/certificateProvisioningProcesses/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:uploadCertificate",
+              "request": {
+                "$ref": "GoogleChromeManagementVersionsV1UploadCertificateRequest"
+              },
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1UploadCertificateResponse"
+              }
+            }
+          },
+          "resources": {
+            "operations": {
+              "methods": {
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1/customers/{customersId}/certificateProvisioningProcesses/{certificateProvisioningProcessesId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.certificateProvisioningProcesses.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/certificateProvisioningProcesses/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  }
+                }
+              }
+            }
+          }
+        },
         "profiles": {
           "methods": {
             "delete": {
@@ -1407,9 +1561,103 @@
           }
         }
       }
+    },
+    "operations": {
+      "methods": {
+        "cancel": {
+          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+          "flatPath": "v1/operations/{operationsId}:cancel",
+          "httpMethod": "POST",
+          "id": "chromemanagement.operations.cancel",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The name of the operation resource to be cancelled.",
+              "location": "path",
+              "pattern": "^operations/.*$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:cancel",
+          "request": {
+            "$ref": "GoogleLongrunningCancelOperationRequest"
+          },
+          "response": {
+            "$ref": "GoogleProtobufEmpty"
+          }
+        },
+        "delete": {
+          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+          "flatPath": "v1/operations/{operationsId}",
+          "httpMethod": "DELETE",
+          "id": "chromemanagement.operations.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The name of the operation resource to be deleted.",
+              "location": "path",
+              "pattern": "^operations/.*$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "GoogleProtobufEmpty"
+          }
+        },
+        "list": {
+          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+          "flatPath": "v1/operations",
+          "httpMethod": "GET",
+          "id": "chromemanagement.operations.list",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "The standard list filter.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "The name of the operation's parent resource.",
+              "location": "path",
+              "pattern": "^operations$",
+              "required": true,
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The standard list page size.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "The standard list page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "GoogleLongrunningListOperationsResponse"
+          }
+        }
+      }
     }
   },
-  "revision": "20250820",
+  "revision": "20251006",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -5292,7 +5540,7 @@
           "type": "string"
         },
         "signatureAlgorithm": {
-          "description": "Output only. The signature algorithm that the adapter expects the client and backend components to use when processing `sign_data`. This field is only present after the `SignData` operation has been initiated.",
+          "description": "Output only. The signature algorithm that the client and backend components use when processing `sign_data`. If the `profile_type` is a `GenericProfile`, this field will only be present after the `SignData` operation was initiated. If the `profile_type` is a `ScepProfile`, the field will always be present.",
           "enum": [
             "SIGNATURE_ALGORITHM_UNSPECIFIED",
             "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
@@ -5300,8 +5548,8 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "The server-side builds the PKCS#1 DigestInfo, i.e., the SHA256 hash is constructed on the server-side. The client should sign using RSA with PKCS#1 v1.5 padding.",
-            "The PKCS#1 digest info is built by the server-side and sent to the client unhashed. The client is responsible for signing and hashing. Uses the P-256 curve."
+            "The server-side builds the PKCS#1 DigestInfo and sends a SHA256 hash of it to the client. The client should sign using RSA with PKCS#1 v1.5 padding.",
+            "The server-side builds the PKCS#1 DigestInfo and sends it unhashed to the client. The client is responsible for signing and hashing using the P-256 curve."
           ],
           "readOnly": true,
           "type": "string"
@@ -5475,6 +5723,11 @@
           "description": "Output only. Detailed reporting data of the profile. This information is only available when the profile reporting policy is enabled.",
           "readOnly": true
         },
+        "supportsFcmNotifications": {
+          "description": "Output only. Whether the profile supports FCM notifications.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "userEmail": {
           "description": "Output only. Email address of the user to which the profile belongs.",
           "readOnly": true,
@@ -5619,6 +5872,23 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRequest": {
+      "description": "Request message for claiming a certificate provisioning process.",
+      "id": "GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRequest",
+      "properties": {
+        "callerInstanceId": {
+          "description": "Required. The instance id of the caller.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse": {
+      "description": "Response message for claiming a certificate provisioning process.",
+      "id": "GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1DeviceInfo": {
       "description": "Information of a device that runs a Chrome browser profile.",
       "id": "GoogleChromeManagementVersionsV1DeviceInfo",
@@ -5659,7 +5929,7 @@
       "id": "GoogleChromeManagementVersionsV1GenericCaConnection",
       "properties": {
         "caConnectionAdapterConfigReference": {
-          "description": "Output only. A string that references the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.",
+          "description": "Output only. A string that references the administrator-provided configuration for the certification authority service.",
           "readOnly": true,
           "type": "string"
         }
@@ -5671,7 +5941,7 @@
       "id": "GoogleChromeManagementVersionsV1GenericProfile",
       "properties": {
         "profileAdapterConfigReference": {
-          "description": "Output only. A string that references the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.",
+          "description": "Output only. A string that references the administrator-provided configuration for the certificate provisioning profile.",
           "readOnly": true,
           "type": "string"
         }
@@ -6000,7 +6270,7 @@
       "id": "GoogleChromeManagementVersionsV1ScepCaConnection",
       "properties": {
         "caConnectionAdapterConfigReference": {
-          "description": "Output only. A string that references the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.",
+          "description": "Output only. A string that references the administrator-provided configuration for the certification authority service.",
           "readOnly": true,
           "type": "string"
         }
@@ -6012,7 +6282,7 @@
       "id": "GoogleChromeManagementVersionsV1ScepProfile",
       "properties": {
         "certificateTemplateName": {
-          "description": "Output only. The certificate template name as defined by the admin on their on-prem infrastructure. This is identifiable by the customer's CA.",
+          "description": "Output only. The certificate template name as defined by the admin on their on-prem infrastructure. The Certificate Authority uses this name to identify the certificate template.",
           "readOnly": true,
           "type": "string"
         },
@@ -6078,6 +6348,23 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1SetFailureRequest": {
+      "description": "Request message for marking a certificate provisioning process as failed.",
+      "id": "GoogleChromeManagementVersionsV1SetFailureRequest",
+      "properties": {
+        "errorMessage": {
+          "description": "Required. A message describing the failure details. It is displayed on the ChromeOS client device.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1SetFailureResponse": {
+      "description": "Response message for publishing a failure for a certificate provisioning process.",
+      "id": "GoogleChromeManagementVersionsV1SetFailureResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1SignDataMetadata": {
       "description": "Metadata for the long-running operation returned by signData.",
       "id": "GoogleChromeManagementVersionsV1SignDataMetadata",
@@ -6086,6 +6373,32 @@
           "description": "Output only. Start time of the SignData operation.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1SignDataRequest": {
+      "description": "Request message for requesting a signature from the client that initated a certificate provisioning process.",
+      "id": "GoogleChromeManagementVersionsV1SignDataRequest",
+      "properties": {
+        "signData": {
+          "description": "Required. The data that the client was asked to sign.",
+          "format": "byte",
+          "type": "string"
+        },
+        "signatureAlgorithm": {
+          "description": "Required. The signature algorithm that the adapter expects the client and backend components to use when processing `sign_data`.",
+          "enum": [
+            "SIGNATURE_ALGORITHM_UNSPECIFIED",
+            "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
+            "SIGNATURE_ALGORITHM_ECDSA_SHA256"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The server-side builds the PKCS#1 DigestInfo and sends a SHA256 hash of it to the client. The client should sign using RSA with PKCS#1 v1.5 padding.",
+            "The server-side builds the PKCS#1 DigestInfo and sends it unhashed to the client. The client is responsible for signing and hashing using the P-256 curve."
+          ],
           "type": "string"
         }
       },
@@ -6119,7 +6432,7 @@
           "enumDescriptions": [
             "The subject alternative name type is unspecified.",
             "The subject alternative name type is an email address adhering to RFC822.",
-            "The subject alternative name type is a a Domain Name System (DNS).",
+            "The subject alternative name type is a Domain Name System (DNS).",
             "The subject alternative name type is a User Principal Name (UPN).",
             "The subject alternative name type is a Uniform Resource Identifier (URI)."
           ],
@@ -6127,7 +6440,7 @@
           "type": "string"
         },
         "value": {
-          "description": "Output only. The value of the subject alternative name with respoect to the `type`.",
+          "description": "Output only. The value of the subject alternative name with respect to the `type`.",
           "readOnly": true,
           "type": "string"
         }
@@ -6146,6 +6459,89 @@
           "description": "Output only. The ID of the organizational unit assigned to the user.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1UploadCertificateRequest": {
+      "description": "Request message for uploading an issued certificate for a certificate provisioning process.",
+      "id": "GoogleChromeManagementVersionsV1UploadCertificateRequest",
+      "properties": {
+        "certificatePem": {
+          "description": "Required. The issued certificate in PEM format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1UploadCertificateResponse": {
+      "description": "Response message for publishing an issued certificate for a certificate provisioning process.",
+      "id": "GoogleChromeManagementVersionsV1UploadCertificateResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleLongrunningCancelOperationRequest": {
+      "description": "The request message for Operations.CancelOperation.",
+      "id": "GoogleLongrunningCancelOperationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleLongrunningListOperationsResponse": {
+      "description": "The response message for Operations.ListOperations.",
+      "id": "GoogleLongrunningListOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of operations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleLongrunningOperation": {
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
+      "id": "GoogleLongrunningOperation",
+      "properties": {
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "type": "object"
         }
       },
       "type": "object"

@@ -113,6 +113,7 @@ export namespace chromemanagement_v1 {
   export class Chromemanagement {
     context: APIRequestContext;
     customers: Resource$Customers;
+    operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -121,6 +122,7 @@ export namespace chromemanagement_v1 {
       };
 
       this.customers = new Resource$Customers(this.context);
+      this.operations = new Resource$Operations(this.context);
     }
   }
 
@@ -2333,7 +2335,7 @@ export namespace chromemanagement_v1 {
      */
     signature?: string | null;
     /**
-     * Output only. The signature algorithm that the adapter expects the client and backend components to use when processing `sign_data`. This field is only present after the `SignData` operation has been initiated.
+     * Output only. The signature algorithm that the client and backend components use when processing `sign_data`. If the `profile_type` is a `GenericProfile`, this field will only be present after the `SignData` operation was initiated. If the `profile_type` is a `ScepProfile`, the field will always be present.
      */
     signatureAlgorithm?: string | null;
     /**
@@ -2450,6 +2452,10 @@ export namespace chromemanagement_v1 {
      */
     reportingData?: Schema$GoogleChromeManagementVersionsV1ReportingData;
     /**
+     * Output only. Whether the profile supports FCM notifications.
+     */
+    supportsFcmNotifications?: boolean | null;
+    /**
      * Output only. Email address of the user to which the profile belongs.
      */
     userEmail?: string | null;
@@ -2539,6 +2545,19 @@ export namespace chromemanagement_v1 {
     userPrimaryEmail?: string | null;
   }
   /**
+   * Request message for claiming a certificate provisioning process.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRequest {
+    /**
+     * Required. The instance id of the caller.
+     */
+    callerInstanceId?: string | null;
+  }
+  /**
+   * Response message for claiming a certificate provisioning process.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse {}
+  /**
    * Information of a device that runs a Chrome browser profile.
    */
   export interface Schema$GoogleChromeManagementVersionsV1DeviceInfo {
@@ -2564,7 +2583,7 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1GenericCaConnection {
     /**
-     * Output only. A string that references the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.
+     * Output only. A string that references the administrator-provided configuration for the certification authority service.
      */
     caConnectionAdapterConfigReference?: string | null;
   }
@@ -2573,7 +2592,7 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1GenericProfile {
     /**
-     * Output only. A string that references the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.
+     * Output only. A string that references the administrator-provided configuration for the certificate provisioning profile.
      */
     profileAdapterConfigReference?: string | null;
   }
@@ -2763,7 +2782,7 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1ScepCaConnection {
     /**
-     * Output only. A string that references the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.
+     * Output only. A string that references the administrator-provided configuration for the certification authority service.
      */
     caConnectionAdapterConfigReference?: string | null;
   }
@@ -2772,7 +2791,7 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1ScepProfile {
     /**
-     * Output only. The certificate template name as defined by the admin on their on-prem infrastructure. This is identifiable by the customer's CA.
+     * Output only. The certificate template name as defined by the admin on their on-prem infrastructure. The Certificate Authority uses this name to identify the certificate template.
      */
     certificateTemplateName?: string | null;
     /**
@@ -2809,6 +2828,19 @@ export namespace chromemanagement_v1 {
     subjectCommonName?: string | null;
   }
   /**
+   * Request message for marking a certificate provisioning process as failed.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1SetFailureRequest {
+    /**
+     * Required. A message describing the failure details. It is displayed on the ChromeOS client device.
+     */
+    errorMessage?: string | null;
+  }
+  /**
+   * Response message for publishing a failure for a certificate provisioning process.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1SetFailureResponse {}
+  /**
    * Metadata for the long-running operation returned by signData.
    */
   export interface Schema$GoogleChromeManagementVersionsV1SignDataMetadata {
@@ -2816,6 +2848,19 @@ export namespace chromemanagement_v1 {
      * Output only. Start time of the SignData operation.
      */
     startTime?: string | null;
+  }
+  /**
+   * Request message for requesting a signature from the client that initated a certificate provisioning process.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1SignDataRequest {
+    /**
+     * Required. The signature algorithm that the adapter expects the client and backend components to use when processing `sign_data`.
+     */
+    signatureAlgorithm?: string | null;
+    /**
+     * Required. The data that the client was asked to sign.
+     */
+    signData?: string | null;
   }
   /**
    * Response message for requesting a signature from the client that initated a certificate provisioning process.
@@ -2835,7 +2880,7 @@ export namespace chromemanagement_v1 {
      */
     type?: string | null;
     /**
-     * Output only. The value of the subject alternative name with respoect to the `type`.
+     * Output only. The value of the subject alternative name with respect to the `type`.
      */
     value?: string | null;
   }
@@ -2851,6 +2896,65 @@ export namespace chromemanagement_v1 {
      * Output only. The ID of the organizational unit assigned to the user.
      */
     orgUnitId?: string | null;
+  }
+  /**
+   * Request message for uploading an issued certificate for a certificate provisioning process.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1UploadCertificateRequest {
+    /**
+     * Required. The issued certificate in PEM format.
+     */
+    certificatePem?: string | null;
+  }
+  /**
+   * Response message for publishing an issued certificate for a certificate provisioning process.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse {}
+  /**
+   * The request message for Operations.CancelOperation.
+   */
+  export interface Schema$GoogleLongrunningCancelOperationRequest {}
+  /**
+   * The response message for Operations.ListOperations.
+   */
+  export interface Schema$GoogleLongrunningListOperationsResponse {
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of operations that matches the specified filter in the request.
+     */
+    operations?: Schema$GoogleLongrunningOperation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * This resource represents a long-running operation that is the result of a network API call.
+   */
+  export interface Schema$GoogleLongrunningOperation {
+    /**
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+     */
+    done?: boolean | null;
+    /**
+     * The error result of the operation in case of failure or cancellation.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
+     */
+    name?: string | null;
+    /**
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     */
+    response?: {[key: string]: any} | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -2894,6 +2998,7 @@ export namespace chromemanagement_v1 {
   export class Resource$Customers {
     context: APIRequestContext;
     apps: Resource$Customers$Apps;
+    certificateProvisioningProcesses: Resource$Customers$Certificateprovisioningprocesses;
     profiles: Resource$Customers$Profiles;
     reports: Resource$Customers$Reports;
     telemetry: Resource$Customers$Telemetry;
@@ -2901,6 +3006,8 @@ export namespace chromemanagement_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.apps = new Resource$Customers$Apps(this.context);
+      this.certificateProvisioningProcesses =
+        new Resource$Customers$Certificateprovisioningprocesses(this.context);
       this.profiles = new Resource$Customers$Profiles(this.context);
       this.reports = new Resource$Customers$Reports(this.context);
       this.telemetry = new Resource$Customers$Telemetry(this.context);
@@ -4013,6 +4120,1023 @@ export namespace chromemanagement_v1 {
     name?: string;
   }
 
+  export class Resource$Customers$Certificateprovisioningprocesses {
+    context: APIRequestContext;
+    operations: Resource$Customers$Certificateprovisioningprocesses$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Customers$Certificateprovisioningprocesses$Operations(
+          this.context
+        );
+    }
+
+    /**
+     * Claims a certificate provisioning process. For each certificate provisioning process, this operation can succeed only for one `caller_instance_id`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.certificateProvisioningProcesses.claim({
+     *       // Required. Resource name of the `CertificateProvisioningProcess` to claim. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     *       name: 'customers/my-customer/certificateProvisioningProcesses/my-certificateProvisioningProcesse',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "callerInstanceId": "my_callerInstanceId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    claim(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Claim,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    claim(
+      params?: Params$Resource$Customers$Certificateprovisioningprocesses$Claim,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse>
+    >;
+    claim(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Claim,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    claim(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Claim,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse>
+    ): void;
+    claim(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Claim,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse>
+    ): void;
+    claim(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse>
+    ): void;
+    claim(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Certificateprovisioningprocesses$Claim
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Certificateprovisioningprocesses$Claim;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Certificateprovisioningprocesses$Claim;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:claim').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieves a certificate provisioning process.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.certificateProvisioningProcesses.get({
+     *       // Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     *       name: 'customers/my-customer/certificateProvisioningProcesses/my-certificateProvisioningProcesse',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chromeOsDevice": {},
+     *   //   "chromeOsUserSession": {},
+     *   //   "failureMessage": "my_failureMessage",
+     *   //   "genericCaConnection": {},
+     *   //   "genericProfile": {},
+     *   //   "issuedCertificate": "my_issuedCertificate",
+     *   //   "name": "my_name",
+     *   //   "provisioningProfileId": "my_provisioningProfileId",
+     *   //   "scepCaConnection": {},
+     *   //   "scepProfile": {},
+     *   //   "signData": "my_signData",
+     *   //   "signature": "my_signature",
+     *   //   "signatureAlgorithm": "my_signatureAlgorithm",
+     *   //   "startTime": "my_startTime",
+     *   //   "subjectPublicKeyInfo": "my_subjectPublicKeyInfo"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Customers$Certificateprovisioningprocesses$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess>
+    >;
+    get(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Get,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Certificateprovisioningprocesses$Get
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Certificateprovisioningprocesses$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Certificateprovisioningprocesses$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Marks a certificate provisioning process as failed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.certificateProvisioningProcesses.setFailure(
+     *       {
+     *         // Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     *         name: 'customers/my-customer/certificateProvisioningProcesses/my-certificateProvisioningProcesse',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "errorMessage": "my_errorMessage"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setFailure(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Setfailure,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setFailure(
+      params?: Params$Resource$Customers$Certificateprovisioningprocesses$Setfailure,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1SetFailureResponse>
+    >;
+    setFailure(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Setfailure,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setFailure(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Setfailure,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SetFailureResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SetFailureResponse>
+    ): void;
+    setFailure(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Setfailure,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SetFailureResponse>
+    ): void;
+    setFailure(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SetFailureResponse>
+    ): void;
+    setFailure(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Certificateprovisioningprocesses$Setfailure
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SetFailureResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SetFailureResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SetFailureResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1SetFailureResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Certificateprovisioningprocesses$Setfailure;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Certificateprovisioningprocesses$Setfailure;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:setFailure').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1SetFailureResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1SetFailureResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Requests the client that initiated a certificate provisioning process to sign data. This should only be called after `ClaimCertificateProvisioningProcess` has been successfully executed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.certificateProvisioningProcesses.signData({
+     *       // Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     *       name: 'customers/my-customer/certificateProvisioningProcesses/my-certificateProvisioningProcesse',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "signData": "my_signData",
+     *         //   "signatureAlgorithm": "my_signatureAlgorithm"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    signData(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Signdata,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    signData(
+      params?: Params$Resource$Customers$Certificateprovisioningprocesses$Signdata,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    signData(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Signdata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    signData(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Signdata,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    signData(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Signdata,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    signData(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    signData(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Certificateprovisioningprocesses$Signdata
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Certificateprovisioningprocesses$Signdata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Certificateprovisioningprocesses$Signdata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:signData').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Uploads a successfully issued certificate for a certificate provisioning process.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.certificateProvisioningProcesses.uploadCertificate(
+     *       {
+     *         // Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     *         name: 'customers/my-customer/certificateProvisioningProcesses/my-certificateProvisioningProcesse',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "certificatePem": "my_certificatePem"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    uploadCertificate(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Uploadcertificate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    uploadCertificate(
+      params?: Params$Resource$Customers$Certificateprovisioningprocesses$Uploadcertificate,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse>
+    >;
+    uploadCertificate(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Uploadcertificate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    uploadCertificate(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Uploadcertificate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse>
+    ): void;
+    uploadCertificate(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Uploadcertificate,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse>
+    ): void;
+    uploadCertificate(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse>
+    ): void;
+    uploadCertificate(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Certificateprovisioningprocesses$Uploadcertificate
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Certificateprovisioningprocesses$Uploadcertificate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Certificateprovisioningprocesses$Uploadcertificate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:uploadCertificate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Claim
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the `CertificateProvisioningProcess` to claim. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRequest;
+  }
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Setfailure
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromeManagementVersionsV1SetFailureRequest;
+  }
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Signdata
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromeManagementVersionsV1SignDataRequest;
+  }
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Uploadcertificate
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromeManagementVersionsV1UploadCertificateRequest;
+  }
+
+  export class Resource$Customers$Certificateprovisioningprocesses$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.certificateProvisioningProcesses.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'customers/my-customer/certificateProvisioningProcesses/my-certificateProvisioningProcesse/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    get(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+
   export class Resource$Customers$Profiles {
     context: APIRequestContext;
     commands: Resource$Customers$Profiles$Commands;
@@ -4219,6 +5343,7 @@ export namespace chromemanagement_v1 {
      *   //   "profileId": "my_profileId",
      *   //   "profilePermanentId": "my_profilePermanentId",
      *   //   "reportingData": {},
+     *   //   "supportsFcmNotifications": false,
      *   //   "userEmail": "my_userEmail",
      *   //   "userId": "my_userId"
      *   // }
@@ -8674,5 +9799,480 @@ export namespace chromemanagement_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest;
+  }
+
+  export class Resource$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'operations/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Operations$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'operations',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
+    list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
+  }
+  export interface Params$Resource$Operations$Delete
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Operations$List extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 }
