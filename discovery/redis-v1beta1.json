@@ -1073,7 +1073,7 @@
       }
     }
   },
-  "revision": "20250909",
+  "revision": "20250930",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1607,6 +1607,10 @@
           "$ref": "ClusterMaintenanceSchedule",
           "description": "Output only. ClusterMaintenanceSchedule Output only Published maintenance schedule.",
           "readOnly": true
+        },
+        "maintenanceVersion": {
+          "description": "Optional. This field can be used to trigger self service update to indicate the desired maintenance version. The input to this field can be determined by the available_maintenance_versions field.",
+          "type": "string"
         },
         "managedBackupSource": {
           "$ref": "ManagedBackupSource",
@@ -2303,7 +2307,8 @@
             "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
             "SIGNAL_TYPE_REPLICATION_LAG",
             "SIGNAL_TYPE_OUTDATED_VERSION",
-            "SIGNAL_TYPE_OUTDATED_CLIENT"
+            "SIGNAL_TYPE_OUTDATED_CLIENT",
+            "SIGNAL_TYPE_DATABOOST_DISABLED"
           ],
           "enumDeprecated": [
             false,
@@ -2312,6 +2317,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -2511,7 +2517,8 @@
             "High number of idle connections.",
             "Replication delay.",
             "Outdated version.",
-            "Outdated client."
+            "Outdated client.",
+            "Databoost is disabled."
           ],
           "type": "string"
         },
@@ -2575,7 +2582,7 @@
       "type": "object"
     },
     "DatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 27",
+      "description": "Common model for database resource instance metadata. Next ID: 29",
       "id": "DatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -2725,6 +2732,10 @@
         "machineConfiguration": {
           "$ref": "MachineConfiguration",
           "description": "Machine configuration for this resource."
+        },
+        "maintenanceInfo": {
+          "$ref": "ResourceMaintenanceInfo",
+          "description": "Optional. Maintenance info for the resource."
         },
         "primaryResourceId": {
           "$ref": "DatabaseResourceId",
@@ -2945,7 +2956,8 @@
             "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
             "SIGNAL_TYPE_REPLICATION_LAG",
             "SIGNAL_TYPE_OUTDATED_VERSION",
-            "SIGNAL_TYPE_OUTDATED_CLIENT"
+            "SIGNAL_TYPE_OUTDATED_CLIENT",
+            "SIGNAL_TYPE_DATABOOST_DISABLED"
           ],
           "enumDeprecated": [
             false,
@@ -2954,6 +2966,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -3153,7 +3166,8 @@
             "High number of idle connections.",
             "Replication delay.",
             "Outdated version.",
-            "Outdated client."
+            "Outdated client.",
+            "Databoost is disabled."
           ],
           "type": "string"
         }
@@ -3217,6 +3231,28 @@
             "Represents if a resources requires all incoming connections to use SSL or not."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4502,6 +4538,7 @@
             "PRODUCT_TYPE_FIRESTORE",
             "PRODUCT_TYPE_COMPUTE_ENGINE",
             "PRODUCT_TYPE_ORACLE_ON_GCP",
+            "PRODUCT_TYPE_BIGQUERY",
             "PRODUCT_TYPE_OTHER"
           ],
           "enumDeprecated": [
@@ -4513,6 +4550,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -4534,6 +4572,7 @@
             "Firestore product area in GCP.",
             "Compute Engine self managed databases",
             "Oracle product area in GCP",
+            "BigQuery product area in GCP",
             "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],
           "type": "string"
@@ -4848,6 +4887,100 @@
           "description": "Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for example `2012-11-15T16:19:00.094Z`.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceMaintenanceDenySchedule": {
+      "description": "Deny maintenance period for the database resource. It specifies the time range during which the maintenance cannot start. This is configured by the customer.",
+      "id": "ResourceMaintenanceDenySchedule",
+      "properties": {
+        "endDate": {
+          "$ref": "Date",
+          "description": "Optional. Deny period end date."
+        },
+        "startDate": {
+          "$ref": "Date",
+          "description": "Optional. The start date of the deny maintenance period."
+        },
+        "time": {
+          "$ref": "TimeOfDay",
+          "description": "Optional. Time in UTC when the deny period starts on start_date and ends on end_date."
+        }
+      },
+      "type": "object"
+    },
+    "ResourceMaintenanceInfo": {
+      "description": "MaintenanceInfo to capture the maintenance details of database resource.",
+      "id": "ResourceMaintenanceInfo",
+      "properties": {
+        "denyMaintenanceSchedules": {
+          "description": "Optional. List of Deny maintenance period for the database resource.",
+          "items": {
+            "$ref": "ResourceMaintenanceDenySchedule"
+          },
+          "type": "array"
+        },
+        "maintenanceSchedule": {
+          "$ref": "ResourceMaintenanceSchedule",
+          "description": "Optional. Maintenance window for the database resource."
+        },
+        "maintenanceVersion": {
+          "description": "Optional. Current Maintenance version of the database resource. Example: \"MYSQL_8_0_41.R20250531.01_15\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceMaintenanceSchedule": {
+      "description": "Maintenance window for the database resource. It specifies preferred time and day of the week and phase in some cases, when the maintenance can start. This is configured by the customer.",
+      "id": "ResourceMaintenanceSchedule",
+      "properties": {
+        "day": {
+          "description": "Optional. Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "type": "string"
+        },
+        "phase": {
+          "description": "Optional. Phase of the maintenance window. This is to capture order of maintenance. For example, for Cloud SQL resources, this can be used to capture if the maintenance window is in Week1, Week2, Week5, etc. Non production resources are usually part of early phase. For more details, refer to Cloud SQL resources - https://cloud.google.com/sql/docs/mysql/maintenance",
+          "enum": [
+            "WINDOW_PHASE_UNSPECIFIED",
+            "WINDOW_PHASE_ANY",
+            "WINDOW_PHASE_WEEK1",
+            "WINDOW_PHASE_WEEK2",
+            "WINDOW_PHASE_WEEK5"
+          ],
+          "enumDescriptions": [
+            "Phase is unspecified.",
+            "Any phase.",
+            "Week 1.",
+            "Week 2.",
+            "Week 5."
+          ],
+          "type": "string"
+        },
+        "time": {
+          "$ref": "TimeOfDay",
+          "description": "Optional. Preferred time to start the maintenance operation on the specified day."
         }
       },
       "type": "object"
