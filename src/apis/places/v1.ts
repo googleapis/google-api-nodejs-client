@@ -1080,7 +1080,7 @@ export namespace places_v1 {
      */
     directionsUri?: string | null;
     /**
-     * A link to show reviews of this place on Google Maps.
+     * A link to show photos of this place on Google Maps.
      */
     photosUri?: string | null;
     /**
