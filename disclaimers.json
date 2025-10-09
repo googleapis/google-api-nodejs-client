@@ -357,6 +357,10 @@
   },
   {
     "api": "merchantapi",
+    "package": "@google-shopping/inventories"
+  },
+  {
+    "api": "merchantapi",
     "package": "@google-shopping/issueresolution"
   },
   {

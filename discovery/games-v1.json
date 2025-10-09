@@ -21,6 +21,7 @@
   "description": "The Google Play Games Service allows developers to enhance games with social leaderboards, achievements, game state, sign-in with Google, and more.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/games/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -1469,7 +1470,7 @@
       }
     }
   },
-  "revision": "20250320",
+  "revision": "20251003",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
