@@ -182,6 +182,10 @@ import {
   VERSIONS as chromeuxreportVersions,
   chromeuxreport,
 } from './chromeuxreport';
+import {
+  VERSIONS as chromewebstoreVersions,
+  chromewebstore,
+} from './chromewebstore';
 import {VERSIONS as civicinfoVersions, civicinfo} from './civicinfo';
 import {VERSIONS as classroomVersions, classroom} from './classroom';
 import {VERSIONS as cloudassetVersions, cloudasset} from './cloudasset';
@@ -266,6 +270,7 @@ import {VERSIONS as dataformVersions, dataform} from './dataform';
 import {VERSIONS as datafusionVersions, datafusion} from './datafusion';
 import {VERSIONS as datalabelingVersions, datalabeling} from './datalabeling';
 import {VERSIONS as datalineageVersions, datalineage} from './datalineage';
+import {VERSIONS as datamanagerVersions, datamanager} from './datamanager';
 import {
   VERSIONS as datamigrationVersions,
   datamigration,
@@ -835,6 +840,7 @@ export const APIS: APIList = {
   chromemanagement: chromemanagementVersions,
   chromepolicy: chromepolicyVersions,
   chromeuxreport: chromeuxreportVersions,
+  chromewebstore: chromewebstoreVersions,
   civicinfo: civicinfoVersions,
   classroom: classroomVersions,
   cloudasset: cloudassetVersions,
@@ -877,6 +883,7 @@ export const APIS: APIList = {
   datafusion: datafusionVersions,
   datalabeling: datalabelingVersions,
   datalineage: datalineageVersions,
+  datamanager: datamanagerVersions,
   datamigration: datamigrationVersions,
   datapipelines: datapipelinesVersions,
   dataplex: dataplexVersions,
@@ -1154,6 +1161,7 @@ export class GeneratedAPIs {
   chromemanagement = chromemanagement;
   chromepolicy = chromepolicy;
   chromeuxreport = chromeuxreport;
+  chromewebstore = chromewebstore;
   civicinfo = civicinfo;
   classroom = classroom;
   cloudasset = cloudasset;
@@ -1196,6 +1204,7 @@ export class GeneratedAPIs {
   datafusion = datafusion;
   datalabeling = datalabeling;
   datalineage = datalineage;
+  datamanager = datamanager;
   datamigration = datamigration;
   datapipelines = datapipelines;
   dataplex = dataplex;
