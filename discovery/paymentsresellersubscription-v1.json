@@ -523,7 +523,7 @@
       }
     }
   },
-  "revision": "20250929",
+  "revision": "20251005",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "Amount": {
@@ -1321,12 +1321,14 @@
           "enum": [
             "PROCESSING_STATE_UNSPECIFIED",
             "PROCESSING_STATE_CANCELLING",
-            "PROCESSING_STATE_RECURRING"
+            "PROCESSING_STATE_RECURRING",
+            "PROCESSING_STATE_RESUMING"
           ],
           "enumDescriptions": [
             "The processing state is unspecified.",
             "The subscription is being cancelled.",
-            "The subscription is recurring."
+            "The subscription is recurring.",
+            "The subscription is being resumed."
           ],
           "readOnly": true,
           "type": "string"
@@ -1489,6 +1491,10 @@
             "$ref": "SubscriptionPromotionSpec"
           },
           "type": "array"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the line item. Format: partners/{partner}/subscriptions/{subscription}/lineItems/{lineItem}",
+          "type": "string"
         },
         "oneTimeRecurrenceDetails": {
           "$ref": "SubscriptionLineItemOneTimeRecurrenceDetails",
