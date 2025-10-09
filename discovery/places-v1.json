@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20250921",
+  "revision": "20251007",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -1554,7 +1554,7 @@
           "type": "string"
         },
         "photosUri": {
-          "description": "A link to show reviews of this place on Google Maps.",
+          "description": "A link to show photos of this place on Google Maps.",
           "type": "string"
         },
         "placeUri": {
