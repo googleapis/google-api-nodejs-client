@@ -745,6 +745,10 @@ export namespace paymentsresellersubscription_v1 {
      */
     lineItemPromotionSpecs?: Schema$SubscriptionPromotionSpec[];
     /**
+     * Identifier. Resource name of the line item. Format: partners/{partner\}/subscriptions/{subscription\}/lineItems/{lineItem\}
+     */
+    name?: string | null;
+    /**
      * Output only. Details only set for a ONE_TIME recurrence line item.
      */
     oneTimeRecurrenceDetails?: Schema$SubscriptionLineItemOneTimeRecurrenceDetails;
