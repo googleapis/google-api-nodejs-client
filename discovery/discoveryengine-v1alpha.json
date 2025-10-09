@@ -918,6 +918,32 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "checkRefreshToken": {
+                      "deprecated": true,
+                      "description": "Deprecated: Checks the existence of a refresh token for the EUC user for a given connection and returns its details. Use AcquireAccessToken instead and then check the validity of the returned token by asking the 3rd party system. There's no way to know for sure if a refresh token is valid without asking the 3rd party system.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataConnector:checkRefreshToken",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.dataConnector.checkRefreshToken",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the connector for which a token is queried.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataConnector$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}:checkRefreshToken",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "getConnectorSecret": {
                       "description": "Get the secret for the associated connector.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataConnector:getConnectorSecret",
@@ -4236,6 +4262,31 @@
                       "path": "v1alpha/{+name}",
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1alphaEngine"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "getWorkspaceSettings": {
+                      "description": "Get Workspace settings for the end user.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}:getWorkspaceSettings",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.engines.getWorkspaceSettings",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Full Engine resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}:getWorkspaceSettings",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaWorkspaceSettings"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -10084,7 +10135,7 @@
       }
     }
   },
-  "revision": "20250929",
+  "revision": "20251008",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -17899,6 +17950,17 @@
         "enableClaimLevelScore": {
           "description": "The control flag that enables claim-level grounding score in the response.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse": {
+      "description": "Response message for the DataConnectorService.CheckRefreshToken method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse",
+      "properties": {
+        "refreshTokenInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaRefreshTokenInfo",
+          "description": "Info about the stored refresh token."
         }
       },
       "type": "object"
@@ -28519,6 +28581,17 @@
             "Workspace Data Store contains People data"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWorkspaceSettings": {
+      "description": "Workspace settings for the end user.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWorkspaceSettings",
+      "properties": {
+        "workspaceAccessEnabled": {
+          "description": "Whether an end user has workspace access enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
