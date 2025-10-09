@@ -3042,6 +3042,15 @@ export namespace discoveryengine_v1alpha {
     enableClaimLevelScore?: boolean | null;
   }
   /**
+   * Response message for the DataConnectorService.CheckRefreshToken method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse {
+    /**
+     * Info about the stored refresh token.
+     */
+    refreshTokenInfo?: Schema$GoogleCloudDiscoveryengineV1alphaRefreshTokenInfo;
+  }
+  /**
    * Request for CheckRequirement method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementRequest {
@@ -10383,6 +10392,15 @@ export namespace discoveryengine_v1alpha {
      * The Google Workspace data source.
      */
     type?: string | null;
+  }
+  /**
+   * Workspace settings for the end user.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings {
+    /**
+     * Whether an end user has workspace access enabled.
+     */
+    workspaceAccessEnabled?: boolean | null;
   }
   /**
    * The specification for answer generation.
@@ -20854,6 +20872,158 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Deprecated: Checks the existence of a refresh token for the EUC user for a given connection and returns its details. Use AcquireAccessToken instead and then check the validity of the returned token by asking the 3rd party system. There's no way to know for sure if a refresh token is valid without asking the 3rd party system.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataConnector.checkRefreshToken(
+     *       {
+     *         // Required. The resource name of the connector for which a token is queried.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataConnector',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "refreshTokenInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkRefreshToken(
+      params: Params$Resource$Projects$Locations$Collections$Dataconnector$Checkrefreshtoken,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    checkRefreshToken(
+      params?: Params$Resource$Projects$Locations$Collections$Dataconnector$Checkrefreshtoken,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse>
+    >;
+    checkRefreshToken(
+      params: Params$Resource$Projects$Locations$Collections$Dataconnector$Checkrefreshtoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkRefreshToken(
+      params: Params$Resource$Projects$Locations$Collections$Dataconnector$Checkrefreshtoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse>
+    ): void;
+    checkRefreshToken(
+      params: Params$Resource$Projects$Locations$Collections$Dataconnector$Checkrefreshtoken,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse>
+    ): void;
+    checkRefreshToken(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse>
+    ): void;
+    checkRefreshToken(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Dataconnector$Checkrefreshtoken
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Dataconnector$Checkrefreshtoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Dataconnector$Checkrefreshtoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:checkRefreshToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaCheckRefreshTokenResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Get the secret for the associated connector.
      * @example
      * ```js
@@ -21195,6 +21365,13 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAcquireAccessTokenRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Dataconnector$Checkrefreshtoken
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the connector for which a token is queried.
+     */
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Dataconnector$Getconnectorsecret
     extends StandardParameters {
@@ -38913,6 +39090,158 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Get Workspace settings for the end user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.getWorkspaceSettings(
+     *       {
+     *         // Required. Full Engine resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "workspaceAccessEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getWorkspaceSettings(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getworkspacesettings,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getWorkspaceSettings(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Getworkspacesettings,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings>
+    >;
+    getWorkspaceSettings(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getworkspacesettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getWorkspaceSettings(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getworkspacesettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings>
+    ): void;
+    getWorkspaceSettings(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getworkspacesettings,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings>
+    ): void;
+    getWorkspaceSettings(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings>
+    ): void;
+    getWorkspaceSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Getworkspacesettings
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Getworkspacesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Getworkspacesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:getWorkspaceSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lists all the Engines associated with the project.
      * @example
      * ```js
@@ -39791,6 +40120,13 @@ export namespace discoveryengine_v1alpha {
     extends StandardParameters {
     /**
      * Required. Full resource name of Engine, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Getworkspacesettings
+    extends StandardParameters {
+    /**
+     * Required. Full Engine resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`
      */
     name?: string;
   }
