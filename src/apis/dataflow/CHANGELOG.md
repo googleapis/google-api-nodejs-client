@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v19.0.0...dataflow-v19.0.1) (2025-10-09)
+
+
+### Bug Fixes
+
+* **dataflow:** update the API ([7d074c9](https://github.com/googleapis/google-api-nodejs-client/commit/7d074c9c2af850e1f1646d34147ba3062c373578))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v18.0.0...dataflow-v19.0.0) (2025-09-16)
 
 

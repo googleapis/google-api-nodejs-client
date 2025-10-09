@@ -1,5 +1,12 @@
 # Changelog
 
+## [43.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v43.0.0...chat-v43.1.0) (2025-10-09)
+
+
+### Features
+
+* **chat:** update the API ([43bbbf5](https://github.com/googleapis/google-api-nodejs-client/commit/43bbbf56f328b0b987370875d1d37f904617eda9))
+
 ## [43.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v42.0.0...chat-v43.0.0) (2025-09-30)
 
 

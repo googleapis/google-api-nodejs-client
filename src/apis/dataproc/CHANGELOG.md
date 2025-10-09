@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v13.0.0...dataproc-v14.0.0) (2025-10-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataproc:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **dataproc:** update the API ([1b4419c](https://github.com/googleapis/google-api-nodejs-client/commit/1b4419c32aab06d5e2c73337e686a543cd7b4217))
+* run the generator ([#3798](https://github.com/googleapis/google-api-nodejs-client/issues/3798)) ([92a73cf](https://github.com/googleapis/google-api-nodejs-client/commit/92a73cf2d6e561116c73745f284aeba5578cc345))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v12.0.0...dataproc-v13.0.0) (2025-09-30)
 
 

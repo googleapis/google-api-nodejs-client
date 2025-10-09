@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v17.0.0...firestore-v17.1.0) (2025-10-09)
+
+
+### Features
+
+* **firestore:** update the API ([22a6a4b](https://github.com/googleapis/google-api-nodejs-client/commit/22a6a4b4162ebdb7865a25734255805a52cbeeb9))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v16.0.0...firestore-v17.0.0) (2025-09-30)
 
 

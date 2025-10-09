@@ -1,5 +1,16 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v11.0.0...clouddeploy-v12.0.0) (2025-10-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3805](https://github.com/googleapis/google-api-nodejs-client/issues/3805)) ([b85dec2](https://github.com/googleapis/google-api-nodejs-client/commit/b85dec231909b046b8fc96ffa38ffedb8f3ea73a))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v10.0.0...clouddeploy-v11.0.0) (2025-09-30)
 
 

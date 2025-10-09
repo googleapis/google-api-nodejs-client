@@ -1,5 +1,16 @@
 # Changelog
 
+## [32.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v31.0.0...compute-v32.0.0) (2025-10-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **compute:** This release has breaking changes.
+
+### Features
+
+* **compute:** update the API ([4706d16](https://github.com/googleapis/google-api-nodejs-client/commit/4706d1611ed9cb4b4e3622bd21268035641d43e6))
+
 ## [31.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v30.0.0...compute-v31.0.0) (2025-09-30)
 
 

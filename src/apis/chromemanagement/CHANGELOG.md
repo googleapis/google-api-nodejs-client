@@ -1,5 +1,12 @@
 # Changelog
 
+## [23.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v23.0.0...chromemanagement-v23.1.0) (2025-10-09)
+
+
+### Features
+
+* **chromemanagement:** update the API ([8f28f34](https://github.com/googleapis/google-api-nodejs-client/commit/8f28f34cede7e047a22075420b953a7e0044c4d3))
+
 ## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v22.0.0...chromemanagement-v23.0.0) (2025-09-16)
 
 

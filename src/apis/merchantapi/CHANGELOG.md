@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v13.0.0...merchantapi-v13.1.0) (2025-10-09)
+
+
+### Features
+
+* **merchantapi:** update the API ([8ec435a](https://github.com/googleapis/google-api-nodejs-client/commit/8ec435af38786a20d9b66e6531b51c78c5c657aa))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v12.0.0...merchantapi-v13.0.0) (2025-09-30)
 
 

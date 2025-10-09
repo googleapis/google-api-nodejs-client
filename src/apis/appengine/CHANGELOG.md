@@ -1,5 +1,17 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v10.0.0...appengine-v11.0.0) (2025-10-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **appengine:** update the API ([e364a8f](https://github.com/googleapis/google-api-nodejs-client/commit/e364a8f2a8514e45493eadc6bdad38645b60fd5a))
+* run the generator ([#3805](https://github.com/googleapis/google-api-nodejs-client/issues/3805)) ([b85dec2](https://github.com/googleapis/google-api-nodejs-client/commit/b85dec231909b046b8fc96ffa38ffedb8f3ea73a))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v9.1.1...appengine-v10.0.0) (2025-09-16)
 
 
