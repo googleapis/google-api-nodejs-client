@@ -6149,6 +6149,8 @@ export namespace iam_v1 {
      *
      *   // Do the magic
      *   const res = await iam.locations.workforcePools.providers.scimTenants.delete({
+     *     // Optional. Deletes the SCIM tenant immediately. This operation cannot be undone.
+     *     hardDelete: 'placeholder-value',
      *     // Required. Agentspace only. The name of the scim tenant to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
      *     name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
      *   });
@@ -6913,6 +6915,10 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete
     extends StandardParameters {
+    /**
+     * Optional. Deletes the SCIM tenant immediately. This operation cannot be undone.
+     */
+    hardDelete?: boolean;
     /**
      * Required. Agentspace only. The name of the scim tenant to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
      */
