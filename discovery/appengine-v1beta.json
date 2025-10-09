@@ -959,7 +959,7 @@
                   "type": "string"
                 },
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1058,6 +1058,11 @@
                   "description": "The standard list page token.",
                   "location": "query",
                   "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to \"projects/example/locations/-\".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta/apps/{appsId}/operations",
@@ -1733,7 +1738,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2205,6 +2210,51 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "delete": {
+                      "description": "Deletes the specified domain mapping. A user must be authorized to administer the associated domain in order to delete a DomainMapping resource.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}",
+                      "httpMethod": "DELETE",
+                      "id": "appengine.projects.locations.applications.domainMappings.delete",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId",
+                        "domainMappingsId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "domainMappingsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Gets the specified domain mapping.",
                       "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}",
@@ -2250,6 +2300,60 @@
                         "https://www.googleapis.com/auth/appengine.admin",
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the specified domain mapping. To map an SSL certificate to a domain mapping, update certificate_id to point to an AuthorizedCertificate resource. A user must be authorized to administer the associated domain in order to update a DomainMapping resource.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}",
+                      "httpMethod": "PATCH",
+                      "id": "appengine.projects.locations.applications.domainMappings.patch",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId",
+                        "domainMappingsId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "domainMappingsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `name`. Required. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Standard field mask for the set of fields to be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}",
+                      "request": {
+                        "$ref": "DomainMapping"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
                   }
@@ -2562,6 +2666,11 @@
                       "location": "path",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to \"projects/example/locations/-\".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta/projects/{projectsId}/locations/{locationsId}/operations",
@@ -2581,7 +2690,7 @@
       }
     }
   },
-  "revision": "20250816",
+  "revision": "20251005",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -3769,6 +3878,13 @@
             "$ref": "Operation"
           },
           "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4814,6 +4930,21 @@
       },
       "type": "object"
     },
+    "SubnetworkKey": {
+      "description": "Subnetwork key message.",
+      "id": "SubnetworkKey",
+      "properties": {
+        "hostProjectId": {
+          "description": "Project id (name not number) of the project that hosts the network",
+          "type": "string"
+        },
+        "subnet": {
+          "description": "Short name of the subnetwork. e.g. SUBNET instead of projects/{PROJECT_NAME}/regions/{REGION}/subnetworks/{SUBNET}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TrafficSplit": {
       "description": "Traffic routing configuration for versions within a single service. Traffic splits define how traffic directed to the service is assigned to versions.",
       "id": "TrafficSplit",
@@ -5186,6 +5317,10 @@
           "$ref": "VpcAccessConnector",
           "description": "Enables VPC connectivity for standard apps."
         },
+        "vpcEgress": {
+          "$ref": "VpcEgress",
+          "description": "Enables VPC egress connectivity for standard apps."
+        },
         "zones": {
           "description": "The Google Compute Engine zones that are supported by this version in the App Engine flexible environment. Deprecated.",
           "items": {
@@ -5236,6 +5371,49 @@
         },
         "name": {
           "description": "Full Serverless VPC Access Connector name e.g. projects/my-project/locations/us-central1/connectors/c1.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VpcEgress": {
+      "description": "Vpc Egress configuration.",
+      "id": "VpcEgress",
+      "properties": {
+        "egressSetting": {
+          "description": "The egress setting for the subnetwork, controlling what traffic is diverted through it.",
+          "enum": [
+            "EGRESS_SETTING_UNSPECIFIED",
+            "ALL_TRAFFIC",
+            "PRIVATE_IP_RANGES"
+          ],
+          "enumDescriptions": [
+            "No value set; apply default behavior",
+            "Force all traffic to egress through the NetworkInterface (and configured VPC Network)",
+            "Force all Private IP Space traffic to egress through NetworkInterface (and configured VPC Network)"
+          ],
+          "type": "string"
+        },
+        "networkTags": {
+          "description": "The network tags to apply to the instance.",
+          "items": {
+            "$ref": "VpcNetworkTag"
+          },
+          "type": "array"
+        },
+        "subnetworkKey": {
+          "$ref": "SubnetworkKey",
+          "description": "The subnetwork key."
+        }
+      },
+      "type": "object"
+    },
+    "VpcNetworkTag": {
+      "description": "Network tag message.",
+      "id": "VpcNetworkTag",
+      "properties": {
+        "value": {
+          "description": "value for the tag name",
           "type": "string"
         }
       },
