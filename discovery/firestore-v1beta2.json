@@ -206,11 +206,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://firestore.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://firestore.us-south1.rep.googleapis.com/",
       "location": "us-south1"
     },
@@ -233,6 +228,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://firestore.us-west4.rep.googleapis.com/",
       "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://firestore.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
     },
     {
       "description": "Regional Endpoint",
@@ -426,11 +426,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://batch-firestore.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://batch-firestore.us-south1.rep.googleapis.com/",
       "location": "us-south1"
     },
@@ -456,8 +451,23 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://batch-firestore.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://batch-firestore.us-west8.rep.googleapis.com/",
       "location": "us-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://firestore.eu.rep.googleapis.com/",
+      "location": "eu"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://firestore.us.rep.googleapis.com/",
+      "location": "us"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -857,7 +867,7 @@
       }
     }
   },
-  "revision": "20250918",
+  "revision": "20251001",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Empty": {
