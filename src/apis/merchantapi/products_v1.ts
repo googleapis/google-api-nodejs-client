@@ -142,6 +142,63 @@ export namespace merchantapi_products_v1 {
     priorPriceProgressive?: Schema$Price;
   }
   /**
+   * Carrier-based shipping configuration. Allows for setting shipping speed or shipping cost based on a carrier's provided info.
+   */
+  export interface Schema$CarrierShipping {
+    /**
+     * Selected carrier to calculate the shipping price from. Select a carrier from the [available carriers list](https://support.google.com/merchants/answer/15449142#Supported), for example `AUSTRALIA_POST_REGULAR`. Price will be calculated by this selected carrier, the location expressed in originPostalCode, along with the user location to determine the accurate shipping price. Carrier is represented by a carrier service name or a carrier service ID. Cannot be set together with flatPrice.
+     */
+    carrierPrice?: string | null;
+    /**
+     * A flat adjustment on the carrier price. Can be either positive or negative. Cannot be zero. Requires `carrier_price` to be present. Cannot be set together with flatPrice and carrierPricePercentageAdjustment.
+     */
+    carrierPriceFlatAdjustment?: Schema$Price;
+    /**
+     * A percentual adjustment on the carrier price. Can be either positive or negative. Cannot be zero. Requires `carrier_price` to be present. Cannot be set together with flatPrice and carrierPriceFlatAdjustment.
+     */
+    carrierPricePercentageAdjustment?: number | null;
+    /**
+     * Selected carrier to calculate the shipping speed from. Select a carrier from the [available carriers list](https://support.google.com/merchants/answer/15449142#Supported), for example `AUSTRALIA_POST_REGULAR`. Speed will be calculated by this selected carrier, the location expressed in originPostalCode, along with the user location to determine the accurate delivery speed. Carrier is represented by a carrier service name or a carrier service ID. Cannot be set together with fixedMaxTransitTime or fixedMinTransitTime.
+     */
+    carrierTransitTime?: string | null;
+    /**
+     * The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.
+     */
+    country?: string | null;
+    /**
+     * Maximum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. Needs to be provided together with maxHandlingTime. Cannot be set if carrierTransitTime is present.
+     */
+    fixedMaxTransitTime?: string | null;
+    /**
+     * Minimum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. fixedMinTransitTime can only be set if fixedMaxTransitTime is set. Cannot be set if carrierTransitTime is present.
+     */
+    fixedMinTransitTime?: string | null;
+    /**
+     * Fixed shipping price, represented as a number with currency. Cannot be set together with carrierPrice or its adjustments (carrierPriceFlatAdjustment, carrierPricePercentageAdjustment).
+     */
+    flatPrice?: Schema$Price;
+    /**
+     * Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. Both maxHandlingTime and fixedMaxTransitTime or carrierTransitTime are required if providing shipping speeds.
+     */
+    maxHandlingTime?: string | null;
+    /**
+     * Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. minHandlingTime can only be set if maxHandlingTime is also set.
+     */
+    minHandlingTime?: string | null;
+    /**
+     * The source location postal code from which this offer ships. Represented only by a full-length postal code.
+     */
+    originPostalCode?: string | null;
+    /**
+     * The postal code range that the shipping rate applies to, represented by a postal code (eg. `94043`), a postal code prefix followed by a * wildcard (eg. `94*`), a range between two postal codes (eg. `94043-98033`) or two postal code prefixes of equal length (eg. `94*-98*`).
+     */
+    postalCode?: string | null;
+    /**
+     * The geographic region to which a shipping rate applies. See [region](https://support.google.com/merchants/answer/6324484) for more information.
+     */
+    region?: string | null;
+  }
+  /**
    * Product property for the Cloud Retail API. For example, properties for a TV product could be "Screen-Resolution" or "Screen-Size".
    */
   export interface Schema$CloudExportAdditionalProperties {
@@ -232,6 +289,27 @@ export namespace merchantapi_products_v1 {
      * The minimum product price for the shipping cost to become free. Represented as a number.
      */
     priceThreshold?: Schema$Price;
+  }
+  /**
+   * Configuration for offer or offer-country level shipping handling cutoff time.
+   */
+  export interface Schema$HandlingCutoffTime {
+    /**
+     * The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which the handling cutoff time applies.
+     */
+    country?: string | null;
+    /**
+     * The handling cutoff time until which an order has to be placed to be processed in the same day. This is a string in format of HHMM (e.g. `1530`) for 3:30 PM. If not configured, the cutoff time will be defaulted to 8AM PST.
+     */
+    cutoffTime?: string | null;
+    /**
+     * [Timezone identifier](https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids) For example 'Europe/Zurich'. If not set, the shipping destination timezone will be used.
+     */
+    cutoffTimezone?: string | null;
+    /**
+     * This field only applies to same-day delivery. If true, prevents next-day delivery from being shown for this offer after the cutoff time. This field only applies to same-day delivery offers, for merchants who want to explicitly disable it.
+     */
+    disableDeliveryAfterCutoff?: boolean | null;
   }
   /**
    * Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.
@@ -461,6 +539,10 @@ export namespace merchantapi_products_v1 {
      */
     canonicalLink?: string | null;
     /**
+     * Rules for carrier-based shipping.
+     */
+    carrierShipping?: Schema$CarrierShipping[];
+    /**
      * Product Certifications, for example for energy efficiency labeling of products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database. See the [Help Center](https://support.google.com/merchants/answer/13528839) article for more information.
      */
     certifications?: Schema$ProductCertification[];
@@ -560,6 +642,10 @@ export namespace merchantapi_products_v1 {
      * Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.
      */
     gtins?: string[] | null;
+    /**
+     * The handling cutoff times for shipping.
+     */
+    handlingCutoffTimes?: Schema$HandlingCutoffTime[];
     /**
      * Set this value to false when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Defaults to true, if not provided.
      */
@@ -1023,6 +1109,14 @@ export namespace merchantapi_products_v1 {
      * The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.
      */
     country?: string | null;
+    /**
+     * The handling cutoff time until which an order has to be placed to be processed in the same day. This is a string in format of HHMM (e.g. `1530`) for 3:30 PM. If not configured, the cutoff time will be defaulted to 8AM PST and `handling_cutoff_timezone` will be ignored.
+     */
+    handlingCutoffTime?: string | null;
+    /**
+     * [Timezone identifier](https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids) For example `Europe/Zurich`. This field only applies if `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this field is not set, the shipping destination timezone will be used. If both fields are not set, the handling cutoff time will default to 8AM PST.
+     */
+    handlingCutoffTimezone?: string | null;
     /**
      * The location where the shipping is applicable, represented by a location group name.
      */

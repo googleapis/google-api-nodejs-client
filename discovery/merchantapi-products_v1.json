@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20250811",
+  "revision": "20251007",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AutomatedDiscounts": {
@@ -299,6 +299,282 @@
         "priorPriceProgressive": {
           "$ref": "Price",
           "description": "The price prior to the application of consecutive price reductions. Absent if the information about the prior price of the product is not available."
+        }
+      },
+      "type": "object"
+    },
+    "CarrierShipping": {
+      "description": "Carrier-based shipping configuration. Allows for setting shipping speed or shipping cost based on a carrier's provided info.",
+      "id": "CarrierShipping",
+      "properties": {
+        "carrierPrice": {
+          "description": "Selected carrier to calculate the shipping price from. Select a carrier from the [available carriers list](https://support.google.com/merchants/answer/15449142#Supported), for example `AUSTRALIA_POST_REGULAR`. Price will be calculated by this selected carrier, the location expressed in originPostalCode, along with the user location to determine the accurate shipping price. Carrier is represented by a carrier service name or a carrier service ID. Cannot be set together with flatPrice.",
+          "enum": [
+            "CARRIER_PRICE_OPTION_UNSPECIFIED",
+            "AUSTRALIA_POST_REGULAR",
+            "AUSTRALIA_POST_EXPRESS",
+            "AUSTRALIA_POST_REGULAR_S",
+            "AUSTRALIA_POST_REGULAR_M",
+            "AUSTRALIA_POST_REGULAR_L",
+            "AUSTRALIA_POST_REGULAR_XL",
+            "AUSTRALIA_POST_EXPRESS_S",
+            "AUSTRALIA_POST_EXPRESS_M",
+            "AUSTRALIA_POST_EXPRESS_L",
+            "AUSTRALIA_POST_EXPRESS_XL",
+            "TNT_ROAD_EXPRESS",
+            "TNT_OVERNIGHT_EXPRESS",
+            "TOLL_ROAD_DELIVERY",
+            "TOLL_OVERNIGHT_PRIORITY",
+            "DHL_PAKET",
+            "DHL_PACKCHEN",
+            "DPD_EXPRESS_12",
+            "DPD_EXPRESS",
+            "DPD_CLASSIC_PARCEL",
+            "HERMES_PACKCHEN",
+            "HERMES_PAKETKLASSE_S",
+            "HERMES_PAKETKLASSE_M",
+            "HERMES_PAKETKLASSE_L",
+            "UPS_EXPRESS",
+            "UPS_EXPRESS_SAVER",
+            "UPS_EXPRESS_STANDARD",
+            "DHL_EXPRESS",
+            "DHL_EXPRESS_12",
+            "DPD_NEXT_DAY",
+            "DPD_STANDARD_NEXT_DAY",
+            "DPD_STANDARD_TWO_DAY",
+            "RMG_1ST_CLASS_SMALL",
+            "RMG_1ST_CLASS_MEDIUM",
+            "RMG_2ND_CLASS_SMALL",
+            "RMG_2ND_CLASS_MEDIUM",
+            "TNT_EXPRESS",
+            "TNT_EXPRESS_10",
+            "TNT_EXPRESS_12",
+            "YODEL_B2C_48HR",
+            "YODEL_B2C_72HR",
+            "YODEL_B2C_PACKET",
+            "FEDEX_GROUND",
+            "FEDEX_HOME_DELIVERY",
+            "FEDEX_EXPRESS_SAVER",
+            "FEDEX_FIRST_OVERNIGHT",
+            "FEDEX_PRIORITY_OVERNIGHT",
+            "FEDEX_STANDARD_OVERNIGHT",
+            "FEDEX_2DAY",
+            "UPS_STANDARD",
+            "UPS_2ND_DAY_AIR",
+            "UPS_2ND_DAY_AM",
+            "UPS_3_DAY_SELECT",
+            "UPS_GROUND",
+            "UPS_NEXT_DAY_AIR",
+            "UPS_NEXT_DAY_AIR_EARLY_AM",
+            "UPS_NEXT_DAY_AIR_SAVER",
+            "USPS_PRIORITY_MAIL_EXPRESS",
+            "USPS_MEDIA_MAIL",
+            "USPS_GROUND_ADVANTAGE_RETAIL",
+            "USPS_PRIORITY_MAIL",
+            "USPS_GROUND_ADVANTAGE_COMMERCIAL"
+          ],
+          "enumDescriptions": [
+            "Carrier price option is unspecified.",
+            "Australia Post Regular shipping service.",
+            "Australia Post Express shipping service.",
+            "Australia Post Regular Small shipping service.",
+            "Australia Post Regular Medium shipping service.",
+            "Australia Post Regular Large shipping service.",
+            "Australia Post Regular XL shipping service.",
+            "Australia Post Express Small shipping service.",
+            "Australia Post Express Medium shipping service.",
+            "Australia Post Express Large shipping service.",
+            "Australia Post Express XL shipping service.",
+            "TNT Road Express shipping service.",
+            "TNT Overnight Express shipping service.",
+            "Toll Road Delivery shipping service.",
+            "Toll Overnight Priority shipping service.",
+            "DHL Paket shipping service.",
+            "DHL Packchen shipping service.",
+            "DPD Express 12 shipping service.",
+            "DPD Express shipping service.",
+            "DPD Classic Parcel shipping service.",
+            "Hermes Packchen shipping service.",
+            "Hermes Paketklasse S shipping service.",
+            "Hermes Paketklasse M shipping service.",
+            "Hermes Paketklasse L shipping service.",
+            "UPS Express shipping service.",
+            "UPS Express Saver shipping service.",
+            "UPS Express Standard shipping service.",
+            "DHL Express shipping service.",
+            "DHL Express 12 shipping service.",
+            "DPD Next Day shipping service.",
+            "DPD Standard Next Day shipping service.",
+            "DPD Standard Two Day shipping service.",
+            "RMG 1st Class Small shipping service.",
+            "RMG 1st Class Medium shipping service.",
+            "RMG 2nd Class Small shipping service.",
+            "RMG 2nd Class Medium shipping service.",
+            "TNT Express shipping service.",
+            "TNT Express 10 shipping service.",
+            "TNT Express 12 shipping service.",
+            "Yodel B2C 48HR shipping service.",
+            "Yodel B2C 72HR shipping service.",
+            "Yodel B2C Packet shipping service.",
+            "FedEx Ground shipping service.",
+            "FedEx Home Delivery shipping service.",
+            "FedEx Express Saver shipping service.",
+            "FedEx First Overnight shipping service.",
+            "FedEx Priority Overnight shipping service.",
+            "FedEx Standard Overnight shipping service.",
+            "FedEx 2Day shipping service.",
+            "UPS Standard shipping service.",
+            "UPS 2nd Day Air shipping service.",
+            "UPS 2nd Day AM shipping service.",
+            "UPS 3 Day Select shipping service.",
+            "UPS Ground shipping service.",
+            "UPS Next Day Air shipping service.",
+            "UPS Next Day Air Early AM shipping service.",
+            "UPS Next Day Air Saver shipping service.",
+            "USPS Priority Mail Express shipping service.",
+            "USPS Media Mail shipping service.",
+            "USPS Ground Advantage Retail shipping service.",
+            "USPS Priority Mail shipping service.",
+            "USPS Ground Advantage Commercial shipping service."
+          ],
+          "type": "string"
+        },
+        "carrierPriceFlatAdjustment": {
+          "$ref": "Price",
+          "description": "A flat adjustment on the carrier price. Can be either positive or negative. Cannot be zero. Requires `carrier_price` to be present. Cannot be set together with flatPrice and carrierPricePercentageAdjustment."
+        },
+        "carrierPricePercentageAdjustment": {
+          "description": "A percentual adjustment on the carrier price. Can be either positive or negative. Cannot be zero. Requires `carrier_price` to be present. Cannot be set together with flatPrice and carrierPriceFlatAdjustment.",
+          "format": "double",
+          "type": "number"
+        },
+        "carrierTransitTime": {
+          "description": "Selected carrier to calculate the shipping speed from. Select a carrier from the [available carriers list](https://support.google.com/merchants/answer/15449142#Supported), for example `AUSTRALIA_POST_REGULAR`. Speed will be calculated by this selected carrier, the location expressed in originPostalCode, along with the user location to determine the accurate delivery speed. Carrier is represented by a carrier service name or a carrier service ID. Cannot be set together with fixedMaxTransitTime or fixedMinTransitTime.",
+          "enum": [
+            "CARRIER_TRANSIT_TIME_OPTION_UNSPECIFIED",
+            "DHL_PAKET",
+            "DHL_PACKCHEN",
+            "DHL_EXPRESSEASY",
+            "DPD_EXPRESS",
+            "DPD_CLASSIC_PARCEL",
+            "HERMES_HAUSTUR",
+            "HERMES_PAKETSHOP",
+            "GLS_BUSINESS",
+            "GLS_EXPRESS",
+            "GLS_PRIVATE",
+            "COLISSIMO_DOMICILE",
+            "DHL_EXPRESS_12AM",
+            "DHL_EXPRESS_9AM",
+            "GEODIS_EXPRESS",
+            "GEODIS_PACK_30",
+            "GEODIS_SAME_DAY",
+            "GEODIS_TOP_24",
+            "TNT_ESSENTIEL_24H",
+            "TNT_ESSENTIEL_FLEXIBILITE",
+            "FEDEX_GROUND",
+            "FEDEX_HOME_DELIVERY",
+            "FEDEX_EXPRESS_SAVER",
+            "FEDEX_FIRST_OVERNIGHT",
+            "FEDEX_PRIORITY_OVERNIGHT",
+            "FEDEX_STANDARD_OVERNIGHT",
+            "FEDEX_2DAY",
+            "UPS_2ND_DAY_AIR",
+            "UPS_2ND_DAY_AM",
+            "UPS_3_DAY_SELECT",
+            "UPS_GROUND",
+            "UPS_NEXT_DAY_AIR",
+            "UPS_NEXT_DAY_AIR_EARLY_AM",
+            "UPS_NEXT_DAY_AIR_SAVER",
+            "USPS_PRIORITY_MAIL_EXPRESS",
+            "USPS_MEDIA_MAIL",
+            "USPS_GROUND_ADVANTAGE_RETAIL",
+            "USPS_PRIORITY_MAIL",
+            "USPS_GROUND_ADVANTAGE_COMMERCIAL",
+            "USPS_FIRST_CLASS_MAIL"
+          ],
+          "enumDescriptions": [
+            "Carrier transit time option is unspecified.",
+            "DHL Paket shipping service.",
+            "DHL Packchen shipping service.",
+            "DHL Express Easy shipping service.",
+            "DPD Express shipping service.",
+            "DPD Classic Parcel shipping service.",
+            "Hermes Haustur shipping service.",
+            "Hermes Paketshop shipping service.",
+            "GLS Business shipping service.",
+            "GLS Express shipping service.",
+            "GLS Private shipping service.",
+            "Colissimo Domicile shipping service.",
+            "DHL Express 12 AM shipping service.",
+            "DHL Express 9 AM shipping service.",
+            "GEODIS Express shipping service.",
+            "GEODIS Pack 30 shipping service.",
+            "GEODIS Same Day shipping service.",
+            "GEODIS Top 24 shipping service.",
+            "TNT Essentiel 24H shipping service.",
+            "TNT Essentiel Flexibilite shipping service.",
+            "FedEx Ground shipping service.",
+            "FedEx Home Delivery shipping service.",
+            "FedEx Express Saver shipping service.",
+            "FedEx First Overnight shipping service.",
+            "FedEx Priority Overnight shipping service.",
+            "FedEx Standard Overnight shipping service.",
+            "FedEx 2Day shipping service.",
+            "UPS 2nd Day Air shipping service.",
+            "UPS 2nd Day AM shipping service.",
+            "UPS 3 Day Select shipping service.",
+            "UPS Ground shipping service.",
+            "UPS Next Day Air shipping service.",
+            "UPS Next Day Air Early AM shipping service.",
+            "UPS Next Day Air Saver shipping service.",
+            "USPS Priority Mail Express shipping service.",
+            "USPS Media Mail shipping service.",
+            "USPS Ground Advantage Retail shipping service.",
+            "USPS Priority Mail shipping service.",
+            "USPS Ground Advantage Commercial shipping service.",
+            "USPS First Class Mail shipping service."
+          ],
+          "type": "string"
+        },
+        "country": {
+          "description": "The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.",
+          "type": "string"
+        },
+        "fixedMaxTransitTime": {
+          "description": "Maximum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. Needs to be provided together with maxHandlingTime. Cannot be set if carrierTransitTime is present.",
+          "format": "int64",
+          "type": "string"
+        },
+        "fixedMinTransitTime": {
+          "description": "Minimum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. fixedMinTransitTime can only be set if fixedMaxTransitTime is set. Cannot be set if carrierTransitTime is present.",
+          "format": "int64",
+          "type": "string"
+        },
+        "flatPrice": {
+          "$ref": "Price",
+          "description": "Fixed shipping price, represented as a number with currency. Cannot be set together with carrierPrice or its adjustments (carrierPriceFlatAdjustment, carrierPricePercentageAdjustment)."
+        },
+        "maxHandlingTime": {
+          "description": "Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. Both maxHandlingTime and fixedMaxTransitTime or carrierTransitTime are required if providing shipping speeds.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minHandlingTime": {
+          "description": "Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. minHandlingTime can only be set if maxHandlingTime is also set.",
+          "format": "int64",
+          "type": "string"
+        },
+        "originPostalCode": {
+          "description": "The source location postal code from which this offer ships. Represented only by a full-length postal code.",
+          "type": "string"
+        },
+        "postalCode": {
+          "description": "The postal code range that the shipping rate applies to, represented by a postal code (eg. `94043`), a postal code prefix followed by a * wildcard (eg. `94*`), a range between two postal codes (eg. `94043-98033`) or two postal code prefixes of equal length (eg. `94*-98*`).",
+          "type": "string"
+        },
+        "region": {
+          "description": "The geographic region to which a shipping rate applies. See [region](https://support.google.com/merchants/answer/6324484) for more information.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -489,6 +765,29 @@
         "priceThreshold": {
           "$ref": "Price",
           "description": "The minimum product price for the shipping cost to become free. Represented as a number."
+        }
+      },
+      "type": "object"
+    },
+    "HandlingCutoffTime": {
+      "description": "Configuration for offer or offer-country level shipping handling cutoff time.",
+      "id": "HandlingCutoffTime",
+      "properties": {
+        "country": {
+          "description": "The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which the handling cutoff time applies.",
+          "type": "string"
+        },
+        "cutoffTime": {
+          "description": "The handling cutoff time until which an order has to be placed to be processed in the same day. This is a string in format of HHMM (e.g. `1530`) for 3:30 PM. If not configured, the cutoff time will be defaulted to 8AM PST.",
+          "type": "string"
+        },
+        "cutoffTimezone": {
+          "description": "[Timezone identifier](https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids) For example 'Europe/Zurich'. If not set, the shipping destination timezone will be used.",
+          "type": "string"
+        },
+        "disableDeliveryAfterCutoff": {
+          "description": "This field only applies to same-day delivery. If true, prevents next-day delivery from being shown for this offer after the cutoff time. This field only applies to same-day delivery offers, for merchants who want to explicitly disable it.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -874,6 +1173,13 @@
           "description": "URL for the canonical version of your item's landing page.",
           "type": "string"
         },
+        "carrierShipping": {
+          "description": "Rules for carrier-based shipping.",
+          "items": {
+            "$ref": "CarrierShipping"
+          },
+          "type": "array"
+        },
         "certifications": {
           "description": "Product Certifications, for example for energy efficiency labeling of products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database. See the [Help Center](https://support.google.com/merchants/answer/13528839) article for more information.",
           "items": {
@@ -1072,6 +1378,13 @@
           "description": "Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "handlingCutoffTimes": {
+          "description": "The handling cutoff times for shipping.",
+          "items": {
+            "$ref": "HandlingCutoffTime"
           },
           "type": "array"
         },
@@ -1923,6 +2236,14 @@
       "properties": {
         "country": {
           "description": "The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.",
+          "type": "string"
+        },
+        "handlingCutoffTime": {
+          "description": "The handling cutoff time until which an order has to be placed to be processed in the same day. This is a string in format of HHMM (e.g. `1530`) for 3:30 PM. If not configured, the cutoff time will be defaulted to 8AM PST and `handling_cutoff_timezone` will be ignored.",
+          "type": "string"
+        },
+        "handlingCutoffTimezone": {
+          "description": "[Timezone identifier](https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids) For example `Europe/Zurich`. This field only applies if `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this field is not set, the shipping destination timezone will be used. If both fields are not set, the handling cutoff time will default to 8AM PST.",
           "type": "string"
         },
         "locationGroupName": {
