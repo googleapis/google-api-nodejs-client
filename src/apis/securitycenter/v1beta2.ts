@@ -588,6 +588,10 @@ export namespace securitycenter_v1beta2 {
      */
     dataProfile?: string | null;
     /**
+     * Type of information detected by SDP. Info type includes name, version and sensitivity of the detected information type.
+     */
+    infoTypes?: Schema$InfoType[];
+    /**
      * The resource hierarchy level at which the data profile was generated.
      */
     parentType?: string | null;
@@ -2659,6 +2663,10 @@ export namespace securitycenter_v1beta2 {
      */
     dataProfile?: string | null;
     /**
+     * Type of information detected by SDP. Info type includes name, version and sensitivity of the detected information type.
+     */
+    infoTypes?: Schema$GoogleCloudSecuritycenterV2InfoType[];
+    /**
      * The resource hierarchy level at which the data profile was generated.
      */
     parentType?: string | null;
@@ -3585,6 +3593,23 @@ export namespace securitycenter_v1beta2 {
      * The list of URIs associated to the Findings.
      */
     uris?: string[] | null;
+  }
+  /**
+   * Type of information detected by the API.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2InfoType {
+    /**
+     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64\}`.
+     */
+    name?: string | null;
+    /**
+     * Optional custom sensitivity for this InfoType. This only applies to data profiling.
+     */
+    sensitivityScore?: Schema$GoogleCloudSecuritycenterV2SensitivityScore;
+    /**
+     * Optional version name for this InfoType.
+     */
+    version?: string | null;
   }
   /**
    * IP rule information.
@@ -4653,6 +4678,15 @@ export namespace securitycenter_v1beta2 {
     mediumSensitivityMapping?: string | null;
   }
   /**
+   * Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2SensitivityScore {
+    /**
+     * The sensitivity score applied to the resource.
+     */
+    score?: string | null;
+  }
+  /**
    * Identity delegation history of an authenticated service account.
    */
   export interface Schema$GoogleCloudSecuritycenterV2ServiceAccountDelegationInfo {
@@ -4842,6 +4876,23 @@ export namespace securitycenter_v1beta2 {
      * The list of URIs associated to the Findings.
      */
     uris?: string[] | null;
+  }
+  /**
+   * Type of information detected by the API.
+   */
+  export interface Schema$InfoType {
+    /**
+     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64\}`.
+     */
+    name?: string | null;
+    /**
+     * Optional custom sensitivity for this InfoType. This only applies to data profiling.
+     */
+    sensitivityScore?: Schema$SensitivityScore;
+    /**
+     * Optional version name for this InfoType.
+     */
+    version?: string | null;
   }
   /**
    * IP rule information.
@@ -5534,6 +5585,15 @@ export namespace securitycenter_v1beta2 {
      * The version of the posture, for example, `c7cfa2a8`.
      */
     revisionId?: string | null;
+  }
+  /**
+   * Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive.
+   */
+  export interface Schema$SensitivityScore {
+    /**
+     * The sensitivity score applied to the resource.
+     */
+    score?: string | null;
   }
   /**
    * Identity delegation history of an authenticated service account.
