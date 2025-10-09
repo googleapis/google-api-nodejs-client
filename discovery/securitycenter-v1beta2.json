@@ -2003,7 +2003,7 @@
       }
     }
   },
-  "revision": "20250915",
+  "revision": "20251006",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2584,6 +2584,13 @@
         "dataProfile": {
           "description": "Name of the data profile, for example, `projects/123/locations/europe/tableProfiles/8383929`.",
           "type": "string"
+        },
+        "infoTypes": {
+          "description": "Type of information detected by SDP. Info type includes name, version and sensitivity of the detected information type.",
+          "items": {
+            "$ref": "InfoType"
+          },
+          "type": "array"
         },
         "parentType": {
           "description": "The resource hierarchy level at which the data profile was generated.",
@@ -5659,6 +5666,13 @@
           "description": "Name of the data profile, for example, `projects/123/locations/europe/tableProfiles/8383929`.",
           "type": "string"
         },
+        "infoTypes": {
+          "description": "Type of information detected by SDP. Info type includes name, version and sensitivity of the detected information type.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2InfoType"
+          },
+          "type": "array"
+        },
         "parentType": {
           "description": "The resource hierarchy level at which the data profile was generated.",
           "enum": [
@@ -7105,6 +7119,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2InfoType": {
+      "description": "Type of information detected by the API.",
+      "id": "GoogleCloudSecuritycenterV2InfoType",
+      "properties": {
+        "name": {
+          "description": "Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.",
+          "type": "string"
+        },
+        "sensitivityScore": {
+          "$ref": "GoogleCloudSecuritycenterV2SensitivityScore",
+          "description": "Optional custom sensitivity for this InfoType. This only applies to data profiling."
+        },
+        "version": {
+          "description": "Optional version name for this InfoType.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2IpRule": {
       "description": "IP rule information.",
       "id": "GoogleCloudSecuritycenterV2IpRule",
@@ -7902,6 +7935,7 @@
               "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
               "EXPLOITATION_FOR_CLIENT_EXECUTION",
               "USER_EXECUTION",
+              "EXPLOITATION_FOR_CREDENTIAL_ACCESS",
               "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
@@ -8042,6 +8076,7 @@
               "T1195.001",
               "T1203",
               "T1204",
+              "T1212",
               "T1222.002",
               "T1484",
               "T1485",
@@ -8227,6 +8262,7 @@
               "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
               "EXPLOITATION_FOR_CLIENT_EXECUTION",
               "USER_EXECUTION",
+              "EXPLOITATION_FOR_CREDENTIAL_ACCESS",
               "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
@@ -8367,6 +8403,7 @@
               "T1195.001",
               "T1203",
               "T1204",
+              "T1212",
               "T1222.002",
               "T1484",
               "T1485",
@@ -9265,6 +9302,31 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2SensitivityScore": {
+      "description": "Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive.",
+      "id": "GoogleCloudSecuritycenterV2SensitivityScore",
+      "properties": {
+        "score": {
+          "description": "The sensitivity score applied to the resource.",
+          "enum": [
+            "SENSITIVITY_SCORE_LEVEL_UNSPECIFIED",
+            "SENSITIVITY_LOW",
+            "SENSITIVITY_UNKNOWN",
+            "SENSITIVITY_MODERATE",
+            "SENSITIVITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Unused.",
+            "No sensitive information detected. The resource isn't publicly accessible.",
+            "Unable to determine sensitivity.",
+            "Medium risk. Contains personally identifiable information (PII), potentially sensitive data, or fields with free-text data that are at a higher risk of having intermittent sensitive data. Consider limiting access.",
+            "High risk. Sensitive personally identifiable information (SPII) can be present. Exfiltration of data can lead to user data loss. Re-identification of users might be possible. Consider limiting usage and or removing SPII."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2ServiceAccountDelegationInfo": {
       "description": "Identity delegation history of an authenticated service account.",
       "id": "GoogleCloudSecuritycenterV2ServiceAccountDelegationInfo",
@@ -9546,6 +9608,25 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InfoType": {
+      "description": "Type of information detected by the API.",
+      "id": "InfoType",
+      "properties": {
+        "name": {
+          "description": "Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.",
+          "type": "string"
+        },
+        "sensitivityScore": {
+          "$ref": "SensitivityScore",
+          "description": "Optional custom sensitivity for this InfoType. This only applies to data profiling."
+        },
+        "version": {
+          "description": "Optional version name for this InfoType.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9933,6 +10014,7 @@
               "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
               "EXPLOITATION_FOR_CLIENT_EXECUTION",
               "USER_EXECUTION",
+              "EXPLOITATION_FOR_CREDENTIAL_ACCESS",
               "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
@@ -10073,6 +10155,7 @@
               "T1195.001",
               "T1203",
               "T1204",
+              "T1212",
               "T1222.002",
               "T1484",
               "T1485",
@@ -10258,6 +10341,7 @@
               "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
               "EXPLOITATION_FOR_CLIENT_EXECUTION",
               "USER_EXECUTION",
+              "EXPLOITATION_FOR_CREDENTIAL_ACCESS",
               "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
@@ -10398,6 +10482,7 @@
               "T1195.001",
               "T1203",
               "T1204",
+              "T1212",
               "T1222.002",
               "T1484",
               "T1485",
@@ -11134,6 +11219,31 @@
         },
         "revisionId": {
           "description": "The version of the posture, for example, `c7cfa2a8`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SensitivityScore": {
+      "description": "Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive.",
+      "id": "SensitivityScore",
+      "properties": {
+        "score": {
+          "description": "The sensitivity score applied to the resource.",
+          "enum": [
+            "SENSITIVITY_SCORE_LEVEL_UNSPECIFIED",
+            "SENSITIVITY_LOW",
+            "SENSITIVITY_UNKNOWN",
+            "SENSITIVITY_MODERATE",
+            "SENSITIVITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Unused.",
+            "No sensitive information detected. The resource isn't publicly accessible.",
+            "Unable to determine sensitivity.",
+            "Medium risk. Contains personally identifiable information (PII), potentially sensitive data, or fields with free-text data that are at a higher risk of having intermittent sensitive data. Consider limiting access.",
+            "High risk. Sensitive personally identifiable information (SPII) can be present. Exfiltration of data can lead to user data loss. Re-identification of users might be possible. Consider limiting usage and or removing SPII."
+          ],
           "type": "string"
         }
       },
