@@ -1536,7 +1536,7 @@ export namespace testing_v1 {
      */
     account?: Schema$Account;
     /**
-     * APKs to install in addition to those being directly tested. These will be installed after the app under test. Currently capped at 100.
+     * APKs to install in addition to those being directly tested. These will be installed after the app under test. Limited to a combined total of 100 initial setup and additional files.
      */
     additionalApks?: Schema$Apk[];
     /**
@@ -1556,7 +1556,7 @@ export namespace testing_v1 {
      */
     filesToPush?: Schema$DeviceFile[];
     /**
-     * Optional. Initial setup APKs to install before the app under test is installed. Currently capped at 100.
+     * Optional. Initial setup APKs to install before the app under test is installed. Limited to a combined total of 100 initial setup and additional files.
      */
     initialSetupApks?: Schema$Apk[];
     /**
