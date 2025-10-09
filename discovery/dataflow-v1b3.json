@@ -2260,7 +2260,7 @@
       }
     }
   },
-  "revision": "20250922",
+  "revision": "20251003",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3372,7 +3372,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "A description of the process that generated the request.",
+          "description": "Optional. A description of the process that generated the request.",
           "type": "object"
         },
         "version": {

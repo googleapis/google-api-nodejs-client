@@ -928,7 +928,7 @@ export namespace dataflow_v1b3 {
      */
     usePublicIps?: boolean | null;
     /**
-     * A description of the process that generated the request.
+     * Optional. A description of the process that generated the request.
      */
     userAgent?: {[key: string]: any} | null;
     /**
