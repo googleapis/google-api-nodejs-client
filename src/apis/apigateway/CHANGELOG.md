@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v5.0.0...apigateway-v5.1.0) (2025-10-09)
+
+
+### Features
+
+* **apigateway:** update the API ([32ce95f](https://github.com/googleapis/google-api-nodejs-client/commit/32ce95f896d1bce200fc5c0f0182b876ce711790))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v4.0.0...apigateway-v5.0.0) (2025-09-30)
 
 

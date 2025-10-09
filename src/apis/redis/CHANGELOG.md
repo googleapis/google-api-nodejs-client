@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v19.0.0...redis-v19.1.0) (2025-10-09)
+
+
+### Features
+
+* **redis:** update the API ([aa144d1](https://github.com/googleapis/google-api-nodejs-client/commit/aa144d1b7f9e7405fbd790758e6dd84801d52e0d))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v18.0.0...redis-v19.0.0) (2025-09-30)
 
 

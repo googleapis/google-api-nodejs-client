@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v9.0.0...eventarc-v9.1.0) (2025-10-09)
+
+
+### Features
+
+* **eventarc:** update the API ([e7b0e7f](https://github.com/googleapis/google-api-nodejs-client/commit/e7b0e7f07ac66f71953a4f95a6365aa41cb77bf0))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v8.0.0...eventarc-v9.0.0) (2025-09-30)
 
 

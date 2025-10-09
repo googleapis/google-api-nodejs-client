@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v16.0.0...securitycenter-v16.1.0) (2025-10-09)
+
+
+### Features
+
+* **securitycenter:** update the API ([40f5b3b](https://github.com/googleapis/google-api-nodejs-client/commit/40f5b3b69e89e5ff386258bdad290e98e4b4921a))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v15.0.0...securitycenter-v16.0.0) (2025-09-30)
 
 
