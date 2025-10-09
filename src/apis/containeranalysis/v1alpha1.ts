@@ -2545,6 +2545,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     baseImages?: Schema$BaseImage[];
     /**
+     * The chain ID of the layer in the container image.
+     */
+    chainId?: string | null;
+    /**
      * The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.
      */
     command?: string | null;
