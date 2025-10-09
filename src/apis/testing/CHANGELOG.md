@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v18.0.0...testing-v18.0.1) (2025-10-09)
+
+
+### Bug Fixes
+
+* **testing:** update the API ([cd69810](https://github.com/googleapis/google-api-nodejs-client/commit/cd69810b210f361bea9550810b35ec8d61498c57))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v17.0.0...testing-v18.0.0) (2025-09-16)
 
 

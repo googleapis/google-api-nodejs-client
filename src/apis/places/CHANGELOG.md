@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/places-v14.0.0...places-v14.0.1) (2025-10-09)
+
+
+### Bug Fixes
+
+* **places:** update the API ([db4cbcf](https://github.com/googleapis/google-api-nodejs-client/commit/db4cbcf180295874eb833f8912a287b9d3402c0f))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v13.0.0...places-v14.0.0) (2025-09-30)
 
 

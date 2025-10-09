@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v14.0.0...migrationcenter-v14.0.1) (2025-10-09)
+
+
+### Bug Fixes
+
+* **migrationcenter:** update the API ([fb62d8b](https://github.com/googleapis/google-api-nodejs-client/commit/fb62d8b6a12a7a226fadc3cd3b1eac67db7f9b98))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v13.0.0...migrationcenter-v14.0.0) (2025-09-30)
 
 

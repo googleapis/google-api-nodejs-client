@@ -1,5 +1,16 @@
 # Changelog
 
+## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v18.0.0...bigquery-v19.0.0) (2025-10-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3802](https://github.com/googleapis/google-api-nodejs-client/issues/3802)) ([3c6fe72](https://github.com/googleapis/google-api-nodejs-client/commit/3c6fe7274a6123b60a09ef78e0f62d57ac2524bb))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v17.0.0...bigquery-v18.0.0) (2025-09-30)
 
 

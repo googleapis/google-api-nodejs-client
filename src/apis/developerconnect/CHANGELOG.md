@@ -1,5 +1,21 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v5.0.0...developerconnect-v6.0.0) (2025-10-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3805](https://github.com/googleapis/google-api-nodejs-client/issues/3805)) ([b85dec2](https://github.com/googleapis/google-api-nodejs-client/commit/b85dec231909b046b8fc96ffa38ffedb8f3ea73a))
+
+
+### Bug Fixes
+
+* **developerconnect:** update the API ([6432705](https://github.com/googleapis/google-api-nodejs-client/commit/64327055fd93dcf7c62d18a871bfe52326b9e8ea))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v4.0.0...developerconnect-v5.0.0) (2025-09-30)
 
 

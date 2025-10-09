@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v7.0.0...datastore-v7.1.0) (2025-10-09)
+
+
+### Features
+
+* **datastore:** update the API ([386e701](https://github.com/googleapis/google-api-nodejs-client/commit/386e70118823478da41b2d11a1734a0506334001))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v6.0.1...datastore-v7.0.0) (2025-09-16)
 
 
