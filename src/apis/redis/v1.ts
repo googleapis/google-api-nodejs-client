@@ -466,6 +466,10 @@ export namespace redis_v1 {
      */
     maintenanceSchedule?: Schema$ClusterMaintenanceSchedule;
     /**
+     * Optional. This field can be used to trigger self service update to indicate the desired maintenance version. The input to this field can be determined by the available_maintenance_versions field.
+     */
+    maintenanceVersion?: string | null;
+    /**
      * Optional. Backups generated and managed by memorystore service.
      */
     managedBackupSource?: Schema$ManagedBackupSource;
@@ -825,7 +829,7 @@ export namespace redis_v1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 27
+   * Common model for database resource instance metadata. Next ID: 29
    */
   export interface Schema$DatabaseResourceMetadata {
     /**
@@ -888,6 +892,10 @@ export namespace redis_v1 {
      * Machine configuration for this resource.
      */
     machineConfiguration?: Schema$MachineConfiguration;
+    /**
+     * Optional. Maintenance info for the resource.
+     */
+    maintenanceInfo?: Schema$ResourceMaintenanceInfo;
     /**
      * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
      */
@@ -994,6 +1002,23 @@ export namespace redis_v1 {
      * Required. Signal type of the signal
      */
     signalType?: string | null;
+  }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
   }
   /**
    * Endpoints on each network, for Redis clients to connect to the cluster.
@@ -1906,6 +1931,57 @@ export namespace redis_v1 {
      * Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for example `2012-11-15T16:19:00.094Z`.
      */
     scheduleTime?: string | null;
+  }
+  /**
+   * Deny maintenance period for the database resource. It specifies the time range during which the maintenance cannot start. This is configured by the customer.
+   */
+  export interface Schema$ResourceMaintenanceDenySchedule {
+    /**
+     * Optional. Deny period end date.
+     */
+    endDate?: Schema$Date;
+    /**
+     * Optional. The start date of the deny maintenance period.
+     */
+    startDate?: Schema$Date;
+    /**
+     * Optional. Time in UTC when the deny period starts on start_date and ends on end_date.
+     */
+    time?: Schema$TimeOfDay;
+  }
+  /**
+   * MaintenanceInfo to capture the maintenance details of database resource.
+   */
+  export interface Schema$ResourceMaintenanceInfo {
+    /**
+     * Optional. List of Deny maintenance period for the database resource.
+     */
+    denyMaintenanceSchedules?: Schema$ResourceMaintenanceDenySchedule[];
+    /**
+     * Optional. Maintenance window for the database resource.
+     */
+    maintenanceSchedule?: Schema$ResourceMaintenanceSchedule;
+    /**
+     * Optional. Current Maintenance version of the database resource. Example: "MYSQL_8_0_41.R20250531.01_15"
+     */
+    maintenanceVersion?: string | null;
+  }
+  /**
+   * Maintenance window for the database resource. It specifies preferred time and day of the week and phase in some cases, when the maintenance can start. This is configured by the customer.
+   */
+  export interface Schema$ResourceMaintenanceSchedule {
+    /**
+     * Optional. Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.
+     */
+    day?: string | null;
+    /**
+     * Optional. Phase of the maintenance window. This is to capture order of maintenance. For example, for Cloud SQL resources, this can be used to capture if the maintenance window is in Week1, Week2, Week5, etc. Non production resources are usually part of early phase. For more details, refer to Cloud SQL resources - https://cloud.google.com/sql/docs/mysql/maintenance
+     */
+    phase?: string | null;
+    /**
+     * Optional. Preferred time to start the maintenance operation on the specified day.
+     */
+    time?: Schema$TimeOfDay;
   }
   export interface Schema$RetentionSettings {
     /**
@@ -3604,6 +3680,7 @@ export namespace redis_v1 {
      *       //   "labels": {},
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
      *       //   "managedBackupSource": {},
      *       //   "name": "my_name",
      *       //   "nodeType": "my_nodeType",
@@ -3929,6 +4006,7 @@ export namespace redis_v1 {
      *   //   "labels": {},
      *   //   "maintenancePolicy": {},
      *   //   "maintenanceSchedule": {},
+     *   //   "maintenanceVersion": "my_maintenanceVersion",
      *   //   "managedBackupSource": {},
      *   //   "name": "my_name",
      *   //   "nodeType": "my_nodeType",
@@ -4388,6 +4466,7 @@ export namespace redis_v1 {
      *       //   "labels": {},
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
      *       //   "managedBackupSource": {},
      *       //   "name": "my_name",
      *       //   "nodeType": "my_nodeType",
