@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20250930",
+  "revision": "20251005",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -949,6 +949,13 @@
           "description": "Required. The name of the function to call. Matches [FunctionDeclaration.name] and [FunctionCall.name].",
           "type": "string"
         },
+        "parts": {
+          "description": "Optional. Ordered `Parts` that constitute a function response. Parts may have different IANA MIME types.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1FunctionResponsePart"
+          },
+          "type": "array"
+        },
         "response": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -956,6 +963,60 @@
           },
           "description": "Required. The function response in JSON object format. Use \"output\" key to specify function output and \"error\" key to specify error details (if any). If \"output\" and \"error\" keys are not specified, then whole \"response\" is treated as function output.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FunctionResponseBlob": {
+      "description": "Raw media bytes for function response. Text should not be sent as raw bytes, use the 'text' field.",
+      "id": "GoogleCloudAiplatformV1beta1FunctionResponseBlob",
+      "properties": {
+        "data": {
+          "description": "Required. Raw bytes.",
+          "format": "byte",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name of the blob. Used to provide a label or filename to distinguish blobs. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Required. The IANA standard MIME type of the source data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FunctionResponseFileData": {
+      "description": "URI based data for function response.",
+      "id": "GoogleCloudAiplatformV1beta1FunctionResponseFileData",
+      "properties": {
+        "displayName": {
+          "description": "Optional. Display name of the file data. Used to provide a label or filename to distinguish file datas. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.",
+          "type": "string"
+        },
+        "fileUri": {
+          "description": "Required. URI.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Required. The IANA standard MIME type of the source data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FunctionResponsePart": {
+      "description": "A datatype containing media that is part of a `FunctionResponse` message. A `FunctionResponsePart` consists of data which has an associated datatype. A `FunctionResponsePart` can only contain one of the accepted types in `FunctionResponsePart.data`. A `FunctionResponsePart` must have a fixed IANA MIME type identifying the type and subtype of the media if the `inline_data` field is filled with raw bytes.",
+      "id": "GoogleCloudAiplatformV1beta1FunctionResponsePart",
+      "properties": {
+        "fileData": {
+          "$ref": "GoogleCloudAiplatformV1beta1FunctionResponseFileData",
+          "description": "URI based data."
+        },
+        "inlineData": {
+          "$ref": "GoogleCloudAiplatformV1beta1FunctionResponseBlob",
+          "description": "Inline media bytes."
         }
       },
       "type": "object"
@@ -1775,6 +1836,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig": {
+      "description": "Configuration for a multi-speaker text-to-speech setup. Enables the use of up to two distinct voices in a single synthesis request.",
+      "id": "GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig",
+      "properties": {
+        "speakerVoiceConfigs": {
+          "description": "Required. A list of configurations for the voices of the speakers. Exactly two speaker voice configurations must be provided.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1SpeakerVoiceConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1Part": {
       "description": "A datatype containing media that is part of a multi-part `Content` message. A `Part` consists of data which has an associated datatype. A `Part` can only contain one of the accepted types in `Part.data`. A `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes.",
       "id": "GoogleCloudAiplatformV1beta1Part",
@@ -2421,6 +2496,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1SpeakerVoiceConfig": {
+      "description": "Configuration for a single speaker in a multi speaker setup.",
+      "id": "GoogleCloudAiplatformV1beta1SpeakerVoiceConfig",
+      "properties": {
+        "speaker": {
+          "description": "Required. The name of the speaker. This should be the same as the speaker name used in the prompt.",
+          "type": "string"
+        },
+        "voiceConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1VoiceConfig",
+          "description": "Required. The configuration for the voice of this speaker."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1SpeechConfig": {
       "description": "The speech generation config.",
       "id": "GoogleCloudAiplatformV1beta1SpeechConfig",
@@ -2428,6 +2518,10 @@
         "languageCode": {
           "description": "Optional. Language code (ISO 639. e.g. en-US) for the speech synthesization.",
           "type": "string"
+        },
+        "multiSpeakerVoiceConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig",
+          "description": "The configuration for a multi-speaker text-to-speech request. This field is mutually exclusive with `voice_config`."
         },
         "voiceConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1VoiceConfig",
@@ -2443,6 +2537,10 @@
         "codeExecution": {
           "$ref": "GoogleCloudAiplatformV1beta1ToolCodeExecution",
           "description": "Optional. CodeExecution tool type. Enables the model to execute code as part of generation."
+        },
+        "computerUse": {
+          "$ref": "GoogleCloudAiplatformV1beta1ToolComputerUse",
+          "description": "Optional. Tool to support the model interacting directly with the computer. If enabled, it automatically populates computer-use specific Function Declarations."
         },
         "enterpriseWebSearch": {
           "$ref": "GoogleCloudAiplatformV1beta1EnterpriseWebSearch",
@@ -2483,6 +2581,32 @@
       "description": "Tool that executes code generated by the model, and automatically returns the result to the model. See also [ExecutableCode]and [CodeExecutionResult] which are input and output to this tool.",
       "id": "GoogleCloudAiplatformV1beta1ToolCodeExecution",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ToolComputerUse": {
+      "description": "Tool to support computer use.",
+      "id": "GoogleCloudAiplatformV1beta1ToolComputerUse",
+      "properties": {
+        "environment": {
+          "description": "Required. The environment being operated.",
+          "enum": [
+            "ENVIRONMENT_UNSPECIFIED",
+            "ENVIRONMENT_BROWSER"
+          ],
+          "enumDescriptions": [
+            "Defaults to browser.",
+            "Operates in a web browser."
+          ],
+          "type": "string"
+        },
+        "excludedPredefinedFunctions": {
+          "description": "Optional. By default, predefined functions are included in the final model call. Some of them can be explicitly excluded from being automatically included. This can serve two purposes: 1. Using a more restricted / different action space. 2. Improving the definitions / instructions of predefined functions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1ToolConfig": {

@@ -607,9 +607,60 @@ export namespace firebaseml_v2beta {
      */
     name?: string | null;
     /**
+     * Optional. Ordered `Parts` that constitute a function response. Parts may have different IANA MIME types.
+     */
+    parts?: Schema$GoogleCloudAiplatformV1beta1FunctionResponsePart[];
+    /**
      * Required. The function response in JSON object format. Use "output" key to specify function output and "error" key to specify error details (if any). If "output" and "error" keys are not specified, then whole "response" is treated as function output.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * Raw media bytes for function response. Text should not be sent as raw bytes, use the 'text' field.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FunctionResponseBlob {
+    /**
+     * Required. Raw bytes.
+     */
+    data?: string | null;
+    /**
+     * Optional. Display name of the blob. Used to provide a label or filename to distinguish blobs. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The IANA standard MIME type of the source data.
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * URI based data for function response.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FunctionResponseFileData {
+    /**
+     * Optional. Display name of the file data. Used to provide a label or filename to distinguish file datas. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.
+     */
+    displayName?: string | null;
+    /**
+     * Required. URI.
+     */
+    fileUri?: string | null;
+    /**
+     * Required. The IANA standard MIME type of the source data.
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * A datatype containing media that is part of a `FunctionResponse` message. A `FunctionResponsePart` consists of data which has an associated datatype. A `FunctionResponsePart` can only contain one of the accepted types in `FunctionResponsePart.data`. A `FunctionResponsePart` must have a fixed IANA MIME type identifying the type and subtype of the media if the `inline_data` field is filled with raw bytes.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FunctionResponsePart {
+    /**
+     * URI based data.
+     */
+    fileData?: Schema$GoogleCloudAiplatformV1beta1FunctionResponseFileData;
+    /**
+     * Inline media bytes.
+     */
+    inlineData?: Schema$GoogleCloudAiplatformV1beta1FunctionResponseBlob;
   }
   /**
    * Request message for [PredictionService.GenerateContent].
@@ -1167,6 +1218,15 @@ export namespace firebaseml_v2beta {
     responseTemplateName?: string | null;
   }
   /**
+   * Configuration for a multi-speaker text-to-speech setup. Enables the use of up to two distinct voices in a single synthesis request.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig {
+    /**
+     * Required. A list of configurations for the voices of the speakers. Exactly two speaker voice configurations must be provided.
+     */
+    speakerVoiceConfigs?: Schema$GoogleCloudAiplatformV1beta1SpeakerVoiceConfig[];
+  }
+  /**
    * A datatype containing media that is part of a multi-part `Content` message. A `Part` consists of data which has an associated datatype. A `Part` can only contain one of the accepted types in `Part.data`. A `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Part {
@@ -1559,6 +1619,19 @@ export namespace firebaseml_v2beta {
     text?: string | null;
   }
   /**
+   * Configuration for a single speaker in a multi speaker setup.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SpeakerVoiceConfig {
+    /**
+     * Required. The name of the speaker. This should be the same as the speaker name used in the prompt.
+     */
+    speaker?: string | null;
+    /**
+     * Required. The configuration for the voice of this speaker.
+     */
+    voiceConfig?: Schema$GoogleCloudAiplatformV1beta1VoiceConfig;
+  }
+  /**
    * The speech generation config.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1SpeechConfig {
@@ -1566,6 +1639,10 @@ export namespace firebaseml_v2beta {
      * Optional. Language code (ISO 639. e.g. en-US) for the speech synthesization.
      */
     languageCode?: string | null;
+    /**
+     * The configuration for a multi-speaker text-to-speech request. This field is mutually exclusive with `voice_config`.
+     */
+    multiSpeakerVoiceConfig?: Schema$GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig;
     /**
      * The configuration for the speaker to use.
      */
@@ -1579,6 +1656,10 @@ export namespace firebaseml_v2beta {
      * Optional. CodeExecution tool type. Enables the model to execute code as part of generation.
      */
     codeExecution?: Schema$GoogleCloudAiplatformV1beta1ToolCodeExecution;
+    /**
+     * Optional. Tool to support the model interacting directly with the computer. If enabled, it automatically populates computer-use specific Function Declarations.
+     */
+    computerUse?: Schema$GoogleCloudAiplatformV1beta1ToolComputerUse;
     /**
      * Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance.
      */
@@ -1612,6 +1693,19 @@ export namespace firebaseml_v2beta {
    * Tool that executes code generated by the model, and automatically returns the result to the model. See also [ExecutableCode]and [CodeExecutionResult] which are input and output to this tool.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolCodeExecution {}
+  /**
+   * Tool to support computer use.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolComputerUse {
+    /**
+     * Required. The environment being operated.
+     */
+    environment?: string | null;
+    /**
+     * Optional. By default, predefined functions are included in the final model call. Some of them can be explicitly excluded from being automatically included. This can serve two purposes: 1. Using a more restricted / different action space. 2. Improving the definitions / instructions of predefined functions.
+     */
+    excludedPredefinedFunctions?: string[] | null;
+  }
   /**
    * Tool config. This config is shared for all tools provided in the request.
    */
