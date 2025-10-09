@@ -199,6 +199,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v2/{+name}/operations",
@@ -1689,6 +1694,23 @@
                       "pattern": "^projects/[^/]+/instances/[^/]+/materializedViews/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Describes which of the materialized view's fields should be populated in the response. Defaults to SCHEMA_VIEW.",
+                      "enum": [
+                        "VIEW_UNSPECIFIED",
+                        "SCHEMA_VIEW",
+                        "REPLICATION_VIEW",
+                        "FULL"
+                      ],
+                      "enumDescriptions": [
+                        "Uses the default view for each method as documented in its request.",
+                        "Only populates fields related to the materialized view's schema.",
+                        "Only populates fields related to the materialized view's replication state.",
+                        "Populates all fields."
+                      ],
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v2/{+name}",
@@ -1762,6 +1784,23 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/instances/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Describes which of the materialized view's fields should be populated in the response. For now, only the default value SCHEMA_VIEW is supported.",
+                      "enum": [
+                        "VIEW_UNSPECIFIED",
+                        "SCHEMA_VIEW",
+                        "REPLICATION_VIEW",
+                        "FULL"
+                      ],
+                      "enumDescriptions": [
+                        "Uses the default view for each method as documented in its request.",
+                        "Only populates fields related to the materialized view's schema.",
+                        "Only populates fields related to the materialized view's replication state.",
+                        "Populates all fields."
+                      ],
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -2817,38 +2856,6 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
-                    "getIamPolicy": {
-                      "description": "Gets the access control policy for a Bigtable resource. Returns an empty policy if the resource exists but does not have a policy set.",
-                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles/{schemaBundlesId}:getIamPolicy",
-                      "httpMethod": "POST",
-                      "id": "bigtableadmin.projects.instances.tables.schemaBundles.getIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/schemaBundles/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v2/{+resource}:getIamPolicy",
-                      "request": {
-                        "$ref": "GetIamPolicyRequest"
-                      },
-                      "response": {
-                        "$ref": "Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/bigtable.admin",
-                        "https://www.googleapis.com/auth/bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "list": {
                       "description": "Lists all schema bundles associated with the specified table.",
                       "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles",
@@ -2948,70 +2955,6 @@
                         "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
-                    },
-                    "setIamPolicy": {
-                      "description": "Sets the access control policy on a Bigtable resource. Replaces any existing policy.",
-                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles/{schemaBundlesId}:setIamPolicy",
-                      "httpMethod": "POST",
-                      "id": "bigtableadmin.projects.instances.tables.schemaBundles.setIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/schemaBundles/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v2/{+resource}:setIamPolicy",
-                      "request": {
-                        "$ref": "SetIamPolicyRequest"
-                      },
-                      "response": {
-                        "$ref": "Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/bigtable.admin",
-                        "https://www.googleapis.com/auth/bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "testIamPermissions": {
-                      "description": "Returns permissions that the caller has on the specified Bigtable resource.",
-                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles/{schemaBundlesId}:testIamPermissions",
-                      "httpMethod": "POST",
-                      "id": "bigtableadmin.projects.instances.tables.schemaBundles.testIamPermissions",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/schemaBundles/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v2/{+resource}:testIamPermissions",
-                      "request": {
-                        "$ref": "TestIamPermissionsRequest"
-                      },
-                      "response": {
-                        "$ref": "TestIamPermissionsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/bigtable.admin",
-                        "https://www.googleapis.com/auth/bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
                     }
                   }
                 }
@@ -3079,7 +3022,7 @@
       }
     }
   },
-  "revision": "20250912",
+  "revision": "20251004",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -4195,6 +4138,28 @@
       },
       "type": "object"
     },
+    "GoogleBigtableAdminV2MaterializedViewClusterState": {
+      "description": "The state of a materialized view's data in a particular cluster.",
+      "id": "GoogleBigtableAdminV2MaterializedViewClusterState",
+      "properties": {
+        "replicationState": {
+          "description": "Output only. The state of the materialized view in this cluster.",
+          "enum": [
+            "STATE_NOT_KNOWN",
+            "INITIALIZING",
+            "READY"
+          ],
+          "enumDescriptions": [
+            "The state of the materialized view is unknown in this cluster.",
+            "The cluster or view was recently created, and the materialized view must finish backfilling before it can begin serving Data API requests.",
+            "The materialized view can serve Data API requests from this cluster. Depending on materialization and replication delay, reads may not immediately reflect the state of the materialized view in other clusters."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleBigtableAdminV2TypeAggregate": {
       "description": "A value that combines incremental updates into a summarized value. Data is never directly written or read using type `Aggregate`. Writes provide either the `input_type` or `state_type`, and reads always return the `state_type` .",
       "id": "GoogleBigtableAdminV2TypeAggregate",
@@ -4879,6 +4844,13 @@
             "$ref": "Operation"
           },
           "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4980,6 +4952,14 @@
       "description": "A materialized view object that can be referenced in SQL queries.",
       "id": "MaterializedView",
       "properties": {
+        "clusterStates": {
+          "additionalProperties": {
+            "$ref": "GoogleBigtableAdminV2MaterializedViewClusterState"
+          },
+          "description": "Output only. Map from cluster ID to per-cluster materialized view state. If it could not be determined whether or not the materialized view has data in a particular cluster (for example, if its zone is unavailable), then there will be an entry for the cluster with `STATE_NOT_KNOWN` state. Views: `REPLICATION_VIEW`, `FULL`.",
+          "readOnly": true,
+          "type": "object"
+        },
         "deletionProtection": {
           "description": "Set to true to make the MaterializedView protected against deletion. Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.",
           "type": "boolean"
