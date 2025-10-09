@@ -23,6 +23,9 @@
         "https://www.googleapis.com/auth/chat.app.memberships": {
           "description": "On their own behalf, apps in Google Chat can see, add, update, and remove members from conversations and spaces"
         },
+        "https://www.googleapis.com/auth/chat.app.messages.readonly": {
+          "description": "On their own behalf, apps in Google Chat can see all messages and their associated reactions and message content"
+        },
         "https://www.googleapis.com/auth/chat.app.spaces": {
           "description": "On their own behalf, apps in Google Chat can create conversations and spaces and see or update their metadata (including history settings and access settings)"
         },
@@ -98,7 +101,7 @@
   "canonicalName": "Hangouts Chat",
   "description": "The Google Chat API lets you build Chat apps to integrate your services with Google Chat and manage Chat resources such as spaces, members, and messages.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/hangouts/chat",
+  "documentationLink": "https://developers.google.com/workspace/chat",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -995,6 +998,7 @@
                 "$ref": "Message"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/chat.app.messages.readonly",
                 "https://www.googleapis.com/auth/chat.bot",
                 "https://www.googleapis.com/auth/chat.messages",
                 "https://www.googleapis.com/auth/chat.messages.readonly"
@@ -1048,6 +1052,7 @@
                 "$ref": "ListMessagesResponse"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/chat.app.messages.readonly",
                 "https://www.googleapis.com/auth/chat.import",
                 "https://www.googleapis.com/auth/chat.messages",
                 "https://www.googleapis.com/auth/chat.messages.readonly"
@@ -1299,6 +1304,7 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/chat.app.memberships",
+                "https://www.googleapis.com/auth/chat.app.messages.readonly",
                 "https://www.googleapis.com/auth/chat.app.spaces",
                 "https://www.googleapis.com/auth/chat.memberships",
                 "https://www.googleapis.com/auth/chat.memberships.readonly",
@@ -1349,6 +1355,7 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/chat.app.memberships",
+                "https://www.googleapis.com/auth/chat.app.messages.readonly",
                 "https://www.googleapis.com/auth/chat.app.spaces",
                 "https://www.googleapis.com/auth/chat.memberships",
                 "https://www.googleapis.com/auth/chat.memberships.readonly",
@@ -1528,7 +1535,7 @@
       }
     }
   },
-  "revision": "20250923",
+  "revision": "20251002",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -4491,8 +4498,8 @@
           ],
           "enumDescriptions": [
             "Default value. For users: they aren't a member of the space, but can be invited. For Google Groups: they're always assigned this role (other enum values might be used in the future).",
-            "A member of the space. The user has basic permissions, like sending messages to the space. In 1:1 and unnamed group conversations, everyone has this role.",
-            "A space manager. The user has all basic permissions plus administrative permissions that let them manage the space, like adding or removing members. Only supported in SpaceType.SPACE."
+            "A member of the space. In the Chat UI, this role is called Member. The user has basic permissions, like sending messages to the space. Managers and owners can grant members additional permissions in a space, including: - Add or remove members. - Modify space details. - Turn history on or off. - Mention everyone in the space with `@all`. - Manage Chat apps and webhooks installed in the space. In direct messages and unnamed group conversations, everyone has this role.",
+            "A space owner. In the Chat UI, this role is called Owner. The user has the complete set of space permissions to manage the space, including: - Change the role of other members in the space to member, manager, or owner. - Delete the space. Only supported in SpaceType.SPACE (named spaces). To learn more, see [Learn more about your role as a space owner or manager](https://support.google.com/chat/answer/11833441)."
           ],
           "type": "string"
         },
@@ -4865,11 +4872,11 @@
       "id": "PermissionSetting",
       "properties": {
         "managersAllowed": {
-          "description": "Optional. Whether spaces managers have this permission.",
+          "description": "Optional. Whether space owners (`ROLE_MANAGER`) have this permission.",
           "type": "boolean"
         },
         "membersAllowed": {
-          "description": "Optional. Whether non-manager members have this permission.",
+          "description": "Optional. Whether basic space members (`ROLE_MEMBER`) have this permission.",
           "type": "boolean"
         }
       },
