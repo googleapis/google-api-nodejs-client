@@ -3224,7 +3224,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Approves or rejects a pending build. If approved, the returned LRO will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.
+     * Approves or rejects a pending build. If approved, the returned long-running operation (LRO) will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.
      * @example
      * ```js
      * // Before running the sample:
@@ -6679,7 +6679,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Approves or rejects a pending build. If approved, the returned LRO will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.
+     * Approves or rejects a pending build. If approved, the returned long-running operation (LRO) will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.
      * @example
      * ```js
      * // Before running the sample:
