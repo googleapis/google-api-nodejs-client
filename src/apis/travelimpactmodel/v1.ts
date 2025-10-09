@@ -147,6 +147,32 @@ export namespace travelimpactmodel_v1 {
     modelVersion?: Schema$ModelVersion;
   }
   /**
+   * A list of flight segments to request the Scope 3 emissions for.
+   */
+  export interface Schema$ComputeScope3FlightEmissionsRequest {
+    /**
+     * Required. Flights to return emission estimates for.
+     */
+    flights?: Schema$Scope3FlightSegment[];
+    /**
+     * Optional. The model version under which emission estimates for all flights in this request were computed.
+     */
+    modelVersion?: Schema$ModelVersion;
+  }
+  /**
+   * A list of flights with Scope 3 emission estimates.
+   */
+  export interface Schema$ComputeScope3FlightEmissionsResponse {
+    /**
+     * List of flight segments with emission estimates.
+     */
+    flightEmissions?: Schema$Scope3FlightEmissions[];
+    /**
+     * The model version under which emission estimates for all flights in this response were computed.
+     */
+    modelVersion?: Schema$ModelVersion;
+  }
+  /**
    * A list of pair of airports (markets) to request the typical emissions for.
    */
   export interface Schema$ComputeTypicalFlightEmissionsRequest {
@@ -310,6 +336,64 @@ export namespace travelimpactmodel_v1 {
      * Patch versions: Implementation changes meant to address bugs or inaccuracies in the model implementation.
      */
     patch?: number | null;
+  }
+  /**
+   * Scope 3 flight with emission estimates.
+   */
+  export interface Schema$Scope3FlightEmissions {
+    /**
+     * Required. Matches the flight identifiers in the request.
+     */
+    flight?: Schema$Scope3FlightSegment;
+    /**
+     * Optional. The source of the emissions data.
+     */
+    source?: string | null;
+    /**
+     * Optional. Tank-to-wake flight emissions per passenger based on the requested info.
+     */
+    ttwEmissionsGramsPerPax?: string | null;
+    /**
+     * Optional. Well-to-tank flight emissions per passenger based on the requested info.
+     */
+    wttEmissionsGramsPerPax?: string | null;
+    /**
+     * Optional. Total flight emissions (sum of well-to-tank and tank-to-wake) per passenger based on the requested info. This is the total emissions and unless you have specific reasons for using TTW or WTT emissions, you should use this number.
+     */
+    wtwEmissionsGramsPerPax?: string | null;
+  }
+  /**
+   * Flight parameters with which the Scope 3 emissions are fetched.
+   */
+  export interface Schema$Scope3FlightSegment {
+    /**
+     * Required. The cabin class of the flight.
+     */
+    cabinClass?: string | null;
+    /**
+     * Optional. IATA carrier code, e.g. `KE`. This is required if specific flight matching is desired. Otherwise, this is unused for typical flight and distance-based emissions models. This could be both operating and marketing carrier code (i.e. codeshare is covered).
+     */
+    carrierCode?: string | null;
+    /**
+     * Required. Date of the flight in the time zone of the origin airport. Only year is required for typical flight and distance-based emissions models (month and day values are ignored and therefore, can be either omitted, set to 0, or set to a valid date for those cases). Correspondingly, if a specific date is not provided for TIM emissions, we will fallback to typical flight (or distance-based) emissions.
+     */
+    departureDate?: Schema$Date;
+    /**
+     * Optional. IATA airport code for flight destination, e.g. `ICN`. This is used to match specific flight if provided alongside origin, carrier, and flight number. If there is no match, we will first try to match the flight to a typical flight between the provided origin and destination airports. Otherwise, we will use the distance-based emissions model if the flight distance is provided.
+     */
+    destination?: string | null;
+    /**
+     * Optional. Distance in kilometers, e.g. `2423`. This is used to match a flight to distance-based emissions when origin and destination are not provided or there are no matching typical flights. This field supports values between 0 and 2.5e16 km.
+     */
+    distanceKm?: string | null;
+    /**
+     * Optional. Flight number, e.g. `71`. This is first used to match a specific flight if a flight number is specified alongside origin, destination, and carrier. If a flight number is not specified, we will first try to match the flight to a typical flight between the provided origin and destination airports. If that fails and/or origin & destination are not provided, we will use the distance-based emissions model based on the flight distance provided.
+     */
+    flightNumber?: number | null;
+    /**
+     * Optional. IATA airport code for flight origin, e.g. `YVR`. This is used to match specific flight if provided alongside destination, carrier, and flight number. If there is no match, we will first try to match the flight to a typical flight between the provided origin and destination airports. Otherwise, we will use the distance-based emissions model if the flight distance is provided.
+     */
+    origin?: string | null;
   }
   /**
    * Typical flight emission estimates for a certain market
@@ -482,6 +566,161 @@ export namespace travelimpactmodel_v1 {
     }
 
     /**
+     * Stateless method to retrieve GHG emissions estimates for a set of flight segments for Scope 3 reporting. The response will contain all entries that match the input Scope3FlightSegment flight segments, in the same order provided. The estimates will be computed using the following cascading logic (using the first one that is available): 1. TIM-based emissions given origin, destination, carrier, flightNumber, departureDate, and cabinClass. 2. Typical flight emissions given origin, destination, year in departureDate, and cabinClass. 3. Distance-based emissions calculated using distanceKm, year in departureDate, and cabinClass. If there is a future flight requested in this calendar year, we do not support Tier 1 emissions and will fallback to Tier 2 or 3 emissions. If the requested future flight is in not in this calendar year, we will return an empty response. We recommend that for future flights, computeFlightEmissions API is used instead. If there are no estimates available for a certain flight with any of the three methods, the response will return a Scope3FlightEmissions object with empty emission fields. The request will still be considered successful. Generally, missing emissions estimates occur when the flight is unknown to the server (e.g. no specific flight exists, or typical flight emissions are not available for the requested pair). The request will fail with an `INVALID_ARGUMENT` error if: * The request contains more than 1,000 flight legs. * The input flight leg is missing one or more identifiers. For example, missing origin/destination without a valid distance for TIM_EMISSIONS or TYPICAL_FLIGHT_EMISSIONS type matching, or missing distance for a DISTANCE_BASED_EMISSIONS type matching (if you want to fallback to distance-based emissions or want a distance-based emissions estimate, you need to specify a distance). * The flight date is before 2019 (Scope 3 data is only available for 2019 and after). * The flight distance is 0 or lower. * Missing cabin class. Because the request is processed with fallback logic, it is possible that misconfigured requests return valid emissions estimates using fallback methods. For example, if a request has the wrong flight number but specifies the origin and destination, the request will still succeed, but the returned emissions will be based solely on the typical flight emissions. Similarly, if a request is missing the origin for a typical flight emissions request, but specifies a valid distance, the request could succeed based solely on the distance-based emissions. Consequently, one should check the source of the returned emissions (source) to confirm the results are as expected.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/travelimpactmodel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const travelimpactmodel = google.travelimpactmodel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await travelimpactmodel.flights.computeScope3FlightEmissions({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "flights": [],
+     *       //   "modelVersion": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "flightEmissions": [],
+     *   //   "modelVersion": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    computeScope3FlightEmissions(
+      params: Params$Resource$Flights$Computescope3flightemissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    computeScope3FlightEmissions(
+      params?: Params$Resource$Flights$Computescope3flightemissions,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ComputeScope3FlightEmissionsResponse>
+    >;
+    computeScope3FlightEmissions(
+      params: Params$Resource$Flights$Computescope3flightemissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    computeScope3FlightEmissions(
+      params: Params$Resource$Flights$Computescope3flightemissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ComputeScope3FlightEmissionsResponse>,
+      callback: BodyResponseCallback<Schema$ComputeScope3FlightEmissionsResponse>
+    ): void;
+    computeScope3FlightEmissions(
+      params: Params$Resource$Flights$Computescope3flightemissions,
+      callback: BodyResponseCallback<Schema$ComputeScope3FlightEmissionsResponse>
+    ): void;
+    computeScope3FlightEmissions(
+      callback: BodyResponseCallback<Schema$ComputeScope3FlightEmissionsResponse>
+    ): void;
+    computeScope3FlightEmissions(
+      paramsOrCallback?:
+        | Params$Resource$Flights$Computescope3flightemissions
+        | BodyResponseCallback<Schema$ComputeScope3FlightEmissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ComputeScope3FlightEmissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ComputeScope3FlightEmissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ComputeScope3FlightEmissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Flights$Computescope3flightemissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Flights$Computescope3flightemissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://travelimpactmodel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/flights:computeScope3FlightEmissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ComputeScope3FlightEmissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ComputeScope3FlightEmissionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Retrieves typical flight emissions estimates between two airports, also known as a market. If there are no estimates available for a certain market, the response will return the market object with empty emission fields. The request will still be considered successful. Details on how the typical emissions estimates are computed are on [GitHub](https://github.com/google/travel-impact-model/blob/main/projects/typical_flight_emissions.md). The request can contain up to 1000 markets. If the request has more than 1000 markets, it will fail with an INVALID_ARGUMENT error.
      * @example
      * ```js
@@ -641,6 +880,13 @@ export namespace travelimpactmodel_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ComputeFlightEmissionsRequest;
+  }
+  export interface Params$Resource$Flights$Computescope3flightemissions
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ComputeScope3FlightEmissionsRequest;
   }
   export interface Params$Resource$Flights$Computetypicalflightemissions
     extends StandardParameters {
