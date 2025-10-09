@@ -133,7 +133,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     allowExisting?: boolean | null;
     /**
-     * Required. List of assets to be added. The maximum number of assets that can be added in a single request is 1000.
+     * Required. List of assets to be added. The maximum number of assets that can be added in a single request is 2000.
      */
     assets?: Schema$AssetList;
     /**
