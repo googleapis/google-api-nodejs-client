@@ -2339,11 +2339,11 @@ export namespace chat_v1 {
    */
   export interface Schema$PermissionSetting {
     /**
-     * Optional. Whether spaces managers have this permission.
+     * Optional. Whether space owners (`ROLE_MANAGER`) have this permission.
      */
     managersAllowed?: boolean | null;
     /**
-     * Optional. Whether non-manager members have this permission.
+     * Optional. Whether basic space members (`ROLE_MEMBER`) have this permission.
      */
     membersAllowed?: boolean | null;
   }
@@ -6788,6 +6788,7 @@ export namespace chat_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.bot',
      *       'https://www.googleapis.com/auth/chat.messages',
      *       'https://www.googleapis.com/auth/chat.messages.readonly',
@@ -6951,6 +6952,7 @@ export namespace chat_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.import',
      *       'https://www.googleapis.com/auth/chat.messages',
      *       'https://www.googleapis.com/auth/chat.messages.readonly',
@@ -8270,6 +8272,7 @@ export namespace chat_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/chat.app.memberships',
+     *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.app.spaces',
      *       'https://www.googleapis.com/auth/chat.memberships',
      *       'https://www.googleapis.com/auth/chat.memberships.readonly',
@@ -8435,6 +8438,7 @@ export namespace chat_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/chat.app.memberships',
+     *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.app.spaces',
      *       'https://www.googleapis.com/auth/chat.memberships',
      *       'https://www.googleapis.com/auth/chat.memberships.readonly',
