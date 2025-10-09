@@ -913,7 +913,7 @@
                 "gitRepositoryLinks": {
                   "methods": {
                     "create": {
-                      "description": "Creates a GitRepositoryLink. Upon linking a Git Repository, Developer Connect will configure the Git Repository to send webhook events to Developer Connect. Connections that use Firebase GitHub Application will have events forwarded to the Firebase service. All other Connections will have events forwarded to Cloud Build.",
+                      "description": "Creates a GitRepositoryLink. Upon linking a Git Repository, Developer Connect will configure the Git Repository to send webhook events to Developer Connect. Connections that use Firebase GitHub Application will have events forwarded to the Firebase service. Connections that use Gemini Code Assist will have events forwarded to Gemini Code Assist service. All other Connections will have events forwarded to Cloud Build.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks",
                       "httpMethod": "POST",
                       "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.create",
@@ -1606,7 +1606,7 @@
       }
     }
   },
-  "revision": "20250929",
+  "revision": "20251003",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -2064,12 +2064,14 @@
           "enum": [
             "GIT_HUB_APP_UNSPECIFIED",
             "DEVELOPER_CONNECT",
-            "FIREBASE"
+            "FIREBASE",
+            "GEMINI_CODE_ASSIST"
           ],
           "enumDescriptions": [
             "GitHub App not specified.",
             "The Developer Connect GitHub Application.",
-            "The Firebase GitHub Application."
+            "The Firebase GitHub Application.",
+            "The Gemini Code Assist Application."
           ],
           "type": "string"
         },
