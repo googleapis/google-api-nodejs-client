@@ -317,6 +317,8 @@
     "src/apis/css": {},
     "src/apis/policysimulator": {},
     "src/apis/apigateway": {},
-    "src/apis/cloudcommerceprocurement": {}
+    "src/apis/cloudcommerceprocurement": {},
+    "src/apis/datamanager": {},
+    "src/apis/chromewebstore": {}
   }
 }
