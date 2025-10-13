@@ -2266,7 +2266,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20251002",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -3721,6 +3721,11 @@
           "$ref": "ConfigManagementHierarchyControllerState",
           "description": "Output only. Hierarchy Controller status",
           "readOnly": true
+        },
+        "kubernetesApiServerVersion": {
+          "description": "Output only. The Kubernetes API server version of the cluster.",
+          "readOnly": true,
+          "type": "string"
         },
         "membershipSpec": {
           "$ref": "ConfigManagementMembershipSpec",

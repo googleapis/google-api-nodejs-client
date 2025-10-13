@@ -1053,7 +1053,7 @@
       }
     }
   },
-  "revision": "20250929",
+  "revision": "20251007",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -2504,12 +2504,27 @@
           },
           "type": "array"
         },
+        "entitiesRevisionId": {
+          "description": "The entity revision id that `document.entities` field is based on. If this field is set and `entities_revisions` is not empty, the entities in `document.entities` field are the entities in the entity revision with this id and `document.entity_validation_output` field is the `entity_validation_output` field in this entity revision.",
+          "type": "string"
+        },
+        "entitiesRevisions": {
+          "description": "A list of entity revisions. The entity revisions are appended to the document in the processing order. This field can be used for comparing the entity extraction results at different stages of the processing.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentEntitiesRevision"
+          },
+          "type": "array"
+        },
         "entityRelations": {
           "description": "Placeholder. Relationship among Document.entities.",
           "items": {
             "$ref": "GoogleCloudDocumentaiV1DocumentEntityRelation"
           },
           "type": "array"
+        },
+        "entityValidationOutput": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentEntityValidationOutput",
+          "description": "The entity validation output for the document. This is the validation output for `document.entities` field."
         },
         "error": {
           "$ref": "GoogleRpcStatus",
@@ -2843,6 +2858,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1DocumentEntitiesRevision": {
+      "description": "Entity revision.",
+      "id": "GoogleCloudDocumentaiV1DocumentEntitiesRevision",
+      "properties": {
+        "entities": {
+          "description": "The entities in this revision.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentEntity"
+          },
+          "type": "array"
+        },
+        "entityValidationOutput": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentEntityValidationOutput",
+          "description": "The entity validation output for this revision."
+        },
+        "revisionId": {
+          "description": "The revision id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1DocumentEntity": {
       "description": "An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.",
       "id": "GoogleCloudDocumentaiV1DocumentEntity",
@@ -2970,6 +3007,61 @@
         },
         "subjectId": {
           "description": "Subject entity id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentEntityValidationOutput": {
+      "description": "The output of the validation given the document and the validation rules.",
+      "id": "GoogleCloudDocumentaiV1DocumentEntityValidationOutput",
+      "properties": {
+        "passAllRules": {
+          "description": "The overall result of the validation, true if all applicable rules are valid.",
+          "type": "boolean"
+        },
+        "validationResults": {
+          "description": "The result of each validation rule.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentEntityValidationOutputValidationResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentEntityValidationOutputValidationResult": {
+      "description": "Validation result for a single validation rule.",
+      "id": "GoogleCloudDocumentaiV1DocumentEntityValidationOutputValidationResult",
+      "properties": {
+        "ruleDescription": {
+          "description": "The description of the validation rule.",
+          "type": "string"
+        },
+        "ruleName": {
+          "description": "The name of the validation rule.",
+          "type": "string"
+        },
+        "validationDetails": {
+          "description": "The detailed information of the running the validation process using the entity from the document based on the validation rule.",
+          "type": "string"
+        },
+        "validationResultType": {
+          "description": "The result of the validation rule.",
+          "enum": [
+            "VALIDATION_RESULT_TYPE_UNSPECIFIED",
+            "VALIDATION_RESULT_TYPE_VALID",
+            "VALIDATION_RESULT_TYPE_INVALID",
+            "VALIDATION_RESULT_TYPE_SKIPPED",
+            "VALIDATION_RESULT_TYPE_NOT_APPLICABLE"
+          ],
+          "enumDescriptions": [
+            "The validation result type is unspecified.",
+            "The validation is valid.",
+            "The validation is invalid.",
+            "The validation is skipped.",
+            "The validation is not applicable."
+          ],
           "type": "string"
         }
       },

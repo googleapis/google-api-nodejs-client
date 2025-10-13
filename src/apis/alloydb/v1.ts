@@ -171,19 +171,6 @@ export namespace alloydb_v1 {
     weeklySchedule?: Schema$WeeklySchedule;
   }
   /**
-   * Configuration for autoscaling.
-   */
-  export interface Schema$AutoScalingConfig {
-    /**
-     * Policy for the MIG autoscaler.
-     */
-    policy?: Schema$Policy;
-    /**
-     * Optional list of schedules for the MIG autoscaler. If not set, no schedules are created.
-     */
-    schedules?: Schema$Schedule[];
-  }
-  /**
    * Message describing Backup object
    */
   export interface Schema$Backup {
@@ -683,15 +670,6 @@ export namespace alloydb_v1 {
      * Required. The point in time to restore to.
      */
     pointInTime?: string | null;
-  }
-  /**
-   * CPU utilization policy for the autoscaler.
-   */
-  export interface Schema$CpuUtilization {
-    /**
-     * Target CPU utilization as a float between 0 and 1.
-     */
-    utilizationTarget?: number | null;
   }
   /**
    * Options for exporting data in CSV format.
@@ -1438,27 +1416,6 @@ export namespace alloydb_v1 {
     verb?: string | null;
   }
   /**
-   * Policy for the autoscaler.
-   */
-  export interface Schema$Policy {
-    /**
-     * The period of time in seconds after a new node is created before the autoscaler will incorporate its resource usage (e.g. CPU utilization) into the autoscaling recommendation algorithm.
-     */
-    coolDownPeriodSec?: string | null;
-    /**
-     * CPU utilization policy for the autoscaler.
-     */
-    cpuUtilization?: Schema$CpuUtilization;
-    /**
-     * If true, autoscaling is enabled for the instance. If not set, the default value is false.
-     */
-    enabled?: boolean | null;
-    /**
-     * Maximum number of nodes for the autoscaler.
-     */
-    maxNodeCount?: string | null;
-  }
-  /**
    * Configuration for the primary cluster. It has the list of clusters that are replicating from this cluster. This should be set if and only if the cluster is of type PRIMARY.
    */
   export interface Schema$PrimaryConfig {
@@ -1604,10 +1561,6 @@ export namespace alloydb_v1 {
    */
   export interface Schema$ReadPoolConfig {
     /**
-     * Autoscaling configuration for the read pool instance. If not set, the read pool instance will not be autoscaled.
-     */
-    autoScalingConfig?: Schema$AutoScalingConfig;
-    /**
      * Read capacity, i.e. number of nodes in a read pool instance.
      */
     nodeCount?: number | null;
@@ -1688,39 +1641,6 @@ export namespace alloydb_v1 {
      * Required. ID of the requesting object.
      */
     clusterId?: string | null;
-  }
-  /**
-   * A schedule for the autoscaler.
-   */
-  export interface Schema$Schedule {
-    /**
-     * Cron expression for the triggering the schedule. See https://cloud.google.com/compute/docs/autoscaler/scaling-schedules#cron_expressions for the syntax.
-     */
-    cronExpression?: string | null;
-    /**
-     * Description of the schedule.
-     */
-    description?: string | null;
-    /**
-     * If true, the schedule is disabled.
-     */
-    disabled?: boolean | null;
-    /**
-     * Duration of the schedule.
-     */
-    durationSec?: string | null;
-    /**
-     * Minimum number of nodes in while the schedule is active.
-     */
-    minNodeCount?: string | null;
-    /**
-     * Name of the schedule.
-     */
-    name?: string | null;
-    /**
-     * The location-based IANA time zone for interpreting the schedule's start time. If no time zone is provided, UTC is used by default.
-     */
-    timeZone?: string | null;
   }
   /**
    * Configuration information for the secondary cluster. This should be set if and only if the cluster is of type SECONDARY.

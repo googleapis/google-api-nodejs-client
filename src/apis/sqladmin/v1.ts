@@ -1139,7 +1139,7 @@ export namespace sqladmin_v1 {
      */
     database?: string | null;
     /**
-     * Optional. Controls how the API should respond when the SQL execution result exceeds 10 MB. The default mode is to throw an error.
+     * Optional. Controls how the API should respond when the SQL execution result is incomplete due to the size limit or another error. The default mode is to throw an error.
      */
     partialResultMode?: string | null;
     /**
@@ -2326,13 +2326,17 @@ export namespace sqladmin_v1 {
      */
     message?: string | null;
     /**
-     * Set to true if the SQL execution's result is truncated due to size limits.
+     * Set to true if the SQL execution's result is truncated due to size limits or an error retrieving results.
      */
     partialResult?: boolean | null;
     /**
      * Rows returned by the SQL statement.
      */
     rows?: Schema$Row[];
+    /**
+     * If results were truncated due to an error, details of that error.
+     */
+    status?: Schema$Status;
   }
   /**
    * The read pool auto-scale configuration.
@@ -2500,6 +2504,10 @@ export namespace sqladmin_v1 {
      * The App Engine app IDs that can access this instance. (Deprecated) Applied to First Generation instances only.
      */
     authorizedGaeApplications?: string[] | null;
+    /**
+     * Optional. Cloud SQL for MySQL auto-upgrade configuration. When this parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor versions. The MySQL version must be 8.0.35 or higher.
+     */
+    autoUpgradeEnabled?: boolean | null;
     /**
      * Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available)./ For more information, see [Overview of the High Availability Configuration](https://cloud.google.com/sql/docs/mysql/high-availability).
      */
@@ -2720,6 +2728,10 @@ export namespace sqladmin_v1 {
      * The list of results after executing all the SQL statements.
      */
     results?: Schema$QueryResult[];
+    /**
+     * Contains the error from the database if the SQL execution failed.
+     */
+    status?: Schema$Status;
   }
   /**
    * Instance get disk shrink config response.
@@ -3054,6 +3066,23 @@ export namespace sqladmin_v1 {
     kind?: string | null;
   }
   /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
+  }
+  /**
    * Initial sync flags for certain Cloud SQL APIs. Currently used for the MySQL external server initial dump.
    */
   export interface Schema$SyncFlags {
@@ -3146,6 +3175,10 @@ export namespace sqladmin_v1 {
      * Optional. The host from which the user can connect. For `insert` operations, host defaults to an empty string. For `update` operations, host is specified as part of the request URL. The host name cannot be updated after insertion. For a MySQL instance, it's required; for a PostgreSQL or SQL Server instance, it's optional.
      */
     host?: string | null;
+    /**
+     * Optional. The full email for an IAM user. For normal database users, this will not be filled. Only applicable to MySQL database users.
+     */
+    iamEmail?: string | null;
     /**
      * Indicates if a group is active or inactive for IAM database authentication.
      */
@@ -7690,7 +7723,8 @@ export namespace sqladmin_v1 {
      *   // {
      *   //   "messages": [],
      *   //   "metadata": {},
-     *   //   "results": []
+     *   //   "results": [],
+     *   //   "status": {}
      *   // }
      * }
      *
@@ -8160,9 +8194,9 @@ export namespace sqladmin_v1 {
      *
      *   // Do the magic
      *   const res = await sql.instances.get({
-     *     // Database instance ID. This does not include the project ID.
+     *     // Required. Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
-     *     // Project ID of the project that contains the instance.
+     *     // Required. Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12061,11 +12095,11 @@ export namespace sqladmin_v1 {
   }
   export interface Params$Resource$Instances$Get extends StandardParameters {
     /**
-     * Database instance ID. This does not include the project ID.
+     * Required. Database instance ID. This does not include the project ID.
      */
     instance?: string;
     /**
-     * Project ID of the project that contains the instance.
+     * Required. Project ID of the project that contains the instance.
      */
     project?: string;
   }
@@ -12542,9 +12576,9 @@ export namespace sqladmin_v1 {
      *
      *   // Do the magic
      *   const res = await sql.operations.get({
-     *     // Instance operation ID.
+     *     // Required. Instance operation ID.
      *     operation: 'placeholder-value',
-     *     // Project ID of the project that contains the instance.
+     *     // Required. Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12830,11 +12864,11 @@ export namespace sqladmin_v1 {
   }
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Instance operation ID.
+     * Required. Instance operation ID.
      */
     operation?: string;
     /**
-     * Project ID of the project that contains the instance.
+     * Required. Project ID of the project that contains the instance.
      */
     project?: string;
   }
@@ -15358,6 +15392,7 @@ export namespace sqladmin_v1 {
      *   //   "dualPasswordType": "my_dualPasswordType",
      *   //   "etag": "my_etag",
      *   //   "host": "my_host",
+     *   //   "iamEmail": "my_iamEmail",
      *   //   "iamStatus": "my_iamStatus",
      *   //   "instance": "my_instance",
      *   //   "kind": "my_kind",
@@ -15510,6 +15545,7 @@ export namespace sqladmin_v1 {
      *       //   "dualPasswordType": "my_dualPasswordType",
      *       //   "etag": "my_etag",
      *       //   "host": "my_host",
+     *       //   "iamEmail": "my_iamEmail",
      *       //   "iamStatus": "my_iamStatus",
      *       //   "instance": "my_instance",
      *       //   "kind": "my_kind",
@@ -15834,6 +15870,7 @@ export namespace sqladmin_v1 {
      *       //   "dualPasswordType": "my_dualPasswordType",
      *       //   "etag": "my_etag",
      *       //   "host": "my_host",
+     *       //   "iamEmail": "my_iamEmail",
      *       //   "iamStatus": "my_iamStatus",
      *       //   "instance": "my_instance",
      *       //   "kind": "my_kind",

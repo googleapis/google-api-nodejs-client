@@ -386,6 +386,10 @@ export namespace connectors_v2 {
    */
   export interface Schema$ExecuteToolResponse {
     /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
+    /**
      * Output from the tool execution.
      */
     result?: {[key: string]: any} | null;
@@ -430,6 +434,20 @@ export namespace connectors_v2 {
      * Reference captures the association between two different entity types. Value links to the reference of another entity type.
      */
     reference?: Schema$Reference;
+  }
+  export interface Schema$GetResourceResponse {
+    /**
+     * The content of the resource.
+     */
+    data?: string | null;
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
+    /**
+     * The MIME type of the resource.
+     */
+    mimeType?: string | null;
   }
   /**
    * Input Parameter message contains metadata about the parameters required for executing an Action.
@@ -647,10 +665,28 @@ export namespace connectors_v2 {
      */
     unsupportedTypeNames?: string[] | null;
   }
+  export interface Schema$ListResourcesResponse {
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
+    /**
+     * Next page token if more resources available.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of available resources.
+     */
+    resources?: Schema$Resource[];
+  }
   /**
    * Response message for ConnectorAgentService.ListTools
    */
   export interface Schema$ListToolsResponse {
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
     /**
      * Next page token.
      */
@@ -852,6 +888,28 @@ export namespace connectors_v2 {
      * Metadata like service latency, etc.
      */
     metadata?: {[key: string]: {[key: string]: any}} | null;
+  }
+  export interface Schema$Resource {
+    /**
+     * A description of what this resource represents.
+     */
+    description?: string | null;
+    /**
+     * The MIME type of this resource, if known.
+     */
+    mimeType?: string | null;
+    /**
+     * A human-readable name for this resource.
+     */
+    name?: string | null;
+    /**
+     * The size of the raw resource content, in bytes, if known.
+     */
+    size?: string | null;
+    /**
+     * The URI of this resource.
+     */
+    uri?: string | null;
   }
   /**
    * Result Metadata message contains metadata about the result returned after executing an Action.
@@ -1068,6 +1126,7 @@ export namespace connectors_v2 {
     context: APIRequestContext;
     actions: Resource$Projects$Locations$Connections$Actions;
     entityTypes: Resource$Projects$Locations$Connections$Entitytypes;
+    resources: Resource$Projects$Locations$Connections$Resources;
     tools: Resource$Projects$Locations$Connections$Tools;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -1076,6 +1135,9 @@ export namespace connectors_v2 {
       );
       this.entityTypes =
         new Resource$Projects$Locations$Connections$Entitytypes(this.context);
+      this.resources = new Resource$Projects$Locations$Connections$Resources(
+        this.context
+      );
       this.tools = new Resource$Projects$Locations$Connections$Tools(
         this.context
       );
@@ -3838,6 +3900,320 @@ export namespace connectors_v2 {
     requestBody?: Schema$Entity;
   }
 
+  export class Resource$Projects$Locations$Connections$Resources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a specific resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.resources.get({
+     *     // Required. Resource name of the Resource. Format: projects/{project\}/locations/{location\}/connections/{connection\}/resources/{resource\}
+     *     name: 'projects/my-project/locations/my-location/connections/my-connection/resources/my-resource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "data": "my_data",
+     *   //   "metadata": {},
+     *   //   "mimeType": "my_mimeType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Resources$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Connections$Resources$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetResourceResponse>>;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Resources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Resources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$GetResourceResponse>,
+      callback: BodyResponseCallback<Schema$GetResourceResponse>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Resources$Get,
+      callback: BodyResponseCallback<Schema$GetResourceResponse>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GetResourceResponse>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Resources$Get
+        | BodyResponseCallback<Schema$GetResourceResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetResourceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetResourceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetResourceResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Resources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Resources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetResourceResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetResourceResponse>(parameters);
+      }
+    }
+
+    /**
+     * Lists all available resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.resources.list({
+     *     // Optional. Page size for the request.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token for the request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
+     *     parent:
+     *       'projects/my-project/locations/my-location/connections/my-connection',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Resources$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Connections$Resources$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListResourcesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Resources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Resources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListResourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListResourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Resources$List,
+      callback: BodyResponseCallback<Schema$ListResourcesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListResourcesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Resources$List
+        | BodyResponseCallback<Schema$ListResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListResourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Resources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Resources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/resources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListResourcesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Connections$Resources$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the Resource. Format: projects/{project\}/locations/{location\}/connections/{connection\}/resources/{resource\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Resources$List
+    extends StandardParameters {
+    /**
+     * Optional. Page size for the request.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token for the request.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Connections$Tools {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -3890,6 +4266,7 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "metadata": {},
      *   //   "result": {}
      *   // }
      * }
@@ -4033,6 +4410,7 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "metadata": {},
      *   //   "nextPageToken": "my_nextPageToken",
      *   //   "tools": []
      *   // }

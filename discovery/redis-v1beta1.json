@@ -1073,7 +1073,7 @@
       }
     }
   },
-  "revision": "20250930",
+  "revision": "20251007",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1545,6 +1545,14 @@
           "$ref": "AutomatedBackupConfig",
           "description": "Optional. The automated backup config for the cluster."
         },
+        "availableMaintenanceVersions": {
+          "description": "Output only. This field is used to determine the available maintenance versions for the self service update.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "backupCollection": {
           "description": "Optional. Output only. The backup collection full resource name. Example: projects/{project}/locations/{location}/backupCollections/{collection}",
           "readOnly": true,
@@ -1578,6 +1586,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "effectiveMaintenanceVersion": {
+          "description": "Output only. This field represents the actual maintenance version of the cluster.",
+          "readOnly": true,
+          "type": "string"
         },
         "encryptionInfo": {
           "$ref": "EncryptionInfo",

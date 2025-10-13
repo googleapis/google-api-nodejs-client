@@ -908,7 +908,7 @@
       }
     }
   },
-  "revision": "20250910",
+  "revision": "20250929",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1141,6 +1141,10 @@
         },
         "sourceBackup": {
           "description": "The resource name of the backup, in the format `projects/{project_number}/locations/{location_id}/backups/{backup_id}`, that this file share has been restored from.",
+          "type": "string"
+        },
+        "sourceBackupdrBackup": {
+          "description": "The resource name of the BackupDR backup, in the format `projects/{project_id}/locations/{location_id}/backupVaults/{backupvault_id}/dataSources/{datasource_id}/backups/{backup_id}`, TODO (b/443690479) - Remove visibility restrictions once the feature is ready",
           "type": "string"
         }
       },

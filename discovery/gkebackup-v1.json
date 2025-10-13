@@ -614,7 +614,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The full name of the BackupPlan resource. Format: `projects/*/locations/*/backupPlans/*`",
+                      "description": "Output only. Identifier. The full name of the BackupPlan resource. Format: `projects/*/locations/*/backupPlans/*`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                       "required": true,
@@ -908,7 +908,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The fully qualified name of the Backup. `projects/*/locations/*/backupPlans/*/backups/*`",
+                          "description": "Output only. Identifier. The fully qualified name of the Backup. `projects/*/locations/*/backupPlans/*/backups/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/backups/[^/]+$",
                           "required": true,
@@ -1267,6 +1267,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}/operations",
@@ -1710,7 +1715,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The full name of the RestorePlan resource. Format: `projects/*/locations/*/restorePlans/*`.",
+                      "description": "Output only. Identifier. The full name of the RestorePlan resource. Format: `projects/*/locations/*/restorePlans/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
                       "required": true,
@@ -1974,7 +1979,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The full name of the Restore resource. Format: `projects/*/locations/*/restorePlans/*/restores/*`",
+                          "description": "Output only. Identifier. The full name of the Restore resource. Format: `projects/*/locations/*/restorePlans/*/restores/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+/restores/[^/]+$",
                           "required": true,
@@ -2227,7 +2232,7 @@
       }
     }
   },
-  "revision": "20250922",
+  "revision": "20251001",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2358,7 +2363,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Output only. The fully qualified name of the Backup. `projects/*/locations/*/backupPlans/*/backups/*`",
+          "description": "Output only. Identifier. The fully qualified name of the Backup. `projects/*/locations/*/backupPlans/*/backups/*`",
           "readOnly": true,
           "type": "string"
         },
@@ -2655,7 +2660,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The full name of the BackupPlan resource. Format: `projects/*/locations/*/backupPlans/*`",
+          "description": "Output only. Identifier. The full name of the BackupPlan resource. Format: `projects/*/locations/*/backupPlans/*`",
           "readOnly": true,
           "type": "string"
         },
@@ -3099,6 +3104,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -3729,7 +3741,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The full name of the Restore resource. Format: `projects/*/locations/*/restorePlans/*/restores/*`",
+          "description": "Output only. Identifier. The full name of the Restore resource. Format: `projects/*/locations/*/restorePlans/*/restores/*`",
           "readOnly": true,
           "type": "string"
         },
@@ -4024,7 +4036,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The full name of the RestorePlan resource. Format: `projects/*/locations/*/restorePlans/*`.",
+          "description": "Output only. Identifier. The full name of the RestorePlan resource. Format: `projects/*/locations/*/restorePlans/*`.",
           "readOnly": true,
           "type": "string"
         },

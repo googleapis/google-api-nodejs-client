@@ -1332,9 +1332,21 @@ export namespace documentai_v1beta3 {
      */
     entities?: Schema$GoogleCloudDocumentaiV1beta3DocumentEntity[];
     /**
+     * The entity revision id that `document.entities` field is based on. If this field is set and `entities_revisions` is not empty, the entities in `document.entities` field are the entities in the entity revision with this id and `document.entity_validation_output` field is the `entity_validation_output` field in this entity revision.
+     */
+    entitiesRevisionId?: string | null;
+    /**
+     * A list of entity revisions. The entity revisions are appended to the document in the processing order. This field can be used for comparing the entity extraction results at different stages of the processing.
+     */
+    entitiesRevisions?: Schema$GoogleCloudDocumentaiV1beta3DocumentEntitiesRevision[];
+    /**
      * Placeholder. Relationship among Document.entities.
      */
     entityRelations?: Schema$GoogleCloudDocumentaiV1beta3DocumentEntityRelation[];
+    /**
+     * The entity validation output for the document. This is the validation output for `document.entities` field.
+     */
+    entityValidationOutput?: Schema$GoogleCloudDocumentaiV1beta3DocumentEntityValidationOutput;
     /**
      * Any error that occurred while processing this document.
      */
@@ -1697,6 +1709,23 @@ export namespace documentai_v1beta3 {
     type?: string | null;
   }
   /**
+   * Entity revision.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentEntitiesRevision {
+    /**
+     * The entities in this revision.
+     */
+    entities?: Schema$GoogleCloudDocumentaiV1beta3DocumentEntity[];
+    /**
+     * The entity validation output for this revision.
+     */
+    entityValidationOutput?: Schema$GoogleCloudDocumentaiV1beta3DocumentEntityValidationOutput;
+    /**
+     * The revision id.
+     */
+    revisionId?: string | null;
+  }
+  /**
    * An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentEntity {
@@ -1803,6 +1832,40 @@ export namespace documentai_v1beta3 {
      * Subject entity id.
      */
     subjectId?: string | null;
+  }
+  /**
+   * The output of the validation given the document and the validation rules.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentEntityValidationOutput {
+    /**
+     * The overall result of the validation, true if all applicable rules are valid.
+     */
+    passAllRules?: boolean | null;
+    /**
+     * The result of each validation rule.
+     */
+    validationResults?: Schema$GoogleCloudDocumentaiV1beta3DocumentEntityValidationOutputValidationResult[];
+  }
+  /**
+   * Validation result for a single validation rule.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentEntityValidationOutputValidationResult {
+    /**
+     * The description of the validation rule.
+     */
+    ruleDescription?: string | null;
+    /**
+     * The name of the validation rule.
+     */
+    ruleName?: string | null;
+    /**
+     * The detailed information of the running the validation process using the entity from the document based on the validation rule.
+     */
+    validationDetails?: string | null;
+    /**
+     * The result of the validation rule.
+     */
+    validationResultType?: string | null;
   }
   /**
    * Document Identifier.
