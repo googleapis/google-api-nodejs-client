@@ -2359,7 +2359,7 @@
       }
     }
   },
-  "revision": "20250924",
+  "revision": "20251001",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -6368,7 +6368,7 @@
           ],
           "enumDescriptions": [
             "Rollout update type unspecified.",
-            "rollout state updated to pending.",
+            "Rollout state updated to pending (release has succeeded, waiting on the rollout to start).",
             "Rollout state updated to pending release.",
             "Rollout state updated to in progress.",
             "Rollout state updated to cancelling.",
