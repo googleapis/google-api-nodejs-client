@@ -960,6 +960,10 @@ export namespace gkehub_v1beta {
      */
     hierarchyControllerState?: Schema$ConfigManagementHierarchyControllerState;
     /**
+     * Output only. The Kubernetes API server version of the cluster.
+     */
+    kubernetesApiServerVersion?: string | null;
+    /**
      * Output only. Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
      */
     membershipSpec?: Schema$ConfigManagementMembershipSpec;
