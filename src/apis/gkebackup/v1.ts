@@ -211,7 +211,7 @@ export namespace gkebackup_v1 {
      */
     manual?: boolean | null;
     /**
-     * Output only. The fully qualified name of the Backup. `projects/x/locations/x/backupPlans/x/backups/x`
+     * Output only. Identifier. The fully qualified name of the Backup. `projects/x/locations/x/backupPlans/x/backups/x`
      */
     name?: string | null;
     /**
@@ -435,7 +435,7 @@ export namespace gkebackup_v1 {
      */
     lastSuccessfulBackupTime?: string | null;
     /**
-     * Output only. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
+     * Output only. Identifier. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
      */
     name?: string | null;
     /**
@@ -731,6 +731,10 @@ export namespace gkebackup_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$GoogleLongrunningOperation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1182,7 +1186,7 @@ export namespace gkebackup_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The full name of the Restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
+     * Output only. Identifier. The full name of the Restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      */
     name?: string | null;
     /**
@@ -1366,7 +1370,7 @@ export namespace gkebackup_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The full name of the RestorePlan resource. Format: `projects/x/locations/x/restorePlans/x`.
+     * Output only. Identifier. The full name of the RestorePlan resource. Format: `projects/x/locations/x/restorePlans/x`.
      */
     name?: string | null;
     /**
@@ -4109,7 +4113,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.backupPlans.patch({
-     *     // Output only. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
+     *     // Output only. Identifier. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
      *     // Optional. This is used to specify the fields to be overwritten in the BackupPlan targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource (e.g., `description`, `backup_config.include_volume_data`, etc.) If no `update_mask` is provided, all fields in `backup_plan` will be written to the target BackupPlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup_plan` are ignored and are not used to update the target BackupPlan.
      *     updateMask: 'placeholder-value',
@@ -4624,7 +4628,7 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Backupplans$Patch
     extends StandardParameters {
     /**
-     * Output only. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
+     * Output only. Identifier. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
      */
     name?: string;
     /**
@@ -5653,7 +5657,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.backupPlans.backups.patch({
-     *     // Output only. The fully qualified name of the Backup. `projects/x/locations/x/backupPlans/x/backups/x`
+     *     // Output only. Identifier. The fully qualified name of the Backup. `projects/x/locations/x/backupPlans/x/backups/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan/backups/my-backup',
      *     // Optional. This is used to specify the fields to be overwritten in the Backup targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `backup` will be written to the target Backup resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored and are not used to update the target Backup.
      *     updateMask: 'placeholder-value',
@@ -6197,7 +6201,7 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Backupplans$Backups$Patch
     extends StandardParameters {
     /**
-     * Output only. The fully qualified name of the Backup. `projects/x/locations/x/backupPlans/x/backups/x`
+     * Output only. Identifier. The fully qualified name of the Backup. `projects/x/locations/x/backupPlans/x/backups/x`
      */
     name?: string;
     /**
@@ -7523,13 +7527,16 @@ export namespace gkebackup_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -7683,6 +7690,10 @@ export namespace gkebackup_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Restorechannels {
@@ -9664,7 +9675,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.patch({
-     *     // Output only. The full name of the RestorePlan resource. Format: `projects/x/locations/x/restorePlans/x`.
+     *     // Output only. Identifier. The full name of the RestorePlan resource. Format: `projects/x/locations/x/restorePlans/x`.
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
      *     // Optional. This is used to specify the fields to be overwritten in the RestorePlan targeted for update. The values for each of these updated fields will be taken from the `restore_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore_plan` will be written to the target RestorePlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore_plan` are ignored and are not used to update the target RestorePlan.
      *     updateMask: 'placeholder-value',
@@ -10176,7 +10187,7 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Restoreplans$Patch
     extends StandardParameters {
     /**
-     * Output only. The full name of the RestorePlan resource. Format: `projects/x/locations/x/restorePlans/x`.
+     * Output only. Identifier. The full name of the RestorePlan resource. Format: `projects/x/locations/x/restorePlans/x`.
      */
     name?: string;
     /**
@@ -11029,7 +11040,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.restores.patch({
-     *     // Output only. The full name of the Restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
+     *     // Output only. Identifier. The full name of the Restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan/restores/my-restore',
      *     // Optional. This is used to specify the fields to be overwritten in the Restore targeted for update. The values for each of these updated fields will be taken from the `restore` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore` will be written to the target Restore resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore` are ignored and are not used to update the target Restore.
      *     updateMask: 'placeholder-value',
@@ -11552,7 +11563,7 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Patch
     extends StandardParameters {
     /**
-     * Output only. The full name of the Restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
+     * Output only. Identifier. The full name of the Restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      */
     name?: string;
     /**
