@@ -1627,7 +1627,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20251001",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1637,24 +1637,6 @@
         "cidrRange": {
           "description": "CIDR range for one authorzied network of the instance.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AutoScalingConfig": {
-      "description": "Configuration for autoscaling.",
-      "id": "AutoScalingConfig",
-      "properties": {
-        "policy": {
-          "$ref": "Policy",
-          "description": "Policy for the MIG autoscaler."
-        },
-        "schedules": {
-          "description": "Optional list of schedules for the MIG autoscaler. If not set, no schedules are created.",
-          "items": {
-            "$ref": "Schedule"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -2546,18 +2528,6 @@
       },
       "type": "object"
     },
-    "CpuUtilization": {
-      "description": "CPU utilization policy for the autoscaler.",
-      "id": "CpuUtilization",
-      "properties": {
-        "utilizationTarget": {
-          "description": "Target CPU utilization as a float between 0 and 1.",
-          "format": "float",
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
     "CsvExportOptions": {
       "description": "Options for exporting data in CSV format.",
       "id": "CsvExportOptions",
@@ -3091,7 +3061,7 @@
             "The instance is being deleted.",
             "The instance is down for maintenance.",
             "The creation of the instance failed or a fatal error occurred during an operation on the instance. Note: Instances in this state would tried to be auto-repaired. And Customers should be able to restart, update or delete these instances.",
-            "Index 7 is used in the producer apis for ROLLED_BACK state. Keeping that index unused in case that state also needs to exposed via consumer apis in future. The instance has been configured to sync data from some other source.",
+            "The instance has been configured to sync data from some other source.",
             "The instance is being promoted."
           ],
           "readOnly": true,
@@ -3641,31 +3611,6 @@
       },
       "type": "object"
     },
-    "Policy": {
-      "description": "Policy for the autoscaler.",
-      "id": "Policy",
-      "properties": {
-        "coolDownPeriodSec": {
-          "description": "The period of time in seconds after a new node is created before the autoscaler will incorporate its resource usage (e.g. CPU utilization) into the autoscaling recommendation algorithm.",
-          "format": "int64",
-          "type": "string"
-        },
-        "cpuUtilization": {
-          "$ref": "CpuUtilization",
-          "description": "CPU utilization policy for the autoscaler."
-        },
-        "enabled": {
-          "description": "If true, autoscaling is enabled for the instance. If not set, the default value is false.",
-          "type": "boolean"
-        },
-        "maxNodeCount": {
-          "description": "Maximum number of nodes for the autoscaler.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "PrimaryConfig": {
       "description": "Configuration for the primary cluster. It has the list of clusters that are replicating from this cluster. This should be set if and only if the cluster is of type PRIMARY.",
       "id": "PrimaryConfig",
@@ -3856,10 +3801,6 @@
       "description": "Configuration for a read pool instance.",
       "id": "ReadPoolConfig",
       "properties": {
-        "autoScalingConfig": {
-          "$ref": "AutoScalingConfig",
-          "description": "Autoscaling configuration for the read pool instance. If not set, the read pool instance will not be autoscaled."
-        },
         "nodeCount": {
           "description": "Read capacity, i.e. number of nodes in a read pool instance.",
           "format": "int32",
@@ -3953,43 +3894,6 @@
         },
         "clusterId": {
           "description": "Required. ID of the requesting object.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Schedule": {
-      "description": "A schedule for the autoscaler.",
-      "id": "Schedule",
-      "properties": {
-        "cronExpression": {
-          "description": "Cron expression for the triggering the schedule. See https://cloud.google.com/compute/docs/autoscaler/scaling-schedules#cron_expressions for the syntax.",
-          "type": "string"
-        },
-        "description": {
-          "description": "Description of the schedule.",
-          "type": "string"
-        },
-        "disabled": {
-          "description": "If true, the schedule is disabled.",
-          "type": "boolean"
-        },
-        "durationSec": {
-          "description": "Duration of the schedule.",
-          "format": "int64",
-          "type": "string"
-        },
-        "minNodeCount": {
-          "description": "Minimum number of nodes in while the schedule is active.",
-          "format": "int64",
-          "type": "string"
-        },
-        "name": {
-          "description": "Name of the schedule.",
-          "type": "string"
-        },
-        "timeZone": {
-          "description": "The location-based IANA time zone for interpreting the schedule's start time. If no time zone is provided, UTC is used by default.",
           "type": "string"
         }
       },
@@ -4751,7 +4655,8 @@
             "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
             "SIGNAL_TYPE_REPLICATION_LAG",
             "SIGNAL_TYPE_OUTDATED_VERSION",
-            "SIGNAL_TYPE_OUTDATED_CLIENT"
+            "SIGNAL_TYPE_OUTDATED_CLIENT",
+            "SIGNAL_TYPE_DATABOOST_DISABLED"
           ],
           "enumDeprecated": [
             false,
@@ -4760,6 +4665,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -4959,7 +4865,8 @@
             "High number of idle connections.",
             "Replication delay.",
             "Outdated version.",
-            "Outdated client."
+            "Outdated client.",
+            "Databoost is disabled."
           ],
           "type": "string"
         },
@@ -5397,7 +5304,8 @@
             "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
             "SIGNAL_TYPE_REPLICATION_LAG",
             "SIGNAL_TYPE_OUTDATED_VERSION",
-            "SIGNAL_TYPE_OUTDATED_CLIENT"
+            "SIGNAL_TYPE_OUTDATED_CLIENT",
+            "SIGNAL_TYPE_DATABOOST_DISABLED"
           ],
           "enumDeprecated": [
             false,
@@ -5406,6 +5314,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -5605,7 +5514,8 @@
             "High number of idle connections.",
             "Replication delay.",
             "Outdated version.",
-            "Outdated client."
+            "Outdated client.",
+            "Databoost is disabled."
           ],
           "type": "string"
         }
@@ -6139,6 +6049,7 @@
             "PRODUCT_TYPE_FIRESTORE",
             "PRODUCT_TYPE_COMPUTE_ENGINE",
             "PRODUCT_TYPE_ORACLE_ON_GCP",
+            "PRODUCT_TYPE_BIGQUERY",
             "PRODUCT_TYPE_OTHER"
           ],
           "enumDeprecated": [
@@ -6150,6 +6061,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -6171,6 +6083,7 @@
             "Firestore product area in GCP.",
             "Compute Engine self managed databases",
             "Oracle product area in GCP",
+            "BigQuery product area in GCP",
             "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],
           "type": "string"

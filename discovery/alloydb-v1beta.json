@@ -1624,7 +1624,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20251001",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -3205,7 +3205,7 @@
             "The instance is being deleted.",
             "The instance is down for maintenance.",
             "The creation of the instance failed or a fatal error occurred during an operation on the instance. Note: Instances in this state would tried to be auto-repaired. And Customers should be able to restart, update or delete these instances.",
-            "Index 7 is used in the producer apis for ROLLED_BACK state. Keeping that index unused in case that state also needs to exposed via consumer apis in future. The instance has been configured to sync data from some other source.",
+            "The instance has been configured to sync data from some other source.",
             "The instance is being promoted."
           ],
           "readOnly": true,
@@ -4877,7 +4877,8 @@
             "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
             "SIGNAL_TYPE_REPLICATION_LAG",
             "SIGNAL_TYPE_OUTDATED_VERSION",
-            "SIGNAL_TYPE_OUTDATED_CLIENT"
+            "SIGNAL_TYPE_OUTDATED_CLIENT",
+            "SIGNAL_TYPE_DATABOOST_DISABLED"
           ],
           "enumDeprecated": [
             false,
@@ -4886,6 +4887,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -5085,7 +5087,8 @@
             "High number of idle connections.",
             "Replication delay.",
             "Outdated version.",
-            "Outdated client."
+            "Outdated client.",
+            "Databoost is disabled."
           ],
           "type": "string"
         },
@@ -5523,7 +5526,8 @@
             "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
             "SIGNAL_TYPE_REPLICATION_LAG",
             "SIGNAL_TYPE_OUTDATED_VERSION",
-            "SIGNAL_TYPE_OUTDATED_CLIENT"
+            "SIGNAL_TYPE_OUTDATED_CLIENT",
+            "SIGNAL_TYPE_DATABOOST_DISABLED"
           ],
           "enumDeprecated": [
             false,
@@ -5532,6 +5536,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -5731,7 +5736,8 @@
             "High number of idle connections.",
             "Replication delay.",
             "Outdated version.",
-            "Outdated client."
+            "Outdated client.",
+            "Databoost is disabled."
           ],
           "type": "string"
         }
@@ -6265,6 +6271,7 @@
             "PRODUCT_TYPE_FIRESTORE",
             "PRODUCT_TYPE_COMPUTE_ENGINE",
             "PRODUCT_TYPE_ORACLE_ON_GCP",
+            "PRODUCT_TYPE_BIGQUERY",
             "PRODUCT_TYPE_OTHER"
           ],
           "enumDeprecated": [
@@ -6276,6 +6283,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -6297,6 +6305,7 @@
             "Firestore product area in GCP.",
             "Compute Engine self managed databases",
             "Oracle product area in GCP",
+            "BigQuery product area in GCP",
             "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],
           "type": "string"
