@@ -5523,7 +5523,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20251001",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -6570,7 +6570,12 @@
     "FirewallEndpointEndpointSettings": {
       "description": "Settings for the endpoint.",
       "id": "FirewallEndpointEndpointSettings",
-      "properties": {},
+      "properties": {
+        "jumboFramesEnabled": {
+          "description": "Optional. Immutable. Indicates whether Jumbo Frames are enabled. Default value is false.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GatewaySecurityPolicy": {
@@ -8161,13 +8166,15 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "CREATING",
-            "DELETING"
+            "DELETING",
+            "CLOSED"
           ],
           "enumDescriptions": [
             "State not set (this is not a valid state).",
             "The deployment group is ready.",
             "The deployment group is being created.",
-            "The deployment group is being deleted."
+            "The deployment group is being deleted.",
+            "The deployment group is being wiped out (project deleted)."
           ],
           "readOnly": true,
           "type": "string"
