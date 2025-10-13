@@ -694,6 +694,71 @@
                     }
                   }
                 },
+                "resources": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets a specific resource.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/resources/{resourcesId}",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.resources.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the Resource. Format: projects/{project}/locations/{location}/connections/{connection}/resources/{resource}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/resources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "GetResourceResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all available resources.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/resources",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.resources.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Page size for the request.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Page token for the request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Resource name of the connection. Format: projects/{project}/locations/{location}/connections/{connection}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/resources",
+                      "response": {
+                        "$ref": "ListResourcesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "tools": {
                   "methods": {
                     "execute": {
@@ -769,7 +834,7 @@
       }
     }
   },
-  "revision": "20250917",
+  "revision": "20250930",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {
@@ -1193,6 +1258,17 @@
       "description": "Response message for ConnectorAgentService.ExecuteTool",
       "id": "ExecuteToolResponse",
       "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
+        },
         "result": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -1388,6 +1464,32 @@
         "reference": {
           "$ref": "Reference",
           "description": "Reference captures the association between two different entity types. Value links to the reference of another entity type."
+        }
+      },
+      "type": "object"
+    },
+    "GetResourceResponse": {
+      "id": "GetResourceResponse",
+      "properties": {
+        "data": {
+          "description": "The content of the resource.",
+          "format": "byte",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
+        },
+        "mimeType": {
+          "description": "The MIME type of the resource.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2004,10 +2106,49 @@
       },
       "type": "object"
     },
+    "ListResourcesResponse": {
+      "id": "ListResourcesResponse",
+      "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
+        },
+        "nextPageToken": {
+          "description": "Next page token if more resources available.",
+          "type": "string"
+        },
+        "resources": {
+          "description": "List of available resources.",
+          "items": {
+            "$ref": "Resource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListToolsResponse": {
       "description": "Response message for ConnectorAgentService.ListTools",
       "id": "ListToolsResponse",
       "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
+        },
         "nextPageToken": {
           "description": "Next page token.",
           "type": "string"
@@ -2426,6 +2567,33 @@
           },
           "description": "Metadata like service latency, etc.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "Resource": {
+      "id": "Resource",
+      "properties": {
+        "description": {
+          "description": "A description of what this resource represents.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The MIME type of this resource, if known.",
+          "type": "string"
+        },
+        "name": {
+          "description": "A human-readable name for this resource.",
+          "type": "string"
+        },
+        "size": {
+          "description": "The size of the raw resource content, in bytes, if known.",
+          "format": "int64",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of this resource.",
+          "type": "string"
         }
       },
       "type": "object"
