@@ -418,6 +418,10 @@ export namespace redis_v1 {
      */
     automatedBackupConfig?: Schema$AutomatedBackupConfig;
     /**
+     * Output only. This field is used to determine the available maintenance versions for the self service update.
+     */
+    availableMaintenanceVersions?: string[] | null;
+    /**
      * Optional. Output only. The backup collection full resource name. Example: projects/{project\}/locations/{location\}/backupCollections/{collection\}
      */
     backupCollection?: string | null;
@@ -441,6 +445,10 @@ export namespace redis_v1 {
      * Output only. Endpoints created on each given network, for Redis clients to connect to the cluster. Currently only one discovery endpoint is supported.
      */
     discoveryEndpoints?: Schema$DiscoveryEndpoint[];
+    /**
+     * Output only. This field represents the actual maintenance version of the cluster.
+     */
+    effectiveMaintenanceVersion?: string | null;
     /**
      * Output only. Encryption information of the data at rest of the cluster.
      */
@@ -3668,12 +3676,14 @@ export namespace redis_v1 {
      *       //   "asyncClusterEndpointsDeletionEnabled": false,
      *       //   "authorizationMode": "my_authorizationMode",
      *       //   "automatedBackupConfig": {},
+     *       //   "availableMaintenanceVersions": [],
      *       //   "backupCollection": "my_backupCollection",
      *       //   "clusterEndpoints": [],
      *       //   "createTime": "my_createTime",
      *       //   "crossClusterReplicationConfig": {},
      *       //   "deletionProtectionEnabled": false,
      *       //   "discoveryEndpoints": [],
+     *       //   "effectiveMaintenanceVersion": "my_effectiveMaintenanceVersion",
      *       //   "encryptionInfo": {},
      *       //   "gcsSource": {},
      *       //   "kmsKey": "my_kmsKey",
@@ -3994,12 +4004,14 @@ export namespace redis_v1 {
      *   //   "asyncClusterEndpointsDeletionEnabled": false,
      *   //   "authorizationMode": "my_authorizationMode",
      *   //   "automatedBackupConfig": {},
+     *   //   "availableMaintenanceVersions": [],
      *   //   "backupCollection": "my_backupCollection",
      *   //   "clusterEndpoints": [],
      *   //   "createTime": "my_createTime",
      *   //   "crossClusterReplicationConfig": {},
      *   //   "deletionProtectionEnabled": false,
      *   //   "discoveryEndpoints": [],
+     *   //   "effectiveMaintenanceVersion": "my_effectiveMaintenanceVersion",
      *   //   "encryptionInfo": {},
      *   //   "gcsSource": {},
      *   //   "kmsKey": "my_kmsKey",
@@ -4454,12 +4466,14 @@ export namespace redis_v1 {
      *       //   "asyncClusterEndpointsDeletionEnabled": false,
      *       //   "authorizationMode": "my_authorizationMode",
      *       //   "automatedBackupConfig": {},
+     *       //   "availableMaintenanceVersions": [],
      *       //   "backupCollection": "my_backupCollection",
      *       //   "clusterEndpoints": [],
      *       //   "createTime": "my_createTime",
      *       //   "crossClusterReplicationConfig": {},
      *       //   "deletionProtectionEnabled": false,
      *       //   "discoveryEndpoints": [],
+     *       //   "effectiveMaintenanceVersion": "my_effectiveMaintenanceVersion",
      *       //   "encryptionInfo": {},
      *       //   "gcsSource": {},
      *       //   "kmsKey": "my_kmsKey",
