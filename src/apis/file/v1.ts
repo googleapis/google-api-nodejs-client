@@ -268,6 +268,10 @@ export namespace file_v1 {
      * The resource name of the backup, in the format `projects/{project_number\}/locations/{location_id\}/backups/{backup_id\}`, that this file share has been restored from.
      */
     sourceBackup?: string | null;
+    /**
+     * The resource name of the BackupDR backup, in the format `projects/{project_id\}/locations/{location_id\}/backupVaults/{backupvault_id\}/dataSources/{datasource_id\}/backups/{backup_id\}`, TODO (b/443690479) - Remove visibility restrictions once the feature is ready
+     */
+    sourceBackupdrBackup?: string | null;
   }
   /**
    * Fixed IOPS (input/output operations per second) parameters.
