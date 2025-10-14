@@ -1225,13 +1225,13 @@
           ],
           "parameters": {
             "instance": {
-              "description": "Database instance ID. This does not include the project ID.",
+              "description": "Required. Database instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "project": {
-              "description": "Project ID of the project that contains the instance.",
+              "description": "Required. Project ID of the project that contains the instance.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1952,13 +1952,13 @@
           ],
           "parameters": {
             "operation": {
-              "description": "Instance operation ID.",
+              "description": "Required. Instance operation ID.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "project": {
-              "description": "Project ID of the project that contains the instance.",
+              "description": "Required. Project ID of the project that contains the instance.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2685,7 +2685,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20251006",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -4813,7 +4813,7 @@
           "type": "string"
         },
         "partialResultMode": {
-          "description": "Optional. Controls how the API should respond when the SQL execution result exceeds 10 MB. The default mode is to throw an error.",
+          "description": "Optional. Controls how the API should respond when the SQL execution result is incomplete due to the size limit or another error. The default mode is to throw an error.",
           "enum": [
             "PARTIAL_RESULT_MODE_UNSPECIFIED",
             "FAIL_PARTIAL_RESULT",
@@ -4821,8 +4821,8 @@
           ],
           "enumDescriptions": [
             "Unspecified mode, effectively the same as `FAIL_PARTIAL_RESULT`.",
-            "Throw an error if the result exceeds 10 MB. Don't return the result.",
-            "Return a truncated result and set `partial_result` to true if the result exceeds 10 MB. Don't throw an error."
+            "Throw an error if the result exceeds 10 MB or if only a partial result can be retrieved. Don't return the result.",
+            "Return a truncated result and set `partial_result` to true if the result exceeds 10 MB or if only a partial result can be retrieved due to error. Don't throw an error."
           ],
           "type": "string"
         },
@@ -7121,7 +7121,7 @@
           "type": "string"
         },
         "partialResult": {
-          "description": "Set to true if the SQL execution's result is truncated due to size limits.",
+          "description": "Set to true if the SQL execution's result is truncated due to size limits or an error retrieving results.",
           "type": "boolean"
         },
         "rows": {
@@ -7130,6 +7130,10 @@
             "$ref": "Row"
           },
           "type": "array"
+        },
+        "status": {
+          "$ref": "Status",
+          "description": "If results were truncated due to an error, details of that error."
         }
       },
       "type": "object"
@@ -7367,6 +7371,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "autoUpgradeEnabled": {
+          "description": "Optional. Cloud SQL for MySQL auto-upgrade configuration. When this parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor versions. The MySQL version must be 8.0.35 or higher.",
+          "type": "boolean"
         },
         "availabilityType": {
           "description": "Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available)./ For more information, see [Overview of the High Availability Configuration](https://cloud.google.com/sql/docs/mysql/high-availability).",
@@ -7635,12 +7643,20 @@
           "enum": [
             "ACTIVE_DIRECTORY_MODE_UNSPECIFIED",
             "MANAGED_ACTIVE_DIRECTORY",
-            "SELF_MANAGED_ACTIVE_DIRECTORY"
+            "SELF_MANAGED_ACTIVE_DIRECTORY",
+            "CUSTOMER_MANAGED_ACTIVE_DIRECTORY"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false
           ],
           "enumDescriptions": [
             "Unspecified mode. Will default to MANAGED_ACTIVE_DIRECTORY if the mode is not specified to maintain backward compatibility.",
             "Managed Active Directory mode.",
-            "Self-managed Active Directory mode."
+            "Deprecated: Use CUSTOMER_MANAGED_ACTIVE_DIRECTORY instead.",
+            "Customer-managed Active Directory mode."
           ],
           "type": "string"
         },
@@ -7824,6 +7840,10 @@
             "$ref": "QueryResult"
           },
           "type": "array"
+        },
+        "status": {
+          "$ref": "Status",
+          "description": "Contains the error from the database if the SQL execution failed."
         }
       },
       "type": "object"
@@ -8317,6 +8337,33 @@
       },
       "type": "object"
     },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SyncFlags": {
       "description": "Initial sync flags for certain Cloud SQL APIs. Currently used for the MySQL external server initial dump.",
       "id": "SyncFlags",
@@ -8439,6 +8486,10 @@
         },
         "host": {
           "description": "Optional. The host from which the user can connect. For `insert` operations, host defaults to an empty string. For `update` operations, host is specified as part of the request URL. The host name cannot be updated after insertion. For a MySQL instance, it's required; for a PostgreSQL or SQL Server instance, it's optional.",
+          "type": "string"
+        },
+        "iamEmail": {
+          "description": "Optional. The full email for an IAM user. For normal database users, this will not be filled. Only applicable to MySQL database users.",
           "type": "string"
         },
         "iamStatus": {
