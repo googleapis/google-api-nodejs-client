@@ -112,6 +112,7 @@
             "global": {
               "resources": {
                 "partnerTenants": {
+                  "deprecated": true,
                   "methods": {
                     "delete": {
                       "deprecated": true,
@@ -145,6 +146,7 @@
                       ]
                     },
                     "get": {
+                      "deprecated": true,
                       "description": "Gets details of a single PartnerTenant.",
                       "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}",
                       "httpMethod": "GET",
@@ -170,6 +172,7 @@
                       ]
                     },
                     "list": {
+                      "deprecated": true,
                       "description": "Lists PartnerTenants in a given organization.",
                       "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants",
                       "httpMethod": "GET",
@@ -558,6 +561,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1alpha/{+name}/operations",
@@ -2865,6 +2873,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1alpha/{+name}/operations",
@@ -3432,7 +3445,7 @@
       }
     }
   },
-  "revision": "20250922",
+  "revision": "20250930",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -4828,6 +4841,7 @@
       "type": "object"
     },
     "GoogleCloudBeyondcorpPartnerservicesV1alphaGroup": {
+      "deprecated": true,
       "description": "Message to capture group information",
       "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaGroup",
       "properties": {
@@ -4843,6 +4857,7 @@
       "type": "object"
     },
     "GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse": {
+      "deprecated": true,
       "description": "Message for response to listing PartnerTenants.",
       "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse",
       "properties": {
@@ -4861,6 +4876,7 @@
       "type": "object"
     },
     "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerMetadata": {
+      "deprecated": true,
       "description": "Metadata associated with PartnerTenant and is provided by the Partner.",
       "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerMetadata",
       "properties": {
@@ -4876,6 +4892,7 @@
       "type": "object"
     },
     "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerServiceOperationMetadata": {
+      "deprecated": true,
       "description": "Represents the metadata of the long-running operation.",
       "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerServiceOperationMetadata",
       "properties": {
@@ -4920,6 +4937,7 @@
       "type": "object"
     },
     "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant": {
+      "deprecated": true,
       "description": "Information about a BeyoncCorp Enterprise PartnerTenant.",
       "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant",
       "properties": {
@@ -4956,6 +4974,7 @@
       "type": "object"
     },
     "GoogleCloudBeyondcorpPartnerservicesV1mainPartnerServiceOperationMetadata": {
+      "deprecated": true,
       "description": "Represents the metadata of the long-running operation.",
       "id": "GoogleCloudBeyondcorpPartnerservicesV1mainPartnerServiceOperationMetadata",
       "properties": {
@@ -6221,6 +6240,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
