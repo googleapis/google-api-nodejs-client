@@ -831,6 +831,85 @@
             }
           }
         },
+        "alerts": {
+          "methods": {
+            "get": {
+              "description": "Gets a single alert.",
+              "flatPath": "v3/projects/{projectsId}/alerts/{alertsId}",
+              "httpMethod": "GET",
+              "id": "monitoring.projects.alerts.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the alert.The format is: projects/[PROJECT_ID_OR_NUMBER]/alerts/[ALERT_ID] The [ALERT_ID] is a system-assigned unique identifier for the alert.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/monitoring",
+                "https://www.googleapis.com/auth/monitoring.read"
+              ]
+            },
+            "list": {
+              "description": "Lists the existing alerts for the metrics scope of the project.",
+              "flatPath": "v3/projects/{projectsId}/alerts",
+              "httpMethod": "GET",
+              "id": "monitoring.projects.alerts.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. An alert is returned if there is a match on any fields belonging to the alert or its subfields.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. A comma-separated list of fields in Alert to use for sorting. The default sort direction is ascending. To specify descending order for a field, add a desc modifier. The following fields are supported: open_time close_timeFor example, close_time desc, open_time will return the alerts closed most recently, with ties broken in the order of older alerts listed first.If the field is not set, the results are sorted by open_time desc.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of results to return in a single response. If not set to a positive number, at most 50 alerts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the project to list alerts for.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}/alerts",
+              "response": {
+                "$ref": "ListAlertsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/monitoring",
+                "https://www.googleapis.com/auth/monitoring.read"
+              ]
+            }
+          }
+        },
         "collectdTimeSeries": {
           "methods": {
             "create": {
@@ -2720,7 +2799,7 @@
       }
     }
   },
-  "revision": "20250731",
+  "revision": "20251006",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2819,6 +2898,62 @@
             "Align the time series by using percentile aggregation (https://en.wikipedia.org/wiki/Percentile). The resulting data point in each alignment period is the 5th percentile of all data points in the period. This aligner is valid for GAUGE and DELTA metrics with distribution values. The output is a GAUGE metric with value_type DOUBLE.",
             "Align and convert to a percentage change. This aligner is valid for GAUGE and DELTA metrics with numeric values. This alignment returns ((current - previous)/previous) * 100, where the value of previous is determined based on the alignment_period.If the values of current and previous are both 0, then the returned value is 0. If only previous is 0, the returned value is infinity.A 10-minute moving mean is computed at each point of the alignment period prior to the above calculation to smooth the metric and prevent false positives from very short-lived spikes. The moving mean is only applicable for data whose values are >= 0. Any values < 0 are treated as a missing datapoint, and are ignored. While DELTA metrics are accepted by this alignment, special care should be taken that the values for the metric will always be positive. The output is a GAUGE metric with value_type DOUBLE."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Alert": {
+      "description": "An alert is the representation of a violation of an alert policy. It is a read-only resource that cannot be modified by the accompanied API.",
+      "id": "Alert",
+      "properties": {
+        "closeTime": {
+          "description": "The time when the alert was closed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "log": {
+          "$ref": "LogMetadata",
+          "description": "The log information associated with the alert. This field is only populated for log-based alerts."
+        },
+        "metadata": {
+          "$ref": "MonitoredResourceMetadata",
+          "description": "The metadata of the monitored resource."
+        },
+        "metric": {
+          "$ref": "Metric",
+          "description": "The metric type and any metric labels preserved from the incident's generating condition."
+        },
+        "name": {
+          "description": "Identifier. The name of the alert.The format is: projects/[PROJECT_ID_OR_NUMBER]/alerts/[ALERT_ID] The [ALERT_ID] is a system-assigned unique identifier for the alert.",
+          "type": "string"
+        },
+        "openTime": {
+          "description": "The time when the alert was opened.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "policy": {
+          "$ref": "PolicySnapshot",
+          "description": "The snapshot of the alert policy that generated this alert."
+        },
+        "resource": {
+          "$ref": "MonitoredResource",
+          "description": "The monitored resource type and any monitored resource labels preserved from the incident's generating condition."
+        },
+        "state": {
+          "description": "Output only. The current state of the alert.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "OPEN",
+            "CLOSED"
+          ],
+          "enumDescriptions": [
+            "The alert state is unspecified.",
+            "The alert is open.",
+            "The alert is closed."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4226,6 +4361,29 @@
       },
       "type": "object"
     },
+    "ListAlertsResponse": {
+      "description": "The ListAlerts response.",
+      "id": "ListAlertsResponse",
+      "properties": {
+        "alerts": {
+          "description": "The list of alerts.",
+          "items": {
+            "$ref": "Alert"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If not empty, indicates that there may be more results that match the request. Use the value in the page_token field in a subsequent request to fetch the next set of results. The token is encrypted and only guaranteed to return correct results for 72 hours after it is created. If empty, all results have been returned.",
+          "type": "string"
+        },
+        "totalSize": {
+          "description": "The estimated total number of matching results for this query.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ListGroupMembersResponse": {
       "description": "The ListGroupMembers response.",
       "id": "ListGroupMembersResponse",
@@ -4488,6 +4646,20 @@
             "type": "string"
           },
           "description": "Optional. A map from a label key to an extractor expression, which is used to extract the value for this label key. Each entry in this map is a specification for how data should be extracted from log entries that match filter. Each combination of extracted values is treated as a separate rule for the purposes of triggering notifications. Label keys and corresponding values can be used in notifications generated by this condition.Please see the documentation on logs-based metric valueExtractors (https://cloud.google.com/logging/docs/reference/v2/rest/v2/projects.metrics#LogMetric.FIELDS.value_extractor) for syntax and examples.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "LogMetadata": {
+      "description": "Information about the log for log-based alerts.",
+      "id": "LogMetadata",
+      "properties": {
+        "extractedLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The labels extracted from the log.",
           "type": "object"
         }
       },
@@ -5267,6 +5439,44 @@
             "$ref": "TypedValue"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PolicySnapshot": {
+      "description": "The state of the policy at the time the alert was generated.",
+      "id": "PolicySnapshot",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the alert policy.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the alert policy resource. In the form of \"projects/PROJECT_ID_OR_NUMBER/alertPolicies/ALERT_POLICY_ID\".",
+          "type": "string"
+        },
+        "severity": {
+          "description": "The severity of the alert policy.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "ERROR",
+            "WARNING"
+          ],
+          "enumDescriptions": [
+            "No severity is specified. This is the default value.",
+            "This is the highest severity level. Use this if the problem could cause significant damage or downtime.",
+            "This is the medium severity level. Use this if the problem could cause minor damage or downtime.",
+            "This is the lowest severity level. Use this if the problem is not causing any damage or downtime, but could potentially lead to a problem in the future."
+          ],
+          "type": "string"
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The user labels for the alert policy.",
+          "type": "object"
         }
       },
       "type": "object"
