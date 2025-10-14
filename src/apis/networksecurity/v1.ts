@@ -772,7 +772,12 @@ export namespace networksecurity_v1 {
   /**
    * Settings for the endpoint.
    */
-  export interface Schema$FirewallEndpointEndpointSettings {}
+  export interface Schema$FirewallEndpointEndpointSettings {
+    /**
+     * Optional. Immutable. Indicates whether Jumbo Frames are enabled. Default value is false.
+     */
+    jumboFramesEnabled?: boolean | null;
+  }
   /**
    * The GatewaySecurityPolicy resource contains a collection of GatewaySecurityPolicyRules and associated metadata.
    */
