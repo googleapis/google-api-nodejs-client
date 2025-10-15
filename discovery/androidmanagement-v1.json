@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20250924",
+  "revision": "20251014",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -3055,6 +3055,178 @@
       },
       "type": "object"
     },
+    "DefaultApplication": {
+      "description": "Information about the application to be set as the default.",
+      "id": "DefaultApplication",
+      "properties": {
+        "packageName": {
+          "description": "Required. The package name that should be set as the default application. The policy is rejected if the package name is invalid.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DefaultApplicationContext": {
+      "description": "Additional context for non-compliance related to default application settings.",
+      "id": "DefaultApplicationContext",
+      "properties": {
+        "defaultApplicationScope": {
+          "description": "Output only. The scope of non-compliant default application setting.",
+          "enum": [
+            "DEFAULT_APPLICATION_SCOPE_UNSPECIFIED",
+            "SCOPE_FULLY_MANAGED",
+            "SCOPE_WORK_PROFILE",
+            "SCOPE_PERSONAL_PROFILE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value must not be used.",
+            "Sets the application as the default on fully managed devices.",
+            "Sets the application as the work profile default.Only supported for DEFAULT_BROWSER, DEFAULT_CALL_REDIRECTION, DEFAULT_CALL_SCREENING, DEFAULT_DIALER and DEFAULT_WALLET.",
+            "Sets the application as the personal profile default on company-owned devices with a work profile. Only pre-installed system apps can be set as the default.Only supported for DEFAULT_BROWSER, DEFAULT_DIALER, DEFAULT_SMS and DEFAULT_WALLET."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DefaultApplicationInfo": {
+      "description": "The default application information for a specific DefaultApplicationType.",
+      "id": "DefaultApplicationInfo",
+      "properties": {
+        "defaultApplicationSettingAttempts": {
+          "description": "Output only. Details on the default application setting attempts, in the same order as listed in defaultApplications.",
+          "items": {
+            "$ref": "DefaultApplicationSettingAttempt"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "defaultApplicationType": {
+          "description": "Output only. The default application type.",
+          "enum": [
+            "DEFAULT_APPLICATION_TYPE_UNSPECIFIED",
+            "DEFAULT_ASSISTANT",
+            "DEFAULT_BROWSER",
+            "DEFAULT_CALL_REDIRECTION",
+            "DEFAULT_CALL_SCREENING",
+            "DEFAULT_DIALER",
+            "DEFAULT_HOME",
+            "DEFAULT_SMS",
+            "DEFAULT_WALLET"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value must not be used.",
+            "The assistant app type. This app type is only allowed to be set for SCOPE_FULLY_MANAGED.Supported on fully managed devices on Android 16 and above. A NonComplianceDetail with MANAGEMENT_MODE is reported for other management modes. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The browser app type.Supported on Android 16 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The call redirection app type. This app type cannot be set for SCOPE_PERSONAL_PROFILE.Supported on Android 16 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The call screening app type. This app type cannot be set for SCOPE_PERSONAL_PROFILE.Supported on Android 16 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The dialer app type.Supported on fully managed devices on Android 14 and 15. A NonComplianceDetail with MANAGEMENT_MODE is reported for other management modes. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 14.Supported on all management modes on Android 16 and above.",
+            "The home app type. This app type is only allowed to be set for SCOPE_FULLY_MANAGED.Supported on fully managed devices on Android 16 and above. A NonComplianceDetail with MANAGEMENT_MODE is reported for other management modes. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The SMS app type. This app type cannot be set for SCOPE_WORK_PROFILE.Supported on company-owned devices on Android 16 and above. A NonComplianceDetail with MANAGEMENT_MODE is reported for personally-owned devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The wallet app type. The default application of this type applies across profiles.On a company-owned device with a work profile, admins can set the scope to SCOPE_PERSONAL_PROFILE to set a personal profile pre-installed system app as the default, or to SCOPE_WORK_PROFILE to set a work profile app as the default. It is not allowed to specify both scopes at the same time.Due to a known issue, the user may be able to change the default wallet even when this is set on a fully managed device.Supported on company-owned devices on Android 16 and above. A NonComplianceDetail with MANAGEMENT_MODE is reported for personally-owned devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Output only. The package name of the current default application.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DefaultApplicationSetting": {
+      "description": "The default application setting for a DefaultApplicationType.",
+      "id": "DefaultApplicationSetting",
+      "properties": {
+        "defaultApplicationScopes": {
+          "description": "Required. The scopes to which the policy should be applied. This list must not be empty or contain duplicates.A NonComplianceDetail with MANAGEMENT_MODE reason and DEFAULT_APPLICATION_SETTING_UNSUPPORTED_SCOPES specific reason is reported if none of the specified scopes can be applied to the management mode (e.g. a fully managed device receives a policy with only SCOPE_PERSONAL_PROFILE in the list).",
+          "items": {
+            "enum": [
+              "DEFAULT_APPLICATION_SCOPE_UNSPECIFIED",
+              "SCOPE_FULLY_MANAGED",
+              "SCOPE_WORK_PROFILE",
+              "SCOPE_PERSONAL_PROFILE"
+            ],
+            "enumDescriptions": [
+              "Unspecified. This value must not be used.",
+              "Sets the application as the default on fully managed devices.",
+              "Sets the application as the work profile default.Only supported for DEFAULT_BROWSER, DEFAULT_CALL_REDIRECTION, DEFAULT_CALL_SCREENING, DEFAULT_DIALER and DEFAULT_WALLET.",
+              "Sets the application as the personal profile default on company-owned devices with a work profile. Only pre-installed system apps can be set as the default.Only supported for DEFAULT_BROWSER, DEFAULT_DIALER, DEFAULT_SMS and DEFAULT_WALLET."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "defaultApplicationType": {
+          "description": "Required. The app type to set the default application.",
+          "enum": [
+            "DEFAULT_APPLICATION_TYPE_UNSPECIFIED",
+            "DEFAULT_ASSISTANT",
+            "DEFAULT_BROWSER",
+            "DEFAULT_CALL_REDIRECTION",
+            "DEFAULT_CALL_SCREENING",
+            "DEFAULT_DIALER",
+            "DEFAULT_HOME",
+            "DEFAULT_SMS",
+            "DEFAULT_WALLET"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value must not be used.",
+            "The assistant app type. This app type is only allowed to be set for SCOPE_FULLY_MANAGED.Supported on fully managed devices on Android 16 and above. A NonComplianceDetail with MANAGEMENT_MODE is reported for other management modes. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The browser app type.Supported on Android 16 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The call redirection app type. This app type cannot be set for SCOPE_PERSONAL_PROFILE.Supported on Android 16 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The call screening app type. This app type cannot be set for SCOPE_PERSONAL_PROFILE.Supported on Android 16 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The dialer app type.Supported on fully managed devices on Android 14 and 15. A NonComplianceDetail with MANAGEMENT_MODE is reported for other management modes. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 14.Supported on all management modes on Android 16 and above.",
+            "The home app type. This app type is only allowed to be set for SCOPE_FULLY_MANAGED.Supported on fully managed devices on Android 16 and above. A NonComplianceDetail with MANAGEMENT_MODE is reported for other management modes. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The SMS app type. This app type cannot be set for SCOPE_WORK_PROFILE.Supported on company-owned devices on Android 16 and above. A NonComplianceDetail with MANAGEMENT_MODE is reported for personally-owned devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16.",
+            "The wallet app type. The default application of this type applies across profiles.On a company-owned device with a work profile, admins can set the scope to SCOPE_PERSONAL_PROFILE to set a personal profile pre-installed system app as the default, or to SCOPE_WORK_PROFILE to set a work profile app as the default. It is not allowed to specify both scopes at the same time.Due to a known issue, the user may be able to change the default wallet even when this is set on a fully managed device.Supported on company-owned devices on Android 16 and above. A NonComplianceDetail with MANAGEMENT_MODE is reported for personally-owned devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 16."
+          ],
+          "type": "string"
+        },
+        "defaultApplications": {
+          "description": "Required. The list of applications that can be set as the default app for a given type. This list must not be empty or contain duplicates. The first app in the list that is installed and qualified for the defaultApplicationType (e.g. SMS app for DEFAULT_SMS) is set as the default app. The signing key certificate fingerprint of the app on the device must also match one of the signing key certificate fingerprints obtained from Play Store or one of the entries in ApplicationPolicy.signingKeyCerts in order to be set as the default.If the defaultApplicationScopes contains SCOPE_FULLY_MANAGED or SCOPE_WORK_PROFILE, the app must have an entry in applications with installType set to a value other than BLOCKED.A NonComplianceDetail with APP_NOT_INSTALLED reason and DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE specific reason is reported if none of the apps in the list are installed. A NonComplianceDetail with INVALID_VALUE reason and DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE specific reason is reported if at least one app is installed but the policy fails to apply due to other reasons (e.g. the app is not of the right type).When applying to SCOPE_PERSONAL_PROFILE on a company-owned device with a work profile, only pre-installed system apps can be set as the default. A NonComplianceDetail with INVALID_VALUE reason and DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE specific reason is reported if the policy fails to apply to the personal profile.",
+          "items": {
+            "$ref": "DefaultApplication"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DefaultApplicationSettingAttempt": {
+      "description": "Details on a default application setting attempt.",
+      "id": "DefaultApplicationSettingAttempt",
+      "properties": {
+        "attemptOutcome": {
+          "description": "Output only. The outcome of setting the app as the default.",
+          "enum": [
+            "ATTEMPT_OUTCOME_UNSPECIFIED",
+            "SUCCESS",
+            "APP_NOT_INSTALLED",
+            "APP_SIGNING_CERT_MISMATCH",
+            "OTHER_FAILURE"
+          ],
+          "enumDescriptions": [
+            "Attempt outcome is unspecified. This is not used.",
+            "App is successfully set as the default.",
+            "Attempt failed as the app is not installed.",
+            "Attempt failed as the signing key certificate fingerprint of the app from Play Store or from ApplicationPolicy.signingKeyCerts does not match the one on the device.",
+            "Attempt failed due to other reasons."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Output only. The package name of the attempted application.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Device": {
       "description": "A device owned by an enterprise. Unless otherwise noted, all fields are read-only and can't be modified by enterprises.devices.patch.",
       "id": "Device",
@@ -3114,6 +3286,14 @@
         "commonCriteriaModeInfo": {
           "$ref": "CommonCriteriaModeInfo",
           "description": "Information about Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC).This information is only available if statusReportingSettings.commonCriteriaModeEnabled is true in the device's policy the device is company-owned."
+        },
+        "defaultApplicationInfo": {
+          "description": "Output only. The default application information for the DefaultApplicationType. This information is only available if defaultApplicationInfoReportingEnabled is true in the device's policy. Available on Android 16 and above.All app types are reported on fully managed devices. DEFAULT_BROWSER, DEFAULT_CALL_REDIRECTION, DEFAULT_CALL_SCREENING and DEFAULT_DIALER types are reported for the work profiles on company-owned devices with a work profile and personally-owned devices. DEFAULT_WALLET is also reported for company-owned devices with a work profile, but will only include work profile information.",
+          "items": {
+            "$ref": "DefaultApplicationInfo"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "deviceSettings": {
           "$ref": "DeviceSettings",
@@ -5263,7 +5443,9 @@
             "ONC_WIFI_KEY_PAIR_ALIAS_NOT_CORRESPONDING_TO_EXISTING_KEY",
             "PERMISSIBLE_USAGE_RESTRICTION",
             "REQUIRED_ACCOUNT_NOT_IN_ENTERPRISE",
-            "NEW_ACCOUNT_NOT_IN_ENTERPRISE"
+            "NEW_ACCOUNT_NOT_IN_ENTERPRISE",
+            "DEFAULT_APPLICATION_SETTING_UNSUPPORTED_SCOPES",
+            "DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE"
           ],
           "enumDescriptions": [
             "Specific non-compliance reason is not specified. Fields in specific_non_compliance_context are not set.",
@@ -5277,7 +5459,9 @@
             "Key pair alias specified via ClientCertKeyPairAlias (https://chromium.googlesource.com/chromium/src/+/main/components/onc/docs/onc_spec.md#eap-type) field in openNetworkConfiguration does not correspond to an existing key installed on the device. nonComplianceReason is set to INVALID_VALUE.",
             "This policy setting is restricted and cannot be set for this Google Cloud Platform project. More details (including how to enable usage of this policy setting) are available in the Permissible Usage policy (https://developers.google.com/android/management/permissible-usage). nonComplianceReason is set to PROJECT_NOT_PERMITTED.",
             "Work account required by the workAccountSetupConfig policy setting is not part of the enterprise anymore. nonComplianceReason is set to USER_ACTION.",
-            "Work account added by the user is not part of the enterprise. nonComplianceReason is set to USER_ACTION."
+            "Work account added by the user is not part of the enterprise. nonComplianceReason is set to USER_ACTION.",
+            "The default application setting is applied to the scopes that are not supported by the management mode, even if the management mode itself is supported for the app type (e.g., a policy with DEFAULT_BROWSER app type and SCOPE_PERSONAL_PROFILE list sent to a fully managed device results in the scopes being inapplicable for the management mode). If the management mode is not supported for the app type, a NonComplianceDetail with MANAGEMENT_MODE is reported, without a specificNonComplianceReason.nonComplianceReason is set to MANAGEMENT_MODE.",
+            "The default application setting failed to apply for a specific scope. defaultApplicationContext is set. nonComplianceReason is set to INVALID_VALUE or APP_NOT_INSTALLED."
           ],
           "type": "string"
         }
@@ -6003,6 +6187,13 @@
           "deprecated": true,
           "description": "Whether the user is allowed to enable debugging features.",
           "type": "boolean"
+        },
+        "defaultApplicationSettings": {
+          "description": "Optional. The default application setting for supported types. If the default application is successfully set for at least one app type on a profile, users are prevented from changing any default applications on that profile.Only one DefaultApplicationSetting is allowed for each DefaultApplicationType.See Default application settings (https://developers.google.com/android/management/default-application-settings) guide for more details.",
+          "items": {
+            "$ref": "DefaultApplicationSetting"
+          },
+          "type": "array"
         },
         "defaultPermissionPolicy": {
           "description": "The default permission policy for runtime permission requests.",
@@ -7132,6 +7323,11 @@
       "description": "Additional context for SpecificNonComplianceReason.",
       "id": "SpecificNonComplianceContext",
       "properties": {
+        "defaultApplicationContext": {
+          "$ref": "DefaultApplicationContext",
+          "description": "Output only. Additional context for non-compliance related to default application settings. See DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE.",
+          "readOnly": true
+        },
         "oncWifiContext": {
           "$ref": "OncWifiContext",
           "description": "Additional context for non-compliance related to Wi-Fi configuration. See ONC_WIFI_INVALID_VALUE and ONC_WIFI_API_LEVEL"
@@ -7236,6 +7432,10 @@
         },
         "commonCriteriaModeEnabled": {
           "description": "Whether Common Criteria Mode reporting is enabled. This is supported only on company-owned devices.",
+          "type": "boolean"
+        },
+        "defaultApplicationInfoReportingEnabled": {
+          "description": "Optional. Whether defaultApplicationInfo reporting is enabled.",
           "type": "boolean"
         },
         "deviceSettingsEnabled": {

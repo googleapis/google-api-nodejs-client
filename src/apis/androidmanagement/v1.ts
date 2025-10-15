@@ -1067,6 +1067,71 @@ export namespace androidmanagement_v1 {
     year?: number | null;
   }
   /**
+   * Information about the application to be set as the default.
+   */
+  export interface Schema$DefaultApplication {
+    /**
+     * Required. The package name that should be set as the default application. The policy is rejected if the package name is invalid.
+     */
+    packageName?: string | null;
+  }
+  /**
+   * Additional context for non-compliance related to default application settings.
+   */
+  export interface Schema$DefaultApplicationContext {
+    /**
+     * Output only. The scope of non-compliant default application setting.
+     */
+    defaultApplicationScope?: string | null;
+  }
+  /**
+   * The default application information for a specific DefaultApplicationType.
+   */
+  export interface Schema$DefaultApplicationInfo {
+    /**
+     * Output only. Details on the default application setting attempts, in the same order as listed in defaultApplications.
+     */
+    defaultApplicationSettingAttempts?: Schema$DefaultApplicationSettingAttempt[];
+    /**
+     * Output only. The default application type.
+     */
+    defaultApplicationType?: string | null;
+    /**
+     * Output only. The package name of the current default application.
+     */
+    packageName?: string | null;
+  }
+  /**
+   * The default application setting for a DefaultApplicationType.
+   */
+  export interface Schema$DefaultApplicationSetting {
+    /**
+     * Required. The list of applications that can be set as the default app for a given type. This list must not be empty or contain duplicates. The first app in the list that is installed and qualified for the defaultApplicationType (e.g. SMS app for DEFAULT_SMS) is set as the default app. The signing key certificate fingerprint of the app on the device must also match one of the signing key certificate fingerprints obtained from Play Store or one of the entries in ApplicationPolicy.signingKeyCerts in order to be set as the default.If the defaultApplicationScopes contains SCOPE_FULLY_MANAGED or SCOPE_WORK_PROFILE, the app must have an entry in applications with installType set to a value other than BLOCKED.A NonComplianceDetail with APP_NOT_INSTALLED reason and DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE specific reason is reported if none of the apps in the list are installed. A NonComplianceDetail with INVALID_VALUE reason and DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE specific reason is reported if at least one app is installed but the policy fails to apply due to other reasons (e.g. the app is not of the right type).When applying to SCOPE_PERSONAL_PROFILE on a company-owned device with a work profile, only pre-installed system apps can be set as the default. A NonComplianceDetail with INVALID_VALUE reason and DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE specific reason is reported if the policy fails to apply to the personal profile.
+     */
+    defaultApplications?: Schema$DefaultApplication[];
+    /**
+     * Required. The scopes to which the policy should be applied. This list must not be empty or contain duplicates.A NonComplianceDetail with MANAGEMENT_MODE reason and DEFAULT_APPLICATION_SETTING_UNSUPPORTED_SCOPES specific reason is reported if none of the specified scopes can be applied to the management mode (e.g. a fully managed device receives a policy with only SCOPE_PERSONAL_PROFILE in the list).
+     */
+    defaultApplicationScopes?: string[] | null;
+    /**
+     * Required. The app type to set the default application.
+     */
+    defaultApplicationType?: string | null;
+  }
+  /**
+   * Details on a default application setting attempt.
+   */
+  export interface Schema$DefaultApplicationSettingAttempt {
+    /**
+     * Output only. The outcome of setting the app as the default.
+     */
+    attemptOutcome?: string | null;
+    /**
+     * Output only. The package name of the attempted application.
+     */
+    packageName?: string | null;
+  }
+  /**
    * A device owned by an enterprise. Unless otherwise noted, all fields are read-only and can't be modified by enterprises.devices.patch.
    */
   export interface Schema$Device {
@@ -1098,6 +1163,10 @@ export namespace androidmanagement_v1 {
      * Information about Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC).This information is only available if statusReportingSettings.commonCriteriaModeEnabled is true in the device's policy the device is company-owned.
      */
     commonCriteriaModeInfo?: Schema$CommonCriteriaModeInfo;
+    /**
+     * Output only. The default application information for the DefaultApplicationType. This information is only available if defaultApplicationInfoReportingEnabled is true in the device's policy. Available on Android 16 and above.All app types are reported on fully managed devices. DEFAULT_BROWSER, DEFAULT_CALL_REDIRECTION, DEFAULT_CALL_SCREENING and DEFAULT_DIALER types are reported for the work profiles on company-owned devices with a work profile and personally-owned devices. DEFAULT_WALLET is also reported for company-owned devices with a work profile, but will only include work profile information.
+     */
+    defaultApplicationInfo?: Schema$DefaultApplicationInfo[];
     /**
      * Device settings information. This information is only available if deviceSettingsEnabled is true in the device's policy.
      */
@@ -2697,6 +2766,10 @@ export namespace androidmanagement_v1 {
      */
     debuggingFeaturesAllowed?: boolean | null;
     /**
+     * Optional. The default application setting for supported types. If the default application is successfully set for at least one app type on a profile, users are prevented from changing any default applications on that profile.Only one DefaultApplicationSetting is allowed for each DefaultApplicationType.See Default application settings (https://developers.google.com/android/management/default-application-settings) guide for more details.
+     */
+    defaultApplicationSettings?: Schema$DefaultApplicationSetting[];
+    /**
      * The default permission policy for runtime permission requests.
      */
     defaultPermissionPolicy?: string | null;
@@ -3355,6 +3428,10 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$SpecificNonComplianceContext {
     /**
+     * Output only. Additional context for non-compliance related to default application settings. See DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE.
+     */
+    defaultApplicationContext?: Schema$DefaultApplicationContext;
+    /**
      * Additional context for non-compliance related to Wi-Fi configuration. See ONC_WIFI_INVALID_VALUE and ONC_WIFI_API_LEVEL
      */
     oncWifiContext?: Schema$OncWifiContext;
@@ -3430,6 +3507,10 @@ export namespace androidmanagement_v1 {
      * Whether Common Criteria Mode reporting is enabled. This is supported only on company-owned devices.
      */
     commonCriteriaModeEnabled?: boolean | null;
+    /**
+     * Optional. Whether defaultApplicationInfo reporting is enabled.
+     */
+    defaultApplicationInfoReportingEnabled?: boolean | null;
     /**
      * Whether device settings reporting is enabled.
      */
@@ -5292,6 +5373,7 @@ export namespace androidmanagement_v1 {
      *   //   "appliedPolicyVersion": "my_appliedPolicyVersion",
      *   //   "appliedState": "my_appliedState",
      *   //   "commonCriteriaModeInfo": {},
+     *   //   "defaultApplicationInfo": [],
      *   //   "deviceSettings": {},
      *   //   "disabledReason": {},
      *   //   "displays": [],
@@ -5775,6 +5857,7 @@ export namespace androidmanagement_v1 {
      *       //   "appliedPolicyVersion": "my_appliedPolicyVersion",
      *       //   "appliedState": "my_appliedState",
      *       //   "commonCriteriaModeInfo": {},
+     *       //   "defaultApplicationInfo": [],
      *       //   "deviceSettings": {},
      *       //   "disabledReason": {},
      *       //   "displays": [],
@@ -5818,6 +5901,7 @@ export namespace androidmanagement_v1 {
      *   //   "appliedPolicyVersion": "my_appliedPolicyVersion",
      *   //   "appliedState": "my_appliedState",
      *   //   "commonCriteriaModeInfo": {},
+     *   //   "defaultApplicationInfo": [],
      *   //   "deviceSettings": {},
      *   //   "disabledReason": {},
      *   //   "displays": [],
@@ -7817,6 +7901,7 @@ export namespace androidmanagement_v1 {
      *   //   "crossProfilePolicies": {},
      *   //   "dataRoamingDisabled": false,
      *   //   "debuggingFeaturesAllowed": false,
+     *   //   "defaultApplicationSettings": [],
      *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
      *   //   "deviceConnectivityManagement": {},
      *   //   "deviceOwnerLockScreenInfo": {},
@@ -8354,6 +8439,7 @@ export namespace androidmanagement_v1 {
      *       //   "crossProfilePolicies": {},
      *       //   "dataRoamingDisabled": false,
      *       //   "debuggingFeaturesAllowed": false,
+     *       //   "defaultApplicationSettings": [],
      *       //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
      *       //   "deviceConnectivityManagement": {},
      *       //   "deviceOwnerLockScreenInfo": {},
@@ -8459,6 +8545,7 @@ export namespace androidmanagement_v1 {
      *   //   "crossProfilePolicies": {},
      *   //   "dataRoamingDisabled": false,
      *   //   "debuggingFeaturesAllowed": false,
+     *   //   "defaultApplicationSettings": [],
      *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
      *   //   "deviceConnectivityManagement": {},
      *   //   "deviceOwnerLockScreenInfo": {},
