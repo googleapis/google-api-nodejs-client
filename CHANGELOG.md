@@ -4,6 +4,17 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [164.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v163.0.0...googleapis-v164.0.0) (2025-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for advisory notifications and accesscontextmanager ([#3818](https://github.com/googleapis/google-api-nodejs-client/issues/3818))
+
+### Bug Fixes
+
+* releasing for advisory notifications and accesscontextmanager ([#3818](https://github.com/googleapis/google-api-nodejs-client/issues/3818)) ([ff4bf3b](https://github.com/googleapis/google-api-nodejs-client/commit/ff4bf3b03ac71a2ad14932c2ebf3c9d25f4767b0))
+
 ## [163.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v162.0.0...googleapis-v163.0.0) (2025-10-15)
 
 
