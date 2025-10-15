@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/poly",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "poly",
   "main": "build/index.js",
   "types": "build/index.d.ts",
