@@ -621,6 +621,15 @@ export namespace docs_v1 {
     title?: string | null;
   }
   /**
+   * Represents document-level format settings.
+   */
+  export interface Schema$DocumentFormat {
+    /**
+     * Whether the document has pages or is pageless.
+     */
+    documentMode?: string | null;
+  }
+  /**
    * The style of the document.
    */
   export interface Schema$DocumentStyle {
@@ -636,6 +645,10 @@ export namespace docs_v1 {
      * The ID of the default header. If not set, there's no default header. This property is read-only.
      */
     defaultHeaderId?: string | null;
+    /**
+     * Specifies document-level format settings, such as the document mode (pages vs pageless).
+     */
+    documentFormat?: Schema$DocumentFormat;
     /**
      * The ID of the footer used only for even pages. The value of use_even_page_header_footer determines whether to use the default_footer_id or this value for the footer on even pages. If not set, there's no even page footer. This property is read-only.
      */
