@@ -242,7 +242,7 @@
       }
     }
   },
-  "revision": "20250727",
+  "revision": "20251012",
   "rootUrl": "https://kmsinventory.googleapis.com/",
   "schemas": {
     "GoogleCloudKmsInventoryV1ListCryptoKeysResponse": {
@@ -510,7 +510,9 @@
             "ML_KEM_768",
             "ML_KEM_1024",
             "KEM_XWING",
+            "PQ_SIGN_ML_DSA_44",
             "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_ML_DSA_87",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
           ],
@@ -554,7 +556,9 @@
             "ML-KEM-768 (FIPS 203)",
             "ML-KEM-1024 (FIPS 203)",
             "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
           ],
@@ -728,7 +732,9 @@
             "ML_KEM_768",
             "ML_KEM_1024",
             "KEM_XWING",
+            "PQ_SIGN_ML_DSA_44",
             "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_ML_DSA_87",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
           ],
@@ -772,7 +778,9 @@
             "ML-KEM-768 (FIPS 203)",
             "ML-KEM-1024 (FIPS 203)",
             "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
           ],
