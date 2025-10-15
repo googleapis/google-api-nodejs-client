@@ -221,7 +221,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20251008",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -922,6 +922,27 @@
       },
       "type": "object"
     },
+    "DocumentFormat": {
+      "description": "Represents document-level format settings.",
+      "id": "DocumentFormat",
+      "properties": {
+        "documentMode": {
+          "description": "Whether the document has pages or is pageless.",
+          "enum": [
+            "DOCUMENT_MODE_UNSPECIFIED",
+            "PAGES",
+            "PAGELESS"
+          ],
+          "enumDescriptions": [
+            "The document mode is unspecified.",
+            "The document has pages.",
+            "The document is pageless."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DocumentStyle": {
       "description": "The style of the document.",
       "id": "DocumentStyle",
@@ -937,6 +958,10 @@
         "defaultHeaderId": {
           "description": "The ID of the default header. If not set, there's no default header. This property is read-only.",
           "type": "string"
+        },
+        "documentFormat": {
+          "$ref": "DocumentFormat",
+          "description": "Specifies document-level format settings, such as the document mode (pages vs pageless)."
         },
         "evenPageFooterId": {
           "description": "The ID of the footer used only for even pages. The value of use_even_page_header_footer determines whether to use the default_footer_id or this value for the footer on even pages. If not set, there's no even page footer. This property is read-only.",

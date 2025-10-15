@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20250928",
+  "revision": "20251006",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1262,7 +1262,7 @@
           "type": "string"
         },
         "wafTokenAssessment": {
-          "description": "Optional. Flag for running WAF token assessment. If enabled, the token must be specified, and have been created by a WAF-enabled key.",
+          "description": "Optional. Flag for running Web Application Firewall (WAF) token assessment. If enabled, the token must be specified, and have been created by a WAF-enabled key.",
           "type": "boolean"
         }
       },
@@ -1656,7 +1656,7 @@
         },
         "wafSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings",
-          "description": "Optional. Settings for WAF"
+          "description": "Optional. Settings for Web Application Firewall (WAF)."
         },
         "webSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings",
@@ -2499,7 +2499,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1WafSettings",
       "properties": {
         "wafFeature": {
-          "description": "Required. The WAF feature for which this key is enabled.",
+          "description": "Required. The Web Application Firewall (WAF) feature for which this key is enabled.",
           "enum": [
             "WAF_FEATURE_UNSPECIFIED",
             "CHALLENGE_PAGE",
@@ -2524,7 +2524,7 @@
           "type": "string"
         },
         "wafService": {
-          "description": "Required. The WAF service that uses this key.",
+          "description": "Required. The Web Application Firewall (WAF) service that uses this key.",
           "enum": [
             "WAF_SERVICE_UNSPECIFIED",
             "CA",
