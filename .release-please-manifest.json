@@ -216,7 +216,7 @@
   "src/apis/billingbudgets": "5.0.0",
   "src/apis/policysimulator": "17.0.0",
   "src/apis/sql": "5.0.0",
-  "src/apis/advisorynotifications": "1.0.3",
+  "src/apis/advisorynotifications": "5.0.1",
   "src/apis/factchecktools": "5.0.0",
   "src/apis/forms": "6.0.0",
   "src/apis/homegraph": "8.0.0",
