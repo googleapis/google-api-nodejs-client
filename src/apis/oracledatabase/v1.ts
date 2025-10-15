@@ -7947,7 +7947,7 @@ export namespace oracledatabase_v1 {
      *   const res = await oracledatabase.projects.locations.databases.list({
      *     // Optional. An expression for filtering the results of the request. list for container databases is supported only with a valid dbSystem (full resource name) filter in this format: `dbSystem="projects/{project\}/locations/{location\}/dbSystems/{dbSystemId\}"`
      *     filter: 'placeholder-value',
-     *     // Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     *     // Optional. The maximum number of items to return. If unspecified, a maximum of 50 Databases will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.
      *     pageToken: 'placeholder-value',
@@ -8076,7 +8076,7 @@ export namespace oracledatabase_v1 {
      */
     filter?: string;
     /**
-     * Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     * Optional. The maximum number of items to return. If unspecified, a maximum of 50 Databases will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      */
     pageSize?: number;
     /**
@@ -8127,7 +8127,7 @@ export namespace oracledatabase_v1 {
      *   // Do the magic
      *   const res =
      *     await oracledatabase.projects.locations.dbSystemInitialStorageSizes.list({
-     *       // Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     *       // Optional. The maximum number of items to return. If unspecified, a maximum of 50 DbSystemInitialStorageSizes will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      *       pageSize: 'placeholder-value',
      *       // Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.
      *       pageToken: 'placeholder-value',
@@ -8253,7 +8253,7 @@ export namespace oracledatabase_v1 {
   export interface Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List
     extends StandardParameters {
     /**
-     * Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     * Optional. The maximum number of items to return. If unspecified, a maximum of 50 DbSystemInitialStorageSizes will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      */
     pageSize?: number;
     /**
@@ -9147,7 +9147,7 @@ export namespace oracledatabase_v1 {
      *   const res = await oracledatabase.projects.locations.dbVersions.list({
      *     // Optional. Filter expression that matches a subset of the DbVersions to show. The supported filter for dbSystem creation is `db_system_shape = {db_system_shape\} AND storage_management = {storage_management\}`. If no filter is provided, all DbVersions will be returned.
      *     filter: 'placeholder-value',
-     *     // Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     *     // Optional. The maximum number of items to return. If unspecified, a maximum of 50 DbVersions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying the requested page of results to return. All fields except the filter should remain the same as in the request that provided this page token.
      *     pageToken: 'placeholder-value',
@@ -9269,7 +9269,7 @@ export namespace oracledatabase_v1 {
      */
     filter?: string;
     /**
-     * Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
+     * Optional. The maximum number of items to return. If unspecified, a maximum of 50 DbVersions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      */
     pageSize?: number;
     /**
@@ -9452,8 +9452,12 @@ export namespace oracledatabase_v1 {
 
   export class Resource$Projects$Locations$Exadbvmclusters {
     context: APIRequestContext;
+    dbNodes: Resource$Projects$Locations$Exadbvmclusters$Dbnodes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.dbNodes = new Resource$Projects$Locations$Exadbvmclusters$Dbnodes(
+        this.context
+      );
     }
 
     /**
@@ -10467,6 +10471,175 @@ export namespace oracledatabase_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RemoveVirtualMachineExadbVmClusterRequest;
+  }
+
+  export class Resource$Projects$Locations$Exadbvmclusters$Dbnodes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the database nodes of a VM Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.exadbVmClusters.dbNodes.list({
+     *       // Optional. The maximum number of items to return. If unspecified, at most 50 db nodes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the node should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent value for database node in the following format: projects/{project\}/locations/{location\}/cloudVmClusters/{cloudVmCluster\}. .
+     *       parent:
+     *         'projects/my-project/locations/my-location/exadbVmClusters/my-exadbVmCluster',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dbNodes": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Dbnodes$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Exadbvmclusters$Dbnodes$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDbNodesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Dbnodes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Dbnodes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListDbNodesResponse>,
+      callback: BodyResponseCallback<Schema$ListDbNodesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Dbnodes$List,
+      callback: BodyResponseCallback<Schema$ListDbNodesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListDbNodesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exadbvmclusters$Dbnodes$List
+        | BodyResponseCallback<Schema$ListDbNodesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDbNodesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDbNodesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDbNodesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exadbvmclusters$Dbnodes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Exadbvmclusters$Dbnodes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dbNodes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDbNodesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDbNodesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Dbnodes$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return. If unspecified, at most 50 db nodes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the node should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for database node in the following format: projects/{project\}/locations/{location\}/cloudVmClusters/{cloudVmCluster\}. .
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Exascaledbstoragevaults {

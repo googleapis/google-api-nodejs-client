@@ -420,7 +420,7 @@ export namespace recaptchaenterprise_v1 {
      */
     userIpAddress?: string | null;
     /**
-     * Optional. Flag for running WAF token assessment. If enabled, the token must be specified, and have been created by a WAF-enabled key.
+     * Optional. Flag for running Web Application Firewall (WAF) token assessment. If enabled, the token must be specified, and have been created by a WAF-enabled key.
      */
     wafTokenAssessment?: boolean | null;
   }
@@ -696,7 +696,7 @@ export namespace recaptchaenterprise_v1 {
      */
     testingOptions?: Schema$GoogleCloudRecaptchaenterpriseV1TestingOptions;
     /**
-     * Optional. Settings for WAF
+     * Optional. Settings for Web Application Firewall (WAF).
      */
     wafSettings?: Schema$GoogleCloudRecaptchaenterpriseV1WafSettings;
     /**
@@ -1262,11 +1262,11 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1WafSettings {
     /**
-     * Required. The WAF feature for which this key is enabled.
+     * Required. The Web Application Firewall (WAF) feature for which this key is enabled.
      */
     wafFeature?: string | null;
     /**
-     * Required. The WAF service that uses this key.
+     * Required. The Web Application Firewall (WAF) service that uses this key.
      */
     wafService?: string | null;
   }

@@ -592,7 +592,7 @@
             "testCases": {
               "methods": {
                 "batchDelete": {
-                  "description": "Delete test cases.",
+                  "description": "Deletes multiple test cases.",
                   "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testCases:batchDelete",
                   "httpMethod": "POST",
                   "id": "firebaseappdistribution.projects.apps.testCases.batchDelete",
@@ -812,7 +812,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20251012",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -1150,7 +1150,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest": {
-      "description": "The request message for `DeleteTestCase`.",
+      "description": "The request message for `BatchDeleteTestCase`.",
       "id": "GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest",
       "properties": {
         "names": {

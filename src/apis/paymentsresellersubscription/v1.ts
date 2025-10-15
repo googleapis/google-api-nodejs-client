@@ -177,6 +177,15 @@ export namespace paymentsresellersubscription_v1 {
     subscriptionId?: string | null;
   }
   /**
+   * The cycle options when starting and resuming a subscription.
+   */
+  export interface Schema$CycleOptions {
+    /**
+     * Optional. The duration of the initial cycle. Only `DAY` is supported. If set, Google will start the subscription with this initial cycle duration starting at the request time (see available methods below). A prorated charge will be applied. This option is available to the following methods: - partners.subscriptions.provision - partners.subscriptions.resume - partners.userSessions.generate
+     */
+    initialCycleDuration?: Schema$Duration;
+  }
+  /**
    * Describes the length of a period of a time.
    */
   export interface Schema$Duration {
@@ -595,7 +604,12 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Request to resume a suspended subscription.
    */
-  export interface Schema$ResumeSubscriptionRequest {}
+  export interface Schema$ResumeSubscriptionRequest {
+    /**
+     * Optional. The cycle options for the subscription.
+     */
+    cycleOptions?: Schema$CycleOptions;
+  }
   /**
    * Response that contains the resumed subscription.
    */
@@ -1436,8 +1450,12 @@ export namespace paymentsresellersubscription_v1 {
 
   export class Resource$Partners$Subscriptions {
     context: APIRequestContext;
+    lineItems: Resource$Partners$Subscriptions$Lineitems;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.lineItems = new Resource$Partners$Subscriptions$Lineitems(
+        this.context
+      );
     }
 
     /**
@@ -2267,6 +2285,10 @@ export namespace paymentsresellersubscription_v1 {
      *   // Do the magic
      *   const res =
      *     await paymentsresellersubscription.partners.subscriptions.provision({
+     *       // number of duration units to be included.
+     *       'cycleOptions.initialCycleDuration.count': 'placeholder-value',
+     *       // The unit used for the duration
+     *       'cycleOptions.initialCycleDuration.unit': 'placeholder-value',
      *       // Required. The parent resource name, which is the identifier of the partner. It will have the format of "partners/{partner_id\}".
      *       parent: 'partners/my-partner',
      *       // Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
@@ -2460,7 +2482,9 @@ export namespace paymentsresellersubscription_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "cycleOptions": {}
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -2935,6 +2959,14 @@ export namespace paymentsresellersubscription_v1 {
   export interface Params$Resource$Partners$Subscriptions$Provision
     extends StandardParameters {
     /**
+     * number of duration units to be included.
+     */
+    'cycleOptions.initialCycleDuration.count'?: number;
+    /**
+     * The unit used for the duration
+     */
+    'cycleOptions.initialCycleDuration.unit'?: string;
+    /**
      * Required. The parent resource name, which is the identifier of the partner. It will have the format of "partners/{partner_id\}".
      */
     parent?: string;
@@ -2983,6 +3015,203 @@ export namespace paymentsresellersubscription_v1 {
      * Request body metadata
      */
     requestBody?: Schema$UndoCancelSubscriptionRequest;
+  }
+
+  export class Resource$Partners$Subscriptions$Lineitems {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Updates a line item of a subscription. It should be autenticated with a service account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await paymentsresellersubscription.partners.subscriptions.lineItems.patch({
+     *       // Identifier. Resource name of the line item. Format: partners/{partner\}/subscriptions/{subscription\}/lineItems/{lineItem\}
+     *       name: 'partners/my-partner/subscriptions/my-subscription/lineItems/my-lineItem',
+     *       // Required. The list of fields to update. Only a limited set of fields can be updated. The allowed fields are the following: - `product_payload.googleHomePayload.googleStructureId`
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "amount": {},
+     *         //   "bundleDetails": {},
+     *         //   "description": "my_description",
+     *         //   "finiteBillingCycleDetails": {},
+     *         //   "lineItemFreeTrialEndTime": "my_lineItemFreeTrialEndTime",
+     *         //   "lineItemIndex": 0,
+     *         //   "lineItemPromotionSpecs": [],
+     *         //   "name": "my_name",
+     *         //   "oneTimeRecurrenceDetails": {},
+     *         //   "product": "my_product",
+     *         //   "productPayload": {},
+     *         //   "recurrenceType": "my_recurrenceType",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "amount": {},
+     *   //   "bundleDetails": {},
+     *   //   "description": "my_description",
+     *   //   "finiteBillingCycleDetails": {},
+     *   //   "lineItemFreeTrialEndTime": "my_lineItemFreeTrialEndTime",
+     *   //   "lineItemIndex": 0,
+     *   //   "lineItemPromotionSpecs": [],
+     *   //   "name": "my_name",
+     *   //   "oneTimeRecurrenceDetails": {},
+     *   //   "product": "my_product",
+     *   //   "productPayload": {},
+     *   //   "recurrenceType": "my_recurrenceType",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Partners$Subscriptions$Lineitems$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Partners$Subscriptions$Lineitems$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SubscriptionLineItem>>;
+    patch(
+      params: Params$Resource$Partners$Subscriptions$Lineitems$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Partners$Subscriptions$Lineitems$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionLineItem>,
+      callback: BodyResponseCallback<Schema$SubscriptionLineItem>
+    ): void;
+    patch(
+      params: Params$Resource$Partners$Subscriptions$Lineitems$Patch,
+      callback: BodyResponseCallback<Schema$SubscriptionLineItem>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$SubscriptionLineItem>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Subscriptions$Lineitems$Patch
+        | BodyResponseCallback<Schema$SubscriptionLineItem>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SubscriptionLineItem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SubscriptionLineItem>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SubscriptionLineItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Subscriptions$Lineitems$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Subscriptions$Lineitems$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://paymentsresellersubscription.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SubscriptionLineItem>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SubscriptionLineItem>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Partners$Subscriptions$Lineitems$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Resource name of the line item. Format: partners/{partner\}/subscriptions/{subscription\}/lineItems/{lineItem\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update. Only a limited set of fields can be updated. The allowed fields are the following: - `product_payload.googleHomePayload.googleStructureId`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SubscriptionLineItem;
   }
 
   export class Resource$Partners$Usersessions {
