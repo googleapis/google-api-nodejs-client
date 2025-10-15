@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/dialogflow",
-  "version": "22.0.0",
+  "version": "23.0.0",
   "description": "dialogflow",
   "main": "build/index.js",
   "types": "build/index.d.ts",

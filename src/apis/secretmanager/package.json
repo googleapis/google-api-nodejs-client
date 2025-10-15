@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/secretmanager",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "secretmanager",
   "main": "build/index.js",
   "types": "build/index.d.ts",

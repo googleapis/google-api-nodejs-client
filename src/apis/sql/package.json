@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/sql",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "sql",
   "main": "build/index.js",
   "types": "build/index.d.ts",
