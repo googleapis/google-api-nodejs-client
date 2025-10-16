@@ -1288,7 +1288,7 @@ export namespace dataproc_v1 {
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
-     * Optional. Resource manager tags (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing) to add to all instances (see Use secure tags in Dataproc (https://cloud.google.com/dataproc/docs/guides/attach-secure-tags)).
+     * Optional. Resource manager tags (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing) to add to all instances (see Use secure tags in Dataproc (https://cloud.google.com/dataproc/docs/guides/use-secure-tags)).
      */
     resourceManagerTags?: {[key: string]: string} | null;
     /**
@@ -2175,6 +2175,10 @@ export namespace dataproc_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * A list of interactive sessions.
@@ -4405,11 +4409,11 @@ export namespace dataproc_v1 {
    */
   export interface Schema$UsageMetrics {
     /**
-     * Optional. Accelerator type being used, if any
+     * Optional. DEPRECATED Accelerator type being used, if any
      */
     acceleratorType?: string | null;
     /**
-     * Optional. Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+     * Optional. DEPRECATED Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */
     milliAcceleratorSeconds?: string | null;
     /**
@@ -4691,6 +4695,10 @@ export namespace dataproc_v1 {
    */
   export interface Schema$YarnApplication {
     /**
+     * Optional. The cumulative memory usage of the application for a job, measured in mb-seconds.
+     */
+    memoryMbSeconds?: string | null;
+    /**
      * Required. The application name.
      */
     name?: string | null;
@@ -4706,6 +4714,10 @@ export namespace dataproc_v1 {
      * Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or TimelineServer that provides application-specific information. The URL uses the internal hostname, and requires a proxy server for resolution and, possibly, access.
      */
     trackingUrl?: string | null;
+    /**
+     * Optional. The cumulative CPU time consumed by the application for a job, measured in vcore-seconds.
+     */
+    vcoreSeconds?: string | null;
   }
 
   export class Resource$Projects {
@@ -10848,13 +10860,16 @@ export namespace dataproc_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -10992,6 +11007,10 @@ export namespace dataproc_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Sessions {
@@ -24465,13 +24484,16 @@ export namespace dataproc_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -24918,6 +24940,10 @@ export namespace dataproc_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Regions$Operations$Setiampolicy
     extends StandardParameters {
