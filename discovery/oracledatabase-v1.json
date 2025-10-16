@@ -1153,7 +1153,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.",
+                      "description": "Optional. The maximum number of items to return. If unspecified, a maximum of 50 Databases will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1193,7 +1193,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.",
+                      "description": "Optional. The maximum number of items to return. If unspecified, a maximum of 50 DbSystemInitialStorageSizes will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1426,7 +1426,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.",
+                      "description": "Optional. The maximum number of items to return. If unspecified, a maximum of 50 DbVersions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1701,6 +1701,48 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "dbNodes": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the database nodes of a VM Cluster.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exadbVmClusters/{exadbVmClustersId}/dbNodes",
+                      "httpMethod": "GET",
+                      "id": "oracledatabase.projects.locations.exadbVmClusters.dbNodes.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return. If unspecified, at most 50 db nodes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the node should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent value for database node in the following format: projects/{project}/locations/{location}/cloudVmClusters/{cloudVmCluster}. .",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/exadbVmClusters/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/dbNodes",
+                      "response": {
+                        "$ref": "ListDbNodesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -2430,7 +2472,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20251009",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
