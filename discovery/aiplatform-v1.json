@@ -238,6 +238,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://aiplatform.eu.rep.googleapis.com/",
       "location": "eu"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://staging-aiplatform.us.rep.sandbox.googleapis.com/",
+      "location": "us"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2061,6 +2066,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -2376,6 +2386,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -2891,6 +2906,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}/operations",
@@ -3156,6 +3176,11 @@
                                   "description": "The standard list page token.",
                                   "location": "query",
                                   "type": "string"
+                                },
+                                "returnPartialSuccess": {
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "location": "query",
+                                  "type": "boolean"
                                 }
                               },
                               "path": "v1/{+name}/operations",
@@ -3309,6 +3334,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}/operations",
@@ -3661,6 +3691,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -3893,6 +3928,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}/operations",
@@ -4236,6 +4276,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -5214,6 +5259,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -6257,6 +6307,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}:wait",
@@ -6385,6 +6440,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}:wait",
@@ -6813,6 +6873,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "generateFetchAccessToken": {
+                      "description": "RPC to generate an access token for the given feature view. FeatureViews under the same FeatureOnlineStore share the same access token.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:generateFetchAccessToken",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.generateFetchAccessToken",
+                      "parameterOrder": [
+                        "featureView"
+                      ],
+                      "parameters": {
+                        "featureView": {
+                          "description": "FeatureView resource format `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}/featureViews/{featureView}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+featureView}:generateFetchAccessToken",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1GenerateFetchAccessTokenRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1GenerateFetchAccessTokenResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Gets details of a single FeatureView.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}",
@@ -7224,6 +7312,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}:wait",
@@ -7352,6 +7445,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}:wait",
@@ -8485,6 +8583,11 @@
                                   "description": "The standard list page token.",
                                   "location": "query",
                                   "type": "string"
+                                },
+                                "returnPartialSuccess": {
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "location": "query",
+                                  "type": "boolean"
                                 }
                               },
                               "path": "v1/{+name}/operations",
@@ -8638,6 +8741,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}/operations",
@@ -8791,6 +8899,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -9101,6 +9214,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -9557,6 +9675,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -9929,6 +10052,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -10452,6 +10580,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}/operations",
@@ -10924,6 +11057,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}/operations",
@@ -11335,6 +11473,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}/operations",
@@ -11591,6 +11734,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -11804,6 +11952,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -12204,6 +12357,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -12944,6 +13102,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}/operations",
@@ -13201,6 +13364,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -13742,6 +13910,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -14158,6 +14331,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -14529,6 +14707,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -14682,6 +14865,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}/operations",
@@ -15018,6 +15206,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -15394,6 +15587,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -15994,6 +16192,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -16268,6 +16471,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}/operations",
@@ -16425,6 +16633,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -16796,6 +17009,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -17167,6 +17385,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -17483,6 +17706,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -17782,6 +18010,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -18219,6 +18452,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}/operations",
@@ -18856,6 +19094,11 @@
                               "description": "The standard list page token.",
                               "location": "query",
                               "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1/{+name}/operations",
@@ -19238,6 +19481,11 @@
                                   "description": "The standard list page token.",
                                   "location": "query",
                                   "type": "string"
+                                },
+                                "returnPartialSuccess": {
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "location": "query",
+                                  "type": "boolean"
                                 }
                               },
                               "path": "v1/{+name}/operations",
@@ -19661,6 +19909,11 @@
                                       "description": "The standard list page token.",
                                       "location": "query",
                                       "type": "string"
+                                    },
+                                    "returnPartialSuccess": {
+                                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                      "location": "query",
+                                      "type": "boolean"
                                     }
                                   },
                                   "path": "v1/{+name}/operations",
@@ -19818,6 +20071,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -20128,6 +20386,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -20435,6 +20698,11 @@
                           "description": "The standard list page token.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/operations",
@@ -20930,7 +21198,7 @@
       }
     }
   },
-  "revision": "20250926",
+  "revision": "20251003",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -23056,7 +23324,8 @@
             "IMAGE_PROHIBITED_CONTENT",
             "IMAGE_RECITATION",
             "IMAGE_OTHER",
-            "UNEXPECTED_TOOL_CALL"
+            "UNEXPECTED_TOOL_CALL",
+            "NO_IMAGE"
           ],
           "enumDescriptions": [
             "The finish reason is unspecified.",
@@ -23074,7 +23343,8 @@
             "Image generation stopped because generated images has other prohibited content.",
             "Image generation stopped due to recitation.",
             "Image generation stopped because of other miscellaneous issue.",
-            "The function call generated by the model is semantically invalid (e.g. a function call is generated when function calling is not enabled or the function is not in the function declaration)."
+            "The function call generated by the model is semantically invalid (e.g. a function call is generated when function calling is not enabled or the function is not in the function declaration).",
+            "The model was expected to generate an image, but none was generated."
           ],
           "readOnly": true,
           "type": "string"
@@ -25249,6 +25519,13 @@
           "description": "Optional. Immutable. The ID to use for endpoint, which will become the final component of the endpoint resource name. If not provided, Vertex AI will generate a value for this ID. If the first character is a letter, this value may be up to 63 characters, and valid characters are `[a-z0-9-]`. The last character must be a letter or number. If the first character is a number, this value may be up to 9 characters, and valid characters are `[0-9]` with no leading zeros. When using HTTP/JSON, this field is populated based on a query string argument, such as `?endpoint_id=12345`. This is the fallback for fields that are not included in either the URI or the body.",
           "type": "string"
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata to organize your Endpoints. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels.",
+          "type": "object"
+        },
         "privateServiceConnectConfig": {
           "$ref": "GoogleCloudAiplatformV1PrivateServiceConnectConfig",
           "description": "Optional. Configuration for private service connect. If set, the endpoint will be exposed through private service connect."
@@ -25336,7 +25613,7 @@
           "type": "string"
         },
         "deploymentTier": {
-          "description": "Optional. The deployment tier that the index is deployed to. DEPLOYMENT_TIER_UNSPECIFIED defaults to PERFORMANCE.",
+          "description": "Optional. The deployment tier that the index is deployed to. DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.",
           "enum": [
             "DEPLOYMENT_TIER_UNSPECIFIED",
             "STORAGE"
@@ -25917,6 +26194,28 @@
       "description": "Tool to search public web data, powered by Vertex AI Search and Sec4 compliance.",
       "id": "GoogleCloudAiplatformV1EnterpriseWebSearch",
       "properties": {
+        "blockingConfidence": {
+          "description": "Optional. Sites with confidence level chosen & above this value will be blocked from the search results.",
+          "enum": [
+            "PHISH_BLOCK_THRESHOLD_UNSPECIFIED",
+            "BLOCK_LOW_AND_ABOVE",
+            "BLOCK_MEDIUM_AND_ABOVE",
+            "BLOCK_HIGH_AND_ABOVE",
+            "BLOCK_HIGHER_AND_ABOVE",
+            "BLOCK_VERY_HIGH_AND_ABOVE",
+            "BLOCK_ONLY_EXTREMELY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Defaults to unspecified.",
+            "Blocks Low and above confidence URL that is risky.",
+            "Blocks Medium and above confidence URL that is risky.",
+            "Blocks High and above confidence URL that is risky.",
+            "Blocks Higher and above confidence URL that is risky.",
+            "Blocks Very high and above confidence URL that is risky.",
+            "Blocks Extremely high confidence URL that is risky."
+          ],
+          "type": "string"
+        },
         "excludeDomains": {
           "description": "Optional. List of domains to be excluded from the search results. The default limit is 2000 domains.",
           "items": {
@@ -26949,7 +27248,7 @@
           "description": "Optional. Generation config."
         },
         "model": {
-          "description": "Required. The fully qualified name of the publisher model or endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+          "description": "Optional. The fully qualified name of the publisher model or endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
           "type": "string"
         }
       },
@@ -28660,6 +28959,15 @@
         "autoScaling": {
           "$ref": "GoogleCloudAiplatformV1FeatureOnlineStoreBigtableAutoScaling",
           "description": "Required. Autoscaling config applied to Bigtable Instance."
+        },
+        "bigtableMetadata": {
+          "$ref": "GoogleCloudAiplatformV1FeatureOnlineStoreBigtableBigtableMetadata",
+          "description": "Output only. Metadata of the Bigtable instance. Output only.",
+          "readOnly": true
+        },
+        "enableDirectBigtableAccess": {
+          "description": "Optional. It true, enable direct access to the Bigtable instance.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -28681,6 +28989,25 @@
           "description": "Required. The minimum number of nodes to scale down to. Must be greater than or equal to 1.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FeatureOnlineStoreBigtableBigtableMetadata": {
+      "description": "Metadata of the Bigtable instance. This is used by direct read access to the Bigtable in tenant project.",
+      "id": "GoogleCloudAiplatformV1FeatureOnlineStoreBigtableBigtableMetadata",
+      "properties": {
+        "instanceId": {
+          "description": "The Cloud Bigtable instance id.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "The Cloud Bigtable table id.",
+          "type": "string"
+        },
+        "tenantProjectId": {
+          "description": "Tenant project ID.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -28870,6 +29197,11 @@
           "$ref": "GoogleCloudAiplatformV1FeatureViewBigQuerySource",
           "description": "Optional. Configures how data is supposed to be extracted from a BigQuery source to be loaded onto the FeatureOnlineStore."
         },
+        "bigtableMetadata": {
+          "$ref": "GoogleCloudAiplatformV1FeatureViewBigtableMetadata",
+          "description": "Output only. Metadata containing information about the Cloud Bigtable.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. Timestamp when this FeatureView was created.",
           "format": "google-datetime",
@@ -28961,6 +29293,18 @@
         },
         "uri": {
           "description": "Required. The BigQuery view URI that will be materialized on each sync trigger based on FeatureView.SyncConfig.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FeatureViewBigtableMetadata": {
+      "description": "Metadata for the Cloud Bigtable that supports directly interacting Bigtable instances.",
+      "id": "GoogleCloudAiplatformV1FeatureViewBigtableMetadata",
+      "properties": {
+        "readAppProfile": {
+          "description": "Output only. The Bigtable App Profile to use for reading from Bigtable.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -30186,7 +30530,8 @@
             "BLOCKLIST",
             "PROHIBITED_CONTENT",
             "MODEL_ARMOR",
-            "IMAGE_SAFETY"
+            "IMAGE_SAFETY",
+            "JAILBREAK"
           ],
           "enumDescriptions": [
             "The blocked reason is unspecified.",
@@ -30195,7 +30540,8 @@
             "The prompt was blocked because it contains a term from the terminology blocklist.",
             "The prompt was blocked because it contains prohibited content.",
             "The prompt was blocked by Model Armor.",
-            "The prompt was blocked because it contains content that is unsafe for image generation."
+            "The prompt was blocked because it contains content that is unsafe for image generation.",
+            "The prompt was blocked as a jailbreak attempt."
           ],
           "readOnly": true,
           "type": "string"
@@ -30298,6 +30644,28 @@
             "Type for Provisioned Throughput traffic."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GenerateFetchAccessTokenRequest": {
+      "description": "Request message for FeatureOnlineStoreService.GenerateFetchAccessToken.",
+      "id": "GoogleCloudAiplatformV1GenerateFetchAccessTokenRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GenerateFetchAccessTokenResponse": {
+      "description": "Response message for FeatureOnlineStoreService.GenerateFetchAccessToken.",
+      "id": "GoogleCloudAiplatformV1GenerateFetchAccessTokenResponse",
+      "properties": {
+        "accessToken": {
+          "description": "The OAuth 2.0 access token.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Token expiration time. This is always set",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -30458,6 +30826,10 @@
           "description": "Optional. Frequency penalties.",
           "format": "float",
           "type": "number"
+        },
+        "imageConfig": {
+          "$ref": "GoogleCloudAiplatformV1ImageConfig",
+          "description": "Optional. Config for image generation features."
         },
         "logprobs": {
           "description": "Optional. Logit probabilities.",
@@ -31155,6 +31527,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ImageConfig": {
+      "description": "Config for image generation features.",
+      "id": "GoogleCloudAiplatformV1ImageConfig",
+      "properties": {
+        "aspectRatio": {
+          "description": "Optional. The desired aspect ratio for the generated images. The following aspect ratios are supported: \"1:1\" \"2:3\", \"3:2\" \"3:4\", \"4:3\" \"4:5\", \"5:4\" \"9:16\", \"16:9\" \"21:9\"",
+          "type": "string"
         }
       },
       "type": "object"
@@ -35078,6 +35461,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1MultiSpeakerVoiceConfig": {
+      "description": "Configuration for a multi-speaker text-to-speech setup. Enables the use of up to two distinct voices in a single synthesis request.",
+      "id": "GoogleCloudAiplatformV1MultiSpeakerVoiceConfig",
+      "properties": {
+        "speakerVoiceConfigs": {
+          "description": "Required. A list of configurations for the voices of the speakers. Exactly two speaker voice configurations must be provided.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1SpeakerVoiceConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1MutateDeployedIndexOperationMetadata": {
       "description": "Runtime operation information for IndexEndpointService.MutateDeployedIndex.",
       "id": "GoogleCloudAiplatformV1MutateDeployedIndexOperationMetadata",
@@ -37588,6 +37985,26 @@
         },
         "postStartupScriptUrl": {
           "description": "Optional. Post startup script url to download. Example: `gs://bucket/script.sh`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PreTunedModel": {
+      "description": "A pre-tuned model for continuous tuning.",
+      "id": "GoogleCloudAiplatformV1PreTunedModel",
+      "properties": {
+        "baseModel": {
+          "description": "Output only. The name of the base model this PreTunedModel was tuned from.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "checkpointId": {
+          "description": "Optional. The source checkpoint id. If not specified, the default checkpoint will be used.",
+          "type": "string"
+        },
+        "tunedModelName": {
+          "description": "The resource name of the Model. E.g., a model resource name with a specified version id or alias: `projects/{project}/locations/{location}/models/{model}@{version_id}` `projects/{project}/locations/{location}/models/{model}@{alias}` Or, omit the version id to use the default version: `projects/{project}/locations/{location}/models/{model}`",
           "type": "string"
         }
       },
@@ -40613,7 +41030,8 @@
             "HARM_CATEGORY_IMAGE_HATE",
             "HARM_CATEGORY_IMAGE_DANGEROUS_CONTENT",
             "HARM_CATEGORY_IMAGE_HARASSMENT",
-            "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT"
+            "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT",
+            "HARM_CATEGORY_JAILBREAK"
           ],
           "enumDeprecated": [
             false,
@@ -40622,6 +41040,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -40637,7 +41056,8 @@
             "The harm category is image hate.",
             "The harm category is image dangerous content.",
             "The harm category is image harassment.",
-            "The harm category is image sexually explicit content."
+            "The harm category is image sexually explicit content.",
+            "The harm category is for jailbreak prompts."
           ],
           "readOnly": true,
           "type": "string"
@@ -40756,7 +41176,8 @@
             "HARM_CATEGORY_IMAGE_HATE",
             "HARM_CATEGORY_IMAGE_DANGEROUS_CONTENT",
             "HARM_CATEGORY_IMAGE_HARASSMENT",
-            "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT"
+            "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT",
+            "HARM_CATEGORY_JAILBREAK"
           ],
           "enumDeprecated": [
             false,
@@ -40765,6 +41186,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -40780,7 +41202,8 @@
             "The harm category is image hate.",
             "The harm category is image dangerous content.",
             "The harm category is image harassment.",
-            "The harm category is image sexually explicit content."
+            "The harm category is image sexually explicit content.",
+            "The harm category is for jailbreak prompts."
           ],
           "type": "string"
         },
@@ -45822,6 +46245,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1SpeakerVoiceConfig": {
+      "description": "Configuration for a single speaker in a multi speaker setup.",
+      "id": "GoogleCloudAiplatformV1SpeakerVoiceConfig",
+      "properties": {
+        "speaker": {
+          "description": "Required. The name of the speaker. This should be the same as the speaker name used in the prompt.",
+          "type": "string"
+        },
+        "voiceConfig": {
+          "$ref": "GoogleCloudAiplatformV1VoiceConfig",
+          "description": "Required. The configuration for the voice of this speaker."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1SpecialistPool": {
       "description": "SpecialistPool represents customers' own workforce to work on their data labeling jobs. It includes a group of specialist managers and workers. Managers are responsible for managing the workers in this pool as well as customers' data labeling jobs associated with this pool. Customers create specialist pool as well as start data labeling jobs on Cloud, managers and workers handle the jobs using CrowdCompute console.",
       "id": "GoogleCloudAiplatformV1SpecialistPool",
@@ -45915,6 +46353,10 @@
         "languageCode": {
           "description": "Optional. Language code (ISO 639. e.g. en-US) for the speech synthesization.",
           "type": "string"
+        },
+        "multiSpeakerVoiceConfig": {
+          "$ref": "GoogleCloudAiplatformV1MultiSpeakerVoiceConfig",
+          "description": "The configuration for a multi-speaker text-to-speech request. This field is mutually exclusive with `voice_config`."
         },
         "voiceConfig": {
           "$ref": "GoogleCloudAiplatformV1VoiceConfig",
@@ -47948,6 +48390,28 @@
       "description": "GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.",
       "id": "GoogleCloudAiplatformV1ToolGoogleSearch",
       "properties": {
+        "blockingConfidence": {
+          "description": "Optional. Sites with confidence level chosen & above this value will be blocked from the search results.",
+          "enum": [
+            "PHISH_BLOCK_THRESHOLD_UNSPECIFIED",
+            "BLOCK_LOW_AND_ABOVE",
+            "BLOCK_MEDIUM_AND_ABOVE",
+            "BLOCK_HIGH_AND_ABOVE",
+            "BLOCK_HIGHER_AND_ABOVE",
+            "BLOCK_VERY_HIGH_AND_ABOVE",
+            "BLOCK_ONLY_EXTREMELY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Defaults to unspecified.",
+            "Blocks Low and above confidence URL that is risky.",
+            "Blocks Medium and above confidence URL that is risky.",
+            "Blocks High and above confidence URL that is risky.",
+            "Blocks Higher and above confidence URL that is risky.",
+            "Blocks Very high and above confidence URL that is risky.",
+            "Blocks Extremely high confidence URL that is risky."
+          ],
+          "type": "string"
+        },
         "excludeDomains": {
           "description": "Optional. List of domains to be excluded from the search results. The default limit is 2000 domains. Example: [\"amazon.com\", \"facebook.com\"].",
           "items": {
@@ -48851,7 +49315,7 @@
           "type": "string"
         },
         "model": {
-          "description": "Output only. The resource name of the TunedModel. Format: `projects/{project}/locations/{location}/models/{model}@{version_id}` When tuning from a base model, the version_id will be 1. For continuous tuning, the version id will be incremented by 1 from the last version id in the parent model. E.g., `projects/{project}/locations/{location}/models/{model}@{last_version_id + 1}`",
+          "description": "Output only. The resource name of the TunedModel. Format: `projects/{project}/locations/{location}/models/{model}@{version_id}` When tuning from a base model, the version ID will be 1. For continuous tuning, if the provided tuned_model_display_name is set and different from parent model's display name, the tuned model will have a new parent model with version 1. Otherwise the version id will be incremented by 1 from the last version ID in the parent model. E.g., `projects/{project}/locations/{location}/models/{model}@{last_version_id + 1}`",
           "readOnly": true,
           "type": "string"
         }
@@ -48963,6 +49427,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "preTunedModel": {
+          "$ref": "GoogleCloudAiplatformV1PreTunedModel",
+          "description": "The pre-tuned model for continuous tuning."
+        },
         "serviceAccount": {
           "description": "The service account that the tuningJob workload runs as. If not specified, the Vertex AI Secure Fine-Tuned Service Agent in the project will be used. See https://cloud.google.com/iam/docs/service-agents#vertex-ai-secure-fine-tuning-service-agent Users starting the pipeline must have the `iam.serviceAccounts.actAs` permission on this service account.",
           "type": "string"
@@ -49016,7 +49484,7 @@
           "readOnly": true
         },
         "tunedModelDisplayName": {
-          "description": "Optional. The display name of the TunedModel. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
+          "description": "Optional. The display name of the TunedModel. The name can be up to 128 characters long and can consist of any UTF-8 characters. For continuous tuning, tuned_model_display_name will by default use the same display name as the pre-tuned model. If a new display name is provided, the tuning job will create a new model instead of a new version.",
           "type": "string"
         },
         "tuningDataStats": {
@@ -49929,6 +50397,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
