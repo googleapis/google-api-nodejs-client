@@ -275,7 +275,7 @@ export namespace firebaseappdistribution_v1alpha {
     screenshot?: Schema$GoogleFirebaseAppdistroV1alphaScreenshot;
   }
   /**
-   * The request message for `DeleteTestCase`.
+   * The request message for `BatchDeleteTestCase`.
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest {
     /**
@@ -3407,7 +3407,7 @@ export namespace firebaseappdistribution_v1alpha {
     }
 
     /**
-     * Delete test cases.
+     * Deletes multiple test cases.
      * @example
      * ```js
      * // Before running the sample:
