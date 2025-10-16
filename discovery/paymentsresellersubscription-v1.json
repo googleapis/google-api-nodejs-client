@@ -378,6 +378,29 @@
                 "parent"
               ],
               "parameters": {
+                "cycleOptions.initialCycleDuration.count": {
+                  "description": "number of duration units to be included.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "cycleOptions.initialCycleDuration.unit": {
+                  "description": "The unit used for the duration",
+                  "enum": [
+                    "UNIT_UNSPECIFIED",
+                    "MONTH",
+                    "DAY",
+                    "HOUR"
+                  ],
+                  "enumDescriptions": [
+                    "Default value, reserved as an invalid or an unexpected value.",
+                    "Unit of a calendar month.",
+                    "Unit of a day.",
+                    "Unit of an hour. It is used for testing."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "parent": {
                   "description": "Required. The parent resource name, which is the identifier of the partner. It will have the format of \"partners/{partner_id}\".",
                   "location": "path",
@@ -486,6 +509,46 @@
                 "https://www.googleapis.com/auth/sdm.service"
               ]
             }
+          },
+          "resources": {
+            "lineItems": {
+              "methods": {
+                "patch": {
+                  "description": "Updates a line item of a subscription. It should be autenticated with a service account.",
+                  "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}/lineItems/{lineItemsId}",
+                  "httpMethod": "PATCH",
+                  "id": "paymentsresellersubscription.partners.subscriptions.lineItems.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Resource name of the line item. Format: partners/{partner}/subscriptions/{subscription}/lineItems/{lineItem}",
+                      "location": "path",
+                      "pattern": "^partners/[^/]+/subscriptions/[^/]+/lineItems/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to update. Only a limited set of fields can be updated. The allowed fields are the following: - `product_payload.googleHomePayload.googleStructureId`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "SubscriptionLineItem"
+                  },
+                  "response": {
+                    "$ref": "SubscriptionLineItem"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/sdm.service"
+                  ]
+                }
+              }
+            }
           }
         },
         "userSessions": {
@@ -523,7 +586,7 @@
       }
     }
   },
-  "revision": "20251005",
+  "revision": "20251012",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "Amount": {
@@ -611,6 +674,17 @@
         "subscriptionId": {
           "description": "Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CycleOptions": {
+      "description": "The cycle options when starting and resuming a subscription.",
+      "id": "CycleOptions",
+      "properties": {
+        "initialCycleDuration": {
+          "$ref": "Duration",
+          "description": "Optional. The duration of the initial cycle. Only `DAY` is supported. If set, Google will start the subscription with this initial cycle duration starting at the request time (see available methods below). A prorated charge will be applied. This option is available to the following methods: - partners.subscriptions.provision - partners.subscriptions.resume - partners.userSessions.generate "
         }
       },
       "type": "object"
@@ -1233,7 +1307,12 @@
     "ResumeSubscriptionRequest": {
       "description": "Request to resume a suspended subscription.",
       "id": "ResumeSubscriptionRequest",
-      "properties": {},
+      "properties": {
+        "cycleOptions": {
+          "$ref": "CycleOptions",
+          "description": "Optional. The cycle options for the subscription."
+        }
+      },
       "type": "object"
     },
     "ResumeSubscriptionResponse": {
