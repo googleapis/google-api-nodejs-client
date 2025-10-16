@@ -9037,6 +9037,10 @@ export namespace discoveryengine_v1alpha {
      */
     isPinned?: boolean | null;
     /**
+     * Optional. The labels for the session. Can be set as filter in ListSessionsRequest.
+     */
+    labels?: string[] | null;
+    /**
      * Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/engines/{engine\}/sessions/x`
      */
     name?: string | null;
@@ -32809,6 +32813,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "displayName": "my_displayName",
      *           //   "endTime": "my_endTime",
      *           //   "isPinned": false,
+     *           //   "labels": [],
      *           //   "name": "my_name",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
@@ -32825,6 +32830,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -33123,6 +33129,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -33442,6 +33449,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "displayName": "my_displayName",
      *           //   "endTime": "my_endTime",
      *           //   "isPinned": false,
+     *           //   "labels": [],
      *           //   "name": "my_name",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
@@ -33458,6 +33466,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -45207,6 +45216,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "displayName": "my_displayName",
      *           //   "endTime": "my_endTime",
      *           //   "isPinned": false,
+     *           //   "labels": [],
      *           //   "name": "my_name",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
@@ -45223,6 +45233,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -45519,6 +45530,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -45836,6 +45848,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "displayName": "my_displayName",
      *           //   "endTime": "my_endTime",
      *           //   "isPinned": false,
+     *           //   "labels": [],
      *           //   "name": "my_name",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
@@ -45852,6 +45865,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -57063,6 +57077,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "displayName": "my_displayName",
      *         //   "endTime": "my_endTime",
      *         //   "isPinned": false,
+     *         //   "labels": [],
      *         //   "name": "my_name",
      *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
@@ -57078,6 +57093,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -57371,6 +57387,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -57688,6 +57705,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "displayName": "my_displayName",
      *         //   "endTime": "my_endTime",
      *         //   "isPinned": false,
+     *         //   "labels": [],
      *         //   "name": "my_name",
      *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
@@ -57703,6 +57721,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",

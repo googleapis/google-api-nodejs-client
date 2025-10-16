@@ -8371,7 +8371,7 @@
       }
     }
   },
-  "revision": "20250929",
+  "revision": "20251012",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GdataBlobstore2Info": {
@@ -19045,6 +19045,13 @@
           "description": "Optional. Whether the session is pinned, pinned session will be displayed on the top of the session list.",
           "type": "boolean"
         },
+        "labels": {
+          "description": "Optional. The labels for the session. Can be set as filter in ListSessionsRequest.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "name": {
           "description": "Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`",
           "type": "string"
@@ -28933,6 +28940,13 @@
         "isPinned": {
           "description": "Optional. Whether the session is pinned, pinned session will be displayed on the top of the session list.",
           "type": "boolean"
+        },
+        "labels": {
+          "description": "Optional. The labels for the session. Can be set as filter in ListSessionsRequest.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "name": {
           "description": "Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`",
