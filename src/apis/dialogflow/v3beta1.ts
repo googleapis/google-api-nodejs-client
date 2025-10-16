@@ -3630,9 +3630,30 @@ export namespace dialogflow_v3beta1 {
      */
     model?: string | null;
     /**
+     * Generative model parameters.
+     */
+    parameters?: Schema$GoogleCloudDialogflowCxV3beta1LlmModelSettingsParameters;
+    /**
      * The custom prompt to use.
      */
     promptText?: string | null;
+  }
+  /**
+   * Generative model parameters to control the model behavior.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1LlmModelSettingsParameters {
+    /**
+     * The input token limit. This setting is currently only supported by playbooks.
+     */
+    inputTokenLimit?: string | null;
+    /**
+     * The output token limit. This setting is currently only supported by playbooks. Only one of output_token_limit and max_output_tokens is allowed to be set.
+     */
+    outputTokenLimit?: string | null;
+    /**
+     * The temperature used for sampling during response generation. Value ranges from 0 to 1. Temperature controls the degree of randomness in token selection. Lower temperature means less randomness, while higher temperature means more randomness. Valid range: [0.0, 1.0]
+     */
+    temperature?: number | null;
   }
   /**
    * The request message for Versions.LoadVersion.

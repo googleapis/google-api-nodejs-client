@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/area120tables",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "area120tables",
   "main": "build/index.js",
   "types": "build/index.d.ts",

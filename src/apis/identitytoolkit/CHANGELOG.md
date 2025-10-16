@@ -1,5 +1,16 @@
 # Changelog
 
+## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v18.0.0...identitytoolkit-v19.0.0) (2025-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3814](https://github.com/googleapis/google-api-nodejs-client/issues/3814)) ([4ba19d0](https://github.com/googleapis/google-api-nodejs-client/commit/4ba19d068b2b8deb28d773ebc6a3418f5e4a7162))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v17.0.1...identitytoolkit-v18.0.0) (2025-09-16)
 
 

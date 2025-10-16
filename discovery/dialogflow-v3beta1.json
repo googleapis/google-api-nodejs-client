@@ -5446,7 +5446,7 @@
       }
     }
   },
-  "revision": "20250929",
+  "revision": "20251009",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -12534,9 +12534,57 @@
           "description": "The selected LLM model.",
           "type": "string"
         },
+        "parameters": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1LlmModelSettingsParameters",
+          "description": "Generative model parameters."
+        },
         "promptText": {
           "description": "The custom prompt to use.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1LlmModelSettingsParameters": {
+      "description": "Generative model parameters to control the model behavior.",
+      "id": "GoogleCloudDialogflowCxV3beta1LlmModelSettingsParameters",
+      "properties": {
+        "inputTokenLimit": {
+          "description": "The input token limit. This setting is currently only supported by playbooks.",
+          "enum": [
+            "INPUT_TOKEN_LIMIT_UNSPECIFIED",
+            "INPUT_TOKEN_LIMIT_SHORT",
+            "INPUT_TOKEN_LIMIT_MEDIUM",
+            "INPUT_TOKEN_LIMIT_LONG"
+          ],
+          "enumDescriptions": [
+            "Limit not specified. Treated as 'INPUT_TOKEN_LIMIT_SHORT'.",
+            "Input token limit up to 8k.",
+            "Input token limit up to 32k.",
+            "Input token limit up to 100k."
+          ],
+          "type": "string"
+        },
+        "outputTokenLimit": {
+          "description": "The output token limit. This setting is currently only supported by playbooks. Only one of output_token_limit and max_output_tokens is allowed to be set.",
+          "enum": [
+            "OUTPUT_TOKEN_LIMIT_UNSPECIFIED",
+            "OUTPUT_TOKEN_LIMIT_SHORT",
+            "OUTPUT_TOKEN_LIMIT_MEDIUM",
+            "OUTPUT_TOKEN_LIMIT_LONG"
+          ],
+          "enumDescriptions": [
+            "Limit not specified.",
+            "Input token limit up to 512 tokens.",
+            "Input token limit up to 1k.",
+            "Input token limit up to 2k."
+          ],
+          "type": "string"
+        },
+        "temperature": {
+          "description": "The temperature used for sampling during response generation. Value ranges from 0 to 1. Temperature controls the degree of randomness in token selection. Lower temperature means less randomness, while higher temperature means more randomness. Valid range: [0.0, 1.0]",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"

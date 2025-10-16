@@ -1,5 +1,16 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v11.0.0...datamigration-v12.0.0) (2025-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3814](https://github.com/googleapis/google-api-nodejs-client/issues/3814)) ([4ba19d0](https://github.com/googleapis/google-api-nodejs-client/commit/4ba19d068b2b8deb28d773ebc6a3418f5e4a7162))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v10.0.0...datamigration-v11.0.0) (2025-09-30)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/readerrevenuesubscriptionlinking",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "readerrevenuesubscriptionlinking",
   "main": "build/index.js",
   "types": "build/index.d.ts",
