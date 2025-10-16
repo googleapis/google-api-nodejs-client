@@ -971,9 +971,24 @@
       "id": "bigquerydatapolicy:v1",
       "kind": "discovery#directoryItem",
       "name": "bigquerydatapolicy",
-      "preferred": true,
+      "preferred": false,
       "title": "BigQuery Data Policy API",
       "version": "v1"
+    },
+    {
+      "description": "Allows users to manage BigQuery data policies.",
+      "discoveryRestUrl": "https://bigquerydatapolicy.googleapis.com/$discovery/rest?version=v2",
+      "documentationLink": "https://cloud.google.com/bigquery/docs/column-data-masking",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "bigquerydatapolicy:v2",
+      "kind": "discovery#directoryItem",
+      "name": "bigquerydatapolicy",
+      "preferred": true,
+      "title": "BigQuery Data Policy API",
+      "version": "v2"
     },
     {
       "description": "Schedule queries or transfer external data from SaaS applications to Google BigQuery on a regular basis.",
