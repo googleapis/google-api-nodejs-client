@@ -1,5 +1,34 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/advisorynotifications-v5.0.1...advisorynotifications-v6.0.0) (2025-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for advisory notifications and accesscontextmanager ([#3818](https://github.com/googleapis/google-api-nodejs-client/issues/3818))
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3814](https://github.com/googleapis/google-api-nodejs-client/issues/3814)) ([4ba19d0](https://github.com/googleapis/google-api-nodejs-client/commit/4ba19d068b2b8deb28d773ebc6a3418f5e4a7162))
+
+
+### Bug Fixes
+
+* releasing for advisory notifications and accesscontextmanager ([#3818](https://github.com/googleapis/google-api-nodejs-client/issues/3818)) ([ff4bf3b](https://github.com/googleapis/google-api-nodejs-client/commit/ff4bf3b03ac71a2ad14932c2ebf3c9d25f4767b0))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/advisorynotifications-v1.0.3...advisorynotifications-v2.0.0) (2025-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3814](https://github.com/googleapis/google-api-nodejs-client/issues/3814)) ([4ba19d0](https://github.com/googleapis/google-api-nodejs-client/commit/4ba19d068b2b8deb28d773ebc6a3418f5e4a7162))
+
 ## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/advisorynotifications-v1.0.2...advisorynotifications-v1.0.3) (2025-08-25)
 
 

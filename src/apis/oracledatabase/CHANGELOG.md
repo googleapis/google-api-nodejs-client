@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/oracledatabase-v7.0.0...oracledatabase-v8.0.0) (2025-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3814](https://github.com/googleapis/google-api-nodejs-client/issues/3814)) ([4ba19d0](https://github.com/googleapis/google-api-nodejs-client/commit/4ba19d068b2b8deb28d773ebc6a3418f5e4a7162))
+* run the generator ([#3816](https://github.com/googleapis/google-api-nodejs-client/issues/3816)) ([ba630d0](https://github.com/googleapis/google-api-nodejs-client/commit/ba630d0f6c822f3f9ca40583c528cfc96e5e3651))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/oracledatabase-v6.0.0...oracledatabase-v7.0.0) (2025-09-30)
 
 

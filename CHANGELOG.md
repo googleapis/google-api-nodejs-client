@@ -4,6 +4,31 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [164.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v163.0.0...googleapis-v164.0.0) (2025-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for advisory notifications and accesscontextmanager ([#3818](https://github.com/googleapis/google-api-nodejs-client/issues/3818))
+
+### Bug Fixes
+
+* releasing for advisory notifications and accesscontextmanager ([#3818](https://github.com/googleapis/google-api-nodejs-client/issues/3818)) ([ff4bf3b](https://github.com/googleapis/google-api-nodejs-client/commit/ff4bf3b03ac71a2ad14932c2ebf3c9d25f4767b0))
+
+## [163.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v162.0.0...googleapis-v163.0.0) (2025-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3811](https://github.com/googleapis/google-api-nodejs-client/issues/3811)) ([78b9203](https://github.com/googleapis/google-api-nodejs-client/commit/78b9203251a7e2d48bf29657ebd53dcdaba15acf))
+* run the generator ([#3814](https://github.com/googleapis/google-api-nodejs-client/issues/3814)) ([4ba19d0](https://github.com/googleapis/google-api-nodejs-client/commit/4ba19d068b2b8deb28d773ebc6a3418f5e4a7162))
+* run the generator ([#3816](https://github.com/googleapis/google-api-nodejs-client/issues/3816)) ([ba630d0](https://github.com/googleapis/google-api-nodejs-client/commit/ba630d0f6c822f3f9ca40583c528cfc96e5e3651))
+
 ## [162.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v161.0.0...googleapis-v162.0.0) (2025-10-09)
 
 

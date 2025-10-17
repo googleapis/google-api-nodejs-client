@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/people",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "people",
   "main": "build/index.js",
   "types": "build/index.d.ts",
