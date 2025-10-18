@@ -1613,6 +1613,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to \"projects/example/locations/-\".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}",
@@ -4636,6 +4641,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to \"projects/example/locations/-\".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}",
@@ -5012,7 +5022,7 @@
       }
     }
   },
-  "revision": "20251001",
+  "revision": "20251003",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -7083,7 +7093,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Resource manager tags (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing) to add to all instances (see Use secure tags in Dataproc (https://cloud.google.com/dataproc/docs/guides/attach-secure-tags)).",
+          "description": "Optional. Resource manager tags (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing) to add to all instances (see Use secure tags in Dataproc (https://cloud.google.com/dataproc/docs/guides/use-secure-tags)).",
           "type": "object"
         },
         "serviceAccount": {
@@ -8389,6 +8399,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -12591,11 +12608,11 @@
       "id": "UsageMetrics",
       "properties": {
         "acceleratorType": {
-          "description": "Optional. Accelerator type being used, if any",
+          "description": "Optional. DEPRECATED Accelerator type being used, if any",
           "type": "string"
         },
         "milliAcceleratorSeconds": {
-          "description": "Optional. Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).",
+          "description": "Optional. DEPRECATED Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).",
           "format": "int64",
           "type": "string"
         },
@@ -13005,6 +13022,11 @@
       "description": "A YARN application created by a job. Application information is a subset of org.apache.hadoop.yarn.proto.YarnProtos.ApplicationReportProto.Beta Feature: This report is available for testing purposes only. It may be changed before final release.",
       "id": "YarnApplication",
       "properties": {
+        "memoryMbSeconds": {
+          "description": "Optional. The cumulative memory usage of the application for a job, measured in mb-seconds.",
+          "format": "int64",
+          "type": "string"
+        },
         "name": {
           "description": "Required. The application name.",
           "type": "string"
@@ -13042,6 +13064,11 @@
         },
         "trackingUrl": {
           "description": "Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or TimelineServer that provides application-specific information. The URL uses the internal hostname, and requires a proxy server for resolution and, possibly, access.",
+          "type": "string"
+        },
+        "vcoreSeconds": {
+          "description": "Optional. The cumulative CPU time consumed by the application for a job, measured in vcore-seconds.",
+          "format": "int64",
           "type": "string"
         }
       },
