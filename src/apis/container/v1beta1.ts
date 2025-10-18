@@ -997,6 +997,10 @@ export namespace container_v1beta1 {
      */
     secretManagerConfig?: Schema$SecretManagerConfig;
     /**
+     * Configuration for sync Secret Manager secrets as k8s secrets.
+     */
+    secretSyncConfig?: Schema$SecretSyncConfig;
+    /**
      * Enable/Disable Security Posture API features for the cluster.
      */
     securityPostureConfig?: Schema$SecurityPostureConfig;
@@ -1556,6 +1560,10 @@ export namespace container_v1beta1 {
      * PrivateRegistryAccessConfig is used to configure access configuration for private container registries.
      */
     privateRegistryAccessConfig?: Schema$PrivateRegistryAccessConfig;
+    /**
+     * Optional. WritableCgroups defines writable cgroups configuration for the node pool.
+     */
+    writableCgroups?: Schema$WritableCgroups;
   }
   /**
    * Configuration for all of the cluster's control plane endpoints.
@@ -3111,7 +3119,7 @@ export namespace container_v1beta1 {
      */
     cpuCfsQuota?: boolean | null;
     /**
-     * Set the CPU CFS quota period value 'cpu.cfs_period_us'. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". The value must be a positive duration.
+     * Set the CPU CFS quota period value 'cpu.cfs_period_us'. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". The value must be a positive duration between 1ms and 1 second, inclusive.
      */
     cpuCfsQuotaPeriod?: string | null;
     /**
@@ -4048,6 +4056,19 @@ export namespace container_v1beta1 {
     rotationConfig?: Schema$RotationConfig;
   }
   /**
+   * Configuration for sync Secret Manager secrets as k8s secrets.
+   */
+  export interface Schema$SecretSyncConfig {
+    /**
+     * Enable/Disable Secret Sync Config.
+     */
+    enabled?: boolean | null;
+    /**
+     * Rotation config for secret manager.
+     */
+    rotationConfig?: Schema$SyncRotationConfig;
+  }
+  /**
    * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.
    */
   export interface Schema$SecurityBulletinEvent {
@@ -4590,6 +4611,19 @@ export namespace container_v1beta1 {
      * Human-friendly representation of the condition
      */
     message?: string | null;
+  }
+  /**
+   * SyncRotationConfig is config for secret manager auto rotation.
+   */
+  export interface Schema$SyncRotationConfig {
+    /**
+     * Whether the rotation is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * The interval between two consecutive rotations. Default rotation interval is 2 minutes.
+     */
+    rotationInterval?: string | null;
   }
   /**
    * Represents an arbitrary window of time.
@@ -5200,6 +5234,15 @@ export namespace container_v1beta1 {
      * If true, enables the GCW Auditor that audits workloads on standard clusters.
      */
     autopilotCompatibilityAuditingEnabled?: boolean | null;
+  }
+  /**
+   * Defines writable cgroups configuration.
+   */
+  export interface Schema$WritableCgroups {
+    /**
+     * Optional. Whether writable cgroups is enabled.
+     */
+    enabled?: boolean | null;
   }
 
   export class Resource$Projects {
@@ -6633,6 +6676,7 @@ export namespace container_v1beta1 {
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "secretManagerConfig": {},
+     *   //   "secretSyncConfig": {},
      *   //   "securityPostureConfig": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "servicesIpv4Cidr": "my_servicesIpv4Cidr",
@@ -12953,6 +12997,7 @@ export namespace container_v1beta1 {
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "secretManagerConfig": {},
+     *   //   "secretSyncConfig": {},
      *   //   "securityPostureConfig": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "servicesIpv4Cidr": "my_servicesIpv4Cidr",
