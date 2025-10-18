@@ -2660,7 +2660,7 @@
       }
     }
   },
-  "revision": "20250923",
+  "revision": "20250930",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -4406,6 +4406,10 @@
         "privateRegistryAccessConfig": {
           "$ref": "PrivateRegistryAccessConfig",
           "description": "PrivateRegistryAccessConfig is used to configure access configuration for private container registries."
+        },
+        "writableCgroups": {
+          "$ref": "WritableCgroups",
+          "description": "Optional. WritableCgroups defines writable cgroups configuration for the node pool."
         }
       },
       "type": "object"
@@ -6536,7 +6540,7 @@
           "type": "boolean"
         },
         "cpuCfsQuotaPeriod": {
-          "description": "Set the CPU CFS quota period value 'cpu.cfs_period_us'. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"300ms\". Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\". The value must be a positive duration.",
+          "description": "Set the CPU CFS quota period value 'cpu.cfs_period_us'. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"300ms\". Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\". The value must be a positive duration between 1ms and 1 second, inclusive.",
           "type": "string"
         },
         "cpuManagerPolicy": {
@@ -9357,6 +9361,17 @@
         },
         "autopilotCompatibilityAuditingEnabled": {
           "description": "If true, enables the GCW Auditor that audits workloads on standard clusters.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "WritableCgroups": {
+      "description": "Defines writable cgroups configuration.",
+      "id": "WritableCgroups",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether writable cgroups is enabled.",
           "type": "boolean"
         }
       },

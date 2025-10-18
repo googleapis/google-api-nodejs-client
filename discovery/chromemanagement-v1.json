@@ -1657,7 +1657,7 @@
       }
     }
   },
-  "revision": "20251006",
+  "revision": "20251014",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -3694,15 +3694,39 @@
           "readOnly": true,
           "type": "string"
         },
+        "gatewayIpv6Address": {
+          "description": "Output only. The gateway IPv6 for this interface, if detected",
+          "readOnly": true,
+          "type": "string"
+        },
         "guid": {
           "description": "Output only. Network connection guid.",
           "readOnly": true,
           "type": "string"
         },
+        "ipv6Address": {
+          "description": "Output only. IPv6 addresses assigned to this network, if any. Each address is a string in standard IPv6 text representation (e.g., \"2001:db8::1\").",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "lanIpAddress": {
           "description": "Output only. LAN IP address.",
           "readOnly": true,
           "type": "string"
+        },
+        "linkDownSpeedKbps": {
+          "description": "Output only. The maximum downstream bandwidth in Kilobits per second (Kbps), if reported by the network interface or connection.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metered": {
+          "description": "Output only. Whether the network was detected as metered.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "receivingBitRateMbps": {
           "description": "Output only. Receiving bit rate measured in Megabits per second.",
@@ -4824,6 +4848,11 @@
           ],
           "type": "string"
         },
+        "externalDisplaysEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryExternalDisplayEvent",
+          "description": "Output only. Payload for external display connected/disconnected event. Present only when `event_type` is `EXTERNAL_DISPLAY_CONNECTED` or `EXTERNAL_DISPLAY_DISCONNECTED`.",
+          "readOnly": true
+        },
         "httpsLatencyChangeEvent": {
           "$ref": "GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent",
           "description": "Output only. Payload for HTTPS latency change event. Present only when `event_type` is `NETWORK_HTTPS_LATENCY_CHANGE`.",
@@ -4914,6 +4943,55 @@
               "Triggered when an external display is disconnected."
             ],
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryExternalDisplayData": {
+      "description": "External display data.",
+      "id": "GoogleChromeManagementV1TelemetryExternalDisplayData",
+      "properties": {
+        "displayName": {
+          "description": "The display name.",
+          "type": "string"
+        },
+        "edidVersion": {
+          "description": "The EDID version.",
+          "type": "string"
+        },
+        "refreshRate": {
+          "description": "The refresh rate.",
+          "format": "int64",
+          "type": "string"
+        },
+        "resolutionHorizontal": {
+          "description": "The horizontal resolution.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resolutionVertical": {
+          "description": "The vertical resolution.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "serialNumber": {
+          "description": "The serial number.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryExternalDisplayEvent": {
+      "description": "External display connected/disconnected event payload.",
+      "id": "GoogleChromeManagementV1TelemetryExternalDisplayEvent",
+      "properties": {
+        "externalDisplayData": {
+          "description": "List of external displays that were connected/disconnected.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1TelemetryExternalDisplayData"
           },
           "type": "array"
         }

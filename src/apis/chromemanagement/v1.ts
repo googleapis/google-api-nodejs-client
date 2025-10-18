@@ -1394,13 +1394,29 @@ export namespace chromemanagement_v1 {
      */
     gatewayIpAddress?: string | null;
     /**
+     * Output only. The gateway IPv6 for this interface, if detected
+     */
+    gatewayIpv6Address?: string | null;
+    /**
      * Output only. Network connection guid.
      */
     guid?: string | null;
     /**
+     * Output only. IPv6 addresses assigned to this network, if any. Each address is a string in standard IPv6 text representation (e.g., "2001:db8::1").
+     */
+    ipv6Address?: string[] | null;
+    /**
      * Output only. LAN IP address.
      */
     lanIpAddress?: string | null;
+    /**
+     * Output only. The maximum downstream bandwidth in Kilobits per second (Kbps), if reported by the network interface or connection.
+     */
+    linkDownSpeedKbps?: string | null;
+    /**
+     * Output only. Whether the network was detected as metered.
+     */
+    metered?: boolean | null;
     /**
      * Output only. Receiving bit rate measured in Megabits per second.
      */
@@ -1903,6 +1919,10 @@ export namespace chromemanagement_v1 {
      */
     eventType?: string | null;
     /**
+     * Output only. Payload for external display connected/disconnected event. Present only when `event_type` is `EXTERNAL_DISPLAY_CONNECTED` or `EXTERNAL_DISPLAY_DISCONNECTED`.
+     */
+    externalDisplaysEvent?: Schema$GoogleChromeManagementV1TelemetryExternalDisplayEvent;
+    /**
      * Output only. Payload for HTTPS latency change event. Present only when `event_type` is `NETWORK_HTTPS_LATENCY_CHANGE`.
      */
     httpsLatencyChangeEvent?: Schema$GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent;
@@ -1947,6 +1967,44 @@ export namespace chromemanagement_v1 {
      * Only sends the notifications for events of these types. Must not be empty.
      */
     eventTypes?: string[] | null;
+  }
+  /**
+   * External display data.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryExternalDisplayData {
+    /**
+     * The display name.
+     */
+    displayName?: string | null;
+    /**
+     * The EDID version.
+     */
+    edidVersion?: string | null;
+    /**
+     * The refresh rate.
+     */
+    refreshRate?: string | null;
+    /**
+     * The horizontal resolution.
+     */
+    resolutionHorizontal?: number | null;
+    /**
+     * The vertical resolution.
+     */
+    resolutionVertical?: number | null;
+    /**
+     * The serial number.
+     */
+    serialNumber?: number | null;
+  }
+  /**
+   * External display connected/disconnected event payload.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryExternalDisplayEvent {
+    /**
+     * List of external displays that were connected/disconnected.
+     */
+    externalDisplayData?: Schema$GoogleChromeManagementV1TelemetryExternalDisplayData[];
   }
   /**
    * Https latency routine is run periodically and `TelemetryHttpsLatencyChangeEvent` is triggered if a latency problem was detected or if the device has recovered from a latency problem. * Granular permission needed: TELEMETRY_API_NETWORK_REPORT

@@ -505,6 +505,10 @@ export namespace alloydb_v1beta {
      */
     maintenanceUpdatePolicy?: Schema$MaintenanceUpdatePolicy;
     /**
+     * Input only. Policy to use to automatically select the maintenance version to which to update the cluster's instances.
+     */
+    maintenanceVersionSelectionPolicy?: string | null;
+    /**
      * Output only. Cluster created via DMS migration.
      */
     migrationSource?: Schema$MigrationSource;
@@ -4152,6 +4156,7 @@ export namespace alloydb_v1beta {
      *       //   "labels": {},
      *       //   "maintenanceSchedule": {},
      *       //   "maintenanceUpdatePolicy": {},
+     *       //   "maintenanceVersionSelectionPolicy": "my_maintenanceVersionSelectionPolicy",
      *       //   "migrationSource": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
@@ -4344,6 +4349,7 @@ export namespace alloydb_v1beta {
      *       //   "labels": {},
      *       //   "maintenanceSchedule": {},
      *       //   "maintenanceUpdatePolicy": {},
+     *       //   "maintenanceVersionSelectionPolicy": "my_maintenanceVersionSelectionPolicy",
      *       //   "migrationSource": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
@@ -4830,6 +4836,7 @@ export namespace alloydb_v1beta {
      *   //   "labels": {},
      *   //   "maintenanceSchedule": {},
      *   //   "maintenanceUpdatePolicy": {},
+     *   //   "maintenanceVersionSelectionPolicy": "my_maintenanceVersionSelectionPolicy",
      *   //   "migrationSource": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
@@ -5311,6 +5318,7 @@ export namespace alloydb_v1beta {
      *       //   "labels": {},
      *       //   "maintenanceSchedule": {},
      *       //   "maintenanceUpdatePolicy": {},
+     *       //   "maintenanceVersionSelectionPolicy": "my_maintenanceVersionSelectionPolicy",
      *       //   "migrationSource": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",

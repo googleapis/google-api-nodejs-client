@@ -15,9 +15,11 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {bigquerydatapolicy_v1} from './v1';
+import {bigquerydatapolicy_v2} from './v2';
 
 export const VERSIONS = {
   v1: bigquerydatapolicy_v1.Bigquerydatapolicy,
+  v2: bigquerydatapolicy_v2.Bigquerydatapolicy,
 };
 
 export function bigquerydatapolicy(
@@ -26,11 +28,23 @@ export function bigquerydatapolicy(
 export function bigquerydatapolicy(
   options: bigquerydatapolicy_v1.Options
 ): bigquerydatapolicy_v1.Bigquerydatapolicy;
+export function bigquerydatapolicy(
+  version: 'v2'
+): bigquerydatapolicy_v2.Bigquerydatapolicy;
+export function bigquerydatapolicy(
+  options: bigquerydatapolicy_v2.Options
+): bigquerydatapolicy_v2.Bigquerydatapolicy;
 export function bigquerydatapolicy<
-  T = bigquerydatapolicy_v1.Bigquerydatapolicy,
+  T =
+    | bigquerydatapolicy_v1.Bigquerydatapolicy
+    | bigquerydatapolicy_v2.Bigquerydatapolicy,
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | bigquerydatapolicy_v1.Options
+  versionOrOptions:
+    | 'v1'
+    | bigquerydatapolicy_v1.Options
+    | 'v2'
+    | bigquerydatapolicy_v2.Options
 ) {
   return getAPI<T>('bigquerydatapolicy', versionOrOptions, VERSIONS, this);
 }
@@ -38,6 +52,7 @@ export function bigquerydatapolicy<
 const auth = new AuthPlus();
 export {auth};
 export {bigquerydatapolicy_v1};
+export {bigquerydatapolicy_v2};
 export {
   AuthPlus,
   GlobalOptions,

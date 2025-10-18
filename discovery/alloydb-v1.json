@@ -1627,7 +1627,7 @@
       }
     }
   },
-  "revision": "20251001",
+  "revision": "20251009",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -4656,7 +4656,8 @@
             "SIGNAL_TYPE_REPLICATION_LAG",
             "SIGNAL_TYPE_OUTDATED_VERSION",
             "SIGNAL_TYPE_OUTDATED_CLIENT",
-            "SIGNAL_TYPE_DATABOOST_DISABLED"
+            "SIGNAL_TYPE_DATABOOST_DISABLED",
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES"
           ],
           "enumDeprecated": [
             false,
@@ -4665,6 +4666,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -4866,7 +4868,8 @@
             "Replication delay.",
             "Outdated version.",
             "Outdated client.",
-            "Databoost is disabled."
+            "Databoost is disabled.",
+            "Recommended maintenance policy."
           ],
           "type": "string"
         },
@@ -5305,7 +5308,8 @@
             "SIGNAL_TYPE_REPLICATION_LAG",
             "SIGNAL_TYPE_OUTDATED_VERSION",
             "SIGNAL_TYPE_OUTDATED_CLIENT",
-            "SIGNAL_TYPE_DATABOOST_DISABLED"
+            "SIGNAL_TYPE_DATABOOST_DISABLED",
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES"
           ],
           "enumDeprecated": [
             false,
@@ -5314,6 +5318,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -5515,7 +5520,8 @@
             "Replication delay.",
             "Outdated version.",
             "Outdated client.",
-            "Databoost is disabled."
+            "Databoost is disabled.",
+            "Recommended maintenance policy."
           ],
           "type": "string"
         }
@@ -5865,11 +5871,11 @@
         "phase": {
           "description": "Optional. Phase of the maintenance window. This is to capture order of maintenance. For example, for Cloud SQL resources, this can be used to capture if the maintenance window is in Week1, Week2, Week5, etc. Non production resources are usually part of early phase. For more details, refer to Cloud SQL resources - https://cloud.google.com/sql/docs/mysql/maintenance",
           "enum": [
-            "WINDOW_PHASE_UNSPECIFIED",
-            "WINDOW_PHASE_ANY",
-            "WINDOW_PHASE_WEEK1",
-            "WINDOW_PHASE_WEEK2",
-            "WINDOW_PHASE_WEEK5"
+            "PHASE_UNSPECIFIED",
+            "ANY",
+            "WEEK1",
+            "WEEK2",
+            "WEEK5"
           ],
           "enumDescriptions": [
             "Phase is unspecified.",

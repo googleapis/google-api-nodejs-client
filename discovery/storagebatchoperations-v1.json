@@ -487,7 +487,7 @@
       }
     }
   },
-  "revision": "20250924",
+  "revision": "20251015",
   "rootUrl": "https://storagebatchoperations.googleapis.com/",
   "schemas": {
     "Bucket": {
@@ -910,6 +910,31 @@
       },
       "type": "object"
     },
+    "ObjectRetention": {
+      "description": "Describes options for object retention update.",
+      "id": "ObjectRetention",
+      "properties": {
+        "retainUntilTime": {
+          "description": "Required. The time when the object will be retained until. UNSET will clear the retention. Must be specified in RFC 3339 format e.g. YYYY-MM-DD'T'HH:MM:SS.SS'Z' or YYYY-MM-DD'T'HH:MM:SS'Z'.",
+          "type": "string"
+        },
+        "retentionMode": {
+          "description": "Required. The retention mode of the object.",
+          "enum": [
+            "RETENTION_MODE_UNSPECIFIED",
+            "LOCKED",
+            "UNLOCKED"
+          ],
+          "enumDescriptions": [
+            "If set and retain_until_time is empty, clears the retention.",
+            "Sets the retention mode to locked.",
+            "Sets the retention mode to unlocked."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -1032,6 +1057,10 @@
         "customTime": {
           "description": "Optional. Updates objects Custom-Time fixed metadata. Unset values will be ignored. Set empty values to clear the metadata. Refer to documentation in https://cloud.google.com/storage/docs/metadata#custom-time.",
           "type": "string"
+        },
+        "objectRetention": {
+          "$ref": "ObjectRetention",
+          "description": "Optional. Updates objects retention lock configuration. Unset values will be ignored. Set empty values to clear the retention for the object with existing `Unlocked` retention mode. Object with existing `Locked` retention mode cannot be cleared or reduce retain_until_time. Refer to documentation in https://cloud.google.com/storage/docs/object-lock"
         }
       },
       "type": "object"

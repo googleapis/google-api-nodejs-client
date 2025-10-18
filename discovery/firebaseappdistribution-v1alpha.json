@@ -601,7 +601,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource where these test cases will be deleted. Format: `projects/{project_number}/apps/{app_id}`",
+                      "description": "Required. The parent resource of the test cases being deleted. Format: `projects/{project_number}/apps/{app_id}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+$",
                       "required": true,
@@ -614,6 +614,34 @@
                   },
                   "response": {
                     "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "batchUpdate": {
+                  "description": "Updates multiple test cases.",
+                  "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testCases:batchUpdate",
+                  "httpMethod": "POST",
+                  "id": "firebaseappdistribution.projects.apps.testCases.batchUpdate",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the test cases being updated. Format: `projects/{project_number}/apps/{app_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/testCases:batchUpdate",
+                  "request": {
+                    "$ref": "GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -812,7 +840,7 @@
       }
     }
   },
-  "revision": "20251012",
+  "revision": "20251015",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -1157,6 +1185,34 @@
           "description": "Required. The name of the test cases to delete. A maximum number of 1000 test cases can be deleted in one batch Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest": {
+      "description": "The request message for `BatchUpdateTestCase`.",
+      "id": "GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The update requests. A maximum number of 1000 test cases can be updated in one batch",
+          "items": {
+            "$ref": "GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse": {
+      "description": "The response message for `BatchUpdateTestCase`.",
+      "id": "GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse",
+      "properties": {
+        "testCases": {
+          "description": "The updated test cases.",
+          "items": {
+            "$ref": "GoogleFirebaseAppdistroV1alphaTestCase"
           },
           "type": "array"
         }
@@ -2126,6 +2182,21 @@
         "udid": {
           "description": "The UDID of the tester's device",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequest": {
+      "description": "The request message for `UpdateTestCase`.",
+      "id": "GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequest",
+      "properties": {
+        "allowMissing": {
+          "description": "Optional. If set to true, and the test case is not found, a new test case will be created.",
+          "type": "boolean"
+        },
+        "testCase": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaTestCase",
+          "description": "Required. The test case to update. The test case's `name` field is used to identify the test case to update. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`"
         }
       },
       "type": "object"

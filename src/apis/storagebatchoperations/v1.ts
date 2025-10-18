@@ -383,6 +383,19 @@ export namespace storagebatchoperations_v1 {
     manifestLocation?: string | null;
   }
   /**
+   * Describes options for object retention update.
+   */
+  export interface Schema$ObjectRetention {
+    /**
+     * Required. The time when the object will be retained until. UNSET will clear the retention. Must be specified in RFC 3339 format e.g. YYYY-MM-DD'T'HH:MM:SS.SS'Z' or YYYY-MM-DD'T'HH:MM:SS'Z'.
+     */
+    retainUntilTime?: string | null;
+    /**
+     * Required. The retention mode of the object.
+     */
+    retentionMode?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -477,6 +490,10 @@ export namespace storagebatchoperations_v1 {
      * Optional. Updates objects Custom-Time fixed metadata. Unset values will be ignored. Set empty values to clear the metadata. Refer to documentation in https://cloud.google.com/storage/docs/metadata#custom-time.
      */
     customTime?: string | null;
+    /**
+     * Optional. Updates objects retention lock configuration. Unset values will be ignored. Set empty values to clear the retention for the object with existing `Unlocked` retention mode. Object with existing `Locked` retention mode cannot be cleared or reduce retain_until_time. Refer to documentation in https://cloud.google.com/storage/docs/object-lock
+     */
+    objectRetention?: Schema$ObjectRetention;
   }
   /**
    * Describes options to update object hold.
