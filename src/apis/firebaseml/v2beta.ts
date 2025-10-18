@@ -1151,6 +1151,27 @@ export namespace firebaseml_v2beta {
      * Optional. The desired aspect ratio for the generated images. The following aspect ratios are supported: "1:1" "2:3", "3:2" "3:4", "4:3" "4:5", "5:4" "9:16", "16:9" "21:9"
      */
     aspectRatio?: string | null;
+    /**
+     * Optional. The image output format for generated images.
+     */
+    imageOutputOptions?: Schema$GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions;
+    /**
+     * Optional. Controls whether the model can generate people.
+     */
+    personGeneration?: string | null;
+  }
+  /**
+   * The image output format for generated images.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions {
+    /**
+     * Optional. The compression quality of the output image.
+     */
+    compressionQuality?: number | null;
+    /**
+     * Optional. The image format that the output should be saved as.
+     */
+    mimeType?: string | null;
   }
   /**
    * Logprobs Result

@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20251005",
+  "revision": "20251013",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -1728,6 +1728,42 @@
       "properties": {
         "aspectRatio": {
           "description": "Optional. The desired aspect ratio for the generated images. The following aspect ratios are supported: \"1:1\" \"2:3\", \"3:2\" \"3:4\", \"4:3\" \"4:5\", \"5:4\" \"9:16\", \"16:9\" \"21:9\"",
+          "type": "string"
+        },
+        "imageOutputOptions": {
+          "$ref": "GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions",
+          "description": "Optional. The image output format for generated images."
+        },
+        "personGeneration": {
+          "description": "Optional. Controls whether the model can generate people.",
+          "enum": [
+            "PERSON_GENERATION_UNSPECIFIED",
+            "ALLOW_ALL",
+            "ALLOW_ADULT",
+            "ALLOW_NONE"
+          ],
+          "enumDescriptions": [
+            "Generation images of people unspecified.",
+            "Generate images that include adults and children.",
+            "Generate images of adults, but not children.",
+            "Block generation of images of people."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions": {
+      "description": "The image output format for generated images.",
+      "id": "GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions",
+      "properties": {
+        "compressionQuality": {
+          "description": "Optional. The compression quality of the output image.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "mimeType": {
+          "description": "Optional. The image format that the output should be saved as.",
           "type": "string"
         }
       },
