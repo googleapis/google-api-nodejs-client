@@ -284,6 +284,24 @@ export namespace firebaseappdistribution_v1alpha {
     names?: string[] | null;
   }
   /**
+   * The request message for `BatchUpdateTestCase`.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest {
+    /**
+     * Required. The update requests. A maximum number of 1000 test cases can be updated in one batch
+     */
+    requests?: Schema$GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequest[];
+  }
+  /**
+   * The response message for `BatchUpdateTestCase`.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse {
+    /**
+     * The updated test cases.
+     */
+    testCases?: Schema$GoogleFirebaseAppdistroV1alphaTestCase[];
+  }
+  /**
    * The (empty) response message for `CancelReleaseTest`.
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse {}
@@ -910,6 +928,19 @@ export namespace firebaseappdistribution_v1alpha {
      * Output only. Number of `ReleaseTests` run in the current month
      */
     usage?: string | null;
+  }
+  /**
+   * The request message for `UpdateTestCase`.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequest {
+    /**
+     * Optional. If set to true, and the test case is not found, a new test case will be created.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Required. The test case to update. The test case's `name` field is used to identify the test case to update. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     */
+    testCase?: Schema$GoogleFirebaseAppdistroV1alphaTestCase;
   }
   /**
    * A release of a Firebase app.
@@ -3438,7 +3469,7 @@ export namespace firebaseappdistribution_v1alpha {
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.testCases.batchDelete(
      *     {
-     *       // Required. The parent resource where these test cases will be deleted. Format: `projects/{project_number\}/apps/{app_id\}`
+     *       // Required. The parent resource of the test cases being deleted. Format: `projects/{project_number\}/apps/{app_id\}`
      *       parent: 'projects/my-project/apps/my-app',
      *
      *       // Request body metadata
@@ -3551,6 +3582,164 @@ export namespace firebaseappdistribution_v1alpha {
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Updates multiple test cases.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.apps.testCases.batchUpdate(
+     *     {
+     *       // Required. The parent resource of the test cases being updated. Format: `projects/{project_number\}/apps/{app_id\}`
+     *       parent: 'projects/my-project/apps/my-app',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requests": []
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "testCases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Projects$Apps$Testcases$Batchupdate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchUpdate(
+      params?: Params$Resource$Projects$Apps$Testcases$Batchupdate,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse>
+    >;
+    batchUpdate(
+      params: Params$Resource$Projects$Apps$Testcases$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Projects$Apps$Testcases$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Projects$Apps$Testcases$Batchupdate,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Testcases$Batchupdate
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Testcases$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Testcases$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/testCases:batchUpdate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse>(
+          parameters
+        );
       }
     }
 
@@ -4327,7 +4516,7 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Projects$Apps$Testcases$Batchdelete
     extends StandardParameters {
     /**
-     * Required. The parent resource where these test cases will be deleted. Format: `projects/{project_number\}/apps/{app_id\}`
+     * Required. The parent resource of the test cases being deleted. Format: `projects/{project_number\}/apps/{app_id\}`
      */
     parent?: string;
 
@@ -4335,6 +4524,18 @@ export namespace firebaseappdistribution_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest;
+  }
+  export interface Params$Resource$Projects$Apps$Testcases$Batchupdate
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the test cases being updated. Format: `projects/{project_number\}/apps/{app_id\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest;
   }
   export interface Params$Resource$Projects$Apps$Testcases$Create
     extends StandardParameters {
