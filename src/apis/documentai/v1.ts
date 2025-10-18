@@ -1995,6 +1995,9 @@ export namespace documentai_v1 {
      * Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto
      */
     moneyValue?: Schema$GoogleTypeMoney;
+    /**
+     * A signature - a graphical representation of a person's name, often used to sign a document.
+     */
     signatureValue?: boolean | null;
     /**
      * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate `float` or `integer` normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
