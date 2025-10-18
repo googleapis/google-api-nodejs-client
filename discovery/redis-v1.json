@@ -1056,6 +1056,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}/operations",
@@ -1073,7 +1078,7 @@
       }
     }
   },
-  "revision": "20251007",
+  "revision": "20251009",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -2321,7 +2326,8 @@
             "SIGNAL_TYPE_REPLICATION_LAG",
             "SIGNAL_TYPE_OUTDATED_VERSION",
             "SIGNAL_TYPE_OUTDATED_CLIENT",
-            "SIGNAL_TYPE_DATABOOST_DISABLED"
+            "SIGNAL_TYPE_DATABOOST_DISABLED",
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES"
           ],
           "enumDeprecated": [
             false,
@@ -2330,6 +2336,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -2531,7 +2538,8 @@
             "Replication delay.",
             "Outdated version.",
             "Outdated client.",
-            "Databoost is disabled."
+            "Databoost is disabled.",
+            "Recommended maintenance policy."
           ],
           "type": "string"
         },
@@ -2970,7 +2978,8 @@
             "SIGNAL_TYPE_REPLICATION_LAG",
             "SIGNAL_TYPE_OUTDATED_VERSION",
             "SIGNAL_TYPE_OUTDATED_CLIENT",
-            "SIGNAL_TYPE_DATABOOST_DISABLED"
+            "SIGNAL_TYPE_DATABOOST_DISABLED",
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES"
           ],
           "enumDeprecated": [
             false,
@@ -2979,6 +2988,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -3180,7 +3190,8 @@
             "Replication delay.",
             "Outdated version.",
             "Outdated client.",
-            "Databoost is disabled."
+            "Databoost is disabled.",
+            "Recommended maintenance policy."
           ],
           "type": "string"
         }
@@ -4025,6 +4036,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -4967,7 +4985,8 @@
           "type": "string"
         },
         "phase": {
-          "description": "Optional. Phase of the maintenance window. This is to capture order of maintenance. For example, for Cloud SQL resources, this can be used to capture if the maintenance window is in Week1, Week2, Week5, etc. Non production resources are usually part of early phase. For more details, refer to Cloud SQL resources - https://cloud.google.com/sql/docs/mysql/maintenance",
+          "deprecated": true,
+          "description": "Optional. Phase of the maintenance window. This is to capture order of maintenance. For example, for Cloud SQL resources, this can be used to capture if the maintenance window is in Week1, Week2, Week5, etc. Non production resources are usually part of early phase. For more details, refer to Cloud SQL resources - https://cloud.google.com/sql/docs/mysql/maintenance Deprecated. Use phase instead.",
           "enum": [
             "WINDOW_PHASE_UNSPECIFIED",
             "WINDOW_PHASE_ANY",
@@ -4987,6 +5006,24 @@
         "time": {
           "$ref": "TimeOfDay",
           "description": "Optional. Preferred time to start the maintenance operation on the specified day."
+        },
+        "week": {
+          "description": "Optional. Phase of the maintenance window. This is to capture order of maintenance. For example, for Cloud SQL resources, this can be used to capture if the maintenance window is in Week1, Week2, Week5, etc. Non production resources are usually part of early phase. For more details, refer to Cloud SQL resources - https://cloud.google.com/sql/docs/mysql/maintenance",
+          "enum": [
+            "PHASE_UNSPECIFIED",
+            "ANY",
+            "WEEK1",
+            "WEEK2",
+            "WEEK5"
+          ],
+          "enumDescriptions": [
+            "Phase is unspecified.",
+            "Any phase.",
+            "Week 1.",
+            "Week 2.",
+            "Week 5."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
