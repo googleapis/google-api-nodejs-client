@@ -334,6 +334,10 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Immutable. Stores data classification of the aspect.
+     */
+    dataClassification?: string | null;
+    /**
      * Optional. Description of the AspectType.
      */
     description?: string | null;
@@ -7763,6 +7767,7 @@ export namespace dataplex_v1 {
      *       // {
      *       //   "authorization": {},
      *       //   "createTime": "my_createTime",
+     *       //   "dataClassification": "my_dataClassification",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
@@ -8070,6 +8075,7 @@ export namespace dataplex_v1 {
      *   // {
      *   //   "authorization": {},
      *   //   "createTime": "my_createTime",
+     *   //   "dataClassification": "my_dataClassification",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
@@ -8527,6 +8533,7 @@ export namespace dataplex_v1 {
      *       // {
      *       //   "authorization": {},
      *       //   "createTime": "my_createTime",
+     *       //   "dataClassification": "my_dataClassification",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",

@@ -68,6 +68,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://dataplex.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -110,6 +115,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://dataplex.europe-west12.rep.googleapis.com/",
       "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
     },
     {
       "description": "Regional Endpoint",
@@ -860,7 +870,7 @@
                     "Returns entry only, without aspects.",
                     "Returns all required aspects as well as the keys of all non-required aspects.",
                     "Returns aspects matching custom fields in GetEntryRequest. If the number of aspects exceeds 100, the first 100 will be returned.",
-                    "Returns all aspects. If the number of aspects exceeds 100, the first 100 will be returned."
+                    ""
                   ],
                   "location": "query",
                   "type": "string"
@@ -3062,7 +3072,7 @@
                             "Returns entry only, without aspects.",
                             "Returns all required aspects as well as the keys of all non-required aspects.",
                             "Returns aspects matching custom fields in GetEntryRequest. If the number of aspects exceeds 100, the first 100 will be returned.",
-                            "Returns all aspects. If the number of aspects exceeds 100, the first 100 will be returned."
+                            ""
                           ],
                           "location": "query",
                           "type": "string"
@@ -7250,7 +7260,7 @@
       }
     }
   },
-  "revision": "20250924",
+  "revision": "20251012",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -7542,6 +7552,18 @@
           "description": "Output only. The time when the AspectType was created.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "dataClassification": {
+          "description": "Optional. Immutable. Stores data classification of the aspect.",
+          "enum": [
+            "DATA_CLASSIFICATION_UNSPECIFIED",
+            "METADATA_AND_DATA"
+          ],
+          "enumDescriptions": [
+            "Denotes that the aspect contains only metadata.",
+            "Metadata and data classification."
+          ],
           "type": "string"
         },
         "description": {
