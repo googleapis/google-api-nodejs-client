@@ -161,7 +161,7 @@
                     "ACCOUNT_VIEW_FULL"
                   ],
                   "enumDescriptions": [
-                    "The default / unset value. For `GetAccount`, it defaults to the FULL view. For `ListAccounts`, it only supports BASIC view.",
+                    "The default / unset value. For `GetAccount` and `ListAccounts`, they default to the BASIC view. For `ListAccounts`, it only supports the BASIC view.",
                     "Include base account information. This is the default view. All fields from Account are included except for the reseller_parent_billing_account field.",
                     "Includes all available account information, inclusive of the accounts reseller_parent_billing_account, if it's a resold account."
                   ],
@@ -518,7 +518,7 @@
       }
     }
   },
-  "revision": "20250923",
+  "revision": "20251012",
   "rootUrl": "https://cloudcommerceprocurement.googleapis.com/",
   "schemas": {
     "Account": {
