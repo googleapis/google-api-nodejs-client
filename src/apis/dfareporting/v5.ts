@@ -166,6 +166,8 @@ export namespace dfareporting_v5 {
     reports: Resource$Reports;
     sites: Resource$Sites;
     sizes: Resource$Sizes;
+    studioCreativeAssets: Resource$Studiocreativeassets;
+    studioCreatives: Resource$Studiocreatives;
     subaccounts: Resource$Subaccounts;
     targetableRemarketingLists: Resource$Targetableremarketinglists;
     targetingTemplates: Resource$Targetingtemplates;
@@ -256,6 +258,10 @@ export namespace dfareporting_v5 {
       this.reports = new Resource$Reports(this.context);
       this.sites = new Resource$Sites(this.context);
       this.sizes = new Resource$Sizes(this.context);
+      this.studioCreativeAssets = new Resource$Studiocreativeassets(
+        this.context
+      );
+      this.studioCreatives = new Resource$Studiocreatives(this.context);
       this.subaccounts = new Resource$Subaccounts(this.context);
       this.targetableRemarketingLists = new Resource$Targetableremarketinglists(
         this.context
@@ -3100,6 +3106,23 @@ export namespace dfareporting_v5 {
     fieldId?: number | null;
   }
   /**
+   * Request message for DfareportingStudioCreativeAssets.Insert.
+   */
+  export interface Schema$DfareportingStudioCreativeAssetsInsertRequest {
+    /**
+     * Optional. Studio account ID of the studio creative asset. It is a optional.
+     */
+    studioAccountId?: string | null;
+    /**
+     * Required. Studio advertiser ID of the studio creative asset. It is a required field on insertion.
+     */
+    studioAdvertiserId?: string | null;
+    /**
+     * Optional. Studio creative ID of the studio creative asset. It is a optional field. If it is set, the asset will be associated to the creative.
+     */
+    studioCreativeId?: string | null;
+  }
+  /**
    * Google Ad Manager Settings
    */
   export interface Schema$DfpSettings {
@@ -3352,7 +3375,7 @@ export namespace dfareporting_v5 {
     studioAdvertiserId?: string | null;
   }
   /**
-   * Dynamic profile ID is required for dynamic feed insert as the current GPA API only can create a dynamic feed under profile context,even though the dynnamic feed itself don't need the dynamic profile id. See go/cm3-dco-display-api-interface
+   * Dynamic profile ID is required for dynamic feed insert as the current GPA API only can create a dynamic feed under profile context,even though the dynnamic feed itself don't need the dynamic profile id. See
    */
   export interface Schema$DynamicFeedsInsertRequest {
     /**
@@ -3429,6 +3452,15 @@ export namespace dfareporting_v5 {
      * Optional. The number of this dynamic feed rows needed by the dynamic profile, default value is 1. Acceptable values are between 1 to 99, inclusive.
      */
     quantity?: number | null;
+  }
+  /**
+   * Response message for DfareportingDynamicProfiles.GenerateCode.
+   */
+  export interface Schema$DynamicProfileGenerateCodeResponse {
+    /**
+     * Generated code for the dynamic profile.
+     */
+    code?: string | null;
   }
   /**
    * Contains dynamic profile version information.
@@ -6424,6 +6456,130 @@ export namespace dfareporting_v5 {
     sortOrder?: string | null;
   }
   /**
+   * Contains studio creative information.
+   */
+  export interface Schema$StudioCreative {
+    /**
+     * List of assets associated with this studio creative. It is a required field on insertion.
+     */
+    assetIds?: string[] | null;
+    /**
+     * Backup image asset ID of this studio creative.
+     */
+    backupImageAssetId?: string | null;
+    /**
+     * The timestamp when the studio creative was created. This is a read-only, auto-generated field.
+     */
+    createdInfo?: Schema$LastModifiedInfo;
+    /**
+     * Dimension of this studio creative. This is a required field on insertion if format is BANNER or EXPANDING.
+     */
+    dimension?: Schema$StudioCreativeDimension;
+    /**
+     * Dynamic profile ID of this studio creative.
+     */
+    dynamicProfileId?: string | null;
+    /**
+     * Format of this studio creative. This is a required field on insertion.
+     */
+    format?: string | null;
+    /**
+     * Output only. Unique ID of this studio creative. This is a read-only, auto-generated field.
+     */
+    id?: string | null;
+    /**
+     * The timestamp when the studio creative was last modified. This is a read-only, auto-generated field.
+     */
+    lastModifiedInfo?: Schema$LastModifiedInfo;
+    /**
+     * Identifier. Name of this studio creative. This is a required field on insertion.
+     */
+    name?: string | null;
+    /**
+     * Output only. Status of this studio creative. It is a read-only field.
+     */
+    status?: string | null;
+    /**
+     * Studio account ID of this creative. This field, if left unset, will be auto-populated.
+     */
+    studioAccountId?: string | null;
+    /**
+     * Studio advertiser ID of this studio creative. This is a required field on insertion.
+     */
+    studioAdvertiserId?: string | null;
+    /**
+     * Studio campaign ID of this studio creative. This is a required field on insertion.
+     */
+    studioCampaignId?: string | null;
+  }
+  /**
+   * Contains studio creative asset information.
+   */
+  export interface Schema$StudioCreativeAsset {
+    /**
+     * Output only. The creation timestamp of the studio creative asset. This is a read-only field.
+     */
+    createInfo?: Schema$LastModifiedInfo;
+    /**
+     * The filename of the studio creative asset. It is default to the original filename of the asset.
+     */
+    filename?: string | null;
+    /**
+     * The filesize of the studio creative asset. This is a read-only field.
+     */
+    filesize?: string | null;
+    /**
+     * Output only. Unique ID of this studio creative asset. This is a read-only, auto-generated field.
+     */
+    id?: string | null;
+    /**
+     * Output only. The last modified timestamp of the studio creative asset. This is a read-only field.
+     */
+    lastModifiedInfo?: Schema$LastModifiedInfo;
+    /**
+     * Studio account ID of this studio creative asset. This field, if left unset, will be auto-populated..
+     */
+    studioAccountId?: string | null;
+    /**
+     * Studio advertiser ID of this studio creative asset. This is a required field on insertion.
+     */
+    studioAdvertiserId?: string | null;
+    /**
+     * Studio creative ID of this studio creative asset. The asset will be associated to the creative if creative id is set.
+     */
+    studioCreativeId?: string | null;
+    /**
+     * The type of the studio creative asset. It is a auto-generated, read-only field.
+     */
+    type?: string | null;
+    /**
+     * The processing data of the studio creative asset. This is a read-only field.
+     */
+    videoProcessingData?: Schema$VideoProcessingData;
+  }
+  /**
+   * Response message for DfareportingStudioCreativeAssets.Insert.
+   */
+  export interface Schema$StudioCreativeAssetsResponse {
+    /**
+     * The list of studio creative assets.
+     */
+    assets?: Schema$StudioCreativeAsset[];
+  }
+  /**
+   * Dimension information for a studio creative.
+   */
+  export interface Schema$StudioCreativeDimension {
+    /**
+     * Height of the studio creative.
+     */
+    height?: number | null;
+    /**
+     * Width of the studio creative.
+     */
+    width?: number | null;
+  }
+  /**
    * Contains properties of a Campaign Manager subaccount.
    */
   export interface Schema$Subaccount {
@@ -7114,6 +7270,19 @@ export namespace dfareporting_v5 {
      * Duration, in seconds. Do not set when offsetPercentage is set. Acceptable values are 0 to 86399, inclusive.
      */
     offsetSeconds?: number | null;
+  }
+  /**
+   * Contains processing data for a video asset.
+   */
+  export interface Schema$VideoProcessingData {
+    /**
+     * For a FAILED processing state, the error reason discovered.
+     */
+    errorReason?: string | null;
+    /**
+     * Output only. The processing state of the studio creative asset.
+     */
+    processingState?: string | null;
   }
   /**
    * Video Settings
@@ -24428,6 +24597,315 @@ export namespace dfareporting_v5 {
         return createAPIRequest<Schema$DynamicFeed>(parameters);
       }
     }
+
+    /**
+     * Retransforms a dynamic feed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicFeeds.retransform({
+     *     // Required. Dynamic feed ID.
+     *     dynamicFeedId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentSource": {},
+     *   //   "createInfo": {},
+     *   //   "dynamicFeedId": "my_dynamicFeedId",
+     *   //   "dynamicFeedName": "my_dynamicFeedName",
+     *   //   "element": {},
+     *   //   "feedIngestionStatus": {},
+     *   //   "feedSchedule": {},
+     *   //   "hasPublished": false,
+     *   //   "lastModifiedInfo": {},
+     *   //   "status": "my_status",
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retransform(
+      params: Params$Resource$Dynamicfeeds$Retransform,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    retransform(
+      params?: Params$Resource$Dynamicfeeds$Retransform,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DynamicFeed>>;
+    retransform(
+      params: Params$Resource$Dynamicfeeds$Retransform,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retransform(
+      params: Params$Resource$Dynamicfeeds$Retransform,
+      options: MethodOptions | BodyResponseCallback<Schema$DynamicFeed>,
+      callback: BodyResponseCallback<Schema$DynamicFeed>
+    ): void;
+    retransform(
+      params: Params$Resource$Dynamicfeeds$Retransform,
+      callback: BodyResponseCallback<Schema$DynamicFeed>
+    ): void;
+    retransform(callback: BodyResponseCallback<Schema$DynamicFeed>): void;
+    retransform(
+      paramsOrCallback?:
+        | Params$Resource$Dynamicfeeds$Retransform
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DynamicFeed>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dynamicfeeds$Retransform;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamicfeeds$Retransform;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v5/studio/dynamicFeeds/{+dynamicFeedId}/retransform'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dynamicFeedId'],
+        pathParams: ['dynamicFeedId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DynamicFeed>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DynamicFeed>(parameters);
+      }
+    }
+
+    /**
+     * Updates a new dynamic feed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicFeeds.update({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentSource": {},
+     *       //   "createInfo": {},
+     *       //   "dynamicFeedId": "my_dynamicFeedId",
+     *       //   "dynamicFeedName": "my_dynamicFeedName",
+     *       //   "element": {},
+     *       //   "feedIngestionStatus": {},
+     *       //   "feedSchedule": {},
+     *       //   "hasPublished": false,
+     *       //   "lastModifiedInfo": {},
+     *       //   "status": "my_status",
+     *       //   "studioAdvertiserId": "my_studioAdvertiserId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentSource": {},
+     *   //   "createInfo": {},
+     *   //   "dynamicFeedId": "my_dynamicFeedId",
+     *   //   "dynamicFeedName": "my_dynamicFeedName",
+     *   //   "element": {},
+     *   //   "feedIngestionStatus": {},
+     *   //   "feedSchedule": {},
+     *   //   "hasPublished": false,
+     *   //   "lastModifiedInfo": {},
+     *   //   "status": "my_status",
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Dynamicfeeds$Update,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    update(
+      params?: Params$Resource$Dynamicfeeds$Update,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DynamicFeed>>;
+    update(
+      params: Params$Resource$Dynamicfeeds$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Dynamicfeeds$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$DynamicFeed>,
+      callback: BodyResponseCallback<Schema$DynamicFeed>
+    ): void;
+    update(
+      params: Params$Resource$Dynamicfeeds$Update,
+      callback: BodyResponseCallback<Schema$DynamicFeed>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$DynamicFeed>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Dynamicfeeds$Update
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DynamicFeed>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dynamicfeeds$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamicfeeds$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v5/studio/dynamicFeeds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DynamicFeed>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DynamicFeed>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Dynamicfeeds$Get extends StandardParameters {
@@ -24443,11 +24921,172 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$DynamicFeedsInsertRequest;
   }
+  export interface Params$Resource$Dynamicfeeds$Retransform
+    extends StandardParameters {
+    /**
+     * Required. Dynamic feed ID.
+     */
+    dynamicFeedId?: string;
+  }
+  export interface Params$Resource$Dynamicfeeds$Update
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DynamicFeed;
+  }
 
   export class Resource$Dynamicprofiles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Generates code for a dynamic profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicProfiles.generateCode({
+     *     // Required. Dynamic profile ID.
+     *     dynamicProfileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": "my_code"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateCode(
+      params: Params$Resource$Dynamicprofiles$Generatecode,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateCode(
+      params?: Params$Resource$Dynamicprofiles$Generatecode,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$DynamicProfileGenerateCodeResponse>
+    >;
+    generateCode(
+      params: Params$Resource$Dynamicprofiles$Generatecode,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateCode(
+      params: Params$Resource$Dynamicprofiles$Generatecode,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DynamicProfileGenerateCodeResponse>,
+      callback: BodyResponseCallback<Schema$DynamicProfileGenerateCodeResponse>
+    ): void;
+    generateCode(
+      params: Params$Resource$Dynamicprofiles$Generatecode,
+      callback: BodyResponseCallback<Schema$DynamicProfileGenerateCodeResponse>
+    ): void;
+    generateCode(
+      callback: BodyResponseCallback<Schema$DynamicProfileGenerateCodeResponse>
+    ): void;
+    generateCode(
+      paramsOrCallback?:
+        | Params$Resource$Dynamicprofiles$Generatecode
+        | BodyResponseCallback<Schema$DynamicProfileGenerateCodeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DynamicProfileGenerateCodeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DynamicProfileGenerateCodeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$DynamicProfileGenerateCodeResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dynamicprofiles$Generatecode;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamicprofiles$Generatecode;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v5/studio/dynamicProfiles/{+dynamicProfileId}/generateCode'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dynamicProfileId'],
+        pathParams: ['dynamicProfileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DynamicProfileGenerateCodeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DynamicProfileGenerateCodeResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -24760,6 +25399,136 @@ export namespace dfareporting_v5 {
     }
 
     /**
+     * Publish for a dynamic profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicProfiles.publish({
+     *     // Required. Dynamic profile ID.
+     *     dynamicProfileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    publish(
+      params: Params$Resource$Dynamicprofiles$Publish,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    publish(
+      params?: Params$Resource$Dynamicprofiles$Publish,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
+    publish(
+      params: Params$Resource$Dynamicprofiles$Publish,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    publish(
+      params: Params$Resource$Dynamicprofiles$Publish,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    publish(
+      params: Params$Resource$Dynamicprofiles$Publish,
+      callback: BodyResponseCallback<void>
+    ): void;
+    publish(callback: BodyResponseCallback<void>): void;
+    publish(
+      paramsOrCallback?:
+        | Params$Resource$Dynamicprofiles$Publish
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dynamicprofiles$Publish;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamicprofiles$Publish;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v5/studio/dynamicProfiles/{+dynamicProfileId}/publish'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dynamicProfileId'],
+        pathParams: ['dynamicProfileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
      * Updates an existing dynamic profile.
      * @example
      * ```js
@@ -24922,6 +25691,13 @@ export namespace dfareporting_v5 {
     }
   }
 
+  export interface Params$Resource$Dynamicprofiles$Generatecode
+    extends StandardParameters {
+    /**
+     * Required. Dynamic profile ID.
+     */
+    dynamicProfileId?: string;
+  }
   export interface Params$Resource$Dynamicprofiles$Get
     extends StandardParameters {
     /**
@@ -24935,6 +25711,13 @@ export namespace dfareporting_v5 {
      * Request body metadata
      */
     requestBody?: Schema$DynamicProfile;
+  }
+  export interface Params$Resource$Dynamicprofiles$Publish
+    extends StandardParameters {
+    /**
+     * Required. Dynamic profile ID.
+     */
+    dynamicProfileId?: string;
   }
   export interface Params$Resource$Dynamicprofiles$Update
     extends StandardParameters {
@@ -40154,6 +40937,666 @@ export namespace dfareporting_v5 {
      * Select only sizes with this width.
      */
     width?: number;
+  }
+
+  export class Resource$Studiocreativeassets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Inserts a new studio creative asset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.studioCreativeAssets.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "studioAccountId": "my_studioAccountId",
+     *       //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *       //   "studioCreativeId": "my_studioCreativeId"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Studiocreativeassets$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Studiocreativeassets$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StudioCreativeAssetsResponse>>;
+    insert(
+      params: Params$Resource$Studiocreativeassets$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Studiocreativeassets$Insert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StudioCreativeAssetsResponse>,
+      callback: BodyResponseCallback<Schema$StudioCreativeAssetsResponse>
+    ): void;
+    insert(
+      params: Params$Resource$Studiocreativeassets$Insert,
+      callback: BodyResponseCallback<Schema$StudioCreativeAssetsResponse>
+    ): void;
+    insert(
+      callback: BodyResponseCallback<Schema$StudioCreativeAssetsResponse>
+    ): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Studiocreativeassets$Insert
+        | BodyResponseCallback<Schema$StudioCreativeAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StudioCreativeAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StudioCreativeAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StudioCreativeAssetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Studiocreativeassets$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Studiocreativeassets$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v5/studio/creativeAssets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl + '/upload/dfareporting/v5/studio/creativeAssets'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StudioCreativeAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StudioCreativeAssetsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Studiocreativeassets$Insert
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DfareportingStudioCreativeAssetsInsertRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
+  }
+
+  export class Resource$Studiocreatives {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a studio creative by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.studioCreatives.get({
+     *     // Required. Studio creative ID.
+     *     studioCreativeId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetIds": [],
+     *   //   "backupImageAssetId": "my_backupImageAssetId",
+     *   //   "createdInfo": {},
+     *   //   "dimension": {},
+     *   //   "dynamicProfileId": "my_dynamicProfileId",
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "status": "my_status",
+     *   //   "studioAccountId": "my_studioAccountId",
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *   //   "studioCampaignId": "my_studioCampaignId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Studiocreatives$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Studiocreatives$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StudioCreative>>;
+    get(
+      params: Params$Resource$Studiocreatives$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Studiocreatives$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$StudioCreative>,
+      callback: BodyResponseCallback<Schema$StudioCreative>
+    ): void;
+    get(
+      params: Params$Resource$Studiocreatives$Get,
+      callback: BodyResponseCallback<Schema$StudioCreative>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$StudioCreative>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Studiocreatives$Get
+        | BodyResponseCallback<Schema$StudioCreative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StudioCreative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StudioCreative>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StudioCreative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Studiocreatives$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Studiocreatives$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/dfareporting/v5/studio/creatives/{+studioCreativeId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['studioCreativeId'],
+        pathParams: ['studioCreativeId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StudioCreative>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StudioCreative>(parameters);
+      }
+    }
+
+    /**
+     * Inserts a new studio creative.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.studioCreatives.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assetIds": [],
+     *       //   "backupImageAssetId": "my_backupImageAssetId",
+     *       //   "createdInfo": {},
+     *       //   "dimension": {},
+     *       //   "dynamicProfileId": "my_dynamicProfileId",
+     *       //   "format": "my_format",
+     *       //   "id": "my_id",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "status": "my_status",
+     *       //   "studioAccountId": "my_studioAccountId",
+     *       //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *       //   "studioCampaignId": "my_studioCampaignId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetIds": [],
+     *   //   "backupImageAssetId": "my_backupImageAssetId",
+     *   //   "createdInfo": {},
+     *   //   "dimension": {},
+     *   //   "dynamicProfileId": "my_dynamicProfileId",
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "status": "my_status",
+     *   //   "studioAccountId": "my_studioAccountId",
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *   //   "studioCampaignId": "my_studioCampaignId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Studiocreatives$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Studiocreatives$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StudioCreative>>;
+    insert(
+      params: Params$Resource$Studiocreatives$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Studiocreatives$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$StudioCreative>,
+      callback: BodyResponseCallback<Schema$StudioCreative>
+    ): void;
+    insert(
+      params: Params$Resource$Studiocreatives$Insert,
+      callback: BodyResponseCallback<Schema$StudioCreative>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$StudioCreative>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Studiocreatives$Insert
+        | BodyResponseCallback<Schema$StudioCreative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StudioCreative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StudioCreative>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StudioCreative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Studiocreatives$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Studiocreatives$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v5/studio/creatives').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StudioCreative>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StudioCreative>(parameters);
+      }
+    }
+
+    /**
+     * Publish for a studio creative.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.studioCreatives.publish({
+     *     // Required. Studio creative ID.
+     *     studioCreativeId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    publish(
+      params: Params$Resource$Studiocreatives$Publish,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    publish(
+      params?: Params$Resource$Studiocreatives$Publish,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
+    publish(
+      params: Params$Resource$Studiocreatives$Publish,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    publish(
+      params: Params$Resource$Studiocreatives$Publish,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    publish(
+      params: Params$Resource$Studiocreatives$Publish,
+      callback: BodyResponseCallback<void>
+    ): void;
+    publish(callback: BodyResponseCallback<void>): void;
+    publish(
+      paramsOrCallback?:
+        | Params$Resource$Studiocreatives$Publish
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Studiocreatives$Publish;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Studiocreatives$Publish;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v5/studio/creatives/{+studioCreativeId}/publish'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['studioCreativeId'],
+        pathParams: ['studioCreativeId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Studiocreatives$Get
+    extends StandardParameters {
+    /**
+     * Required. Studio creative ID.
+     */
+    studioCreativeId?: string;
+  }
+  export interface Params$Resource$Studiocreatives$Insert
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StudioCreative;
+  }
+  export interface Params$Resource$Studiocreatives$Publish
+    extends StandardParameters {
+    /**
+     * Required. Studio creative ID.
+     */
+    studioCreativeId?: string;
   }
 
   export class Resource$Subaccounts {
