@@ -1433,6 +1433,10 @@ export namespace container_v1 {
      * PrivateRegistryAccessConfig is used to configure access configuration for private container registries.
      */
     privateRegistryAccessConfig?: Schema$PrivateRegistryAccessConfig;
+    /**
+     * Optional. WritableCgroups defines writable cgroups configuration for the node pool.
+     */
+    writableCgroups?: Schema$WritableCgroups;
   }
   /**
    * Configuration for all of the cluster's control plane endpoints.
@@ -2873,7 +2877,7 @@ export namespace container_v1 {
      */
     cpuCfsQuota?: boolean | null;
     /**
-     * Set the CPU CFS quota period value 'cpu.cfs_period_us'. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". The value must be a positive duration.
+     * Set the CPU CFS quota period value 'cpu.cfs_period_us'. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". The value must be a positive duration between 1ms and 1 second, inclusive.
      */
     cpuCfsQuotaPeriod?: string | null;
     /**
@@ -4816,6 +4820,15 @@ export namespace container_v1 {
      * If true, enables the GCW Auditor that audits workloads on standard clusters.
      */
     autopilotCompatibilityAuditingEnabled?: boolean | null;
+  }
+  /**
+   * Defines writable cgroups configuration.
+   */
+  export interface Schema$WritableCgroups {
+    /**
+     * Optional. Whether writable cgroups is enabled.
+     */
+    enabled?: boolean | null;
   }
 
   export class Resource$Projects {
