@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20251014",
+  "revision": "20251015",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1373,7 +1373,7 @@
           "type": "string"
         },
         "mtePolicy": {
-          "description": "Optional. Controls Memory Tagging Extension (MTE) (https://source.android.com/docs/security/test/memory-safety/arm-mte) on the device. The device needs to be rebooted to apply changes to the MTE policy.",
+          "description": "Optional. Controls Memory Tagging Extension (MTE) (https://source.android.com/docs/security/test/memory-safety/arm-mte) on the device. The device needs to be rebooted to apply changes to the MTE policy. On Android 15 and above, a NonComplianceDetail with PENDING is reported if the policy change is pending a device reboot.",
           "enum": [
             "MTE_POLICY_UNSPECIFIED",
             "MTE_USER_CHOICE",

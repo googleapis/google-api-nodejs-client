@@ -175,7 +175,7 @@ export namespace androidmanagement_v1 {
      */
     googlePlayProtectVerifyApps?: string | null;
     /**
-     * Optional. Controls Memory Tagging Extension (MTE) (https://source.android.com/docs/security/test/memory-safety/arm-mte) on the device. The device needs to be rebooted to apply changes to the MTE policy.
+     * Optional. Controls Memory Tagging Extension (MTE) (https://source.android.com/docs/security/test/memory-safety/arm-mte) on the device. The device needs to be rebooted to apply changes to the MTE policy. On Android 15 and above, a NonComplianceDetail with PENDING is reported if the policy change is pending a device reboot.
      */
     mtePolicy?: string | null;
     /**
