@@ -1295,7 +1295,7 @@
       }
     }
   },
-  "revision": "20251007",
+  "revision": "20251013",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -4006,6 +4006,7 @@
           "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "signatureValue": {
+          "description": "A signature - a graphical representation of a person's name, often used to sign a document.",
           "type": "boolean"
         },
         "text": {
