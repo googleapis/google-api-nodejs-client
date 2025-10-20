@@ -4675,11 +4675,81 @@
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
           ]
+        },
+        "retransform": {
+          "description": "Retransforms a dynamic feed.",
+          "flatPath": "studio/dynamicFeeds/{dynamicFeedsId}/retransform",
+          "httpMethod": "POST",
+          "id": "dfareporting.dynamicFeeds.retransform",
+          "parameterOrder": [
+            "dynamicFeedId"
+          ],
+          "parameters": {
+            "dynamicFeedId": {
+              "description": "Required. Dynamic feed ID.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "studio/dynamicFeeds/{+dynamicFeedId}/retransform",
+          "response": {
+            "$ref": "DynamicFeed"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        },
+        "update": {
+          "description": "Updates a new dynamic feed.",
+          "flatPath": "studio/dynamicFeeds",
+          "httpMethod": "PUT",
+          "id": "dfareporting.dynamicFeeds.update",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "studio/dynamicFeeds",
+          "request": {
+            "$ref": "DynamicFeed"
+          },
+          "response": {
+            "$ref": "DynamicFeed"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
         }
       }
     },
     "dynamicProfiles": {
       "methods": {
+        "generateCode": {
+          "description": "Generates code for a dynamic profile.",
+          "flatPath": "studio/dynamicProfiles/{dynamicProfilesId}/generateCode",
+          "httpMethod": "GET",
+          "id": "dfareporting.dynamicProfiles.generateCode",
+          "parameterOrder": [
+            "dynamicProfileId"
+          ],
+          "parameters": {
+            "dynamicProfileId": {
+              "description": "Required. Dynamic profile ID.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "studio/dynamicProfiles/{+dynamicProfileId}/generateCode",
+          "response": {
+            "$ref": "DynamicProfileGenerateCodeResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        },
         "get": {
           "description": "Gets a dynamic profile by ID.",
           "flatPath": "studio/dynamicProfiles/{dynamicProfilesId}",
@@ -4720,6 +4790,29 @@
           "response": {
             "$ref": "DynamicProfile"
           },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        },
+        "publish": {
+          "description": "Publish for a dynamic profile.",
+          "flatPath": "studio/dynamicProfiles/{dynamicProfilesId}/publish",
+          "httpMethod": "POST",
+          "id": "dfareporting.dynamicProfiles.publish",
+          "parameterOrder": [
+            "dynamicProfileId"
+          ],
+          "parameters": {
+            "dynamicProfileId": {
+              "description": "Required. Dynamic profile ID.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "studio/dynamicProfiles/{+dynamicProfileId}/publish",
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
           ]
@@ -9122,6 +9215,112 @@
         }
       }
     },
+    "studioCreativeAssets": {
+      "methods": {
+        "insert": {
+          "description": "Inserts a new studio creative asset.",
+          "flatPath": "studio/creativeAssets",
+          "httpMethod": "POST",
+          "id": "dfareporting.studioCreativeAssets.insert",
+          "mediaUpload": {
+            "accept": [
+              "*/*"
+            ],
+            "maxSize": "1073741824",
+            "protocols": {
+              "simple": {
+                "multipart": true,
+                "path": "/upload/dfareporting/v4/studio/creativeAssets"
+              }
+            }
+          },
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "studio/creativeAssets",
+          "request": {
+            "$ref": "DfareportingStudioCreativeAssetsInsertRequest"
+          },
+          "response": {
+            "$ref": "StudioCreativeAssetsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ],
+          "supportsMediaUpload": true
+        }
+      }
+    },
+    "studioCreatives": {
+      "methods": {
+        "get": {
+          "description": "Gets a studio creative by ID.",
+          "flatPath": "studio/creatives/{creativesId}",
+          "httpMethod": "GET",
+          "id": "dfareporting.studioCreatives.get",
+          "parameterOrder": [
+            "studioCreativeId"
+          ],
+          "parameters": {
+            "studioCreativeId": {
+              "description": "Required. Studio creative ID.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "studio/creatives/{+studioCreativeId}",
+          "response": {
+            "$ref": "StudioCreative"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        },
+        "insert": {
+          "description": "Inserts a new studio creative.",
+          "flatPath": "studio/creatives",
+          "httpMethod": "POST",
+          "id": "dfareporting.studioCreatives.insert",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "studio/creatives",
+          "request": {
+            "$ref": "StudioCreative"
+          },
+          "response": {
+            "$ref": "StudioCreative"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        },
+        "publish": {
+          "description": "Publish for a studio creative.",
+          "flatPath": "studio/creatives/{creativesId}/publish",
+          "httpMethod": "POST",
+          "id": "dfareporting.studioCreatives.publish",
+          "parameterOrder": [
+            "studioCreativeId"
+          ],
+          "parameters": {
+            "studioCreativeId": {
+              "description": "Required. Studio creative ID.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "studio/creatives/{+studioCreativeId}/publish",
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        }
+      }
+    },
     "subaccounts": {
       "methods": {
         "get": {
@@ -10266,7 +10465,7 @@
       }
     }
   },
-  "revision": "20250902",
+  "revision": "20251009",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -12760,14 +12959,18 @@
             "CREATIVE_AUTHORING_SOURCE_DBM",
             "CREATIVE_AUTHORING_SOURCE_STUDIO",
             "CREATIVE_AUTHORING_SOURCE_GWD",
-            "CREATIVE_AUTHORING_SOURCE_ACS"
+            "CREATIVE_AUTHORING_SOURCE_ACS",
+            "CREATIVE_AUTHORING_SOURCE_ADOBE",
+            "CREATIVE_AUTHORING_SOURCE_TYPEFACE_AI"
           ],
           "enumDescriptions": [
             "DCM-UI or external API used to author the creative.",
             "DBM-UI used to author the creative.",
             "Studio-UI used to author the creative.",
             "Google Web Designer used to author the creative.",
-            "ACS-UI used to author the creative."
+            "ACS-UI used to author the creative.",
+            "Creative authoring source is Adobe.",
+            "Creative authoring source is Typeface.ai."
           ],
           "type": "string"
         },
@@ -15194,6 +15397,28 @@
       },
       "type": "object"
     },
+    "DfareportingStudioCreativeAssetsInsertRequest": {
+      "description": "Request message for DfareportingStudioCreativeAssets.Insert.",
+      "id": "DfareportingStudioCreativeAssetsInsertRequest",
+      "properties": {
+        "studioAccountId": {
+          "description": "Optional. Studio account ID of the studio creative asset. It is a optional.",
+          "format": "int64",
+          "type": "string"
+        },
+        "studioAdvertiserId": {
+          "description": "Required. Studio advertiser ID of the studio creative asset. It is a required field on insertion.",
+          "format": "int64",
+          "type": "string"
+        },
+        "studioCreativeId": {
+          "description": "Optional. Studio creative ID of the studio creative asset. It is a optional field. If it is set, the asset will be associated to the creative.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DfpSettings": {
       "description": "Google Ad Manager Settings",
       "id": "DfpSettings",
@@ -15545,7 +15770,7 @@
       "type": "object"
     },
     "DynamicFeedsInsertRequest": {
-      "description": "Dynamic profile ID is required for dynamic feed insert as the current GPA API only can create a dynamic feed under profile context,even though the dynnamic feed itself don't need the dynamic profile id. See go/cm3-dco-display-api-interface",
+      "description": "Dynamic profile ID is required for dynamic feed insert as the current GPA API only can create a dynamic feed under profile context,even though the dynnamic feed itself don't need the dynamic profile id. See",
       "id": "DynamicFeedsInsertRequest",
       "properties": {
         "dynamicFeed": {
@@ -15656,6 +15881,17 @@
           "description": "Optional. The number of this dynamic feed rows needed by the dynamic profile, default value is 1. Acceptable values are between 1 to 99, inclusive.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DynamicProfileGenerateCodeResponse": {
+      "description": "Response message for DfareportingDynamicProfiles.GenerateCode.",
+      "id": "DynamicProfileGenerateCodeResponse",
+      "properties": {
+        "code": {
+          "description": "Generated code for the dynamic profile.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -21361,6 +21597,207 @@
       },
       "type": "object"
     },
+    "StudioCreative": {
+      "description": "Contains studio creative information.",
+      "id": "StudioCreative",
+      "properties": {
+        "assetIds": {
+          "description": "List of assets associated with this studio creative. It is a required field on insertion.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "backupImageAssetId": {
+          "description": "Backup image asset ID of this studio creative.",
+          "format": "int64",
+          "type": "string"
+        },
+        "createdInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "The timestamp when the studio creative was created. This is a read-only, auto-generated field."
+        },
+        "dimension": {
+          "$ref": "StudioCreativeDimension",
+          "description": "Dimension of this studio creative. This is a required field on insertion if format is BANNER or EXPANDING."
+        },
+        "dynamicProfileId": {
+          "description": "Dynamic profile ID of this studio creative.",
+          "format": "int64",
+          "type": "string"
+        },
+        "format": {
+          "description": "Format of this studio creative. This is a required field on insertion.",
+          "enum": [
+            "UNKNOWN",
+            "BANNER",
+            "EXPANDING",
+            "INTERSTITIAL",
+            "VPAID_LINEAR_VIDEO"
+          ],
+          "enumDescriptions": [
+            "The format of the studio creative is unknown. This value is unused.",
+            "Banner format.",
+            "Expanding format.",
+            "Intertitial format.",
+            "VPAID linear video creative format."
+          ],
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. Unique ID of this studio creative. This is a read-only, auto-generated field.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastModifiedInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "The timestamp when the studio creative was last modified. This is a read-only, auto-generated field."
+        },
+        "name": {
+          "description": "Identifier. Name of this studio creative. This is a required field on insertion.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. Status of this studio creative. It is a read-only field.",
+          "enum": [
+            "UNKNOWN_STATUS",
+            "IN_DEVELOPMENT",
+            "PUBLISHED",
+            "QA_REJECTED",
+            "QA_APPROVED",
+            "TRAFFICKED"
+          ],
+          "enumDescriptions": [
+            "The status of the studio creative is unknown. This value is unused.",
+            "The creative is still being developed.",
+            "The creative has been published and is ready for QA.",
+            "The creative has failed QA and must be corrected.",
+            "The creative has passed QA and is ready to be trafficked.",
+            "The creative has been trafficked to an adserver."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "studioAccountId": {
+          "description": "Studio account ID of this creative. This field, if left unset, will be auto-populated.",
+          "format": "int64",
+          "type": "string"
+        },
+        "studioAdvertiserId": {
+          "description": "Studio advertiser ID of this studio creative. This is a required field on insertion.",
+          "format": "int64",
+          "type": "string"
+        },
+        "studioCampaignId": {
+          "description": "Studio campaign ID of this studio creative. This is a required field on insertion.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StudioCreativeAsset": {
+      "description": "Contains studio creative asset information.",
+      "id": "StudioCreativeAsset",
+      "properties": {
+        "createInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "Output only. The creation timestamp of the studio creative asset. This is a read-only field.",
+          "readOnly": true
+        },
+        "filename": {
+          "description": "The filename of the studio creative asset. It is default to the original filename of the asset.",
+          "type": "string"
+        },
+        "filesize": {
+          "description": "The filesize of the studio creative asset. This is a read-only field.",
+          "format": "int64",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. Unique ID of this studio creative asset. This is a read-only, auto-generated field.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastModifiedInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "Output only. The last modified timestamp of the studio creative asset. This is a read-only field.",
+          "readOnly": true
+        },
+        "studioAccountId": {
+          "description": "Studio account ID of this studio creative asset. This field, if left unset, will be auto-populated..",
+          "format": "int64",
+          "type": "string"
+        },
+        "studioAdvertiserId": {
+          "description": "Studio advertiser ID of this studio creative asset. This is a required field on insertion.",
+          "format": "int64",
+          "type": "string"
+        },
+        "studioCreativeId": {
+          "description": "Studio creative ID of this studio creative asset. The asset will be associated to the creative if creative id is set.",
+          "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the studio creative asset. It is a auto-generated, read-only field.",
+          "enum": [
+            "UNKNOWN_TYPE",
+            "HTML",
+            "VIDEO",
+            "IMAGE",
+            "FONT"
+          ],
+          "enumDescriptions": [
+            "Unknown type of asset.",
+            "The asset is an HTML file.",
+            "The asset is a video file.",
+            "The asset is an image file.",
+            "The asset is a font file."
+          ],
+          "type": "string"
+        },
+        "videoProcessingData": {
+          "$ref": "VideoProcessingData",
+          "description": "The processing data of the studio creative asset. This is a read-only field."
+        }
+      },
+      "type": "object"
+    },
+    "StudioCreativeAssetsResponse": {
+      "description": "Response message for DfareportingStudioCreativeAssets.Insert.",
+      "id": "StudioCreativeAssetsResponse",
+      "properties": {
+        "assets": {
+          "description": "The list of studio creative assets.",
+          "items": {
+            "$ref": "StudioCreativeAsset"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "StudioCreativeDimension": {
+      "description": "Dimension information for a studio creative.",
+      "id": "StudioCreativeDimension",
+      "properties": {
+        "height": {
+          "description": "Height of the studio creative.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "width": {
+          "description": "Width of the studio creative.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Subaccount": {
       "description": "Contains properties of a Campaign Manager subaccount.",
       "id": "Subaccount",
@@ -22620,6 +23057,34 @@
           "description": "Duration, in seconds. Do not set when offsetPercentage is set. Acceptable values are 0 to 86399, inclusive.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "VideoProcessingData": {
+      "description": "Contains processing data for a video asset.",
+      "id": "VideoProcessingData",
+      "properties": {
+        "errorReason": {
+          "description": "For a FAILED processing state, the error reason discovered.",
+          "type": "string"
+        },
+        "processingState": {
+          "description": "Output only. The processing state of the studio creative asset.",
+          "enum": [
+            "UNKNOWN",
+            "PROCESSING",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The processing state is unknown.",
+            "The asset is being processed.",
+            "The asset was successfully processed.",
+            "The asset failed to be processed."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
