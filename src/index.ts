@@ -98,6 +98,7 @@ export {bigquery_v2} from './apis/bigquery/v2';
 export {bigqueryconnection_v1} from './apis/bigqueryconnection/v1';
 export {bigqueryconnection_v1beta1} from './apis/bigqueryconnection/v1beta1';
 export {bigquerydatapolicy_v1} from './apis/bigquerydatapolicy/v1';
+export {bigquerydatapolicy_v2} from './apis/bigquerydatapolicy/v2';
 export {bigquerydatatransfer_v1} from './apis/bigquerydatatransfer/v1';
 export {bigqueryreservation_v1} from './apis/bigqueryreservation/v1';
 export {bigqueryreservation_v1alpha2} from './apis/bigqueryreservation/v1alpha2';
