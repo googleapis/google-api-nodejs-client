@@ -1584,6 +1584,10 @@ export namespace iam_v1 {
      */
     saml?: Schema$GoogleIamAdminV1WorkforcePoolProviderSaml;
     /**
+     * Optional. Agentspace only. Specifies whether the workforce identity pool provider uses SCIM-managed groups instead of the `google.groups` attribute mapping for authorization checks. The `scim_usage` and `extended_attributes_oauth2_client` fields are mutually exclusive. A request that enables both fields on the same workforce identity pool provider will produce an error.
+     */
+    scimUsage?: string | null;
+    /**
      * Output only. The state of the provider.
      */
     state?: string | null;
@@ -3881,6 +3885,7 @@ export namespace iam_v1 {
      *       //   "name": "my_name",
      *       //   "oidc": {},
      *       //   "saml": {},
+     *       //   "scimUsage": "my_scimUsage",
      *       //   "state": "my_state"
      *       // }
      *     },
@@ -4182,6 +4187,7 @@ export namespace iam_v1 {
      *   //   "name": "my_name",
      *   //   "oidc": {},
      *   //   "saml": {},
+     *   //   "scimUsage": "my_scimUsage",
      *   //   "state": "my_state"
      *   // }
      * }
@@ -4486,6 +4492,7 @@ export namespace iam_v1 {
      *       //   "name": "my_name",
      *       //   "oidc": {},
      *       //   "saml": {},
+     *       //   "scimUsage": "my_scimUsage",
      *       //   "state": "my_state"
      *       // }
      *     },
