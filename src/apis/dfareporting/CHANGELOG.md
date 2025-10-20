@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v17.0.0...dfareporting-v17.1.0) (2025-10-20)
+
+
+### Features
+
+* run the generator ([#3820](https://github.com/googleapis/google-api-nodejs-client/issues/3820)) ([fd02f58](https://github.com/googleapis/google-api-nodejs-client/commit/fd02f58f72d1511a247e39fd2f041f0862f7f526))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v16.0.0...dfareporting-v17.0.0) (2025-10-15)
 
 
