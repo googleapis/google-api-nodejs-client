@@ -138,6 +138,10 @@ export namespace texttospeech_v1 {
      * Only for Journey voices. If false, the synthesis is context aware and has a higher latency.
      */
     lowLatencyJourneySynthesis?: boolean | null;
+    /**
+     * Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only supported for accounts linked to Invoiced (Offline) Cloud billing accounts. Otherwise, will return result google.rpc.Code.INVALID_ARGUMENT.
+     */
+    relaxSafetyFilters?: boolean | null;
   }
   /**
    * Description of audio data to be synthesized.
