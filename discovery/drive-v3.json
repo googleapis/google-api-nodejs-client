@@ -1850,7 +1850,7 @@
     "permissions": {
       "methods": {
         "create": {
-          "description": "Creates a permission for a file or shared drive. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.",
+          "description": "Creates a permission for a file or shared drive. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permissions operations on the same file aren't supported; only the last update is applied.",
           "flatPath": "files/{fileId}/permissions",
           "httpMethod": "POST",
           "id": "drive.permissions.create",
@@ -1884,7 +1884,7 @@
             },
             "moveToNewOwnersRoot": {
               "default": "false",
-              "description": "This parameter will only take effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. If set to `true`, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to `false`, parents are not changed.",
+              "description": "This parameter only takes effect if the item isn't in a shared drive and the request is attempting to transfer the ownership of the item. If set to `true`, the item is moved to the new owner's My Drive root folder and all prior parents removed. If set to `false`, parents aren't changed.",
               "location": "query",
               "type": "boolean"
             },
@@ -1908,13 +1908,13 @@
             },
             "transferOwnership": {
               "default": "false",
-              "description": "Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.",
+              "description": "Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect. For more information, see [Transfer file ownership](https://developers.google.com/workspace/drive/api/guides/transfer-file).",
               "location": "query",
               "type": "boolean"
             },
             "useDomainAdminAccess": {
               "default": "false",
-              "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.",
+              "description": "Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).",
               "location": "query",
               "type": "boolean"
             }
@@ -1932,7 +1932,7 @@
           ]
         },
         "delete": {
-          "description": "Deletes a permission. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.",
+          "description": "Deletes a permission. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permissions operations on the same file aren't supported; only the last update is applied.",
           "flatPath": "files/{fileId}/permissions/{permissionId}",
           "httpMethod": "DELETE",
           "id": "drive.permissions.delete",
@@ -1974,7 +1974,7 @@
             },
             "useDomainAdminAccess": {
               "default": "false",
-              "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.",
+              "description": "Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).",
               "location": "query",
               "type": "boolean"
             }
@@ -1986,7 +1986,7 @@
           ]
         },
         "get": {
-          "description": "Gets a permission by ID.",
+          "description": "Gets a permission by ID. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing).",
           "flatPath": "files/{fileId}/permissions/{permissionId}",
           "httpMethod": "GET",
           "id": "drive.permissions.get",
@@ -2022,7 +2022,7 @@
             },
             "useDomainAdminAccess": {
               "default": "false",
-              "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.",
+              "description": "Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).",
               "location": "query",
               "type": "boolean"
             }
@@ -2042,7 +2042,7 @@
           ]
         },
         "list": {
-          "description": "Lists a file's or shared drive's permissions.",
+          "description": "Lists a file's or shared drive's permissions. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing).",
           "flatPath": "files/{fileId}/permissions",
           "httpMethod": "GET",
           "id": "drive.permissions.list",
@@ -2057,7 +2057,7 @@
               "type": "string"
             },
             "includePermissionsForView": {
-              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "description": "Specifies which additional view's permissions to include in the response. Only `published` is supported.",
               "location": "query",
               "type": "string"
             },
@@ -2070,7 +2070,7 @@
               "type": "integer"
             },
             "pageToken": {
-              "description": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
+              "description": "The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.",
               "location": "query",
               "type": "string"
             },
@@ -2089,7 +2089,7 @@
             },
             "useDomainAdminAccess": {
               "default": "false",
-              "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.",
+              "description": "Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).",
               "location": "query",
               "type": "boolean"
             }
@@ -2109,7 +2109,7 @@
           ]
         },
         "update": {
-          "description": "Updates a permission with patch semantics. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.",
+          "description": "Updates a permission with patch semantics. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permissions operations on the same file aren't supported; only the last update is applied.",
           "flatPath": "files/{fileId}/permissions/{permissionId}",
           "httpMethod": "PATCH",
           "id": "drive.permissions.update",
@@ -2157,13 +2157,13 @@
             },
             "transferOwnership": {
               "default": "false",
-              "description": "Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.",
+              "description": "Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect. For more information, see [Transfer file ownership](https://developers.google.com//workspace/drive/api/guides/transfer-file).",
               "location": "query",
               "type": "boolean"
             },
             "useDomainAdminAccess": {
               "default": "false",
-              "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.",
+              "description": "Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).",
               "location": "query",
               "type": "boolean"
             }
@@ -2720,7 +2720,7 @@
       }
     }
   },
-  "revision": "20250910",
+  "revision": "20251013",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -4606,7 +4606,7 @@
       "type": "object"
     },
     "Permission": {
-      "description": "A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. By default, permissions requests only return a subset of fields. Permission kind, ID, type, and role are always returned. To retrieve specific fields, see https://developers.google.com/workspace/drive/api/guides/fields-parameter. Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.",
+      "description": "A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). By default, permission requests only return a subset of fields. Permission `kind`, `ID`, `type`, and `role` are always returned. To retrieve specific fields, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter). Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.",
       "id": "Permission",
       "properties": {
         "allowFileDiscovery": {
@@ -4614,11 +4614,11 @@
           "type": "boolean"
         },
         "deleted": {
-          "description": "Output only. Whether the account associated with this permission has been deleted. This field only pertains to user and group permissions.",
+          "description": "Output only. Whether the account associated with this permission has been deleted. This field only pertains to permissions of type `user` or `group`.",
           "type": "boolean"
         },
         "displayName": {
-          "description": "Output only. The \"pretty\" name of the value of the permission. The following is a list of examples for each type of permission: * `user` - User's full name, as defined for their Google account, such as \"Joe Smith.\" * `group` - Name of the Google Group, such as \"The Company Administrators.\" * `domain` - String domain name, such as \"thecompany.com.\" * `anyone` - No `displayName` is present.",
+          "description": "Output only. The \"pretty\" name of the value of the permission. The following is a list of examples for each type of permission: * `user` - User's full name, as defined for their Google Account, such as \"Dana A.\" * `group` - Name of the Google Group, such as \"The Company Administrators.\" * `domain` - String domain name, such as \"cymbalgroup.com.\" * `anyone` - No `displayName` is present.",
           "type": "string"
         },
         "domain": {
@@ -4635,11 +4635,11 @@
           "type": "string"
         },
         "id": {
-          "description": "Output only. The ID of this permission. This is a unique identifier for the grantee, and is published in User resources as `permissionId`. IDs should be treated as opaque values.",
+          "description": "Output only. The ID of this permission. This is a unique identifier for the grantee, and is published in the [User resource](https://developers.google.com/workspace/drive/api/reference/rest/v3/User) as `permissionId`. IDs should be treated as opaque values.",
           "type": "string"
         },
         "inheritedPermissionsDisabled": {
-          "description": "When true, only organizers, owners, and users with permissions added directly on the item can access it.",
+          "description": "When `true`, only organizers, owners, and users with permissions added directly on the item can access it.",
           "type": "boolean"
         },
         "kind": {
@@ -4648,11 +4648,11 @@
           "type": "string"
         },
         "pendingOwner": {
-          "description": "Whether the account associated with this permission is a pending owner. Only populated for `user` type permissions for files that are not in a shared drive.",
+          "description": "Whether the account associated with this permission is a pending owner. Only populated for permissions of type `user` for files that aren't in a shared drive.",
           "type": "boolean"
         },
         "permissionDetails": {
-          "description": "Output only. Details of whether the permissions on this item are inherited or directly on this item.",
+          "description": "Output only. Details of whether the permissions on this item are inherited or are directly on this item.",
           "items": {
             "properties": {
               "inherited": {
@@ -4664,11 +4664,11 @@
                 "type": "string"
               },
               "permissionType": {
-                "description": "Output only. The permission type for this user. While new values may be added in future, the following are currently possible: * `file` * `member`",
+                "description": "Output only. The permission type for this user. Supported values include: * `file` * `member`",
                 "type": "string"
               },
               "role": {
-                "description": "Output only. The primary role for this user. While new values may be added in the future, the following are currently possible: * `owner` * `organizer` * `fileOrganizer` * `writer` * `commenter` * `reader`",
+                "description": "Output only. The primary role for this user. Supported values include: * `owner` * `organizer` * `fileOrganizer` * `writer` * `commenter` * `reader` For more information, see [Roles and permissions](https://developers.google.com/workspace/drive/api/guides/ref-roles).",
                 "type": "string"
               }
             },
@@ -4687,7 +4687,7 @@
               "drive.permissions.create"
             ]
           },
-          "description": "The role granted by this permission. While new values may be supported in the future, the following are currently allowed: * `owner` * `organizer` * `fileOrganizer` * `writer` * `commenter` * `reader`",
+          "description": "The role granted by this permission. Supported values include: * `owner` * `organizer` * `fileOrganizer` * `writer` * `commenter` * `reader` For more information, see [Roles and permissions](https://developers.google.com/workspace/drive/api/guides/ref-roles).",
           "type": "string"
         },
         "teamDrivePermissionDetails": {
@@ -4727,11 +4727,11 @@
               "drive.permissions.create"
             ]
           },
-          "description": "The type of the grantee. Valid values are: * `user` * `group` * `domain` * `anyone` When creating a permission, if `type` is `user` or `group`, you must provide an `emailAddress` for the user or group. When `type` is `domain`, you must provide a `domain`. There isn't extra information required for an `anyone` type.",
+          "description": "The type of the grantee. Supported values include: * `user` * `group` * `domain` * `anyone` When creating a permission, if `type` is `user` or `group`, you must provide an `emailAddress` for the user or group. If `type` is `domain`, you must provide a `domain`. If `type` is `anyone`, no extra information is required.",
           "type": "string"
         },
         "view": {
-          "description": "Indicates the view for this permission. Only populated for permissions that belong to a view. published and metadata are the only supported values. - published: The permission's role is published_reader. - metadata: The item is only visible to the metadata view because the item has limited access and the scope has at least read access to the parent. Note: The metadata view is currently only supported on folders. ",
+          "description": "Indicates the view for this permission. Only populated for permissions that belong to a view. The only supported values are `published` and `metadata`: * `published`: The permission's role is `publishedReader`. * `metadata`: The item is only visible to the `metadata` view because the item has limited access and the scope has at least read access to the parent. The `metadata` view is only supported on folders. For more information, see [Views](https://developers.google.com/workspace/drive/api/guides/ref-roles#views).",
           "type": "string"
         }
       },
@@ -4751,7 +4751,7 @@
           "type": "string"
         },
         "permissions": {
-          "description": "The list of permissions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
+          "description": "The list of permissions. If `nextPageToken` is populated, then this list may be incomplete and an additional page of results should be fetched.",
           "items": {
             "$ref": "Permission"
           },
