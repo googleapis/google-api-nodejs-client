@@ -467,6 +467,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://datastore.us.rep.googleapis.com/",
       "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://batch-datastore.eu.rep.googleapis.com/",
+      "location": "eu"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://batch-datastore.us.rep.googleapis.com/",
+      "location": "us"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -620,7 +630,7 @@
       }
     }
   },
-  "revision": "20251001",
+  "revision": "20251014",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "GoogleDatastoreAdminV1CommonMetadata": {

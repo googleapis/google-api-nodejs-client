@@ -17,7 +17,7 @@
   "canonicalName": "Chromewebstore",
   "description": "The Chrome Web Store API provides access to data about apps and extensions, as well as developer tools for managing them.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developer.chrome.com/webstore/api_index",
+  "documentationLink": "https://developer.chrome.com/docs/webstore/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -268,7 +268,7 @@
       }
     }
   },
-  "revision": "20251006",
+  "revision": "20251015",
   "rootUrl": "https://chromewebstore.googleapis.com/",
   "schemas": {
     "Item": {

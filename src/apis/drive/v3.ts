@@ -1328,7 +1328,7 @@ export namespace drive_v3 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. By default, permissions requests only return a subset of fields. Permission kind, ID, type, and role are always returned. To retrieve specific fields, see https://developers.google.com/workspace/drive/api/guides/fields-parameter. Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.
+   * A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). By default, permission requests only return a subset of fields. Permission `kind`, `ID`, `type`, and `role` are always returned. To retrieve specific fields, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter). Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.
    */
   export interface Schema$Permission {
     /**
@@ -1336,11 +1336,11 @@ export namespace drive_v3 {
      */
     allowFileDiscovery?: boolean | null;
     /**
-     * Output only. Whether the account associated with this permission has been deleted. This field only pertains to user and group permissions.
+     * Output only. Whether the account associated with this permission has been deleted. This field only pertains to permissions of type `user` or `group`.
      */
     deleted?: boolean | null;
     /**
-     * Output only. The "pretty" name of the value of the permission. The following is a list of examples for each type of permission: * `user` - User's full name, as defined for their Google account, such as "Joe Smith." * `group` - Name of the Google Group, such as "The Company Administrators." * `domain` - String domain name, such as "thecompany.com." * `anyone` - No `displayName` is present.
+     * Output only. The "pretty" name of the value of the permission. The following is a list of examples for each type of permission: * `user` - User's full name, as defined for their Google Account, such as "Dana A." * `group` - Name of the Google Group, such as "The Company Administrators." * `domain` - String domain name, such as "cymbalgroup.com." * `anyone` - No `displayName` is present.
      */
     displayName?: string | null;
     /**
@@ -1356,11 +1356,11 @@ export namespace drive_v3 {
      */
     expirationTime?: string | null;
     /**
-     * Output only. The ID of this permission. This is a unique identifier for the grantee, and is published in User resources as `permissionId`. IDs should be treated as opaque values.
+     * Output only. The ID of this permission. This is a unique identifier for the grantee, and is published in the [User resource](https://developers.google.com/workspace/drive/api/reference/rest/v3/User) as `permissionId`. IDs should be treated as opaque values.
      */
     id?: string | null;
     /**
-     * When true, only organizers, owners, and users with permissions added directly on the item can access it.
+     * When `true`, only organizers, owners, and users with permissions added directly on the item can access it.
      */
     inheritedPermissionsDisabled?: boolean | null;
     /**
@@ -1368,11 +1368,11 @@ export namespace drive_v3 {
      */
     kind?: string | null;
     /**
-     * Whether the account associated with this permission is a pending owner. Only populated for `user` type permissions for files that are not in a shared drive.
+     * Whether the account associated with this permission is a pending owner. Only populated for permissions of type `user` for files that aren't in a shared drive.
      */
     pendingOwner?: boolean | null;
     /**
-     * Output only. Details of whether the permissions on this item are inherited or directly on this item.
+     * Output only. Details of whether the permissions on this item are inherited or are directly on this item.
      */
     permissionDetails?: Array<{
       inherited?: boolean;
@@ -1385,7 +1385,7 @@ export namespace drive_v3 {
      */
     photoLink?: string | null;
     /**
-     * The role granted by this permission. While new values may be supported in the future, the following are currently allowed: * `owner` * `organizer` * `fileOrganizer` * `writer` * `commenter` * `reader`
+     * The role granted by this permission. Supported values include: * `owner` * `organizer` * `fileOrganizer` * `writer` * `commenter` * `reader` For more information, see [Roles and permissions](https://developers.google.com/workspace/drive/api/guides/ref-roles).
      */
     role?: string | null;
     /**
@@ -1398,11 +1398,11 @@ export namespace drive_v3 {
       teamDrivePermissionType?: string;
     }> | null;
     /**
-     * The type of the grantee. Valid values are: * `user` * `group` * `domain` * `anyone` When creating a permission, if `type` is `user` or `group`, you must provide an `emailAddress` for the user or group. When `type` is `domain`, you must provide a `domain`. There isn't extra information required for an `anyone` type.
+     * The type of the grantee. Supported values include: * `user` * `group` * `domain` * `anyone` When creating a permission, if `type` is `user` or `group`, you must provide an `emailAddress` for the user or group. If `type` is `domain`, you must provide a `domain`. If `type` is `anyone`, no extra information is required.
      */
     type?: string | null;
     /**
-     * Indicates the view for this permission. Only populated for permissions that belong to a view. published and metadata are the only supported values. - published: The permission's role is published_reader. - metadata: The item is only visible to the metadata view because the item has limited access and the scope has at least read access to the parent. Note: The metadata view is currently only supported on folders.
+     * Indicates the view for this permission. Only populated for permissions that belong to a view. The only supported values are `published` and `metadata`: * `published`: The permission's role is `publishedReader`. * `metadata`: The item is only visible to the `metadata` view because the item has limited access and the scope has at least read access to the parent. The `metadata` view is only supported on folders. For more information, see [Views](https://developers.google.com/workspace/drive/api/guides/ref-roles#views).
      */
     view?: string | null;
   }
@@ -1419,7 +1419,7 @@ export namespace drive_v3 {
      */
     nextPageToken?: string | null;
     /**
-     * The list of permissions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
+     * The list of permissions. If `nextPageToken` is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
     permissions?: Schema$Permission[];
   }
@@ -8587,7 +8587,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Creates a permission for a file or shared drive. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
+     * Creates a permission for a file or shared drive. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permissions operations on the same file aren't supported; only the last update is applied.
      * @example
      * ```js
      * // Before running the sample:
@@ -8628,7 +8628,7 @@ export namespace drive_v3 {
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file or shared drive.
      *     fileId: 'placeholder-value',
-     *     // This parameter will only take effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. If set to `true`, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to `false`, parents are not changed.
+     *     // This parameter only takes effect if the item isn't in a shared drive and the request is attempting to transfer the ownership of the item. If set to `true`, the item is moved to the new owner's My Drive root folder and all prior parents removed. If set to `false`, parents aren't changed.
      *     moveToNewOwnersRoot: 'placeholder-value',
      *     // Whether to send a notification email when sharing to users or groups. This defaults to `true` for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.
      *     sendNotificationEmail: 'placeholder-value',
@@ -8636,9 +8636,9 @@ export namespace drive_v3 {
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated: Use `supportsAllDrives` instead.
      *     supportsTeamDrives: 'placeholder-value',
-     *     // Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
+     *     // Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect. For more information, see [Transfer file ownership](https://developers.google.com/workspace/drive/api/guides/transfer-file).
      *     transferOwnership: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     // Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).
      *     useDomainAdminAccess: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8783,7 +8783,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Deletes a permission. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
+     * Deletes a permission. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permissions operations on the same file aren't supported; only the last update is applied.
      * @example
      * ```js
      * // Before running the sample:
@@ -8826,7 +8826,7 @@ export namespace drive_v3 {
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated: Use `supportsAllDrives` instead.
      *     supportsTeamDrives: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     // Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).
      *     useDomainAdminAccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8925,7 +8925,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Gets a permission by ID.
+     * Gets a permission by ID. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing).
      * @example
      * ```js
      * // Before running the sample:
@@ -8971,7 +8971,7 @@ export namespace drive_v3 {
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated: Use `supportsAllDrives` instead.
      *     supportsTeamDrives: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     // Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).
      *     useDomainAdminAccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9091,7 +9091,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Lists a file's or shared drive's permissions.
+     * Lists a file's or shared drive's permissions. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing).
      * @example
      * ```js
      * // Before running the sample:
@@ -9131,17 +9131,17 @@ export namespace drive_v3 {
      *   const res = await drive.permissions.list({
      *     // The ID of the file or shared drive.
      *     fileId: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     // Specifies which additional view's permissions to include in the response. Only `published` is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
      *     pageSize: 'placeholder-value',
-     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.
      *     pageToken: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated: Use `supportsAllDrives` instead.
      *     supportsTeamDrives: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     // Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).
      *     useDomainAdminAccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9249,7 +9249,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Updates a permission with patch semantics. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
+     * Updates a permission with patch semantics. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permissions operations on the same file aren't supported; only the last update is applied.
      * @example
      * ```js
      * // Before running the sample:
@@ -9294,9 +9294,9 @@ export namespace drive_v3 {
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated: Use `supportsAllDrives` instead.
      *     supportsTeamDrives: 'placeholder-value',
-     *     // Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
+     *     // Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect. For more information, see [Transfer file ownership](https://developers.google.com//workspace/drive/api/guides/transfer-file).
      *     transferOwnership: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     // Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).
      *     useDomainAdminAccess: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9459,7 +9459,7 @@ export namespace drive_v3 {
      */
     fileId?: string;
     /**
-     * This parameter will only take effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. If set to `true`, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to `false`, parents are not changed.
+     * This parameter only takes effect if the item isn't in a shared drive and the request is attempting to transfer the ownership of the item. If set to `true`, the item is moved to the new owner's My Drive root folder and all prior parents removed. If set to `false`, parents aren't changed.
      */
     moveToNewOwnersRoot?: boolean;
     /**
@@ -9475,11 +9475,11 @@ export namespace drive_v3 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
+     * Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect. For more information, see [Transfer file ownership](https://developers.google.com/workspace/drive/api/guides/transfer-file).
      */
     transferOwnership?: boolean;
     /**
-     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     * Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).
      */
     useDomainAdminAccess?: boolean;
 
@@ -9511,7 +9511,7 @@ export namespace drive_v3 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     * Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).
      */
     useDomainAdminAccess?: boolean;
   }
@@ -9533,7 +9533,7 @@ export namespace drive_v3 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     * Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).
      */
     useDomainAdminAccess?: boolean;
   }
@@ -9543,7 +9543,7 @@ export namespace drive_v3 {
      */
     fileId?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
@@ -9551,7 +9551,7 @@ export namespace drive_v3 {
      */
     pageSize?: number;
     /**
-     * The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     * The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.
      */
     pageToken?: string;
     /**
@@ -9563,7 +9563,7 @@ export namespace drive_v3 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     * Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).
      */
     useDomainAdminAccess?: boolean;
   }
@@ -9594,11 +9594,11 @@ export namespace drive_v3 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
+     * Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect. For more information, see [Transfer file ownership](https://developers.google.com//workspace/drive/api/guides/transfer-file).
      */
     transferOwnership?: boolean;
     /**
-     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     * Issue the request as a domain administrator. If set to `true`, and if the following additional conditions are met, the requester is granted access: 1. The file ID parameter refers to a shared drive. 2. The requester is an administrator of the domain to which the shared drive belongs. For more information, see [Manage shared drives as domain administrators](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives#manage-administrators).
      */
     useDomainAdminAccess?: boolean;
 

@@ -4160,7 +4160,7 @@
       }
     }
   },
-  "revision": "20251003",
+  "revision": "20251010",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
@@ -6352,6 +6352,18 @@
           "$ref": "GoogleIamAdminV1WorkforcePoolProviderSaml",
           "description": "A SAML identity provider configuration."
         },
+        "scimUsage": {
+          "description": "Optional. Agentspace only. Specifies whether the workforce identity pool provider uses SCIM-managed groups instead of the `google.groups` attribute mapping for authorization checks. The `scim_usage` and `extended_attributes_oauth2_client` fields are mutually exclusive. A request that enables both fields on the same workforce identity pool provider will produce an error.",
+          "enum": [
+            "SCIM_USAGE_UNSPECIFIED",
+            "ENABLED_FOR_GROUPS"
+          ],
+          "enumDescriptions": [
+            "Agentspace only. Do not use SCIM data.",
+            "Agentspace only. SCIM sync is enabled and SCIM-managed groups are used for authorization checks."
+          ],
+          "type": "string"
+        },
         "state": {
           "description": "Output only. The state of the provider.",
           "enum": [
@@ -6410,7 +6422,7 @@
             "ENCRYPTION"
           ],
           "enumDescriptions": [
-            "KeyUse unspecified.",
+            "KeyUse unspecified. Do not use. The purpose of the key must be specified.",
             "The key is used for encryption."
           ],
           "type": "string"

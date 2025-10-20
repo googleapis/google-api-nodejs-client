@@ -2685,7 +2685,7 @@
       }
     }
   },
-  "revision": "20250923",
+  "revision": "20250930",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3834,6 +3834,10 @@
           "$ref": "SecretManagerConfig",
           "description": "Secret CSI driver configuration."
         },
+        "secretSyncConfig": {
+          "$ref": "SecretSyncConfig",
+          "description": "Configuration for sync Secret Manager secrets as k8s secrets."
+        },
         "securityPostureConfig": {
           "$ref": "SecurityPostureConfig",
           "description": "Enable/Disable Security Posture API features for the cluster."
@@ -4603,6 +4607,10 @@
         "privateRegistryAccessConfig": {
           "$ref": "PrivateRegistryAccessConfig",
           "description": "PrivateRegistryAccessConfig is used to configure access configuration for private container registries."
+        },
+        "writableCgroups": {
+          "$ref": "WritableCgroups",
+          "description": "Optional. WritableCgroups defines writable cgroups configuration for the node pool."
         }
       },
       "type": "object"
@@ -6930,7 +6938,7 @@
           "type": "boolean"
         },
         "cpuCfsQuotaPeriod": {
-          "description": "Set the CPU CFS quota period value 'cpu.cfs_period_us'. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"300ms\". Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\". The value must be a positive duration.",
+          "description": "Set the CPU CFS quota period value 'cpu.cfs_period_us'. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"300ms\". Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\". The value must be a positive duration between 1ms and 1 second, inclusive.",
           "type": "string"
         },
         "cpuManagerPolicy": {
@@ -8337,6 +8345,21 @@
       },
       "type": "object"
     },
+    "SecretSyncConfig": {
+      "description": "Configuration for sync Secret Manager secrets as k8s secrets.",
+      "id": "SecretSyncConfig",
+      "properties": {
+        "enabled": {
+          "description": "Enable/Disable Secret Sync Config.",
+          "type": "boolean"
+        },
+        "rotationConfig": {
+          "$ref": "SyncRotationConfig",
+          "description": "Rotation config for secret manager."
+        }
+      },
+      "type": "object"
+    },
     "SecurityBulletinEvent": {
       "description": "SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.",
       "id": "SecurityBulletinEvent",
@@ -9109,6 +9132,22 @@
         },
         "message": {
           "description": "Human-friendly representation of the condition",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SyncRotationConfig": {
+      "description": "SyncRotationConfig is config for secret manager auto rotation.",
+      "id": "SyncRotationConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the rotation is enabled.",
+          "type": "boolean"
+        },
+        "rotationInterval": {
+          "description": "The interval between two consecutive rotations. Default rotation interval is 2 minutes.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -9977,6 +10016,17 @@
         },
         "autopilotCompatibilityAuditingEnabled": {
           "description": "If true, enables the GCW Auditor that audits workloads on standard clusters.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "WritableCgroups": {
+      "description": "Defines writable cgroups configuration.",
+      "id": "WritableCgroups",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether writable cgroups is enabled.",
           "type": "boolean"
         }
       },

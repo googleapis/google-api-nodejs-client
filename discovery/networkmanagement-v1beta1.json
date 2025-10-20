@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20251008",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1902,7 +1902,9 @@
             "CLOUD_NAT_PROTOCOL_UNSUPPORTED",
             "L2_INTERCONNECT_UNSUPPORTED_PROTOCOL",
             "L2_INTERCONNECT_UNSUPPORTED_PORT",
-            "L2_INTERCONNECT_DESTINATION_IP_MISMATCH"
+            "L2_INTERCONNECT_DESTINATION_IP_MISMATCH",
+            "NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED",
+            "HYBRID_SUBNET_REGION_MISMATCH"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -2001,7 +2003,9 @@
             "Packet is dropped by Cloud NAT due to using an unsupported protocol.",
             "Packet is dropped due to using an unsupported protocol (any other than UDP) for L2 Interconnect.",
             "Packet is dropped due to using an unsupported port (any other than 6081) for L2 Interconnect.",
-            "Packet is dropped due to destination IP not matching the appliance mapping IPs configured on the L2 Interconnect attachment."
+            "Packet is dropped due to destination IP not matching the appliance mapping IPs configured on the L2 Interconnect attachment.",
+            "Packet could be dropped because it matches a route associated with an NCC spoke in the hybrid subnet context, but such a configuration is not supported.",
+            "Packet is dropped because the region of the hybrid subnet is different from the region of the next hop of the route matched within this hybrid subnet."
           ],
           "type": "string"
         },

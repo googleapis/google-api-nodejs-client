@@ -266,7 +266,7 @@
       }
     }
   },
-  "revision": "20251001",
+  "revision": "20251014",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AdvancedVoiceOptions": {
@@ -275,6 +275,10 @@
       "properties": {
         "lowLatencyJourneySynthesis": {
           "description": "Only for Journey voices. If false, the synthesis is context aware and has a higher latency.",
+          "type": "boolean"
+        },
+        "relaxSafetyFilters": {
+          "description": "Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only supported for accounts linked to Invoiced (Offline) Cloud billing accounts. Otherwise, will return result google.rpc.Code.INVALID_ARGUMENT.",
           "type": "boolean"
         }
       },

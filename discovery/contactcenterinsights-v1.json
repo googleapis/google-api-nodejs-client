@@ -5648,7 +5648,7 @@
       }
     }
   },
-  "revision": "20251007",
+  "revision": "20251014",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -7565,7 +7565,8 @@
             "CONVERSATION_PROFILE_ID",
             "MEDIUM",
             "AGENT_VERSION_ID",
-            "AGENT_DEPLOYMENT_ID"
+            "AGENT_DEPLOYMENT_ID",
+            "AGENT_ASSIST_SUPERVISOR_ID"
           ],
           "enumDescriptions": [
             "The key of the dimension is unspecified.",
@@ -7579,7 +7580,8 @@
             "The dimension is keyed by the conversation profile ID.",
             "The dimension is keyed by the conversation medium.",
             "The dimension is keyed by the agent version ID.",
-            "The dimension is keyed by the agent deployment ID."
+            "The dimension is keyed by the agent deployment ID.",
+            "The dimension is keyed by the supervisor ID of the assigned human supervisor for virtual agents."
           ],
           "type": "string"
         },
@@ -12106,7 +12108,8 @@
             "CONVERSATION_PROFILE_ID",
             "MEDIUM",
             "AGENT_VERSION_ID",
-            "AGENT_DEPLOYMENT_ID"
+            "AGENT_DEPLOYMENT_ID",
+            "AGENT_ASSIST_SUPERVISOR_ID"
           ],
           "enumDescriptions": [
             "The key of the dimension is unspecified.",
@@ -12120,7 +12123,8 @@
             "The dimension is keyed by the conversation profile ID.",
             "The dimension is keyed by the conversation medium.",
             "The dimension is keyed by the agent version ID.",
-            "The dimension is keyed by the agent deployment ID."
+            "The dimension is keyed by the agent deployment ID.",
+            "The dimension is keyed by the supervisor ID of the assigned human supervisor for virtual agents."
           ],
           "type": "string"
         },

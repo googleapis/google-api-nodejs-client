@@ -468,6 +468,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://firestore.us.rep.googleapis.com/",
       "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://batch-firestore.eu.rep.googleapis.com/",
+      "location": "eu"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://batch-firestore.us.rep.googleapis.com/",
+      "location": "us"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -867,7 +877,7 @@
       }
     }
   },
-  "revision": "20251001",
+  "revision": "20251014",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Empty": {
