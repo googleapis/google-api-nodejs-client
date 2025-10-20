@@ -3196,6 +3196,10 @@ export namespace docs_v1 {
    */
   export interface Schema$TabProperties {
     /**
+     * Optional. The emoji icon displayed with the tab. A valid emoji icon is represented by a non-empty Unicode string. Any set of characters that don't represent a single emoji is invalid. If an emoji is invalid, a 400 bad request error is returned. If this value is unset or empty, the tab will display the default tab icon.
+     */
+    iconEmoji?: string | null;
+    /**
      * The zero-based index of the tab within the parent.
      */
     index?: number | null;
