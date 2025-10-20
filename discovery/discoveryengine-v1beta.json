@@ -7,6 +7,12 @@
         },
         "https://www.googleapis.com/auth/cloud_search.query": {
           "description": "Search your organization's data in the Cloud Search index"
+        },
+        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite": {
+          "description": "View your Agentspace chat history, including uploaded files and generated reports and visualizations, and interact with the Agentspace assistant on your behalf."
+        },
+        "https://www.googleapis.com/auth/discoveryengine.readwrite": {
+          "description": "View, edit, create, and delete all your data associated with any Discovery Engine API product, such as Agentspace, Vertex AI Search, or NotebookLM Enterprise, including both end user data and administration or configuration data."
         }
       }
     }
@@ -169,7 +175,9 @@
             "$ref": "GdataMedia"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+            "https://www.googleapis.com/auth/discoveryengine.readwrite"
           ],
           "supportsMediaDownload": true,
           "useMediaDownloadService": true
@@ -203,7 +211,8 @@
             "$ref": "GoogleLongrunningOperation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/discoveryengine.readwrite"
           ]
         }
       },
@@ -232,7 +241,8 @@
                 "$ref": "GoogleCloudDiscoveryengineV1betaAclConfig"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
               ]
             },
             "getCmekConfig": {
@@ -257,7 +267,8 @@
                 "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
               ]
             },
             "obtainCrawlRate": {
@@ -285,7 +296,8 @@
                 "$ref": "GoogleCloudDiscoveryengineV1betaObtainCrawlRateResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
               ]
             },
             "removeDedicatedCrawlRate": {
@@ -313,7 +325,8 @@
                 "$ref": "GoogleLongrunningOperation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
               ]
             },
             "setDedicatedCrawlRate": {
@@ -341,7 +354,8 @@
                 "$ref": "GoogleLongrunningOperation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
               ]
             },
             "updateAclConfig": {
@@ -369,7 +383,8 @@
                 "$ref": "GoogleCloudDiscoveryengineV1betaAclConfig"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
               ]
             },
             "updateCmekConfig": {
@@ -402,7 +417,8 @@
                 "$ref": "GoogleLongrunningOperation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
               ]
             }
           },
@@ -431,7 +447,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "get": {
@@ -456,7 +473,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "list": {
@@ -481,7 +499,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "patch": {
@@ -514,7 +533,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 }
               }
@@ -547,7 +567,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -593,7 +614,8 @@
                             "$ref": "GoogleLongrunningListOperationsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -644,7 +666,9 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaCompleteQueryResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "create": {
@@ -697,7 +721,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "delete": {
@@ -722,7 +747,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "get": {
@@ -747,7 +773,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "getSiteSearchEngine": {
@@ -772,7 +799,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaSiteSearchEngine"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "list": {
@@ -813,7 +841,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaListDataStoresResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "patch": {
@@ -847,7 +876,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "trainCustomModel": {
@@ -875,7 +905,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   },
@@ -916,7 +947,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaBatchGetDocumentsMetadataResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       },
@@ -953,7 +985,8 @@
                                 "$ref": "GoogleCloudDiscoveryengineV1betaDocument"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "delete": {
@@ -978,7 +1011,8 @@
                                 "$ref": "GoogleProtobufEmpty"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "get": {
@@ -1003,7 +1037,8 @@
                                 "$ref": "GoogleCloudDiscoveryengineV1betaDocument"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "import": {
@@ -1031,7 +1066,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "list": {
@@ -1067,7 +1103,8 @@
                                 "$ref": "GoogleCloudDiscoveryengineV1betaListDocumentsResponse"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "patch": {
@@ -1106,7 +1143,8 @@
                                 "$ref": "GoogleCloudDiscoveryengineV1betaDocument"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "purge": {
@@ -1134,7 +1172,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             }
                           }
@@ -1166,7 +1205,8 @@
                                 "$ref": "GoogleProtobufEmpty"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "get": {
@@ -1191,7 +1231,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "list": {
@@ -1237,7 +1278,8 @@
                                 "$ref": "GoogleLongrunningListOperationsResponse"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             }
                           }
@@ -1272,7 +1314,9 @@
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform",
-                            "https://www.googleapis.com/auth/cloud_search.query"
+                            "https://www.googleapis.com/auth/cloud_search.query",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -1304,7 +1348,9 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "purge": {
@@ -1332,7 +1378,9 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -1369,7 +1417,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaControl"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "delete": {
@@ -1394,7 +1443,8 @@
                             "$ref": "GoogleProtobufEmpty"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -1419,7 +1469,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaControl"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -1460,7 +1511,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListControlsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -1494,7 +1546,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaControl"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -1526,7 +1579,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaConverseConversationResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "create": {
@@ -1554,7 +1608,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "delete": {
@@ -1579,7 +1634,8 @@
                             "$ref": "GoogleProtobufEmpty"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -1604,7 +1660,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -1650,7 +1707,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListConversationsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -1684,7 +1742,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -1713,7 +1772,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListCustomModelsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -1744,7 +1804,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "list": {
@@ -1790,7 +1851,8 @@
                                 "$ref": "GoogleLongrunningListOperationsResponse"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             }
                           }
@@ -1821,7 +1883,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -1867,7 +1930,8 @@
                             "$ref": "GoogleLongrunningListOperationsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -1904,7 +1968,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "delete": {
@@ -1929,7 +1994,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -1954,7 +2020,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaSchema"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -1990,7 +2057,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListSchemasResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -2023,7 +2091,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       },
@@ -2052,7 +2121,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "list": {
@@ -2098,7 +2168,8 @@
                                 "$ref": "GoogleLongrunningListOperationsResponse"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             }
                           }
@@ -2132,7 +2203,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaAnswerQueryResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -2157,7 +2229,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -2193,7 +2266,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListServingConfigsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -2227,7 +2301,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "recommend": {
@@ -2255,7 +2330,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaRecommendResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "search": {
@@ -2283,7 +2359,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "searchLite": {
@@ -2311,7 +2389,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "streamAnswer": {
@@ -2339,7 +2419,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaAnswerQueryResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -2371,7 +2452,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaSession"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "delete": {
@@ -2396,7 +2479,9 @@
                             "$ref": "GoogleProtobufEmpty"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -2426,7 +2511,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaSession"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -2472,7 +2559,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListSessionsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -2506,7 +2595,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaSession"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       },
@@ -2535,7 +2626,8 @@
                                 "$ref": "GoogleCloudDiscoveryengineV1betaAnswer"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             }
                           }
@@ -2569,7 +2661,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "disableAdvancedSiteSearch": {
@@ -2597,7 +2690,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "enableAdvancedSiteSearch": {
@@ -2625,7 +2719,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "fetchDomainVerificationStatus": {
@@ -2661,7 +2756,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaFetchDomainVerificationStatusResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "recrawlUris": {
@@ -2689,7 +2785,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       },
@@ -2718,7 +2815,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "list": {
@@ -2764,7 +2862,8 @@
                                 "$ref": "GoogleLongrunningListOperationsResponse"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             }
                           }
@@ -2796,7 +2895,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "delete": {
@@ -2821,7 +2921,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "fetch": {
@@ -2852,7 +2953,8 @@
                                 "$ref": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponse"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             }
                           }
@@ -2884,7 +2986,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "create": {
@@ -2912,7 +3015,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "delete": {
@@ -2937,7 +3041,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "get": {
@@ -2962,7 +3067,8 @@
                                 "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "list": {
@@ -2998,7 +3104,8 @@
                                 "$ref": "GoogleCloudDiscoveryengineV1betaListTargetSitesResponse"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
                             "patch": {
@@ -3026,7 +3133,8 @@
                                 "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             }
                           },
@@ -3055,7 +3163,8 @@
                                     "$ref": "GoogleLongrunningOperation"
                                   },
                                   "scopes": [
-                                    "https://www.googleapis.com/auth/cloud-platform"
+                                    "https://www.googleapis.com/auth/cloud-platform",
+                                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                                   ]
                                 },
                                 "list": {
@@ -3101,7 +3210,8 @@
                                     "$ref": "GoogleLongrunningListOperationsResponse"
                                   },
                                   "scopes": [
-                                    "https://www.googleapis.com/auth/cloud-platform"
+                                    "https://www.googleapis.com/auth/cloud-platform",
+                                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                                   ]
                                 }
                               }
@@ -3137,7 +3247,9 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "purge": {
@@ -3165,7 +3277,9 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -3210,7 +3324,9 @@
                             "$ref": "GoogleApiHttpBody"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "import": {
@@ -3238,7 +3354,9 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "purge": {
@@ -3266,7 +3384,9 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "write": {
@@ -3299,7 +3419,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaUserEvent"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -3338,7 +3460,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "delete": {
@@ -3363,7 +3486,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "get": {
@@ -3388,7 +3512,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaEngine"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "list": {
@@ -3429,7 +3554,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaListEnginesResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "patch": {
@@ -3463,7 +3589,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaEngine"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "pause": {
@@ -3491,7 +3618,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaEngine"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "resume": {
@@ -3519,7 +3647,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaEngine"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "tune": {
@@ -3547,7 +3676,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   },
@@ -3576,7 +3706,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaAssistant"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -3610,7 +3742,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaAssistant"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "streamAssist": {
@@ -3638,7 +3772,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaStreamAssistResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -3671,7 +3807,9 @@
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform",
-                            "https://www.googleapis.com/auth/cloud_search.query"
+                            "https://www.googleapis.com/auth/cloud_search.query",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "removeSuggestion": {
@@ -3699,7 +3837,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaRemoveSuggestionResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -3736,7 +3876,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaControl"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "delete": {
@@ -3761,7 +3902,8 @@
                             "$ref": "GoogleProtobufEmpty"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -3786,7 +3928,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaControl"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -3827,7 +3970,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListControlsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -3861,7 +4005,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaControl"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -3893,7 +4038,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaConverseConversationResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "create": {
@@ -3921,7 +4067,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "delete": {
@@ -3946,7 +4093,8 @@
                             "$ref": "GoogleProtobufEmpty"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -3971,7 +4119,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -4017,7 +4166,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListConversationsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -4051,7 +4201,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -4080,7 +4231,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -4126,7 +4278,8 @@
                             "$ref": "GoogleLongrunningListOperationsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -4158,7 +4311,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaAnswerQueryResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -4183,7 +4337,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -4219,7 +4374,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListServingConfigsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -4253,7 +4409,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "recommend": {
@@ -4281,7 +4438,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaRecommendResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "search": {
@@ -4309,7 +4467,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "searchLite": {
@@ -4337,7 +4497,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "streamAnswer": {
@@ -4365,7 +4527,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaAnswerQueryResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -4397,7 +4560,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaSession"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "delete": {
@@ -4422,7 +4587,9 @@
                             "$ref": "GoogleProtobufEmpty"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -4452,7 +4619,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaSession"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -4498,7 +4667,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListSessionsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -4532,7 +4703,9 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaSession"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       },
@@ -4561,7 +4734,8 @@
                                 "$ref": "GoogleCloudDiscoveryengineV1betaAnswer"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             }
                           }
@@ -4594,7 +4768,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "list": {
@@ -4640,7 +4815,8 @@
                         "$ref": "GoogleLongrunningListOperationsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -4691,7 +4867,9 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaCompleteQueryResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "create": {
@@ -4744,7 +4922,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "delete": {
@@ -4769,7 +4948,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "get": {
@@ -4794,7 +4974,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "getSiteSearchEngine": {
@@ -4819,7 +5000,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaSiteSearchEngine"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "list": {
@@ -4860,7 +5042,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaListDataStoresResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "patch": {
@@ -4894,7 +5077,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 }
               },
@@ -4935,7 +5119,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaBatchGetDocumentsMetadataResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   },
@@ -4972,7 +5157,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaDocument"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "delete": {
@@ -4997,7 +5183,8 @@
                             "$ref": "GoogleProtobufEmpty"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -5022,7 +5209,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaDocument"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "import": {
@@ -5050,7 +5238,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -5086,7 +5275,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListDocumentsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -5125,7 +5315,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaDocument"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "purge": {
@@ -5153,7 +5344,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -5185,7 +5377,8 @@
                             "$ref": "GoogleProtobufEmpty"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -5210,7 +5403,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -5256,7 +5450,8 @@
                             "$ref": "GoogleLongrunningListOperationsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -5291,7 +5486,9 @@
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud_search.query"
+                        "https://www.googleapis.com/auth/cloud_search.query",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -5323,7 +5520,9 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "purge": {
@@ -5351,7 +5550,9 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -5388,7 +5589,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaControl"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "delete": {
@@ -5413,7 +5615,8 @@
                         "$ref": "GoogleProtobufEmpty"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "get": {
@@ -5438,7 +5641,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaControl"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "list": {
@@ -5479,7 +5683,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaListControlsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "patch": {
@@ -5513,7 +5718,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaControl"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -5545,7 +5751,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaConverseConversationResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "create": {
@@ -5573,7 +5780,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "delete": {
@@ -5598,7 +5806,8 @@
                         "$ref": "GoogleProtobufEmpty"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "get": {
@@ -5623,7 +5832,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "list": {
@@ -5669,7 +5879,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaListConversationsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "patch": {
@@ -5703,7 +5914,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -5734,7 +5946,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -5780,7 +5993,8 @@
                             "$ref": "GoogleLongrunningListOperationsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -5811,7 +6025,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "list": {
@@ -5857,7 +6072,8 @@
                         "$ref": "GoogleLongrunningListOperationsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -5894,7 +6110,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "delete": {
@@ -5919,7 +6136,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "get": {
@@ -5944,7 +6162,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaSchema"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "list": {
@@ -5980,7 +6199,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaListSchemasResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "patch": {
@@ -6013,7 +6233,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -6045,7 +6266,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaAnswerQueryResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "get": {
@@ -6070,7 +6292,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "list": {
@@ -6106,7 +6329,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaListServingConfigsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "patch": {
@@ -6140,7 +6364,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "recommend": {
@@ -6168,7 +6393,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaRecommendResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "search": {
@@ -6196,7 +6422,9 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "searchLite": {
@@ -6224,7 +6452,9 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "streamAnswer": {
@@ -6252,7 +6482,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaAnswerQueryResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -6284,7 +6515,9 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaSession"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "delete": {
@@ -6309,7 +6542,9 @@
                         "$ref": "GoogleProtobufEmpty"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "get": {
@@ -6339,7 +6574,9 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaSession"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "list": {
@@ -6385,7 +6622,9 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaListSessionsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "patch": {
@@ -6419,7 +6658,9 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaSession"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   },
@@ -6448,7 +6689,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaAnswer"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -6482,7 +6724,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "enableAdvancedSiteSearch": {
@@ -6510,7 +6753,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "recrawlUris": {
@@ -6538,7 +6782,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   },
@@ -6570,7 +6815,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "delete": {
@@ -6595,7 +6841,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "fetch": {
@@ -6626,7 +6873,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -6658,7 +6906,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "create": {
@@ -6686,7 +6935,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "delete": {
@@ -6711,7 +6961,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "get": {
@@ -6736,7 +6987,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "list": {
@@ -6772,7 +7024,8 @@
                             "$ref": "GoogleCloudDiscoveryengineV1betaListTargetSitesResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
                         "patch": {
@@ -6800,7 +7053,8 @@
                             "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
                       }
@@ -6834,7 +7088,9 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "purge": {
@@ -6862,7 +7118,9 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -6907,7 +7165,9 @@
                         "$ref": "GoogleApiHttpBody"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "import": {
@@ -6935,7 +7195,9 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "purge": {
@@ -6963,7 +7225,9 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "write": {
@@ -6996,7 +7260,9 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaUserEvent"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -7030,7 +7296,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "get": {
@@ -7055,7 +7322,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaEvaluation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "list": {
@@ -7091,7 +7359,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaListEvaluationsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "listResults": {
@@ -7127,7 +7396,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaListEvaluationResultsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 }
               },
@@ -7156,7 +7426,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -7190,7 +7461,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaCheckGroundingResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 }
               }
@@ -7237,7 +7509,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaIdentityMappingStore"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "delete": {
@@ -7262,7 +7535,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "get": {
@@ -7287,7 +7561,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaIdentityMappingStore"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "importIdentityMappings": {
@@ -7315,7 +7590,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "list": {
@@ -7351,7 +7627,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaListIdentityMappingStoresResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "listIdentityMappings": {
@@ -7387,7 +7664,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaListIdentityMappingsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "purgeIdentityMappings": {
@@ -7415,7 +7693,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 }
               },
@@ -7444,7 +7723,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "list": {
@@ -7490,7 +7770,8 @@
                         "$ref": "GoogleLongrunningListOperationsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -7529,7 +7810,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaLicenseConfig"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "get": {
@@ -7554,7 +7836,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaLicenseConfig"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "patch": {
@@ -7588,7 +7871,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaLicenseConfig"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 }
               }
@@ -7617,7 +7901,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "list": {
@@ -7663,7 +7948,8 @@
                     "$ref": "GoogleLongrunningListOperationsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 }
               }
@@ -7694,7 +7980,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -7728,7 +8015,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaRankResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 }
               }
@@ -7765,7 +8053,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaSampleQuerySet"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "delete": {
@@ -7790,7 +8079,8 @@
                     "$ref": "GoogleProtobufEmpty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "get": {
@@ -7815,7 +8105,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaSampleQuerySet"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "list": {
@@ -7851,7 +8142,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaListSampleQuerySetsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "patch": {
@@ -7885,7 +8177,8 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaSampleQuerySet"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 }
               },
@@ -7914,7 +8207,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -7951,7 +8245,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaSampleQuery"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "delete": {
@@ -7976,7 +8271,8 @@
                         "$ref": "GoogleProtobufEmpty"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "get": {
@@ -8001,7 +8297,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaSampleQuery"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "import": {
@@ -8029,7 +8326,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "list": {
@@ -8065,7 +8363,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaListSampleQueriesResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
                     "patch": {
@@ -8099,7 +8398,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaSampleQuery"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -8146,7 +8446,9 @@
                     "$ref": "GoogleApiHttpBody"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "import": {
@@ -8174,7 +8476,9 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
                 "write": {
@@ -8207,7 +8511,9 @@
                     "$ref": "GoogleCloudDiscoveryengineV1betaUserEvent"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 }
               }
@@ -8239,7 +8545,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 }
               },
@@ -8284,7 +8591,8 @@
                         "$ref": "GoogleCloudDiscoveryengineV1betaListUserLicensesResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
                   }
@@ -8317,7 +8625,8 @@
                 "$ref": "GoogleLongrunningOperation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
               ]
             },
             "list": {
@@ -8363,7 +8672,8 @@
                 "$ref": "GoogleLongrunningListOperationsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
               ]
             }
           }
@@ -8371,7 +8681,7 @@
       }
     }
   },
-  "revision": "20250929",
+  "revision": "20251017",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GdataBlobstore2Info": {
@@ -9322,67 +9632,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1AlertPolicyResourceConfig": {
-      "description": "The resource level alert config. Used in: * UserLicense * EngineUserData The AlertPolicyConfig in data connector is of same usage. No easy way to migrate.",
-      "id": "GoogleCloudDiscoveryengineV1AlertPolicyResourceConfig",
-      "properties": {
-        "alertEnrollments": {
-          "description": "Optional. The enrollment state of each alert.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1AlertPolicyResourceConfigAlertEnrollment"
-          },
-          "type": "array"
-        },
-        "alertPolicy": {
-          "description": "Immutable. The fully qualified resource name of the AlertPolicy.",
-          "type": "string"
-        },
-        "contactDetails": {
-          "description": "Optional. The contact details for each alert policy.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1ContactDetails"
-          },
-          "type": "array"
-        },
-        "languageCode": {
-          "description": "Optional. The language code used for notifications",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1AlertPolicyResourceConfigAlertEnrollment": {
-      "description": "The alert enrollment status.",
-      "id": "GoogleCloudDiscoveryengineV1AlertPolicyResourceConfigAlertEnrollment",
-      "properties": {
-        "alertId": {
-          "description": "Immutable. The id of an alert.",
-          "type": "string"
-        },
-        "enrollState": {
-          "description": "Required. The enrollment status of a customer.",
-          "enum": [
-            "ENROLL_STATE_UNSPECIFIED",
-            "ENROLLED",
-            "DECLINED"
-          ],
-          "enumDescriptions": [
-            "Default value. Used for customers who have not responded to the alert policy.",
-            "Customer is enrolled in this policy.",
-            "Customer declined this policy."
-          ],
-          "type": "string"
-        },
-        "notificationParams": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Optional. Parameters used to instantiate a notification. Used for notifications that are triggered when registered. Not stored. * Gemini Business welcome emails. * Gemini Business user invitation emails.",
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1AnswerGenerationSpec": {
       "description": "The specification for answer generation.",
       "id": "GoogleCloudDiscoveryengineV1AnswerGenerationSpec",
@@ -9879,17 +10128,6 @@
         "startTime": {
           "description": "Start of time range. Range is inclusive.",
           "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1ContactDetails": {
-      "description": "The contact info stored in resource level. If both project level and resource level is populated, the resource level contact info will override the project level contact info.",
-      "id": "GoogleCloudDiscoveryengineV1ContactDetails",
-      "properties": {
-        "emailAddress": {
-          "description": "Optional. The email address of the contact.",
           "type": "string"
         }
       },
@@ -11894,10 +12132,6 @@
       "description": "Information about users' licenses.",
       "id": "GoogleCloudDiscoveryengineV1LicenseConfig",
       "properties": {
-        "alertPolicyResourceConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1AlertPolicyResourceConfig",
-          "description": "Optional. The alert policy config for this license config."
-        },
         "autoRenew": {
           "description": "Optional. Whether the license config should be auto renewed when it reaches the end date.",
           "type": "boolean"
@@ -11908,6 +12142,11 @@
         },
         "freeTrial": {
           "description": "Optional. Whether the license config is for free trial.",
+          "type": "boolean"
+        },
+        "geminiBundle": {
+          "description": "Output only. Whether the license config is for Gemini bundle.",
+          "readOnly": true,
           "type": "boolean"
         },
         "licenseCount": {
@@ -14078,6 +14317,10 @@
       "description": "A piece of content and possibly its grounding information. Not all content needs grounding. Phrases like \"Of course, I will gladly search it for you.\" do not need grounding.",
       "id": "GoogleCloudDiscoveryengineV1alphaAssistantGroundedContent",
       "properties": {
+        "citationMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaCitationMetadata",
+          "description": "Source attribution of the generated content. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/overview#citation_check"
+        },
         "content": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantContent",
           "description": "The content."
@@ -14297,6 +14540,60 @@
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaUserLicense"
           },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCitation": {
+      "description": "Source attributions for content.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCitation",
+      "properties": {
+        "endIndex": {
+          "description": "Output only. End index into the content.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "license": {
+          "description": "Output only. License of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publicationDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Output only. Publication date of the attribution.",
+          "readOnly": true
+        },
+        "startIndex": {
+          "description": "Output only. Start index into the content.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "title": {
+          "description": "Output only. Title of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. Url reference of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCitationMetadata": {
+      "description": "A collection of source attributions for a piece of content.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCitationMetadata",
+      "properties": {
+        "citations": {
+          "description": "Output only. List of citations.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCitation"
+          },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -17300,6 +17597,11 @@
           "description": "Optional. Whether the license config is for free trial.",
           "type": "boolean"
         },
+        "geminiBundle": {
+          "description": "Output only. Whether the license config is for Gemini bundle.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "licenseCount": {
           "description": "Required. Number of licenses purchased.",
           "format": "int64",
@@ -19045,6 +19347,13 @@
           "description": "Optional. Whether the session is pinned, pinned session will be displayed on the top of the session list.",
           "type": "boolean"
         },
+        "labels": {
+          "description": "Optional. The labels for the session. Can be set as filter in ListSessionsRequest.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "name": {
           "description": "Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`",
           "type": "string"
@@ -19983,67 +20292,6 @@
         "disableInitialIndex": {
           "description": "If set true, initial indexing is disabled for the DataStore.",
           "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfig": {
-      "description": "The resource level alert config. Used in: * UserLicense * EngineUserData The AlertPolicyConfig in data connector is of same usage. No easy way to migrate.",
-      "id": "GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfig",
-      "properties": {
-        "alertEnrollments": {
-          "description": "Optional. The enrollment state of each alert.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfigAlertEnrollment"
-          },
-          "type": "array"
-        },
-        "alertPolicy": {
-          "description": "Immutable. The fully qualified resource name of the AlertPolicy.",
-          "type": "string"
-        },
-        "contactDetails": {
-          "description": "Optional. The contact details for each alert policy.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1betaContactDetails"
-          },
-          "type": "array"
-        },
-        "languageCode": {
-          "description": "Optional. The language code used for notifications",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfigAlertEnrollment": {
-      "description": "The alert enrollment status.",
-      "id": "GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfigAlertEnrollment",
-      "properties": {
-        "alertId": {
-          "description": "Immutable. The id of an alert.",
-          "type": "string"
-        },
-        "enrollState": {
-          "description": "Required. The enrollment status of a customer.",
-          "enum": [
-            "ENROLL_STATE_UNSPECIFIED",
-            "ENROLLED",
-            "DECLINED"
-          ],
-          "enumDescriptions": [
-            "Default value. Used for customers who have not responded to the alert policy.",
-            "Customer is enrolled in this policy.",
-            "Customer declined this policy."
-          ],
-          "type": "string"
-        },
-        "notificationParams": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Optional. Parameters used to instantiate a notification. Used for notifications that are triggered when registered. Not stored. * Gemini Business welcome emails. * Gemini Business user invitation emails.",
-          "type": "object"
         }
       },
       "type": "object"
@@ -21785,6 +22033,10 @@
       "description": "A piece of content and possibly its grounding information. Not all content needs grounding. Phrases like \"Of course, I will gladly search it for you.\" do not need grounding.",
       "id": "GoogleCloudDiscoveryengineV1betaAssistantGroundedContent",
       "properties": {
+        "citationMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaCitationMetadata",
+          "description": "Source attribution of the generated content. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/overview#citation_check"
+        },
         "content": {
           "$ref": "GoogleCloudDiscoveryengineV1betaAssistantContent",
           "description": "The content."
@@ -22615,6 +22867,60 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaCitation": {
+      "description": "Source attributions for content.",
+      "id": "GoogleCloudDiscoveryengineV1betaCitation",
+      "properties": {
+        "endIndex": {
+          "description": "Output only. End index into the content.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "license": {
+          "description": "Output only. License of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publicationDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Output only. Publication date of the attribution.",
+          "readOnly": true
+        },
+        "startIndex": {
+          "description": "Output only. Start index into the content.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "title": {
+          "description": "Output only. Title of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. Url reference of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaCitationMetadata": {
+      "description": "A collection of source attributions for a piece of content.",
+      "id": "GoogleCloudDiscoveryengineV1betaCitationMetadata",
+      "properties": {
+        "citations": {
+          "description": "Output only. List of citations.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaCitation"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaCloudSqlSource": {
       "description": "Cloud SQL source import data from.",
       "id": "GoogleCloudDiscoveryengineV1betaCloudSqlSource",
@@ -22875,17 +23181,6 @@
         "startTime": {
           "description": "Start of time range. Range is inclusive.",
           "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaContactDetails": {
-      "description": "The contact info stored in resource level. If both project level and resource level is populated, the resource level contact info will override the project level contact info.",
-      "id": "GoogleCloudDiscoveryengineV1betaContactDetails",
-      "properties": {
-        "emailAddress": {
-          "description": "Optional. The email address of the contact.",
           "type": "string"
         }
       },
@@ -25497,10 +25792,6 @@
       "description": "Information about users' licenses.",
       "id": "GoogleCloudDiscoveryengineV1betaLicenseConfig",
       "properties": {
-        "alertPolicyResourceConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfig",
-          "description": "Optional. The alert policy config for this license config."
-        },
         "autoRenew": {
           "description": "Optional. Whether the license config should be auto renewed when it reaches the end date.",
           "type": "boolean"
@@ -25511,6 +25802,11 @@
         },
         "freeTrial": {
           "description": "Optional. Whether the license config is for free trial.",
+          "type": "boolean"
+        },
+        "geminiBundle": {
+          "description": "Output only. Whether the license config is for Gemini bundle.",
+          "readOnly": true,
           "type": "boolean"
         },
         "licenseCount": {
@@ -28934,6 +29230,13 @@
           "description": "Optional. Whether the session is pinned, pinned session will be displayed on the top of the session list.",
           "type": "boolean"
         },
+        "labels": {
+          "description": "Optional. The labels for the session. Can be set as filter in ListSessionsRequest.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "name": {
           "description": "Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`",
           "type": "string"
@@ -29299,7 +29602,7 @@
         },
         "sessionInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1betaStreamAssistResponseSessionInfo",
-          "description": "Session information."
+          "description": "Session information. Only included in the final StreamAssistResponse of the response stream."
         }
       },
       "type": "object"

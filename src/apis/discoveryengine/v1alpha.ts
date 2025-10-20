@@ -947,44 +947,6 @@ export namespace discoveryengine_v1alpha {
     enrollState?: string | null;
   }
   /**
-   * The resource level alert config. Used in: * UserLicense * EngineUserData The AlertPolicyConfig in data connector is of same usage. No easy way to migrate.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1AlertPolicyResourceConfig {
-    /**
-     * Optional. The enrollment state of each alert.
-     */
-    alertEnrollments?: Schema$GoogleCloudDiscoveryengineV1AlertPolicyResourceConfigAlertEnrollment[];
-    /**
-     * Immutable. The fully qualified resource name of the AlertPolicy.
-     */
-    alertPolicy?: string | null;
-    /**
-     * Optional. The contact details for each alert policy.
-     */
-    contactDetails?: Schema$GoogleCloudDiscoveryengineV1ContactDetails[];
-    /**
-     * Optional. The language code used for notifications
-     */
-    languageCode?: string | null;
-  }
-  /**
-   * The alert enrollment status.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1AlertPolicyResourceConfigAlertEnrollment {
-    /**
-     * Immutable. The id of an alert.
-     */
-    alertId?: string | null;
-    /**
-     * Required. The enrollment status of a customer.
-     */
-    enrollState?: string | null;
-    /**
-     * Optional. Parameters used to instantiate a notification. Used for notifications that are triggered when registered. Not stored. * Gemini Business welcome emails. * Gemini Business user invitation emails.
-     */
-    notificationParams?: {[key: string]: string} | null;
-  }
-  /**
    * Access Control Configuration.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAclConfig {
@@ -2518,6 +2480,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantGroundedContent {
     /**
+     * Source attribution of the generated content. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/overview#citation_check
+     */
+    citationMetadata?: Schema$GoogleCloudDiscoveryengineV1alphaCitationMetadata;
+    /**
      * The content.
      */
     content?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantContent;
@@ -3236,6 +3202,44 @@ export namespace discoveryengine_v1alpha {
     structureType?: string | null;
   }
   /**
+   * Source attributions for content.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCitation {
+    /**
+     * Output only. End index into the content.
+     */
+    endIndex?: number | null;
+    /**
+     * Output only. License of the attribution.
+     */
+    license?: string | null;
+    /**
+     * Output only. Publication date of the attribution.
+     */
+    publicationDate?: Schema$GoogleTypeDate;
+    /**
+     * Output only. Start index into the content.
+     */
+    startIndex?: number | null;
+    /**
+     * Output only. Title of the attribution.
+     */
+    title?: string | null;
+    /**
+     * Output only. Url reference of the attribution.
+     */
+    uri?: string | null;
+  }
+  /**
+   * A collection of source attributions for a piece of content.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCitationMetadata {
+    /**
+     * Output only. List of citations.
+     */
+    citations?: Schema$GoogleCloudDiscoveryengineV1alphaCitation[];
+  }
+  /**
    * Cloud SQL source import data from.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaCloudSqlSource {
@@ -3436,6 +3440,49 @@ export namespace discoveryengine_v1alpha {
      * Start of time range. Range is inclusive.
      */
     startTime?: string | null;
+  }
+  /**
+   * Response for [EstimateBillingService.GetConfigurablePricingUsageStats] method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats {
+    /**
+     * A list of metric usages, one for each requested resource type that has data in the requested time range.
+     */
+    metricUsages?: Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsMetricUsage[];
+    /**
+     * Identifier. The name of the ConfigurablePricingUsageStats. Format: projects/{project\}/locations/{location\}/configurablePricingUsageStats
+     */
+    name?: string | null;
+  }
+  /**
+   * A list of usages for a specific day.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsDatedUsage {
+    /**
+     * The date of the usage.
+     */
+    date?: Schema$GoogleTypeDate;
+    /**
+     * The usage value on the date.
+     */
+    usage?: number | null;
+  }
+  /**
+   * The usage of a metric over a list of days.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsMetricUsage {
+    /**
+     * The list of usages for this resource type, chronologically sorted by date. This is populated for metrics with daily aggregation like DAILY_MDN_QPM.
+     */
+    datedUsages?: Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsDatedUsage[];
+    /**
+     * The metric type.
+     */
+    metricType?: string | null;
+    /**
+     * The list of total usages for this resource type
+     */
+    totalUsages?: number[] | null;
   }
   /**
    * A data sync run of DataConnector. After DataConnector is successfully initialized, data syncs are scheduled at DataConnector.refresh_interval. A ConnectorRun represents a data sync either in the past or onging that the moment. //
@@ -6208,6 +6255,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. Whether the license config is for free trial.
      */
     freeTrial?: boolean | null;
+    /**
+     * Output only. Whether the license config is for Gemini bundle.
+     */
+    geminiBundle?: boolean | null;
     /**
      * Required. Number of licenses purchased.
      */
@@ -9037,6 +9088,10 @@ export namespace discoveryengine_v1alpha {
      */
     isPinned?: boolean | null;
     /**
+     * Optional. The labels for the session. Can be set as filter in ListSessionsRequest.
+     */
+    labels?: string[] | null;
+    /**
      * Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/engines/{engine\}/sessions/x`
      */
     name?: string | null;
@@ -9375,7 +9430,7 @@ export namespace discoveryengine_v1alpha {
      */
     assistToken?: string | null;
     /**
-     * Session information.
+     * Session information. Only included in the final StreamAssistResponse of the response stream.
      */
     sessionInfo?: Schema$GoogleCloudDiscoveryengineV1alphaStreamAssistResponseSessionInfo;
   }
@@ -10662,44 +10717,6 @@ export namespace discoveryengine_v1alpha {
     disableInitialIndex?: boolean | null;
   }
   /**
-   * The resource level alert config. Used in: * UserLicense * EngineUserData The AlertPolicyConfig in data connector is of same usage. No easy way to migrate.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfig {
-    /**
-     * Optional. The enrollment state of each alert.
-     */
-    alertEnrollments?: Schema$GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfigAlertEnrollment[];
-    /**
-     * Immutable. The fully qualified resource name of the AlertPolicy.
-     */
-    alertPolicy?: string | null;
-    /**
-     * Optional. The contact details for each alert policy.
-     */
-    contactDetails?: Schema$GoogleCloudDiscoveryengineV1betaContactDetails[];
-    /**
-     * Optional. The language code used for notifications
-     */
-    languageCode?: string | null;
-  }
-  /**
-   * The alert enrollment status.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfigAlertEnrollment {
-    /**
-     * Immutable. The id of an alert.
-     */
-    alertId?: string | null;
-    /**
-     * Required. The enrollment status of a customer.
-     */
-    enrollState?: string | null;
-    /**
-     * Optional. Parameters used to instantiate a notification. Used for notifications that are triggered when registered. Not stored. * Gemini Business welcome emails. * Gemini Business user invitation emails.
-     */
-    notificationParams?: {[key: string]: string} | null;
-  }
-  /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaBatchCreateTargetSiteMetadata {
@@ -10834,15 +10851,6 @@ export namespace discoveryengine_v1alpha {
      * Start of time range. Range is inclusive.
      */
     startTime?: string | null;
-  }
-  /**
-   * The contact info stored in resource level. If both project level and resource level is populated, the resource level contact info will override the project level contact info.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaContactDetails {
-    /**
-     * Optional. The email address of the contact.
-     */
-    emailAddress?: string | null;
   }
   /**
    * Defines a conditioned behavior to employ during serving. Must be attached to a ServingConfig to be considered at serving time. Permitted actions dependent on `SolutionType`.
@@ -12017,10 +12025,6 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaLicenseConfig {
     /**
-     * Optional. The alert policy config for this license config.
-     */
-    alertPolicyResourceConfig?: Schema$GoogleCloudDiscoveryengineV1betaAlertPolicyResourceConfig;
-    /**
      * Optional. Whether the license config should be auto renewed when it reaches the end date.
      */
     autoRenew?: boolean | null;
@@ -12032,6 +12036,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. Whether the license config is for free trial.
      */
     freeTrial?: boolean | null;
+    /**
+     * Output only. Whether the license config is for Gemini bundle.
+     */
+    geminiBundle?: boolean | null;
     /**
      * Required. Number of licenses purchased.
      */
@@ -13321,15 +13329,6 @@ export namespace discoveryengine_v1alpha {
      * Start of time range. Range is inclusive.
      */
     startTime?: string | null;
-  }
-  /**
-   * The contact info stored in resource level. If both project level and resource level is populated, the resource level contact info will override the project level contact info.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1ContactDetails {
-    /**
-     * Optional. The email address of the contact.
-     */
-    emailAddress?: string | null;
   }
   /**
    * Defines a conditioned behavior to employ during serving. Must be attached to a ServingConfig to be considered at serving time. Permitted actions dependent on `SolutionType`.
@@ -14658,10 +14657,6 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1LicenseConfig {
     /**
-     * Optional. The alert policy config for this license config.
-     */
-    alertPolicyResourceConfig?: Schema$GoogleCloudDiscoveryengineV1AlertPolicyResourceConfig;
-    /**
      * Optional. Whether the license config should be auto renewed when it reaches the end date.
      */
     autoRenew?: boolean | null;
@@ -14673,6 +14668,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. Whether the license config is for free trial.
      */
     freeTrial?: boolean | null;
+    /**
+     * Output only. Whether the license config is for Gemini bundle.
+     */
+    geminiBundle?: boolean | null;
     /**
      * Required. Number of licenses purchased.
      */
@@ -16308,7 +16307,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16504,7 +16507,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16652,7 +16658,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16814,7 +16823,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16970,7 +16982,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17240,7 +17255,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17395,7 +17413,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17541,7 +17562,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17672,6 +17696,171 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Gets configurable pricing usage stats.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.getConfigurablePricingUsageStats({
+     *       // Optional. The metric types to return usage for.
+     *       metricTypes: 'placeholder-value',
+     *       // Required. The name of the ConfigurablePricingUsageStats to retrieve. Format: projects/{project\}/locations/{location\}/configurablePricingUsageStats
+     *       name: 'projects/my-project/locations/my-location/configurablePricingUsageStats',
+     *       // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *       'timeRange.endDate.day': 'placeholder-value',
+     *       // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *       'timeRange.endDate.month': 'placeholder-value',
+     *       // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *       'timeRange.endDate.year': 'placeholder-value',
+     *       // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *       'timeRange.startDate.day': 'placeholder-value',
+     *       // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *       'timeRange.startDate.month': 'placeholder-value',
+     *       // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *       'timeRange.startDate.year': 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metricUsages": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getConfigurablePricingUsageStats(
+      params: Params$Resource$Projects$Locations$Getconfigurablepricingusagestats,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getConfigurablePricingUsageStats(
+      params?: Params$Resource$Projects$Locations$Getconfigurablepricingusagestats,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats>
+    >;
+    getConfigurablePricingUsageStats(
+      params: Params$Resource$Projects$Locations$Getconfigurablepricingusagestats,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getConfigurablePricingUsageStats(
+      params: Params$Resource$Projects$Locations$Getconfigurablepricingusagestats,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats>
+    ): void;
+    getConfigurablePricingUsageStats(
+      params: Params$Resource$Projects$Locations$Getconfigurablepricingusagestats,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats>
+    ): void;
+    getConfigurablePricingUsageStats(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats>
+    ): void;
+    getConfigurablePricingUsageStats(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getconfigurablepricingusagestats
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getconfigurablepricingusagestats;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Getconfigurablepricingusagestats;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Obtains the time series data of organic or dedicated crawl rate for monitoring. When dedicated crawl rate is not set, it will return vertex AI's organic crawl rate time series. Organic crawl means Google automatically crawl the internet at its own convenience. When dedicated crawl rate is set, it will return vertex AI's dedicated crawl rate time series.
      * @example
      * ```js
@@ -17693,7 +17882,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17852,7 +18044,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18008,7 +18203,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18164,7 +18362,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18320,7 +18522,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18516,7 +18722,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18671,7 +18880,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18836,6 +19048,41 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Getconfigurablepricingusagestats
+    extends StandardParameters {
+    /**
+     * Optional. The metric types to return usage for.
+     */
+    metricTypes?: string[];
+    /**
+     * Required. The name of the ConfigurablePricingUsageStats to retrieve. Format: projects/{project\}/locations/{location\}/configurablePricingUsageStats
+     */
+    name?: string;
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    'timeRange.endDate.day'?: number;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    'timeRange.endDate.month'?: number;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    'timeRange.endDate.year'?: number;
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    'timeRange.startDate.day'?: number;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    'timeRange.startDate.month'?: number;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    'timeRange.startDate.year'?: number;
+  }
   export interface Params$Resource$Projects$Locations$Obtaincrawlrate
     extends StandardParameters {
     /**
@@ -18961,7 +19208,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -19104,7 +19354,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -19256,7 +19509,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -19404,7 +19660,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -19624,7 +19883,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -19767,7 +20029,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -19915,7 +20180,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -20100,7 +20369,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -20255,7 +20527,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -20411,7 +20686,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -20734,7 +21013,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -20893,7 +21176,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -21045,7 +21332,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -21202,7 +21493,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -21421,7 +21716,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -21602,7 +21901,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -21749,7 +22051,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -22024,7 +22329,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -22186,7 +22495,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -22375,7 +22687,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -22520,7 +22835,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -22689,7 +23007,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -22841,7 +23162,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -22990,7 +23314,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -23148,7 +23475,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -23349,7 +23679,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -23511,7 +23844,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -23840,7 +24176,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -23996,7 +24335,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -24151,7 +24493,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -24356,7 +24701,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -24539,7 +24887,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -24676,7 +25027,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -24835,7 +25189,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -24994,7 +25351,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -25167,7 +25527,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -25325,7 +25688,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -25506,7 +25872,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -25785,7 +26154,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -25944,7 +26316,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -26132,7 +26507,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -26278,7 +26656,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -26425,7 +26806,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -26640,6 +27024,8 @@ export namespace discoveryengine_v1alpha {
      *     scopes: [
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud_search.query',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
      *     ],
      *   });
      *
@@ -26832,7 +27218,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -26993,7 +27383,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -27181,7 +27575,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -27364,7 +27761,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -27501,7 +27901,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -27660,7 +28063,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -27820,7 +28226,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -28072,7 +28481,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -28242,7 +28654,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -28413,7 +28828,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -28550,7 +28968,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -28704,7 +29125,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -28866,7 +29290,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -29120,7 +29547,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -29300,7 +29730,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -29447,7 +29880,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -29647,7 +30083,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -29794,7 +30233,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -29999,7 +30441,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -30163,7 +30608,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -30310,7 +30758,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -30462,7 +30913,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -30620,7 +31074,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -30849,7 +31306,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -30996,7 +31456,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -31196,7 +31659,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -31370,7 +31836,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -31542,7 +32011,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -31700,7 +32172,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -31905,7 +32380,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -32074,7 +32552,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -32288,7 +32770,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -32502,7 +32988,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -32787,7 +33276,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -32809,6 +33302,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "displayName": "my_displayName",
      *           //   "endTime": "my_endTime",
      *           //   "isPinned": false,
+     *           //   "labels": [],
      *           //   "name": "my_name",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
@@ -32825,6 +33319,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -32962,7 +33457,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -33099,7 +33598,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -33123,6 +33626,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -33257,7 +33761,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -33419,7 +33927,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -33442,6 +33954,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "displayName": "my_displayName",
      *           //   "endTime": "my_endTime",
      *           //   "isPinned": false,
+     *           //   "labels": [],
      *           //   "name": "my_name",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
@@ -33458,6 +33971,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -33669,7 +34183,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -33862,7 +34379,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -34018,7 +34538,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -34174,7 +34697,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -34330,7 +34856,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -34489,7 +35018,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -34641,7 +35173,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -34801,7 +35336,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -35051,7 +35589,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -35198,7 +35739,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -35398,7 +35942,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -35559,7 +36106,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -35706,7 +36256,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -35904,7 +36457,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -36062,7 +36618,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -36230,7 +36789,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -36377,7 +36939,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -36535,7 +37100,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -36694,7 +37262,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -36931,7 +37502,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -37078,7 +37652,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -37278,7 +37855,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -37437,7 +38018,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -37625,7 +38210,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -37776,7 +38365,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -37938,7 +38531,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -38098,7 +38695,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -38370,7 +38971,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -38627,7 +39232,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -38803,7 +39411,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -38948,7 +39559,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -39111,7 +39725,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -39263,7 +39880,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -39422,7 +40042,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -39613,7 +40236,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -39786,7 +40412,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -39959,7 +40588,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -40230,7 +40862,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -40409,7 +41044,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -40562,7 +41201,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -40729,7 +41372,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -40941,6 +41588,8 @@ export namespace discoveryengine_v1alpha {
      *     scopes: [
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud_search.query',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
      *     ],
      *   });
      *
@@ -41113,7 +41762,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -41307,7 +41960,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -41490,7 +42146,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -41627,7 +42286,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -41784,7 +42446,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -41942,7 +42607,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -42194,7 +42862,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -42364,7 +43035,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -42535,7 +43209,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -42672,7 +43349,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -42826,7 +43506,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -42988,7 +43671,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -43242,7 +43928,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -43389,7 +44078,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -43589,7 +44281,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -43763,7 +44458,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -43935,7 +44633,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -44093,7 +44794,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -44298,7 +45002,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -44467,7 +45174,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -44681,7 +45392,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -44895,7 +45610,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -45185,7 +45903,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -45207,6 +45929,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "displayName": "my_displayName",
      *           //   "endTime": "my_endTime",
      *           //   "isPinned": false,
+     *           //   "labels": [],
      *           //   "name": "my_name",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
@@ -45223,6 +45946,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -45360,7 +46084,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -45497,7 +46225,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -45519,6 +46251,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -45653,7 +46386,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -45813,7 +46550,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -45836,6 +46577,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "displayName": "my_displayName",
      *           //   "endTime": "my_endTime",
      *           //   "isPinned": false,
+     *           //   "labels": [],
      *           //   "name": "my_name",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
@@ -45852,6 +46594,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -46063,7 +46806,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -46241,7 +46987,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -46434,7 +47184,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -46646,7 +47400,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -46791,7 +47548,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -47046,7 +47806,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -47207,7 +47971,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -47393,7 +48160,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -47536,7 +48306,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -47703,7 +48476,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -47855,7 +48631,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -48002,7 +48781,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -48157,7 +48939,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -48356,7 +49141,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -48673,7 +49461,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -48829,7 +49620,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -48981,7 +49775,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -49185,7 +49982,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -49368,7 +50168,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -49505,7 +50308,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -49662,7 +50468,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -49821,7 +50630,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -49994,7 +50806,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -50152,7 +50967,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -50333,7 +51151,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -50612,7 +51433,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -50771,7 +51595,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -50959,7 +51786,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -51105,7 +51935,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -51252,7 +52085,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -51467,6 +52303,8 @@ export namespace discoveryengine_v1alpha {
      *     scopes: [
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud_search.query',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
      *     ],
      *   });
      *
@@ -51659,7 +52497,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -51820,7 +52662,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -52008,7 +52854,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -52189,7 +53038,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -52324,7 +53176,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -52480,7 +53335,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -52639,7 +53497,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -52889,7 +53750,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -53057,7 +53921,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -53226,7 +54093,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -53361,7 +54231,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -53513,7 +54386,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -53673,7 +54549,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -53937,7 +54816,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -54082,7 +54964,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -54280,7 +55165,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -54425,7 +55313,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -54623,7 +55514,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -54785,7 +55679,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -54930,7 +55827,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -55079,7 +55979,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -55233,7 +56136,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -55461,7 +56367,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -55633,7 +56542,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -55803,7 +56715,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -55959,7 +56874,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -56162,7 +57080,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -56331,7 +57252,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -56543,7 +57468,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -56757,7 +57686,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -57042,7 +57974,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -57063,6 +57999,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "displayName": "my_displayName",
      *         //   "endTime": "my_endTime",
      *         //   "isPinned": false,
+     *         //   "labels": [],
      *         //   "name": "my_name",
      *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
@@ -57078,6 +58015,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -57215,7 +58153,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -57350,7 +58292,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -57371,6 +58317,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -57505,7 +58452,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -57666,7 +58617,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -57688,6 +58643,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "displayName": "my_displayName",
      *         //   "endTime": "my_endTime",
      *         //   "isPinned": false,
+     *         //   "labels": [],
      *         //   "name": "my_name",
      *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
@@ -57703,6 +58659,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endTime": "my_endTime",
      *   //   "isPinned": false,
+     *   //   "labels": [],
      *   //   "name": "my_name",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -57914,7 +58871,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -58100,7 +59060,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -58256,7 +59219,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -58412,7 +59378,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -58616,7 +59585,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -58777,7 +59749,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -58924,7 +59899,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -59117,7 +60095,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -59275,7 +60256,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -59443,7 +60427,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -59590,7 +60577,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -59748,7 +60738,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -59907,7 +60900,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -60144,7 +61140,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -60303,7 +61303,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -60490,7 +61494,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -60639,7 +61647,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -60799,7 +61811,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -60957,7 +61973,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -61227,7 +62247,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -61441,7 +62465,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -61602,7 +62629,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -61754,7 +62784,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -61907,7 +62940,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -62119,7 +63155,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -62279,7 +63318,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -62468,7 +63510,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -62638,7 +63683,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -62783,7 +63831,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -62933,7 +63984,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -63092,7 +64146,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -63247,7 +64304,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -63404,7 +64464,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -63664,7 +64727,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -63811,7 +64877,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -64011,7 +65080,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -64033,6 +65105,7 @@ export namespace discoveryengine_v1alpha {
      *       //   "autoRenew": false,
      *       //   "endDate": {},
      *       //   "freeTrial": false,
+     *       //   "geminiBundle": false,
      *       //   "licenseCount": "my_licenseCount",
      *       //   "name": "my_name",
      *       //   "startDate": {},
@@ -64050,6 +65123,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "autoRenew": false,
      *   //   "endDate": {},
      *   //   "freeTrial": false,
+     *   //   "geminiBundle": false,
      *   //   "licenseCount": "my_licenseCount",
      *   //   "name": "my_name",
      *   //   "startDate": {},
@@ -64187,7 +65261,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -64207,6 +65284,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "autoRenew": false,
      *   //   "endDate": {},
      *   //   "freeTrial": false,
+     *   //   "geminiBundle": false,
      *   //   "licenseCount": "my_licenseCount",
      *   //   "name": "my_name",
      *   //   "startDate": {},
@@ -64341,7 +65419,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -64363,6 +65444,7 @@ export namespace discoveryengine_v1alpha {
      *       //   "autoRenew": false,
      *       //   "endDate": {},
      *       //   "freeTrial": false,
+     *       //   "geminiBundle": false,
      *       //   "licenseCount": "my_licenseCount",
      *       //   "name": "my_name",
      *       //   "startDate": {},
@@ -64380,6 +65462,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "autoRenew": false,
      *   //   "endDate": {},
      *   //   "freeTrial": false,
+     *   //   "geminiBundle": false,
      *   //   "licenseCount": "my_licenseCount",
      *   //   "name": "my_name",
      *   //   "startDate": {},
@@ -64568,7 +65651,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -64714,7 +65800,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -64882,7 +65971,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -65033,7 +66125,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -65187,7 +66282,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -65408,7 +66506,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -65566,7 +66667,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -65728,7 +66832,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -65886,7 +66993,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -66034,7 +67144,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -66183,7 +67296,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -66400,7 +67516,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -66543,7 +67662,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -66750,7 +67872,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -66909,7 +68034,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -67091,7 +68219,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -67283,7 +68414,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -67448,7 +68582,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -67582,7 +68719,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -67730,7 +68870,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -67883,7 +69026,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -68113,7 +69259,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -68273,7 +69422,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -68440,7 +69592,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -68577,7 +69732,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -68726,7 +69884,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -68888,7 +70049,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -69046,7 +70210,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -69290,7 +70457,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -69436,7 +70607,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -69593,7 +70768,11 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -69855,7 +71034,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -70034,7 +71216,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -70179,7 +71364,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -70377,7 +71565,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -70562,7 +71753,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -70705,7 +71899,10 @@ export namespace discoveryengine_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
