@@ -298,9 +298,13 @@ export namespace firebasedataconnect_v1beta {
      */
     file?: string | null;
     /**
-     * Distinguish which schema or connector the error originates from. It should be set on errors from control plane APIs (e.g. `UpdateSchema`, `UpdateConnector`).
+     * Warning level describes the severity and required action to suppress this warning when Firebase CLI run into it.
      */
-    resource?: string | null;
+    warningLevel?: string | null;
+    /**
+     * Workarounds provide suggestions to address the compile errors or warnings.
+     */
+    workarounds?: Schema$Workaround[];
   }
   /**
    * The GraphQL request to Firebase Data Connect. It strives to match the GraphQL over HTTP spec. https://github.com/graphql/graphql-over-http/blob/main/spec/GraphQLOverHTTP.md#post
@@ -696,6 +700,23 @@ export namespace firebasedataconnect_v1beta {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Workaround provides suggestions to address errors and warnings.
+   */
+  export interface Schema$Workaround {
+    /**
+     * Description of this workaround.
+     */
+    description?: string | null;
+    /**
+     * Why would this workaround address the error and warning.
+     */
+    reason?: string | null;
+    /**
+     * A suggested code snippet to fix the error and warning.
+     */
+    replace?: string | null;
   }
 
   export class Resource$Projects {
