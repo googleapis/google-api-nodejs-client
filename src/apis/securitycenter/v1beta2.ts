@@ -3833,9 +3833,65 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2IssueResourceApplication {
     /**
+     * Consumer provided attributes for the application
+     */
+    attributes?: Schema$GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes;
+    /**
      * The resource name of an Application. Format: `projects/{host-project-id\}/locations/{location\}/applications/{application-id\}`
      */
     name?: string | null;
+  }
+  /**
+   * Consumer provided attributes for the application
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes {
+    /**
+     * Business team that ensures user needs are met and value is delivered
+     */
+    businessOwners?: Schema$GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined criticality information.
+     */
+    criticality?: Schema$GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesCriticality;
+    /**
+     * Developer team that owns development and coding.
+     */
+    developerOwners?: Schema$GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined environment information.
+     */
+    environment?: Schema$GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesEnvironment;
+    /**
+     * Operator team that ensures runtime and operations.
+     */
+    operatorOwners?: Schema$GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo[];
+  }
+  /**
+   * Contact information of stakeholders.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo {
+    /**
+     * Email address of the contacts.
+     */
+    email?: string | null;
+  }
+  /**
+   * Criticality of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesCriticality {
+    /**
+     * Criticality Type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Environment of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesEnvironment {
+    /**
+     * Environment Type.
+     */
+    type?: string | null;
   }
   /**
    * The AWS metadata of a resource associated with an issue.
