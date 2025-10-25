@@ -1627,7 +1627,7 @@
       }
     }
   },
-  "revision": "20251009",
+  "revision": "20251016",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2141,6 +2141,10 @@
           ],
           "type": "string"
         },
+        "dataplexConfig": {
+          "$ref": "DataplexConfig",
+          "description": "Optional. Configuration for Dataplex integration."
+        },
         "deleteTime": {
           "description": "Output only. Delete time stamp",
           "format": "google-datetime",
@@ -2577,6 +2581,17 @@
         "table": {
           "description": "Required. The database table to import CSV file into.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataplexConfig": {
+      "description": "Configuration for Dataplex integration.",
+      "id": "DataplexConfig",
+      "properties": {
+        "enabled": {
+          "description": "Dataplex is enabled by default for resources such as clusters and instances. This flag controls the integration of AlloyDB PG resources (like databases, schemas, and tables) with Dataplex.\"",
+          "type": "boolean"
         }
       },
       "type": "object"
