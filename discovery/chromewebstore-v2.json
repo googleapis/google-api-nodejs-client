@@ -1,0 +1,1055 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/chromewebstore": {
+          "description": "See, edit, update, or publish your Chrome Web Store extensions, themes, apps, and licences you have access to"
+        },
+        "https://www.googleapis.com/auth/chromewebstore.readonly": {
+          "description": "See and download your Chrome Web Store extensions and apps, and see licenses you have access to"
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://chromewebstore.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Chromewebstore",
+  "description": "The Chrome Web Store API provides access to data about apps and extensions, as well as developer tools for managing them.",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://developer.chrome.com/docs/webstore/api",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "chromewebstore:v2",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://chromewebstore.mtls.googleapis.com/",
+  "name": "chromewebstore",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "media": {
+      "methods": {
+        "upload": {
+          "description": "Upload a new package to an existing item.",
+          "flatPath": "v2/publishers/{publishersId}/items/{itemsId}:upload",
+          "httpMethod": "POST",
+          "id": "chromewebstore.media.upload",
+          "mediaUpload": {
+            "accept": [
+              "*/*"
+            ],
+            "maxSize": "2147483648",
+            "protocols": {
+              "simple": {
+                "multipart": true,
+                "path": "/upload/v2/{+name}:upload"
+              }
+            }
+          },
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Name of the item to upload the new package to in the form `publishers/{publisherId}/items/{itemId}`",
+              "location": "path",
+              "pattern": "^publishers/[^/]+/items/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v2/{+name}:upload",
+          "request": {
+            "$ref": "UploadItemPackageRequest"
+          },
+          "response": {
+            "$ref": "UploadItemPackageResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/chromewebstore"
+          ],
+          "supportsMediaUpload": true
+        }
+      }
+    },
+    "publishers": {
+      "resources": {
+        "items": {
+          "methods": {
+            "cancelSubmission": {
+              "description": "Cancel the current active submission of an item if present. This can be used to cancel the review of a pending submission.",
+              "flatPath": "v2/publishers/{publishersId}/items/{itemsId}:cancelSubmission",
+              "httpMethod": "POST",
+              "id": "chromewebstore.publishers.items.cancelSubmission",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the item to cancel the submission of in the form `publishers/{publisherId}/items/{itemId}`",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/items/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}:cancelSubmission",
+              "request": {
+                "$ref": "CancelSubmissionRequest"
+              },
+              "response": {
+                "$ref": "CancelSubmissionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chromewebstore"
+              ]
+            },
+            "fetchStatus": {
+              "description": "Fetch the status of an item.",
+              "flatPath": "v2/publishers/{publishersId}/items/{itemsId}:fetchStatus",
+              "httpMethod": "GET",
+              "id": "chromewebstore.publishers.items.fetchStatus",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the item to retrieve the status of in the form `publishers/{publisherId}/items/{itemId}`",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/items/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}:fetchStatus",
+              "response": {
+                "$ref": "FetchItemStatusResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chromewebstore",
+                "https://www.googleapis.com/auth/chromewebstore.readonly"
+              ]
+            },
+            "publish": {
+              "description": "Submit the item to be published in the store. The item will be submitted for review unless `skip_review` is set to true, or the item is staged from a previous submission with `publish_type` set to `STAGED_PUBLISH`.",
+              "flatPath": "v2/publishers/{publishersId}/items/{itemsId}:publish",
+              "httpMethod": "POST",
+              "id": "chromewebstore.publishers.items.publish",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the item in the form `publishers/{publisherId}/items/{itemId}`",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/items/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}:publish",
+              "request": {
+                "$ref": "PublishItemRequest"
+              },
+              "response": {
+                "$ref": "PublishItemResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chromewebstore"
+              ]
+            },
+            "setPublishedDeployPercentage": {
+              "description": "Set a higher target deploy percentage for the item's published revision. This will be updated without the item being submitted for review. This is only available to items with over 10,000 seven-day active users.",
+              "flatPath": "v2/publishers/{publishersId}/items/{itemsId}:setPublishedDeployPercentage",
+              "httpMethod": "POST",
+              "id": "chromewebstore.publishers.items.setPublishedDeployPercentage",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the item to update the published revision of in the form `publishers/{publisherId}/items/{itemId}`",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/items/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}:setPublishedDeployPercentage",
+              "request": {
+                "$ref": "SetPublishedDeployPercentageRequest"
+              },
+              "response": {
+                "$ref": "SetPublishedDeployPercentageResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chromewebstore"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20251020",
+  "rootUrl": "https://chromewebstore.googleapis.com/",
+  "schemas": {
+    "Blobstore2Info": {
+      "description": "Information to read/write to blobstore2.",
+      "id": "Blobstore2Info",
+      "properties": {
+        "blobGeneration": {
+          "description": "The blob generation id.",
+          "format": "int64",
+          "type": "string"
+        },
+        "blobId": {
+          "description": "The blob id, e.g., /blobstore/prod/playground/scotty",
+          "type": "string"
+        },
+        "downloadReadHandle": {
+          "description": "Read handle passed from Bigstore -> Scotty for a GCS download. This is a signed, serialized blobstore2.ReadHandle proto which must never be set outside of Bigstore, and is not applicable to non-GCS media downloads.",
+          "format": "byte",
+          "type": "string"
+        },
+        "readToken": {
+          "description": "The blob read token. Needed to read blobs that have not been replicated. Might not be available until the final call.",
+          "type": "string"
+        },
+        "uploadMetadataContainer": {
+          "description": "Metadata passed from Blobstore -> Scotty for a new GCS upload. This is a signed, serialized blobstore2.BlobMetadataContainer proto which must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CancelSubmissionRequest": {
+      "description": "Request message for CancelSubmission.",
+      "id": "CancelSubmissionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CancelSubmissionResponse": {
+      "description": "Response message for `CancelSubmission`.",
+      "id": "CancelSubmissionResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "CompositeMedia": {
+      "description": "A sequence of media data references representing composite data. Introduced to support Bigstore composite objects. For details, visit http://go/bigstore-composites.",
+      "id": "CompositeMedia",
+      "properties": {
+        "blobRef": {
+          "deprecated": true,
+          "description": "Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef.",
+          "format": "byte",
+          "type": "string"
+        },
+        "blobstore2Info": {
+          "$ref": "Blobstore2Info",
+          "description": "Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob."
+        },
+        "cosmoBinaryReference": {
+          "description": "A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field.",
+          "format": "byte",
+          "type": "string"
+        },
+        "crc32cHash": {
+          "description": "crc32.c hash for the payload.",
+          "format": "uint32",
+          "type": "integer"
+        },
+        "inline": {
+          "description": "Media data, set if reference_type is INLINE",
+          "format": "byte",
+          "type": "string"
+        },
+        "length": {
+          "description": "Size of the data, in bytes",
+          "format": "int64",
+          "type": "string"
+        },
+        "md5Hash": {
+          "description": "MD5 hash for the payload.",
+          "format": "byte",
+          "type": "string"
+        },
+        "objectId": {
+          "$ref": "ObjectId",
+          "description": "Reference to a TI Blob, set if reference_type is BIGSTORE_REF."
+        },
+        "path": {
+          "description": "Path to the data, set if reference_type is PATH",
+          "type": "string"
+        },
+        "referenceType": {
+          "description": "Describes what the field reference contains.",
+          "enum": [
+            "PATH",
+            "BLOB_REF",
+            "INLINE",
+            "BIGSTORE_REF",
+            "COSMO_BINARY_REFERENCE"
+          ],
+          "enumDescriptions": [
+            "Reference contains a GFS path or a local path.",
+            "Reference points to a blobstore object. This could be either a v1 blob_ref or a v2 blobstore2_info. Clients should check blobstore2_info first, since v1 is being deprecated.",
+            "Data is included into this proto buffer",
+            "Reference points to a bigstore object",
+            "Indicates the data is stored in cosmo_binary_reference."
+          ],
+          "type": "string"
+        },
+        "sha1Hash": {
+          "description": "SHA-1 hash for the payload.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContentTypeInfo": {
+      "description": "Detailed Content-Type information from Scotty. The Content-Type of the media will typically be filled in by the header or Scotty's best_guess, but this extended information provides the backend with more information so that it can make a better decision if needed. This is only used on media upload requests from Scotty.",
+      "id": "ContentTypeInfo",
+      "properties": {
+        "bestGuess": {
+          "description": "Scotty's best guess of what the content type of the file is.",
+          "type": "string"
+        },
+        "fromBytes": {
+          "description": "The content type of the file derived by looking at specific bytes (i.e. \"magic bytes\") of the actual file.",
+          "type": "string"
+        },
+        "fromFileName": {
+          "description": "The content type of the file derived from the file extension of the original file name used by the client.",
+          "type": "string"
+        },
+        "fromHeader": {
+          "description": "The content type of the file as specified in the request headers, multipart headers, or RUPIO start request.",
+          "type": "string"
+        },
+        "fromUrlPath": {
+          "description": "The content type of the file derived from the file extension of the URL path. The URL path is assumed to represent a file name (which is typically only true for agents that are providing a REST API).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeployInfo": {
+      "description": "Deployment information for a specific release channel. Used in requests to update deployment parameters.",
+      "id": "DeployInfo",
+      "properties": {
+        "deployPercentage": {
+          "description": "Required. The current deploy percentage for the release channel (nonnegative number between 0 and 100).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DiffChecksumsResponse": {
+      "description": "Backend response for a Diff get checksums response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.",
+      "id": "DiffChecksumsResponse",
+      "properties": {
+        "checksumsLocation": {
+          "$ref": "CompositeMedia",
+          "description": "Exactly one of these fields must be populated. If checksums_location is filled, the server will return the corresponding contents to the user. If object_location is filled, the server will calculate the checksums based on the content there and return that to the user. For details on the format of the checksums, see http://go/scotty-diff-protocol."
+        },
+        "chunkSizeBytes": {
+          "description": "The chunk size of checksums. Must be a multiple of 256KB.",
+          "format": "int64",
+          "type": "string"
+        },
+        "objectLocation": {
+          "$ref": "CompositeMedia",
+          "description": "If set, calculate the checksums based on the contents and return them to the caller."
+        },
+        "objectSizeBytes": {
+          "description": "The total size of the server object.",
+          "format": "int64",
+          "type": "string"
+        },
+        "objectVersion": {
+          "description": "The object version of the object the checksums are being returned for.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiffDownloadResponse": {
+      "description": "Backend response for a Diff download response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.",
+      "id": "DiffDownloadResponse",
+      "properties": {
+        "objectLocation": {
+          "$ref": "CompositeMedia",
+          "description": "The original object location."
+        }
+      },
+      "type": "object"
+    },
+    "DiffUploadRequest": {
+      "description": "A Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.",
+      "id": "DiffUploadRequest",
+      "properties": {
+        "checksumsInfo": {
+          "$ref": "CompositeMedia",
+          "description": "The location of the checksums for the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received. For details on the format of the checksums, see http://go/scotty-diff-protocol."
+        },
+        "objectInfo": {
+          "$ref": "CompositeMedia",
+          "description": "The location of the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received."
+        },
+        "objectVersion": {
+          "description": "The object version of the object that is the base version the incoming diff script will be applied to. This field will always be filled in.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiffUploadResponse": {
+      "description": "Backend response for a Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.",
+      "id": "DiffUploadResponse",
+      "properties": {
+        "objectVersion": {
+          "description": "The object version of the object at the server. Must be included in the end notification response. The version in the end notification response must correspond to the new version of the object that is now stored at the server, after the upload.",
+          "type": "string"
+        },
+        "originalObject": {
+          "$ref": "CompositeMedia",
+          "description": "The location of the original file for a diff upload request. Must be filled in if responding to an upload start notification."
+        }
+      },
+      "type": "object"
+    },
+    "DiffVersionResponse": {
+      "description": "Backend response for a Diff get version response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.",
+      "id": "DiffVersionResponse",
+      "properties": {
+        "objectSizeBytes": {
+          "description": "The total size of the server object.",
+          "format": "int64",
+          "type": "string"
+        },
+        "objectVersion": {
+          "description": "The version of the object stored at the server.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DistributionChannel": {
+      "description": "Deployment information for a specific release channel",
+      "id": "DistributionChannel",
+      "properties": {
+        "crxVersion": {
+          "description": "The extension version provided in the manifest of the uploaded package.",
+          "type": "string"
+        },
+        "deployPercentage": {
+          "description": "The current deploy percentage for the release channel (nonnegative number between 0 and 100).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DownloadParameters": {
+      "description": "Parameters specific to media downloads.",
+      "id": "DownloadParameters",
+      "properties": {
+        "allowGzipCompression": {
+          "description": "A boolean to be returned in the response to Scotty. Allows/disallows gzip encoding of the payload content when the server thinks it's advantageous (hence, does not guarantee compression) which allows Scotty to GZip the response to the client.",
+          "type": "boolean"
+        },
+        "ignoreRange": {
+          "description": "Determining whether or not Apiary should skip the inclusion of any Content-Range header on its response to Scotty.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "FetchItemStatusResponse": {
+      "description": "Response message for `FetchItemStatus`.",
+      "id": "FetchItemStatusResponse",
+      "properties": {
+        "itemId": {
+          "description": "Output only. The ID of the item.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastAsyncUploadState": {
+          "description": "Output only. The state of the last async upload for an item. Only set when there has been an async upload for the item in the past 24 hours.",
+          "enum": [
+            "UPLOAD_STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "IN_PROGRESS",
+            "FAILED",
+            "NOT_FOUND"
+          ],
+          "enumDescriptions": [
+            "The default value.",
+            "The upload succeeded.",
+            "The upload is currently being processed.",
+            "The upload failed.",
+            "Used as the value of `lastAsyncUploadState` in a `fetchStatus` response indicating that an upload attempt was not found."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the requested item.",
+          "type": "string"
+        },
+        "publicKey": {
+          "description": "The public key of the item, which may be generated by the store.",
+          "type": "string"
+        },
+        "publishedItemRevisionStatus": {
+          "$ref": "ItemRevisionStatus",
+          "description": "Output only. Status of the current published revision of the item. Will be unset if the item is not published.",
+          "readOnly": true
+        },
+        "submittedItemRevisionStatus": {
+          "$ref": "ItemRevisionStatus",
+          "description": "Status of the item revision submitted to be published. Will be unset if the item has not been submitted for publishing since the last successful publish."
+        },
+        "takenDown": {
+          "description": "If true, the item has been taken down for a policy violation. Check the developer dashboard for details.",
+          "type": "boolean"
+        },
+        "warned": {
+          "description": "If true, the item has been warned for a policy violation and will be taken down if not resolved. Check the developer dashboard for details.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ItemRevisionStatus": {
+      "description": "Details on the status of an item revision.",
+      "id": "ItemRevisionStatus",
+      "properties": {
+        "distributionChannels": {
+          "description": "Details on the package of the item",
+          "items": {
+            "$ref": "DistributionChannel"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. Current state of the item",
+          "enum": [
+            "ITEM_STATE_UNSPECIFIED",
+            "PENDING_REVIEW",
+            "STAGED",
+            "PUBLISHED",
+            "PUBLISHED_TO_TESTERS",
+            "REJECTED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The item is pending review.",
+            "The item has been approved and is ready to be published.",
+            "The item is published publicly.",
+            "The item is published to trusted testers.",
+            "The item has been rejected for publishing.",
+            "The item submission has been cancelled."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Media": {
+      "description": "A reference to data stored on the filesystem, on GFS or in blobstore.",
+      "id": "Media",
+      "properties": {
+        "algorithm": {
+          "deprecated": true,
+          "description": "Deprecated, use one of explicit hash type fields instead. Algorithm used for calculating the hash. As of 2011/01/21, \"MD5\" is the only possible value for this field. New values may be added at any time.",
+          "type": "string"
+        },
+        "bigstoreObjectRef": {
+          "deprecated": true,
+          "description": "Use object_id instead.",
+          "format": "byte",
+          "type": "string"
+        },
+        "blobRef": {
+          "deprecated": true,
+          "description": "Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef.",
+          "format": "byte",
+          "type": "string"
+        },
+        "blobstore2Info": {
+          "$ref": "Blobstore2Info",
+          "description": "Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob."
+        },
+        "compositeMedia": {
+          "description": "A composite media composed of one or more media objects, set if reference_type is COMPOSITE_MEDIA. The media length field must be set to the sum of the lengths of all composite media objects. Note: All composite media must have length specified.",
+          "items": {
+            "$ref": "CompositeMedia"
+          },
+          "type": "array"
+        },
+        "contentType": {
+          "description": "MIME type of the data",
+          "type": "string"
+        },
+        "contentTypeInfo": {
+          "$ref": "ContentTypeInfo",
+          "description": "Extended content type information provided for Scotty uploads."
+        },
+        "cosmoBinaryReference": {
+          "description": "A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field.",
+          "format": "byte",
+          "type": "string"
+        },
+        "crc32cHash": {
+          "description": "For Scotty Uploads: Scotty-provided hashes for uploads For Scotty Downloads: (WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.) A Hash provided by the agent to be used to verify the data being downloaded. Currently only supported for inline payloads. Further, only crc32c_hash is currently supported.",
+          "format": "uint32",
+          "type": "integer"
+        },
+        "diffChecksumsResponse": {
+          "$ref": "DiffChecksumsResponse",
+          "description": "Set if reference_type is DIFF_CHECKSUMS_RESPONSE."
+        },
+        "diffDownloadResponse": {
+          "$ref": "DiffDownloadResponse",
+          "description": "Set if reference_type is DIFF_DOWNLOAD_RESPONSE."
+        },
+        "diffUploadRequest": {
+          "$ref": "DiffUploadRequest",
+          "description": "Set if reference_type is DIFF_UPLOAD_REQUEST."
+        },
+        "diffUploadResponse": {
+          "$ref": "DiffUploadResponse",
+          "description": "Set if reference_type is DIFF_UPLOAD_RESPONSE."
+        },
+        "diffVersionResponse": {
+          "$ref": "DiffVersionResponse",
+          "description": "Set if reference_type is DIFF_VERSION_RESPONSE."
+        },
+        "downloadParameters": {
+          "$ref": "DownloadParameters",
+          "description": "Parameters for a media download."
+        },
+        "filename": {
+          "description": "Original file name",
+          "type": "string"
+        },
+        "hash": {
+          "deprecated": true,
+          "description": "Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/blobstore2/api/scotty/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media.",
+          "type": "string"
+        },
+        "hashVerified": {
+          "description": "For Scotty uploads only. If a user sends a hash code and the backend has requested that Scotty verify the upload against the client hash, Scotty will perform the check on behalf of the backend and will reject it if the hashes don't match. This is set to true if Scotty performed this verification.",
+          "type": "boolean"
+        },
+        "inline": {
+          "description": "Media data, set if reference_type is INLINE",
+          "format": "byte",
+          "type": "string"
+        },
+        "isPotentialRetry": {
+          "description": "|is_potential_retry| is set false only when Scotty is certain that it has not sent the request before. When a client resumes an upload, this field must be set true in agent calls, because Scotty cannot be certain that it has never sent the request before due to potential failure in the session state persistence.",
+          "type": "boolean"
+        },
+        "length": {
+          "description": "Size of the data, in bytes",
+          "format": "int64",
+          "type": "string"
+        },
+        "md5Hash": {
+          "description": "Scotty-provided MD5 hash for an upload.",
+          "format": "byte",
+          "type": "string"
+        },
+        "mediaId": {
+          "description": "Media id to forward to the operation GetMedia. Can be set if reference_type is GET_MEDIA.",
+          "format": "byte",
+          "type": "string"
+        },
+        "objectId": {
+          "$ref": "ObjectId",
+          "description": "Reference to a TI Blob, set if reference_type is BIGSTORE_REF."
+        },
+        "path": {
+          "description": "Path to the data, set if reference_type is PATH",
+          "type": "string"
+        },
+        "referenceType": {
+          "description": "Describes what the field reference contains.",
+          "enum": [
+            "PATH",
+            "BLOB_REF",
+            "INLINE",
+            "GET_MEDIA",
+            "COMPOSITE_MEDIA",
+            "BIGSTORE_REF",
+            "DIFF_VERSION_RESPONSE",
+            "DIFF_CHECKSUMS_RESPONSE",
+            "DIFF_DOWNLOAD_RESPONSE",
+            "DIFF_UPLOAD_REQUEST",
+            "DIFF_UPLOAD_RESPONSE",
+            "COSMO_BINARY_REFERENCE",
+            "ARBITRARY_BYTES"
+          ],
+          "enumDescriptions": [
+            "Reference contains a GFS path or a local path.",
+            "Reference points to a blobstore object. This could be either a v1 blob_ref or a v2 blobstore2_info. Clients should check blobstore2_info first, since v1 is being deprecated.",
+            "Data is included into this proto buffer",
+            "Data should be accessed from the current service using the operation GetMedia.",
+            "The content for this media object is stored across multiple partial media objects under the composite_media field.",
+            "Reference points to a bigstore object",
+            "Indicates the data is stored in diff_version_response.",
+            "Indicates the data is stored in diff_checksums_response.",
+            "Indicates the data is stored in diff_download_response.",
+            "Indicates the data is stored in diff_upload_request.",
+            "Indicates the data is stored in diff_upload_response.",
+            "Indicates the data is stored in cosmo_binary_reference.",
+            "Informs Scotty to generate a response payload with the size specified in the length field. The contents of the payload are generated by Scotty and are undefined. This is useful for testing download speeds between the user and Scotty without involving a real payload source. Note: range is not supported when using arbitrary_bytes."
+          ],
+          "type": "string"
+        },
+        "sha1Hash": {
+          "description": "Scotty-provided SHA1 hash for an upload.",
+          "format": "byte",
+          "type": "string"
+        },
+        "sha256Hash": {
+          "description": "Scotty-provided SHA256 hash for an upload.",
+          "format": "byte",
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "Time at which the media data was last updated, in milliseconds since UNIX epoch",
+          "format": "uint64",
+          "type": "string"
+        },
+        "token": {
+          "description": "A unique fingerprint/version id for the media data",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MediaRequestInfo": {
+      "description": "Extra information added to operations that support Scotty media requests.",
+      "id": "MediaRequestInfo",
+      "properties": {
+        "currentBytes": {
+          "description": "The number of current bytes uploaded or downloaded.",
+          "format": "int64",
+          "type": "string"
+        },
+        "customData": {
+          "description": "Data to be copied to backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications.",
+          "type": "string"
+        },
+        "diffObjectVersion": {
+          "description": "Set if the http request info is diff encoded. The value of this field is the version number of the base revision. This is corresponding to Apiary's mediaDiffObjectVersion (//depot/google3/java/com/google/api/server/media/variable/DiffObjectVersionVariable.java). See go/esf-scotty-diff-upload for more information.",
+          "type": "string"
+        },
+        "finalStatus": {
+          "description": "The existence of the final_status field indicates that this is the last call to the agent for this request_id. http://google3/uploader/agent/scotty_agent.proto?l=737&rcl=347601929",
+          "format": "int32",
+          "type": "integer"
+        },
+        "notificationType": {
+          "description": "The type of notification received from Scotty.",
+          "enum": [
+            "START",
+            "PROGRESS",
+            "END",
+            "RESPONSE_SENT",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Such requests signals the start of a request containing media upload. Only the media field(s) in the inserted/updated resource are set. The response should either return an error or succeed. On success, responses don't need to contain anything.",
+            "Such requests signals that the upload has progressed and that the backend might want to access the media file specified in relevant fields in the resource. Only the media field(s) in the inserted/updated resource are set. The response should either return an error or succeed. On success, responses don't need to contain anything.",
+            "Such requests signals the end of a request containing media upload. END should be handled just like normal Insert/Upload requests, that is, they should process the request and return a complete resource in the response. Pointers to media data (a GFS path usually) appear in the relevant fields in the inserted/updated resource. See gdata.Media in data.proto.",
+            "Such requests occur after an END and signal that the response has been sent back to the client. RESPONSE_SENT is only sent to the backend if it is configured to receive them. The response does not need to contain anything.",
+            "Such requests indicate that an error occurred while processing the request. ERROR is only sent to the backend if it is configured to receive them. It is not guaranteed that all errors will result in this notification to the backend, even if the backend requests them. Since these requests are just for informational purposes, the response does not need to contain anything."
+          ],
+          "type": "string"
+        },
+        "physicalHeaders": {
+          "description": "The physical headers provided by RequestReceivedParameters in Scotty request. type is uploader_service.KeyValuePairs.",
+          "format": "byte",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "The Scotty request ID.",
+          "type": "string"
+        },
+        "requestReceivedParamsServingInfo": {
+          "description": "The partition of the Scotty server handling this request. type is uploader_service.RequestReceivedParamsServingInfo LINT.IfChange(request_received_params_serving_info_annotations) LINT.ThenChange()",
+          "format": "byte",
+          "type": "string"
+        },
+        "totalBytes": {
+          "description": "The total size of the file.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalBytesIsEstimated": {
+          "description": "Whether the total bytes field contains an estimated data.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ObjectId": {
+      "description": "This is a copy of the tech.blob.ObjectId proto, which could not be used directly here due to transitive closure issues with JavaScript support; see http://b/8801763.",
+      "id": "ObjectId",
+      "properties": {
+        "bucketName": {
+          "description": "The name of the bucket to which this object belongs.",
+          "type": "string"
+        },
+        "generation": {
+          "description": "Generation of the object. Generations are monotonically increasing across writes, allowing them to be be compared to determine which generation is newer. If this is omitted in a request, then you are requesting the live object. See http://go/bigstore-versions",
+          "format": "int64",
+          "type": "string"
+        },
+        "objectName": {
+          "description": "The name of the object.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PublishItemRequest": {
+      "description": "Request message for PublishItem.",
+      "id": "PublishItemRequest",
+      "properties": {
+        "deployInfos": {
+          "description": "Optional. Additional deploy information including the desired initial percentage rollout. Defaults to the current value saved in the developer dashboard if unset.",
+          "items": {
+            "$ref": "DeployInfo"
+          },
+          "type": "array"
+        },
+        "publishType": {
+          "description": "Optional. Use this to control if the item is published immediately on approval or staged for publishing in the future. Defaults to `DEFAULT_PUBLISH` if unset.",
+          "enum": [
+            "PUBLISH_TYPE_UNSPECIFIED",
+            "DEFAULT_PUBLISH",
+            "STAGED_PUBLISH"
+          ],
+          "enumDescriptions": [
+            "Default value. This is the same as DEFAULT_PUBLISH.",
+            "The submission will be published immediately after being approved.",
+            "After approval the submission will be staged and can then be published by the developer."
+          ],
+          "type": "string"
+        },
+        "skipReview": {
+          "description": "Optional. Whether to attempt to skip item review. The API will validate if the item qualifies and return a validation error if the item requires review. Defaults to `false` if unset.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PublishItemResponse": {
+      "description": "Response message for `PublishItem`.",
+      "id": "PublishItemResponse",
+      "properties": {
+        "itemId": {
+          "description": "Output only. The ID of the item.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the item that was submitted",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the submission.",
+          "enum": [
+            "ITEM_STATE_UNSPECIFIED",
+            "PENDING_REVIEW",
+            "STAGED",
+            "PUBLISHED",
+            "PUBLISHED_TO_TESTERS",
+            "REJECTED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The item is pending review.",
+            "The item has been approved and is ready to be published.",
+            "The item is published publicly.",
+            "The item is published to trusted testers.",
+            "The item has been rejected for publishing.",
+            "The item submission has been cancelled."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetPublishedDeployPercentageRequest": {
+      "description": "Request message for SetPublishedDeployPercentage.",
+      "id": "SetPublishedDeployPercentageRequest",
+      "properties": {
+        "deployPercentage": {
+          "description": "Required. Unscaled percentage value for the publised revision (nonnegative number between 0 and 100). It must be larger than the existing target percentage.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SetPublishedDeployPercentageResponse": {
+      "description": "Response message for `SetPublishedDeployPercentage`.",
+      "id": "SetPublishedDeployPercentageResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "UploadItemPackageRequest": {
+      "description": "Request message for UploadItemPackage.",
+      "id": "UploadItemPackageRequest",
+      "properties": {
+        "blob": {
+          "$ref": "Media",
+          "description": "Reference to the uploaded media."
+        },
+        "mediaRequestInfo": {
+          "$ref": "MediaRequestInfo",
+          "description": "Info about the media upload request."
+        }
+      },
+      "type": "object"
+    },
+    "UploadItemPackageResponse": {
+      "description": "Response message for `UploadItemPackage`.",
+      "id": "UploadItemPackageResponse",
+      "properties": {
+        "crxVersion": {
+          "description": "The extension version provided in the manifest of the uploaded package. This will not be set if the upload is still in progress (`upload_state` is `UPLOAD_IN_PROGRESS`).",
+          "type": "string"
+        },
+        "itemId": {
+          "description": "Output only. The ID of the item the package was uploaded to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the item the package was uploaded to.",
+          "type": "string"
+        },
+        "uploadState": {
+          "description": "Output only. The state of the upload. If `upload_state` is `UPLOAD_IN_PROGRESS`, you can poll for updates using the fetchStatus method.",
+          "enum": [
+            "UPLOAD_STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "IN_PROGRESS",
+            "FAILED",
+            "NOT_FOUND"
+          ],
+          "enumDescriptions": [
+            "The default value.",
+            "The upload succeeded.",
+            "The upload is currently being processed.",
+            "The upload failed.",
+            "Used as the value of `lastAsyncUploadState` in a `fetchStatus` response indicating that an upload attempt was not found."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Chrome Web Store API",
+  "version": "v2",
+  "version_module": true
+}
