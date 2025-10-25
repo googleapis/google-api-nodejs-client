@@ -12645,7 +12645,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Get a Policy
+     * Get a policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -12786,7 +12786,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * List Policies
+     * List policies.
      * @example
      * ```js
      * // Before running the sample:
