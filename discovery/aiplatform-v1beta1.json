@@ -19081,6 +19081,35 @@
                         "https://www.googleapis.com/auth/cloud-platform.read-only"
                       ]
                     },
+                    "embedContent": {
+                      "description": "Embed content with multimodal inputs.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:embedContent",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.publishers.models.embedContent",
+                      "parameterOrder": [
+                        "model"
+                      ],
+                      "parameters": {
+                        "model": {
+                          "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/publishers/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+model}:embedContent",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1EmbedContentRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1EmbedContentResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
                     "export": {
                       "description": "Exports a publisher model to a user provided Google Cloud Storage bucket.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:export",
@@ -21087,6 +21116,34 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "rollback": {
+                      "description": "Rollback Memory to a specific revision.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}:rollback",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.reasoningEngines.memories.rollback",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Memory to rollback. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:rollback",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1RollbackMemoryRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   },
                   "resources": {
@@ -21239,6 +21296,76 @@
                           "path": "v1beta1/{+name}:wait",
                           "response": {
                             "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "revisions": {
+                      "methods": {
+                        "get": {
+                          "description": "Get a Memory Revision.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/revisions/{revisionsId}",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.reasoningEngines.memories.revisions.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Memory Revision to retrieve. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}/revisions/{revision}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+/revisions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudAiplatformV1beta1MemoryRevision"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "List Memory Revisions for a Memory.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/revisions",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.reasoningEngines.memories.revisions.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. The standard list filter. More detail in [AIP-160](https://google.aip.dev/160). Supported fields (equality match only): * `labels`",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The standard list page size.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The standard list page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The resource name of the Memory to list revisions for. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+parent}/revisions",
+                          "response": {
+                            "$ref": "GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -27023,6 +27150,106 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "rollback": {
+              "description": "Rollback Memory to a specific revision.",
+              "flatPath": "v1beta1/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}:rollback",
+              "httpMethod": "POST",
+              "id": "aiplatform.reasoningEngines.memories.rollback",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the Memory to rollback. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}`",
+                  "location": "path",
+                  "pattern": "^reasoningEngines/[^/]+/memories/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:rollback",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1beta1RollbackMemoryRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "revisions": {
+              "methods": {
+                "get": {
+                  "description": "Get a Memory Revision.",
+                  "flatPath": "v1beta1/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/revisions/{revisionsId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.reasoningEngines.memories.revisions.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the Memory Revision to retrieve. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}/revisions/{revision}`",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/memories/[^/]+/revisions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1MemoryRevision"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List Memory Revisions for a Memory.",
+                  "flatPath": "v1beta1/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/revisions",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.reasoningEngines.memories.revisions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The standard list filter. More detail in [AIP-160](https://google.aip.dev/160). Supported fields (equality match only): * `labels`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Memory to list revisions for. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}`",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/memories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/revisions",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         },
@@ -27266,7 +27493,7 @@
       }
     }
   },
-  "revision": "20251003",
+  "revision": "20251010",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -30673,7 +30900,9 @@
             "GETTING_CONTAINER_IMAGE",
             "STARTING_MODEL_SERVER",
             "FINISHING_UP",
-            "DEPLOYMENT_TERMINATED"
+            "DEPLOYMENT_TERMINATED",
+            "SUCCESSFULLY_DEPLOYED",
+            "FAILED_TO_DEPLOY"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -30684,7 +30913,9 @@
             "The deployment is getting the container image for the model server.",
             "The deployment is starting the model server.",
             "The deployment is performing finalization steps.",
-            "The deployment has terminated."
+            "The deployment has terminated.",
+            "The deployment has succeeded.",
+            "The deployment has failed."
           ],
           "readOnly": true,
           "type": "string"
@@ -32001,7 +32232,9 @@
             "GETTING_CONTAINER_IMAGE",
             "STARTING_MODEL_SERVER",
             "FINISHING_UP",
-            "DEPLOYMENT_TERMINATED"
+            "DEPLOYMENT_TERMINATED",
+            "SUCCESSFULLY_DEPLOYED",
+            "FAILED_TO_DEPLOY"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -32012,7 +32245,9 @@
             "The deployment is getting the container image for the model server.",
             "The deployment is starting the model server.",
             "The deployment is performing finalization steps.",
-            "The deployment has terminated."
+            "The deployment has terminated.",
+            "The deployment has succeeded.",
+            "The deployment has failed."
           ],
           "readOnly": true,
           "type": "string"
@@ -32802,6 +33037,90 @@
             "Run retrieval only when system decides it is necessary."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EmbedContentRequest": {
+      "description": "Request message for PredictionService.EmbedContent.",
+      "id": "GoogleCloudAiplatformV1beta1EmbedContentRequest",
+      "properties": {
+        "autoTruncate": {
+          "description": "Optional. Whether to silently truncate the input content if it's longer than the maximum sequence length.",
+          "type": "boolean"
+        },
+        "content": {
+          "$ref": "GoogleCloudAiplatformV1beta1Content",
+          "description": "Required. Input content to be embedded. Required."
+        },
+        "outputDimensionality": {
+          "description": "Optional. Optional reduced dimension for the output embedding. If set, excessive values in the output embedding are truncated from the end.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "taskType": {
+          "description": "Optional. The task type of the embedding.",
+          "enum": [
+            "UNSPECIFIED",
+            "RETRIEVAL_QUERY",
+            "RETRIEVAL_DOCUMENT",
+            "SEMANTIC_SIMILARITY",
+            "CLASSIFICATION",
+            "CLUSTERING",
+            "QUESTION_ANSWERING",
+            "FACT_VERIFICATION",
+            "CODE_RETRIEVAL_QUERY"
+          ],
+          "enumDescriptions": [
+            "Unset value, which will default to one of the other enum values.",
+            "Specifies the given text is a query in a search/retrieval setting.",
+            "Specifies the given text is a document from the corpus being searched.",
+            "Specifies the given text will be used for STS.",
+            "Specifies that the given text will be classified.",
+            "Specifies that the embeddings will be used for clustering.",
+            "Specifies that the embeddings will be used for question answering.",
+            "Specifies that the embeddings will be used for fact verification.",
+            "Specifies that the embeddings will be used for code retrieval."
+          ],
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. An optional title for the text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EmbedContentResponse": {
+      "description": "Response message for PredictionService.EmbedContent.",
+      "id": "GoogleCloudAiplatformV1beta1EmbedContentResponse",
+      "properties": {
+        "embedding": {
+          "$ref": "GoogleCloudAiplatformV1beta1EmbedContentResponseEmbedding",
+          "description": "The embedding generated from the input content."
+        },
+        "truncated": {
+          "description": "Whether the input content was truncated before generating the embedding.",
+          "type": "boolean"
+        },
+        "usageMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1UsageMetadata",
+          "description": "Metadata about the response(s)."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EmbedContentResponseEmbedding": {
+      "description": "A list of floats representing an embedding.",
+      "id": "GoogleCloudAiplatformV1beta1EmbedContentResponseEmbedding",
+      "properties": {
+        "values": {
+          "description": "Embedding vector values.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -34381,11 +34700,6 @@
         "transferAgent": {
           "description": "Optional. If set, the event transfers to the specified agent.",
           "type": "string"
-        },
-        "transferToAgent": {
-          "deprecated": true,
-          "description": "Deprecated. If set, the event transfers to the specified agent.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -38062,6 +38376,13 @@
           "description": "Required. The name of the function to call. Matches [FunctionDeclaration.name] and [FunctionCall.name].",
           "type": "string"
         },
+        "parts": {
+          "description": "Optional. Ordered `Parts` that constitute a function response. Parts may have different IANA MIME types.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1FunctionResponsePart"
+          },
+          "type": "array"
+        },
         "response": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -38069,6 +38390,60 @@
           },
           "description": "Required. The function response in JSON object format. Use \"output\" key to specify function output and \"error\" key to specify error details (if any). If \"output\" and \"error\" keys are not specified, then whole \"response\" is treated as function output.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FunctionResponseBlob": {
+      "description": "Raw media bytes for function response. Text should not be sent as raw bytes, use the 'text' field.",
+      "id": "GoogleCloudAiplatformV1beta1FunctionResponseBlob",
+      "properties": {
+        "data": {
+          "description": "Required. Raw bytes.",
+          "format": "byte",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name of the blob. Used to provide a label or filename to distinguish blobs. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Required. The IANA standard MIME type of the source data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FunctionResponseFileData": {
+      "description": "URI based data for function response.",
+      "id": "GoogleCloudAiplatformV1beta1FunctionResponseFileData",
+      "properties": {
+        "displayName": {
+          "description": "Optional. Display name of the file data. Used to provide a label or filename to distinguish file datas. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.",
+          "type": "string"
+        },
+        "fileUri": {
+          "description": "Required. URI.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Required. The IANA standard MIME type of the source data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FunctionResponsePart": {
+      "description": "A datatype containing media that is part of a `FunctionResponse` message. A `FunctionResponsePart` consists of data which has an associated datatype. A `FunctionResponsePart` can only contain one of the accepted types in `FunctionResponsePart.data`. A `FunctionResponsePart` must have a fixed IANA MIME type identifying the type and subtype of the media if the `inline_data` field is filled with raw bytes.",
+      "id": "GoogleCloudAiplatformV1beta1FunctionResponsePart",
+      "properties": {
+        "fileData": {
+          "$ref": "GoogleCloudAiplatformV1beta1FunctionResponseFileData",
+          "description": "URI based data."
+        },
+        "inlineData": {
+          "$ref": "GoogleCloudAiplatformV1beta1FunctionResponseBlob",
+          "description": "Inline media bytes."
         }
       },
       "type": "object"
@@ -38592,6 +38967,27 @@
         "disableConsolidation": {
           "description": "Optional. If true, generated memories will not be consolidated with existing memories; all generated memories will be added as new memories regardless of whether they are duplicates of or contradictory to existing memories. By default, memory consolidation is enabled.",
           "type": "boolean"
+        },
+        "disableMemoryRevisions": {
+          "description": "Optional. If true, no revisions will be created for this request.",
+          "type": "boolean"
+        },
+        "revisionExpireTime": {
+          "description": "Optional. Timestamp of when the revision is considered expired. If not set, the memory revision will be kept until manually deleted.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "revisionLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels to be applied to the generated memory revisions. For example, you can use this to label a revision with its data source.",
+          "type": "object"
+        },
+        "revisionTtl": {
+          "description": "Optional. The TTL for the revision. The expiration time is computed: now + TTL.",
+          "format": "google-duration",
+          "type": "string"
         },
         "scope": {
           "additionalProperties": {
@@ -41230,6 +41626,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponse": {
+      "description": "Response message for MemoryBankService.ListMemoryRevisions.",
+      "id": "GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponse",
+      "properties": {
+        "memoryRevisions": {
+          "description": "The list of Memory Revisions in the request page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1MemoryRevision"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ListMetadataSchemasResponse": {
       "description": "Response message for MetadataService.ListMetadataSchemas.",
       "id": "GoogleCloudAiplatformV1beta1ListMetadataSchemasResponse",
@@ -42122,6 +42536,10 @@
           "description": "Optional. Description of the Memory.",
           "type": "string"
         },
+        "disableMemoryRevisions": {
+          "description": "Optional. Input only. If true, no revision will be created for this request.",
+          "type": "boolean"
+        },
         "displayName": {
           "description": "Optional. Display name of the Memory.",
           "type": "string"
@@ -42137,6 +42555,16 @@
         },
         "name": {
           "description": "Identifier. The resource name of the Memory. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}`",
+          "type": "string"
+        },
+        "revisionExpireTime": {
+          "description": "Optional. Input only. Timestamp of when the revision is considered expired. If not set, the memory revision will be kept until manually deleted.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "revisionTtl": {
+          "description": "Optional. Input only. The TTL for the revision. The expiration time is computed: now + TTL.",
+          "format": "google-duration",
           "type": "string"
         },
         "scope": {
@@ -42299,6 +42727,42 @@
             "Important milestones or conclusions within the dialogue.",
             "Information that the user explicitly requested to remember or forget."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1MemoryRevision": {
+      "description": "A revision of a Memory.",
+      "id": "GoogleCloudAiplatformV1beta1MemoryRevision",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this Memory Revision was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. Timestamp of when this resource is considered expired.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fact": {
+          "description": "Output only. The fact of the Memory Revision. This corresponds to the `fact` field of the parent Memory at the time of revision creation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. The labels of the Memory Revision. These labels are applied to the MemoryRevision when it is created based on `GenerateMemoriesRequest.revision_labels`.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Memory Revision. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}/revisions/{memory_revision}`",
           "type": "string"
         }
       },
@@ -47718,6 +48182,13 @@
           },
           "type": "array"
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The user labels for Imagen billing usage only. Only Imagen supports labels. For other use cases, it will be ignored.",
+          "type": "object"
+        },
         "parameters": {
           "description": "The parameters that govern the prediction. The schema of the parameters may be specified via Endpoint's DeployedModels' Model's PredictSchemata's parameters_schema_uri.",
           "type": "any"
@@ -50439,6 +50910,10 @@
           },
           "type": "array"
         },
+        "disableMemoryRevisions": {
+          "description": "If true, no memory revisions will be created for any requests to the Memory Bank.",
+          "type": "boolean"
+        },
         "generationConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1ReasoningEngineContextSpecMemoryBankConfigGenerationConfig",
           "description": "Optional. Configuration for how to generate memories for the Memory Bank."
@@ -50488,6 +50963,11 @@
         "granularTtlConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1ReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig",
           "description": "Optional. The granular TTL configuration of the memories in the Memory Bank."
+        },
+        "memoryRevisionDefaultTtl": {
+          "description": "Optional. The default TTL duration of the memory revisions in the Memory Bank. This applies to all operations that create a memory revision. If not set, a default TTL of 365 days will be used.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -51307,6 +51787,18 @@
         "memory": {
           "$ref": "GoogleCloudAiplatformV1beta1Memory",
           "description": "The retrieved Memory."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RollbackMemoryRequest": {
+      "description": "Request message for MemoryBankService.RollbackMemory.",
+      "id": "GoogleCloudAiplatformV1beta1RollbackMemoryRequest",
+      "properties": {
+        "targetRevisionId": {
+          "description": "Required. The ID of the revision to rollback to.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -59664,6 +60156,10 @@
           "$ref": "GoogleCloudAiplatformV1beta1ToolCodeExecution",
           "description": "Optional. CodeExecution tool type. Enables the model to execute code as part of generation."
         },
+        "computerUse": {
+          "$ref": "GoogleCloudAiplatformV1beta1ToolComputerUse",
+          "description": "Optional. Tool to support the model interacting directly with the computer. If enabled, it automatically populates computer-use specific Function Declarations."
+        },
         "enterpriseWebSearch": {
           "$ref": "GoogleCloudAiplatformV1beta1EnterpriseWebSearch",
           "description": "Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance."
@@ -59785,6 +60281,32 @@
       "description": "Tool that executes code generated by the model, and automatically returns the result to the model. See also [ExecutableCode]and [CodeExecutionResult] which are input and output to this tool.",
       "id": "GoogleCloudAiplatformV1beta1ToolCodeExecution",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ToolComputerUse": {
+      "description": "Tool to support computer use.",
+      "id": "GoogleCloudAiplatformV1beta1ToolComputerUse",
+      "properties": {
+        "environment": {
+          "description": "Required. The environment being operated.",
+          "enum": [
+            "ENVIRONMENT_UNSPECIFIED",
+            "ENVIRONMENT_BROWSER"
+          ],
+          "enumDescriptions": [
+            "Defaults to browser.",
+            "Operates in a web browser."
+          ],
+          "type": "string"
+        },
+        "excludedPredefinedFunctions": {
+          "description": "Optional. By default, predefined functions are included in the final model call. Some of them can be explicitly excluded from being automatically included. This can serve two purposes: 1. Using a more restricted / different action space. 2. Improving the definitions / instructions of predefined functions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1ToolConfig": {
@@ -61574,6 +62096,93 @@
             "Url retrieval is successful.",
             "Url retrieval is failed due to error."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1UsageMetadata": {
+      "description": "Usage metadata about the content generation request and response. This message provides a detailed breakdown of token usage and other relevant metrics.",
+      "id": "GoogleCloudAiplatformV1beta1UsageMetadata",
+      "properties": {
+        "cacheTokensDetails": {
+          "description": "Output only. A detailed breakdown of the token count for each modality in the cached content.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1ModalityTokenCount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "cachedContentTokenCount": {
+          "description": "Output only. The number of tokens in the cached content that was used for this request.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "candidatesTokenCount": {
+          "description": "The total number of tokens in the generated candidates.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "candidatesTokensDetails": {
+          "description": "Output only. A detailed breakdown of the token count for each modality in the generated candidates.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1ModalityTokenCount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "promptTokenCount": {
+          "description": "The total number of tokens in the prompt. This includes any text, images, or other media provided in the request. When `cached_content` is set, this also includes the number of tokens in the cached content.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "promptTokensDetails": {
+          "description": "Output only. A detailed breakdown of the token count for each modality in the prompt.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1ModalityTokenCount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "thoughtsTokenCount": {
+          "description": "Output only. The number of tokens that were part of the model's generated \"thoughts\" output, if applicable.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "toolUsePromptTokenCount": {
+          "description": "Output only. The number of tokens in the results from tool executions, which are provided back to the model as input, if applicable.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "toolUsePromptTokensDetails": {
+          "description": "Output only. A detailed breakdown by modality of the token counts from the results of tool executions, which are provided back to the model as input.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1ModalityTokenCount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "totalTokenCount": {
+          "description": "The total number of tokens for the entire request. This is the sum of `prompt_token_count`, `candidates_token_count`, `tool_use_prompt_token_count`, and `thoughts_token_count`.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "trafficType": {
+          "description": "Output only. The traffic type for this request.",
+          "enum": [
+            "TRAFFIC_TYPE_UNSPECIFIED",
+            "ON_DEMAND",
+            "PROVISIONED_THROUGHPUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified request traffic type.",
+            "Type for Pay-As-You-Go traffic.",
+            "Type for Provisioned Throughput traffic."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
