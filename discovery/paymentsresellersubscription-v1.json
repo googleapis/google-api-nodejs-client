@@ -586,7 +586,7 @@
       }
     }
   },
-  "revision": "20251012",
+  "revision": "20251019",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "Amount": {
@@ -663,6 +663,10 @@
       "description": "Intent message for creating a Subscription resource.",
       "id": "CreateSubscriptionIntent",
       "properties": {
+        "cycleOptions": {
+          "$ref": "CycleOptions",
+          "description": "Optional. The cycle options for the subscription."
+        },
         "parent": {
           "description": "Required. The parent resource name, which is the identifier of the partner.",
           "type": "string"
