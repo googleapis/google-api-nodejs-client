@@ -619,6 +619,19 @@ export namespace container_v1beta1 {
     sizeGb?: string | null;
   }
   /**
+   * Swap on the node's boot disk.
+   */
+  export interface Schema$BootDiskProfile {
+    /**
+     * Specifies the size of the swap space in gibibytes (GiB).
+     */
+    swapSizeGib?: string | null;
+    /**
+     * Specifies the size of the swap space as a percentage of the boot disk size.
+     */
+    swapSizePercent?: number | null;
+  }
+  /**
    * CancelOperationRequest cancels a single operation.
    */
   export interface Schema$CancelOperationRequest {
@@ -1689,6 +1702,15 @@ export namespace container_v1beta1 {
     year?: number | null;
   }
   /**
+   * Provisions a new, separate local NVMe SSD exclusively for swap.
+   */
+  export interface Schema$DedicatedLocalSsdProfile {
+    /**
+     * The number of physical local NVMe SSD disks to attach.
+     */
+    diskCount?: string | null;
+  }
+  /**
    * DefaultComputeClassConfig defines default compute class configuration.
    */
   export interface Schema$DefaultComputeClassConfig {
@@ -1780,6 +1802,15 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
+   * Defines encryption settings for the swap space.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * Optional. If true, swap space will not be encrypted. Defaults to false (encrypted).
+     */
+    disabled?: boolean | null;
+  }
+  /**
    * EnterpriseConfig is the cluster enterprise configuration. Deprecated: GKE Enterprise features are now available without an Enterprise tier.
    */
   export interface Schema$EnterpriseConfig {
@@ -1791,6 +1822,19 @@ export namespace container_v1beta1 {
      * desired_tier specifies the desired tier of the cluster.
      */
     desiredTier?: string | null;
+  }
+  /**
+   * Swap on the local SSD shared with pod ephemeral storage.
+   */
+  export interface Schema$EphemeralLocalSsdProfile {
+    /**
+     * Specifies the size of the swap space in gibibytes (GiB).
+     */
+    swapSizeGib?: string | null;
+    /**
+     * Specifies the size of the swap space as a percentage of the ephemeral local SSD capacity.
+     */
+    swapSizePercent?: number | null;
   }
   /**
    * EphemeralStorageConfig contains configuration for the ephemeral storage filesystem.
@@ -2418,6 +2462,14 @@ export namespace container_v1beta1 {
      */
     hugepages?: Schema$HugepagesConfig;
     /**
+     * Optional. Configuration for kernel module loading on nodes. When enabled, the node pool will be provisioned with a Container-Optimized OS image that enforces kernel module signature verification.
+     */
+    nodeKernelModuleLoading?: Schema$NodeKernelModuleLoading;
+    /**
+     * Optional. Enables and configures swap space on nodes. If omitted, swap is disabled.
+     */
+    swapConfig?: Schema$SwapConfig;
+    /**
      * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_max_orphans net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
      */
     sysctls?: {[key: string]: string} | null;
@@ -2561,6 +2613,10 @@ export namespace container_v1beta1 {
    * Represents the Maintenance exclusion option.
    */
   export interface Schema$MaintenanceExclusionOptions {
+    /**
+     * EndTimeBehavior specifies the behavior of the exclusion end time.
+     */
+    endTimeBehavior?: string | null;
     /**
      * Scope specifies the upgrade scope which upgrades are blocked by the exclusion.
      */
@@ -3099,6 +3155,15 @@ export namespace container_v1beta1 {
     nodeKubeletConfig?: Schema$NodeKubeletConfig;
   }
   /**
+   * Configuration for kernel module loading on nodes.
+   */
+  export interface Schema$NodeKernelModuleLoading {
+    /**
+     * Set the node module loading policy for nodes in the node pool.
+     */
+    policy?: string | null;
+  }
+  /**
    * Node kubelet configs.
    */
   export interface Schema$NodeKubeletConfig {
@@ -3213,6 +3278,10 @@ export namespace container_v1beta1 {
    * Parameters for node pool-level network config.
    */
   export interface Schema$NodeNetworkConfig {
+    /**
+     * Immutable. The accelerator network profile for the node pool. For now the only valid value is "auto". If specified, the network configuration of the nodes in this node pool will be managed by this profile for the supported machine types, zone, etc.
+     */
+    acceleratorNetworkProfile?: string | null;
     /**
      * We specify the additional node networks for this node pool using this list. Each node network corresponds to an additional interface
      */
@@ -4613,6 +4682,31 @@ export namespace container_v1beta1 {
     message?: string | null;
   }
   /**
+   * Configuration for swap memory on a node pool.
+   */
+  export interface Schema$SwapConfig {
+    /**
+     * Swap on the node's boot disk.
+     */
+    bootDiskProfile?: Schema$BootDiskProfile;
+    /**
+     * Provisions a new, separate local NVMe SSD exclusively for swap.
+     */
+    dedicatedLocalSsdProfile?: Schema$DedicatedLocalSsdProfile;
+    /**
+     * Optional. Enables or disables swap for the node pool.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. If omitted, swap space is encrypted by default.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
+    /**
+     * Swap on the local SSD shared with pod ephemeral storage.
+     */
+    ephemeralLocalSsdProfile?: Schema$EphemeralLocalSsdProfile;
+  }
+  /**
    * SyncRotationConfig is config for secret manager auto rotation.
    */
   export interface Schema$SyncRotationConfig {
@@ -4800,7 +4894,7 @@ export namespace container_v1beta1 {
      */
     linuxNodeConfig?: Schema$LinuxNodeConfig;
     /**
-     * The desired list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
+     * The desired list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed. Warning: It is recommended to update node pool locations in a standalone API call. Do not combine a location update with changes to other fields (such as `tags`, `labels`, `taints`, etc.) in the same request. Otherwise, the API performs a structural modification where changes to other fields will only apply to newly created nodes and will not be applied to existing nodes in the node pool. To ensure all nodes are updated consistently, use a separate API call for location changes.
      */
     locations?: string[] | null;
     /**
@@ -4935,6 +5029,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$UpgradeEvent {
     /**
+     * The current emulated version before the upgrade.
+     */
+    currentEmulatedVersion?: string | null;
+    /**
      * The current version before the upgrade.
      */
     currentVersion?: string | null;
@@ -4955,6 +5053,10 @@ export namespace container_v1beta1 {
      */
     resourceType?: string | null;
     /**
+     * The target emulated version for the upgrade.
+     */
+    targetEmulatedVersion?: string | null;
+    /**
      * The target version for the upgrade.
      */
     targetVersion?: string | null;
@@ -4963,6 +5065,10 @@ export namespace container_v1beta1 {
    * UpgradeInfoEvent is a notification sent to customers about the upgrade information of a resource.
    */
   export interface Schema$UpgradeInfoEvent {
+    /**
+     * The current emulated version before the upgrade.
+     */
+    currentEmulatedVersion?: string | null;
     /**
      * The current version before the upgrade.
      */
@@ -5007,6 +5113,10 @@ export namespace container_v1beta1 {
      * Output only. The state of the upgrade.
      */
     state?: string | null;
+    /**
+     * The target emulated version for the upgrade.
+     */
+    targetEmulatedVersion?: string | null;
     /**
      * The target version for the upgrade.
      */
