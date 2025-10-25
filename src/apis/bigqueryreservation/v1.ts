@@ -145,6 +145,10 @@ export namespace bigqueryreservation_v1 {
      */
     name?: string | null;
     /**
+     * Optional. The scheduling policy to use for jobs and queries of this assignee when running under the associated reservation. The scheduling policy controls how the reservation's resources are distributed. This overrides the default scheduling policy specified on the reservation. This feature is not yet generally available.
+     */
+    schedulingPolicy?: Schema$SchedulingPolicy;
+    /**
      * Output only. State of the assignment.
      */
     state?: string | null;
@@ -490,6 +494,10 @@ export namespace bigqueryreservation_v1 {
      */
     scalingMode?: string | null;
     /**
+     * Optional. The scheduling policy to use for jobs and queries running under this reservation. The scheduling policy controls how the reservation's resources are distributed. This feature is not yet generally available.
+     */
+    schedulingPolicy?: Schema$SchedulingPolicy;
+    /**
      * Optional. The current location of the reservation's secondary replica. This field is only set for reservations using the managed disaster recovery feature. Users can set this in create reservation calls to create a failover reservation or in update reservation calls to convert a non-failover reservation to a failover reservation(or vice versa).
      */
     secondaryLocation?: string | null;
@@ -510,6 +518,19 @@ export namespace bigqueryreservation_v1 {
      * Identifier. The resource name of the reservation group, e.g., `projects/x/locations/x/reservationGroups/team1-prod`. The reservation_group_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string | null;
+  }
+  /**
+   * The scheduling policy controls how a reservation's resources are distributed.
+   */
+  export interface Schema$SchedulingPolicy {
+    /**
+     * Optional. If present and \> 0, the reservation will attempt to limit the concurrency of jobs running for any particular project within it to the given value. This feature is not yet generally available.
+     */
+    concurrency?: string | null;
+    /**
+     * Optional. If present and \> 0, the reservation will attempt to limit the slot consumption of queries running for any particular project within it to the given value. This feature is not yet generally available.
+     */
+    maxSlots?: string | null;
   }
   /**
    * The response for ReservationService.SearchAllAssignments.
@@ -3230,6 +3251,7 @@ export namespace bigqueryreservation_v1 {
      *       //   "replicationStatus": {},
      *       //   "reservationGroup": "my_reservationGroup",
      *       //   "scalingMode": "my_scalingMode",
+     *       //   "schedulingPolicy": {},
      *       //   "secondaryLocation": "my_secondaryLocation",
      *       //   "slotCapacity": "my_slotCapacity",
      *       //   "updateTime": "my_updateTime"
@@ -3254,6 +3276,7 @@ export namespace bigqueryreservation_v1 {
      *   //   "replicationStatus": {},
      *   //   "reservationGroup": "my_reservationGroup",
      *   //   "scalingMode": "my_scalingMode",
+     *   //   "schedulingPolicy": {},
      *   //   "secondaryLocation": "my_secondaryLocation",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -3558,6 +3581,7 @@ export namespace bigqueryreservation_v1 {
      *   //   "replicationStatus": {},
      *   //   "reservationGroup": "my_reservationGroup",
      *   //   "scalingMode": "my_scalingMode",
+     *   //   "schedulingPolicy": {},
      *   //   "secondaryLocation": "my_secondaryLocation",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -3718,6 +3742,7 @@ export namespace bigqueryreservation_v1 {
      *   //   "replicationStatus": {},
      *   //   "reservationGroup": "my_reservationGroup",
      *   //   "scalingMode": "my_scalingMode",
+     *   //   "schedulingPolicy": {},
      *   //   "secondaryLocation": "my_secondaryLocation",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -4171,6 +4196,7 @@ export namespace bigqueryreservation_v1 {
      *       //   "replicationStatus": {},
      *       //   "reservationGroup": "my_reservationGroup",
      *       //   "scalingMode": "my_scalingMode",
+     *       //   "schedulingPolicy": {},
      *       //   "secondaryLocation": "my_secondaryLocation",
      *       //   "slotCapacity": "my_slotCapacity",
      *       //   "updateTime": "my_updateTime"
@@ -4195,6 +4221,7 @@ export namespace bigqueryreservation_v1 {
      *   //   "replicationStatus": {},
      *   //   "reservationGroup": "my_reservationGroup",
      *   //   "scalingMode": "my_scalingMode",
+     *   //   "schedulingPolicy": {},
      *   //   "secondaryLocation": "my_secondaryLocation",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -4774,6 +4801,7 @@ export namespace bigqueryreservation_v1 {
      *           //   "enableGeminiInBigquery": false,
      *           //   "jobType": "my_jobType",
      *           //   "name": "my_name",
+     *           //   "schedulingPolicy": {},
      *           //   "state": "my_state"
      *           // }
      *         },
@@ -4787,6 +4815,7 @@ export namespace bigqueryreservation_v1 {
      *   //   "enableGeminiInBigquery": false,
      *   //   "jobType": "my_jobType",
      *   //   "name": "my_name",
+     *   //   "schedulingPolicy": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -5385,6 +5414,7 @@ export namespace bigqueryreservation_v1 {
      *   //   "enableGeminiInBigquery": false,
      *   //   "jobType": "my_jobType",
      *   //   "name": "my_name",
+     *   //   "schedulingPolicy": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -5532,6 +5562,7 @@ export namespace bigqueryreservation_v1 {
      *           //   "enableGeminiInBigquery": false,
      *           //   "jobType": "my_jobType",
      *           //   "name": "my_name",
+     *           //   "schedulingPolicy": {},
      *           //   "state": "my_state"
      *           // }
      *         },
@@ -5545,6 +5576,7 @@ export namespace bigqueryreservation_v1 {
      *   //   "enableGeminiInBigquery": false,
      *   //   "jobType": "my_jobType",
      *   //   "name": "my_name",
+     *   //   "schedulingPolicy": {},
      *   //   "state": "my_state"
      *   // }
      * }
