@@ -14,25 +14,34 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {dataform_v1} from './v1';
 import {dataform_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: dataform_v1.Dataform,
   v1beta1: dataform_v1beta1.Dataform,
 };
 
+export function dataform(version: 'v1'): dataform_v1.Dataform;
+export function dataform(options: dataform_v1.Options): dataform_v1.Dataform;
 export function dataform(version: 'v1beta1'): dataform_v1beta1.Dataform;
 export function dataform(
   options: dataform_v1beta1.Options
 ): dataform_v1beta1.Dataform;
-export function dataform<T = dataform_v1beta1.Dataform>(
+export function dataform<T = dataform_v1.Dataform | dataform_v1beta1.Dataform>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | dataform_v1beta1.Options
+  versionOrOptions:
+    | 'v1'
+    | dataform_v1.Options
+    | 'v1beta1'
+    | dataform_v1beta1.Options
 ) {
   return getAPI<T>('dataform', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {dataform_v1};
 export {dataform_v1beta1};
 export {
   AuthPlus,
