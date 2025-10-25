@@ -871,7 +871,7 @@
       "version": "v1"
     },
     {
-      "description": "Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity solutions.",
+      "description": "Chrome Enterprise Premium is a secure enterprise browsing solution that provides secure access to applications and resources, and offers integrated threat and data protection. It adds an extra layer of security to safeguard your Chrome browser environment, including Data Loss Prevention (DLP), real-time URL and file scanning, and Context-Aware Access for SaaS and web apps.",
       "discoveryRestUrl": "https://beyondcorp.googleapis.com/$discovery/rest?version=v1alpha",
       "documentationLink": "https://cloud.google.com/",
       "icons": {
@@ -886,7 +886,7 @@
       "version": "v1alpha"
     },
     {
-      "description": "Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity solutions.",
+      "description": "Chrome Enterprise Premium is a secure enterprise browsing solution that provides secure access to applications and resources, and offers integrated threat and data protection. It adds an extra layer of security to safeguard your Chrome browser environment, including Data Loss Prevention (DLP), real-time URL and file scanning, and Context-Aware Access for SaaS and web apps.",
       "discoveryRestUrl": "https://beyondcorp.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://cloud.google.com/",
       "icons": {
@@ -1263,7 +1263,7 @@
     {
       "description": "The Chrome Web Store API provides access to data about apps and extensions, as well as developer tools for managing them.",
       "discoveryRestUrl": "https://chromewebstore.googleapis.com/$discovery/rest?version=v1.1",
-      "documentationLink": "https://developer.chrome.com/webstore/api_index",
+      "documentationLink": "https://developer.chrome.com/docs/webstore/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -1271,9 +1271,24 @@
       "id": "chromewebstore:v1.1",
       "kind": "discovery#directoryItem",
       "name": "chromewebstore",
-      "preferred": true,
+      "preferred": false,
       "title": "Chrome Web Store API",
       "version": "v1.1"
+    },
+    {
+      "description": "The Chrome Web Store API provides access to data about apps and extensions, as well as developer tools for managing them.",
+      "discoveryRestUrl": "https://chromewebstore.googleapis.com/$discovery/rest?version=v2",
+      "documentationLink": "https://developer.chrome.com/docs/webstore/api",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "chromewebstore:v2",
+      "kind": "discovery#directoryItem",
+      "name": "chromewebstore",
+      "preferred": true,
+      "title": "Chrome Web Store API",
+      "version": "v2"
     },
     {
       "description": "Provides polling places, early vote locations, contest data, election officials, and government representatives for U.S. residential addresses.",
@@ -2279,9 +2294,24 @@
       "id": "dataform:v1beta1",
       "kind": "discovery#directoryItem",
       "name": "dataform",
-      "preferred": true,
+      "preferred": false,
       "title": "Dataform API",
       "version": "v1beta1"
+    },
+    {
+      "description": "Service to develop, version control, and operationalize SQL pipelines in BigQuery.",
+      "discoveryRestUrl": "https://dataform.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/dataform/docs",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "dataform:v1",
+      "kind": "discovery#directoryItem",
+      "name": "dataform",
+      "preferred": true,
+      "title": "Dataform API",
+      "version": "v1"
     },
     {
       "description": "Cloud Data Fusion is a fully-managed, cloud native, enterprise data integration service for quickly building and managing data pipelines. It provides a graphical interface to increase time efficiency and reduce complexity, and allows business users, developers, and data scientists to easily and reliably build scalable data integration solutions to cleanse, prepare, blend, transfer and transform data without having to wrestle with infrastructure.",

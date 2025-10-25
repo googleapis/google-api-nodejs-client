@@ -1942,7 +1942,7 @@
       }
     }
   },
-  "revision": "20251003",
+  "revision": "20251019",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2310,6 +2310,10 @@
         "resources": {
           "$ref": "GoogleCloudRunV2ResourceRequirements",
           "description": "Compute Resource requirements by this container."
+        },
+        "source": {
+          "description": "Optional. Location of the source .tar.gz file in Cloud Storage. examples: - gs://bucket/object.tar.gz. - gs://bucket/object.tar.gz#1234567890 (with object generation)",
+          "type": "string"
         },
         "startupProbe": {
           "$ref": "GoogleCloudRunV2Probe",

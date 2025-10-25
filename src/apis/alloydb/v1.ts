@@ -456,6 +456,10 @@ export namespace alloydb_v1 {
      */
     databaseVersion?: string | null;
     /**
+     * Optional. Configuration for Dataplex integration.
+     */
+    dataplexConfig?: Schema$DataplexConfig;
+    /**
      * Output only. Delete time stamp
      */
     deleteTime?: string | null;
@@ -716,6 +720,15 @@ export namespace alloydb_v1 {
      * Required. The database table to import CSV file into.
      */
     table?: string | null;
+  }
+  /**
+   * Configuration for Dataplex integration.
+   */
+  export interface Schema$DataplexConfig {
+    /**
+     * Dataplex is enabled by default for resources such as clusters and instances. This flag controls the integration of AlloyDB PG resources (like databases, schemas, and tables) with Dataplex."
+     */
+    enabled?: boolean | null;
   }
   /**
    * DenyMaintenancePeriod definition. Excepting emergencies, maintenance will not be scheduled to start within this deny period. The start_date must be less than the end_date.
@@ -3972,6 +3985,7 @@ export namespace alloydb_v1 {
      *       //   "continuousBackupInfo": {},
      *       //   "createTime": "my_createTime",
      *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "dataplexConfig": {},
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
      *       //   "encryptionConfig": {},
@@ -4162,6 +4176,7 @@ export namespace alloydb_v1 {
      *       //   "continuousBackupInfo": {},
      *       //   "createTime": "my_createTime",
      *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "dataplexConfig": {},
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
      *       //   "encryptionConfig": {},
@@ -4644,6 +4659,7 @@ export namespace alloydb_v1 {
      *   //   "continuousBackupInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "databaseVersion": "my_databaseVersion",
+     *   //   "dataplexConfig": {},
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
      *   //   "encryptionConfig": {},
@@ -5120,6 +5136,7 @@ export namespace alloydb_v1 {
      *       //   "continuousBackupInfo": {},
      *       //   "createTime": "my_createTime",
      *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "dataplexConfig": {},
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
      *       //   "encryptionConfig": {},

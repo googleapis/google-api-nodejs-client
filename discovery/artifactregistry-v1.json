@@ -2465,7 +2465,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20251007",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -4115,7 +4115,8 @@
             "PYTHON",
             "KFP",
             "GO",
-            "GENERIC"
+            "GENERIC",
+            "RUBY"
           ],
           "enumDescriptions": [
             "Unspecified package format.",
@@ -4128,7 +4129,8 @@
             "Python package format.",
             "Kubeflow Pipelines package format.",
             "Go package format.",
-            "Generic package format."
+            "Generic package format.",
+            "Ruby package format."
           ],
           "type": "string"
         },
@@ -4666,7 +4668,7 @@
             "DISABLED"
           ],
           "enumDescriptions": [
-            "Not set. This will be treated as INHERITED.",
+            "Not set. This will be treated as INHERITED for Docker repositories and DISABLED for non-Docker repositories.",
             "Scanning is Enabled, but dependent on API enablement.",
             "No automatic vulnerability scanning will be performed for this repository."
           ],

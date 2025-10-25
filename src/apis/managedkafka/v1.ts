@@ -359,7 +359,7 @@ export namespace managedkafka_v1 {
      */
     satisfiesPzs?: boolean | null;
     /**
-     * Output only. The current state of the cluster.
+     * Output only. The current state of the Kafka Connect cluster.
      */
     state?: string | null;
     /**

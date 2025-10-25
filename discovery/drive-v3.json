@@ -2720,7 +2720,7 @@
       }
     }
   },
-  "revision": "20251013",
+  "revision": "20251019",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3229,6 +3229,11 @@
           "description": "A region of the document represented as a JSON string. For details on defining anchor properties, refer to [Manage comments and replies](https://developers.google.com/workspace/drive/api/v3/manage-comments).",
           "type": "string"
         },
+        "assigneeEmailAddress": {
+          "description": "Output only. The email of the user who is assigned to this comment, if none is assigned this will be unset.",
+          "readOnly": true,
+          "type": "string"
+        },
         "author": {
           "$ref": "User",
           "description": "Output only. The author of the comment. The author's email address and permission ID will not be populated."
@@ -3264,6 +3269,14 @@
           "default": "drive#comment",
           "description": "Output only. Identifies what kind of resource this is. Value: the fixed string `\"drive#comment\"`.",
           "type": "string"
+        },
+        "mentionedEmailAddresses": {
+          "description": "Output only. The emails of the users who were mentioned in this comment, if none were mentioned this will be an empty list.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "modifiedTime": {
           "description": "The last time the comment or any of its replies was modified (RFC 3339 date-time).",
@@ -4768,6 +4781,11 @@
           "description": "The action the reply performed to the parent comment. Valid values are: * `resolve` * `reopen`",
           "type": "string"
         },
+        "assigneeEmailAddress": {
+          "description": "Output only. The email of the user who is assigned to this reply, if none is assigned this will be unset.",
+          "readOnly": true,
+          "type": "string"
+        },
         "author": {
           "$ref": "User",
           "description": "Output only. The author of the reply. The author's email address and permission ID will not be populated."
@@ -4802,6 +4820,14 @@
           "default": "drive#reply",
           "description": "Output only. Identifies what kind of resource this is. Value: the fixed string `\"drive#reply\"`.",
           "type": "string"
+        },
+        "mentionedEmailAddresses": {
+          "description": "Output only. The emails of the users who were mentioned in this reply, if none were mentioned this will be an empty list.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "modifiedTime": {
           "description": "The last time the reply was modified (RFC 3339 date-time).",

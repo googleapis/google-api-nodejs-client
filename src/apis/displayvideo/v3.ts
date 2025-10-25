@@ -240,6 +240,10 @@ export namespace displayvideo_v3 {
      */
     adGroupId?: string | null;
     /**
+     * The policy approval status of the ad.
+     */
+    adPolicy?: Schema$AdPolicy;
+    /**
      * List of URLs used by the ad.
      */
     adUrls?: Schema$AdUrl[];
@@ -375,6 +379,349 @@ export namespace displayvideo_v3 {
      * Optional. IAB viewability threshold for video ads.
      */
     videoIabViewability?: string | null;
+  }
+  /**
+   * A single ad policy associated with an ad group ad.
+   */
+  export interface Schema$AdPolicy {
+    /**
+     * The policy approval status of an ad. Indicating the ad policy approval decision.
+     */
+    adPolicyApprovalStatus?: string | null;
+    /**
+     * The policy review status of an ad. Indicating where the review process the ad is currently at.
+     */
+    adPolicyReviewStatus?: string | null;
+    /**
+     * The policy topic entries for the ad, including the topic, restriction level, and guidance on how to fix policy issues.
+     */
+    adPolicyTopicEntry?: Schema$AdPolicyTopicEntry[];
+  }
+  /**
+   * Represents a criterion that is restricted. Today only used to represent a country restriction. Used by both policy evidence and policy constraints.
+   */
+  export interface Schema$AdPolicyCriterionRestriction {
+    /**
+     * Only used today to represent a country criterion id.
+     */
+    countryCriterionId?: string | null;
+    /**
+     * Localized name for the country. Could be empty.
+     */
+    countryLabel?: string | null;
+  }
+  /**
+   * Appeal related information for a policy topic.
+   */
+  export interface Schema$AdPolicyTopicAppealInfo {
+    /**
+     * Only available when appeal_type is APPEAL_FORM.
+     */
+    appealFormLink?: string | null;
+    /**
+     * Indicate whether the policy topic can be self-service appeal or appeal form.
+     */
+    appealType?: string | null;
+  }
+  /**
+   * Additional constraints information that explains restrictions applied to this policy.
+   */
+  export interface Schema$AdPolicyTopicConstraint {
+    /**
+     * Countries where the resource's domain is not covered by the certificates associated with it.
+     */
+    certificateDomainMismatchCountryList?: Schema$AdPolicyTopicConstraintAdPolicyCountryConstraintList;
+    /**
+     * Countries where a certificate is required for serving.
+     */
+    certificateMissingCountryList?: Schema$AdPolicyTopicConstraintAdPolicyCountryConstraintList;
+    /**
+     * Countries where the ad cannot serve.
+     */
+    countryConstraint?: Schema$AdPolicyTopicConstraintAdPolicyCountryConstraintList;
+    /**
+     * Certificate is required to serve in any country and the existing certificate does not cover the ad's domain.
+     */
+    globalCertificateDomainMismatch?: Schema$AdPolicyTopicConstraintAdPolicyGlobalCertificateDomainMismatchConstraint;
+    /**
+     * Certificate is required to serve in any country.
+     */
+    globalCertificateMissing?: Schema$AdPolicyTopicConstraintAdPolicyGlobalCertificateMissingConstraint;
+    /**
+     * Link to the form to request a certificate for the policy topic constraint.
+     */
+    requestCertificateFormLink?: string | null;
+    /**
+     * Reseller constraint.
+     */
+    resellerConstraint?: Schema$AdPolicyTopicConstraintAdPolicyResellerConstraint;
+  }
+  /**
+   * A list of countries where the ad cannot serve due to policy constraints.
+   */
+  export interface Schema$AdPolicyTopicConstraintAdPolicyCountryConstraintList {
+    /**
+     * Countries where the ad cannot serve.
+     */
+    countries?: Schema$AdPolicyCriterionRestriction[];
+  }
+  /**
+   * Certificate is required to serve in any country and the existing certificate does not cover the ad's domain.
+   */
+  export interface Schema$AdPolicyTopicConstraintAdPolicyGlobalCertificateDomainMismatchConstraint {}
+  /**
+   * Certificate is required to serve in any country.
+   */
+  export interface Schema$AdPolicyTopicConstraintAdPolicyGlobalCertificateMissingConstraint {}
+  /**
+   * Policy topic was constrained due to disapproval of the website for reseller purposes.
+   */
+  export interface Schema$AdPolicyTopicConstraintAdPolicyResellerConstraint {}
+  /**
+   * Policy topic entry.
+   */
+  export interface Schema$AdPolicyTopicEntry {
+    /**
+     * Ad policy appeal related information for the policy topic.
+     */
+    appealInfo?: Schema$AdPolicyTopicAppealInfo;
+    /**
+     * Ad policy help center link for the policy topic.
+     */
+    helpCenterLink?: string | null;
+    /**
+     * The source of the policy decision.
+     */
+    policyDecisionType?: string | null;
+    /**
+     * The policy enforcement means used in the policy review.
+     */
+    policyEnforcementMeans?: string | null;
+    /**
+     * Localized label text for policy. (Trademarks in text, Contains Alcohol, etc.)
+     */
+    policyLabel?: string | null;
+    /**
+     * The policy topic of an ad policy topic entry. (TRADEMARKS, ALCOHOL, etc.)
+     */
+    policyTopic?: string | null;
+    /**
+     * The policy topic constraints.
+     */
+    policyTopicConstraints?: Schema$AdPolicyTopicConstraint[];
+    /**
+     * Short summary description of the policy topic.
+     */
+    policyTopicDescription?: string | null;
+    /**
+     * The policy topic evidences.
+     */
+    policyTopicEvidences?: Schema$AdPolicyTopicEvidence[];
+    /**
+     * The policy topic entry type.
+     */
+    policyTopicType?: string | null;
+  }
+  /**
+   * Additional evidence information that explains a policy decision.
+   */
+  export interface Schema$AdPolicyTopicEvidence {
+    /**
+     * Counterfeit enforcement that caused a policy violation.
+     */
+    counterfeit?: Schema$AdPolicyTopicEvidenceCounterfeit;
+    /**
+     * Mismatch between the ad destinations URLs.
+     */
+    destinationMismatch?: Schema$AdPolicyTopicEvidenceDestinationMismatch;
+    /**
+     * Destination not working because of HTTP error or DNS error.
+     */
+    destinationNotWorking?: Schema$AdPolicyTopicEvidenceDestinationNotWorking;
+    /**
+     * The text in the destination of the ad that is causing a policy violation.
+     */
+    destinationTextList?: Schema$AdPolicyTopicEvidenceDestinationTextList;
+    /**
+     * HTTP code returned when the final URL was crawled.
+     */
+    httpCode?: number | null;
+    /**
+     * The language the ad was detected to be written in. This is an IETF language tag such as "en-US".
+     */
+    languageCode?: string | null;
+    /**
+     * Legal related regulation enforcement that caused a policy violation.
+     */
+    legalRemoval?: Schema$AdPolicyTopicEvidenceLegalRemoval;
+    /**
+     * T&S proactive enforcement that caused a policy violation.
+     */
+    regionalRequirements?: Schema$AdPolicyTopicEvidenceRegionalRequirements;
+    /**
+     * List of evidence found in the text of the ad.
+     */
+    textList?: Schema$AdPolicyTopicEvidenceTextList;
+    /**
+     * Trademark terms that caused a policy violation.
+     */
+    trademark?: Schema$AdPolicyTopicEvidenceTrademark;
+    /**
+     * List of websites linked with the ad.
+     */
+    websiteList?: Schema$AdPolicyTopicEvidenceWebsiteList;
+  }
+  /**
+   * Counterfeit enforcement that caused a policy violation.
+   */
+  export interface Schema$AdPolicyTopicEvidenceCounterfeit {
+    /**
+     * The content or product owners that make the complainants.
+     */
+    owners?: string[] | null;
+  }
+  /**
+   * A list of destination mismatch URL types.
+   */
+  export interface Schema$AdPolicyTopicEvidenceDestinationMismatch {
+    /**
+     * The set of URLs that do not match each other. The list can include single or multiple uri types. Example 1: [DISPLAY_URL, FINAL_URL] means ad display URL does not match with the ad final URL. Example 2: [FINAL_URL] means ad final URL did not match the crawled url, which is also considered as destinationmismatch.
+     */
+    uriTypes?: string[] | null;
+  }
+  /**
+   * Evidence details for destination not working policy violations.
+   */
+  export interface Schema$AdPolicyTopicEvidenceDestinationNotWorking {
+    /**
+     * The device platform of the not working url.
+     */
+    device?: string | null;
+    /**
+     * The type of DNS error.
+     */
+    dnsErrorType?: string | null;
+    /**
+     * The full URL that didn't work.
+     */
+    expandedUri?: string | null;
+    /**
+     * The HTTP error code.
+     */
+    httpErrorCode?: string | null;
+    /**
+     * The last checked time of the not working url.
+     */
+    lastCheckedTime?: string | null;
+  }
+  /**
+   * A list of destination text that violated the policy.
+   */
+  export interface Schema$AdPolicyTopicEvidenceDestinationTextList {
+    /**
+     * Destination text that caused the policy finding.
+     */
+    destinationTexts?: string[] | null;
+  }
+  /**
+   * Legal related regulation enforcement, either from DMCA or local legal.
+   */
+  export interface Schema$AdPolicyTopicEvidenceLegalRemoval {
+    /**
+     * The legal removal complaint type.
+     */
+    complaintType?: string | null;
+    /**
+     * The restricted countries due to the legal removal.
+     */
+    countryRestrictions?: Schema$AdPolicyCriterionRestriction[];
+    /**
+     * Whether the restriction is from DMCA regulation.
+     */
+    dmca?: Schema$AdPolicyTopicEvidenceLegalRemovalDmca;
+    /**
+     * Whether the restriction is from local legal regulation.
+     */
+    localLegal?: Schema$AdPolicyTopicEvidenceLegalRemovalLocalLegal;
+    /**
+     * The urls that are restricted due to the legal removal.
+     */
+    restrictedUris?: string[] | null;
+  }
+  /**
+   * DMCA related regulation enforcement.
+   */
+  export interface Schema$AdPolicyTopicEvidenceLegalRemovalDmca {
+    /**
+     * The entity who makes the legal complaint.
+     */
+    complainant?: string | null;
+  }
+  /**
+   * Local legal related regulation enforcement.
+   */
+  export interface Schema$AdPolicyTopicEvidenceLegalRemovalLocalLegal {
+    /**
+     * Type of law for the legal notice.
+     */
+    lawType?: string | null;
+  }
+  /**
+   * T&S proactive enforcement for policies meant to address regional requirements. This is considered as Google owned investigation instead of regulation notice since it's a T&S proactive enforcement.
+   */
+  export interface Schema$AdPolicyTopicEvidenceRegionalRequirements {
+    /**
+     * List of regional requirements.
+     */
+    regionalRequirementsEntries?: Schema$AdPolicyTopicEvidenceRegionalRequirementsRegionalRequirementsEntry[];
+  }
+  /**
+   * Policy level regional legal violation details.
+   */
+  export interface Schema$AdPolicyTopicEvidenceRegionalRequirementsRegionalRequirementsEntry {
+    /**
+     * The restricted countries due to the legal policy.
+     */
+    countryRestrictions?: Schema$AdPolicyCriterionRestriction[];
+    /**
+     * The legal policy that is violated.
+     */
+    legalPolicy?: string | null;
+  }
+  /**
+   * A list of fragments of text that violated the policy.
+   */
+  export interface Schema$AdPolicyTopicEvidenceTextList {
+    /**
+     * The fragments of text from the resource that caused the policy finding.
+     */
+    texts?: string[] | null;
+  }
+  /**
+   * Trademark terms that caused a policy violation.
+   */
+  export interface Schema$AdPolicyTopicEvidenceTrademark {
+    /**
+     * Criteria that are geo restrictions.
+     */
+    countryRestrictions?: Schema$AdPolicyCriterionRestriction[];
+    /**
+     * The trademark content owner.
+     */
+    owner?: string | null;
+    /**
+     * The trademark term.
+     */
+    term?: string | null;
+  }
+  /**
+   * A list of websites that violated the policy.
+   */
+  export interface Schema$AdPolicyTopicEvidenceWebsiteList {
+    /**
+     * Websites that caused the policy finding.
+     */
+    websites?: string[] | null;
   }
   /**
    * Additional URLs related to the ad, including beacons.
@@ -7930,6 +8277,7 @@ export namespace displayvideo_v3 {
      *   // {
      *   //   "adGroupAdId": "my_adGroupAdId",
      *   //   "adGroupId": "my_adGroupId",
+     *   //   "adPolicy": {},
      *   //   "adUrls": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "audioAd": {},

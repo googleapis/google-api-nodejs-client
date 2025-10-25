@@ -162,6 +162,23 @@ export namespace developerconnect_v1 {
     updateTime?: string | null;
   }
   /**
+   * AppHubService represents the App Hub Service.
+   */
+  export interface Schema$AppHubService {
+    /**
+     * Required. Output only. Immutable. The name of the App Hub Service. Format: `projects/{project\}/locations/{location\}/applications/{application\}/services/{service\}`.
+     */
+    apphubService?: string | null;
+    /**
+     * Output only. The criticality of the App Hub Service.
+     */
+    criticality?: string | null;
+    /**
+     * Output only. The environment of the App Hub Service.
+     */
+    environment?: string | null;
+  }
+  /**
    * AppHubWorkload represents the App Hub Workload.
    */
   export interface Schema$AppHubWorkload {
@@ -676,6 +693,15 @@ export namespace developerconnect_v1 {
     projectId?: string | null;
   }
   /**
+   * GoogleCloudRun represents the Cloud Run runtime.
+   */
+  export interface Schema$GoogleCloudRun {
+    /**
+     * Required. Immutable. The name of the Cloud Run service. Format: `projects/{project\}/locations/{location\}/services/{service\}`.
+     */
+    serviceUri?: string | null;
+  }
+  /**
    * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
    */
   export interface Schema$HttpBody {
@@ -1058,6 +1084,10 @@ export namespace developerconnect_v1 {
    */
   export interface Schema$RuntimeConfig {
     /**
+     * Output only. App Hub Service.
+     */
+    appHubService?: Schema$AppHubService;
+    /**
      * Output only. App Hub Workload.
      */
     appHubWorkload?: Schema$AppHubWorkload;
@@ -1065,6 +1095,10 @@ export namespace developerconnect_v1 {
      * Output only. Google Kubernetes Engine runtime.
      */
     gkeWorkload?: Schema$GKEWorkload;
+    /**
+     * Output only. Cloud Run runtime.
+     */
+    googleCloudRun?: Schema$GoogleCloudRun;
     /**
      * Output only. The state of the Runtime.
      */

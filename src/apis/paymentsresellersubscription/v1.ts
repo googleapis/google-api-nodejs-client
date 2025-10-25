@@ -164,6 +164,10 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$CreateSubscriptionIntent {
     /**
+     * Optional. The cycle options for the subscription.
+     */
+    cycleOptions?: Schema$CycleOptions;
+    /**
      * Required. The parent resource name, which is the identifier of the partner.
      */
     parent?: string | null;

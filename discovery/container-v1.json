@@ -2660,7 +2660,7 @@
       }
     }
   },
-  "revision": "20250930",
+  "revision": "20251014",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5546,6 +5546,10 @@
           "$ref": "HugepagesConfig",
           "description": "Optional. Amounts for 2M and 1G hugepages"
         },
+        "nodeKernelModuleLoading": {
+          "$ref": "NodeKernelModuleLoading",
+          "description": "Optional. Configuration for kernel module loading on nodes. When enabled, the node pool will be provisioned with a Container-Optimized OS image that enforces kernel module signature verification."
+        },
         "sysctls": {
           "additionalProperties": {
             "type": "string"
@@ -5766,6 +5770,18 @@
       "description": "Represents the Maintenance exclusion option.",
       "id": "MaintenanceExclusionOptions",
       "properties": {
+        "endTimeBehavior": {
+          "description": "EndTimeBehavior specifies the behavior of the exclusion end time.",
+          "enum": [
+            "END_TIME_BEHAVIOR_UNSPECIFIED",
+            "UNTIL_END_OF_SUPPORT"
+          ],
+          "enumDescriptions": [
+            "END_TIME_BEHAVIOR_UNSPECIFIED is the default behavior, which is fixed end time.",
+            "UNTIL_END_OF_SUPPORT means the exclusion will be in effect until the end of the support of the cluster's current version."
+          ],
+          "type": "string"
+        },
         "scope": {
           "description": "Scope specifies the upgrade scope which upgrades are blocked by the exclusion.",
           "enum": [
@@ -6511,6 +6527,27 @@
         "nodeKubeletConfig": {
           "$ref": "NodeKubeletConfig",
           "description": "NodeKubeletConfig controls the defaults for new node-pools. Currently only `insecure_kubelet_readonly_port_enabled` can be set here."
+        }
+      },
+      "type": "object"
+    },
+    "NodeKernelModuleLoading": {
+      "description": "Configuration for kernel module loading on nodes.",
+      "id": "NodeKernelModuleLoading",
+      "properties": {
+        "policy": {
+          "description": "Set the node module loading policy for nodes in the node pool.",
+          "enum": [
+            "POLICY_UNSPECIFIED",
+            "ENFORCE_SIGNED_MODULES",
+            "DO_NOT_ENFORCE_SIGNED_MODULES"
+          ],
+          "enumDescriptions": [
+            "Default behavior. GKE selects the image based on node type. For CPU and TPU nodes, the image will not allow loading external kernel modules. For GPU nodes, the image will allow loading any module, whether it is signed or not.",
+            "Enforced signature verification: Node pools will use a Container-Optimized OS image configured to allow loading of *Google-signed* external kernel modules. Loadpin is enabled but configured to exclude modules, and kernel module signature checking is enforced.",
+            "Mirrors existing DEFAULT behavior: For CPU and TPU nodes, the image will not allow loading external kernel modules. For GPU nodes, the image will allow loading any module, whether it is signed or not."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -8816,7 +8853,7 @@
           "description": "Parameters that can be configured on Linux nodes."
         },
         "locations": {
-          "description": "The desired list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain}/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.",
+          "description": "The desired list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain}/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed. Warning: It is recommended to update node pool locations in a standalone API call. Do not combine a location update with changes to other fields (such as `tags`, `labels`, `taints`, etc.) in the same request. Otherwise, the API performs a structural modification where changes to other fields will only apply to newly created nodes and will not be applied to existing nodes in the node pool. To ensure all nodes are updated consistently, use a separate API call for location changes.",
           "items": {
             "type": "string"
           },

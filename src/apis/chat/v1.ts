@@ -2339,6 +2339,10 @@ export namespace chat_v1 {
    */
   export interface Schema$PermissionSetting {
     /**
+     * Optional. Whether space managers `ROLE_ASSISTANT_MANAGER`) have this permission.
+     */
+    assistantManagersAllowed?: boolean | null;
+    /**
      * Optional. Whether space owners (`ROLE_MANAGER`) have this permission.
      */
     managersAllowed?: boolean | null;
@@ -2586,7 +2590,7 @@ export namespace chat_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. Immutable. The customer id of the domain of the space. Required only when creating a space with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) and `SpaceType` is `SPACE`, otherwise should not be set. In the format `customers/{customer\}`, where `customer` is the `id` from the [Admin SDK customer resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). Private apps can also use the `customers/my_customer` alias to create the space in the same Google Workspace organization as the app. For DMs, this field isn't populated.
+     * Optional. Immutable. The customer id of the domain of the space. Required only when creating a space with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) and `SpaceType` is `SPACE`, otherwise should not be set. In the format `customers/{customer\}`, where `customer` is the `id` from the [Admin SDK customer resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). Private apps can also use the `customers/my_customer` alias to create the space in the same Google Workspace organization as the app. This field isn't populated for direct messages (DMs) or when the space is created by non-Google Workspace users.
      */
     customer?: string | null;
     /**

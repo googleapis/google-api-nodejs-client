@@ -2685,7 +2685,7 @@
       }
     }
   },
-  "revision": "20250930",
+  "revision": "20251014",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3377,6 +3377,23 @@
           "description": "Disk size in GB. Replaces NodeConfig.disk_size_gb",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BootDiskProfile": {
+      "description": "Swap on the node's boot disk.",
+      "id": "BootDiskProfile",
+      "properties": {
+        "swapSizeGib": {
+          "description": "Specifies the size of the swap space in gibibytes (GiB).",
+          "format": "int64",
+          "type": "string"
+        },
+        "swapSizePercent": {
+          "description": "Specifies the size of the swap space as a percentage of the boot disk size.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4867,6 +4884,18 @@
       },
       "type": "object"
     },
+    "DedicatedLocalSsdProfile": {
+      "description": "Provisions a new, separate local NVMe SSD exclusively for swap.",
+      "id": "DedicatedLocalSsdProfile",
+      "properties": {
+        "diskCount": {
+          "description": "The number of physical local NVMe SSD disks to attach.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DefaultComputeClassConfig": {
       "description": "DefaultComputeClassConfig defines default compute class configuration.",
       "id": "DefaultComputeClassConfig",
@@ -4942,6 +4971,17 @@
       "properties": {},
       "type": "object"
     },
+    "EncryptionConfig": {
+      "description": "Defines encryption settings for the swap space.",
+      "id": "EncryptionConfig",
+      "properties": {
+        "disabled": {
+          "description": "Optional. If true, swap space will not be encrypted. Defaults to false (encrypted).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "EnterpriseConfig": {
       "deprecated": true,
       "description": "EnterpriseConfig is the cluster enterprise configuration. Deprecated: GKE Enterprise features are now available without an Enterprise tier.",
@@ -4975,6 +5015,23 @@
             "ENTERPRISE indicates a GKE Enterprise cluster."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EphemeralLocalSsdProfile": {
+      "description": "Swap on the local SSD shared with pod ephemeral storage.",
+      "id": "EphemeralLocalSsdProfile",
+      "properties": {
+        "swapSizeGib": {
+          "description": "Specifies the size of the swap space in gibibytes (GiB).",
+          "format": "int64",
+          "type": "string"
+        },
+        "swapSizePercent": {
+          "description": "Specifies the size of the swap space as a percentage of the ephemeral local SSD capacity.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5847,6 +5904,14 @@
           "$ref": "HugepagesConfig",
           "description": "Optional. Amounts for 2M and 1G hugepages"
         },
+        "nodeKernelModuleLoading": {
+          "$ref": "NodeKernelModuleLoading",
+          "description": "Optional. Configuration for kernel module loading on nodes. When enabled, the node pool will be provisioned with a Container-Optimized OS image that enforces kernel module signature verification."
+        },
+        "swapConfig": {
+          "$ref": "SwapConfig",
+          "description": "Optional. Enables and configures swap space on nodes. If omitted, swap is disabled."
+        },
         "sysctls": {
           "additionalProperties": {
             "type": "string"
@@ -6114,6 +6179,18 @@
       "description": "Represents the Maintenance exclusion option.",
       "id": "MaintenanceExclusionOptions",
       "properties": {
+        "endTimeBehavior": {
+          "description": "EndTimeBehavior specifies the behavior of the exclusion end time.",
+          "enum": [
+            "END_TIME_BEHAVIOR_UNSPECIFIED",
+            "UNTIL_END_OF_SUPPORT"
+          ],
+          "enumDescriptions": [
+            "END_TIME_BEHAVIOR_UNSPECIFIED is the default behavior, which is fixed end time.",
+            "UNTIL_END_OF_SUPPORT means the exclusion will be in effect until the end of the support of the cluster's current version."
+          ],
+          "type": "string"
+        },
         "scope": {
           "description": "Scope specifies the upgrade scope which upgrades are blocked by the exclusion.",
           "enum": [
@@ -6913,6 +6990,27 @@
       },
       "type": "object"
     },
+    "NodeKernelModuleLoading": {
+      "description": "Configuration for kernel module loading on nodes.",
+      "id": "NodeKernelModuleLoading",
+      "properties": {
+        "policy": {
+          "description": "Set the node module loading policy for nodes in the node pool.",
+          "enum": [
+            "POLICY_UNSPECIFIED",
+            "ENFORCE_SIGNED_MODULES",
+            "DO_NOT_ENFORCE_SIGNED_MODULES"
+          ],
+          "enumDescriptions": [
+            "Default behavior. GKE selects the image based on node type. For CPU and TPU nodes, the image will not allow loading external kernel modules. For GPU nodes, the image will allow loading any module, whether it is signed or not.",
+            "Enforced signature verification: Node pools will use a Container-Optimized OS image configured to allow loading of *Google-signed* external kernel modules. Loadpin is enabled but configured to exclude modules, and kernel module signature checking is enforced.",
+            "Mirrors existing DEFAULT behavior: For CPU and TPU nodes, the image will not allow loading external kernel modules. For GPU nodes, the image will allow loading any module, whether it is signed or not."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodeKubeletConfig": {
       "description": "Node kubelet configs.",
       "id": "NodeKubeletConfig",
@@ -7046,6 +7144,10 @@
       "description": "Parameters for node pool-level network config.",
       "id": "NodeNetworkConfig",
       "properties": {
+        "acceleratorNetworkProfile": {
+          "description": "Immutable. The accelerator network profile for the node pool. For now the only valid value is \"auto\". If specified, the network configuration of the nodes in this node pool will be managed by this profile for the supported machine types, zone, etc.",
+          "type": "string"
+        },
         "additionalNodeNetworkConfigs": {
           "description": "We specify the additional node networks for this node pool using this list. Each node network corresponds to an additional interface",
           "items": {
@@ -9137,6 +9239,33 @@
       },
       "type": "object"
     },
+    "SwapConfig": {
+      "description": "Configuration for swap memory on a node pool.",
+      "id": "SwapConfig",
+      "properties": {
+        "bootDiskProfile": {
+          "$ref": "BootDiskProfile",
+          "description": "Swap on the node's boot disk."
+        },
+        "dedicatedLocalSsdProfile": {
+          "$ref": "DedicatedLocalSsdProfile",
+          "description": "Provisions a new, separate local NVMe SSD exclusively for swap."
+        },
+        "enabled": {
+          "description": "Optional. Enables or disables swap for the node pool.",
+          "type": "boolean"
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig",
+          "description": "Optional. If omitted, swap space is encrypted by default."
+        },
+        "ephemeralLocalSsdProfile": {
+          "$ref": "EphemeralLocalSsdProfile",
+          "description": "Swap on the local SSD shared with pod ephemeral storage."
+        }
+      },
+      "type": "object"
+    },
     "SyncRotationConfig": {
       "description": "SyncRotationConfig is config for secret manager auto rotation.",
       "id": "SyncRotationConfig",
@@ -9354,7 +9483,7 @@
           "description": "Parameters that can be configured on Linux nodes."
         },
         "locations": {
-          "description": "The desired list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain}/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.",
+          "description": "The desired list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain}/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed. Warning: It is recommended to update node pool locations in a standalone API call. Do not combine a location update with changes to other fields (such as `tags`, `labels`, `taints`, etc.) in the same request. Otherwise, the API performs a structural modification where changes to other fields will only apply to newly created nodes and will not be applied to existing nodes in the node pool. To ensure all nodes are updated consistently, use a separate API call for location changes.",
           "items": {
             "type": "string"
           },
@@ -9541,6 +9670,10 @@
       "description": "UpgradeEvent is a notification sent to customers by the cluster server when a resource is upgrading.",
       "id": "UpgradeEvent",
       "properties": {
+        "currentEmulatedVersion": {
+          "description": "The current emulated version before the upgrade.",
+          "type": "string"
+        },
         "currentVersion": {
           "description": "The current version before the upgrade.",
           "type": "string"
@@ -9572,6 +9705,10 @@
           ],
           "type": "string"
         },
+        "targetEmulatedVersion": {
+          "description": "The target emulated version for the upgrade.",
+          "type": "string"
+        },
         "targetVersion": {
           "description": "The target version for the upgrade.",
           "type": "string"
@@ -9583,6 +9720,10 @@
       "description": "UpgradeInfoEvent is a notification sent to customers about the upgrade information of a resource.",
       "id": "UpgradeInfoEvent",
       "properties": {
+        "currentEmulatedVersion": {
+          "description": "The current emulated version before the upgrade.",
+          "type": "string"
+        },
         "currentVersion": {
           "description": "The current version before the upgrade.",
           "type": "string"
@@ -9666,6 +9807,10 @@
             "CANCELED indicates the upgrade has canceled."
           ],
           "readOnly": true,
+          "type": "string"
+        },
+        "targetEmulatedVersion": {
+          "description": "The target emulated version for the upgrade.",
           "type": "string"
         },
         "targetVersion": {

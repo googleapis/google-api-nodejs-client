@@ -1160,7 +1160,7 @@
       }
     }
   },
-  "revision": "20250907",
+  "revision": "20250921",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1437,9 +1437,30 @@
           "description": "The source file name where the error occurred. Included only for `UpdateSchema` and `UpdateConnector`, it corresponds to `File.path` of the provided `Source`.",
           "type": "string"
         },
-        "resource": {
-          "description": "Distinguish which schema or connector the error originates from. It should be set on errors from control plane APIs (e.g. `UpdateSchema`, `UpdateConnector`).",
+        "warningLevel": {
+          "description": "Warning level describes the severity and required action to suppress this warning when Firebase CLI run into it.",
+          "enum": [
+            "WARNING_LEVEL_UNKNOWN",
+            "LOG_ONLY",
+            "INTERACTIVE_ACK",
+            "REQUIRE_ACK",
+            "REQUIRE_FORCE"
+          ],
+          "enumDescriptions": [
+            "Warning level is not specified.",
+            "Display a warning without action needed.",
+            "Request a confirmation in interactive deployment flow.",
+            "Require an explicit confirmation in all deployment flows.",
+            "Require --force in all deployment flows."
+          ],
           "type": "string"
+        },
+        "workarounds": {
+          "description": "Workarounds provide suggestions to address the compile errors or warnings.",
+          "items": {
+            "$ref": "Workaround"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2003,6 +2024,25 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Workaround": {
+      "description": "Workaround provides suggestions to address errors and warnings.",
+      "id": "Workaround",
+      "properties": {
+        "description": {
+          "description": "Description of this workaround.",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Why would this workaround address the error and warning.",
+          "type": "string"
+        },
+        "replace": {
+          "description": "A suggested code snippet to fix the error and warning.",
           "type": "string"
         }
       },

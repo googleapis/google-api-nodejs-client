@@ -15697,6 +15697,35 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "embedContent": {
+                      "description": "Embed content with multimodal inputs.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:embedContent",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.publishers.models.embedContent",
+                      "parameterOrder": [
+                        "model"
+                      ],
+                      "parameters": {
+                        "model": {
+                          "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/publishers/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+model}:embedContent",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1EmbedContentRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1EmbedContentResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
                     "fetchPredictOperation": {
                       "description": "Fetch an asynchronous online prediction operation.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:fetchPredictOperation",
@@ -21198,7 +21227,7 @@
       }
     }
   },
-  "revision": "20251003",
+  "revision": "20251010",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -24271,7 +24300,9 @@
             "GETTING_CONTAINER_IMAGE",
             "STARTING_MODEL_SERVER",
             "FINISHING_UP",
-            "DEPLOYMENT_TERMINATED"
+            "DEPLOYMENT_TERMINATED",
+            "SUCCESSFULLY_DEPLOYED",
+            "FAILED_TO_DEPLOY"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -24282,7 +24313,9 @@
             "The deployment is getting the container image for the model server.",
             "The deployment is starting the model server.",
             "The deployment is performing finalization steps.",
-            "The deployment has terminated."
+            "The deployment has terminated.",
+            "The deployment has succeeded.",
+            "The deployment has failed."
           ],
           "readOnly": true,
           "type": "string"
@@ -25364,7 +25397,9 @@
             "GETTING_CONTAINER_IMAGE",
             "STARTING_MODEL_SERVER",
             "FINISHING_UP",
-            "DEPLOYMENT_TERMINATED"
+            "DEPLOYMENT_TERMINATED",
+            "SUCCESSFULLY_DEPLOYED",
+            "FAILED_TO_DEPLOY"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -25375,7 +25410,9 @@
             "The deployment is getting the container image for the model server.",
             "The deployment is starting the model server.",
             "The deployment is performing finalization steps.",
-            "The deployment has terminated."
+            "The deployment has terminated.",
+            "The deployment has succeeded.",
+            "The deployment has failed."
           ],
           "readOnly": true,
           "type": "string"
@@ -26059,6 +26096,90 @@
             "Run retrieval only when system decides it is necessary."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1EmbedContentRequest": {
+      "description": "Request message for PredictionService.EmbedContent.",
+      "id": "GoogleCloudAiplatformV1EmbedContentRequest",
+      "properties": {
+        "autoTruncate": {
+          "description": "Optional. Whether to silently truncate the input content if it's longer than the maximum sequence length.",
+          "type": "boolean"
+        },
+        "content": {
+          "$ref": "GoogleCloudAiplatformV1Content",
+          "description": "Required. Input content to be embedded. Required."
+        },
+        "outputDimensionality": {
+          "description": "Optional. Optional reduced dimension for the output embedding. If set, excessive values in the output embedding are truncated from the end.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "taskType": {
+          "description": "Optional. The task type of the embedding.",
+          "enum": [
+            "UNSPECIFIED",
+            "RETRIEVAL_QUERY",
+            "RETRIEVAL_DOCUMENT",
+            "SEMANTIC_SIMILARITY",
+            "CLASSIFICATION",
+            "CLUSTERING",
+            "QUESTION_ANSWERING",
+            "FACT_VERIFICATION",
+            "CODE_RETRIEVAL_QUERY"
+          ],
+          "enumDescriptions": [
+            "Unset value, which will default to one of the other enum values.",
+            "Specifies the given text is a query in a search/retrieval setting.",
+            "Specifies the given text is a document from the corpus being searched.",
+            "Specifies the given text will be used for STS.",
+            "Specifies that the given text will be classified.",
+            "Specifies that the embeddings will be used for clustering.",
+            "Specifies that the embeddings will be used for question answering.",
+            "Specifies that the embeddings will be used for fact verification.",
+            "Specifies that the embeddings will be used for code retrieval."
+          ],
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. An optional title for the text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1EmbedContentResponse": {
+      "description": "Response message for PredictionService.EmbedContent.",
+      "id": "GoogleCloudAiplatformV1EmbedContentResponse",
+      "properties": {
+        "embedding": {
+          "$ref": "GoogleCloudAiplatformV1EmbedContentResponseEmbedding",
+          "description": "The embedding generated from the input content."
+        },
+        "truncated": {
+          "description": "Whether the input content was truncated before generating the embedding.",
+          "type": "boolean"
+        },
+        "usageMetadata": {
+          "$ref": "GoogleCloudAiplatformV1UsageMetadata",
+          "description": "Metadata about the response(s)."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1EmbedContentResponseEmbedding": {
+      "description": "A list of floats representing an embedding.",
+      "id": "GoogleCloudAiplatformV1EmbedContentResponseEmbedding",
+      "properties": {
+        "values": {
+          "description": "Embedding vector values.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -38080,6 +38201,13 @@
           },
           "type": "array"
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The user labels for Imagen billing usage only. Only Imagen supports labels. For other use cases, it will be ignored.",
+          "type": "object"
+        },
         "parameters": {
           "description": "The parameters that govern the prediction. The schema of the parameters may be specified via Endpoint's DeployedModels' Model's PredictSchemata's parameters_schema_uri.",
           "type": "any"
@@ -49935,6 +50063,93 @@
             "Url retrieval is successful.",
             "Url retrieval is failed due to error."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1UsageMetadata": {
+      "description": "Usage metadata about the content generation request and response. This message provides a detailed breakdown of token usage and other relevant metrics.",
+      "id": "GoogleCloudAiplatformV1UsageMetadata",
+      "properties": {
+        "cacheTokensDetails": {
+          "description": "Output only. A detailed breakdown of the token count for each modality in the cached content.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ModalityTokenCount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "cachedContentTokenCount": {
+          "description": "Output only. The number of tokens in the cached content that was used for this request.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "candidatesTokenCount": {
+          "description": "The total number of tokens in the generated candidates.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "candidatesTokensDetails": {
+          "description": "Output only. A detailed breakdown of the token count for each modality in the generated candidates.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ModalityTokenCount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "promptTokenCount": {
+          "description": "The total number of tokens in the prompt. This includes any text, images, or other media provided in the request. When `cached_content` is set, this also includes the number of tokens in the cached content.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "promptTokensDetails": {
+          "description": "Output only. A detailed breakdown of the token count for each modality in the prompt.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ModalityTokenCount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "thoughtsTokenCount": {
+          "description": "Output only. The number of tokens that were part of the model's generated \"thoughts\" output, if applicable.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "toolUsePromptTokenCount": {
+          "description": "Output only. The number of tokens in the results from tool executions, which are provided back to the model as input, if applicable.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "toolUsePromptTokensDetails": {
+          "description": "Output only. A detailed breakdown by modality of the token counts from the results of tool executions, which are provided back to the model as input.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ModalityTokenCount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "totalTokenCount": {
+          "description": "The total number of tokens for the entire request. This is the sum of `prompt_token_count`, `candidates_token_count`, `tool_use_prompt_token_count`, and `thoughts_token_count`.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "trafficType": {
+          "description": "Output only. The traffic type for this request.",
+          "enum": [
+            "TRAFFIC_TYPE_UNSPECIFIED",
+            "ON_DEMAND",
+            "PROVISIONED_THROUGHPUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified request traffic type.",
+            "Type for Pay-As-You-Go traffic.",
+            "Type for Provisioned Throughput traffic."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },

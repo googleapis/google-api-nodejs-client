@@ -647,6 +647,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "clearTestCaseCache": {
+                  "description": "Clears cached test runs for a specific test case and device(s).",
+                  "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testCases/{testCasesId}:clearTestCaseCache",
+                  "httpMethod": "POST",
+                  "id": "firebaseappdistribution.projects.apps.testCases.clearTestCaseCache",
+                  "parameterOrder": [
+                    "testCase"
+                  ],
+                  "parameters": {
+                    "testCase": {
+                      "description": "Required. The name of the test case resource for which to clear the cache. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+/testCases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+testCase}:clearTestCaseCache",
+                  "request": {
+                    "$ref": "GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Create a new test case.",
                   "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testCases",
@@ -840,7 +868,7 @@
       }
     }
   },
-  "revision": "20251015",
+  "revision": "20251022",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -1222,6 +1250,26 @@
     "GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse": {
       "description": "The (empty) response message for `CancelReleaseTest`.",
       "id": "GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest": {
+      "description": "Request message for `ClearTestCaseCache`.",
+      "id": "GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest",
+      "properties": {
+        "testDevices": {
+          "description": "Optional. The list of devices for which to clear the cache. If not present, clear all of them.",
+          "items": {
+            "$ref": "GoogleFirebaseAppdistroV1alphaTestDevice"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse": {
+      "description": "Response empty (google.protobuf.Empty) message for `ClearTestCaseCache`",
+      "id": "GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse",
       "properties": {},
       "type": "object"
     },

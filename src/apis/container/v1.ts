@@ -2226,6 +2226,10 @@ export namespace container_v1 {
      */
     hugepages?: Schema$HugepagesConfig;
     /**
+     * Optional. Configuration for kernel module loading on nodes. When enabled, the node pool will be provisioned with a Container-Optimized OS image that enforces kernel module signature verification.
+     */
+    nodeKernelModuleLoading?: Schema$NodeKernelModuleLoading;
+    /**
      * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_max_orphans net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
      */
     sysctls?: {[key: string]: string} | null;
@@ -2339,6 +2343,10 @@ export namespace container_v1 {
    * Represents the Maintenance exclusion option.
    */
   export interface Schema$MaintenanceExclusionOptions {
+    /**
+     * EndTimeBehavior specifies the behavior of the exclusion end time.
+     */
+    endTimeBehavior?: string | null;
     /**
      * Scope specifies the upgrade scope which upgrades are blocked by the exclusion.
      */
@@ -2855,6 +2863,15 @@ export namespace container_v1 {
      * NodeKubeletConfig controls the defaults for new node-pools. Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
      */
     nodeKubeletConfig?: Schema$NodeKubeletConfig;
+  }
+  /**
+   * Configuration for kernel module loading on nodes.
+   */
+  export interface Schema$NodeKernelModuleLoading {
+    /**
+     * Set the node module loading policy for nodes in the node pool.
+     */
+    policy?: string | null;
   }
   /**
    * Node kubelet configs.
@@ -4455,7 +4472,7 @@ export namespace container_v1 {
      */
     linuxNodeConfig?: Schema$LinuxNodeConfig;
     /**
-     * The desired list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
+     * The desired list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed. Warning: It is recommended to update node pool locations in a standalone API call. Do not combine a location update with changes to other fields (such as `tags`, `labels`, `taints`, etc.) in the same request. Otherwise, the API performs a structural modification where changes to other fields will only apply to newly created nodes and will not be applied to existing nodes in the node pool. To ensure all nodes are updated consistently, use a separate API call for location changes.
      */
     locations?: string[] | null;
     /**
