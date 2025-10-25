@@ -230,6 +230,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://parametermanager.southamerica-west1.rep.googleapis.com/",
       "location": "southamerica-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://parametermanager.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://parametermanager.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -811,7 +821,7 @@
       }
     }
   },
-  "revision": "20250917",
+  "revision": "20251015",
   "rootUrl": "https://parametermanager.googleapis.com/",
   "schemas": {
     "Empty": {

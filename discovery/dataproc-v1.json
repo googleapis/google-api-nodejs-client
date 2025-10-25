@@ -5022,7 +5022,7 @@
       }
     }
   },
-  "revision": "20251003",
+  "revision": "20251015",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5229,6 +5229,7 @@
           "type": "string"
         },
         "requestorId": {
+          "deprecated": true,
           "description": "Optional. The requestor ID is used to identify if the request comes from a GCA investigation or the old Ask Gemini Experience. ",
           "type": "string"
         }
