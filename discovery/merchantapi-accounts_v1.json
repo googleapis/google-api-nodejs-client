@@ -180,21 +180,6 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
-        "getAccountForGcpRegistration": {
-          "description": "Retrieves the merchant account that the calling GCP is registered with.",
-          "flatPath": "accounts/v1/accounts:getAccountForGcpRegistration",
-          "httpMethod": "GET",
-          "id": "merchantapi.accounts.getAccountForGcpRegistration",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "accounts/v1/accounts:getAccountForGcpRegistration",
-          "response": {
-            "$ref": "GetAccountForGcpRegistrationResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
         "list": {
           "description": "Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.",
           "flatPath": "accounts/v1/accounts",
@@ -553,6 +538,21 @@
         },
         "developerRegistration": {
           "methods": {
+            "getAccountForGcpRegistration": {
+              "description": "Retrieves the merchant account that the calling GCP is registered with.",
+              "flatPath": "accounts/v1/accounts:getAccountForGcpRegistration",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.developerRegistration.getAccountForGcpRegistration",
+              "parameterOrder": [],
+              "parameters": {},
+              "path": "accounts/v1/accounts:getAccountForGcpRegistration",
+              "response": {
+                "$ref": "GetAccountForGcpRegistrationResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
             "getDeveloperRegistration": {
               "description": "Retrieves a developer registration for a merchant.",
               "flatPath": "accounts/v1/accounts/{accountsId}/developerRegistration",
@@ -2376,7 +2376,7 @@
       }
     }
   },
-  "revision": "20251002",
+  "revision": "20251023",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -5455,7 +5455,7 @@
       "type": "object"
     },
     "User": {
-      "description": "The `User` message represents a user associated with a Merchant Center account. It is used to manage user permissions and access rights within the account. For more information, see [Frequently asked questions about people and access levels](//support.google.com/merchants/answer/12160472).",
+      "description": "The `User` resource represents a user associated with a Merchant Center account. It is used to manage user permissions and access rights within the account. For more information, see [Frequently asked questions about people and access levels](//support.google.com/merchants/answer/12160472).",
       "id": "User",
       "properties": {
         "accessRights": {
