@@ -2056,6 +2056,10 @@ export namespace bigquery_v2 {
      */
     baseTable?: Schema$TableReference;
     /**
+     * The index id.
+     */
+    indexId?: string | null;
+    /**
      * The number of parallel inputs after index pruning.
      */
     postIndexPruningParallelInputCount?: string | null;
