@@ -185,6 +185,31 @@ export namespace displayvideo_v4 {
     minimumVolume?: string | null;
   }
   /**
+   * A single ad asset.
+   */
+  export interface Schema$AdAsset {
+    /**
+     * Output only. The ID of the ad asset. Referred to as the asset ID when assigned to an ad.
+     */
+    adAssetId?: string | null;
+    /**
+     * Required. The type of the ad asset.
+     */
+    adAssetType?: string | null;
+    /**
+     * Output only. The entity status of the ad asset.
+     */
+    entityStatus?: string | null;
+    /**
+     * Identifier. The resource name of the ad asset.
+     */
+    name?: string | null;
+    /**
+     * Youtube video asset data.
+     */
+    youtubeVideoAsset?: Schema$YoutubeVideoAsset;
+  }
+  /**
    * A single ad group associated with a line item.
    */
   export interface Schema$AdGroup {
@@ -238,9 +263,13 @@ export namespace displayvideo_v4 {
      */
     adGroupAdId?: string | null;
     /**
-     * The unique ID of the ad group that the ad belongs to.
+     * The unique ID of the ad group that the ad belongs to. *Caution*: Parent ad groups for Demand Gen ads are not currently retrieveable using `advertisers.adGroups.list` or `advertisers.adGroups.get`. Demand Gen ads can be identified by the absence of the `ad_details` union field.
      */
     adGroupId?: string | null;
+    /**
+     * The policy approval status of the ad.
+     */
+    adPolicy?: Schema$AdPolicy;
     /**
      * List of URLs used by the ad.
      */
@@ -377,6 +406,349 @@ export namespace displayvideo_v4 {
      * Optional. IAB viewability threshold for video ads.
      */
     videoIabViewability?: string | null;
+  }
+  /**
+   * A single ad policy associated with an ad group ad.
+   */
+  export interface Schema$AdPolicy {
+    /**
+     * The policy approval status of an ad, indicating the approval decision.
+     */
+    adPolicyApprovalStatus?: string | null;
+    /**
+     * The policy review status of an ad, indicating where in the review process the ad is currently.
+     */
+    adPolicyReviewStatus?: string | null;
+    /**
+     * The entries for each policy topic identified as relating to the ad. Each entry includes the topic, restriction level, and guidance on how to fix policy issues.
+     */
+    adPolicyTopicEntry?: Schema$AdPolicyTopicEntry[];
+  }
+  /**
+   * Represents a country restriction.
+   */
+  export interface Schema$AdPolicyCriterionRestriction {
+    /**
+     * The country criterion id.
+     */
+    countryCriterionId?: string | null;
+    /**
+     * Localized name for the country. May be empty.
+     */
+    countryLabel?: string | null;
+  }
+  /**
+   * Information on how to appeal a policy decision.
+   */
+  export interface Schema$AdPolicyTopicAppealInfo {
+    /**
+     * Only available when appeal_type is `APPEAL_FORM`.
+     */
+    appealFormLink?: string | null;
+    /**
+     * Whether the decision can be appealed through a self-service appeal or an appeal form.
+     */
+    appealType?: string | null;
+  }
+  /**
+   * Details on ad serving constraints.
+   */
+  export interface Schema$AdPolicyTopicConstraint {
+    /**
+     * Countries where the resource's domain is not covered by the certificates associated with it.
+     */
+    certificateDomainMismatchCountryList?: Schema$AdPolicyTopicConstraintAdPolicyCountryConstraintList;
+    /**
+     * Countries where a certificate is required for serving.
+     */
+    certificateMissingCountryList?: Schema$AdPolicyTopicConstraintAdPolicyCountryConstraintList;
+    /**
+     * Countries where the ad cannot serve.
+     */
+    countryConstraint?: Schema$AdPolicyTopicConstraintAdPolicyCountryConstraintList;
+    /**
+     * Certificate is required to serve in any country and the existing certificate does not cover the ad's domain.
+     */
+    globalCertificateDomainMismatch?: Schema$AdPolicyTopicConstraintAdPolicyGlobalCertificateDomainMismatchConstraint;
+    /**
+     * Certificate is required to serve in any country.
+     */
+    globalCertificateMissing?: Schema$AdPolicyTopicConstraintAdPolicyGlobalCertificateMissingConstraint;
+    /**
+     * Link to the form to request a certificate for the constraint.
+     */
+    requestCertificateFormLink?: string | null;
+    /**
+     * Reseller constraint.
+     */
+    resellerConstraint?: Schema$AdPolicyTopicConstraintAdPolicyResellerConstraint;
+  }
+  /**
+   * A list of countries where the ad cannot serve due to policy constraints.
+   */
+  export interface Schema$AdPolicyTopicConstraintAdPolicyCountryConstraintList {
+    /**
+     * Countries where the ad cannot serve.
+     */
+    countries?: Schema$AdPolicyCriterionRestriction[];
+  }
+  /**
+   * Certificate is required to serve in any country and the existing certificate does not cover the ad's domain.
+   */
+  export interface Schema$AdPolicyTopicConstraintAdPolicyGlobalCertificateDomainMismatchConstraint {}
+  /**
+   * Certificate is required to serve in any country.
+   */
+  export interface Schema$AdPolicyTopicConstraintAdPolicyGlobalCertificateMissingConstraint {}
+  /**
+   * Policy topic was constrained due to disapproval of the website for reseller purposes.
+   */
+  export interface Schema$AdPolicyTopicConstraintAdPolicyResellerConstraint {}
+  /**
+   * An entry describing how an ad has been identified as relating to an ad policy.
+   */
+  export interface Schema$AdPolicyTopicEntry {
+    /**
+     * Information on how to appeal the policy decision.
+     */
+    appealInfo?: Schema$AdPolicyTopicAppealInfo;
+    /**
+     * Ad policy help center link for the policy topic.
+     */
+    helpCenterLink?: string | null;
+    /**
+     * The source of the policy decision.
+     */
+    policyDecisionType?: string | null;
+    /**
+     * The policy enforcement means used in the policy review.
+     */
+    policyEnforcementMeans?: string | null;
+    /**
+     * Localized label text for policy. Examples include "Trademarks in text", "Contains Alcohol", etc.
+     */
+    policyLabel?: string | null;
+    /**
+     * The policy topic. Examples include "TRADEMARKS", "ALCOHOL", etc.
+     */
+    policyTopic?: string | null;
+    /**
+     * The serving constraints relevant to the policy decision.
+     */
+    policyTopicConstraints?: Schema$AdPolicyTopicConstraint[];
+    /**
+     * A short summary description of the policy topic.
+     */
+    policyTopicDescription?: string | null;
+    /**
+     * The evidence used in the policy decision.
+     */
+    policyTopicEvidences?: Schema$AdPolicyTopicEvidence[];
+    /**
+     * How ad serving will be affected due to the relation to the ad policy topic.
+     */
+    policyTopicType?: string | null;
+  }
+  /**
+   * Evidence information used in the policy decision.
+   */
+  export interface Schema$AdPolicyTopicEvidence {
+    /**
+     * Counterfeit enforcement that caused a policy violation.
+     */
+    counterfeit?: Schema$AdPolicyTopicEvidenceCounterfeit;
+    /**
+     * A mismatch between the ad destination URLs.
+     */
+    destinationMismatch?: Schema$AdPolicyTopicEvidenceDestinationMismatch;
+    /**
+     * Information on HTTP or DNS errors related to the ad destination.
+     */
+    destinationNotWorking?: Schema$AdPolicyTopicEvidenceDestinationNotWorking;
+    /**
+     * The text in the destination of the ad that is causing a policy violation.
+     */
+    destinationTextList?: Schema$AdPolicyTopicEvidenceDestinationTextList;
+    /**
+     * HTTP code returned when the final URL was crawled.
+     */
+    httpCode?: number | null;
+    /**
+     * The language the ad was detected to be written in. This field uses IETF language tags, such as "en-US".
+     */
+    languageCode?: string | null;
+    /**
+     * Legal related regulation enforcement that caused a policy violation.
+     */
+    legalRemoval?: Schema$AdPolicyTopicEvidenceLegalRemoval;
+    /**
+     * T&S proactive enforcement that caused a policy violation.
+     */
+    regionalRequirements?: Schema$AdPolicyTopicEvidenceRegionalRequirements;
+    /**
+     * List of evidence found in the text of the ad.
+     */
+    textList?: Schema$AdPolicyTopicEvidenceTextList;
+    /**
+     * Trademark terms that caused a policy violation.
+     */
+    trademark?: Schema$AdPolicyTopicEvidenceTrademark;
+    /**
+     * List of websites linked with the ad.
+     */
+    websiteList?: Schema$AdPolicyTopicEvidenceWebsiteList;
+  }
+  /**
+   * Details on the counterfeit enforcement that caused a policy violation.
+   */
+  export interface Schema$AdPolicyTopicEvidenceCounterfeit {
+    /**
+     * The content or product owners that made a complaint.
+     */
+    owners?: string[] | null;
+  }
+  /**
+   * Details on a mismatch between destination URL types.
+   */
+  export interface Schema$AdPolicyTopicEvidenceDestinationMismatch {
+    /**
+     * The set of URLs that do not match. The list can include single or multiple uri types. Example 1: [`DISPLAY_URL`, `FINAL_URL`] means ad display URL does not match with the ad final URL. Example 2: [`FINAL_URL`] means ad final URL did not match the crawled url, which is also considered as destination mismatch.
+     */
+    uriTypes?: string[] | null;
+  }
+  /**
+   * Details for on HTTP or DNS errors related to the ad destination.
+   */
+  export interface Schema$AdPolicyTopicEvidenceDestinationNotWorking {
+    /**
+     * The device where visiting the URL resulted in the error.
+     */
+    device?: string | null;
+    /**
+     * The type of DNS error.
+     */
+    dnsErrorType?: string | null;
+    /**
+     * The full URL that didn't work.
+     */
+    expandedUri?: string | null;
+    /**
+     * The HTTP error code.
+     */
+    httpErrorCode?: string | null;
+    /**
+     * The last time the error was seen when navigating to URL.
+     */
+    lastCheckedTime?: string | null;
+  }
+  /**
+   * A list of destination text that violated the policy.
+   */
+  export interface Schema$AdPolicyTopicEvidenceDestinationTextList {
+    /**
+     * Destination text that caused the policy finding.
+     */
+    destinationTexts?: string[] | null;
+  }
+  /**
+   * Legal related regulation enforcement, either from DMCA or local legal regulation.
+   */
+  export interface Schema$AdPolicyTopicEvidenceLegalRemoval {
+    /**
+     * The type of complaint causing the legal removal.
+     */
+    complaintType?: string | null;
+    /**
+     * The countries restricted due to the legal removal.
+     */
+    countryRestrictions?: Schema$AdPolicyCriterionRestriction[];
+    /**
+     * Details on the DMCA regulation legal removal.
+     */
+    dmca?: Schema$AdPolicyTopicEvidenceLegalRemovalDmca;
+    /**
+     * Details on the local legal regulation legal removal.
+     */
+    localLegal?: Schema$AdPolicyTopicEvidenceLegalRemovalLocalLegal;
+    /**
+     * The urls restricted due to the legal removal.
+     */
+    restrictedUris?: string[] | null;
+  }
+  /**
+   * DMCA complaint details.
+   */
+  export interface Schema$AdPolicyTopicEvidenceLegalRemovalDmca {
+    /**
+     * The entity who made the legal complaint.
+     */
+    complainant?: string | null;
+  }
+  /**
+   * Local legal regulation details.
+   */
+  export interface Schema$AdPolicyTopicEvidenceLegalRemovalLocalLegal {
+    /**
+     * Type of law for the legal notice.
+     */
+    lawType?: string | null;
+  }
+  /**
+   * Trust & Safety (T&S) proactive enforcement for policies meant to address regional requirements. This is considered a Google-owned investigation instead of a regulation notice since it's proactive T&S enforcement.
+   */
+  export interface Schema$AdPolicyTopicEvidenceRegionalRequirements {
+    /**
+     * List of regional requirements.
+     */
+    regionalRequirementsEntries?: Schema$AdPolicyTopicEvidenceRegionalRequirementsRegionalRequirementsEntry[];
+  }
+  /**
+   * Policy level regional legal violation details.
+   */
+  export interface Schema$AdPolicyTopicEvidenceRegionalRequirementsRegionalRequirementsEntry {
+    /**
+     * The countries restricted due to the legal policy.
+     */
+    countryRestrictions?: Schema$AdPolicyCriterionRestriction[];
+    /**
+     * The legal policy that is being violated.
+     */
+    legalPolicy?: string | null;
+  }
+  /**
+   * A list of fragments of text that violated the policy.
+   */
+  export interface Schema$AdPolicyTopicEvidenceTextList {
+    /**
+     * The fragments of text from the resource that caused the policy finding.
+     */
+    texts?: string[] | null;
+  }
+  /**
+   * Trademark terms that caused a policy violation.
+   */
+  export interface Schema$AdPolicyTopicEvidenceTrademark {
+    /**
+     * Countries where the policy violation is relevant.
+     */
+    countryRestrictions?: Schema$AdPolicyCriterionRestriction[];
+    /**
+     * The trademark content owner.
+     */
+    owner?: string | null;
+    /**
+     * The trademark term.
+     */
+    term?: string | null;
+  }
+  /**
+   * A list of websites that violated the policy.
+   */
+  export interface Schema$AdPolicyTopicEvidenceWebsiteList {
+    /**
+     * Websites that caused the policy finding.
+     */
+    websites?: string[] | null;
   }
   /**
    * Additional URLs related to the ad, including beacons.
@@ -1316,6 +1688,24 @@ export namespace displayvideo_v4 {
     totalAmountMicros?: string | null;
   }
   /**
+   * A request message for BulkCreateAdAssets.
+   */
+  export interface Schema$BulkCreateAdAssetsRequest {
+    /**
+     * Required. Ad assets to create. Only supports assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`.
+     */
+    adAssets?: Schema$AdAsset[];
+  }
+  /**
+   * A response message for BulkCreateAdAssets.
+   */
+  export interface Schema$BulkCreateAdAssetsResponse {
+    /**
+     * The created ad assets.
+     */
+    adAssets?: Schema$AdAsset[];
+  }
+  /**
    * Request message for BulkEditAdvertiserAssignedTargetingOptions.
    */
   export interface Schema$BulkEditAdvertiserAssignedTargetingOptionsRequest {
@@ -2204,6 +2594,15 @@ export namespace displayvideo_v4 {
      * Required. The name used to identify this counter event in reports.
      */
     reportingName?: string | null;
+  }
+  /**
+   * A request message for CreateAdAsset.
+   */
+  export interface Schema$CreateAdAssetRequest {
+    /**
+     * Required. The ad asset to create. Only supports assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`.
+     */
+    adAsset?: Schema$AdAsset;
   }
   /**
    * A request message for CreateAsset.
@@ -4368,6 +4767,19 @@ export namespace displayvideo_v4 {
      */
     flightDateType?: string | null;
   }
+  /**
+   * A response message for ListAdAssets.
+   */
+  export interface Schema$ListAdAssetsResponse {
+    /**
+     * The list of ad assets. The list will only contain assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`. This list will be absent if empty.
+     */
+    adAssets?: Schema$AdAsset[];
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListAdAssets` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
   export interface Schema$ListAdGroupAdsResponse {
     /**
      * The list of ad group ads. This list will be absent if empty.
@@ -4750,6 +5162,19 @@ export namespace displayvideo_v4 {
      * The list of users. This list will be absent if empty.
      */
     users?: Schema$User[];
+  }
+  /**
+   * Response message for YoutubeAssetAssociationService.ListYoutubeAssetAssociations.
+   */
+  export interface Schema$ListYoutubeAssetAssociationsResponse {
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListYoutubeAssetAssociations` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of asset associations. This list will be absent if empty.
+     */
+    youtubeAssetAssociations?: Schema$YoutubeAssetAssociation[];
   }
   /**
    * A list of locations used for targeting.
@@ -6143,6 +6568,28 @@ export namespace displayvideo_v4 {
     registry?: string | null;
   }
   /**
+   * A request message for UploadAdAsset.
+   */
+  export interface Schema$UploadAdAssetRequest {
+    /**
+     * Required. The type of the ad asset. Only `AD_ASSET_TYPE_IMAGE` is supported.
+     */
+    adAssetType?: string | null;
+    /**
+     * Required. The filename of the ad asset, including the file extension. The filename must be UTF-8 encoded with a maximum size of 240 bytes.
+     */
+    filename?: string | null;
+  }
+  /**
+   * A response message for UploadAdAsset.
+   */
+  export interface Schema$UploadAdAssetResponse {
+    /**
+     * The created ad asset.
+     */
+    adAsset?: Schema$AdAsset;
+  }
+  /**
    * Details for assigned URL targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_URL`.
    */
   export interface Schema$UrlAssignedTargetingOptionDetails {
@@ -6459,6 +6906,118 @@ export namespace displayvideo_v4 {
     viewFrequencyCap?: Schema$FrequencyCap;
   }
   /**
+   * An association between a resource and a YouTube asset.
+   */
+  export interface Schema$YoutubeAssetAssociation {
+    /**
+     * Required. The YouTube asset associated with the resource.
+     */
+    linkedYoutubeAsset?: Schema$YoutubeAssetAssociationLinkedYouTubeAsset;
+    /**
+     * Identifier. The resource name of the association. For line item-level associations: The name pattern is `advertisers/{advertiser_id\}/lineItems/{line_item_id\}/youtubeAssetTypes/{youtube_asset_type\}/youtubeAssetAssociations/{youtube_asset_association_id\}`. For ad group-level associations: The name pattern is `advertisers/{advertiser_id\}/adGroups/{ad_group_id\}/youtubeAssetTypes/{youtube_asset_type\}/youtubeAssetAssociations/{youtube_asset_association_id\}`. For `YOUTUBE_ASSET_TYPE_LOCATION` and `YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION` associations: `youtube_asset_association_id` is the ID of the asset set linked, or 0 if the location_matching_type or affiliate_location_matching_type is `DISABLED`. For `YOUTUBE_ASSET_TYPE_SITELINK` associations: `youtube_asset_association_id` is be the ID of the sitelink asset linked.
+     */
+    name?: string | null;
+    /**
+     * Required. The type of YouTube asset associated with the resource.
+     */
+    youtubeAssetType?: string | null;
+  }
+  /**
+   * An asset filter that matches eligible affiliate location assets for serving.
+   */
+  export interface Schema$YoutubeAssetAssociationAffiliateLocationAssetFilter {
+    /**
+     * Optional. The matching function that determines how the affiliate location asset filter matches affiliate location assets. This field is required and can only be set for if affiliate_location_matching_type is `SELECTED_CHAINS`.
+     */
+    affiliateLocationMatchingFunction?: Schema$YoutubeAssetAssociationAffiliateLocationAssetFilterAffiliateLocationMatchingFunction;
+    /**
+     * Required. The matching type of this affiliate location asset filter.
+     */
+    affiliateLocationMatchingType?: string | null;
+    /**
+     * Output only. The ID of the asset set that matches the affiliate location assets eligible for serving.
+     */
+    assetSetId?: string | null;
+  }
+  /**
+   * A chain of affiliate locations.
+   */
+  export interface Schema$YoutubeAssetAssociationAffiliateLocationAssetFilterAffiliateLocationChain {
+    /**
+     * Required. ID of the affiliate location chain.
+     */
+    chainId?: string | null;
+  }
+  /**
+   * The matching function for an affiliate location asset filter.
+   */
+  export interface Schema$YoutubeAssetAssociationAffiliateLocationAssetFilterAffiliateLocationMatchingFunction {
+    /**
+     * Optional. The selected affiliate location chain IDs. This field is required if affiliate_location_matching_type is `SELECTED_CHAINS`.
+     */
+    chains?: Schema$YoutubeAssetAssociationAffiliateLocationAssetFilterAffiliateLocationChain[];
+  }
+  /**
+   * A YouTube asset linked to a resource in a YoutubeAssetAssociation.
+   */
+  export interface Schema$YoutubeAssetAssociationLinkedYouTubeAsset {
+    /**
+     * An affiliate location asset filter. This can be set only when youtube_asset_type is `YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION`.
+     */
+    affiliateLocationAssetFilter?: Schema$YoutubeAssetAssociationAffiliateLocationAssetFilter;
+    /**
+     * A location asset filter. This can be set only when youtube_asset_type is `YOUTUBE_ASSET_TYPE_LOCATION`.
+     */
+    locationAssetFilter?: Schema$YoutubeAssetAssociationLocationAssetFilter;
+    /**
+     * A sitelink asset. This can be set only when youtube_asset_type is `YOUTUBE_ASSET_TYPE_SITELINK`.
+     */
+    sitelinkAsset?: Schema$YoutubeAssetAssociationSitelinkAsset;
+  }
+  /**
+   * An asset filter that matches eligible location assets for serving.
+   */
+  export interface Schema$YoutubeAssetAssociationLocationAssetFilter {
+    /**
+     * Output only. The ID of the asset set that matches the location assets eligible for serving.
+     */
+    assetSetId?: string | null;
+    /**
+     * Optional. The matching function that determines how the location asset filter matches location assets. This field is required and can only be set for if location_matching_type is `FILTER` or `SELECTED_ASSETS`.
+     */
+    locationMatchingFunction?: Schema$YoutubeAssetAssociationLocationAssetFilterLocationMatchingFunction;
+    /**
+     * Required. The matching type of this location asset filter.
+     */
+    locationMatchingType?: string | null;
+  }
+  /**
+   * The matching function for a location asset filter.
+   */
+  export interface Schema$YoutubeAssetAssociationLocationAssetFilterLocationMatchingFunction {
+    /**
+     * Optional. The business name to match with. This field is optional and can only be set if location_matching_type is `FILTER`.
+     */
+    business?: string | null;
+    /**
+     * Optional. The labels to match with. Labels are logically OR'ed together. This field is optional and can only be set if location_matching_type is `FILTER`.
+     */
+    labels?: string[] | null;
+    /**
+     * Optional. The selected location asset IDs. This field is required if location_matching_type is `SELECTED_ASSETS`.
+     */
+    locationAssetIds?: string[] | null;
+  }
+  /**
+   * A sitelink asset.
+   */
+  export interface Schema$YoutubeAssetAssociationSitelinkAsset {
+    /**
+     * Required. ID of the sitelink asset.
+     */
+    assetId?: string | null;
+  }
+  /**
    * Details for YouTube channel assigned targeting option. This will be populated in the youtube_channel_details field when targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL`.
    */
   export interface Schema$YoutubeChannelAssignedTargetingOptionDetails {
@@ -6470,6 +7029,15 @@ export namespace displayvideo_v4 {
      * Indicates if this option is being negatively targeted.
      */
     negative?: boolean | null;
+  }
+  /**
+   * Data for a YouTube video ad asset.
+   */
+  export interface Schema$YoutubeVideoAsset {
+    /**
+     * Required. The YouTube video id of the asset. This is the 11 char string value used in the YouTube video URL.
+     */
+    youtubeVideoId?: string | null;
   }
   /**
    * Details for YouTube video assigned targeting option. This will be populated in the youtube_video_details field when targeting_type is `TARGETING_TYPE_YOUTUBE_VIDEO`.
@@ -6500,6 +7068,7 @@ export namespace displayvideo_v4 {
 
   export class Resource$Advertisers {
     context: APIRequestContext;
+    adAssets: Resource$Advertisers$Adassets;
     adGroupAds: Resource$Advertisers$Adgroupads;
     adGroups: Resource$Advertisers$Adgroups;
     assets: Resource$Advertisers$Assets;
@@ -6514,6 +7083,7 @@ export namespace displayvideo_v4 {
     targetingTypes: Resource$Advertisers$Targetingtypes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.adAssets = new Resource$Advertisers$Adassets(this.context);
       this.adGroupAds = new Resource$Advertisers$Adgroupads(this.context);
       this.adGroups = new Resource$Advertisers$Adgroups(this.context);
       this.assets = new Resource$Advertisers$Assets(this.context);
@@ -7871,6 +8441,841 @@ export namespace displayvideo_v4 {
     requestBody?: Schema$Advertiser;
   }
 
+  export class Resource$Advertisers$Adassets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates multiple ad assets in a single request. Returns the newly-created ad assets if successful. Only supports the creation of assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.adAssets.bulkCreate({
+     *     // Required. The ID of the advertiser these ad assets belong to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adAssets": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adAssets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkCreate(
+      params: Params$Resource$Advertisers$Adassets$Bulkcreate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    bulkCreate(
+      params?: Params$Resource$Advertisers$Adassets$Bulkcreate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BulkCreateAdAssetsResponse>>;
+    bulkCreate(
+      params: Params$Resource$Advertisers$Adassets$Bulkcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkCreate(
+      params: Params$Resource$Advertisers$Adassets$Bulkcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkCreateAdAssetsResponse>,
+      callback: BodyResponseCallback<Schema$BulkCreateAdAssetsResponse>
+    ): void;
+    bulkCreate(
+      params: Params$Resource$Advertisers$Adassets$Bulkcreate,
+      callback: BodyResponseCallback<Schema$BulkCreateAdAssetsResponse>
+    ): void;
+    bulkCreate(
+      callback: BodyResponseCallback<Schema$BulkCreateAdAssetsResponse>
+    ): void;
+    bulkCreate(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adassets$Bulkcreate
+        | BodyResponseCallback<Schema$BulkCreateAdAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkCreateAdAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkCreateAdAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BulkCreateAdAssetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adassets$Bulkcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Adassets$Bulkcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v4/advertisers/{+advertiserId}/adAssets:bulkCreate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkCreateAdAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkCreateAdAssetsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Creates an ad asset. Returns the newly-created ad asset if successful. Only supports the creation of assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.adAssets.create({
+     *     // Required. The ID of the advertiser this ad asset belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adAsset": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adAssetId": "my_adAssetId",
+     *   //   "adAssetType": "my_adAssetType",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "name": "my_name",
+     *   //   "youtubeVideoAsset": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Advertisers$Adassets$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Advertisers$Adassets$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdAsset>>;
+    create(
+      params: Params$Resource$Advertisers$Adassets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Adassets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AdAsset>,
+      callback: BodyResponseCallback<Schema$AdAsset>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Adassets$Create,
+      callback: BodyResponseCallback<Schema$AdAsset>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AdAsset>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adassets$Create
+        | BodyResponseCallback<Schema$AdAsset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdAsset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdAsset>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdAsset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adassets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Adassets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v4/advertisers/{+advertiserId}/adAssets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdAsset>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdAsset>(parameters);
+      }
+    }
+
+    /**
+     * Gets an ad asset. Only supports the retrieval of assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.adAssets.get({
+     *     // Required. The ID of the ad asset to fetch. Only supports assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`
+     *     adAssetId: '[^/]+',
+     *     // Required. The ID of the advertiser this ad asset belongs to.
+     *     advertiserId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adAssetId": "my_adAssetId",
+     *   //   "adAssetType": "my_adAssetType",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "name": "my_name",
+     *   //   "youtubeVideoAsset": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Advertisers$Adassets$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Advertisers$Adassets$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdAsset>>;
+    get(
+      params: Params$Resource$Advertisers$Adassets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Adassets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AdAsset>,
+      callback: BodyResponseCallback<Schema$AdAsset>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Adassets$Get,
+      callback: BodyResponseCallback<Schema$AdAsset>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AdAsset>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adassets$Get
+        | BodyResponseCallback<Schema$AdAsset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdAsset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdAsset>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdAsset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adassets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Adassets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v4/advertisers/{+advertiserId}/adAssets/{+adAssetId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'adAssetId'],
+        pathParams: ['adAssetId', 'advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdAsset>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdAsset>(parameters);
+      }
+    }
+
+    /**
+     * Lists ad assets under an advertiser ID. Only supports the retrieval of assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.adAssets.list({
+     *     // Required. The ID of the advertiser the ad assets belong to.
+     *     advertiserId: '[^/]+',
+     *     // Optional. Allows filtering of the results by ad asset fields. Supported syntax: * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `youtubeVideoAsset.youtubeVideoId` * `entityStatus` Examples: * All active YouTube video ad assets under an advertiser: `entityStatus=ENTITY_STATUS_ACTIVE`
+     *     filter: 'placeholder-value',
+     *     // Optional. Field by which to sort the list. Acceptable values are: * `entityStatus` * `youtubeVideoAsset.youtubeVideoId` * `adAssetId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `adAssetId desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Requested page size. Must be between `1` and `5000`. If unspecified will default to `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdAssets` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adAssets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Adassets$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Advertisers$Adassets$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAdAssetsResponse>>;
+    list(
+      params: Params$Resource$Advertisers$Adassets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Adassets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdAssetsResponse>,
+      callback: BodyResponseCallback<Schema$ListAdAssetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Adassets$List,
+      callback: BodyResponseCallback<Schema$ListAdAssetsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAdAssetsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adassets$List
+        | BodyResponseCallback<Schema$ListAdAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAdAssetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adassets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Adassets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v4/advertisers/{+advertiserId}/adAssets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdAssetsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Uploads and creates an ad asset. Returns the ID of the newly-created ad asset if successful. Only supports the uploading of assets with the AdAssetType `AD_ASSET_TYPE_IMAGE`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.adAssets.upload({
+     *     // Required. The ID of the advertiser this ad asset belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adAssetType": "my_adAssetType",
+     *       //   "filename": "my_filename"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adAsset": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Advertisers$Adassets$Upload,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    upload(
+      params?: Params$Resource$Advertisers$Adassets$Upload,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UploadAdAssetResponse>>;
+    upload(
+      params: Params$Resource$Advertisers$Adassets$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Advertisers$Adassets$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadAdAssetResponse>,
+      callback: BodyResponseCallback<Schema$UploadAdAssetResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Advertisers$Adassets$Upload,
+      callback: BodyResponseCallback<Schema$UploadAdAssetResponse>
+    ): void;
+    upload(callback: BodyResponseCallback<Schema$UploadAdAssetResponse>): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adassets$Upload
+        | BodyResponseCallback<Schema$UploadAdAssetResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadAdAssetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadAdAssetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UploadAdAssetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adassets$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Adassets$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v4/advertisers/{+advertiserId}/adAssets:uploadAdAsset'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl +
+          '/upload/v4/advertisers/{+advertiserId}/adAssets:uploadAdAsset'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadAdAssetResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadAdAssetResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Adassets$Bulkcreate
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser these ad assets belong to.
+     */
+    advertiserId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkCreateAdAssetsRequest;
+  }
+  export interface Params$Resource$Advertisers$Adassets$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser this ad asset belongs to.
+     */
+    advertiserId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateAdAssetRequest;
+  }
+  export interface Params$Resource$Advertisers$Adassets$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the ad asset to fetch. Only supports assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`
+     */
+    adAssetId?: string;
+    /**
+     * Required. The ID of the advertiser this ad asset belongs to.
+     */
+    advertiserId?: string;
+  }
+  export interface Params$Resource$Advertisers$Adassets$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the ad assets belong to.
+     */
+    advertiserId?: string;
+    /**
+     * Optional. Allows filtering of the results by ad asset fields. Supported syntax: * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `youtubeVideoAsset.youtubeVideoId` * `entityStatus` Examples: * All active YouTube video ad assets under an advertiser: `entityStatus=ENTITY_STATUS_ACTIVE`
+     */
+    filter?: string;
+    /**
+     * Optional. Field by which to sort the list. Acceptable values are: * `entityStatus` * `youtubeVideoAsset.youtubeVideoId` * `adAssetId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `adAssetId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Must be between `1` and `5000`. If unspecified will default to `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdAssets` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Advertisers$Adassets$Upload
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser this ad asset belongs to.
+     */
+    advertiserId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadAdAssetRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
+  }
+
   export class Resource$Advertisers$Adgroupads {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7919,6 +9324,7 @@ export namespace displayvideo_v4 {
      *   // {
      *   //   "adGroupAdId": "my_adGroupAdId",
      *   //   "adGroupId": "my_adGroupId",
+     *   //   "adPolicy": {},
      *   //   "adUrls": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "audioAd": {},
@@ -8216,11 +9622,14 @@ export namespace displayvideo_v4 {
   export class Resource$Advertisers$Adgroups {
     context: APIRequestContext;
     targetingTypes: Resource$Advertisers$Adgroups$Targetingtypes;
+    youtubeAssetTypes: Resource$Advertisers$Adgroups$Youtubeassettypes;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.targetingTypes = new Resource$Advertisers$Adgroups$Targetingtypes(
         this.context
       );
+      this.youtubeAssetTypes =
+        new Resource$Advertisers$Adgroups$Youtubeassettypes(this.context);
     }
 
     /**
@@ -9185,6 +10594,588 @@ export namespace displayvideo_v4 {
      * Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`
      */
     targetingType?: string;
+  }
+
+  export class Resource$Advertisers$Adgroups$Youtubeassettypes {
+    context: APIRequestContext;
+    youtubeAssetAssociations: Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.youtubeAssetAssociations =
+        new Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new association between the identified resource and a YouTube asset. Returns the newly-created association. *Warning:* This method is only available to an informed subset of users.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.adGroups.youtubeAssetTypes.youtubeAssetAssociations.create(
+     *       {
+     *         // The ID of an ad group.
+     *         adGroupId: '[^/]+',
+     *         // Required. The ID of the advertiser that the linked entity belongs to.
+     *         advertiserId: '[^/]+',
+     *         // The ID of a line item.
+     *         'linkedEntity.lineItemId': 'placeholder-value',
+     *         // Required. The type of YouTube asset associated with the resource.
+     *         youtubeAssetType: '[^/]+',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "linkedYoutubeAsset": {},
+     *           //   "name": "my_name",
+     *           //   "youtubeAssetType": "my_youtubeAssetType"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "linkedYoutubeAsset": {},
+     *   //   "name": "my_name",
+     *   //   "youtubeAssetType": "my_youtubeAssetType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$YoutubeAssetAssociation>>;
+    create(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$YoutubeAssetAssociation>,
+      callback: BodyResponseCallback<Schema$YoutubeAssetAssociation>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Create,
+      callback: BodyResponseCallback<Schema$YoutubeAssetAssociation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$YoutubeAssetAssociation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Create
+        | BodyResponseCallback<Schema$YoutubeAssetAssociation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$YoutubeAssetAssociation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$YoutubeAssetAssociation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$YoutubeAssetAssociation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v4/advertisers/{+advertiserId}/adGroups/{+adGroupId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'adGroupId', 'youtubeAssetType'],
+        pathParams: ['adGroupId', 'advertiserId', 'youtubeAssetType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$YoutubeAssetAssociation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$YoutubeAssetAssociation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an existing association between the identified resource and a YouTube asset. *Warning:* This method is only available to an informed subset of users.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.adGroups.youtubeAssetTypes.youtubeAssetAssociations.delete(
+     *       {
+     *         // The ID of an ad group.
+     *         adGroupId: '[^/]+',
+     *         // Required. The ID of the advertiser that the linked entity belongs to.
+     *         advertiserId: '[^/]+',
+     *         // The ID of a line item.
+     *         'linkedEntity.lineItemId': 'placeholder-value',
+     *         // Required. The ID of the YouTube asset in the association. For `YOUTUBE_ASSET_TYPE_LOCATION` and `YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION` associations: This should be the ID of the asset set linked, or 0 if the location_asset_filter or affiliate_location_asset_filter is `DISABLED`. For `YOUTUBE_ASSET_TYPE_SITELINK` associations: This should be the ID of the sitelink asset linked.
+     *         youtubeAssetAssociationId: '[^/]+',
+     *         // Required. The type of YouTube asset associated with the resource.
+     *         youtubeAssetType: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v4/advertisers/{+advertiserId}/adGroups/{+adGroupId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations/{+youtubeAssetAssociationId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'advertiserId',
+          'adGroupId',
+          'youtubeAssetType',
+          'youtubeAssetAssociationId',
+        ],
+        pathParams: [
+          'adGroupId',
+          'advertiserId',
+          'youtubeAssetAssociationId',
+          'youtubeAssetType',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Lists the YouTube asset associations linked to the given resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.adGroups.youtubeAssetTypes.youtubeAssetAssociations.list(
+     *       {
+     *         // The ID of an ad group.
+     *         adGroupId: '[^/]+',
+     *         // Required. The ID of the advertiser that the linked entity belongs to.
+     *         advertiserId: '[^/]+',
+     *         // The ID of a line item.
+     *         'linkedEntity.lineItemId': 'placeholder-value',
+     *         // Optional. Field by which to sort the list. The only acceptable values are: * `linkedYoutubeAsset.locationAssetFilter.assetSetId`, * `linkedYoutubeAsset.affiliateLocationAssetFilter.assetSetId`, * `linkedYoutubeAsset.sitelinkAsset.assetId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `linkedYoutubeAsset.sitelinkAsset.assetId desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAssetAssociations` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The type of YouTube asset being associated with the resource.
+     *         youtubeAssetType: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "youtubeAssetAssociations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListYoutubeAssetAssociationsResponse>
+    >;
+    list(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>,
+      callback: BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$List,
+      callback: BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$List
+        | BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListYoutubeAssetAssociationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v4/advertisers/{+advertiserId}/adGroups/{+adGroupId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'adGroupId', 'youtubeAssetType'],
+        pathParams: ['adGroupId', 'advertiserId', 'youtubeAssetType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListYoutubeAssetAssociationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListYoutubeAssetAssociationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Create
+    extends StandardParameters {
+    /**
+     * The ID of an ad group.
+     */
+    adGroupId?: string;
+    /**
+     * Required. The ID of the advertiser that the linked entity belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * The ID of a line item.
+     */
+    'linkedEntity.lineItemId'?: string;
+    /**
+     * Required. The type of YouTube asset associated with the resource.
+     */
+    youtubeAssetType?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$YoutubeAssetAssociation;
+  }
+  export interface Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$Delete
+    extends StandardParameters {
+    /**
+     * The ID of an ad group.
+     */
+    adGroupId?: string;
+    /**
+     * Required. The ID of the advertiser that the linked entity belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * The ID of a line item.
+     */
+    'linkedEntity.lineItemId'?: string;
+    /**
+     * Required. The ID of the YouTube asset in the association. For `YOUTUBE_ASSET_TYPE_LOCATION` and `YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION` associations: This should be the ID of the asset set linked, or 0 if the location_asset_filter or affiliate_location_asset_filter is `DISABLED`. For `YOUTUBE_ASSET_TYPE_SITELINK` associations: This should be the ID of the sitelink asset linked.
+     */
+    youtubeAssetAssociationId?: string;
+    /**
+     * Required. The type of YouTube asset associated with the resource.
+     */
+    youtubeAssetType?: string;
+  }
+  export interface Params$Resource$Advertisers$Adgroups$Youtubeassettypes$Youtubeassetassociations$List
+    extends StandardParameters {
+    /**
+     * The ID of an ad group.
+     */
+    adGroupId?: string;
+    /**
+     * Required. The ID of the advertiser that the linked entity belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * The ID of a line item.
+     */
+    'linkedEntity.lineItemId'?: string;
+    /**
+     * Optional. Field by which to sort the list. The only acceptable values are: * `linkedYoutubeAsset.locationAssetFilter.assetSetId`, * `linkedYoutubeAsset.affiliateLocationAssetFilter.assetSetId`, * `linkedYoutubeAsset.sitelinkAsset.assetId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `linkedYoutubeAsset.sitelinkAsset.assetId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAssetAssociations` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The type of YouTube asset being associated with the resource.
+     */
+    youtubeAssetType?: string;
   }
 
   export class Resource$Advertisers$Assets {
@@ -15792,11 +17783,14 @@ export namespace displayvideo_v4 {
   export class Resource$Advertisers$Lineitems {
     context: APIRequestContext;
     targetingTypes: Resource$Advertisers$Lineitems$Targetingtypes;
+    youtubeAssetTypes: Resource$Advertisers$Lineitems$Youtubeassettypes;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.targetingTypes = new Resource$Advertisers$Lineitems$Targetingtypes(
         this.context
       );
+      this.youtubeAssetTypes =
+        new Resource$Advertisers$Lineitems$Youtubeassettypes(this.context);
     }
 
     /**
@@ -18499,6 +20493,588 @@ export namespace displayvideo_v4 {
      * Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_INVENTORY_MODE` * `TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items) * `TARGETING_TYPE_YOUTUBE_VIDEO` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items)
      */
     targetingType?: string;
+  }
+
+  export class Resource$Advertisers$Lineitems$Youtubeassettypes {
+    context: APIRequestContext;
+    youtubeAssetAssociations: Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.youtubeAssetAssociations =
+        new Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new association between the identified resource and a YouTube asset. Returns the newly-created association. *Warning:* This method is only available to an informed subset of users.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.youtubeAssetTypes.youtubeAssetAssociations.create(
+     *       {
+     *         // Required. The ID of the advertiser that the linked entity belongs to.
+     *         advertiserId: '[^/]+',
+     *         // The ID of a line item.
+     *         lineItemId: '[^/]+',
+     *         // The ID of an ad group.
+     *         'linkedEntity.adGroupId': 'placeholder-value',
+     *         // Required. The type of YouTube asset associated with the resource.
+     *         youtubeAssetType: '[^/]+',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "linkedYoutubeAsset": {},
+     *           //   "name": "my_name",
+     *           //   "youtubeAssetType": "my_youtubeAssetType"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "linkedYoutubeAsset": {},
+     *   //   "name": "my_name",
+     *   //   "youtubeAssetType": "my_youtubeAssetType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$YoutubeAssetAssociation>>;
+    create(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$YoutubeAssetAssociation>,
+      callback: BodyResponseCallback<Schema$YoutubeAssetAssociation>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Create,
+      callback: BodyResponseCallback<Schema$YoutubeAssetAssociation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$YoutubeAssetAssociation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Create
+        | BodyResponseCallback<Schema$YoutubeAssetAssociation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$YoutubeAssetAssociation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$YoutubeAssetAssociation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$YoutubeAssetAssociation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v4/advertisers/{+advertiserId}/lineItems/{+lineItemId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'lineItemId', 'youtubeAssetType'],
+        pathParams: ['advertiserId', 'lineItemId', 'youtubeAssetType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$YoutubeAssetAssociation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$YoutubeAssetAssociation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an existing association between the identified resource and a YouTube asset. *Warning:* This method is only available to an informed subset of users.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.youtubeAssetTypes.youtubeAssetAssociations.delete(
+     *       {
+     *         // Required. The ID of the advertiser that the linked entity belongs to.
+     *         advertiserId: '[^/]+',
+     *         // The ID of a line item.
+     *         lineItemId: '[^/]+',
+     *         // The ID of an ad group.
+     *         'linkedEntity.adGroupId': 'placeholder-value',
+     *         // Required. The ID of the YouTube asset in the association. For `YOUTUBE_ASSET_TYPE_LOCATION` and `YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION` associations: This should be the ID of the asset set linked, or 0 if the location_asset_filter or affiliate_location_asset_filter is `DISABLED`. For `YOUTUBE_ASSET_TYPE_SITELINK` associations: This should be the ID of the sitelink asset linked.
+     *         youtubeAssetAssociationId: '[^/]+',
+     *         // Required. The type of YouTube asset associated with the resource.
+     *         youtubeAssetType: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v4/advertisers/{+advertiserId}/lineItems/{+lineItemId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations/{+youtubeAssetAssociationId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'advertiserId',
+          'lineItemId',
+          'youtubeAssetType',
+          'youtubeAssetAssociationId',
+        ],
+        pathParams: [
+          'advertiserId',
+          'lineItemId',
+          'youtubeAssetAssociationId',
+          'youtubeAssetType',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Lists the YouTube asset associations linked to the given resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.youtubeAssetTypes.youtubeAssetAssociations.list(
+     *       {
+     *         // Required. The ID of the advertiser that the linked entity belongs to.
+     *         advertiserId: '[^/]+',
+     *         // The ID of a line item.
+     *         lineItemId: '[^/]+',
+     *         // The ID of an ad group.
+     *         'linkedEntity.adGroupId': 'placeholder-value',
+     *         // Optional. Field by which to sort the list. The only acceptable values are: * `linkedYoutubeAsset.locationAssetFilter.assetSetId`, * `linkedYoutubeAsset.affiliateLocationAssetFilter.assetSetId`, * `linkedYoutubeAsset.sitelinkAsset.assetId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `linkedYoutubeAsset.sitelinkAsset.assetId desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAssetAssociations` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The type of YouTube asset being associated with the resource.
+     *         youtubeAssetType: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "youtubeAssetAssociations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListYoutubeAssetAssociationsResponse>
+    >;
+    list(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>,
+      callback: BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$List,
+      callback: BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$List
+        | BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListYoutubeAssetAssociationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListYoutubeAssetAssociationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v4/advertisers/{+advertiserId}/lineItems/{+lineItemId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'lineItemId', 'youtubeAssetType'],
+        pathParams: ['advertiserId', 'lineItemId', 'youtubeAssetType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListYoutubeAssetAssociationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListYoutubeAssetAssociationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser that the linked entity belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * The ID of a line item.
+     */
+    lineItemId?: string;
+    /**
+     * The ID of an ad group.
+     */
+    'linkedEntity.adGroupId'?: string;
+    /**
+     * Required. The type of YouTube asset associated with the resource.
+     */
+    youtubeAssetType?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$YoutubeAssetAssociation;
+  }
+  export interface Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser that the linked entity belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * The ID of a line item.
+     */
+    lineItemId?: string;
+    /**
+     * The ID of an ad group.
+     */
+    'linkedEntity.adGroupId'?: string;
+    /**
+     * Required. The ID of the YouTube asset in the association. For `YOUTUBE_ASSET_TYPE_LOCATION` and `YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION` associations: This should be the ID of the asset set linked, or 0 if the location_asset_filter or affiliate_location_asset_filter is `DISABLED`. For `YOUTUBE_ASSET_TYPE_SITELINK` associations: This should be the ID of the sitelink asset linked.
+     */
+    youtubeAssetAssociationId?: string;
+    /**
+     * Required. The type of YouTube asset associated with the resource.
+     */
+    youtubeAssetType?: string;
+  }
+  export interface Params$Resource$Advertisers$Lineitems$Youtubeassettypes$Youtubeassetassociations$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser that the linked entity belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * The ID of a line item.
+     */
+    lineItemId?: string;
+    /**
+     * The ID of an ad group.
+     */
+    'linkedEntity.adGroupId'?: string;
+    /**
+     * Optional. Field by which to sort the list. The only acceptable values are: * `linkedYoutubeAsset.locationAssetFilter.assetSetId`, * `linkedYoutubeAsset.affiliateLocationAssetFilter.assetSetId`, * `linkedYoutubeAsset.sitelinkAsset.assetId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `linkedYoutubeAsset.sitelinkAsset.assetId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAssetAssociations` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The type of YouTube asset being associated with the resource.
+     */
+    youtubeAssetType?: string;
   }
 
   export class Resource$Advertisers$Locationlists {
