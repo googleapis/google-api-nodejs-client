@@ -750,6 +750,14 @@ export namespace places_v1 {
      */
     menuForChildren?: boolean | null;
     /**
+     * If this Place is permanently closed and has moved to a new Place, this field contains the new Place's resource name, in `places/{place_id\}` format. If this Place moved multiple times, this field will represent the first moved place. This field will not be populated if this Place has not moved.
+     */
+    movedPlace?: string | null;
+    /**
+     * If this Place is permanently closed and has moved to a new Place, this field contains the new Place's place ID. If this Place moved multiple times, this field will represent the first moved Place. This field will not be populated if this Place has not moved.
+     */
+    movedPlaceId?: string | null;
+    /**
      * This Place's resource name, in `places/{place_id\}` format. Can be used to look up the Place.
      */
     name?: string | null;
@@ -970,7 +978,7 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1PlaceConsumerAlert {
     /**
-     * The details of the consumer alert message.ƒ
+     * The details of the consumer alert message.
      */
     details?: Schema$GoogleMapsPlacesV1PlaceConsumerAlertDetails;
     /**
@@ -1361,7 +1369,7 @@ export namespace places_v1 {
      */
     text?: Schema$GoogleTypeLocalizedText;
     /**
-     * The date when the author visited the place. This is trucated to the year and month of the visit.
+     * The date when the author visited the place. This is truncated to the year and month of the visit.
      */
     visitDate?: Schema$GoogleTypeDate;
   }
@@ -2025,6 +2033,8 @@ export namespace places_v1 {
      *   //   "liveMusic": false,
      *   //   "location": {},
      *   //   "menuForChildren": false,
+     *   //   "movedPlace": "my_movedPlace",
+     *   //   "movedPlaceId": "my_movedPlaceId",
      *   //   "name": "my_name",
      *   //   "nationalPhoneNumber": "my_nationalPhoneNumber",
      *   //   "neighborhoodSummary": {},

@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20251007",
+  "revision": "20251021",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -1166,6 +1166,14 @@
           "description": "Place has a children's menu.",
           "type": "boolean"
         },
+        "movedPlace": {
+          "description": "If this Place is permanently closed and has moved to a new Place, this field contains the new Place's resource name, in `places/{place_id}` format. If this Place moved multiple times, this field will represent the first moved place. This field will not be populated if this Place has not moved.",
+          "type": "string"
+        },
+        "movedPlaceId": {
+          "description": "If this Place is permanently closed and has moved to a new Place, this field contains the new Place's place ID. If this Place moved multiple times, this field will represent the first moved Place. This field will not be populated if this Place has not moved.",
+          "type": "string"
+        },
         "name": {
           "description": "This Place's resource name, in `places/{place_id}` format. Can be used to look up the Place.",
           "type": "string"
@@ -1433,7 +1441,7 @@
       "properties": {
         "details": {
           "$ref": "GoogleMapsPlacesV1PlaceConsumerAlertDetails",
-          "description": "The details of the consumer alert message.ƒ"
+          "description": "The details of the consumer alert message."
         },
         "languageCode": {
           "description": "The language code of the consumer alert message. This is a BCP 47 language code.",
@@ -1910,7 +1918,7 @@
         },
         "visitDate": {
           "$ref": "GoogleTypeDate",
-          "description": "The date when the author visited the place. This is trucated to the year and month of the visit."
+          "description": "The date when the author visited the place. This is truncated to the year and month of the visit."
         }
       },
       "type": "object"
