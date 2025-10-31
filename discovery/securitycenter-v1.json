@@ -1769,6 +1769,7 @@
           ]
         },
         "updateOrganizationSettings": {
+          "deprecated": true,
           "description": "Updates an organization's settings.",
           "flatPath": "v1/organizations/{organizationsId}/organizationSettings",
           "httpMethod": "PATCH",
@@ -5943,7 +5944,7 @@
       }
     }
   },
-  "revision": "20251006",
+  "revision": "20251024",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -11843,8 +11844,109 @@
       "description": "The AppHub application associated with the resource, if any.",
       "id": "GoogleCloudSecuritycenterV2IssueResourceApplication",
       "properties": {
+        "attributes": {
+          "$ref": "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes",
+          "description": "Consumer provided attributes for the application"
+        },
         "name": {
           "description": "The resource name of an Application. Format: `projects/{host-project-id}/locations/{location}/applications/{application-id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes": {
+      "description": "Consumer provided attributes for the application",
+      "id": "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes",
+      "properties": {
+        "businessOwners": {
+          "description": "Business team that ensures user needs are met and value is delivered",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo"
+          },
+          "type": "array"
+        },
+        "criticality": {
+          "$ref": "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesCriticality",
+          "description": "User-defined criticality information."
+        },
+        "developerOwners": {
+          "description": "Developer team that owns development and coding.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo"
+          },
+          "type": "array"
+        },
+        "environment": {
+          "$ref": "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesEnvironment",
+          "description": "User-defined environment information."
+        },
+        "operatorOwners": {
+          "description": "Operator team that ensures runtime and operations.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo": {
+      "description": "Contact information of stakeholders.",
+      "id": "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo",
+      "properties": {
+        "email": {
+          "description": "Email address of the contacts.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesCriticality": {
+      "description": "Criticality of the Application, Service, or Workload",
+      "id": "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesCriticality",
+      "properties": {
+        "type": {
+          "description": "Criticality Type.",
+          "enum": [
+            "CRITICALITY_TYPE_UNSPECIFIED",
+            "MISSION_CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Mission critical service, application or workload.",
+            "High impact.",
+            "Medium impact.",
+            "Low impact."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesEnvironment": {
+      "description": "Environment of the Application, Service, or Workload",
+      "id": "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesEnvironment",
+      "properties": {
+        "type": {
+          "description": "Environment Type.",
+          "enum": [
+            "ENVIRONMENT_TYPE_UNSPECIFIED",
+            "PRODUCTION",
+            "STAGING",
+            "TEST",
+            "DEVELOPMENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Production environment.",
+            "Staging environment.",
+            "Test environment.",
+            "Development environment."
+          ],
           "type": "string"
         }
       },
