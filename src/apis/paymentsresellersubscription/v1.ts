@@ -164,6 +164,10 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$CreateSubscriptionIntent {
     /**
+     * Optional. The cycle options for the subscription.
+     */
+    cycleOptions?: Schema$CycleOptions;
+    /**
      * Required. The parent resource name, which is the identifier of the partner.
      */
     parent?: string | null;
@@ -401,6 +405,19 @@ export namespace paymentsresellersubscription_v1 {
      * The request to entitle a subscription.
      */
     entitleIntent?: Schema$EntitleSubscriptionIntent;
+    /**
+     * Optional. The additional features for the intent.
+     */
+    intentOptions?: Schema$IntentPayloadIntentOptions;
+  }
+  /**
+   * The options for the intent.
+   */
+  export interface Schema$IntentPayloadIntentOptions {
+    /**
+     * Optional. If true, Google may use a different product and promotion id from the ones in the `create_intent` based on the user's eligibility. Only applicable for certain YouTube free trial offers.
+     */
+    enableOfferOverride?: boolean | null;
   }
   /**
    * Response that contains the products.
