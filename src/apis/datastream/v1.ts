@@ -526,6 +526,15 @@ export namespace datastream_v1 {
     reason?: string | null;
   }
   /**
+   * Represents a filter for included data on a stream object.
+   */
+  export interface Schema$EventFilter {
+    /**
+     * An SQL-query Where clause selecting which data should be included, not including the "WHERE" keyword. E.g., "t.key1 = 'value1' AND t.key2 = 'value2'".
+     */
+    sqlWhereClause?: string | null;
+  }
+  /**
    * Response message for a 'FetchStaticIps' response.
    */
   export interface Schema$FetchStaticIpsResponse {
@@ -673,6 +682,10 @@ export namespace datastream_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response containing a list of private connection configurations.
@@ -798,7 +811,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$MongodbChangeStreamPosition {
     /**
-     * Required. The timestamp (in epoch seconds) to start change stream from.
+     * Required. The timestamp to start change stream from.
      */
     startTime?: string | null;
   }
@@ -2156,7 +2169,12 @@ export namespace datastream_v1 {
   /**
    * Request for manually initiating a backfill job for a specific stream object.
    */
-  export interface Schema$StartBackfillJobRequest {}
+  export interface Schema$StartBackfillJobRequest {
+    /**
+     * Optional. Optional event filter. If not set, or empty, the backfill will be performed on the entire object. This is currently used for partial backfill and only supported for SQL Server sources.
+     */
+    eventFilter?: Schema$EventFilter;
+  }
   /**
    * Response for manually initiating a backfill job for a specific stream object.
    */
@@ -4431,13 +4449,16 @@ export namespace datastream_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -4583,6 +4604,10 @@ export namespace datastream_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Privateconnections {
@@ -7471,7 +7496,9 @@ export namespace datastream_v1 {
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
-     *         // {}
+     *         // {
+     *         //   "eventFilter": {}
+     *         // }
      *       },
      *     });
      *   console.log(res.data);
