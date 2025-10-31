@@ -1592,6 +1592,59 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "get": {
+                  "description": "Get the key value map scoped to an organization, environment, or API proxy.",
+                  "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.apis.keyvaluemaps.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Scope as indicated by the URI in which to fetch the key value map. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueMap"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "update": {
+                  "description": "Update the key value map scoped to an organization, environment, or API proxy.",
+                  "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}",
+                  "httpMethod": "PUT",
+                  "id": "apigee.organizations.apis.keyvaluemaps.update",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Scope as indicated by the URI in which to fetch the key value map. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueMap"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueMap"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -6276,6 +6329,59 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "get": {
+                  "description": "Get the key value map scoped to an organization, environment, or API proxy.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.keyvaluemaps.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Scope as indicated by the URI in which to fetch the key value map. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueMap"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "update": {
+                  "description": "Update the key value map scoped to an organization, environment, or API proxy.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}",
+                  "httpMethod": "PUT",
+                  "id": "apigee.organizations.environments.keyvaluemaps.update",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Scope as indicated by the URI in which to fetch the key value map. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueMap"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueMap"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -9100,6 +9206,59 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "get": {
+              "description": "Get the key value map scoped to an organization, environment, or API proxy.",
+              "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.keyvaluemaps.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Scope as indicated by the URI in which to fetch the key value map. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1KeyValueMap"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "update": {
+              "description": "Update the key value map scoped to an organization, environment, or API proxy.",
+              "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}",
+              "httpMethod": "PUT",
+              "id": "apigee.organizations.keyvaluemaps.update",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Scope as indicated by the URI in which to fetch the key value map. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1KeyValueMap"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1KeyValueMap"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           },
           "resources": {
@@ -11289,7 +11448,7 @@
       }
     }
   },
-  "revision": "20250929",
+  "revision": "20251016",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -18771,14 +18930,12 @@
           "enum": [
             "ATTRIBUTE_UNSPECIFIED",
             "ATTRIBUTE_ENVIRONMENTS",
-            "ATTRIBUTE_IP_ADDRESS_RANGES",
-            "ATTRIBUTE_API_KEYS"
+            "ATTRIBUTE_IP_ADDRESS_RANGES"
           ],
           "enumDescriptions": [
             "Unspecified attribute.",
             "Values will be a list of environments.",
-            "Values will be a list of IP addresses. This could be either IPv4 or IPv6.",
-            "Values will be a list of API keys."
+            "Values will be a list of IP addresses. This could be either IPv4 or IPv6."
           ],
           "type": "string"
         },

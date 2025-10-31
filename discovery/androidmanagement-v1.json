@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20251015",
+  "revision": "20251022",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2747,7 +2747,7 @@
           ],
           "enumDescriptions": [
             "This value is disallowed.",
-            "Lock the device, as if the lock screen timeout had expired.",
+            "Lock the device, as if the lock screen timeout had expired. For a work profile, if there is a separate work profile lock, this only locks the work profile, with one exception: on work profiles on an organization-owned device running Android 8, 9, or 10, this locks the entire device.",
             "Reset the user's password.",
             "Reboot the device. Only supported on fully managed devices running Android 7.0 (API level 24) or higher.",
             "Removes the work profile and all policies from a company-owned Android 8.0+ device, relinquishing the device for personal use. Apps and data associated with the personal profile(s) are preserved. The device will be deleted from the server after it acknowledges the command.",
