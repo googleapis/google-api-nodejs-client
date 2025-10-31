@@ -11974,7 +11974,7 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * Get a Policy
+     * Get a policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -12115,7 +12115,7 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * List Policies
+     * List policies.
      * @example
      * ```js
      * // Before running the sample:
