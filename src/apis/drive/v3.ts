@@ -524,6 +524,10 @@ export namespace drive_v3 {
      */
     anchor?: string | null;
     /**
+     * Output only. The email of the user who is assigned to this comment, if none is assigned this will be unset.
+     */
+    assigneeEmailAddress?: string | null;
+    /**
      * Output only. The author of the comment. The author's email address and permission ID will not be populated.
      */
     author?: Schema$User;
@@ -551,6 +555,10 @@ export namespace drive_v3 {
      * Output only. Identifies what kind of resource this is. Value: the fixed string `"drive#comment"`.
      */
     kind?: string | null;
+    /**
+     * Output only. The emails of the users who were mentioned in this comment, if none were mentioned this will be an empty list.
+     */
+    mentionedEmailAddresses?: string[] | null;
     /**
      * The last time the comment or any of its replies was modified (RFC 3339 date-time).
      */
@@ -1432,6 +1440,10 @@ export namespace drive_v3 {
      */
     action?: string | null;
     /**
+     * Output only. The email of the user who is assigned to this reply, if none is assigned this will be unset.
+     */
+    assigneeEmailAddress?: string | null;
+    /**
      * Output only. The author of the reply. The author's email address and permission ID will not be populated.
      */
     author?: Schema$User;
@@ -1459,6 +1471,10 @@ export namespace drive_v3 {
      * Output only. Identifies what kind of resource this is. Value: the fixed string `"drive#reply"`.
      */
     kind?: string | null;
+    /**
+     * Output only. The emails of the users who were mentioned in this reply, if none were mentioned this will be an empty list.
+     */
+    mentionedEmailAddresses?: string[] | null;
     /**
      * The last time the reply was modified (RFC 3339 date-time).
      */
@@ -3615,6 +3631,7 @@ export namespace drive_v3 {
      *       // request body parameters
      *       // {
      *       //   "anchor": "my_anchor",
+     *       //   "assigneeEmailAddress": "my_assigneeEmailAddress",
      *       //   "author": {},
      *       //   "content": "my_content",
      *       //   "createdTime": "my_createdTime",
@@ -3622,6 +3639,7 @@ export namespace drive_v3 {
      *       //   "htmlContent": "my_htmlContent",
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "mentionedEmailAddresses": [],
      *       //   "modifiedTime": "my_modifiedTime",
      *       //   "quotedFileContent": {},
      *       //   "replies": [],
@@ -3634,6 +3652,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "anchor": "my_anchor",
+     *   //   "assigneeEmailAddress": "my_assigneeEmailAddress",
      *   //   "author": {},
      *   //   "content": "my_content",
      *   //   "createdTime": "my_createdTime",
@@ -3641,6 +3660,7 @@ export namespace drive_v3 {
      *   //   "htmlContent": "my_htmlContent",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "mentionedEmailAddresses": [],
      *   //   "modifiedTime": "my_modifiedTime",
      *   //   "quotedFileContent": {},
      *   //   "replies": [],
@@ -3923,6 +3943,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "anchor": "my_anchor",
+     *   //   "assigneeEmailAddress": "my_assigneeEmailAddress",
      *   //   "author": {},
      *   //   "content": "my_content",
      *   //   "createdTime": "my_createdTime",
@@ -3930,6 +3951,7 @@ export namespace drive_v3 {
      *   //   "htmlContent": "my_htmlContent",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "mentionedEmailAddresses": [],
      *   //   "modifiedTime": "my_modifiedTime",
      *   //   "quotedFileContent": {},
      *   //   "replies": [],
@@ -4225,6 +4247,7 @@ export namespace drive_v3 {
      *       // request body parameters
      *       // {
      *       //   "anchor": "my_anchor",
+     *       //   "assigneeEmailAddress": "my_assigneeEmailAddress",
      *       //   "author": {},
      *       //   "content": "my_content",
      *       //   "createdTime": "my_createdTime",
@@ -4232,6 +4255,7 @@ export namespace drive_v3 {
      *       //   "htmlContent": "my_htmlContent",
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "mentionedEmailAddresses": [],
      *       //   "modifiedTime": "my_modifiedTime",
      *       //   "quotedFileContent": {},
      *       //   "replies": [],
@@ -4244,6 +4268,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "anchor": "my_anchor",
+     *   //   "assigneeEmailAddress": "my_assigneeEmailAddress",
      *   //   "author": {},
      *   //   "content": "my_content",
      *   //   "createdTime": "my_createdTime",
@@ -4251,6 +4276,7 @@ export namespace drive_v3 {
      *   //   "htmlContent": "my_htmlContent",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "mentionedEmailAddresses": [],
      *   //   "modifiedTime": "my_modifiedTime",
      *   //   "quotedFileContent": {},
      *   //   "replies": [],
@@ -9658,6 +9684,7 @@ export namespace drive_v3 {
      *       // request body parameters
      *       // {
      *       //   "action": "my_action",
+     *       //   "assigneeEmailAddress": "my_assigneeEmailAddress",
      *       //   "author": {},
      *       //   "content": "my_content",
      *       //   "createdTime": "my_createdTime",
@@ -9665,6 +9692,7 @@ export namespace drive_v3 {
      *       //   "htmlContent": "my_htmlContent",
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "mentionedEmailAddresses": [],
      *       //   "modifiedTime": "my_modifiedTime"
      *       // }
      *     },
@@ -9674,6 +9702,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "action": "my_action",
+     *   //   "assigneeEmailAddress": "my_assigneeEmailAddress",
      *   //   "author": {},
      *   //   "content": "my_content",
      *   //   "createdTime": "my_createdTime",
@@ -9681,6 +9710,7 @@ export namespace drive_v3 {
      *   //   "htmlContent": "my_htmlContent",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "mentionedEmailAddresses": [],
      *   //   "modifiedTime": "my_modifiedTime"
      *   // }
      * }
@@ -9964,6 +9994,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "action": "my_action",
+     *   //   "assigneeEmailAddress": "my_assigneeEmailAddress",
      *   //   "author": {},
      *   //   "content": "my_content",
      *   //   "createdTime": "my_createdTime",
@@ -9971,6 +10002,7 @@ export namespace drive_v3 {
      *   //   "htmlContent": "my_htmlContent",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "mentionedEmailAddresses": [],
      *   //   "modifiedTime": "my_modifiedTime"
      *   // }
      * }
@@ -10265,6 +10297,7 @@ export namespace drive_v3 {
      *       // request body parameters
      *       // {
      *       //   "action": "my_action",
+     *       //   "assigneeEmailAddress": "my_assigneeEmailAddress",
      *       //   "author": {},
      *       //   "content": "my_content",
      *       //   "createdTime": "my_createdTime",
@@ -10272,6 +10305,7 @@ export namespace drive_v3 {
      *       //   "htmlContent": "my_htmlContent",
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "mentionedEmailAddresses": [],
      *       //   "modifiedTime": "my_modifiedTime"
      *       // }
      *     },
@@ -10281,6 +10315,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "action": "my_action",
+     *   //   "assigneeEmailAddress": "my_assigneeEmailAddress",
      *   //   "author": {},
      *   //   "content": "my_content",
      *   //   "createdTime": "my_createdTime",
@@ -10288,6 +10323,7 @@ export namespace drive_v3 {
      *   //   "htmlContent": "my_htmlContent",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "mentionedEmailAddresses": [],
      *   //   "modifiedTime": "my_modifiedTime"
      *   // }
      * }
