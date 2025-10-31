@@ -15,9 +15,11 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {chromewebstore_v1_1} from './v1.1';
+import {chromewebstore_v2} from './v2';
 
 export const VERSIONS = {
   'v1.1': chromewebstore_v1_1.Chromewebstore,
+  v2: chromewebstore_v2.Chromewebstore,
 };
 
 export function chromewebstore(
@@ -26,9 +28,19 @@ export function chromewebstore(
 export function chromewebstore(
   options: chromewebstore_v1_1.Options
 ): chromewebstore_v1_1.Chromewebstore;
-export function chromewebstore<T = chromewebstore_v1_1.Chromewebstore>(
+export function chromewebstore(version: 'v2'): chromewebstore_v2.Chromewebstore;
+export function chromewebstore(
+  options: chromewebstore_v2.Options
+): chromewebstore_v2.Chromewebstore;
+export function chromewebstore<
+  T = chromewebstore_v1_1.Chromewebstore | chromewebstore_v2.Chromewebstore,
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1.1' | chromewebstore_v1_1.Options
+  versionOrOptions:
+    | 'v1.1'
+    | chromewebstore_v1_1.Options
+    | 'v2'
+    | chromewebstore_v2.Options
 ) {
   return getAPI<T>('chromewebstore', versionOrOptions, VERSIONS, this);
 }
@@ -36,6 +48,7 @@ export function chromewebstore<T = chromewebstore_v1_1.Chromewebstore>(
 const auth = new AuthPlus();
 export {auth};
 export {chromewebstore_v1_1};
+export {chromewebstore_v2};
 export {
   AuthPlus,
   GlobalOptions,
