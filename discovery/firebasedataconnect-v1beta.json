@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -294,6 +294,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta/{+name}/operations",
@@ -1160,7 +1165,7 @@
       }
     }
   },
-  "revision": "20250907",
+  "revision": "20251021",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1355,7 +1360,7 @@
       "type": "object"
     },
     "GraphqlError": {
-      "description": "GraphqlError conforms to the GraphQL error spec. https://spec.graphql.org/draft/#sec-Errors Firebase Data Connect API surfaces `GraphqlError` in various APIs: - Upon compile error, `UpdateSchema` and `UpdateConnector` return Code.Invalid_Argument with a list of `GraphqlError` in error details. - Upon query compile error, `ExecuteGraphql` and `ExecuteGraphqlRead` return Code.OK with a list of `GraphqlError` in response body. - Upon query execution error, `ExecuteGraphql`, `ExecuteGraphqlRead`, `ExecuteMutation` and `ExecuteQuery` all return Code.OK with a list of `GraphqlError` in response body.",
+      "description": "GraphqlError conforms to the GraphQL error spec. https://spec.graphql.org/draft/#sec-Errors Firebase Data Connect API surfaces `GraphqlError` in various APIs: - Upon compile error, `UpdateSchema` and `UpdateConnector` return Code.Invalid_Argument with a list of `GraphqlError` in error details. - Upon query compile error, `ExecuteGraphql`, `ExecuteGraphqlRead` and `IntrospectGraphql` return Code.OK with a list of `GraphqlError` in response body. - Upon query execution error, `ExecuteGraphql`, `ExecuteGraphqlRead`, `ExecuteMutation`, `ExecuteQuery`, `IntrospectGraphql`, `ImpersonateQuery` and `ImpersonateMutation` all return Code.OK with a list of `GraphqlError` in response body.",
       "id": "GraphqlError",
       "properties": {
         "extensions": {
@@ -1363,7 +1368,7 @@
           "description": "Additional error information."
         },
         "locations": {
-          "description": "The source locations where the error occurred. Locations should help developers and toolings identify the source of error quickly. Included in admin endpoints (`ExecuteGraphql`, `ExecuteGraphqlRead`, `UpdateSchema` and `UpdateConnector`) to reference the provided GraphQL GQL document. Omitted in `ExecuteMutation` and `ExecuteQuery` since the caller shouldn't have access access the underlying GQL source.",
+          "description": "The source locations where the error occurred. Locations should help developers and toolings identify the source of error quickly. Included in admin endpoints (`ExecuteGraphql`, `ExecuteGraphqlRead`, `IntrospectGraphql`, `ImpersonateQuery`, `ImpersonateMutation`, `UpdateSchema` and `UpdateConnector`) to reference the provided GraphQL GQL document. Omitted in `ExecuteMutation` and `ExecuteQuery` since the caller shouldn't have access access the underlying GQL source.",
           "items": {
             "$ref": "SourceLocation"
           },
@@ -1437,9 +1442,30 @@
           "description": "The source file name where the error occurred. Included only for `UpdateSchema` and `UpdateConnector`, it corresponds to `File.path` of the provided `Source`.",
           "type": "string"
         },
-        "resource": {
-          "description": "Distinguish which schema or connector the error originates from. It should be set on errors from control plane APIs (e.g. `UpdateSchema`, `UpdateConnector`).",
+        "warningLevel": {
+          "description": "Warning level describes the severity and required action to suppress this warning when Firebase CLI run into it.",
+          "enum": [
+            "WARNING_LEVEL_UNKNOWN",
+            "LOG_ONLY",
+            "INTERACTIVE_ACK",
+            "REQUIRE_ACK",
+            "REQUIRE_FORCE"
+          ],
+          "enumDescriptions": [
+            "Warning level is not specified.",
+            "Display a warning without action needed.",
+            "Request a confirmation in interactive deployment flow.",
+            "Require an explicit confirmation in all deployment flows.",
+            "Require --force in all deployment flows."
+          ],
           "type": "string"
+        },
+        "workarounds": {
+          "description": "Workarounds provide suggestions to address the compile errors or warnings.",
+          "items": {
+            "$ref": "Workaround"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1605,6 +1631,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -2003,6 +2036,25 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Workaround": {
+      "description": "Workaround provides suggestions to address errors and warnings.",
+      "id": "Workaround",
+      "properties": {
+        "description": {
+          "description": "Description of this workaround.",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Why would this workaround address the error and warning.",
+          "type": "string"
+        },
+        "replace": {
+          "description": "A suggested code snippet to fix the error and warning.",
           "type": "string"
         }
       },
