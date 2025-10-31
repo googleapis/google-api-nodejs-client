@@ -15,6 +15,13 @@
   "description": "Manage Apache Kafka clusters and resources. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/managed-service-for-apache-kafka/docs",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://managedkafka.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -144,7 +151,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2939,7 +2946,7 @@
       }
     }
   },
-  "revision": "20251009",
+  "revision": "20251023",
   "rootUrl": "https://managedkafka.googleapis.com/",
   "schemas": {
     "AccessConfig": {
@@ -3263,18 +3270,20 @@
           "type": "boolean"
         },
         "state": {
-          "description": "Output only. The current state of the cluster.",
+          "description": "Output only. The current state of the Kafka Connect cluster.",
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
-            "DELETING"
+            "DELETING",
+            "DETACHED"
           ],
           "enumDescriptions": [
             "A state was not specified.",
             "The cluster is being created.",
             "The cluster is active.",
-            "The cluster is being deleted."
+            "The cluster is being deleted.",
+            "The cluster is detached."
           ],
           "readOnly": true,
           "type": "string"
