@@ -192,9 +192,6 @@ export namespace recaptchaenterprise_v1 {
      * Optional. A stable account identifier to apply to the assessment. This is an alternative to setting `account_id` in `CreateAssessment`, for example when a stable account identifier is not yet known in the initial request.
      */
     accountId?: string | null;
-    /**
-     * Optional. The annotation that is assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent.
-     */
     annotation?: string | null;
     /**
      * Optional. A stable hashed account identifier to apply to the assessment. This is an alternative to setting `hashed_account_id` in `CreateAssessment`, for example when a stable account identifier is not yet known in the initial request.
@@ -204,9 +201,6 @@ export namespace recaptchaenterprise_v1 {
      * Optional. If using an external multi-factor authentication provider, provide phone authentication details for fraud detection purposes.
      */
     phoneAuthenticationEvent?: Schema$GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent;
-    /**
-     * Optional. Reasons for the annotation that are assigned to the event.
-     */
     reasons?: string[] | null;
     /**
      * Optional. If the assessment is part of a payment transaction, provide details on payment lifecycle events that occur in the transaction.
@@ -292,7 +286,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment {
     /**
-     * Optional. Identifies the client module initiating the CreateAssessment request. This can be the link to the client module's project. Examples include: - "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager" - "cloud.google.com/recaptcha/docs/implement-waf-akamai" - "cloud.google.com/recaptcha/docs/implement-waf-cloudflare" - "wordpress.org/plugins/recaptcha-something"
+     * Optional. Identifies the client module initiating the CreateAssessment request. This can be the link to the client module's project. Examples include: - "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager" - "wordpress.org/plugins/recaptcha-something"
      */
     client?: string | null;
     /**
