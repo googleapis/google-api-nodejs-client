@@ -3406,7 +3406,7 @@
       }
     }
   },
-  "revision": "20250920",
+  "revision": "20251014",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "AdaptMessageRequest": {
@@ -7601,7 +7601,7 @@
           ],
           "enumDescriptions": [
             "Default value. If the value is not specified, the `SERIALIZABLE` isolation level is used.",
-            "All transactions appear as if they executed in a serial order, even if some of the reads, writes, and other operations of distinct transactions actually occurred in parallel. Spanner assigns commit timestamps that reflect the order of committed transactions to implement this property. Spanner offers a stronger guarantee than serializability called external consistency. For further details, please refer to https://cloud.google.com/spanner/docs/true-time-external-consistency#serializability.",
+            "All transactions appear as if they executed in a serial order, even if some of the reads, writes, and other operations of distinct transactions actually occurred in parallel. Spanner assigns commit timestamps that reflect the order of committed transactions to implement this property. Spanner offers a stronger guarantee than serializability called external consistency. For more information, see [TrueTime and external consistency](https://cloud.google.com/spanner/docs/true-time-external-consistency#serializability).",
             "All reads performed during the transaction observe a consistent snapshot of the database, and the transaction is only successfully committed in the absence of conflicts between its updates and any concurrent updates that have occurred since that snapshot. Consequently, in contrast to `SERIALIZABLE` transactions, only write-write conflicts are detected in snapshot transactions. This isolation level does not support Read-only and Partitioned DML transactions. When `REPEATABLE_READ` is specified on a read-write transaction, the locking semantics default to `OPTIMISTIC`."
           ],
           "type": "string"
@@ -7667,7 +7667,8 @@
             "JSON",
             "PROTO",
             "ENUM",
-            "INTERVAL"
+            "INTERVAL",
+            "UUID"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -7685,7 +7686,8 @@
             "Encoded as a JSON-formatted `string` as described in RFC 7159. The following rules are applied when parsing JSON input: - Whitespace characters are not preserved. - If a JSON object has duplicate keys, only the first key is preserved. - Members of a JSON object are not guaranteed to have their order preserved. - JSON array elements will have their order preserved.",
             "Encoded as a base64-encoded `string`, as described in RFC 4648, section 4.",
             "Encoded as `string`, in decimal format.",
-            "Encoded as `string`, in `ISO8601` duration format - `P[n]Y[n]M[n]DT[n]H[n]M[n[.fraction]]S` where `n` is an integer. For example, `P1Y2M3DT4H5M6.5S` represents time duration of 1 year, 2 months, 3 days, 4 hours, 5 minutes, and 6.5 seconds."
+            "Encoded as `string`, in `ISO8601` duration format - `P[n]Y[n]M[n]DT[n]H[n]M[n[.fraction]]S` where `n` is an integer. For example, `P1Y2M3DT4H5M6.5S` represents time duration of 1 year, 2 months, 3 days, 4 hours, 5 minutes, and 6.5 seconds.",
+            "Encoded as `string`, in lower-case hexa-decimal format, as described in RFC 9562, section 4."
           ],
           "type": "string"
         },

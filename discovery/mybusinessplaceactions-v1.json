@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20221124",
+  "revision": "20251022",
   "rootUrl": "https://mybusinessplaceactions.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -359,7 +359,8 @@
             "FOOD_ORDERING",
             "FOOD_DELIVERY",
             "FOOD_TAKEOUT",
-            "SHOP_ONLINE"
+            "SHOP_ONLINE",
+            "SOLOPRENEUR_APPOINTMENT"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -369,7 +370,8 @@
             "The action type is ordering food for delivery and/or takeout.",
             "The action type is ordering food for delivery.",
             "The action type is ordering food for takeout.",
-            "The action type is shopping, that can be delivery and/or pickup."
+            "The action type is shopping, that can be delivery and/or pickup.",
+            "The action type is booking an appointment with a Solopneuer partner."
           ],
           "type": "string"
         },
@@ -419,7 +421,8 @@
             "FOOD_ORDERING",
             "FOOD_DELIVERY",
             "FOOD_TAKEOUT",
-            "SHOP_ONLINE"
+            "SHOP_ONLINE",
+            "SOLOPRENEUR_APPOINTMENT"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -429,7 +432,8 @@
             "The action type is ordering food for delivery and/or takeout.",
             "The action type is ordering food for delivery.",
             "The action type is ordering food for takeout.",
-            "The action type is shopping, that can be delivery and/or pickup."
+            "The action type is shopping, that can be delivery and/or pickup.",
+            "The action type is booking an appointment with a Solopneuer partner."
           ],
           "type": "string"
         }
