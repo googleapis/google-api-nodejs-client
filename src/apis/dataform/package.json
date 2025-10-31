@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/dataform",
-  "version": "12.0.0",
+  "version": "12.0.1",
   "description": "dataform",
   "main": "build/index.js",
   "types": "build/index.d.ts",
