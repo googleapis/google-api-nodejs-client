@@ -1,5 +1,12 @@
 # Changelog
 
+## [28.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v28.0.0...run-v28.1.0) (2025-10-31)
+
+
+### Features
+
+* **run:** update the API ([c7e7921](https://github.com/googleapis/google-api-nodejs-client/commit/c7e7921b8d9113e8e06d8908108409106b150d83))
+
 ## [28.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v27.0.0...run-v28.0.0) (2025-10-15)
 
 
