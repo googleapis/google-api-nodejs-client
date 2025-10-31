@@ -1018,6 +1018,345 @@
                   }
                 }
               }
+            },
+            "schemas": {
+              "methods": {
+                "create": {
+                  "description": "Creates a schema.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemas",
+                  "httpMethod": "POST",
+                  "id": "documentai.projects.locations.schemas.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent (project and location) under which to create the Schema. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/schemas",
+                  "request": {
+                    "$ref": "GoogleCloudDocumentaiV1NextSchema"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDocumentaiV1NextSchema"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a schema.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemas/{schemasId}",
+                  "httpMethod": "DELETE",
+                  "id": "documentai.projects.locations.schemas.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, any child resources of this Schema will also be deleted. (Otherwise, the request will only work if the Schema has no child resources.)",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. The name of the Schema to be deleted. Format: `projects/{project}/locations/{location}/schemas/{schema}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/schemas/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a schema.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemas/{schemasId}",
+                  "httpMethod": "GET",
+                  "id": "documentai.projects.locations.schemas.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Schema to get. Format: `projects/{project}/locations/{location}/schemas/{schema}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/schemas/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDocumentaiV1NextSchema"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Schemas.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemas",
+                  "httpMethod": "GET",
+                  "id": "documentai.projects.locations.schemas.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of schema groups to return. If unspecified, at most `10` Schema will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. We will return the schema groups sorted by creation time. The page token will point to the next Schema.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/schemas",
+                  "response": {
+                    "$ref": "GoogleCloudDocumentaiV1ListSchemasResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a schema. Editable fields are: - `display_name` - `labels`",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemas/{schemasId}",
+                  "httpMethod": "PATCH",
+                  "id": "documentai.projects.locations.schemas.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the Schema. Format: `projects/{project}/locations/{location}/schemas/{schema}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/schemas/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - display_name. - labels.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDocumentaiV1NextSchema"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDocumentaiV1NextSchema"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "schemaVersions": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a schema version.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemas/{schemasId}/schemaVersions",
+                      "httpMethod": "POST",
+                      "id": "documentai.projects.locations.schemas.schemaVersions.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent (project and location) under which to create the SchemaVersion. Format: `projects/{project}/locations/{location}/schemas/{schema}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemas/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/schemaVersions",
+                      "request": {
+                        "$ref": "GoogleCloudDocumentaiV1SchemaVersion"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDocumentaiV1SchemaVersion"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a schema version.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemas/{schemasId}/schemaVersions/{schemaVersionsId}",
+                      "httpMethod": "DELETE",
+                      "id": "documentai.projects.locations.schemas.schemaVersions.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the SchemaVersion to delete. Format: `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemas/[^/]+/schemaVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "generate": {
+                      "description": "Generates a schema version.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemas/{schemasId}/schemaVersions:generate",
+                      "httpMethod": "POST",
+                      "id": "documentai.projects.locations.schemas.schemaVersions.generate",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent (project, location and schema) under which to generate the SchemaVersion. Format: `projects/{project}/locations/{location}/schemas/{schema}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemas/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/schemaVersions:generate",
+                      "request": {
+                        "$ref": "GoogleCloudDocumentaiV1GenerateSchemaVersionRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDocumentaiV1GenerateSchemaVersionResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a schema version.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemas/{schemasId}/schemaVersions/{schemaVersionsId}",
+                      "httpMethod": "GET",
+                      "id": "documentai.projects.locations.schemas.schemaVersions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the SchemaVersion to get. Format: `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemas/[^/]+/schemaVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDocumentaiV1SchemaVersion"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists SchemaVersions.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemas/{schemasId}/schemaVersions",
+                      "httpMethod": "GET",
+                      "id": "documentai.projects.locations.schemas.schemaVersions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The maximum number of SchemaVersion to return. If unspecified, at most `10` SchemaVersion will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. We will return the SchemaVersion sorted by creation time. The page token will point to the next SchemaVersion.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Format: `projects/{project}/locations/{location}/schemas/{schema}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemas/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/schemaVersions",
+                      "response": {
+                        "$ref": "GoogleCloudDocumentaiV1ListSchemaVersionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a schema version. Editable fields are: - `display_name` - `labels`",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemas/{schemasId}/schemaVersions/{schemaVersionsId}",
+                      "httpMethod": "PATCH",
+                      "id": "documentai.projects.locations.schemas.schemaVersions.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The resource name of the SchemaVersion. Format: `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemas/[^/]+/schemaVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - display_name. - labels.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDocumentaiV1SchemaVersion"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDocumentaiV1SchemaVersion"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
             }
           }
         },
@@ -1053,7 +1392,7 @@
       }
     }
   },
-  "revision": "20251013",
+  "revision": "20251020",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -1678,6 +2017,169 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiUiv1beta3DocumentSchema": {
+      "description": "The schema defines the output of the processed document by a processor.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DocumentSchema",
+      "properties": {
+        "description": {
+          "description": "Description of the schema.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name to show to users.",
+          "type": "string"
+        },
+        "entityTypes": {
+          "description": "Entity types of the schema.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityType"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentSchemaMetadata",
+          "description": "Metadata of the schema."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityType": {
+      "description": "EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityType",
+      "properties": {
+        "baseTypes": {
+          "description": "The entity type that this type is derived from. For now, one and only one should be set.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "The description of the entity type. Could be used to provide more information about the entity type for model calls.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User defined name for the type.",
+          "type": "string"
+        },
+        "entityTypeMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3EntityTypeMetadata",
+          "description": "Metadata for the entity type."
+        },
+        "enumValues": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeEnumValues",
+          "description": "If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is >10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file."
+        },
+        "name": {
+          "description": "Name of the type. It must be unique within the schema file and cannot be a \"Common Type\". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.",
+          "type": "string"
+        },
+        "properties": {
+          "description": "Description the nested structure, or composition of an entity.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeProperty"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeEnumValues": {
+      "description": "Defines the a list of enum values.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeEnumValues",
+      "properties": {
+        "values": {
+          "description": "The individual values that this enum values type can include.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeProperty": {
+      "description": "Defines properties that can be part of the entity type.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeProperty",
+      "properties": {
+        "description": {
+          "description": "The description of the property. Could be used to provide more information about the property for model calls.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User defined name for the property.",
+          "type": "string"
+        },
+        "method": {
+          "description": "Specifies how the entity's value is obtained.",
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "EXTRACT",
+            "DERIVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified method. It defaults to `EXTRACT`.",
+            "The entity's value is directly extracted as-is from the document text.",
+            "The entity's value is derived through inference and is not necessarily an exact text extraction from the document."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the property. Follows the same guidelines as the EntityType name.",
+          "type": "string"
+        },
+        "occurrenceType": {
+          "description": "Occurrence type limits the number of instances an entity type appears in the document.",
+          "enum": [
+            "OCCURRENCE_TYPE_UNSPECIFIED",
+            "OPTIONAL_ONCE",
+            "OPTIONAL_MULTIPLE",
+            "REQUIRED_ONCE",
+            "REQUIRED_MULTIPLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified occurrence type.",
+            "There will be zero or one instance of this entity type. The same entity instance may be mentioned multiple times.",
+            "The entity type will appear zero or multiple times.",
+            "The entity type will only appear exactly once. The same entity instance may be mentioned multiple times.",
+            "The entity type will appear once or more times."
+          ],
+          "type": "string"
+        },
+        "propertyMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3PropertyMetadata",
+          "description": "Any additional metadata about the property can be added here."
+        },
+        "valueType": {
+          "description": "A reference to the value type of the property. This type is subject to the same conventions as the `Entity.base_types` field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DocumentSchemaMetadata": {
+      "description": "Metadata for global schema behavior.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DocumentSchemaMetadata",
+      "properties": {
+        "documentAllowMultipleLabels": {
+          "description": "If true, on a given page, there can be multiple `document` annotations covering it.",
+          "type": "boolean"
+        },
+        "documentSplitter": {
+          "description": "If true, a `document` entity type can be applied to subdocument (splitting). Otherwise, it can only be applied to the entire document (classification).",
+          "type": "boolean"
+        },
+        "prefixedNamingOnProperties": {
+          "description": "If set, all the nested entities must be prefixed with the parents.",
+          "type": "boolean"
+        },
+        "skipNamingValidation": {
+          "description": "If set, we will skip the naming format validation in the schema. So the string values in `DocumentSchema.EntityType.name` and `DocumentSchema.EntityType.Property.name` will not be checked.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata": {
       "description": "The long-running operation metadata for the EnableProcessor method.",
       "id": "GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata",
@@ -1693,6 +2195,37 @@
       "description": "Response message for the EnableProcessor method. Intentionally empty proto for adding fields in future.",
       "id": "GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3EntityTypeMetadata": {
+      "description": "Metadata about an entity type.",
+      "id": "GoogleCloudDocumentaiUiv1beta3EntityTypeMetadata",
+      "properties": {
+        "fieldTierMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3FieldTierMetadata",
+          "description": "Field tier metadata on the property"
+        },
+        "humanReviewLabelingMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata",
+          "description": "Human review labeling config on the entity."
+        },
+        "humanReviewMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3HumanReviewValidationMetadata",
+          "description": "Human review config on the entity."
+        },
+        "inactive": {
+          "description": "Whether the entity type should be considered inactive.",
+          "type": "boolean"
+        },
+        "schemaEditabilityMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3SchemaEditabilityMetadata",
+          "description": "Schema editability metadata on the entity."
+        },
+        "schemaInferenceMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3SchemaInferenceMetadata",
+          "description": "Schema inference metadata on the entity."
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionMetadata": {
@@ -1712,6 +2245,91 @@
       "properties": {
         "evaluation": {
           "description": "The resource name of the created evaluation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3EvaluationMetrics": {
+      "description": "Evaluation metrics, either in aggregate or about a specific entity.",
+      "id": "GoogleCloudDocumentaiUiv1beta3EvaluationMetrics",
+      "properties": {
+        "f1Score": {
+          "description": "The calculated f1 score.",
+          "format": "float",
+          "type": "number"
+        },
+        "falseNegativesCount": {
+          "description": "The amount of false negatives.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "falsePositivesCount": {
+          "description": "The amount of false positives.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "groundTruthDocumentCount": {
+          "description": "The amount of documents with a ground truth occurrence.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "groundTruthOccurrencesCount": {
+          "description": "The amount of occurrences in ground truth documents.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "precision": {
+          "description": "The calculated precision.",
+          "format": "float",
+          "type": "number"
+        },
+        "predictedDocumentCount": {
+          "description": "The amount of documents with a predicted occurrence.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "predictedOccurrencesCount": {
+          "description": "The amount of occurrences in predicted documents.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "recall": {
+          "description": "The calculated recall.",
+          "format": "float",
+          "type": "number"
+        },
+        "totalDocumentsCount": {
+          "description": "The amount of documents that had an occurrence of this label.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "truePositivesCount": {
+          "description": "The amount of true positives.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3EvaluationReference": {
+      "description": "Gives a short summary of an evaluation, and links to the evaluation itself.",
+      "id": "GoogleCloudDocumentaiUiv1beta3EvaluationReference",
+      "properties": {
+        "aggregateMetrics": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3EvaluationMetrics",
+          "description": "An aggregate of the statistics for the evaluation with fuzzy matching on."
+        },
+        "aggregateMetricsExact": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3EvaluationMetrics",
+          "description": "An aggregate of the statistics for the evaluation with fuzzy matching off."
+        },
+        "evaluation": {
+          "description": "The resource name of the evaluation.",
+          "type": "string"
+        },
+        "operation": {
+          "description": "The resource name of the Long Running Operation for the evaluation.",
           "type": "string"
         }
       },
@@ -1817,6 +2435,71 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiUiv1beta3FieldExtractionMetadata": {
+      "description": "Metadata for how this field value is extracted.",
+      "id": "GoogleCloudDocumentaiUiv1beta3FieldExtractionMetadata",
+      "properties": {
+        "entityQuery": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3FieldExtractionMetadataEntityQuery",
+          "description": "Entity query config."
+        },
+        "summaryOptions": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3SummaryOptions",
+          "description": "Summary options config."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3FieldExtractionMetadataEntityQuery": {
+      "description": "Message for entity query.",
+      "id": "GoogleCloudDocumentaiUiv1beta3FieldExtractionMetadataEntityQuery",
+      "properties": {
+        "userEntityQuery": {
+          "description": "The original entity query inputed by the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3FieldTierMetadata": {
+      "description": "Metadata for the field tier of a property.",
+      "id": "GoogleCloudDocumentaiUiv1beta3FieldTierMetadata",
+      "properties": {
+        "tierLevel": {
+          "description": "Integer that indicates the tier of a property. e.g. Invoice has entities that are classified as tier 1 which is the most important, while tier 2 and tier 3 less so. This attribute can be used to filter schema attributes before running eval. e.g. compute F1 score for only tier 1 entities. If not present this attribute should be inferred as 1.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata": {
+      "description": "Metadata for human review labeling config.",
+      "id": "GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata",
+      "properties": {
+        "enableNormalizationEditing": {
+          "description": "Whether to enable normalization editing.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3HumanReviewValidationMetadata": {
+      "description": "Metadata for Human Review config.",
+      "id": "GoogleCloudDocumentaiUiv1beta3HumanReviewValidationMetadata",
+      "properties": {
+        "confidenceThreshold": {
+          "description": "The confidence threshold if human review validation is enabled.",
+          "format": "float",
+          "type": "number"
+        },
+        "enableValidation": {
+          "description": "Whether to enable human review validation.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadata": {
       "description": "Metadata of the import document operation.",
       "id": "GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadata",
@@ -1909,6 +2592,331 @@
         "processorVersion": {
           "description": "The destination processor version name.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3Processor": {
+      "description": "The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.",
+      "id": "GoogleCloudDocumentaiUiv1beta3Processor",
+      "properties": {
+        "activeSchemaVersion": {
+          "description": "Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the processor was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "defaultProcessorVersion": {
+          "description": "The default processor version.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the processor.",
+          "type": "string"
+        },
+        "kmsKeyName": {
+          "description": "The [KMS key](https://cloud.google.com/security-key-management) used for encryption and decryption in CMEK scenarios.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Immutable. The resource name of the processor. Format: `projects/{project}/locations/{location}/processors/{processor}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "processEndpoint": {
+          "description": "Output only. Immutable. The http endpoint that can be called to invoke processing.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "processorVersionAliases": {
+          "description": "Output only. The processor version aliases.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3ProcessorVersionAlias"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The state of the processor.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED",
+            "ENABLING",
+            "DISABLING",
+            "CREATING",
+            "FAILED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The processor is in an unspecified state.",
+            "The processor is enabled, i.e., has an enabled version which can currently serve processing requests and all the feature dependencies have been successfully initialized.",
+            "The processor is disabled.",
+            "The processor is being enabled, will become `ENABLED` if successful.",
+            "The processor is being disabled, will become `DISABLED` if successful.",
+            "The processor is being created, will become either `ENABLED` (for successful creation) or `FAILED` (for failed ones). Once a processor is in this state, it can then be used for document processing, but the feature dependencies of the processor might not be fully created yet.",
+            "The processor failed during creation or initialization of feature dependencies. The user should delete the processor and recreate one as all the functionalities of the processor are disabled.",
+            "The processor is being deleted, will be removed if successful."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`. To get a list of processor types, see FetchProcessorTypes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3ProcessorVersion": {
+      "description": "A processor version is an implementation of a processor. Each processor can have multiple versions, pretrained by Google internally or uptrained by the customer. A processor can only have one default version at a time. Its document-processing behavior is defined by that version.",
+      "id": "GoogleCloudDocumentaiUiv1beta3ProcessorVersion",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the processor version was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deploymentAllowed": {
+          "description": "Output only. Denotes that this `ProcessorVersion` can be deployed and undeployed.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "deprecationInfo": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3ProcessorVersionDeprecationInfo",
+          "description": "Output only. If set, information about the eventual deprecation of this version.",
+          "readOnly": true
+        },
+        "displayName": {
+          "description": "The display name of the processor version.",
+          "type": "string"
+        },
+        "documentSchema": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentSchema",
+          "description": "Output only. The schema of the processor version. Describes the output.",
+          "readOnly": true
+        },
+        "genAiModelInfo": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfo",
+          "description": "Output only. Information about Generative AI model-based processor versions.",
+          "readOnly": true
+        },
+        "googleManaged": {
+          "description": "Output only. Denotes that this `ProcessorVersion` is managed by Google.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "kmsKeyName": {
+          "description": "Output only. The KMS key name used for encryption.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kmsKeyVersionName": {
+          "description": "Output only. The KMS key version with which data is encrypted.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "latestEvaluation": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3EvaluationReference",
+          "description": "Output only. The most recently invoked evaluation for the processor version.",
+          "readOnly": true
+        },
+        "modelType": {
+          "description": "Output only. The model type of this processor version.",
+          "enum": [
+            "MODEL_TYPE_UNSPECIFIED",
+            "MODEL_TYPE_GENERATIVE",
+            "MODEL_TYPE_CUSTOM"
+          ],
+          "enumDescriptions": [
+            "The processor version has unspecified model type.",
+            "The processor version has generative model type.",
+            "The processor version has custom model type."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the processor version. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`",
+          "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "schema": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3Schema",
+          "description": "The schema of the processor version. Describes the output."
+        },
+        "state": {
+          "description": "Output only. The state of the processor version.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DEPLOYED",
+            "DEPLOYING",
+            "UNDEPLOYED",
+            "UNDEPLOYING",
+            "CREATING",
+            "DELETING",
+            "FAILED",
+            "IMPORTING"
+          ],
+          "enumDescriptions": [
+            "The processor version is in an unspecified state.",
+            "The processor version is deployed and can be used for processing.",
+            "The processor version is being deployed.",
+            "The processor version is not deployed and cannot be used for processing.",
+            "The processor version is being undeployed.",
+            "The processor version is being created.",
+            "The processor version is being deleted.",
+            "The processor version failed and is in an indeterminate state.",
+            "The processor version is being imported."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3ProcessorVersionAlias": {
+      "description": "Contains the alias and the aliased resource name of processor version.",
+      "id": "GoogleCloudDocumentaiUiv1beta3ProcessorVersionAlias",
+      "properties": {
+        "alias": {
+          "description": "The alias in the form of `processor_version` resource name.",
+          "type": "string"
+        },
+        "processorVersion": {
+          "description": "The resource name of aliased processor version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3ProcessorVersionDeprecationInfo": {
+      "description": "Information about the upcoming deprecation of this processor version.",
+      "id": "GoogleCloudDocumentaiUiv1beta3ProcessorVersionDeprecationInfo",
+      "properties": {
+        "deprecationTime": {
+          "description": "The time at which this processor version will be deprecated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "replacementProcessorVersion": {
+          "description": "If set, the processor version that will be used as a replacement.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfo": {
+      "description": "Information about Generative AI model-based processor versions.",
+      "id": "GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfo",
+      "properties": {
+        "customGenAiModelInfo": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo",
+          "description": "Information for a custom Generative AI model created by the user."
+        },
+        "foundationGenAiModelInfo": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo",
+          "description": "Information for a pretrained Google-managed foundation model."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo": {
+      "description": "Information for a custom Generative AI model created by the user. These are created with `Create New Version` in either the `Call foundation model` or `Fine tuning` tabs.",
+      "id": "GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo",
+      "properties": {
+        "baseProcessorVersionId": {
+          "description": "The base processor version ID for the custom model.",
+          "type": "string"
+        },
+        "customModelType": {
+          "description": "The type of custom model created by the user.",
+          "enum": [
+            "CUSTOM_MODEL_TYPE_UNSPECIFIED",
+            "VERSIONED_FOUNDATION",
+            "FINE_TUNED"
+          ],
+          "enumDescriptions": [
+            "The model type is unspecified.",
+            "The model is a versioned foundation model.",
+            "The model is a finetuned foundation model."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo": {
+      "description": "Information for a pretrained Google-managed foundation model.",
+      "id": "GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo",
+      "properties": {
+        "finetuningAllowed": {
+          "description": "Whether finetuning is allowed for this base processor version.",
+          "type": "boolean"
+        },
+        "minTrainLabeledDocuments": {
+          "description": "The minimum number of labeled documents in the training dataset required for finetuning.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3PropertyMetadata": {
+      "description": "Metadata about a property.",
+      "id": "GoogleCloudDocumentaiUiv1beta3PropertyMetadata",
+      "properties": {
+        "fieldExtractionMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3FieldExtractionMetadata",
+          "description": "Field extraction metadata on the property."
+        },
+        "fieldTierMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3FieldTierMetadata",
+          "description": "Field tier metadata on the property"
+        },
+        "humanReviewLabelingMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata",
+          "description": "Human review labeling config on the property."
+        },
+        "humanReviewMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3HumanReviewValidationMetadata",
+          "description": "Human review validation config on the property."
+        },
+        "inactive": {
+          "description": "Whether the property should be considered as \"inactive\".",
+          "type": "boolean"
+        },
+        "schemaEditabilityMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3SchemaEditabilityMetadata",
+          "description": "Schema editability metadata on the property."
+        },
+        "schemaInferenceMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3SchemaInferenceMetadata",
+          "description": "Schema inference metadata on the property."
         }
       },
       "type": "object"
@@ -2072,6 +3080,139 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiUiv1beta3Schema": {
+      "description": "The schema defines the output of the processed document by a processor.",
+      "id": "GoogleCloudDocumentaiUiv1beta3Schema",
+      "properties": {
+        "description": {
+          "description": "Description of the schema.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name to show to users.",
+          "type": "string"
+        },
+        "entityTypes": {
+          "description": "Entity types of the schema.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3SchemaEntityType"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3SchemaEditabilityMetadata": {
+      "description": "Metadata that specifies whether a label is editable and reasons why. These fields are read-only. Changing these fields has no impact on the backend.",
+      "id": "GoogleCloudDocumentaiUiv1beta3SchemaEditabilityMetadata",
+      "properties": {
+        "editable": {
+          "description": "Explicit flag that controls whether the label is editable.",
+          "type": "boolean"
+        },
+        "processorVersions": {
+          "description": "Full resource name of processor versions that contain this label. e.g. `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3SchemaEntityType": {
+      "description": "EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.",
+      "id": "GoogleCloudDocumentaiUiv1beta3SchemaEntityType",
+      "properties": {
+        "baseType": {
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the entity type.",
+          "type": "string"
+        },
+        "enumValues": {
+          "description": "If specified, lists all the possible values for this entity.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hide": {
+          "description": "If the entity type is hidden in the schema. This provides the functionality to temporally \"disable\" an entity without deleting it.",
+          "type": "boolean"
+        },
+        "method": {
+          "description": "Specifies how the entity's value is obtained.",
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "EXTRACT",
+            "DERIVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified method. It defaults to `EXTRACT`.",
+            "The entity's value is directly extracted as-is from the document text.",
+            "The entity's value is derived through inference and is not necessarily an exact text extraction from the document."
+          ],
+          "type": "string"
+        },
+        "occurrenceType": {
+          "description": "Occurrence type limits the number of times an entity type appears in the document.",
+          "enum": [
+            "OCCURRENCE_TYPE_UNSPECIFIED",
+            "OPTIONAL_ONCE",
+            "OPTIONAL_MULTIPLE",
+            "REQUIRED_ONCE",
+            "REQUIRED_MULTIPLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified occurrence type.",
+            "The entity type will appear zero times or once.",
+            "The entity type will appear zero or multiple times.",
+            "The entity type will only appear exactly once.",
+            "The entity type will appear once or more times."
+          ],
+          "type": "string"
+        },
+        "properties": {
+          "description": "Describing the nested structure of an entity. An EntityType may consist of several other EntityTypes. For example, in a document there can be an EntityType `ID`, which consists of EntityType `name` and `address`, with corresponding attributes, such as TEXT for both types and ONCE for occurrence types.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3SchemaEntityType"
+          },
+          "type": "array"
+        },
+        "source": {
+          "description": "Source of this entity type.",
+          "enum": [
+            "SOURCE_UNSPECIFIED",
+            "PREDEFINED",
+            "USER_INPUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified source.",
+            "The entity type is in the predefined schema of a pretrained version of a processor.",
+            "The entity type is added by the users either: - during an uptraining of an existing processor, or - during the process of creating a customized processor."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Name of the type. It must satisfy the following constraints: 1. Must be unique within the set of same level types (with case-insensitive match). 2. Maximum 64 characters. 3. Must start with a letter. 4. Allowed characters: ASCII letters [a-zA-Z], ASCII digits [0-9], or one of the following punctuation characters: * underscore '_' (recommended) * hyphen '-' (allowed, not recommended) * colon ':' (allowed, not recommended) NOTE: Whitespace characters are not allowed. 5. Cannot end with a punctuation character. 6. Cannot contain the following restricted strings: \"google\", \"DocumentAI\" (case-insensitive match). 7. A slash character '/' is reserved as a separator in flattened representations of nested entity types (e.g., \"line_item/amount\") in which case each part (e.g., \"line_item\", \"amount\") must comply with the rules defined above. We recommend using the snake case (\"snake_case\") in entity type names.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3SchemaInferenceMetadata": {
+      "description": "Metadata for schema inference. Only used on dataset.schema for schema inference, can be safely ignored elsewhere.",
+      "id": "GoogleCloudDocumentaiUiv1beta3SchemaInferenceMetadata",
+      "properties": {
+        "inferred": {
+          "description": "True if is inferred by schema inference.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata": {
       "description": "The long-running operation metadata for the SetDefaultProcessorVersion method.",
       "id": "GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata",
@@ -2087,6 +3228,43 @@
       "description": "Response message for the SetDefaultProcessorVersion method.",
       "id": "GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3SummaryOptions": {
+      "description": "Metadata for document summarization.",
+      "id": "GoogleCloudDocumentaiUiv1beta3SummaryOptions",
+      "properties": {
+        "format": {
+          "description": "The format the summary should be in.",
+          "enum": [
+            "FORMAT_UNSPECIFIED",
+            "PARAGRAPH",
+            "BULLETS"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "Format the output in paragraphs.",
+            "Format the output in bullets."
+          ],
+          "type": "string"
+        },
+        "length": {
+          "description": "How long the summary should be.",
+          "enum": [
+            "LENGTH_UNSPECIFIED",
+            "BRIEF",
+            "MODERATE",
+            "COMPREHENSIVE"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "A brief summary of one or two sentences.",
+            "A paragraph-length summary.",
+            "The longest option available."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadata": {
@@ -2195,6 +3373,17 @@
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
           "description": "The basic metadata of the long-running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3UpdateProcessorVersionMetadata": {
+      "description": "The long-running operation metadata for the UpdateProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3UpdateProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata for the long-running operation."
         }
       },
       "type": "object"
@@ -3035,12 +4224,16 @@
       "description": "Validation result for a single validation rule.",
       "id": "GoogleCloudDocumentaiV1DocumentEntityValidationOutputValidationResult",
       "properties": {
+        "rule": {
+          "description": "Optional. The name of the rule resource that is used for validation. Format: `projects/{project}/locations/{location}/rules/{rule}`",
+          "type": "string"
+        },
         "ruleDescription": {
           "description": "The description of the validation rule.",
           "type": "string"
         },
         "ruleName": {
-          "description": "The name of the validation rule.",
+          "description": "The display name of the validation rule.",
           "type": "string"
         },
         "validationDetails": {
@@ -4250,6 +5443,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1Documents": {
+      "description": "A set of inline documents.",
+      "id": "GoogleCloudDocumentaiV1Documents",
+      "properties": {
+        "documents": {
+          "description": "The list of documents.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1Document"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1EnableProcessorMetadata": {
       "description": "The long-running operation metadata for the EnableProcessor method.",
       "id": "GoogleCloudDocumentaiV1EnableProcessorMetadata",
@@ -4580,6 +5787,63 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1GenerateSchemaVersionRequest": {
+      "description": "Request message for GenerateSchemaVersion.",
+      "id": "GoogleCloudDocumentaiV1GenerateSchemaVersionRequest",
+      "properties": {
+        "baseSchemaVersion": {
+          "description": "The base schema version name to use for the schema generation. Format: `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}`",
+          "type": "string"
+        },
+        "gcsDocuments": {
+          "$ref": "GoogleCloudDocumentaiV1GcsDocuments",
+          "description": "The set of documents placed on Cloud Storage."
+        },
+        "gcsPrefix": {
+          "$ref": "GoogleCloudDocumentaiV1GcsPrefix",
+          "description": "The common prefix of documents placed on Cloud Storage."
+        },
+        "generateSchemaVersionParams": {
+          "$ref": "GoogleCloudDocumentaiV1GenerateSchemaVersionRequestGenerateSchemaVersionParams",
+          "description": "Optional. User specified parameters for the schema generation."
+        },
+        "inlineDocuments": {
+          "$ref": "GoogleCloudDocumentaiV1Documents",
+          "description": "The set of documents specified inline."
+        },
+        "rawDocuments": {
+          "$ref": "GoogleCloudDocumentaiV1RawDocuments",
+          "description": "The set of raw documents."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1GenerateSchemaVersionRequestGenerateSchemaVersionParams": {
+      "description": "The parameters for the schema generation.",
+      "id": "GoogleCloudDocumentaiV1GenerateSchemaVersionRequestGenerateSchemaVersionParams",
+      "properties": {
+        "history": {
+          "$ref": "GoogleCloudDocumentaiV1SchemaGenerationHistory",
+          "description": "Optional. Previous prompt-answers in a chronological order."
+        },
+        "prompt": {
+          "description": "Optional. The prompt used for the schema generation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1GenerateSchemaVersionResponse": {
+      "description": "Response message for GenerateSchemaVersion.",
+      "id": "GoogleCloudDocumentaiV1GenerateSchemaVersionResponse",
+      "properties": {
+        "schemaVersion": {
+          "$ref": "GoogleCloudDocumentaiV1SchemaVersion",
+          "description": "The schema version generated by the model."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1HumanReviewStatus": {
       "description": "The status of human review on a processed document.",
       "id": "GoogleCloudDocumentaiV1HumanReviewStatus",
@@ -4681,6 +5945,76 @@
             "$ref": "GoogleCloudDocumentaiV1Processor"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1ListSchemaVersionsResponse": {
+      "description": "Response message for ListSchemaVersions.",
+      "id": "GoogleCloudDocumentaiV1ListSchemaVersionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Points to the next SchemaVersion, otherwise empty.",
+          "type": "string"
+        },
+        "schemaVersions": {
+          "description": "The list of SchemaVersions.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1SchemaVersion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1ListSchemasResponse": {
+      "description": "Response message for ListSchemas.",
+      "id": "GoogleCloudDocumentaiV1ListSchemasResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Points to the next Schema, otherwise empty.",
+          "type": "string"
+        },
+        "schemas": {
+          "description": "The list of Schemas.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1NextSchema"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1NextSchema": {
+      "description": "NextSchema is a collection of SchemaVersions.",
+      "id": "GoogleCloudDocumentaiV1NextSchema",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the Schema was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The user-defined name of the Schema.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The GCP labels for the Schema.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Schema. Format: `projects/{project}/locations/{location}/schemas/{schema}`",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the Schema was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4834,6 +6168,14 @@
           "$ref": "GoogleCloudDocumentaiV1ProcessOptionsLayoutConfigChunkingConfig",
           "description": "Optional. Config for chunking in layout parser processor."
         },
+        "enableImageAnnotation": {
+          "description": "Optional. Whether to include image annotations in layout parser response.",
+          "type": "boolean"
+        },
+        "enableTableAnnotation": {
+          "description": "Optional. Whether to include table annotations in layout parser response.",
+          "type": "boolean"
+        },
         "returnBoundingBoxes": {
           "description": "Optional. Whether to include bounding boxes in layout parser processor response.",
           "type": "boolean"
@@ -4923,6 +6265,10 @@
       "description": "The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.",
       "id": "GoogleCloudDocumentaiV1Processor",
       "properties": {
+        "activeSchemaVersion": {
+          "description": "Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}",
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. The time the processor was created.",
           "format": "google-datetime",
@@ -5288,6 +6634,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1RawDocuments": {
+      "description": "Specifies a set of raw documents.",
+      "id": "GoogleCloudDocumentaiV1RawDocuments",
+      "properties": {
+        "documents": {
+          "description": "Specifies raw document content and mime type.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1RawDocument"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata": {
       "description": "The long-running operation metadata for the ReviewDocument method.",
       "id": "GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata",
@@ -5359,6 +6719,71 @@
             "The review operation is succeeded."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1SchemaGenerationHistory": {
+      "description": "The history of schema generation iterations.",
+      "id": "GoogleCloudDocumentaiV1SchemaGenerationHistory",
+      "properties": {
+        "iterations": {
+          "description": "Required. Previous prompt-answers in a chronological order.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1SchemaGenerationIteration"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1SchemaGenerationIteration": {
+      "description": "A single iteration of the schema generation.",
+      "id": "GoogleCloudDocumentaiV1SchemaGenerationIteration",
+      "properties": {
+        "adjustedSchema": {
+          "$ref": "GoogleCloudDocumentaiV1SchemaVersion",
+          "description": "Optional. The previous schema version adjusted by the model."
+        },
+        "generatedSchema": {
+          "$ref": "GoogleCloudDocumentaiV1SchemaVersion",
+          "description": "Required. The schema version generated by the model."
+        },
+        "prompt": {
+          "description": "Optional. The prompt used for the iteration.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1SchemaVersion": {
+      "description": "SchemaVersion is a version of the Schema which is created in SchemaGroup.",
+      "id": "GoogleCloudDocumentaiV1SchemaVersion",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the SchemaVersion was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The user-defined name of the SchemaVersion.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The GCP labels for the SchemaVersion.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the SchemaVersion. Format: `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}`",
+          "type": "string"
+        },
+        "schema": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentSchema",
+          "description": "Required. The schema of the SchemaVersion."
         }
       },
       "type": "object"
@@ -5949,6 +7374,169 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3DocumentSchema": {
+      "description": "The schema defines the output of the processed document by a processor.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentSchema",
+      "properties": {
+        "description": {
+          "description": "Description of the schema.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name to show to users.",
+          "type": "string"
+        },
+        "entityTypes": {
+          "description": "Entity types of the schema.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityType"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchemaMetadata",
+          "description": "Metadata of the schema."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityType": {
+      "description": "EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityType",
+      "properties": {
+        "baseTypes": {
+          "description": "The entity type that this type is derived from. For now, one and only one should be set.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "The description of the entity type. Could be used to provide more information about the entity type for model calls.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User defined name for the type.",
+          "type": "string"
+        },
+        "entityTypeMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3EntityTypeMetadata",
+          "description": "Metadata for the entity type."
+        },
+        "enumValues": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues",
+          "description": "If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is >10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file."
+        },
+        "name": {
+          "description": "Name of the type. It must be unique within the schema file and cannot be a \"Common Type\". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.",
+          "type": "string"
+        },
+        "properties": {
+          "description": "Description the nested structure, or composition of an entity.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues": {
+      "description": "Defines the a list of enum values.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues",
+      "properties": {
+        "values": {
+          "description": "The individual values that this enum values type can include.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty": {
+      "description": "Defines properties that can be part of the entity type.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty",
+      "properties": {
+        "description": {
+          "description": "The description of the property. Could be used to provide more information about the property for model calls.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User defined name for the property.",
+          "type": "string"
+        },
+        "method": {
+          "description": "Specifies how the entity's value is obtained.",
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "EXTRACT",
+            "DERIVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified method. It defaults to `EXTRACT`.",
+            "The entity's value is directly extracted as-is from the document text.",
+            "The entity's value is derived through inference and is not necessarily an exact text extraction from the document."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the property. Follows the same guidelines as the EntityType name.",
+          "type": "string"
+        },
+        "occurrenceType": {
+          "description": "Occurrence type limits the number of instances an entity type appears in the document.",
+          "enum": [
+            "OCCURRENCE_TYPE_UNSPECIFIED",
+            "OPTIONAL_ONCE",
+            "OPTIONAL_MULTIPLE",
+            "REQUIRED_ONCE",
+            "REQUIRED_MULTIPLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified occurrence type.",
+            "There will be zero or one instance of this entity type. The same entity instance may be mentioned multiple times.",
+            "The entity type will appear zero or multiple times.",
+            "The entity type will only appear exactly once. The same entity instance may be mentioned multiple times.",
+            "The entity type will appear once or more times."
+          ],
+          "type": "string"
+        },
+        "propertyMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3PropertyMetadata",
+          "description": "Any additional metadata about the property can be added here."
+        },
+        "valueType": {
+          "description": "A reference to the value type of the property. This type is subject to the same conventions as the `Entity.base_types` field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentSchemaMetadata": {
+      "description": "Metadata for global schema behavior.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentSchemaMetadata",
+      "properties": {
+        "documentAllowMultipleLabels": {
+          "description": "If true, on a given page, there can be multiple `document` annotations covering it.",
+          "type": "boolean"
+        },
+        "documentSplitter": {
+          "description": "If true, a `document` entity type can be applied to subdocument (splitting). Otherwise, it can only be applied to the entire document (classification).",
+          "type": "boolean"
+        },
+        "prefixedNamingOnProperties": {
+          "description": "If set, all the nested entities must be prefixed with the parents.",
+          "type": "boolean"
+        },
+        "skipNamingValidation": {
+          "description": "If set, we will skip the naming format validation in the schema. So the string values in `DocumentSchema.EntityType.name` and `DocumentSchema.EntityType.Property.name` will not be checked.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3EnableProcessorMetadata": {
       "description": "The long-running operation metadata for the EnableProcessor method.",
       "id": "GoogleCloudDocumentaiV1beta3EnableProcessorMetadata",
@@ -5964,6 +7552,17 @@
       "description": "Response message for the EnableProcessor method. Intentionally empty proto for adding fields in future.",
       "id": "GoogleCloudDocumentaiV1beta3EnableProcessorResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3EntityTypeMetadata": {
+      "description": "Metadata about an entity type.",
+      "id": "GoogleCloudDocumentaiV1beta3EntityTypeMetadata",
+      "properties": {
+        "inactive": {
+          "description": "Whether the entity type should be considered inactive.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionMetadata": {
@@ -5984,6 +7583,102 @@
         "evaluation": {
           "description": "The resource name of the created evaluation.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3EvaluationMetrics": {
+      "description": "Evaluation metrics, either in aggregate or about a specific entity.",
+      "id": "GoogleCloudDocumentaiV1beta3EvaluationMetrics",
+      "properties": {
+        "f1Score": {
+          "description": "The calculated f1 score.",
+          "format": "float",
+          "type": "number"
+        },
+        "falseNegativesCount": {
+          "description": "The amount of false negatives.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "falsePositivesCount": {
+          "description": "The amount of false positives.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "groundTruthDocumentCount": {
+          "description": "The amount of documents with a ground truth occurrence.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "groundTruthOccurrencesCount": {
+          "description": "The amount of occurrences in ground truth documents.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "precision": {
+          "description": "The calculated precision.",
+          "format": "float",
+          "type": "number"
+        },
+        "predictedDocumentCount": {
+          "description": "The amount of documents with a predicted occurrence.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "predictedOccurrencesCount": {
+          "description": "The amount of occurrences in predicted documents.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "recall": {
+          "description": "The calculated recall.",
+          "format": "float",
+          "type": "number"
+        },
+        "totalDocumentsCount": {
+          "description": "The amount of documents that had an occurrence of this label.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "truePositivesCount": {
+          "description": "The amount of true positives.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3EvaluationReference": {
+      "description": "Gives a short summary of an evaluation, and links to the evaluation itself.",
+      "id": "GoogleCloudDocumentaiV1beta3EvaluationReference",
+      "properties": {
+        "aggregateMetrics": {
+          "$ref": "GoogleCloudDocumentaiV1beta3EvaluationMetrics",
+          "description": "An aggregate of the statistics for the evaluation with fuzzy matching on."
+        },
+        "aggregateMetricsExact": {
+          "$ref": "GoogleCloudDocumentaiV1beta3EvaluationMetrics",
+          "description": "An aggregate of the statistics for the evaluation with fuzzy matching off."
+        },
+        "evaluation": {
+          "description": "The resource name of the evaluation.",
+          "type": "string"
+        },
+        "operation": {
+          "description": "The resource name of the Long Running Operation for the evaluation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3FieldExtractionMetadata": {
+      "description": "Metadata for how this field value is extracted.",
+      "id": "GoogleCloudDocumentaiV1beta3FieldExtractionMetadata",
+      "properties": {
+        "summaryOptions": {
+          "$ref": "GoogleCloudDocumentaiV1beta3SummaryOptions",
+          "description": "Summary options config."
         }
       },
       "type": "object"
@@ -6124,6 +7819,302 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3Processor": {
+      "description": "The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.",
+      "id": "GoogleCloudDocumentaiV1beta3Processor",
+      "properties": {
+        "activeSchemaVersion": {
+          "description": "Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the processor was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "defaultProcessorVersion": {
+          "description": "The default processor version.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the processor.",
+          "type": "string"
+        },
+        "kmsKeyName": {
+          "description": "The [KMS key](https://cloud.google.com/security-key-management) used for encryption and decryption in CMEK scenarios.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Immutable. The resource name of the processor. Format: `projects/{project}/locations/{location}/processors/{processor}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "processEndpoint": {
+          "description": "Output only. Immutable. The http endpoint that can be called to invoke processing.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "processorVersionAliases": {
+          "description": "Output only. The processor version aliases.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionAlias"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The state of the processor.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED",
+            "ENABLING",
+            "DISABLING",
+            "CREATING",
+            "FAILED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The processor is in an unspecified state.",
+            "The processor is enabled, i.e., has an enabled version which can currently serve processing requests and all the feature dependencies have been successfully initialized.",
+            "The processor is disabled.",
+            "The processor is being enabled, will become `ENABLED` if successful.",
+            "The processor is being disabled, will become `DISABLED` if successful.",
+            "The processor is being created, will become either `ENABLED` (for successful creation) or `FAILED` (for failed ones). Once a processor is in this state, it can then be used for document processing, but the feature dependencies of the processor might not be fully created yet.",
+            "The processor failed during creation or initialization of feature dependencies. The user should delete the processor and recreate one as all the functionalities of the processor are disabled.",
+            "The processor is being deleted, will be removed if successful."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`. To get a list of processor types, see FetchProcessorTypes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorVersion": {
+      "description": "A processor version is an implementation of a processor. Each processor can have multiple versions, pretrained by Google internally or uptrained by the customer. A processor can only have one default version at a time. Its document-processing behavior is defined by that version.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorVersion",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the processor version was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deprecationInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo",
+          "description": "Output only. If set, information about the eventual deprecation of this version.",
+          "readOnly": true
+        },
+        "displayName": {
+          "description": "The display name of the processor version.",
+          "type": "string"
+        },
+        "documentSchema": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchema",
+          "description": "Output only. The schema of the processor version. Describes the output.",
+          "readOnly": true
+        },
+        "genAiModelInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo",
+          "description": "Output only. Information about Generative AI model-based processor versions.",
+          "readOnly": true
+        },
+        "googleManaged": {
+          "description": "Output only. Denotes that this `ProcessorVersion` is managed by Google.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "kmsKeyName": {
+          "description": "Output only. The KMS key name used for encryption.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kmsKeyVersionName": {
+          "description": "Output only. The KMS key version with which data is encrypted.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "latestEvaluation": {
+          "$ref": "GoogleCloudDocumentaiV1beta3EvaluationReference",
+          "description": "Output only. The most recently invoked evaluation for the processor version.",
+          "readOnly": true
+        },
+        "modelType": {
+          "description": "Output only. The model type of this processor version.",
+          "enum": [
+            "MODEL_TYPE_UNSPECIFIED",
+            "MODEL_TYPE_GENERATIVE",
+            "MODEL_TYPE_CUSTOM"
+          ],
+          "enumDescriptions": [
+            "The processor version has unspecified model type.",
+            "The processor version has generative model type.",
+            "The processor version has custom model type."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the processor version. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`",
+          "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The state of the processor version.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DEPLOYED",
+            "DEPLOYING",
+            "UNDEPLOYED",
+            "UNDEPLOYING",
+            "CREATING",
+            "DELETING",
+            "FAILED",
+            "IMPORTING"
+          ],
+          "enumDescriptions": [
+            "The processor version is in an unspecified state.",
+            "The processor version is deployed and can be used for processing.",
+            "The processor version is being deployed.",
+            "The processor version is not deployed and cannot be used for processing.",
+            "The processor version is being undeployed.",
+            "The processor version is being created.",
+            "The processor version is being deleted.",
+            "The processor version failed and is in an indeterminate state.",
+            "The processor version is being imported."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorVersionAlias": {
+      "description": "Contains the alias and the aliased resource name of processor version.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorVersionAlias",
+      "properties": {
+        "alias": {
+          "description": "The alias in the form of `processor_version` resource name.",
+          "type": "string"
+        },
+        "processorVersion": {
+          "description": "The resource name of aliased processor version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo": {
+      "description": "Information about the upcoming deprecation of this processor version.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo",
+      "properties": {
+        "deprecationTime": {
+          "description": "The time at which this processor version will be deprecated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "replacementProcessorVersion": {
+          "description": "If set, the processor version that will be used as a replacement.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo": {
+      "description": "Information about Generative AI model-based processor versions.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo",
+      "properties": {
+        "customGenAiModelInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo",
+          "description": "Information for a custom Generative AI model created by the user."
+        },
+        "foundationGenAiModelInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo",
+          "description": "Information for a pretrained Google-managed foundation model."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo": {
+      "description": "Information for a custom Generative AI model created by the user. These are created with `Create New Version` in either the `Call foundation model` or `Fine tuning` tabs.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo",
+      "properties": {
+        "baseProcessorVersionId": {
+          "description": "The base processor version ID for the custom model.",
+          "type": "string"
+        },
+        "customModelType": {
+          "description": "The type of custom model created by the user.",
+          "enum": [
+            "CUSTOM_MODEL_TYPE_UNSPECIFIED",
+            "VERSIONED_FOUNDATION",
+            "FINE_TUNED"
+          ],
+          "enumDescriptions": [
+            "The model type is unspecified.",
+            "The model is a versioned foundation model.",
+            "The model is a finetuned foundation model."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo": {
+      "description": "Information for a pretrained Google-managed foundation model.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo",
+      "properties": {
+        "finetuningAllowed": {
+          "description": "Whether finetuning is allowed for this base processor version.",
+          "type": "boolean"
+        },
+        "minTrainLabeledDocuments": {
+          "description": "The minimum number of labeled documents in the training dataset required for finetuning.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3PropertyMetadata": {
+      "description": "Metadata about a property.",
+      "id": "GoogleCloudDocumentaiV1beta3PropertyMetadata",
+      "properties": {
+        "fieldExtractionMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3FieldExtractionMetadata",
+          "description": "Field extraction metadata on the property."
+        },
+        "inactive": {
+          "description": "Whether the property should be considered as \"inactive\".",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata": {
       "description": "The long-running operation metadata for the ReviewDocument method.",
       "id": "GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata",
@@ -6250,6 +8241,43 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3SummaryOptions": {
+      "description": "Metadata for document summarization.",
+      "id": "GoogleCloudDocumentaiV1beta3SummaryOptions",
+      "properties": {
+        "format": {
+          "description": "The format the summary should be in.",
+          "enum": [
+            "FORMAT_UNSPECIFIED",
+            "PARAGRAPH",
+            "BULLETS"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "Format the output in paragraphs.",
+            "Format the output in bullets."
+          ],
+          "type": "string"
+        },
+        "length": {
+          "description": "How long the summary should be.",
+          "enum": [
+            "LENGTH_UNSPECIFIED",
+            "BRIEF",
+            "MODERATE",
+            "COMPREHENSIVE"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "A brief summary of one or two sentences.",
+            "A paragraph-length summary.",
+            "The longest option available."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadata": {
       "description": "The metadata that represents a processor version being created.",
       "id": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadata",
@@ -6334,6 +8362,17 @@
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
           "description": "The basic metadata of the long-running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3UpdateProcessorVersionMetadata": {
+      "description": "The long-running operation metadata for the UpdateProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiV1beta3UpdateProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata for the long-running operation."
         }
       },
       "type": "object"

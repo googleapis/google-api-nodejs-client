@@ -502,6 +502,123 @@ export namespace documentai_v1 {
     docId?: string | null;
   }
   /**
+   * The schema defines the output of the processed document by a processor.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchema {
+    /**
+     * Description of the schema.
+     */
+    description?: string | null;
+    /**
+     * Display name to show to users.
+     */
+    displayName?: string | null;
+    /**
+     * Entity types of the schema.
+     */
+    entityTypes?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityType[];
+    /**
+     * Metadata of the schema.
+     */
+    metadata?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchemaMetadata;
+  }
+  /**
+   * EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityType {
+    /**
+     * The entity type that this type is derived from. For now, one and only one should be set.
+     */
+    baseTypes?: string[] | null;
+    /**
+     * The description of the entity type. Could be used to provide more information about the entity type for model calls.
+     */
+    description?: string | null;
+    /**
+     * User defined name for the type.
+     */
+    displayName?: string | null;
+    /**
+     * Metadata for the entity type.
+     */
+    entityTypeMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3EntityTypeMetadata;
+    /**
+     * If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is \>10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file.
+     */
+    enumValues?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeEnumValues;
+    /**
+     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
+     */
+    name?: string | null;
+    /**
+     * Description the nested structure, or composition of an entity.
+     */
+    properties?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeProperty[];
+  }
+  /**
+   * Defines the a list of enum values.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeEnumValues {
+    /**
+     * The individual values that this enum values type can include.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * Defines properties that can be part of the entity type.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeProperty {
+    /**
+     * The description of the property. Could be used to provide more information about the property for model calls.
+     */
+    description?: string | null;
+    /**
+     * User defined name for the property.
+     */
+    displayName?: string | null;
+    /**
+     * Specifies how the entity's value is obtained.
+     */
+    method?: string | null;
+    /**
+     * The name of the property. Follows the same guidelines as the EntityType name.
+     */
+    name?: string | null;
+    /**
+     * Occurrence type limits the number of instances an entity type appears in the document.
+     */
+    occurrenceType?: string | null;
+    /**
+     * Any additional metadata about the property can be added here.
+     */
+    propertyMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3PropertyMetadata;
+    /**
+     * A reference to the value type of the property. This type is subject to the same conventions as the `Entity.base_types` field.
+     */
+    valueType?: string | null;
+  }
+  /**
+   * Metadata for global schema behavior.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchemaMetadata {
+    /**
+     * If true, on a given page, there can be multiple `document` annotations covering it.
+     */
+    documentAllowMultipleLabels?: boolean | null;
+    /**
+     * If true, a `document` entity type can be applied to subdocument (splitting). Otherwise, it can only be applied to the entire document (classification).
+     */
+    documentSplitter?: boolean | null;
+    /**
+     * If set, all the nested entities must be prefixed with the parents.
+     */
+    prefixedNamingOnProperties?: boolean | null;
+    /**
+     * If set, we will skip the naming format validation in the schema. So the string values in `DocumentSchema.EntityType.name` and `DocumentSchema.EntityType.Property.name` will not be checked.
+     */
+    skipNamingValidation?: boolean | null;
+  }
+  /**
    * The long-running operation metadata for the EnableProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata {
@@ -514,6 +631,35 @@ export namespace documentai_v1 {
    * Response message for the EnableProcessor method. Intentionally empty proto for adding fields in future.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse {}
+  /**
+   * Metadata about an entity type.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3EntityTypeMetadata {
+    /**
+     * Field tier metadata on the property
+     */
+    fieldTierMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3FieldTierMetadata;
+    /**
+     * Human review labeling config on the entity.
+     */
+    humanReviewLabelingMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata;
+    /**
+     * Human review config on the entity.
+     */
+    humanReviewMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3HumanReviewValidationMetadata;
+    /**
+     * Whether the entity type should be considered inactive.
+     */
+    inactive?: boolean | null;
+    /**
+     * Schema editability metadata on the entity.
+     */
+    schemaEditabilityMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3SchemaEditabilityMetadata;
+    /**
+     * Schema inference metadata on the entity.
+     */
+    schemaInferenceMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3SchemaInferenceMetadata;
+  }
   /**
    * Metadata of the EvaluateProcessorVersion method.
    */
@@ -531,6 +677,76 @@ export namespace documentai_v1 {
      * The resource name of the created evaluation.
      */
     evaluation?: string | null;
+  }
+  /**
+   * Evaluation metrics, either in aggregate or about a specific entity.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3EvaluationMetrics {
+    /**
+     * The calculated f1 score.
+     */
+    f1Score?: number | null;
+    /**
+     * The amount of false negatives.
+     */
+    falseNegativesCount?: number | null;
+    /**
+     * The amount of false positives.
+     */
+    falsePositivesCount?: number | null;
+    /**
+     * The amount of documents with a ground truth occurrence.
+     */
+    groundTruthDocumentCount?: number | null;
+    /**
+     * The amount of occurrences in ground truth documents.
+     */
+    groundTruthOccurrencesCount?: number | null;
+    /**
+     * The calculated precision.
+     */
+    precision?: number | null;
+    /**
+     * The amount of documents with a predicted occurrence.
+     */
+    predictedDocumentCount?: number | null;
+    /**
+     * The amount of occurrences in predicted documents.
+     */
+    predictedOccurrencesCount?: number | null;
+    /**
+     * The calculated recall.
+     */
+    recall?: number | null;
+    /**
+     * The amount of documents that had an occurrence of this label.
+     */
+    totalDocumentsCount?: number | null;
+    /**
+     * The amount of true positives.
+     */
+    truePositivesCount?: number | null;
+  }
+  /**
+   * Gives a short summary of an evaluation, and links to the evaluation itself.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3EvaluationReference {
+    /**
+     * An aggregate of the statistics for the evaluation with fuzzy matching on.
+     */
+    aggregateMetrics?: Schema$GoogleCloudDocumentaiUiv1beta3EvaluationMetrics;
+    /**
+     * An aggregate of the statistics for the evaluation with fuzzy matching off.
+     */
+    aggregateMetricsExact?: Schema$GoogleCloudDocumentaiUiv1beta3EvaluationMetrics;
+    /**
+     * The resource name of the evaluation.
+     */
+    evaluation?: string | null;
+    /**
+     * The resource name of the Long Running Operation for the evaluation.
+     */
+    operation?: string | null;
   }
   /**
    * Metadata of the batch export documents operation.
@@ -600,6 +816,59 @@ export namespace documentai_v1 {
      * The Cloud Storage URI containing the output artifacts.
      */
     gcsUri?: string | null;
+  }
+  /**
+   * Metadata for how this field value is extracted.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3FieldExtractionMetadata {
+    /**
+     * Entity query config.
+     */
+    entityQuery?: Schema$GoogleCloudDocumentaiUiv1beta3FieldExtractionMetadataEntityQuery;
+    /**
+     * Summary options config.
+     */
+    summaryOptions?: Schema$GoogleCloudDocumentaiUiv1beta3SummaryOptions;
+  }
+  /**
+   * Message for entity query.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3FieldExtractionMetadataEntityQuery {
+    /**
+     * The original entity query inputed by the user.
+     */
+    userEntityQuery?: string | null;
+  }
+  /**
+   * Metadata for the field tier of a property.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3FieldTierMetadata {
+    /**
+     * Integer that indicates the tier of a property. e.g. Invoice has entities that are classified as tier 1 which is the most important, while tier 2 and tier 3 less so. This attribute can be used to filter schema attributes before running eval. e.g. compute F1 score for only tier 1 entities. If not present this attribute should be inferred as 1.
+     */
+    tierLevel?: number | null;
+  }
+  /**
+   * Metadata for human review labeling config.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata {
+    /**
+     * Whether to enable normalization editing.
+     */
+    enableNormalizationEditing?: boolean | null;
+  }
+  /**
+   * Metadata for Human Review config.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3HumanReviewValidationMetadata {
+    /**
+     * The confidence threshold if human review validation is enabled.
+     */
+    confidenceThreshold?: number | null;
+    /**
+     * Whether to enable human review validation.
+     */
+    enableValidation?: boolean | null;
   }
   /**
    * Metadata of the import document operation.
@@ -677,6 +946,226 @@ export namespace documentai_v1 {
      * The destination processor version name.
      */
     processorVersion?: string | null;
+  }
+  /**
+   * The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3Processor {
+    /**
+     * Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}
+     */
+    activeSchemaVersion?: string | null;
+    /**
+     * Output only. The time the processor was created.
+     */
+    createTime?: string | null;
+    /**
+     * The default processor version.
+     */
+    defaultProcessorVersion?: string | null;
+    /**
+     * The display name of the processor.
+     */
+    displayName?: string | null;
+    /**
+     * The [KMS key](https://cloud.google.com/security-key-management) used for encryption and decryption in CMEK scenarios.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Output only. Immutable. The resource name of the processor. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. Immutable. The http endpoint that can be called to invoke processing.
+     */
+    processEndpoint?: string | null;
+    /**
+     * Output only. The processor version aliases.
+     */
+    processorVersionAliases?: Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersionAlias[];
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
+     * Output only. The state of the processor.
+     */
+    state?: string | null;
+    /**
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`. To get a list of processor types, see FetchProcessorTypes.
+     */
+    type?: string | null;
+  }
+  /**
+   * A processor version is an implementation of a processor. Each processor can have multiple versions, pretrained by Google internally or uptrained by the customer. A processor can only have one default version at a time. Its document-processing behavior is defined by that version.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersion {
+    /**
+     * Output only. The time the processor version was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Denotes that this `ProcessorVersion` can be deployed and undeployed.
+     */
+    deploymentAllowed?: boolean | null;
+    /**
+     * Output only. If set, information about the eventual deprecation of this version.
+     */
+    deprecationInfo?: Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersionDeprecationInfo;
+    /**
+     * The display name of the processor version.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The schema of the processor version. Describes the output.
+     */
+    documentSchema?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchema;
+    /**
+     * Output only. Information about Generative AI model-based processor versions.
+     */
+    genAiModelInfo?: Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfo;
+    /**
+     * Output only. Denotes that this `ProcessorVersion` is managed by Google.
+     */
+    googleManaged?: boolean | null;
+    /**
+     * Output only. The KMS key name used for encryption.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Output only. The KMS key version with which data is encrypted.
+     */
+    kmsKeyVersionName?: string | null;
+    /**
+     * Output only. The most recently invoked evaluation for the processor version.
+     */
+    latestEvaluation?: Schema$GoogleCloudDocumentaiUiv1beta3EvaluationReference;
+    /**
+     * Output only. The model type of this processor version.
+     */
+    modelType?: string | null;
+    /**
+     * Identifier. The resource name of the processor version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
+     * The schema of the processor version. Describes the output.
+     */
+    schema?: Schema$GoogleCloudDocumentaiUiv1beta3Schema;
+    /**
+     * Output only. The state of the processor version.
+     */
+    state?: string | null;
+  }
+  /**
+   * Contains the alias and the aliased resource name of processor version.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersionAlias {
+    /**
+     * The alias in the form of `processor_version` resource name.
+     */
+    alias?: string | null;
+    /**
+     * The resource name of aliased processor version.
+     */
+    processorVersion?: string | null;
+  }
+  /**
+   * Information about the upcoming deprecation of this processor version.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersionDeprecationInfo {
+    /**
+     * The time at which this processor version will be deprecated.
+     */
+    deprecationTime?: string | null;
+    /**
+     * If set, the processor version that will be used as a replacement.
+     */
+    replacementProcessorVersion?: string | null;
+  }
+  /**
+   * Information about Generative AI model-based processor versions.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfo {
+    /**
+     * Information for a custom Generative AI model created by the user.
+     */
+    customGenAiModelInfo?: Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo;
+    /**
+     * Information for a pretrained Google-managed foundation model.
+     */
+    foundationGenAiModelInfo?: Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo;
+  }
+  /**
+   * Information for a custom Generative AI model created by the user. These are created with `Create New Version` in either the `Call foundation model` or `Fine tuning` tabs.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo {
+    /**
+     * The base processor version ID for the custom model.
+     */
+    baseProcessorVersionId?: string | null;
+    /**
+     * The type of custom model created by the user.
+     */
+    customModelType?: string | null;
+  }
+  /**
+   * Information for a pretrained Google-managed foundation model.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo {
+    /**
+     * Whether finetuning is allowed for this base processor version.
+     */
+    finetuningAllowed?: boolean | null;
+    /**
+     * The minimum number of labeled documents in the training dataset required for finetuning.
+     */
+    minTrainLabeledDocuments?: number | null;
+  }
+  /**
+   * Metadata about a property.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3PropertyMetadata {
+    /**
+     * Field extraction metadata on the property.
+     */
+    fieldExtractionMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3FieldExtractionMetadata;
+    /**
+     * Field tier metadata on the property
+     */
+    fieldTierMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3FieldTierMetadata;
+    /**
+     * Human review labeling config on the property.
+     */
+    humanReviewLabelingMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata;
+    /**
+     * Human review validation config on the property.
+     */
+    humanReviewMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3HumanReviewValidationMetadata;
+    /**
+     * Whether the property should be considered as "inactive".
+     */
+    inactive?: boolean | null;
+    /**
+     * Schema editability metadata on the property.
+     */
+    schemaEditabilityMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3SchemaEditabilityMetadata;
+    /**
+     * Schema inference metadata on the property.
+     */
+    schemaInferenceMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3SchemaInferenceMetadata;
   }
   /**
    * The metadata proto of `ResyncDataset` method.
@@ -779,6 +1268,83 @@ export namespace documentai_v1 {
     documentId?: string | null;
   }
   /**
+   * The schema defines the output of the processed document by a processor.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3Schema {
+    /**
+     * Description of the schema.
+     */
+    description?: string | null;
+    /**
+     * Display name to show to users.
+     */
+    displayName?: string | null;
+    /**
+     * Entity types of the schema.
+     */
+    entityTypes?: Schema$GoogleCloudDocumentaiUiv1beta3SchemaEntityType[];
+  }
+  /**
+   * Metadata that specifies whether a label is editable and reasons why. These fields are read-only. Changing these fields has no impact on the backend.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3SchemaEditabilityMetadata {
+    /**
+     * Explicit flag that controls whether the label is editable.
+     */
+    editable?: boolean | null;
+    /**
+     * Full resource name of processor versions that contain this label. e.g. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
+     */
+    processorVersions?: string[] | null;
+  }
+  /**
+   * EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3SchemaEntityType {
+    baseType?: string | null;
+    /**
+     * Description of the entity type.
+     */
+    description?: string | null;
+    /**
+     * If specified, lists all the possible values for this entity.
+     */
+    enumValues?: string[] | null;
+    /**
+     * If the entity type is hidden in the schema. This provides the functionality to temporally "disable" an entity without deleting it.
+     */
+    hide?: boolean | null;
+    /**
+     * Specifies how the entity's value is obtained.
+     */
+    method?: string | null;
+    /**
+     * Occurrence type limits the number of times an entity type appears in the document.
+     */
+    occurrenceType?: string | null;
+    /**
+     * Describing the nested structure of an entity. An EntityType may consist of several other EntityTypes. For example, in a document there can be an EntityType `ID`, which consists of EntityType `name` and `address`, with corresponding attributes, such as TEXT for both types and ONCE for occurrence types.
+     */
+    properties?: Schema$GoogleCloudDocumentaiUiv1beta3SchemaEntityType[];
+    /**
+     * Source of this entity type.
+     */
+    source?: string | null;
+    /**
+     * Name of the type. It must satisfy the following constraints: 1. Must be unique within the set of same level types (with case-insensitive match). 2. Maximum 64 characters. 3. Must start with a letter. 4. Allowed characters: ASCII letters [a-zA-Z], ASCII digits [0-9], or one of the following punctuation characters: * underscore '_' (recommended) * hyphen '-' (allowed, not recommended) * colon ':' (allowed, not recommended) NOTE: Whitespace characters are not allowed. 5. Cannot end with a punctuation character. 6. Cannot contain the following restricted strings: "google", "DocumentAI" (case-insensitive match). 7. A slash character '/' is reserved as a separator in flattened representations of nested entity types (e.g., "line_item/amount") in which case each part (e.g., "line_item", "amount") must comply with the rules defined above. We recommend using the snake case ("snake_case") in entity type names.
+     */
+    type?: string | null;
+  }
+  /**
+   * Metadata for schema inference. Only used on dataset.schema for schema inference, can be safely ignored elsewhere.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3SchemaInferenceMetadata {
+    /**
+     * True if is inferred by schema inference.
+     */
+    inferred?: boolean | null;
+  }
+  /**
    * The long-running operation metadata for the SetDefaultProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata {
@@ -791,6 +1357,19 @@ export namespace documentai_v1 {
    * Response message for the SetDefaultProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionResponse {}
+  /**
+   * Metadata for document summarization.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3SummaryOptions {
+    /**
+     * The format the summary should be in.
+     */
+    format?: string | null;
+    /**
+     * How long the summary should be.
+     */
+    length?: string | null;
+  }
   /**
    * The metadata that represents a processor version being created.
    */
@@ -872,6 +1451,15 @@ export namespace documentai_v1 {
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata {
     /**
      * The basic metadata of the long-running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long-running operation metadata for the UpdateProcessorVersion method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3UpdateProcessorVersionMetadata {
+    /**
+     * The basic metadata for the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -1245,6 +1833,123 @@ export namespace documentai_v1 {
     docId?: string | null;
   }
   /**
+   * The schema defines the output of the processed document by a processor.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentSchema {
+    /**
+     * Description of the schema.
+     */
+    description?: string | null;
+    /**
+     * Display name to show to users.
+     */
+    displayName?: string | null;
+    /**
+     * Entity types of the schema.
+     */
+    entityTypes?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityType[];
+    /**
+     * Metadata of the schema.
+     */
+    metadata?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaMetadata;
+  }
+  /**
+   * EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityType {
+    /**
+     * The entity type that this type is derived from. For now, one and only one should be set.
+     */
+    baseTypes?: string[] | null;
+    /**
+     * The description of the entity type. Could be used to provide more information about the entity type for model calls.
+     */
+    description?: string | null;
+    /**
+     * User defined name for the type.
+     */
+    displayName?: string | null;
+    /**
+     * Metadata for the entity type.
+     */
+    entityTypeMetadata?: Schema$GoogleCloudDocumentaiV1beta3EntityTypeMetadata;
+    /**
+     * If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is \>10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file.
+     */
+    enumValues?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues;
+    /**
+     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
+     */
+    name?: string | null;
+    /**
+     * Description the nested structure, or composition of an entity.
+     */
+    properties?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty[];
+  }
+  /**
+   * Defines the a list of enum values.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues {
+    /**
+     * The individual values that this enum values type can include.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * Defines properties that can be part of the entity type.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty {
+    /**
+     * The description of the property. Could be used to provide more information about the property for model calls.
+     */
+    description?: string | null;
+    /**
+     * User defined name for the property.
+     */
+    displayName?: string | null;
+    /**
+     * Specifies how the entity's value is obtained.
+     */
+    method?: string | null;
+    /**
+     * The name of the property. Follows the same guidelines as the EntityType name.
+     */
+    name?: string | null;
+    /**
+     * Occurrence type limits the number of instances an entity type appears in the document.
+     */
+    occurrenceType?: string | null;
+    /**
+     * Any additional metadata about the property can be added here.
+     */
+    propertyMetadata?: Schema$GoogleCloudDocumentaiV1beta3PropertyMetadata;
+    /**
+     * A reference to the value type of the property. This type is subject to the same conventions as the `Entity.base_types` field.
+     */
+    valueType?: string | null;
+  }
+  /**
+   * Metadata for global schema behavior.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaMetadata {
+    /**
+     * If true, on a given page, there can be multiple `document` annotations covering it.
+     */
+    documentAllowMultipleLabels?: boolean | null;
+    /**
+     * If true, a `document` entity type can be applied to subdocument (splitting). Otherwise, it can only be applied to the entire document (classification).
+     */
+    documentSplitter?: boolean | null;
+    /**
+     * If set, all the nested entities must be prefixed with the parents.
+     */
+    prefixedNamingOnProperties?: boolean | null;
+    /**
+     * If set, we will skip the naming format validation in the schema. So the string values in `DocumentSchema.EntityType.name` and `DocumentSchema.EntityType.Property.name` will not be checked.
+     */
+    skipNamingValidation?: boolean | null;
+  }
+  /**
    * The long-running operation metadata for the EnableProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorMetadata {
@@ -1257,6 +1962,15 @@ export namespace documentai_v1 {
    * Response message for the EnableProcessor method. Intentionally empty proto for adding fields in future.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorResponse {}
+  /**
+   * Metadata about an entity type.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EntityTypeMetadata {
+    /**
+     * Whether the entity type should be considered inactive.
+     */
+    inactive?: boolean | null;
+  }
   /**
    * Metadata of the EvaluateProcessorVersion method.
    */
@@ -1274,6 +1988,85 @@ export namespace documentai_v1 {
      * The resource name of the created evaluation.
      */
     evaluation?: string | null;
+  }
+  /**
+   * Evaluation metrics, either in aggregate or about a specific entity.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EvaluationMetrics {
+    /**
+     * The calculated f1 score.
+     */
+    f1Score?: number | null;
+    /**
+     * The amount of false negatives.
+     */
+    falseNegativesCount?: number | null;
+    /**
+     * The amount of false positives.
+     */
+    falsePositivesCount?: number | null;
+    /**
+     * The amount of documents with a ground truth occurrence.
+     */
+    groundTruthDocumentCount?: number | null;
+    /**
+     * The amount of occurrences in ground truth documents.
+     */
+    groundTruthOccurrencesCount?: number | null;
+    /**
+     * The calculated precision.
+     */
+    precision?: number | null;
+    /**
+     * The amount of documents with a predicted occurrence.
+     */
+    predictedDocumentCount?: number | null;
+    /**
+     * The amount of occurrences in predicted documents.
+     */
+    predictedOccurrencesCount?: number | null;
+    /**
+     * The calculated recall.
+     */
+    recall?: number | null;
+    /**
+     * The amount of documents that had an occurrence of this label.
+     */
+    totalDocumentsCount?: number | null;
+    /**
+     * The amount of true positives.
+     */
+    truePositivesCount?: number | null;
+  }
+  /**
+   * Gives a short summary of an evaluation, and links to the evaluation itself.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EvaluationReference {
+    /**
+     * An aggregate of the statistics for the evaluation with fuzzy matching on.
+     */
+    aggregateMetrics?: Schema$GoogleCloudDocumentaiV1beta3EvaluationMetrics;
+    /**
+     * An aggregate of the statistics for the evaluation with fuzzy matching off.
+     */
+    aggregateMetricsExact?: Schema$GoogleCloudDocumentaiV1beta3EvaluationMetrics;
+    /**
+     * The resource name of the evaluation.
+     */
+    evaluation?: string | null;
+    /**
+     * The resource name of the Long Running Operation for the evaluation.
+     */
+    operation?: string | null;
+  }
+  /**
+   * Metadata for how this field value is extracted.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3FieldExtractionMetadata {
+    /**
+     * Summary options config.
+     */
+    summaryOptions?: Schema$GoogleCloudDocumentaiV1beta3SummaryOptions;
   }
   /**
    * Specifies all documents on Cloud Storage with a common prefix.
@@ -1375,6 +2168,198 @@ export namespace documentai_v1 {
     processorVersion?: string | null;
   }
   /**
+   * The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3Processor {
+    /**
+     * Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}
+     */
+    activeSchemaVersion?: string | null;
+    /**
+     * Output only. The time the processor was created.
+     */
+    createTime?: string | null;
+    /**
+     * The default processor version.
+     */
+    defaultProcessorVersion?: string | null;
+    /**
+     * The display name of the processor.
+     */
+    displayName?: string | null;
+    /**
+     * The [KMS key](https://cloud.google.com/security-key-management) used for encryption and decryption in CMEK scenarios.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Output only. Immutable. The resource name of the processor. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. Immutable. The http endpoint that can be called to invoke processing.
+     */
+    processEndpoint?: string | null;
+    /**
+     * Output only. The processor version aliases.
+     */
+    processorVersionAliases?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionAlias[];
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
+     * Output only. The state of the processor.
+     */
+    state?: string | null;
+    /**
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`. To get a list of processor types, see FetchProcessorTypes.
+     */
+    type?: string | null;
+  }
+  /**
+   * A processor version is an implementation of a processor. Each processor can have multiple versions, pretrained by Google internally or uptrained by the customer. A processor can only have one default version at a time. Its document-processing behavior is defined by that version.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion {
+    /**
+     * Output only. The time the processor version was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. If set, information about the eventual deprecation of this version.
+     */
+    deprecationInfo?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo;
+    /**
+     * The display name of the processor version.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The schema of the processor version. Describes the output.
+     */
+    documentSchema?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchema;
+    /**
+     * Output only. Information about Generative AI model-based processor versions.
+     */
+    genAiModelInfo?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo;
+    /**
+     * Output only. Denotes that this `ProcessorVersion` is managed by Google.
+     */
+    googleManaged?: boolean | null;
+    /**
+     * Output only. The KMS key name used for encryption.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Output only. The KMS key version with which data is encrypted.
+     */
+    kmsKeyVersionName?: string | null;
+    /**
+     * Output only. The most recently invoked evaluation for the processor version.
+     */
+    latestEvaluation?: Schema$GoogleCloudDocumentaiV1beta3EvaluationReference;
+    /**
+     * Output only. The model type of this processor version.
+     */
+    modelType?: string | null;
+    /**
+     * Identifier. The resource name of the processor version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
+     * Output only. The state of the processor version.
+     */
+    state?: string | null;
+  }
+  /**
+   * Contains the alias and the aliased resource name of processor version.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionAlias {
+    /**
+     * The alias in the form of `processor_version` resource name.
+     */
+    alias?: string | null;
+    /**
+     * The resource name of aliased processor version.
+     */
+    processorVersion?: string | null;
+  }
+  /**
+   * Information about the upcoming deprecation of this processor version.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo {
+    /**
+     * The time at which this processor version will be deprecated.
+     */
+    deprecationTime?: string | null;
+    /**
+     * If set, the processor version that will be used as a replacement.
+     */
+    replacementProcessorVersion?: string | null;
+  }
+  /**
+   * Information about Generative AI model-based processor versions.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo {
+    /**
+     * Information for a custom Generative AI model created by the user.
+     */
+    customGenAiModelInfo?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo;
+    /**
+     * Information for a pretrained Google-managed foundation model.
+     */
+    foundationGenAiModelInfo?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo;
+  }
+  /**
+   * Information for a custom Generative AI model created by the user. These are created with `Create New Version` in either the `Call foundation model` or `Fine tuning` tabs.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo {
+    /**
+     * The base processor version ID for the custom model.
+     */
+    baseProcessorVersionId?: string | null;
+    /**
+     * The type of custom model created by the user.
+     */
+    customModelType?: string | null;
+  }
+  /**
+   * Information for a pretrained Google-managed foundation model.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo {
+    /**
+     * Whether finetuning is allowed for this base processor version.
+     */
+    finetuningAllowed?: boolean | null;
+    /**
+     * The minimum number of labeled documents in the training dataset required for finetuning.
+     */
+    minTrainLabeledDocuments?: number | null;
+  }
+  /**
+   * Metadata about a property.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3PropertyMetadata {
+    /**
+     * Field extraction metadata on the property.
+     */
+    fieldExtractionMetadata?: Schema$GoogleCloudDocumentaiV1beta3FieldExtractionMetadata;
+    /**
+     * Whether the property should be considered as "inactive".
+     */
+    inactive?: boolean | null;
+  }
+  /**
    * The long-running operation metadata for the ReviewDocument method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata {
@@ -1451,6 +2436,19 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse {}
   /**
+   * Metadata for document summarization.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3SummaryOptions {
+    /**
+     * The format the summary should be in.
+     */
+    format?: string | null;
+    /**
+     * How long the summary should be.
+     */
+    length?: string | null;
+  }
+  /**
    * The metadata that represents a processor version being created.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadata {
@@ -1513,6 +2511,15 @@ export namespace documentai_v1 {
   export interface Schema$GoogleCloudDocumentaiV1beta3UpdateDatasetOperationMetadata {
     /**
      * The basic metadata of the long-running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long-running operation metadata for the UpdateProcessorVersion method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3UpdateProcessorVersionMetadata {
+    /**
+     * The basic metadata for the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
@@ -2039,11 +3046,15 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentEntityValidationOutputValidationResult {
     /**
+     * Optional. The name of the rule resource that is used for validation. Format: `projects/{project\}/locations/{location\}/rules/{rule\}`
+     */
+    rule?: string | null;
+    /**
      * The description of the validation rule.
      */
     ruleDescription?: string | null;
     /**
-     * The name of the validation rule.
+     * The display name of the validation rule.
      */
     ruleName?: string | null;
     /**
@@ -2690,6 +3701,15 @@ export namespace documentai_v1 {
     stateMessage?: string | null;
   }
   /**
+   * A set of inline documents.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1Documents {
+    /**
+     * The list of documents.
+     */
+    documents?: Schema$GoogleCloudDocumentaiV1Document[];
+  }
+  /**
    * The schema defines the output of the processed document by a processor.
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentSchema {
@@ -3159,6 +4179,57 @@ export namespace documentai_v1 {
     gcsUriPrefix?: string | null;
   }
   /**
+   * Request message for GenerateSchemaVersion.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionRequest {
+    /**
+     * The base schema version name to use for the schema generation. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
+     */
+    baseSchemaVersion?: string | null;
+    /**
+     * The set of documents placed on Cloud Storage.
+     */
+    gcsDocuments?: Schema$GoogleCloudDocumentaiV1GcsDocuments;
+    /**
+     * The common prefix of documents placed on Cloud Storage.
+     */
+    gcsPrefix?: Schema$GoogleCloudDocumentaiV1GcsPrefix;
+    /**
+     * Optional. User specified parameters for the schema generation.
+     */
+    generateSchemaVersionParams?: Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionRequestGenerateSchemaVersionParams;
+    /**
+     * The set of documents specified inline.
+     */
+    inlineDocuments?: Schema$GoogleCloudDocumentaiV1Documents;
+    /**
+     * The set of raw documents.
+     */
+    rawDocuments?: Schema$GoogleCloudDocumentaiV1RawDocuments;
+  }
+  /**
+   * The parameters for the schema generation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionRequestGenerateSchemaVersionParams {
+    /**
+     * Optional. Previous prompt-answers in a chronological order.
+     */
+    history?: Schema$GoogleCloudDocumentaiV1SchemaGenerationHistory;
+    /**
+     * Optional. The prompt used for the schema generation.
+     */
+    prompt?: string | null;
+  }
+  /**
+   * Response message for GenerateSchemaVersion.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse {
+    /**
+     * The schema version generated by the model.
+     */
+    schemaVersion?: Schema$GoogleCloudDocumentaiV1SchemaVersion;
+  }
+  /**
    * The status of human review on a processed document.
    */
   export interface Schema$GoogleCloudDocumentaiV1HumanReviewStatus {
@@ -3226,6 +4297,57 @@ export namespace documentai_v1 {
      * The list of processors.
      */
     processorVersions?: Schema$GoogleCloudDocumentaiV1ProcessorVersion[];
+  }
+  /**
+   * Response message for ListSchemas.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1ListSchemasResponse {
+    /**
+     * Points to the next Schema, otherwise empty.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of Schemas.
+     */
+    schemas?: Schema$GoogleCloudDocumentaiV1NextSchema[];
+  }
+  /**
+   * Response message for ListSchemaVersions.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse {
+    /**
+     * Points to the next SchemaVersion, otherwise empty.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of SchemaVersions.
+     */
+    schemaVersions?: Schema$GoogleCloudDocumentaiV1SchemaVersion[];
+  }
+  /**
+   * NextSchema is a collection of SchemaVersions.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1NextSchema {
+    /**
+     * Output only. The time when the Schema was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The user-defined name of the Schema.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. The GCP labels for the Schema.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The resource name of the Schema. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The time when the Schema was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the normalized vertex coordinates are relative to the original image and range from 0 to 1.
@@ -3350,6 +4472,14 @@ export namespace documentai_v1 {
      */
     chunkingConfig?: Schema$GoogleCloudDocumentaiV1ProcessOptionsLayoutConfigChunkingConfig;
     /**
+     * Optional. Whether to include image annotations in layout parser response.
+     */
+    enableImageAnnotation?: boolean | null;
+    /**
+     * Optional. Whether to include table annotations in layout parser response.
+     */
+    enableTableAnnotation?: boolean | null;
+    /**
      * Optional. Whether to include bounding boxes in layout parser processor response.
      */
     returnBoundingBoxes?: boolean | null;
@@ -3375,6 +4505,10 @@ export namespace documentai_v1 {
    * The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.
    */
   export interface Schema$GoogleCloudDocumentaiV1Processor {
+    /**
+     * Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}
+     */
+    activeSchemaVersion?: string | null;
     /**
      * Output only. The time the processor was created.
      */
@@ -3656,6 +4790,15 @@ export namespace documentai_v1 {
     mimeType?: string | null;
   }
   /**
+   * Specifies a set of raw documents.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1RawDocuments {
+    /**
+     * Specifies raw document content and mime type.
+     */
+    documents?: Schema$GoogleCloudDocumentaiV1RawDocument[];
+  }
+  /**
    * The long-running operation metadata for the ReviewDocument method.
    */
   export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata {
@@ -3705,6 +4848,57 @@ export namespace documentai_v1 {
      * The state of the review operation.
      */
     state?: string | null;
+  }
+  /**
+   * The history of schema generation iterations.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1SchemaGenerationHistory {
+    /**
+     * Required. Previous prompt-answers in a chronological order.
+     */
+    iterations?: Schema$GoogleCloudDocumentaiV1SchemaGenerationIteration[];
+  }
+  /**
+   * A single iteration of the schema generation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1SchemaGenerationIteration {
+    /**
+     * Optional. The previous schema version adjusted by the model.
+     */
+    adjustedSchema?: Schema$GoogleCloudDocumentaiV1SchemaVersion;
+    /**
+     * Required. The schema version generated by the model.
+     */
+    generatedSchema?: Schema$GoogleCloudDocumentaiV1SchemaVersion;
+    /**
+     * Optional. The prompt used for the iteration.
+     */
+    prompt?: string | null;
+  }
+  /**
+   * SchemaVersion is a version of the Schema which is created in SchemaGroup.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1SchemaVersion {
+    /**
+     * Output only. The time when the SchemaVersion was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The user-defined name of the SchemaVersion.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. The GCP labels for the SchemaVersion.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The resource name of the SchemaVersion. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
+     */
+    name?: string | null;
+    /**
+     * Required. The schema of the SchemaVersion.
+     */
+    schema?: Schema$GoogleCloudDocumentaiV1DocumentSchema;
   }
   /**
    * The long-running operation metadata for the SetDefaultProcessorVersion method.
@@ -4292,6 +5486,7 @@ export namespace documentai_v1 {
     operations: Resource$Projects$Locations$Operations;
     processors: Resource$Projects$Locations$Processors;
     processorTypes: Resource$Projects$Locations$Processortypes;
+    schemas: Resource$Projects$Locations$Schemas;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.operations = new Resource$Projects$Locations$Operations(
@@ -4303,6 +5498,7 @@ export namespace documentai_v1 {
       this.processorTypes = new Resource$Projects$Locations$Processortypes(
         this.context
       );
+      this.schemas = new Resource$Projects$Locations$Schemas(this.context);
     }
 
     /**
@@ -5474,6 +6670,7 @@ export namespace documentai_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "activeSchemaVersion": "my_activeSchemaVersion",
      *       //   "createTime": "my_createTime",
      *       //   "defaultProcessorVersion": "my_defaultProcessorVersion",
      *       //   "displayName": "my_displayName",
@@ -5492,6 +6689,7 @@ export namespace documentai_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeSchemaVersion": "my_activeSchemaVersion",
      *   //   "createTime": "my_createTime",
      *   //   "defaultProcessorVersion": "my_defaultProcessorVersion",
      *   //   "displayName": "my_displayName",
@@ -6090,6 +7288,7 @@ export namespace documentai_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeSchemaVersion": "my_activeSchemaVersion",
      *   //   "createTime": "my_createTime",
      *   //   "defaultProcessorVersion": "my_defaultProcessorVersion",
      *   //   "displayName": "my_displayName",
@@ -9150,6 +10349,1862 @@ export namespace documentai_v1 {
      * Required. The location of processor types to list. Format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Schemas {
+    context: APIRequestContext;
+    schemaVersions: Resource$Projects$Locations$Schemas$Schemaversions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.schemaVersions =
+        new Resource$Projects$Locations$Schemas$Schemaversions(this.context);
+    }
+
+    /**
+     * Creates a schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.schemas.create({
+     *     // Required. The parent (project and location) under which to create the Schema. Format: `projects/{project\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Schemas$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Schemas$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1NextSchema>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Schemas$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Schemas$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Schemas$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Schemas$Create
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1NextSchema>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Schemas$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Schemas$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/schemas').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1NextSchema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1NextSchema>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.schemas.delete({
+     *     // Optional. If set to true, any child resources of this Schema will also be deleted. (Otherwise, the request will only work if the Schema has no child resources.)
+     *     force: 'placeholder-value',
+     *     // Required. The name of the Schema to be deleted. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     *     name: 'projects/my-project/locations/my-location/schemas/my-schema',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Schemas$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Schemas$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Schemas$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Schemas$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Schemas$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Schemas$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Schemas$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Schemas$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.schemas.get({
+     *     // Required. The name of the Schema to get. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     *     name: 'projects/my-project/locations/my-location/schemas/my-schema',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Schemas$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Schemas$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1NextSchema>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Schemas$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Schemas$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Schemas$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Schemas$Get
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1NextSchema>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Schemas$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Schemas$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1NextSchema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1NextSchema>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists Schemas.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.schemas.list({
+     *     // Optional. The maximum number of schema groups to return. If unspecified, at most `10` Schema will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. We will return the schema groups sorted by creation time. The page token will point to the next Schema.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Format: `projects/{project\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "schemas": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Schemas$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Schemas$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1ListSchemasResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Schemas$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Schemas$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemasResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemasResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Schemas$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemasResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemasResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Schemas$List
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemasResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemasResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemasResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1ListSchemasResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Schemas$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Schemas$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/schemas').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1ListSchemasResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1ListSchemasResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a schema. Editable fields are: - `display_name` - `labels`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.schemas.patch({
+     *     // Identifier. The resource name of the Schema. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     *     name: 'projects/my-project/locations/my-location/schemas/my-schema',
+     *     // Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - display_name. - labels.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Schemas$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Schemas$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1NextSchema>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Schemas$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Schemas$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Schemas$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Schemas$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1NextSchema>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1NextSchema>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Schemas$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Schemas$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1NextSchema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1NextSchema>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Schemas$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent (project and location) under which to create the Schema. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1NextSchema;
+  }
+  export interface Params$Resource$Projects$Locations$Schemas$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, any child resources of this Schema will also be deleted. (Otherwise, the request will only work if the Schema has no child resources.)
+     */
+    force?: boolean;
+    /**
+     * Required. The name of the Schema to be deleted. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Schemas$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the Schema to get. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Schemas$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of schema groups to return. If unspecified, at most `10` Schema will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.
+     */
+    pageSize?: number;
+    /**
+     * Optional. We will return the schema groups sorted by creation time. The page token will point to the next Schema.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Schemas$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the Schema. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     */
+    name?: string;
+    /**
+     * Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - display_name. - labels.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1NextSchema;
+  }
+
+  export class Resource$Projects$Locations$Schemas$Schemaversions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a schema version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.schemas.schemaVersions.create(
+     *     {
+     *       // Required. The parent (project and location) under which to create the SchemaVersion. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     *       parent: 'projects/my-project/locations/my-location/schemas/my-schema',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "schema": {}
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "schema": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Schemas$Schemaversions$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Schemas$Schemaversions$Create
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Schemas$Schemaversions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Schemas$Schemaversions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/schemaVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1SchemaVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1SchemaVersion>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a schema version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.schemas.schemaVersions.delete(
+     *     {
+     *       // Required. The name of the SchemaVersion to delete. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
+     *       name: 'projects/my-project/locations/my-location/schemas/my-schema/schemaVersions/my-schemaVersion',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Generates a schema version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.schemas.schemaVersions.generate({
+     *       // Required. The parent (project, location and schema) under which to generate the SchemaVersion. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     *       parent: 'projects/my-project/locations/my-location/schemas/my-schema',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "baseSchemaVersion": "my_baseSchemaVersion",
+     *         //   "gcsDocuments": {},
+     *         //   "gcsPrefix": {},
+     *         //   "generateSchemaVersionParams": {},
+     *         //   "inlineDocuments": {},
+     *         //   "rawDocuments": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "schemaVersion": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generate(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Generate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generate(
+      params?: Params$Resource$Projects$Locations$Schemas$Schemaversions$Generate,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse>
+    >;
+    generate(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generate(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Generate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse>
+    ): void;
+    generate(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Generate,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse>
+    ): void;
+    generate(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse>
+    ): void;
+    generate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Schemas$Schemaversions$Generate
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Schemas$Schemaversions$Generate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Schemas$Schemaversions$Generate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/schemaVersions:generate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a schema version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.schemas.schemaVersions.get({
+     *     // Required. The name of the SchemaVersion to get. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
+     *     name: 'projects/my-project/locations/my-location/schemas/my-schema/schemaVersions/my-schemaVersion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "schema": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Schemas$Schemaversions$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Schemas$Schemaversions$Get
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Schemas$Schemaversions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Schemas$Schemaversions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1SchemaVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1SchemaVersion>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists SchemaVersions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.schemas.schemaVersions.list({
+     *     // Optional. The maximum number of SchemaVersion to return. If unspecified, at most `10` SchemaVersion will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. We will return the SchemaVersion sorted by creation time. The page token will point to the next SchemaVersion.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     *     parent: 'projects/my-project/locations/my-location/schemas/my-schema',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "schemaVersions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Schemas$Schemaversions$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Schemas$Schemaversions$List
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Schemas$Schemaversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Schemas$Schemaversions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/schemaVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1ListSchemaVersionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a schema version. Editable fields are: - `display_name` - `labels`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.schemas.schemaVersions.patch({
+     *     // Identifier. The resource name of the SchemaVersion. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
+     *     name: 'projects/my-project/locations/my-location/schemas/my-schema/schemaVersions/my-schemaVersion',
+     *     // Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - display_name. - labels.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "schema": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "schema": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Schemas$Schemaversions$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Schemas$Schemaversions$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1SchemaVersion>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Schemas$Schemaversions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Schemas$Schemaversions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1SchemaVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1SchemaVersion>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent (project and location) under which to create the SchemaVersion. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1SchemaVersion;
+  }
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the SchemaVersion to delete. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Generate
+    extends StandardParameters {
+    /**
+     * Required. The parent (project, location and schema) under which to generate the SchemaVersion. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1GenerateSchemaVersionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the SchemaVersion to get. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of SchemaVersion to return. If unspecified, at most `10` SchemaVersion will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.
+     */
+    pageSize?: number;
+    /**
+     * Optional. We will return the SchemaVersion sorted by creation time. The page token will point to the next SchemaVersion.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the SchemaVersion. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
+     */
+    name?: string;
+    /**
+     * Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - display_name. - labels.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1SchemaVersion;
   }
 
   export class Resource$Projects$Operations {
