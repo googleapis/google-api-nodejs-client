@@ -141,6 +141,72 @@
   },
   "protocol": "rest",
   "resources": {
+    "billingAccounts": {
+      "resources": {
+        "billingAccountLicenseConfigs": {
+          "methods": {
+            "distributeLicenseConfig": {
+              "description": "Distributes a LicenseConfig from billing account level to project level.",
+              "flatPath": "v1alpha/billingAccounts/{billingAccountsId}/billingAccountLicenseConfigs/{billingAccountLicenseConfigsId}:distributeLicenseConfig",
+              "httpMethod": "POST",
+              "id": "discoveryengine.billingAccounts.billingAccountLicenseConfigs.distributeLicenseConfig",
+              "parameterOrder": [
+                "billingAccountLicenseConfig"
+              ],
+              "parameters": {
+                "billingAccountLicenseConfig": {
+                  "description": "Required. Full resource name of BillingAccountLicenseConfig. Format: `billingAccounts/{billing_account}/billingAccountLicenseConfigs/{billing_account_license_config_id}`.",
+                  "location": "path",
+                  "pattern": "^billingAccounts/[^/]+/billingAccountLicenseConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+billingAccountLicenseConfig}:distributeLicenseConfig",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaDistributeLicenseConfigRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaDistributeLicenseConfigResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+              ]
+            },
+            "retractLicenseConfig": {
+              "description": "This method is called from the billing account side to retract the LicenseConfig from the given project back to the billing account.",
+              "flatPath": "v1alpha/billingAccounts/{billingAccountsId}/billingAccountLicenseConfigs/{billingAccountLicenseConfigsId}:retractLicenseConfig",
+              "httpMethod": "POST",
+              "id": "discoveryengine.billingAccounts.billingAccountLicenseConfigs.retractLicenseConfig",
+              "parameterOrder": [
+                "billingAccountLicenseConfig"
+              ],
+              "parameters": {
+                "billingAccountLicenseConfig": {
+                  "description": "Required. Full resource name of BillingAccountLicenseConfig. Format: `billingAccounts/{billing_account}/billingAccountLicenseConfigs/{billing_account_license_config_id}`.",
+                  "location": "path",
+                  "pattern": "^billingAccounts/[^/]+/billingAccountLicenseConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+billingAccountLicenseConfig}:retractLicenseConfig",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaRetractLicenseConfigRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaRetractLicenseConfigResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+              ]
+            }
+          }
+        }
+      }
+    },
     "media": {
       "methods": {
         "download": {
@@ -696,6 +762,168 @@
             }
           },
           "resources": {
+            "authorizations": {
+              "methods": {
+                "create": {
+                  "description": "Creates an Authorization.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authorizations",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.authorizations.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "authorizationId": {
+                      "description": "Required. The ID to use for the authorization, which will become the final component of the resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with a length limit of 63 characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/authorizations",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaAuthorization"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaAuthorization"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an Authorization.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authorizations/{authorizationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "discoveryengine.projects.locations.authorizations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of Authorization. Format: `projects/{project}/locations/{location}/authorizations/{authorization}` If the caller does not have permission to delete the authorization, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the authorization to delete does not exist, a `NOT_FOUND` error is returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/authorizations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "get": {
+                  "description": "Gets an Authorization.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authorizations/{authorizationsId}",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.authorizations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of Authorization. Format: `projects/{project}/locations/{location}/authorizations/{authorization}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/authorizations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaAuthorization"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all Authorizations under an Engine.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authorizations",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.authorizations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of Authorizations to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token ListAuthorizationsResponse.next_page_token, received from a previous AuthorizationService.ListAuthorizations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAuthorizations must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/authorizations",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaListAuthorizationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an Authorization",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authorizations/{authorizationsId}",
+                  "httpMethod": "PATCH",
+                  "id": "discoveryengine.projects.locations.authorizations.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Resource name of the authorization. Format: `projects/{project}/locations/{location}/authorizations/{authorization}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/authorizations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaAuthorization"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaAuthorization"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                }
+              }
+            },
             "cmekConfigs": {
               "methods": {
                 "delete": {
@@ -4832,6 +5060,180 @@
                             "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
+                        }
+                      },
+                      "resources": {
+                        "cannedQueries": {
+                          "methods": {
+                            "create": {
+                              "description": "Creates a CannedQuery.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/cannedQueries",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.cannedQueries.create",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "cannedQueryId": {
+                                  "description": "Required. The ID to use for the canned query, which will become the final component of the canned query's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with a length limit of 63 characters.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/cannedQueries",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaCannedQuery"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaCannedQuery"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "delete": {
+                              "description": "Deletes a CannedQuery.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/cannedQueries/{cannedQueriesId}",
+                              "httpMethod": "DELETE",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.cannedQueries.delete",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Resource name of CannedQuery. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/cannedQueries/{canned_query}` If the caller does not have permission to delete the canned query, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the canned query to delete does not exist, a `NOT_FOUND` error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/cannedQueries/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "response": {
+                                "$ref": "GoogleProtobufEmpty"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "get": {
+                              "description": "Gets a CannedQuery.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/cannedQueries/{cannedQueriesId}",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.cannedQueries.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Resource name of CannedQuery. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/cannedQueries/{canned_query}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/cannedQueries/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaCannedQuery"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "list": {
+                              "description": "Lists all CannedQuerys under an Assistant.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/cannedQueries",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.cannedQueries.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "filter": {
+                                  "description": "Optional. The filter expression. Supported fields: * `enabled` * `google_defined` Examples: * `enabled=true` * `google_defined=true` * `enabled=true AND google_defined=true`",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "pageSize": {
+                                  "description": "Maximum number of canned queries to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "A page token received from a previous CannedQueryService.ListCannedQueries call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to CannedQueryService.ListCannedQueries must match the call that provided the page token.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/cannedQueries",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaListCannedQueriesResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "patch": {
+                              "description": "Updates a CannedQuery.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/cannedQueries/{cannedQueriesId}",
+                              "httpMethod": "PATCH",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.cannedQueries.patch",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Immutable. Resource name of the canned query. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/cannedQueries/{canned_query}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/cannedQueries/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "updateMask": {
+                                  "description": "The list of fields to update.",
+                                  "format": "google-fieldmask",
+                                  "location": "query",
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaCannedQuery"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaCannedQuery"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            }
+                          }
                         }
                       }
                     },
@@ -10385,6 +10787,127 @@
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
+                },
+                "create": {
+                  "description": "Creates a new User Store.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/userStores",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.userStores.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent collection resource name, such as `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "userStoreId": {
+                      "description": "Required. The ID of the User Store to create. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 63 characters.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/userStores",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaUserStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaUserStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the User Store.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}",
+                  "httpMethod": "DELETE",
+                  "id": "discoveryengine.projects.locations.userStores.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the User Store to delete. Format: `projects/{project}/locations/{location}/userStores/{user_store_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the User Store.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.userStores.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the User Store to get. Format: `projects/{project}/locations/{location}/userStores/{user_store_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaUserStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the User Store.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}",
+                  "httpMethod": "PATCH",
+                  "id": "discoveryengine.projects.locations.userStores.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The full resource name of the User Store, in the format of `projects/{project}/locations/{location}/userStores/{user_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaUserStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaUserStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
                 }
               },
               "resources": {
@@ -10595,7 +11118,7 @@
       }
     }
   },
-  "revision": "20251017",
+  "revision": "20251026",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -13050,6 +13573,12 @@
           ],
           "type": "string"
         },
+        "configurableBillingApproachUpdateTime": {
+          "description": "Output only. The timestamp when configurable_billing_approach was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -14315,6 +14844,11 @@
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1Project",
       "properties": {
+        "configurableBillingStatus": {
+          "$ref": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus",
+          "description": "Output only. The current status of the project's configurable billing.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. The timestamp when this project is created.",
           "format": "google-datetime",
@@ -14347,6 +14881,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus": {
+      "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+      "id": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus",
+      "properties": {
+        "effectiveIndexingCoreThreshold": {
+          "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "effectiveSearchQpmThreshold": {
+          "description": "Optional. The currently effective Search QPM threshold in queries per minute. This is the threshold against which QPM usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The start time of the currently active billing subscription.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig": {
       "description": "Customer provided configurations.",
       "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig",
@@ -14365,6 +14921,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "optOutNotebookSharing": {
+          "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -15305,6 +15865,33 @@
         },
         "userProfile": {
           "description": "Optional. The user profile. We user user full name(First name + Last name) as user profile.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1UserStore": {
+      "description": "Configures metadata that is used for End User entities.",
+      "id": "GoogleCloudDiscoveryengineV1UserStore",
+      "properties": {
+        "defaultLicenseConfig": {
+          "description": "Optional. The default subscription LicenseConfig for the UserStore, if UserStore.enable_license_auto_register is true, new users will automatically register under the default subscription. If default LicenseConfig doesn't have remaining license seats left, new users will not be assigned with license and will be blocked for Vertex AI Search features. This is used if `license_assignment_tier_rules` is not configured.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the User Store.",
+          "type": "string"
+        },
+        "enableExpiredLicenseAutoUpdate": {
+          "description": "Optional. Whether to enable license auto update for users in this User Store. If true, users with expired licenses will automatically be updated to use the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "enableLicenseAutoRegister": {
+          "description": "Optional. Whether to enable license auto register for users in this User Store. If true, new users will automatically register under the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the User Store, in the format of `projects/{project}/locations/{location}/userStores/{user_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
@@ -17745,6 +18332,55 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaAuthorization": {
+      "description": "Discovery Engine Authorization resource.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAuthorization",
+      "properties": {
+        "displayName": {
+          "description": "Required. The display name of the authorization. It must be a UTF-8 encoded string with a length limit of 128 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the authorization. Format: `projects/{project}/locations/{location}/authorizations/{authorization}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "serverSideOauth2": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAuthorizationServerSideOAuth2",
+          "description": "Server-side OAuth2 configuration."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAuthorizationServerSideOAuth2": {
+      "description": "OAuth2 configuration.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAuthorizationServerSideOAuth2",
+      "properties": {
+        "authorizationUri": {
+          "description": "Required. The URI the user is directed to when they need to authorize. Should include everything required for a successful authorization: OAuth ID, extra flags, etc. Example: `https://accounts.google.com/o/oauth2/v2/auth?client_id=OAUTH_ID&scope=https://www.googleapis.com/auth/calendar.events&response_type=code&access_type=offline&prompt=consent` The `redirect_uri` parameter will be overwritten by the Vertex AI Search frontend.",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Required. The OAuth2 client ID.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Required. The OAuth2 client secret. Encrypted at rest.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Required. The scopes to request. Example: `https://www.googleapis.com/auth/calendar.events`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tokenUri": {
+          "description": "Required. The HTTP endpoint that exchanges a client authorization for an access token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaBAPConfig": {
       "description": "The configuration for the BAP connector.",
       "id": "GoogleCloudDiscoveryengineV1alphaBAPConfig",
@@ -18216,6 +18852,92 @@
           },
           "description": "The number of documents in a given branch. The key is a group representing a set of documents, and the value is the number of document in that group. Note: keys in this map may change over time. Supported keys: ['all'].",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCannedQuery": {
+      "description": "Canned query resource of Assistant. It represents a short-cut to a predefined conversation start.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCannedQuery",
+      "properties": {
+        "defaultTexts": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaCannedQueryCannedQueryTexts",
+          "description": "Required. The default (non-localized) values for the text attributes."
+        },
+        "displayName": {
+          "description": "The display name of the canned query. It must be a UTF-8 encoded string with a length limit of 128 characters.",
+          "type": "string"
+        },
+        "enabled": {
+          "description": "Whether this canned query is enabled.",
+          "type": "boolean"
+        },
+        "googleDefined": {
+          "description": "Output only. Whether this is a Google-defined, read-only canned query.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "localizedTexts": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCannedQueryCannedQueryTexts"
+          },
+          "description": "Optional. The translations of the text attributes. The keys should be BCP-47 language codes.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Resource name of the canned query. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/cannedQueries/{canned_query}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "requiredCapabilities": {
+          "description": "Optional. The capabilities the Assistant needs to have to use this canned query.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCannedQueryAssistantCapability"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCannedQueryAssistantCapability": {
+      "description": "Capability of an assistant needed to use this canned query.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCannedQueryAssistantCapability",
+      "properties": {
+        "actionName": {
+          "description": "The name of the action that the Assistant needs to have set up to use this canned query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCannedQueryCannedQueryTexts": {
+      "description": "The text pieces for the canned query, which can be localized.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCannedQueryCannedQueryTexts",
+      "properties": {
+        "prefix": {
+          "description": "Optional. The prefix that `suggested_prompts` should start with.",
+          "type": "string"
+        },
+        "suggestedPrompts": {
+          "description": "Required. The prompts the canned query will offer to the user.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCannedQuerySuggestedPrompt"
+          },
+          "type": "array"
+        },
+        "title": {
+          "description": "Required. The title that is for the end user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCannedQuerySuggestedPrompt": {
+      "description": "A suggested prompt for the canned query.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCannedQuerySuggestedPrompt",
+      "properties": {
+        "promptText": {
+          "description": "Required. The text of the suggested prompt.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -20399,6 +21121,12 @@
           ],
           "type": "string"
         },
+        "configurableBillingApproachUpdateTime": {
+          "description": "Output only. The timestamp when configurable_billing_approach was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -20739,6 +21467,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDeleteUserStoreMetadata": {
+      "description": "Metadata related to the progress of the UserStoreService.DeleteUserStore operation. This will be returned by the google.longrunning.Operation.metadata field. Delete UserStore will delete all the end users under the user store, return the number of end users successfully deleted or failed to delete in the metadata.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteUserStoreMetadata",
+      "properties": {
+        "failureCount": {
+          "description": "The number of end users under the user store that failed to be deleted.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of end users under the user store that were successfully deleted.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDestinationConfig": {
       "description": "Defines target endpoints used to connect to third-party sources.",
       "id": "GoogleCloudDiscoveryengineV1alphaDestinationConfig",
@@ -20812,6 +21557,42 @@
       "description": "Response message for SiteSearchEngineService.DisableAdvancedSiteSearch method.",
       "id": "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDistributeLicenseConfigRequest": {
+      "description": "Request message for LicenseConfigService.DistributeLicenseConfig method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDistributeLicenseConfigRequest",
+      "properties": {
+        "licenseConfigId": {
+          "description": "Optional. Distribute seats to this license config instead of creating a new one. If not specified, a new license config will be created from the billing account license config.",
+          "type": "string"
+        },
+        "licenseCount": {
+          "description": "Required. The number of licenses to distribute.",
+          "format": "int64",
+          "type": "string"
+        },
+        "location": {
+          "description": "Required. The target GCP project region to distribute the license config to.",
+          "type": "string"
+        },
+        "projectNumber": {
+          "description": "Required. The target GCP project number to distribute the license config to.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDistributeLicenseConfigResponse": {
+      "description": "Response message for LicenseConfigService.DistributeLicenseConfig method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDistributeLicenseConfigResponse",
+      "properties": {
+        "licenseConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaLicenseConfig",
+          "description": "The updated or created LicenseConfig."
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaDocument": {
@@ -23241,6 +24022,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaListAuthorizationsResponse": {
+      "description": "Response message for the AuthorizationService.ListAuthorizations method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListAuthorizationsResponse",
+      "properties": {
+        "authorizations": {
+          "description": "All the customer's Authorizations.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAuthorization"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as ListAuthorizationsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaListBranchesResponse": {
       "description": "Response for BranchService.ListBranches method.",
       "id": "GoogleCloudDiscoveryengineV1alphaListBranchesResponse",
@@ -23251,6 +24050,24 @@
             "$ref": "GoogleCloudDiscoveryengineV1alphaBranch"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaListCannedQueriesResponse": {
+      "description": "Response message for the CannedQueryService.ListCannedQueries method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListCannedQueriesResponse",
+      "properties": {
+        "cannedQueries": {
+          "description": "The list of CannedQuerys matching the request.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCannedQuery"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as ListCannedQueriesRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -23901,6 +24718,11 @@
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1alphaProject",
       "properties": {
+        "configurableBillingStatus": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus",
+          "description": "Output only. The current status of the project's configurable billing.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. The timestamp when this project is created.",
           "format": "google-datetime",
@@ -23933,6 +24755,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus": {
+      "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+      "id": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus",
+      "properties": {
+        "effectiveIndexingCoreThreshold": {
+          "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "effectiveSearchQpmThreshold": {
+          "description": "Optional. The currently effective Search QPM threshold in queries per minute. This is the threshold against which QPM usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The start time of the currently active billing subscription.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig": {
       "description": "Customer provided configurations.",
       "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig",
@@ -23951,6 +24795,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "optOutNotebookSharing": {
+          "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -25036,6 +25884,37 @@
       "description": "Request for resuming training of an engine.",
       "id": "GoogleCloudDiscoveryengineV1alphaResumeEngineRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaRetractLicenseConfigRequest": {
+      "description": "Request message for LicenseConfigService.RetractLicenseConfig method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaRetractLicenseConfigRequest",
+      "properties": {
+        "fullRetract": {
+          "description": "Optional. If set to true, retract the entire license config. Otherwise, retract the specified license count.",
+          "type": "boolean"
+        },
+        "licenseConfig": {
+          "description": "Required. Full resource name of LicenseConfig. Format: `projects/{project}/locations/{location}/licenseConfigs/{license_config_id}`.",
+          "type": "string"
+        },
+        "licenseCount": {
+          "description": "Optional. The number of licenses to retract. Only used when full_retract is false.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaRetractLicenseConfigResponse": {
+      "description": "Response message for LicenseConfigService.RetractLicenseConfig method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaRetractLicenseConfigResponse",
+      "properties": {
+        "licenseConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaLicenseConfig",
+          "description": "The updated LicenseConfig."
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaSafetyRating": {
@@ -28258,6 +29137,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaUserStore": {
+      "description": "Configures metadata that is used for End User entities.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUserStore",
+      "properties": {
+        "defaultLicenseConfig": {
+          "description": "Optional. The default subscription LicenseConfig for the UserStore, if UserStore.enable_license_auto_register is true, new users will automatically register under the default subscription. If default LicenseConfig doesn't have remaining license seats left, new users will not be assigned with license and will be blocked for Vertex AI Search features. This is used if `license_assignment_tier_rules` is not configured.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the User Store.",
+          "type": "string"
+        },
+        "enableExpiredLicenseAutoUpdate": {
+          "description": "Optional. Whether to enable license auto update for users in this User Store. If true, users with expired licenses will automatically be updated to use the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "enableLicenseAutoRegister": {
+          "description": "Optional. Whether to enable license auto register for users in this User Store. If true, new users will automatically register under the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the User Store, in the format of `projects/{project}/locations/{location}/userStores/{user_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaVideoCharacteristics": {
       "description": "Standard characteristics of a video media view.",
       "id": "GoogleCloudDiscoveryengineV1alphaVideoCharacteristics",
@@ -28479,6 +29385,11 @@
           "deprecated": true,
           "description": "The key is the UI component. Mock. Currently supported `title`, `thumbnail`, `url`, `custom1`, `custom2`, `custom3`. The value is the name of the field along with its device visibility. The 3 custom fields are optional and can be added or removed. `title`, `thumbnail`, `url` are required UI components that cannot be removed.",
           "type": "object"
+        },
+        "geminiBundle": {
+          "description": "Output only. Whether the subscription is gemini bundle or not.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "homepageSetting": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigHomepageSetting",
@@ -28830,7 +29741,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigHomepageSetting",
       "properties": {
         "shortcuts": {
-          "description": "Optional. The shortcuts to display on the homepage. LINT.IfChange(max_shortcuts_number) LINT.ThenChange(//depot/google3/cloud/console/web/ai/unified_cloud_search/components/widget_preview/widget_homepage_shortcut_config_form.ts:max_shortcuts_number)",
+          "description": "Optional. The shortcuts to display on the homepage. LINT.IfChange(max_shortcuts_number) LINT.ThenChange( //depot/google3/cloud/console/web/ai/unified_cloud_search/components/widget_preview/widget_homepage_shortcut_config_form.ts:max_shortcuts_number )",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigHomepageSettingShortcut"
           },
@@ -29747,6 +30658,12 @@
             "Use the subscription base + overage billing for indexing core for non embedding storage.",
             "Use the consumption pay-as-you-go billing for embedding storage add-on."
           ],
+          "type": "string"
+        },
+        "configurableBillingApproachUpdateTime": {
+          "description": "Output only. The timestamp when configurable_billing_approach was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "contentConfig": {
@@ -31212,6 +32129,11 @@
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1betaProject",
       "properties": {
+        "configurableBillingStatus": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus",
+          "description": "Output only. The current status of the project's configurable billing.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. The timestamp when this project is created.",
           "format": "google-datetime",
@@ -31244,6 +32166,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus": {
+      "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus",
+      "properties": {
+        "effectiveIndexingCoreThreshold": {
+          "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "effectiveSearchQpmThreshold": {
+          "description": "Optional. The currently effective Search QPM threshold in queries per minute. This is the threshold against which QPM usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The start time of the currently active billing subscription.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig": {
       "description": "Customer provided configurations.",
       "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig",
@@ -31262,6 +32206,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "optOutNotebookSharing": {
+          "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -32796,6 +33744,33 @@
         },
         "userProfile": {
           "description": "Optional. The user profile. We user user full name(First name + Last name) as user profile.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaUserStore": {
+      "description": "Configures metadata that is used for End User entities.",
+      "id": "GoogleCloudDiscoveryengineV1betaUserStore",
+      "properties": {
+        "defaultLicenseConfig": {
+          "description": "Optional. The default subscription LicenseConfig for the UserStore, if UserStore.enable_license_auto_register is true, new users will automatically register under the default subscription. If default LicenseConfig doesn't have remaining license seats left, new users will not be assigned with license and will be blocked for Vertex AI Search features. This is used if `license_assignment_tier_rules` is not configured.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the User Store.",
+          "type": "string"
+        },
+        "enableExpiredLicenseAutoUpdate": {
+          "description": "Optional. Whether to enable license auto update for users in this User Store. If true, users with expired licenses will automatically be updated to use the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "enableLicenseAutoRegister": {
+          "description": "Optional. Whether to enable license auto register for users in this User Store. If true, new users will automatically register under the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the User Store, in the format of `projects/{project}/locations/{location}/userStores/{user_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },

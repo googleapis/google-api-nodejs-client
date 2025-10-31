@@ -7795,6 +7795,127 @@
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
+                },
+                "create": {
+                  "description": "Creates a new User Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/userStores",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.userStores.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent collection resource name, such as `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "userStoreId": {
+                      "description": "Required. The ID of the User Store to create. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 63 characters.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/userStores",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1UserStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1UserStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the User Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}",
+                  "httpMethod": "DELETE",
+                  "id": "discoveryengine.projects.locations.userStores.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the User Store to delete. Format: `projects/{project}/locations/{location}/userStores/{user_store_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the User Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.userStores.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the User Store to get. Format: `projects/{project}/locations/{location}/userStores/{user_store_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1UserStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the User Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}",
+                  "httpMethod": "PATCH",
+                  "id": "discoveryengine.projects.locations.userStores.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The full resource name of the User Store, in the format of `projects/{project}/locations/{location}/userStores/{user_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1UserStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1UserStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
                 }
               },
               "resources": {
@@ -7957,7 +8078,7 @@
       }
     }
   },
-  "revision": "20251017",
+  "revision": "20251026",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GdataBlobstore2Info": {
@@ -13154,6 +13275,12 @@
           ],
           "type": "string"
         },
+        "configurableBillingApproachUpdateTime": {
+          "description": "Output only. The timestamp when configurable_billing_approach was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -15405,6 +15532,11 @@
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1Project",
       "properties": {
+        "configurableBillingStatus": {
+          "$ref": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus",
+          "description": "Output only. The current status of the project's configurable billing.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. The timestamp when this project is created.",
           "format": "google-datetime",
@@ -15437,6 +15569,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus": {
+      "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+      "id": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus",
+      "properties": {
+        "effectiveIndexingCoreThreshold": {
+          "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "effectiveSearchQpmThreshold": {
+          "description": "Optional. The currently effective Search QPM threshold in queries per minute. This is the threshold against which QPM usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The start time of the currently active billing subscription.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig": {
       "description": "Customer provided configurations.",
       "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig",
@@ -15455,6 +15609,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "optOutNotebookSharing": {
+          "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -18358,6 +18516,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1UserStore": {
+      "description": "Configures metadata that is used for End User entities.",
+      "id": "GoogleCloudDiscoveryengineV1UserStore",
+      "properties": {
+        "defaultLicenseConfig": {
+          "description": "Optional. The default subscription LicenseConfig for the UserStore, if UserStore.enable_license_auto_register is true, new users will automatically register under the default subscription. If default LicenseConfig doesn't have remaining license seats left, new users will not be assigned with license and will be blocked for Vertex AI Search features. This is used if `license_assignment_tier_rules` is not configured.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the User Store.",
+          "type": "string"
+        },
+        "enableExpiredLicenseAutoUpdate": {
+          "description": "Optional. Whether to enable license auto update for users in this User Store. If true, users with expired licenses will automatically be updated to use the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "enableLicenseAutoRegister": {
+          "description": "Optional. Whether to enable license auto register for users in this User Store. If true, new users will automatically register under the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the User Store, in the format of `projects/{project}/locations/{location}/userStores/{user_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1WorkspaceConfig": {
       "description": "Config to store data store type configuration for workspace data",
       "id": "GoogleCloudDiscoveryengineV1WorkspaceConfig",
@@ -20994,6 +21179,12 @@
           ],
           "type": "string"
         },
+        "configurableBillingApproachUpdateTime": {
+          "description": "Output only. The timestamp when configurable_billing_approach was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -21329,6 +21520,23 @@
         "updateTime": {
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDeleteUserStoreMetadata": {
+      "description": "Metadata related to the progress of the UserStoreService.DeleteUserStore operation. This will be returned by the google.longrunning.Operation.metadata field. Delete UserStore will delete all the end users under the user store, return the number of end users successfully deleted or failed to delete in the metadata.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteUserStoreMetadata",
+      "properties": {
+        "failureCount": {
+          "description": "The number of end users under the user store that failed to be deleted.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of end users under the user store that were successfully deleted.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -22932,6 +23140,11 @@
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1alphaProject",
       "properties": {
+        "configurableBillingStatus": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus",
+          "description": "Output only. The current status of the project's configurable billing.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. The timestamp when this project is created.",
           "format": "google-datetime",
@@ -22964,6 +23177,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus": {
+      "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+      "id": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus",
+      "properties": {
+        "effectiveIndexingCoreThreshold": {
+          "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "effectiveSearchQpmThreshold": {
+          "description": "Optional. The currently effective Search QPM threshold in queries per minute. This is the threshold against which QPM usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The start time of the currently active billing subscription.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig": {
       "description": "Customer provided configurations.",
       "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig",
@@ -22982,6 +23217,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "optOutNotebookSharing": {
+          "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -25701,6 +25940,12 @@
           ],
           "type": "string"
         },
+        "configurableBillingApproachUpdateTime": {
+          "description": "Output only. The timestamp when configurable_billing_approach was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -27164,6 +27409,11 @@
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1betaProject",
       "properties": {
+        "configurableBillingStatus": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus",
+          "description": "Output only. The current status of the project's configurable billing.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. The timestamp when this project is created.",
           "format": "google-datetime",
@@ -27196,6 +27446,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus": {
+      "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus",
+      "properties": {
+        "effectiveIndexingCoreThreshold": {
+          "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "effectiveSearchQpmThreshold": {
+          "description": "Optional. The currently effective Search QPM threshold in queries per minute. This is the threshold against which QPM usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The start time of the currently active billing subscription.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig": {
       "description": "Customer provided configurations.",
       "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig",
@@ -27214,6 +27486,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "optOutNotebookSharing": {
+          "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -28748,6 +29024,33 @@
         },
         "userProfile": {
           "description": "Optional. The user profile. We user user full name(First name + Last name) as user profile.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaUserStore": {
+      "description": "Configures metadata that is used for End User entities.",
+      "id": "GoogleCloudDiscoveryengineV1betaUserStore",
+      "properties": {
+        "defaultLicenseConfig": {
+          "description": "Optional. The default subscription LicenseConfig for the UserStore, if UserStore.enable_license_auto_register is true, new users will automatically register under the default subscription. If default LicenseConfig doesn't have remaining license seats left, new users will not be assigned with license and will be blocked for Vertex AI Search features. This is used if `license_assignment_tier_rules` is not configured.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the User Store.",
+          "type": "string"
+        },
+        "enableExpiredLicenseAutoUpdate": {
+          "description": "Optional. Whether to enable license auto update for users in this User Store. If true, users with expired licenses will automatically be updated to use the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "enableLicenseAutoRegister": {
+          "description": "Optional. Whether to enable license auto register for users in this User Store. If true, new users will automatically register under the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the User Store, in the format of `projects/{project}/locations/{location}/userStores/{user_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
