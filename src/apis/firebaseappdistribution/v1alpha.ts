@@ -306,6 +306,19 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse {}
   /**
+   * Request message for `ClearTestCaseCache`.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest {
+    /**
+     * Optional. The list of devices for which to clear the cache. If not present, clear all of them.
+     */
+    testDevices?: Schema$GoogleFirebaseAppdistroV1alphaTestDevice[];
+  }
+  /**
+   * Response empty (google.protobuf.Empty) message for `ClearTestCaseCache`
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse {}
+  /**
    * The request message for `CreateReleaseNotes`.
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest {
@@ -3744,6 +3757,162 @@ export namespace firebaseappdistribution_v1alpha {
     }
 
     /**
+     * Clears cached test runs for a specific test case and device(s).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappdistribution.projects.apps.testCases.clearTestCaseCache({
+     *       // Required. The name of the test case resource for which to clear the cache. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     *       testCase: 'projects/my-project/apps/my-app/testCases/my-testCase',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "testDevices": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    clearTestCaseCache(
+      params: Params$Resource$Projects$Apps$Testcases$Cleartestcasecache,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    clearTestCaseCache(
+      params?: Params$Resource$Projects$Apps$Testcases$Cleartestcasecache,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse>
+    >;
+    clearTestCaseCache(
+      params: Params$Resource$Projects$Apps$Testcases$Cleartestcasecache,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    clearTestCaseCache(
+      params: Params$Resource$Projects$Apps$Testcases$Cleartestcasecache,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse>
+    ): void;
+    clearTestCaseCache(
+      params: Params$Resource$Projects$Apps$Testcases$Cleartestcasecache,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse>
+    ): void;
+    clearTestCaseCache(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse>
+    ): void;
+    clearTestCaseCache(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Testcases$Cleartestcasecache
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Testcases$Cleartestcasecache;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Apps$Testcases$Cleartestcasecache;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+testCase}:clearTestCaseCache').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['testCase'],
+        pathParams: ['testCase'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Create a new test case.
      * @example
      * ```js
@@ -4536,6 +4705,18 @@ export namespace firebaseappdistribution_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest;
+  }
+  export interface Params$Resource$Projects$Apps$Testcases$Cleartestcasecache
+    extends StandardParameters {
+    /**
+     * Required. The name of the test case resource for which to clear the cache. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     */
+    testCase?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest;
   }
   export interface Params$Resource$Projects$Apps$Testcases$Create
     extends StandardParameters {
