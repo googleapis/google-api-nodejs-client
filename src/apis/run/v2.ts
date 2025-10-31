@@ -336,6 +336,10 @@ export namespace run_v2 {
      */
     resources?: Schema$GoogleCloudRunV2ResourceRequirements;
     /**
+     * Optional. Location of the source .tar.gz file in Cloud Storage. examples: - gs://bucket/object.tar.gz. - gs://bucket/object.tar.gz#1234567890 (with object generation)
+     */
+    source?: string | null;
+    /**
      * Startup probe of application within the container. All other probes are disabled if a startup probe is provided, until it succeeds. Container will not be added to service endpoints if the probe fails.
      */
     startupProbe?: Schema$GoogleCloudRunV2Probe;
