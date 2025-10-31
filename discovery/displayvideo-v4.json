@@ -374,6 +374,191 @@
         }
       },
       "resources": {
+        "adAssets": {
+          "methods": {
+            "bulkCreate": {
+              "description": "Creates multiple ad assets in a single request. Returns the newly-created ad assets if successful. Only supports the creation of assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`.",
+              "flatPath": "v4/advertisers/{advertisersId}/adAssets:bulkCreate",
+              "httpMethod": "POST",
+              "id": "displayvideo.advertisers.adAssets.bulkCreate",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser these ad assets belong to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v4/advertisers/{+advertiserId}/adAssets:bulkCreate",
+              "request": {
+                "$ref": "BulkCreateAdAssetsRequest"
+              },
+              "response": {
+                "$ref": "BulkCreateAdAssetsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "create": {
+              "description": "Creates an ad asset. Returns the newly-created ad asset if successful. Only supports the creation of assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`.",
+              "flatPath": "v4/advertisers/{advertisersId}/adAssets",
+              "httpMethod": "POST",
+              "id": "displayvideo.advertisers.adAssets.create",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser this ad asset belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v4/advertisers/{+advertiserId}/adAssets",
+              "request": {
+                "$ref": "CreateAdAssetRequest"
+              },
+              "response": {
+                "$ref": "AdAsset"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "get": {
+              "description": "Gets an ad asset. Only supports the retrieval of assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`.",
+              "flatPath": "v4/advertisers/{advertisersId}/adAssets/{adAssetsId}",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.adAssets.get",
+              "parameterOrder": [
+                "advertiserId",
+                "adAssetId"
+              ],
+              "parameters": {
+                "adAssetId": {
+                  "description": "Required. The ID of the ad asset to fetch. Only supports assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser this ad asset belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v4/advertisers/{+advertiserId}/adAssets/{+adAssetId}",
+              "response": {
+                "$ref": "AdAsset"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "list": {
+              "description": "Lists ad assets under an advertiser ID. Only supports the retrieval of assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`.",
+              "flatPath": "v4/advertisers/{advertisersId}/adAssets",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.adAssets.list",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser the ad assets belong to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Optional. Allows filtering of the results by ad asset fields. Supported syntax: * A restriction has the form of `{field} {operator} {value}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `youtubeVideoAsset.youtubeVideoId` * `entityStatus` Examples: * All active YouTube video ad assets under an advertiser: `entityStatus=ENTITY_STATUS_ACTIVE`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. Field by which to sort the list. Acceptable values are: * `entityStatus` * `youtubeVideoAsset.youtubeVideoId` * `adAssetId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `adAssetId desc`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Requested page size. Must be between `1` and `5000`. If unspecified will default to `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdAssets` method. If not specified, the first page of results will be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v4/advertisers/{+advertiserId}/adAssets",
+              "response": {
+                "$ref": "ListAdAssetsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "upload": {
+              "description": "Uploads and creates an ad asset. Returns the ID of the newly-created ad asset if successful. Only supports the uploading of assets with the AdAssetType `AD_ASSET_TYPE_IMAGE`.",
+              "flatPath": "v4/advertisers/{advertisersId}/adAssets:uploadAdAsset",
+              "httpMethod": "POST",
+              "id": "displayvideo.advertisers.adAssets.upload",
+              "mediaUpload": {
+                "accept": [
+                  "*/*"
+                ],
+                "protocols": {
+                  "simple": {
+                    "multipart": true,
+                    "path": "/upload/v4/advertisers/{+advertiserId}/adAssets:uploadAdAsset"
+                  }
+                }
+              },
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser this ad asset belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v4/advertisers/{+advertiserId}/adAssets:uploadAdAsset",
+              "request": {
+                "$ref": "UploadAdAssetRequest"
+              },
+              "response": {
+                "$ref": "UploadAdAssetResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ],
+              "supportsMediaUpload": true
+            }
+          }
+        },
         "adGroupAds": {
           "methods": {
             "get": {
@@ -922,6 +1107,225 @@
                       "path": "v4/advertisers/{+advertiserId}/adGroups/{+adGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions",
                       "response": {
                         "$ref": "ListAdGroupAssignedTargetingOptionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/display-video"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "youtubeAssetTypes": {
+              "resources": {
+                "youtubeAssetAssociations": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new association between the identified resource and a YouTube asset. Returns the newly-created association. *Warning:* This method is only available to an informed subset of users.",
+                      "flatPath": "v4/advertisers/{advertisersId}/adGroups/{adGroupsId}/youtubeAssetTypes/{youtubeAssetTypesId}/youtubeAssetAssociations",
+                      "httpMethod": "POST",
+                      "id": "displayvideo.advertisers.adGroups.youtubeAssetTypes.youtubeAssetAssociations.create",
+                      "parameterOrder": [
+                        "advertiserId",
+                        "adGroupId",
+                        "youtubeAssetType"
+                      ],
+                      "parameters": {
+                        "adGroupId": {
+                          "description": "The ID of an ad group.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "advertiserId": {
+                          "description": "Required. The ID of the advertiser that the linked entity belongs to.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "linkedEntity.lineItemId": {
+                          "description": "The ID of a line item.",
+                          "format": "int64",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "youtubeAssetType": {
+                          "description": "Required. The type of YouTube asset associated with the resource.",
+                          "enum": [
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK"
+                          ],
+                          "enumDescriptions": [
+                            "YouTube asset type is not specified or is unknown in this version.",
+                            "Location asset.",
+                            "Affiliate location asset.",
+                            "Sitelink asset."
+                          ],
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v4/advertisers/{+advertiserId}/adGroups/{+adGroupId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations",
+                      "request": {
+                        "$ref": "YoutubeAssetAssociation"
+                      },
+                      "response": {
+                        "$ref": "YoutubeAssetAssociation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/display-video"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes an existing association between the identified resource and a YouTube asset. *Warning:* This method is only available to an informed subset of users.",
+                      "flatPath": "v4/advertisers/{advertisersId}/adGroups/{adGroupsId}/youtubeAssetTypes/{youtubeAssetTypesId}/youtubeAssetAssociations/{youtubeAssetAssociationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "displayvideo.advertisers.adGroups.youtubeAssetTypes.youtubeAssetAssociations.delete",
+                      "parameterOrder": [
+                        "advertiserId",
+                        "adGroupId",
+                        "youtubeAssetType",
+                        "youtubeAssetAssociationId"
+                      ],
+                      "parameters": {
+                        "adGroupId": {
+                          "description": "The ID of an ad group.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "advertiserId": {
+                          "description": "Required. The ID of the advertiser that the linked entity belongs to.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "linkedEntity.lineItemId": {
+                          "description": "The ID of a line item.",
+                          "format": "int64",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "youtubeAssetAssociationId": {
+                          "description": "Required. The ID of the YouTube asset in the association. For `YOUTUBE_ASSET_TYPE_LOCATION` and `YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION` associations: This should be the ID of the asset set linked, or 0 if the location_asset_filter or affiliate_location_asset_filter is `DISABLED`. For `YOUTUBE_ASSET_TYPE_SITELINK` associations: This should be the ID of the sitelink asset linked.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "youtubeAssetType": {
+                          "description": "Required. The type of YouTube asset associated with the resource.",
+                          "enum": [
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK"
+                          ],
+                          "enumDescriptions": [
+                            "YouTube asset type is not specified or is unknown in this version.",
+                            "Location asset.",
+                            "Affiliate location asset.",
+                            "Sitelink asset."
+                          ],
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v4/advertisers/{+advertiserId}/adGroups/{+adGroupId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations/{+youtubeAssetAssociationId}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/display-video"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists the YouTube asset associations linked to the given resource.",
+                      "flatPath": "v4/advertisers/{advertisersId}/adGroups/{adGroupsId}/youtubeAssetTypes/{youtubeAssetTypesId}/youtubeAssetAssociations",
+                      "httpMethod": "GET",
+                      "id": "displayvideo.advertisers.adGroups.youtubeAssetTypes.youtubeAssetAssociations.list",
+                      "parameterOrder": [
+                        "advertiserId",
+                        "adGroupId",
+                        "youtubeAssetType"
+                      ],
+                      "parameters": {
+                        "adGroupId": {
+                          "description": "The ID of an ad group.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "advertiserId": {
+                          "description": "Required. The ID of the advertiser that the linked entity belongs to.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "linkedEntity.lineItemId": {
+                          "description": "The ID of a line item.",
+                          "format": "int64",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Field by which to sort the list. The only acceptable values are: * `linkedYoutubeAsset.locationAssetFilter.assetSetId`, * `linkedYoutubeAsset.affiliateLocationAssetFilter.assetSetId`, * `linkedYoutubeAsset.sitelinkAsset.assetId` The default sorting order is ascending. To specify descending order for a field, a suffix \" desc\" should be added to the field name. Example: `linkedYoutubeAsset.sitelinkAsset.assetId desc`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAssetAssociations` method. If not specified, the first page of results will be returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "youtubeAssetType": {
+                          "description": "Required. The type of YouTube asset being associated with the resource.",
+                          "enum": [
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK"
+                          ],
+                          "enumDescriptions": [
+                            "YouTube asset type is not specified or is unknown in this version.",
+                            "Location asset.",
+                            "Affiliate location asset.",
+                            "Sitelink asset."
+                          ],
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v4/advertisers/{+advertiserId}/adGroups/{+adGroupId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations",
+                      "response": {
+                        "$ref": "ListYoutubeAssetAssociationsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/display-video"
@@ -4157,6 +4561,225 @@
                       "path": "v4/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions",
                       "response": {
                         "$ref": "ListLineItemAssignedTargetingOptionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/display-video"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "youtubeAssetTypes": {
+              "resources": {
+                "youtubeAssetAssociations": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new association between the identified resource and a YouTube asset. Returns the newly-created association. *Warning:* This method is only available to an informed subset of users.",
+                      "flatPath": "v4/advertisers/{advertisersId}/lineItems/{lineItemsId}/youtubeAssetTypes/{youtubeAssetTypesId}/youtubeAssetAssociations",
+                      "httpMethod": "POST",
+                      "id": "displayvideo.advertisers.lineItems.youtubeAssetTypes.youtubeAssetAssociations.create",
+                      "parameterOrder": [
+                        "advertiserId",
+                        "lineItemId",
+                        "youtubeAssetType"
+                      ],
+                      "parameters": {
+                        "advertiserId": {
+                          "description": "Required. The ID of the advertiser that the linked entity belongs to.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "lineItemId": {
+                          "description": "The ID of a line item.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "linkedEntity.adGroupId": {
+                          "description": "The ID of an ad group.",
+                          "format": "int64",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "youtubeAssetType": {
+                          "description": "Required. The type of YouTube asset associated with the resource.",
+                          "enum": [
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK"
+                          ],
+                          "enumDescriptions": [
+                            "YouTube asset type is not specified or is unknown in this version.",
+                            "Location asset.",
+                            "Affiliate location asset.",
+                            "Sitelink asset."
+                          ],
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v4/advertisers/{+advertiserId}/lineItems/{+lineItemId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations",
+                      "request": {
+                        "$ref": "YoutubeAssetAssociation"
+                      },
+                      "response": {
+                        "$ref": "YoutubeAssetAssociation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/display-video"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes an existing association between the identified resource and a YouTube asset. *Warning:* This method is only available to an informed subset of users.",
+                      "flatPath": "v4/advertisers/{advertisersId}/lineItems/{lineItemsId}/youtubeAssetTypes/{youtubeAssetTypesId}/youtubeAssetAssociations/{youtubeAssetAssociationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "displayvideo.advertisers.lineItems.youtubeAssetTypes.youtubeAssetAssociations.delete",
+                      "parameterOrder": [
+                        "advertiserId",
+                        "lineItemId",
+                        "youtubeAssetType",
+                        "youtubeAssetAssociationId"
+                      ],
+                      "parameters": {
+                        "advertiserId": {
+                          "description": "Required. The ID of the advertiser that the linked entity belongs to.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "lineItemId": {
+                          "description": "The ID of a line item.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "linkedEntity.adGroupId": {
+                          "description": "The ID of an ad group.",
+                          "format": "int64",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "youtubeAssetAssociationId": {
+                          "description": "Required. The ID of the YouTube asset in the association. For `YOUTUBE_ASSET_TYPE_LOCATION` and `YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION` associations: This should be the ID of the asset set linked, or 0 if the location_asset_filter or affiliate_location_asset_filter is `DISABLED`. For `YOUTUBE_ASSET_TYPE_SITELINK` associations: This should be the ID of the sitelink asset linked.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "youtubeAssetType": {
+                          "description": "Required. The type of YouTube asset associated with the resource.",
+                          "enum": [
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK"
+                          ],
+                          "enumDescriptions": [
+                            "YouTube asset type is not specified or is unknown in this version.",
+                            "Location asset.",
+                            "Affiliate location asset.",
+                            "Sitelink asset."
+                          ],
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v4/advertisers/{+advertiserId}/lineItems/{+lineItemId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations/{+youtubeAssetAssociationId}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/display-video"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists the YouTube asset associations linked to the given resource.",
+                      "flatPath": "v4/advertisers/{advertisersId}/lineItems/{lineItemsId}/youtubeAssetTypes/{youtubeAssetTypesId}/youtubeAssetAssociations",
+                      "httpMethod": "GET",
+                      "id": "displayvideo.advertisers.lineItems.youtubeAssetTypes.youtubeAssetAssociations.list",
+                      "parameterOrder": [
+                        "advertiserId",
+                        "lineItemId",
+                        "youtubeAssetType"
+                      ],
+                      "parameters": {
+                        "advertiserId": {
+                          "description": "Required. The ID of the advertiser that the linked entity belongs to.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "lineItemId": {
+                          "description": "The ID of a line item.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "linkedEntity.adGroupId": {
+                          "description": "The ID of an ad group.",
+                          "format": "int64",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Field by which to sort the list. The only acceptable values are: * `linkedYoutubeAsset.locationAssetFilter.assetSetId`, * `linkedYoutubeAsset.affiliateLocationAssetFilter.assetSetId`, * `linkedYoutubeAsset.sitelinkAsset.assetId` The default sorting order is ascending. To specify descending order for a field, a suffix \" desc\" should be added to the field name. Example: `linkedYoutubeAsset.sitelinkAsset.assetId desc`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAssetAssociations` method. If not specified, the first page of results will be returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "youtubeAssetType": {
+                          "description": "Required. The type of YouTube asset being associated with the resource.",
+                          "enum": [
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK"
+                          ],
+                          "enumDescriptions": [
+                            "YouTube asset type is not specified or is unknown in this version.",
+                            "Location asset.",
+                            "Affiliate location asset.",
+                            "Sitelink asset."
+                          ],
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v4/advertisers/{+advertiserId}/lineItems/{+lineItemId}/youtubeAssetTypes/{+youtubeAssetType}/youtubeAssetAssociations",
+                      "response": {
+                        "$ref": "ListYoutubeAssetAssociationsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/display-video"
@@ -9302,7 +9925,7 @@
       }
     }
   },
-  "revision": "20250930",
+  "revision": "20251027",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -9420,6 +10043,62 @@
       },
       "type": "object"
     },
+    "AdAsset": {
+      "description": "A single ad asset.",
+      "id": "AdAsset",
+      "properties": {
+        "adAssetId": {
+          "description": "Output only. The ID of the ad asset. Referred to as the asset ID when assigned to an ad.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "adAssetType": {
+          "description": "Required. The type of the ad asset.",
+          "enum": [
+            "AD_ASSET_TYPE_UNSPECIFIED",
+            "AD_ASSET_TYPE_IMAGE",
+            "AD_ASSET_TYPE_YOUTUBE_VIDEO"
+          ],
+          "enumDescriptions": [
+            "The ad asset type is unspecified.",
+            "The ad asset is a YouTube/DemandGen image.",
+            "The ad asset is a YouTube video."
+          ],
+          "type": "string"
+        },
+        "entityStatus": {
+          "description": "Output only. The entity status of the ad asset.",
+          "enum": [
+            "ENTITY_STATUS_UNSPECIFIED",
+            "ENTITY_STATUS_ACTIVE",
+            "ENTITY_STATUS_ARCHIVED",
+            "ENTITY_STATUS_DRAFT",
+            "ENTITY_STATUS_PAUSED",
+            "ENTITY_STATUS_SCHEDULED_FOR_DELETION"
+          ],
+          "enumDescriptions": [
+            "Default value when status is not specified or is unknown in this version.",
+            "The entity is enabled to bid and spend budget.",
+            "The entity is archived. Bidding and budget spending are disabled. An entity can be deleted after archived. Deleted entities cannot be retrieved.",
+            "The entity is under draft. Bidding and budget spending are disabled.",
+            "Bidding and budget spending are paused for the entity.",
+            "The entity is scheduled for deletion."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the ad asset.",
+          "type": "string"
+        },
+        "youtubeVideoAsset": {
+          "$ref": "YoutubeVideoAsset",
+          "description": "Youtube video asset data."
+        }
+      },
+      "type": "object"
+    },
     "AdGroup": {
       "description": "A single ad group associated with a line item.",
       "id": "AdGroup",
@@ -9435,8 +10114,7 @@
             "AD_GROUP_FORMAT_AUDIO",
             "AD_GROUP_FORMAT_RESPONSIVE",
             "AD_GROUP_FORMAT_REACH",
-            "AD_GROUP_FORMAT_MASTHEAD",
-            "AD_GROUP_FORMAT_DEMAND_GEN"
+            "AD_GROUP_FORMAT_MASTHEAD"
           ],
           "enumDescriptions": [
             "Format value is not specified or is unknown in this version.",
@@ -9447,8 +10125,7 @@
             "Non-skippable in-stream audio ads.",
             "Responsive ads.",
             "[Effective reach ad groups] (https://support.google.com/displayvideo/answer/9173684), including in-stream and bumper ads.",
-            "Masthead Ad that is surfaced on the top slot on the YouTube homepage.",
-            "Demand Gen ads."
+            "Masthead Ad that is surfaced on the top slot on the YouTube homepage."
           ],
           "type": "string"
         },
@@ -9520,9 +10197,13 @@
           "type": "string"
         },
         "adGroupId": {
-          "description": "The unique ID of the ad group that the ad belongs to.",
+          "description": "The unique ID of the ad group that the ad belongs to. *Caution*: Parent ad groups for Demand Gen ads are not currently retrieveable using `advertisers.adGroups.list` or `advertisers.adGroups.get`. Demand Gen ads can be identified by the absence of the `ad_details` union field.",
           "format": "int64",
           "type": "string"
+        },
+        "adPolicy": {
+          "$ref": "AdPolicy",
+          "description": "The policy approval status of the ad."
         },
         "adUrls": {
           "description": "List of URLs used by the ad.",
@@ -9611,6 +10292,565 @@
         "assignedTargetingOption": {
           "$ref": "AssignedTargetingOption",
           "description": "The assigned targeting option resource."
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicy": {
+      "description": "A single ad policy associated with an ad group ad.",
+      "id": "AdPolicy",
+      "properties": {
+        "adPolicyApprovalStatus": {
+          "description": "The policy approval status of an ad, indicating the approval decision.",
+          "enum": [
+            "AD_POLICY_APPROVAL_STATUS_UNKNOWN",
+            "DISAPPROVED",
+            "APPROVED_LIMITED",
+            "APPROVED",
+            "AREA_OF_INTEREST_ONLY"
+          ],
+          "enumDescriptions": [
+            "Unknown or not specified.",
+            "Will not serve.",
+            "Will serve with restrictions.",
+            "Will serve without restrictions.",
+            "Will not serve in targeted countries, but may serve for users who are searching for information about the targeted countries."
+          ],
+          "type": "string"
+        },
+        "adPolicyReviewStatus": {
+          "description": "The policy review status of an ad, indicating where in the review process the ad is currently.",
+          "enum": [
+            "AD_POLICY_REVIEW_STATUS_UNKNOWN",
+            "REVIEW_IN_PROGRESS",
+            "REVIEWED",
+            "UNDER_APPEAL",
+            "ELIGIBLE_MAY_SERVE"
+          ],
+          "enumDescriptions": [
+            "Unknown or not specified.",
+            "Currently under review.",
+            "Primary review complete. Other reviews may still be in progress.",
+            "Resubmitted for approval or a policy decision has been appealed.",
+            "Deemed eligible and may be serving. Further review could still follow."
+          ],
+          "type": "string"
+        },
+        "adPolicyTopicEntry": {
+          "description": "The entries for each policy topic identified as relating to the ad. Each entry includes the topic, restriction level, and guidance on how to fix policy issues.",
+          "items": {
+            "$ref": "AdPolicyTopicEntry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyCriterionRestriction": {
+      "description": "Represents a country restriction.",
+      "id": "AdPolicyCriterionRestriction",
+      "properties": {
+        "countryCriterionId": {
+          "description": "The country criterion id.",
+          "format": "int64",
+          "type": "string"
+        },
+        "countryLabel": {
+          "description": "Localized name for the country. May be empty.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicAppealInfo": {
+      "description": "Information on how to appeal a policy decision.",
+      "id": "AdPolicyTopicAppealInfo",
+      "properties": {
+        "appealFormLink": {
+          "description": "Only available when appeal_type is `APPEAL_FORM`.",
+          "type": "string"
+        },
+        "appealType": {
+          "description": "Whether the decision can be appealed through a self-service appeal or an appeal form.",
+          "enum": [
+            "AD_POLICY_APPEAL_TYPE_UNKNOWN",
+            "SELF_SERVICE_APPEAL",
+            "APPEAL_FORM"
+          ],
+          "enumDescriptions": [
+            "Unknown or not specified.",
+            "The decision can be appealed through a self-service appeal.",
+            "The decision can be appealed using an appeal form."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicConstraint": {
+      "description": "Details on ad serving constraints.",
+      "id": "AdPolicyTopicConstraint",
+      "properties": {
+        "certificateDomainMismatchCountryList": {
+          "$ref": "AdPolicyTopicConstraintAdPolicyCountryConstraintList",
+          "description": "Countries where the resource's domain is not covered by the certificates associated with it."
+        },
+        "certificateMissingCountryList": {
+          "$ref": "AdPolicyTopicConstraintAdPolicyCountryConstraintList",
+          "description": "Countries where a certificate is required for serving."
+        },
+        "countryConstraint": {
+          "$ref": "AdPolicyTopicConstraintAdPolicyCountryConstraintList",
+          "description": "Countries where the ad cannot serve."
+        },
+        "globalCertificateDomainMismatch": {
+          "$ref": "AdPolicyTopicConstraintAdPolicyGlobalCertificateDomainMismatchConstraint",
+          "description": "Certificate is required to serve in any country and the existing certificate does not cover the ad's domain."
+        },
+        "globalCertificateMissing": {
+          "$ref": "AdPolicyTopicConstraintAdPolicyGlobalCertificateMissingConstraint",
+          "description": "Certificate is required to serve in any country."
+        },
+        "requestCertificateFormLink": {
+          "description": "Link to the form to request a certificate for the constraint.",
+          "type": "string"
+        },
+        "resellerConstraint": {
+          "$ref": "AdPolicyTopicConstraintAdPolicyResellerConstraint",
+          "description": "Reseller constraint."
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicConstraintAdPolicyCountryConstraintList": {
+      "description": "A list of countries where the ad cannot serve due to policy constraints.",
+      "id": "AdPolicyTopicConstraintAdPolicyCountryConstraintList",
+      "properties": {
+        "countries": {
+          "description": "Countries where the ad cannot serve.",
+          "items": {
+            "$ref": "AdPolicyCriterionRestriction"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicConstraintAdPolicyGlobalCertificateDomainMismatchConstraint": {
+      "description": "Certificate is required to serve in any country and the existing certificate does not cover the ad's domain.",
+      "id": "AdPolicyTopicConstraintAdPolicyGlobalCertificateDomainMismatchConstraint",
+      "properties": {},
+      "type": "object"
+    },
+    "AdPolicyTopicConstraintAdPolicyGlobalCertificateMissingConstraint": {
+      "description": "Certificate is required to serve in any country.",
+      "id": "AdPolicyTopicConstraintAdPolicyGlobalCertificateMissingConstraint",
+      "properties": {},
+      "type": "object"
+    },
+    "AdPolicyTopicConstraintAdPolicyResellerConstraint": {
+      "description": "Policy topic was constrained due to disapproval of the website for reseller purposes.",
+      "id": "AdPolicyTopicConstraintAdPolicyResellerConstraint",
+      "properties": {},
+      "type": "object"
+    },
+    "AdPolicyTopicEntry": {
+      "description": "An entry describing how an ad has been identified as relating to an ad policy.",
+      "id": "AdPolicyTopicEntry",
+      "properties": {
+        "appealInfo": {
+          "$ref": "AdPolicyTopicAppealInfo",
+          "description": "Information on how to appeal the policy decision."
+        },
+        "helpCenterLink": {
+          "description": "Ad policy help center link for the policy topic.",
+          "type": "string"
+        },
+        "policyDecisionType": {
+          "description": "The source of the policy decision.",
+          "enum": [
+            "AD_POLICY_DECISION_TYPE_UNKNOWN",
+            "PURSUANT_TO_NOTICE",
+            "GOOGLE_INVESTIGATION"
+          ],
+          "enumDescriptions": [
+            "Unknown or not specified.",
+            "The decision is from a legal notice, court order, or trademark content owner complaint, etc.",
+            "The decision is from a Google-owned investigation."
+          ],
+          "type": "string"
+        },
+        "policyEnforcementMeans": {
+          "description": "The policy enforcement means used in the policy review.",
+          "enum": [
+            "AD_POLICY_ENFORCEMENT_MEANS_UNKNOWN",
+            "AUTOMATED",
+            "HUMAN_REVIEW"
+          ],
+          "enumDescriptions": [
+            "Unknown or not specified.",
+            "The enforcement process was fully automated.",
+            "A human was partially or fully involved in the decision enforcement process."
+          ],
+          "type": "string"
+        },
+        "policyLabel": {
+          "description": "Localized label text for policy. Examples include \"Trademarks in text\", \"Contains Alcohol\", etc.",
+          "type": "string"
+        },
+        "policyTopic": {
+          "description": "The policy topic. Examples include \"TRADEMARKS\", \"ALCOHOL\", etc.",
+          "type": "string"
+        },
+        "policyTopicConstraints": {
+          "description": "The serving constraints relevant to the policy decision.",
+          "items": {
+            "$ref": "AdPolicyTopicConstraint"
+          },
+          "type": "array"
+        },
+        "policyTopicDescription": {
+          "description": "A short summary description of the policy topic.",
+          "type": "string"
+        },
+        "policyTopicEvidences": {
+          "description": "The evidence used in the policy decision.",
+          "items": {
+            "$ref": "AdPolicyTopicEvidence"
+          },
+          "type": "array"
+        },
+        "policyTopicType": {
+          "description": "How ad serving will be affected due to the relation to the ad policy topic.",
+          "enum": [
+            "AD_POLICY_TOPIC_ENTRY_TYPE_UNKNOWN",
+            "PROHIBITED",
+            "FULLY_LIMITED",
+            "LIMITED",
+            "DESCRIPTIVE",
+            "BROADENING",
+            "AREA_OF_INTEREST_ONLY"
+          ],
+          "enumDescriptions": [
+            "Unknown or not specified.",
+            "The resource will not serve.",
+            "The resource will not serve in all targeted countries.",
+            "The resource cannot serve in some countries.",
+            "The resource can serve.",
+            "The resource can serve, and may serve beyond normal coverage.",
+            "The resource is constrained for all targeted countries, but may serve for users who are searching for information about the targeted countries."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidence": {
+      "description": "Evidence information used in the policy decision.",
+      "id": "AdPolicyTopicEvidence",
+      "properties": {
+        "counterfeit": {
+          "$ref": "AdPolicyTopicEvidenceCounterfeit",
+          "description": "Counterfeit enforcement that caused a policy violation."
+        },
+        "destinationMismatch": {
+          "$ref": "AdPolicyTopicEvidenceDestinationMismatch",
+          "description": "A mismatch between the ad destination URLs."
+        },
+        "destinationNotWorking": {
+          "$ref": "AdPolicyTopicEvidenceDestinationNotWorking",
+          "description": "Information on HTTP or DNS errors related to the ad destination."
+        },
+        "destinationTextList": {
+          "$ref": "AdPolicyTopicEvidenceDestinationTextList",
+          "description": "The text in the destination of the ad that is causing a policy violation."
+        },
+        "httpCode": {
+          "description": "HTTP code returned when the final URL was crawled.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "languageCode": {
+          "description": "The language the ad was detected to be written in. This field uses IETF language tags, such as \"en-US\".",
+          "type": "string"
+        },
+        "legalRemoval": {
+          "$ref": "AdPolicyTopicEvidenceLegalRemoval",
+          "description": "Legal related regulation enforcement that caused a policy violation."
+        },
+        "regionalRequirements": {
+          "$ref": "AdPolicyTopicEvidenceRegionalRequirements",
+          "description": "T&S proactive enforcement that caused a policy violation."
+        },
+        "textList": {
+          "$ref": "AdPolicyTopicEvidenceTextList",
+          "description": "List of evidence found in the text of the ad."
+        },
+        "trademark": {
+          "$ref": "AdPolicyTopicEvidenceTrademark",
+          "description": "Trademark terms that caused a policy violation."
+        },
+        "websiteList": {
+          "$ref": "AdPolicyTopicEvidenceWebsiteList",
+          "description": "List of websites linked with the ad."
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceCounterfeit": {
+      "description": "Details on the counterfeit enforcement that caused a policy violation.",
+      "id": "AdPolicyTopicEvidenceCounterfeit",
+      "properties": {
+        "owners": {
+          "description": "The content or product owners that made a complaint.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceDestinationMismatch": {
+      "description": "Details on a mismatch between destination URL types.",
+      "id": "AdPolicyTopicEvidenceDestinationMismatch",
+      "properties": {
+        "uriTypes": {
+          "description": "The set of URLs that do not match. The list can include single or multiple uri types. Example 1: [`DISPLAY_URL`, `FINAL_URL`] means ad display URL does not match with the ad final URL. Example 2: [`FINAL_URL`] means ad final URL did not match the crawled url, which is also considered as destination mismatch.",
+          "items": {
+            "enum": [
+              "AD_POLICY_TOPIC_EVIDENCE_DESTINATION_MISMATCH_URL_TYPE_UNKNOWN",
+              "DISPLAY_URL",
+              "FINAL_URL",
+              "FINAL_MOBILE_URL",
+              "TRACKING_URL",
+              "MOBILE_TRACKING_URL"
+            ],
+            "enumDescriptions": [
+              "Not specified or unknown.",
+              "The display URL.",
+              "The final URL.",
+              "The final mobile URL.",
+              "The tracking URL.",
+              "The mobile tracking URL."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceDestinationNotWorking": {
+      "description": "Details for on HTTP or DNS errors related to the ad destination.",
+      "id": "AdPolicyTopicEvidenceDestinationNotWorking",
+      "properties": {
+        "device": {
+          "description": "The device where visiting the URL resulted in the error.",
+          "enum": [
+            "AD_POLICY_TOPIC_EVIDENCE_DESTINATION_NOT_WORKING_DEVICE_TYPE_UNKNOWN",
+            "DESKTOP",
+            "ANDROID",
+            "IOS"
+          ],
+          "enumDescriptions": [
+            "Not specified or unknown.",
+            "Desktop device.",
+            "Android device.",
+            "iOS device."
+          ],
+          "type": "string"
+        },
+        "dnsErrorType": {
+          "description": "The type of DNS error.",
+          "enum": [
+            "AD_POLICY_TOPIC_EVIDENCE_DESTINATION_NOT_WORKING_DNS_ERROR_TYPE_UNKNOWN",
+            "HOSTNAME_NOT_FOUND",
+            "GOOGLE_CRAWLER_DNS_ISSUE"
+          ],
+          "enumDescriptions": [
+            "Not specified or unknown.",
+            "Host name not found in DNS when fetching landing page.",
+            "Google could not crawl the landing page when communicating with DNS."
+          ],
+          "type": "string"
+        },
+        "expandedUri": {
+          "description": "The full URL that didn't work.",
+          "type": "string"
+        },
+        "httpErrorCode": {
+          "description": "The HTTP error code.",
+          "format": "int64",
+          "type": "string"
+        },
+        "lastCheckedTime": {
+          "description": "The last time the error was seen when navigating to URL.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceDestinationTextList": {
+      "description": "A list of destination text that violated the policy.",
+      "id": "AdPolicyTopicEvidenceDestinationTextList",
+      "properties": {
+        "destinationTexts": {
+          "description": "Destination text that caused the policy finding.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceLegalRemoval": {
+      "description": "Legal related regulation enforcement, either from DMCA or local legal regulation.",
+      "id": "AdPolicyTopicEvidenceLegalRemoval",
+      "properties": {
+        "complaintType": {
+          "description": "The type of complaint causing the legal removal.",
+          "enum": [
+            "AD_POLICY_TOPIC_EVIDENCE_LEGAL_REMOVAL_COMPLAINT_TYPE_UNKNOWN",
+            "COPYRIGHT",
+            "COURT_ORDER",
+            "LOCAL_LEGAL"
+          ],
+          "enumDescriptions": [
+            "Not specified or unknown.",
+            "Copyright. Only applies to DMCA.",
+            "Court order. Only applies to local legal.",
+            "Local legal regulation. Only applies to local legal."
+          ],
+          "type": "string"
+        },
+        "countryRestrictions": {
+          "description": "The countries restricted due to the legal removal.",
+          "items": {
+            "$ref": "AdPolicyCriterionRestriction"
+          },
+          "type": "array"
+        },
+        "dmca": {
+          "$ref": "AdPolicyTopicEvidenceLegalRemovalDmca",
+          "description": "Details on the DMCA regulation legal removal."
+        },
+        "localLegal": {
+          "$ref": "AdPolicyTopicEvidenceLegalRemovalLocalLegal",
+          "description": "Details on the local legal regulation legal removal."
+        },
+        "restrictedUris": {
+          "description": "The urls restricted due to the legal removal.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceLegalRemovalDmca": {
+      "description": "DMCA complaint details.",
+      "id": "AdPolicyTopicEvidenceLegalRemovalDmca",
+      "properties": {
+        "complainant": {
+          "description": "The entity who made the legal complaint.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceLegalRemovalLocalLegal": {
+      "description": "Local legal regulation details.",
+      "id": "AdPolicyTopicEvidenceLegalRemovalLocalLegal",
+      "properties": {
+        "lawType": {
+          "description": "Type of law for the legal notice.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceRegionalRequirements": {
+      "description": "Trust & Safety (T&S) proactive enforcement for policies meant to address regional requirements. This is considered a Google-owned investigation instead of a regulation notice since it's proactive T&S enforcement.",
+      "id": "AdPolicyTopicEvidenceRegionalRequirements",
+      "properties": {
+        "regionalRequirementsEntries": {
+          "description": "List of regional requirements.",
+          "items": {
+            "$ref": "AdPolicyTopicEvidenceRegionalRequirementsRegionalRequirementsEntry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceRegionalRequirementsRegionalRequirementsEntry": {
+      "description": "Policy level regional legal violation details.",
+      "id": "AdPolicyTopicEvidenceRegionalRequirementsRegionalRequirementsEntry",
+      "properties": {
+        "countryRestrictions": {
+          "description": "The countries restricted due to the legal policy.",
+          "items": {
+            "$ref": "AdPolicyCriterionRestriction"
+          },
+          "type": "array"
+        },
+        "legalPolicy": {
+          "description": "The legal policy that is being violated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceTextList": {
+      "description": "A list of fragments of text that violated the policy.",
+      "id": "AdPolicyTopicEvidenceTextList",
+      "properties": {
+        "texts": {
+          "description": "The fragments of text from the resource that caused the policy finding.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceTrademark": {
+      "description": "Trademark terms that caused a policy violation.",
+      "id": "AdPolicyTopicEvidenceTrademark",
+      "properties": {
+        "countryRestrictions": {
+          "description": "Countries where the policy violation is relevant.",
+          "items": {
+            "$ref": "AdPolicyCriterionRestriction"
+          },
+          "type": "array"
+        },
+        "owner": {
+          "description": "The trademark content owner.",
+          "type": "string"
+        },
+        "term": {
+          "description": "The trademark term.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdPolicyTopicEvidenceWebsiteList": {
+      "description": "A list of websites that violated the policy.",
+      "id": "AdPolicyTopicEvidenceWebsiteList",
+      "properties": {
+        "websites": {
+          "description": "Websites that caused the policy finding.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -10802,7 +12042,7 @@
             "Creative height and width in pixels. Value is stored in the creativeDimensionValue field of the comparison value.",
             "Video content duration. Value is stored in the contentDurationValue field of the comparison value. The comparisonOperator field must be set to `LIST_CONTAINS`.",
             "Video delivery type. Value is stored in the contentStreamTypeValue field of the comparison value. The comparisonOperator field must be set to `LIST_CONTAINS`.",
-            "Video genre id. Value is stored in the int64Value field of the comparison value. The comparisonOperator field must be set to `LIST_CONTAINS`."
+            "Video genre id. Value is stored in the contentGenreIdValue field of the comparison value. The comparisonOperator field must be set to `LIST_CONTAINS`."
           ],
           "type": "string"
         }
@@ -11794,6 +13034,34 @@
           "description": "The total sum of charges made under this budget, including tax, in micros of the invoice's currency. For example, if currency_code is `USD`, then 1000000 represents one US dollar.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BulkCreateAdAssetsRequest": {
+      "description": "A request message for BulkCreateAdAssets.",
+      "id": "BulkCreateAdAssetsRequest",
+      "properties": {
+        "adAssets": {
+          "description": "Required. Ad assets to create. Only supports assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`.",
+          "items": {
+            "$ref": "AdAsset"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BulkCreateAdAssetsResponse": {
+      "description": "A response message for BulkCreateAdAssets.",
+      "id": "BulkCreateAdAssetsResponse",
+      "properties": {
+        "adAssets": {
+          "description": "The created ad assets.",
+          "items": {
+            "$ref": "AdAsset"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -13424,6 +14692,17 @@
       },
       "type": "object"
     },
+    "CreateAdAssetRequest": {
+      "description": "A request message for CreateAdAsset.",
+      "id": "CreateAdAssetRequest",
+      "properties": {
+        "adAsset": {
+          "$ref": "AdAsset",
+          "description": "Required. The ad asset to create. Only supports assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`."
+        }
+      },
+      "type": "object"
+    },
     "CreateAssetRequest": {
       "description": "A request message for CreateAsset.",
       "id": "CreateAssetRequest",
@@ -13614,7 +14893,8 @@
             "SDF_VERSION_8",
             "SDF_VERSION_8_1",
             "SDF_VERSION_9",
-            "SDF_VERSION_9_1"
+            "SDF_VERSION_9_1",
+            "SDF_VERSION_9_2"
           ],
           "enumDeprecated": [
             false,
@@ -13629,6 +14909,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -13654,7 +14935,8 @@
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
             "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
-            "SDF version 9.1."
+            "SDF version 9.1.",
+            "SDF version 9.2."
           ],
           "type": "string"
         }
@@ -17943,12 +19225,14 @@
           "enum": [
             "SUSPICIOUS_ACTIVITY_UNSPECIFIED",
             "SUSPICIOUS_ACTIVITY_HR",
-            "SUSPICIOUS_ACTIVITY_HMR"
+            "SUSPICIOUS_ACTIVITY_HMR",
+            "SUSPICIOUS_ACTIVITY_FD"
           ],
           "enumDescriptions": [
             "This enum is only a placeholder and it doesn't specify any ad fraud prevention options.",
             "Ad Fraud - Exclude High Risk.",
-            "Ad Fraud - Exclude High and Moderate Risk."
+            "Ad Fraud - Exclude High and Moderate Risk.",
+            "Ad Fraud - Exclude Fraudulent Device."
           ],
           "type": "string"
         },
@@ -19230,6 +20514,24 @@
       },
       "type": "object"
     },
+    "ListAdAssetsResponse": {
+      "description": "A response message for ListAdAssets.",
+      "id": "ListAdAssetsResponse",
+      "properties": {
+        "adAssets": {
+          "description": "The list of ad assets. The list will only contain assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO`. This list will be absent if empty.",
+          "items": {
+            "$ref": "AdAsset"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListAdAssets` method to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAdGroupAdsResponse": {
       "id": "ListAdGroupAdsResponse",
       "properties": {
@@ -19830,6 +21132,24 @@
           "description": "The list of users. This list will be absent if empty.",
           "items": {
             "$ref": "User"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListYoutubeAssetAssociationsResponse": {
+      "description": "Response message for YoutubeAssetAssociationService.ListYoutubeAssetAssociations.",
+      "id": "ListYoutubeAssetAssociationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListYoutubeAssetAssociations` method to retrieve the next page of results.",
+          "type": "string"
+        },
+        "youtubeAssetAssociations": {
+          "description": "The list of asset associations. This list will be absent if empty.",
+          "items": {
+            "$ref": "YoutubeAssetAssociation"
           },
           "type": "array"
         }
@@ -21486,7 +22806,8 @@
             "SDF_VERSION_8",
             "SDF_VERSION_8_1",
             "SDF_VERSION_9",
-            "SDF_VERSION_9_1"
+            "SDF_VERSION_9_1",
+            "SDF_VERSION_9_2"
           ],
           "enumDeprecated": [
             false,
@@ -21501,6 +22822,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -21526,7 +22848,8 @@
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
             "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
-            "SDF version 9.1."
+            "SDF version 9.1.",
+            "SDF version 9.2."
           ],
           "type": "string"
         }
@@ -21578,7 +22901,8 @@
             "SDF_VERSION_8",
             "SDF_VERSION_8_1",
             "SDF_VERSION_9",
-            "SDF_VERSION_9_1"
+            "SDF_VERSION_9_1",
+            "SDF_VERSION_9_2"
           ],
           "enumDeprecated": [
             false,
@@ -21593,6 +22917,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -21618,7 +22943,8 @@
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
             "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
-            "SDF version 9.1."
+            "SDF version 9.1.",
+            "SDF version 9.2."
           ],
           "type": "string"
         }
@@ -22509,6 +23835,42 @@
       },
       "type": "object"
     },
+    "UploadAdAssetRequest": {
+      "description": "A request message for UploadAdAsset.",
+      "id": "UploadAdAssetRequest",
+      "properties": {
+        "adAssetType": {
+          "description": "Required. The type of the ad asset. Only `AD_ASSET_TYPE_IMAGE` is supported.",
+          "enum": [
+            "AD_ASSET_TYPE_UNSPECIFIED",
+            "AD_ASSET_TYPE_IMAGE",
+            "AD_ASSET_TYPE_YOUTUBE_VIDEO"
+          ],
+          "enumDescriptions": [
+            "The ad asset type is unspecified.",
+            "The ad asset is a YouTube/DemandGen image.",
+            "The ad asset is a YouTube video."
+          ],
+          "type": "string"
+        },
+        "filename": {
+          "description": "Required. The filename of the ad asset, including the file extension. The filename must be UTF-8 encoded with a maximum size of 240 bytes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UploadAdAssetResponse": {
+      "description": "A response message for UploadAdAsset.",
+      "id": "UploadAdAssetResponse",
+      "properties": {
+        "adAsset": {
+          "$ref": "AdAsset",
+          "description": "The created ad asset."
+        }
+      },
+      "type": "object"
+    },
     "UrlAssignedTargetingOptionDetails": {
       "description": "Details for assigned URL targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_URL`.",
       "id": "UrlAssignedTargetingOptionDetails",
@@ -23101,6 +24463,188 @@
       },
       "type": "object"
     },
+    "YoutubeAssetAssociation": {
+      "description": "An association between a resource and a YouTube asset.",
+      "id": "YoutubeAssetAssociation",
+      "properties": {
+        "linkedYoutubeAsset": {
+          "$ref": "YoutubeAssetAssociationLinkedYouTubeAsset",
+          "description": "Required. The YouTube asset associated with the resource."
+        },
+        "name": {
+          "description": "Identifier. The resource name of the association. For line item-level associations: The name pattern is `advertisers/{advertiser_id}/lineItems/{line_item_id}/youtubeAssetTypes/{youtube_asset_type}/youtubeAssetAssociations/{youtube_asset_association_id}`. For ad group-level associations: The name pattern is `advertisers/{advertiser_id}/adGroups/{ad_group_id}/youtubeAssetTypes/{youtube_asset_type}/youtubeAssetAssociations/{youtube_asset_association_id}`. For `YOUTUBE_ASSET_TYPE_LOCATION` and `YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION` associations: `youtube_asset_association_id` is the ID of the asset set linked, or 0 if the location_matching_type or affiliate_location_matching_type is `DISABLED`. For `YOUTUBE_ASSET_TYPE_SITELINK` associations: `youtube_asset_association_id` is be the ID of the sitelink asset linked.",
+          "type": "string"
+        },
+        "youtubeAssetType": {
+          "description": "Required. The type of YouTube asset associated with the resource.",
+          "enum": [
+            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+            "YOUTUBE_ASSET_TYPE_LOCATION",
+            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+            "YOUTUBE_ASSET_TYPE_SITELINK"
+          ],
+          "enumDescriptions": [
+            "YouTube asset type is not specified or is unknown in this version.",
+            "Location asset.",
+            "Affiliate location asset.",
+            "Sitelink asset."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeAssetAssociationAffiliateLocationAssetFilter": {
+      "description": "An asset filter that matches eligible affiliate location assets for serving.",
+      "id": "YoutubeAssetAssociationAffiliateLocationAssetFilter",
+      "properties": {
+        "affiliateLocationMatchingFunction": {
+          "$ref": "YoutubeAssetAssociationAffiliateLocationAssetFilterAffiliateLocationMatchingFunction",
+          "description": "Optional. The matching function that determines how the affiliate location asset filter matches affiliate location assets. This field is required and can only be set for if affiliate_location_matching_type is `SELECTED_CHAINS`."
+        },
+        "affiliateLocationMatchingType": {
+          "description": "Required. The matching type of this affiliate location asset filter.",
+          "enum": [
+            "AFFILIATE_LOCATION_MATCHING_TYPE_UNSPECIFIED",
+            "SELECT_ALL",
+            "SELECTED_CHAINS",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Affiliate location matching type is not specified or is unknown in this version.",
+            "All available affiliate location assets are eligible for serving.",
+            "The selected affiliate location assets can serve.",
+            "No affiliate location assets can serve."
+          ],
+          "type": "string"
+        },
+        "assetSetId": {
+          "description": "Output only. The ID of the asset set that matches the affiliate location assets eligible for serving.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeAssetAssociationAffiliateLocationAssetFilterAffiliateLocationChain": {
+      "description": "A chain of affiliate locations.",
+      "id": "YoutubeAssetAssociationAffiliateLocationAssetFilterAffiliateLocationChain",
+      "properties": {
+        "chainId": {
+          "description": "Required. ID of the affiliate location chain.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeAssetAssociationAffiliateLocationAssetFilterAffiliateLocationMatchingFunction": {
+      "description": "The matching function for an affiliate location asset filter.",
+      "id": "YoutubeAssetAssociationAffiliateLocationAssetFilterAffiliateLocationMatchingFunction",
+      "properties": {
+        "chains": {
+          "description": "Optional. The selected affiliate location chain IDs. This field is required if affiliate_location_matching_type is `SELECTED_CHAINS`.",
+          "items": {
+            "$ref": "YoutubeAssetAssociationAffiliateLocationAssetFilterAffiliateLocationChain"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeAssetAssociationLinkedYouTubeAsset": {
+      "description": "A YouTube asset linked to a resource in a YoutubeAssetAssociation.",
+      "id": "YoutubeAssetAssociationLinkedYouTubeAsset",
+      "properties": {
+        "affiliateLocationAssetFilter": {
+          "$ref": "YoutubeAssetAssociationAffiliateLocationAssetFilter",
+          "description": "An affiliate location asset filter. This can be set only when youtube_asset_type is `YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION`."
+        },
+        "locationAssetFilter": {
+          "$ref": "YoutubeAssetAssociationLocationAssetFilter",
+          "description": "A location asset filter. This can be set only when youtube_asset_type is `YOUTUBE_ASSET_TYPE_LOCATION`."
+        },
+        "sitelinkAsset": {
+          "$ref": "YoutubeAssetAssociationSitelinkAsset",
+          "description": "A sitelink asset. This can be set only when youtube_asset_type is `YOUTUBE_ASSET_TYPE_SITELINK`."
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeAssetAssociationLocationAssetFilter": {
+      "description": "An asset filter that matches eligible location assets for serving.",
+      "id": "YoutubeAssetAssociationLocationAssetFilter",
+      "properties": {
+        "assetSetId": {
+          "description": "Output only. The ID of the asset set that matches the location assets eligible for serving.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "locationMatchingFunction": {
+          "$ref": "YoutubeAssetAssociationLocationAssetFilterLocationMatchingFunction",
+          "description": "Optional. The matching function that determines how the location asset filter matches location assets. This field is required and can only be set for if location_matching_type is `FILTER` or `SELECTED_ASSETS`."
+        },
+        "locationMatchingType": {
+          "description": "Required. The matching type of this location asset filter.",
+          "enum": [
+            "LOCATION_MATCHING_TYPE_UNSPECIFIED",
+            "SELECT_ALL",
+            "FILTER",
+            "SELECTED_ASSETS",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Location matching type is not specified or is unknown in this version.",
+            "All available location assets are eligible for serving.",
+            "The location assets that match a provided business name and/or label filters can serve.",
+            "Only the selected location assets can serve.",
+            "No location assets can serve."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeAssetAssociationLocationAssetFilterLocationMatchingFunction": {
+      "description": "The matching function for a location asset filter.",
+      "id": "YoutubeAssetAssociationLocationAssetFilterLocationMatchingFunction",
+      "properties": {
+        "business": {
+          "description": "Optional. The business name to match with. This field is optional and can only be set if location_matching_type is `FILTER`.",
+          "type": "string"
+        },
+        "labels": {
+          "description": "Optional. The labels to match with. Labels are logically OR'ed together. This field is optional and can only be set if location_matching_type is `FILTER`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "locationAssetIds": {
+          "description": "Optional. The selected location asset IDs. This field is required if location_matching_type is `SELECTED_ASSETS`.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeAssetAssociationSitelinkAsset": {
+      "description": "A sitelink asset.",
+      "id": "YoutubeAssetAssociationSitelinkAsset",
+      "properties": {
+        "assetId": {
+          "description": "Required. ID of the sitelink asset.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "YoutubeChannelAssignedTargetingOptionDetails": {
       "description": "Details for YouTube channel assigned targeting option. This will be populated in the youtube_channel_details field when targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL`.",
       "id": "YoutubeChannelAssignedTargetingOptionDetails",
@@ -23112,6 +24656,17 @@
         "negative": {
           "description": "Indicates if this option is being negatively targeted.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeVideoAsset": {
+      "description": "Data for a YouTube video ad asset.",
+      "id": "YoutubeVideoAsset",
+      "properties": {
+        "youtubeVideoId": {
+          "description": "Required. The YouTube video id of the asset. This is the 11 char string value used in the YouTube video URL.",
+          "type": "string"
         }
       },
       "type": "object"
