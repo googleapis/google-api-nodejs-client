@@ -216,6 +216,11 @@
               "description": "The standard list page token.",
               "location": "query",
               "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "v1/{+name}",
@@ -542,7 +547,7 @@
       }
     }
   },
-  "revision": "20250919",
+  "revision": "20251023",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "AddTenantProjectRequest": {
@@ -1787,6 +1792,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -3326,6 +3338,10 @@
         },
         "name": {
           "description": "P4 service identity resource name. An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123/serviceIdentities/default`",
+          "type": "string"
+        },
+        "projectRole": {
+          "description": "The project-level IAM role defined in the service agent's grant configuration. This is the standard role intended for this service agent. This field is populated regardless of the `skip_role_attach` option in the request. If `skip_role_attach` is true, the caller can use this value to know which role they are responsible for granting.",
           "type": "string"
         },
         "tag": {

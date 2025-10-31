@@ -2131,6 +2131,10 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     name?: string | null;
     /**
+     * The project-level IAM role defined in the service agent's grant configuration. This is the standard role intended for this service agent. This field is populated regardless of the `skip_role_attach` option in the request. If `skip_role_attach` is true, the caller can use this value to know which role they are responsible for granting.
+     */
+    projectRole?: string | null;
+    /**
      * The P4 service identity configuration tag. This must be defined in activation_grants. If not specified when creating the account, the tag is set to "default".
      */
     tag?: string | null;
