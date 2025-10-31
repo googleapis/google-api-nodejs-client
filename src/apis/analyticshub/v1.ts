@@ -581,6 +581,10 @@ export namespace analyticshub_v1 {
      * Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.
      */
     retryPolicy?: Schema$RetryPolicy;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * User-defined JavaScript function that can transform or filter a Pub/Sub message.
@@ -705,6 +709,10 @@ export namespace analyticshub_v1 {
      * Output only. Current state of the listing.
      */
     state?: string | null;
+    /**
+     * Optional. If set, stored procedure configuration will be propagated and enforced on the linked dataset.
+     */
+    storedProcedureConfig?: Schema$StoredProcedureConfig;
   }
   /**
    * Message for response to the list of Listings.
@@ -1147,6 +1155,19 @@ export namespace analyticshub_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Stored procedure configuration, used to configure stored procedure sharing on linked dataset.
+   */
+  export interface Schema$StoredProcedureConfig {
+    /**
+     * Output only. Types of stored procedure supported to share.
+     */
+    allowedStoredProcedureTypes?: string[] | null;
+    /**
+     * Optional. If true, enable sharing of stored procedure.
+     */
+    enabled?: boolean | null;
   }
   /**
    * Message for submitting a QueryTemplate.
@@ -3266,7 +3287,8 @@ export namespace analyticshub_v1 {
      *         //   "requestAccess": "my_requestAccess",
      *         //   "resourceType": "my_resourceType",
      *         //   "restrictedExportConfig": {},
-     *         //   "state": "my_state"
+     *         //   "state": "my_state",
+     *         //   "storedProcedureConfig": {}
      *         // }
      *       },
      *     });
@@ -3292,7 +3314,8 @@ export namespace analyticshub_v1 {
      *   //   "requestAccess": "my_requestAccess",
      *   //   "resourceType": "my_resourceType",
      *   //   "restrictedExportConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "storedProcedureConfig": {}
      *   // }
      * }
      *
@@ -3590,7 +3613,8 @@ export namespace analyticshub_v1 {
      *   //   "requestAccess": "my_requestAccess",
      *   //   "resourceType": "my_resourceType",
      *   //   "restrictedExportConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "storedProcedureConfig": {}
      *   // }
      * }
      *
@@ -4216,7 +4240,8 @@ export namespace analyticshub_v1 {
      *         //   "requestAccess": "my_requestAccess",
      *         //   "resourceType": "my_resourceType",
      *         //   "restrictedExportConfig": {},
-     *         //   "state": "my_state"
+     *         //   "state": "my_state",
+     *         //   "storedProcedureConfig": {}
      *         // }
      *       },
      *     });
@@ -4242,7 +4267,8 @@ export namespace analyticshub_v1 {
      *   //   "requestAccess": "my_requestAccess",
      *   //   "resourceType": "my_resourceType",
      *   //   "restrictedExportConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "storedProcedureConfig": {}
      *   // }
      * }
      *

@@ -1247,7 +1247,7 @@
       }
     }
   },
-  "revision": "20250901",
+  "revision": "20251020",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "ApproveQueryTemplateRequest": {
@@ -1837,6 +1837,13 @@
         "retryPolicy": {
           "$ref": "RetryPolicy",
           "description": "Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message."
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
         }
       },
       "type": "object"
@@ -2147,6 +2154,10 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "storedProcedureConfig": {
+          "$ref": "StoredProcedureConfig",
+          "description": "Optional. If set, stored procedure configuration will be propagated and enforced on the linked dataset."
         }
       },
       "type": "object"
@@ -2665,6 +2676,33 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StoredProcedureConfig": {
+      "description": "Stored procedure configuration, used to configure stored procedure sharing on linked dataset.",
+      "id": "StoredProcedureConfig",
+      "properties": {
+        "allowedStoredProcedureTypes": {
+          "description": "Output only. Types of stored procedure supported to share.",
+          "items": {
+            "enum": [
+              "STORED_PROCEDURE_TYPE_UNSPECIFIED",
+              "SQL_PROCEDURE"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "SQL stored procedure."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "enabled": {
+          "description": "Optional. If true, enable sharing of stored procedure.",
+          "type": "boolean"
         }
       },
       "type": "object"
