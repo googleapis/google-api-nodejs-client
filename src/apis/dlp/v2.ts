@@ -1503,7 +1503,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2DataSourceType {
     /**
-     * Output only. An identifying string to the type of resource being profiled. Current values: * google/bigquery/table * google/project * google/sql/table * google/gcs/bucket
+     * An identifying string to the type of resource being profiled. Current values: * google/bigquery/table * google/project * google/sql/table * google/gcs/bucket
      */
     dataSource?: string | null;
   }
@@ -5527,11 +5527,11 @@ export namespace dlp_v2 {
     patterns?: Schema$GooglePrivacyDlpV2VertexDatasetRegex[];
   }
   /**
-   * Identifies a single Vertex AI dataset.
+   * Identifies a single Vertex AI resource. Currently only datasets are supported.
    */
   export interface Schema$GooglePrivacyDlpV2VertexDatasetResourceReference {
     /**
-     * Required. The name of the dataset resource. If set within a project-level configuration, the specified resource must be within the project.
+     * Required. The name of the Vertex AI resource. If set within a project-level configuration, the specified resource must be within the project. Examples: * `projects/{project\}/locations/{location\}/datasets/{dataset\}`
      */
     datasetResourceName?: string | null;
   }
