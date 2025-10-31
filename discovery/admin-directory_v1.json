@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20250930",
+  "revision": "20251021",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5059,6 +5059,24 @@
       },
       "type": "object"
     },
+    "BluetoothAdapterInfo": {
+      "description": "Information about a device's Bluetooth adapter.",
+      "id": "BluetoothAdapterInfo",
+      "properties": {
+        "address": {
+          "description": "Output only. The MAC address of the adapter.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "numConnectedDevices": {
+          "description": "Output only. The number of devices connected to this adapter.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Building": {
       "description": "Public API: Resources.buildings",
       "id": "Building",
@@ -5436,6 +5454,14 @@
           "description": "Output only. Contains backlight information for the device.",
           "items": {
             "$ref": "BacklightInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "bluetoothAdapterInfo": {
+          "description": "Output only. Information about bluetooth adapters of the device.",
+          "items": {
+            "$ref": "BluetoothAdapterInfo"
           },
           "readOnly": true,
           "type": "array"

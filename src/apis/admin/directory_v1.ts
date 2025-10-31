@@ -370,6 +370,19 @@ export namespace admin_directory_v1 {
     printServerIds?: string[] | null;
   }
   /**
+   * Information about a device's Bluetooth adapter.
+   */
+  export interface Schema$BluetoothAdapterInfo {
+    /**
+     * Output only. The MAC address of the adapter.
+     */
+    address?: string | null;
+    /**
+     * Output only. The number of devices connected to this adapter.
+     */
+    numConnectedDevices?: number | null;
+  }
+  /**
    * Public API: Resources.buildings
    */
   export interface Schema$Building {
@@ -670,6 +683,10 @@ export namespace admin_directory_v1 {
      * Output only. Contains backlight information for the device.
      */
     backlightInfo?: Schema$BacklightInfo[];
+    /**
+     * Output only. Information about bluetooth adapters of the device.
+     */
+    bluetoothAdapterInfo?: Schema$BluetoothAdapterInfo[];
     /**
      * The boot mode for the device. The possible values are: * `Verified`: The device is running a valid version of the Chrome OS. * `Dev`: The devices's developer hardware switch is enabled. When booted, the device has a command line shell. For an example of a developer switch, see the [Chromebook developer information](https://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook#TOC-Developer-switch).
      */
@@ -3725,6 +3742,7 @@ export namespace admin_directory_v1 {
      *   //   "autoUpdateExpiration": "my_autoUpdateExpiration",
      *   //   "autoUpdateThrough": "my_autoUpdateThrough",
      *   //   "backlightInfo": [],
+     *   //   "bluetoothAdapterInfo": [],
      *   //   "bootMode": "my_bootMode",
      *   //   "chromeOsType": "my_chromeOsType",
      *   //   "cpuInfo": [],
@@ -4217,6 +4235,7 @@ export namespace admin_directory_v1 {
      *       //   "autoUpdateExpiration": "my_autoUpdateExpiration",
      *       //   "autoUpdateThrough": "my_autoUpdateThrough",
      *       //   "backlightInfo": [],
+     *       //   "bluetoothAdapterInfo": [],
      *       //   "bootMode": "my_bootMode",
      *       //   "chromeOsType": "my_chromeOsType",
      *       //   "cpuInfo": [],
@@ -4277,6 +4296,7 @@ export namespace admin_directory_v1 {
      *   //   "autoUpdateExpiration": "my_autoUpdateExpiration",
      *   //   "autoUpdateThrough": "my_autoUpdateThrough",
      *   //   "backlightInfo": [],
+     *   //   "bluetoothAdapterInfo": [],
      *   //   "bootMode": "my_bootMode",
      *   //   "chromeOsType": "my_chromeOsType",
      *   //   "cpuInfo": [],
@@ -4470,6 +4490,7 @@ export namespace admin_directory_v1 {
      *       //   "autoUpdateExpiration": "my_autoUpdateExpiration",
      *       //   "autoUpdateThrough": "my_autoUpdateThrough",
      *       //   "backlightInfo": [],
+     *       //   "bluetoothAdapterInfo": [],
      *       //   "bootMode": "my_bootMode",
      *       //   "chromeOsType": "my_chromeOsType",
      *       //   "cpuInfo": [],
@@ -4530,6 +4551,7 @@ export namespace admin_directory_v1 {
      *   //   "autoUpdateExpiration": "my_autoUpdateExpiration",
      *   //   "autoUpdateThrough": "my_autoUpdateThrough",
      *   //   "backlightInfo": [],
+     *   //   "bluetoothAdapterInfo": [],
      *   //   "bootMode": "my_bootMode",
      *   //   "chromeOsType": "my_chromeOsType",
      *   //   "cpuInfo": [],
