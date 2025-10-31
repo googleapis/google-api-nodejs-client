@@ -1363,6 +1363,72 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
+                        "fetchForResourceType": {
+                          "description": "Fetch Backups for a given resource type.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}/dataSources/{dataSourcesId}/backups:fetchForResourceType",
+                          "httpMethod": "GET",
+                          "id": "backupdr.projects.locations.backupVaults.dataSources.backups.fetchForResourceType",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields:",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The maximum number of Backups to return. The service may return fewer than this value. If unspecified, at most 50 Backups will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. A page token, received from a previous call of `FetchBackupsForResourceType`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchBackupsForResourceType` must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Datasources are the parent resource for the backups. Format: projects/{project}/locations/{location}/backupVaults/{backupVaultId}/dataSources/{datasourceId}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+/dataSources/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "resourceType": {
+                              "description": "Required. The type of the GCP resource. Ex: sqladmin.googleapis.com/Instance",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "view": {
+                              "description": "Optional. This parameter is used to specify the view of the backup. If not specified, the default view is BASIC.",
+                              "enum": [
+                                "BACKUP_VIEW_UNSPECIFIED",
+                                "BACKUP_VIEW_BASIC",
+                                "BACKUP_VIEW_FULL"
+                              ],
+                              "enumDescriptions": [
+                                "If the value is not set, the default 'FULL' view is used.",
+                                "Includes basic data about the Backup, but not the full contents.",
+                                "Includes all data about the Backup. This is the default value (for both ListBackups and GetBackup)."
+                              ],
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/backups:fetchForResourceType",
+                          "response": {
+                            "$ref": "FetchBackupsForResourceTypeResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "get": {
                           "description": "Gets details of a Backup.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}/dataSources/{dataSourcesId}/backups/{backupsId}",
@@ -1610,6 +1676,52 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "DataSourceReference"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists DataSourceReferences for a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataSourceReferences",
+                  "httpMethod": "GET",
+                  "id": "backupdr.projects.locations.dataSourceReferences.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter expression that filters the results listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The following field and operator combinations are supported: * data_source_gcp_resource_info.gcp_resourcename with `=`, `!=` * data_source_gcp_resource_info.type with `=`, `!=`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * data_source * data_source_gcp_resource_info.gcp_resourcename",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of DataSourceReferences to return. The service may return fewer than this value. If unspecified, at most 50 DataSourceReferences will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListDataSourceReferences` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDataSourceReferences` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dataSourceReferences",
+                  "response": {
+                    "$ref": "ListDataSourceReferencesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2122,7 +2234,7 @@
       }
     }
   },
-  "revision": "20251001",
+  "revision": "20251015",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -2602,6 +2714,11 @@
           "description": "Output only. Configuration for a Google Cloud resource.",
           "readOnly": true
         },
+        "gcpResource": {
+          "$ref": "BackupGcpResource",
+          "description": "Output only. Unique identifier of the GCP resource that is being backed up.",
+          "readOnly": true
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -2945,6 +3062,25 @@
         "thirdPartyManagementUri": {
           "description": "Output only. The URI of the BackupDr template resource for the third party identity users.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackupGcpResource": {
+      "description": "Minimum details to identify a Google Cloud resource for a backup.",
+      "id": "BackupGcpResource",
+      "properties": {
+        "gcpResourcename": {
+          "description": "Name of the Google Cloud resource.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of the resource: //\"global\"/\"unspecified\".",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.",
           "type": "string"
         }
       },
@@ -3447,6 +3583,18 @@
           "description": "Output only. Whether the backup is a final backup.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "instanceCreateTime": {
+          "description": "Output only. The instance creation timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "instanceDeleteTime": {
+          "description": "Output only. The instance delete timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "instanceTier": {
           "description": "Output only. The tier (or machine type) for this instance. Example: `db-custom-1-3840`",
@@ -4132,6 +4280,12 @@
         "name": {
           "description": "Identifier. The resource name of the DataSourceReference. Format: projects/{project}/locations/{location}/dataSourceReferences/{data_source_reference}",
           "type": "string"
+        },
+        "totalStoredBytes": {
+          "description": "Output only. Total size of the storage used by all backup resources for the referenced datasource.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4496,6 +4650,24 @@
         "nextPageToken": {
           "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FetchBackupsForResourceTypeResponse": {
+      "description": "Response for the FetchBackupsForResourceType method.",
+      "id": "FetchBackupsForResourceTypeResponse",
+      "properties": {
+        "backups": {
+          "description": "The Backups from the specified parent.",
+          "items": {
+            "$ref": "Backup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -4934,6 +5106,24 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListDataSourceReferencesResponse": {
+      "description": "Response for the ListDataSourceReferences method.",
+      "id": "ListDataSourceReferencesResponse",
+      "properties": {
+        "dataSourceReferences": {
+          "description": "The DataSourceReferences from the specified parent.",
+          "items": {
+            "$ref": "DataSourceReference"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
         }
       },
       "type": "object"
