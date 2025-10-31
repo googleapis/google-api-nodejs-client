@@ -1215,34 +1215,6 @@
                   "resources": {
                     "conversations": {
                       "methods": {
-                        "bulkAnalyze": {
-                          "description": "Analyzes multiple conversations in a single request.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations:bulkAnalyze",
-                          "httpMethod": "POST",
-                          "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.bulkAnalyze",
-                          "parameterOrder": [
-                            "parent"
-                          ],
-                          "parameters": {
-                            "parent": {
-                              "description": "Required. The parent resource to create analyses in.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+parent}/conversations:bulkAnalyze",
-                          "request": {
-                            "$ref": "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest"
-                          },
-                          "response": {
-                            "$ref": "GoogleLongrunningOperation"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
                         "calculateStats": {
                           "description": "Gets conversation statistics.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations:calculateStats",
@@ -1406,129 +1378,6 @@
                         }
                       },
                       "resources": {
-                        "analyses": {
-                          "methods": {
-                            "create": {
-                              "description": "Creates an analysis. The long running operation is done when the analysis has completed.",
-                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/analyses",
-                              "httpMethod": "POST",
-                              "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.analyses.create",
-                              "parameterOrder": [
-                                "parent"
-                              ],
-                              "parameters": {
-                                "parent": {
-                                  "description": "Required. The parent resource of the analysis.",
-                                  "location": "path",
-                                  "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                }
-                              },
-                              "path": "v1/{+parent}/analyses",
-                              "request": {
-                                "$ref": "GoogleCloudContactcenterinsightsV1Analysis"
-                              },
-                              "response": {
-                                "$ref": "GoogleLongrunningOperation"
-                              },
-                              "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
-                              ]
-                            },
-                            "delete": {
-                              "description": "Deletes an analysis.",
-                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/analyses/{analysesId}",
-                              "httpMethod": "DELETE",
-                              "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.analyses.delete",
-                              "parameterOrder": [
-                                "name"
-                              ],
-                              "parameters": {
-                                "name": {
-                                  "description": "Required. The name of the analysis to delete.",
-                                  "location": "path",
-                                  "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+/analyses/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                }
-                              },
-                              "path": "v1/{+name}",
-                              "response": {
-                                "$ref": "GoogleProtobufEmpty"
-                              },
-                              "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
-                              ]
-                            },
-                            "get": {
-                              "description": "Gets an analysis.",
-                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/analyses/{analysesId}",
-                              "httpMethod": "GET",
-                              "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.analyses.get",
-                              "parameterOrder": [
-                                "name"
-                              ],
-                              "parameters": {
-                                "name": {
-                                  "description": "Required. The name of the analysis to get.",
-                                  "location": "path",
-                                  "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+/analyses/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                }
-                              },
-                              "path": "v1/{+name}",
-                              "response": {
-                                "$ref": "GoogleCloudContactcenterinsightsV1Analysis"
-                              },
-                              "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
-                              ]
-                            },
-                            "list": {
-                              "description": "Lists analyses.",
-                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/analyses",
-                              "httpMethod": "GET",
-                              "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.analyses.list",
-                              "parameterOrder": [
-                                "parent"
-                              ],
-                              "parameters": {
-                                "filter": {
-                                  "description": "A filter to reduce results to a specific subset. Useful for querying conversations with specific properties.",
-                                  "location": "query",
-                                  "type": "string"
-                                },
-                                "pageSize": {
-                                  "description": "The maximum number of analyses to return in the response. If this value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
-                                  "format": "int32",
-                                  "location": "query",
-                                  "type": "integer"
-                                },
-                                "pageToken": {
-                                  "description": "The value returned by the last `ListAnalysesResponse`; indicates that this is a continuation of a prior `ListAnalyses` call and the system should return the next page of data.",
-                                  "location": "query",
-                                  "type": "string"
-                                },
-                                "parent": {
-                                  "description": "Required. The parent resource of the analyses.",
-                                  "location": "path",
-                                  "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                }
-                              },
-                              "path": "v1/{+parent}/analyses",
-                              "response": {
-                                "$ref": "GoogleCloudContactcenterinsightsV1ListAnalysesResponse"
-                              },
-                              "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
-                              ]
-                            }
-                          }
-                        },
                         "assessments": {
                           "methods": {
                             "appeal": {
@@ -3140,6 +2989,38 @@
                       ]
                     }
                   }
+                },
+                "segments": {
+                  "methods": {
+                    "bulkAnalyze": {
+                      "description": "Analyzes multiple conversations in a single request.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/segments:bulkAnalyze",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.conversations.segments.bulkAnalyze",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource to create analyses in.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/segments:bulkAnalyze",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -3432,34 +3313,6 @@
               "resources": {
                 "conversations": {
                   "methods": {
-                    "bulkAnalyze": {
-                      "description": "Analyzes multiple conversations in a single request.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations:bulkAnalyze",
-                      "httpMethod": "POST",
-                      "id": "contactcenterinsights.projects.locations.datasets.conversations.bulkAnalyze",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The parent resource to create analyses in.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+parent}/conversations:bulkAnalyze",
-                      "request": {
-                        "$ref": "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest"
-                      },
-                      "response": {
-                        "$ref": "GoogleLongrunningOperation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "bulkDelete": {
                       "description": "Deletes multiple conversations in a single request.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations:bulkDelete",
@@ -3705,129 +3558,6 @@
                     }
                   },
                   "resources": {
-                    "analyses": {
-                      "methods": {
-                        "create": {
-                          "description": "Creates an analysis. The long running operation is done when the analysis has completed.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/analyses",
-                          "httpMethod": "POST",
-                          "id": "contactcenterinsights.projects.locations.datasets.conversations.analyses.create",
-                          "parameterOrder": [
-                            "parent"
-                          ],
-                          "parameters": {
-                            "parent": {
-                              "description": "Required. The parent resource of the analysis.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+parent}/analyses",
-                          "request": {
-                            "$ref": "GoogleCloudContactcenterinsightsV1Analysis"
-                          },
-                          "response": {
-                            "$ref": "GoogleLongrunningOperation"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "delete": {
-                          "description": "Deletes an analysis.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/analyses/{analysesId}",
-                          "httpMethod": "DELETE",
-                          "id": "contactcenterinsights.projects.locations.datasets.conversations.analyses.delete",
-                          "parameterOrder": [
-                            "name"
-                          ],
-                          "parameters": {
-                            "name": {
-                              "description": "Required. The name of the analysis to delete.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+/analyses/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+name}",
-                          "response": {
-                            "$ref": "GoogleProtobufEmpty"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "get": {
-                          "description": "Gets an analysis.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/analyses/{analysesId}",
-                          "httpMethod": "GET",
-                          "id": "contactcenterinsights.projects.locations.datasets.conversations.analyses.get",
-                          "parameterOrder": [
-                            "name"
-                          ],
-                          "parameters": {
-                            "name": {
-                              "description": "Required. The name of the analysis to get.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+/analyses/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+name}",
-                          "response": {
-                            "$ref": "GoogleCloudContactcenterinsightsV1Analysis"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "list": {
-                          "description": "Lists analyses.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/analyses",
-                          "httpMethod": "GET",
-                          "id": "contactcenterinsights.projects.locations.datasets.conversations.analyses.list",
-                          "parameterOrder": [
-                            "parent"
-                          ],
-                          "parameters": {
-                            "filter": {
-                              "description": "A filter to reduce results to a specific subset. Useful for querying conversations with specific properties.",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "pageSize": {
-                              "description": "The maximum number of analyses to return in the response. If this value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
-                              "format": "int32",
-                              "location": "query",
-                              "type": "integer"
-                            },
-                            "pageToken": {
-                              "description": "The value returned by the last `ListAnalysesResponse`; indicates that this is a continuation of a prior `ListAnalyses` call and the system should return the next page of data.",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "parent": {
-                              "description": "Required. The parent resource of the analyses.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+parent}/analyses",
-                          "response": {
-                            "$ref": "GoogleCloudContactcenterinsightsV1ListAnalysesResponse"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        }
-                      }
-                    },
                     "feedbackLabels": {
                       "methods": {
                         "create": {
@@ -5648,7 +5378,7 @@
       }
     }
   },
-  "revision": "20251014",
+  "revision": "20251023",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -7551,6 +7281,26 @@
           "description": "Output only. Metadata about the agent dimension.",
           "readOnly": true
         },
+        "clientSentimentCategoryDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1DimensionClientSentimentCategoryDimensionMetadata",
+          "description": "Output only. Metadata about the client sentiment category dimension.",
+          "readOnly": true
+        },
+        "conversationProfileDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1DimensionConversationProfileDimensionMetadata",
+          "description": "Output only. Metadata about the conversation profile dimension.",
+          "readOnly": true
+        },
+        "conversationalAgentsPlaybookDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1DimensionConversationalAgentsPlaybookDimensionMetadata",
+          "description": "Output only. Metadata about the Conversational Agents playbook dimension.",
+          "readOnly": true
+        },
+        "conversationalAgentsToolDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1DimensionConversationalAgentsToolDimensionMetadata",
+          "description": "Output only. Metadata about the Conversational Agents tool dimension.",
+          "readOnly": true
+        },
         "dimensionKey": {
           "description": "The key of the dimension.",
           "enum": [
@@ -7564,6 +7314,11 @@
             "QA_SCORECARD_ID",
             "CONVERSATION_PROFILE_ID",
             "MEDIUM",
+            "CONVERSATIONAL_AGENTS_PLAYBOOK_ID",
+            "CONVERSATIONAL_AGENTS_PLAYBOOK_NAME",
+            "CONVERSATIONAL_AGENTS_TOOL_ID",
+            "CONVERSATIONAL_AGENTS_TOOL_NAME",
+            "CLIENT_SENTIMENT_CATEGORY",
             "AGENT_VERSION_ID",
             "AGENT_DEPLOYMENT_ID",
             "AGENT_ASSIST_SUPERVISOR_ID"
@@ -7579,6 +7334,11 @@
             "The dimension is keyed by QaScorecardIds. Note that: We only group by the ScorecardId and not the revision-id of the scorecard. This allows for showing stats for the same scorecard across different revisions. This metric is mostly only useful if querying the average normalized score per scorecard.",
             "The dimension is keyed by the conversation profile ID.",
             "The dimension is keyed by the conversation medium.",
+            "The dimension is keyed by the Conversational Agents playbook ID.",
+            "The dimension is keyed by the Conversational Agents playbook display name.",
+            "The dimension is keyed by the Conversational Agents tool ID.",
+            "The dimension is keyed by the Conversational Agents tool display name.",
+            "The dimension is keyed by the client sentiment category.",
             "The dimension is keyed by the agent version ID.",
             "The dimension is keyed by the agent deployment ID.",
             "The dimension is keyed by the supervisor ID of the assigned human supervisor for virtual agents."
@@ -7588,6 +7348,11 @@
         "issueDimensionMetadata": {
           "$ref": "GoogleCloudContactcenterinsightsV1DimensionIssueDimensionMetadata",
           "description": "Output only. Metadata about the issue dimension.",
+          "readOnly": true
+        },
+        "mediumDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1DimensionMediumDimensionMetadata",
+          "description": "Output only. Metadata about the conversation medium dimension.",
           "readOnly": true
         },
         "qaQuestionAnswerDimensionMetadata": {
@@ -7643,6 +7408,58 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1DimensionClientSentimentCategoryDimensionMetadata": {
+      "description": "Metadata about the client sentiment category dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1DimensionClientSentimentCategoryDimensionMetadata",
+      "properties": {
+        "sentimentCategory": {
+          "description": "Optional. The client sentiment category.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1DimensionConversationProfileDimensionMetadata": {
+      "description": "Metadata about the conversation profile dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1DimensionConversationProfileDimensionMetadata",
+      "properties": {
+        "conversationProfileId": {
+          "description": "Optional. The conversation profile ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1DimensionConversationalAgentsPlaybookDimensionMetadata": {
+      "description": "Metadata about the Conversational Agents playbook dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1DimensionConversationalAgentsPlaybookDimensionMetadata",
+      "properties": {
+        "playbookDisplayName": {
+          "description": "Optional. The dialogflow playbook display name.",
+          "type": "string"
+        },
+        "playbookId": {
+          "description": "Optional. The dialogflow playbook ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1DimensionConversationalAgentsToolDimensionMetadata": {
+      "description": "Metadata about the Conversational Agents tool dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1DimensionConversationalAgentsToolDimensionMetadata",
+      "properties": {
+        "toolDisplayName": {
+          "description": "Optional. The dialogflow tool display name.",
+          "type": "string"
+        },
+        "toolId": {
+          "description": "Optional. The dialogflow tool ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1DimensionIssueDimensionMetadata": {
       "description": "Metadata about the issue dimension.",
       "id": "GoogleCloudContactcenterinsightsV1DimensionIssueDimensionMetadata",
@@ -7657,6 +7474,17 @@
         },
         "issueModelId": {
           "description": "The parent issue model ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1DimensionMediumDimensionMetadata": {
+      "description": "Metadata about the conversation medium dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1DimensionMediumDimensionMetadata",
+      "properties": {
+        "medium": {
+          "description": "Optional. The conversation medium. Currently supports : PHONE_CALL, CHAT.",
           "type": "string"
         }
       },
@@ -9527,16 +9355,12 @@
           "enum": [
             "PREDEFINED_QUESTION_TYPE_UNSPECIFIED",
             "CONVERSATION_OUTCOME",
-            "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE",
-            "CONVERSATION_OUTCOME_CUSTOMER_SATISFACTION",
-            "CONVERSATION_OUTCOME_AGENT_HELPFULNESS"
+            "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE"
           ],
           "enumDescriptions": [
             "The type of the predefined question is unspecified.",
             "A prebuilt classifier classfying the outcome of the conversation. For example, if the customer issue mentioned in a conversation has been resolved or not.",
-            "A prebuilt classifier classfying the initiator of the conversation escalation. For example, if it was initiated by the customer or the agent.",
-            "A prebuilt classifier classfying whether the customer is satisfied with the agent's response.",
-            "A prebuilt classifier classfying whether the agent is helpful to the customer."
+            "A prebuilt classifier classfying the initiator of the conversation escalation. For example, if it was initiated by the customer or the agent."
           ],
           "type": "string"
         }
@@ -12094,6 +11918,26 @@
           "description": "Output only. Metadata about the agent dimension.",
           "readOnly": true
         },
+        "clientSentimentCategoryDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1DimensionClientSentimentCategoryDimensionMetadata",
+          "description": "Output only. Metadata about the client sentiment category dimension.",
+          "readOnly": true
+        },
+        "conversationProfileDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1DimensionConversationProfileDimensionMetadata",
+          "description": "Output only. Metadata about the conversation profile dimension.",
+          "readOnly": true
+        },
+        "conversationalAgentsPlaybookDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1DimensionConversationalAgentsPlaybookDimensionMetadata",
+          "description": "Output only. Metadata about the Conversational Agents playbook dimension.",
+          "readOnly": true
+        },
+        "conversationalAgentsToolDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1DimensionConversationalAgentsToolDimensionMetadata",
+          "description": "Output only. Metadata about the Conversational Agents tool dimension.",
+          "readOnly": true
+        },
         "dimensionKey": {
           "description": "The key of the dimension.",
           "enum": [
@@ -12107,6 +11951,11 @@
             "QA_SCORECARD_ID",
             "CONVERSATION_PROFILE_ID",
             "MEDIUM",
+            "CONVERSATIONAL_AGENTS_PLAYBOOK_ID",
+            "CONVERSATIONAL_AGENTS_PLAYBOOK_NAME",
+            "CONVERSATIONAL_AGENTS_TOOL_ID",
+            "CONVERSATIONAL_AGENTS_TOOL_NAME",
+            "CLIENT_SENTIMENT_CATEGORY",
             "AGENT_VERSION_ID",
             "AGENT_DEPLOYMENT_ID",
             "AGENT_ASSIST_SUPERVISOR_ID"
@@ -12122,6 +11971,11 @@
             "The dimension is keyed by QaScorecardIds. Note that: We only group by the ScorecardId and not the revision-id of the scorecard. This allows for showing stats for the same scorecard across different revisions. This metric is mostly only useful if querying the average normalized score per scorecard.",
             "The dimension is keyed by the conversation profile ID.",
             "The dimension is keyed by the conversation medium.",
+            "The dimension is keyed by the Conversational Agents playbook ID.",
+            "The dimension is keyed by the Conversational Agents playbook display name.",
+            "The dimension is keyed by the Conversational Agents tool ID.",
+            "The dimension is keyed by the Conversational Agents tool display name.",
+            "The dimension is keyed by the client sentiment category.",
             "The dimension is keyed by the agent version ID.",
             "The dimension is keyed by the agent deployment ID.",
             "The dimension is keyed by the supervisor ID of the assigned human supervisor for virtual agents."
@@ -12131,6 +11985,11 @@
         "issueDimensionMetadata": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1DimensionIssueDimensionMetadata",
           "description": "Output only. Metadata about the issue dimension.",
+          "readOnly": true
+        },
+        "mediumDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1DimensionMediumDimensionMetadata",
+          "description": "Output only. Metadata about the conversation medium dimension.",
           "readOnly": true
         },
         "qaQuestionAnswerDimensionMetadata": {
@@ -12186,6 +12045,58 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1alpha1DimensionClientSentimentCategoryDimensionMetadata": {
+      "description": "Metadata about the client sentiment category dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1DimensionClientSentimentCategoryDimensionMetadata",
+      "properties": {
+        "sentimentCategory": {
+          "description": "Optional. The client sentiment category.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1DimensionConversationProfileDimensionMetadata": {
+      "description": "Metadata about the conversation profile dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1DimensionConversationProfileDimensionMetadata",
+      "properties": {
+        "conversationProfileId": {
+          "description": "Optional. The conversation profile ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1DimensionConversationalAgentsPlaybookDimensionMetadata": {
+      "description": "Metadata about the Conversational Agents playbook dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1DimensionConversationalAgentsPlaybookDimensionMetadata",
+      "properties": {
+        "playbookDisplayName": {
+          "description": "Optional. The dialogflow playbook display name.",
+          "type": "string"
+        },
+        "playbookId": {
+          "description": "Optional. The dialogflow playbook ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1DimensionConversationalAgentsToolDimensionMetadata": {
+      "description": "Metadata about the Conversational Agents tool dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1DimensionConversationalAgentsToolDimensionMetadata",
+      "properties": {
+        "toolDisplayName": {
+          "description": "Optional. The dialogflow tool display name.",
+          "type": "string"
+        },
+        "toolId": {
+          "description": "Optional. The dialogflow tool ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1alpha1DimensionIssueDimensionMetadata": {
       "description": "Metadata about the issue dimension.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1DimensionIssueDimensionMetadata",
@@ -12200,6 +12111,17 @@
         },
         "issueModelId": {
           "description": "The parent issue model ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1DimensionMediumDimensionMetadata": {
+      "description": "Metadata about the conversation medium dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1DimensionMediumDimensionMetadata",
+      "properties": {
+        "medium": {
+          "description": "Optional. The conversation medium. Currently supports : PHONE_CALL, CHAT.",
           "type": "string"
         }
       },
