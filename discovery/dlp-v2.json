@@ -5123,7 +5123,7 @@
       }
     }
   },
-  "revision": "20251012",
+  "revision": "20251019",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -7032,8 +7032,7 @@
       "id": "GooglePrivacyDlpV2DataSourceType",
       "properties": {
         "dataSource": {
-          "description": "Output only. An identifying string to the type of resource being profiled. Current values: * google/bigquery/table * google/project * google/sql/table * google/gcs/bucket",
-          "readOnly": true,
+          "description": "An identifying string to the type of resource being profiled. Current values: * google/bigquery/table * google/project * google/sql/table * google/gcs/bucket",
           "type": "string"
         }
       },
@@ -13039,11 +13038,11 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2VertexDatasetResourceReference": {
-      "description": "Identifies a single Vertex AI dataset.",
+      "description": "Identifies a single Vertex AI resource. Currently only datasets are supported.",
       "id": "GooglePrivacyDlpV2VertexDatasetResourceReference",
       "properties": {
         "datasetResourceName": {
-          "description": "Required. The name of the dataset resource. If set within a project-level configuration, the specified resource must be within the project.",
+          "description": "Required. The name of the Vertex AI resource. If set within a project-level configuration, the specified resource must be within the project. Examples: * `projects/{project}/locations/{location}/datasets/{dataset}`",
           "type": "string"
         }
       },
