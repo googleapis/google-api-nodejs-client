@@ -230,6 +230,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://parametermanager.southamerica-west1.rep.googleapis.com/",
       "location": "southamerica-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://parametermanager.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://parametermanager.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -361,7 +371,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -811,7 +821,7 @@
       }
     }
   },
-  "revision": "20250917",
+  "revision": "20251025",
   "rootUrl": "https://parametermanager.googleapis.com/",
   "schemas": {
     "Empty": {
