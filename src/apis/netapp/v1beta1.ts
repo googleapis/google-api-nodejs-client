@@ -689,7 +689,7 @@ export namespace netapp_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Required. Customer managed crypto key resource full name. Format: projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{key\}.
+     * Required. Customer managed crypto key resource full name. Format: projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}.
      */
     cryptoKeyName?: string | null;
     /**
