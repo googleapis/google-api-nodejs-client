@@ -245,6 +245,15 @@ export namespace file_v1 {
     time?: Schema$TimeOfDay;
   }
   /**
+   * Directory Services configuration for Kerberos-based authentication.
+   */
+  export interface Schema$DirectoryServicesConfig {
+    /**
+     * Configuration for LDAP servers.
+     */
+    ldap?: Schema$LdapConfig;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -520,6 +529,10 @@ export namespace file_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Directory Services configuration for Kerberos-based authentication. Should only be set if protocol is "NFS_V4_1".
+     */
+    directoryServices?: Schema$DirectoryServicesConfig;
+    /**
      * Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.
      */
     etag?: string | null;
@@ -606,6 +619,27 @@ export namespace file_v1 {
     maxIopsPerTb?: string | null;
   }
   /**
+   * LdapConfig contains all the parameters for connecting to LDAP servers.
+   */
+  export interface Schema$LdapConfig {
+    /**
+     * Required. The LDAP domain name in the format of `my-domain.com`.
+     */
+    domain?: string | null;
+    /**
+     * Optional. The groups Organizational Unit (OU) is optional. This parameter is a hint to allow faster lookup in the LDAP namespace. In case that this parameter is not provided, Filestore instance will query the whole LDAP namespace.
+     */
+    groupsOu?: string | null;
+    /**
+     * Required. The servers names are used for specifying the LDAP servers names. The LDAP servers names can come with two formats: 1. DNS name, for example: `ldap.example1.com`, `ldap.example2.com`. 2. IP address, for example: `10.0.0.1`, `10.0.0.2`, `10.0.0.3`. All servers names must be in the same format: either all DNS names or all IP addresses.
+     */
+    servers?: string[] | null;
+    /**
+     * Optional. The users Organizational Unit (OU) is optional. This parameter is a hint to allow faster lookup in the LDAP namespace. In case that this parameter is not provided, Filestore instance will query the whole LDAP namespace.
+     */
+    usersOu?: string | null;
+  }
+  /**
    * ListBackupsResponse is the result of ListBackupsRequest.
    */
   export interface Schema$ListBackupsResponse {
@@ -664,6 +698,10 @@ export namespace file_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * ListSnapshotsResponse is the result of ListSnapshotsRequest.
@@ -2337,6 +2375,7 @@ export namespace file_v1 {
      *       //   "deletionProtectionEnabled": false,
      *       //   "deletionProtectionReason": "my_deletionProtectionReason",
      *       //   "description": "my_description",
+     *       //   "directoryServices": {},
      *       //   "etag": "my_etag",
      *       //   "fileShares": [],
      *       //   "kmsKeyName": "my_kmsKeyName",
@@ -2650,6 +2689,7 @@ export namespace file_v1 {
      *   //   "deletionProtectionEnabled": false,
      *   //   "deletionProtectionReason": "my_deletionProtectionReason",
      *   //   "description": "my_description",
+     *   //   "directoryServices": {},
      *   //   "etag": "my_etag",
      *   //   "fileShares": [],
      *   //   "kmsKeyName": "my_kmsKeyName",
@@ -2959,6 +2999,7 @@ export namespace file_v1 {
      *       //   "deletionProtectionEnabled": false,
      *       //   "deletionProtectionReason": "my_deletionProtectionReason",
      *       //   "description": "my_description",
+     *       //   "directoryServices": {},
      *       //   "etag": "my_etag",
      *       //   "fileShares": [],
      *       //   "kmsKeyName": "my_kmsKeyName",
@@ -4921,13 +4962,16 @@ export namespace file_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -5073,5 +5117,9 @@ export namespace file_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 }
