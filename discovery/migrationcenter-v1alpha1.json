@@ -169,7 +169,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2559,7 +2559,7 @@
       }
     }
   },
-  "revision": "20250930",
+  "revision": "20251023",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2795,6 +2795,11 @@
           "description": "Output only. Asset information specific for AWS CloudFront distributions.",
           "readOnly": true
         },
+        "awsDynamodbTableDetails": {
+          "$ref": "AwsDynamoDBTableDetails",
+          "description": "Output only. Asset information specific for AWS DynamoDB tables.",
+          "readOnly": true
+        },
         "awsEcsClusterDetails": {
           "$ref": "AwsEcsClusterDetails",
           "description": "Output only. Asset information specific for AWS ECS clusters.",
@@ -2820,9 +2825,19 @@
           "description": "Output only. Asset information specific for AWS Lambda functions.",
           "readOnly": true
         },
+        "awsNatGatewayDetails": {
+          "$ref": "AwsNatGatewayDetails",
+          "description": "Output only. Asset information specific for AwsNatGatewayDetails",
+          "readOnly": true
+        },
         "awsRedshiftDetails": {
           "$ref": "AwsRedshiftDetails",
           "description": "Output only. Asset information specific for AWS Redshift",
+          "readOnly": true
+        },
+        "awsRoute53HostedZoneDetails": {
+          "$ref": "AwsRoute53HostedZoneDetails",
+          "description": "Output only. Asset information specific for AwsRoute53HostedZoneDetails",
           "readOnly": true
         },
         "awsS3BucketDetails": {
@@ -2946,6 +2961,10 @@
           "$ref": "AwsCloudFrontDistributionDetails",
           "description": "Asset information specific for AWS CloudFront distributions."
         },
+        "awsDynamodbTableDetails": {
+          "$ref": "AwsDynamoDBTableDetails",
+          "description": "Asset information specific for AWS DynamoDB tables."
+        },
         "awsEcsClusterDetails": {
           "$ref": "AwsEcsClusterDetails",
           "description": "Asset information specific for AWS ECS clusters."
@@ -2966,9 +2985,17 @@
           "$ref": "AwsLambdaFunctionDetails",
           "description": "Asset information specific for AWS Lambda functions."
         },
+        "awsNatGatewayDetails": {
+          "$ref": "AwsNatGatewayDetails",
+          "description": "Asset information specific for AwsNatGatewayDetails"
+        },
         "awsRedshiftDetails": {
           "$ref": "AwsRedshiftDetails",
           "description": "Asset information specific for AWS Redshift clusters."
+        },
+        "awsRoute53HostedZoneDetails": {
+          "$ref": "AwsRoute53HostedZoneDetails",
+          "description": "Asset information specific for AwsRoute53HostedZoneDetails"
         },
         "awsS3BucketDetails": {
           "$ref": "AwsS3BucketDetails",
@@ -3226,13 +3253,7 @@
     "AssetsExportJobNetworkDependencies": {
       "description": "Configuration for network dependencies exports.",
       "id": "AssetsExportJobNetworkDependencies",
-      "properties": {
-        "maxDays": {
-          "description": "Optional. When this value is set to a positive integer, network connections data will be returned for the most recent days for which data is available. When this value is unset (or set to zero), all available data is returned.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "AssetsExportJobPerformanceData": {
@@ -3250,6 +3271,12 @@
     "AwsCloudFrontDistributionDetails": {
       "description": "Details of an AWS CloudFront distribution.",
       "id": "AwsCloudFrontDistributionDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsDynamoDBTableDetails": {
+      "description": "Details of an AWS DynamoDB table.",
+      "id": "AwsDynamoDBTableDetails",
       "properties": {},
       "type": "object"
     },
@@ -3312,6 +3339,12 @@
       "properties": {},
       "type": "object"
     },
+    "AwsNatGatewayDetails": {
+      "description": "Details of an AWS NAT Gateway.",
+      "id": "AwsNatGatewayDetails",
+      "properties": {},
+      "type": "object"
+    },
     "AwsRds": {
       "description": "Specific details for an AWS RDS database deployment.",
       "id": "AwsRds",
@@ -3321,6 +3354,12 @@
     "AwsRedshiftDetails": {
       "description": "Details of an AWS Redshift cluster.",
       "id": "AwsRedshiftDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsRoute53HostedZoneDetails": {
+      "description": "Details of an AWS Route 53 Hosted Zone.",
+      "id": "AwsRoute53HostedZoneDetails",
       "properties": {},
       "type": "object"
     },

@@ -284,6 +284,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     awsCloudFrontDistributionDetails?: Schema$AwsCloudFrontDistributionDetails;
     /**
+     * Output only. Asset information specific for AWS DynamoDB tables.
+     */
+    awsDynamodbTableDetails?: Schema$AwsDynamoDBTableDetails;
+    /**
      * Output only. Asset information specific for AWS ECS clusters.
      */
     awsEcsClusterDetails?: Schema$AwsEcsClusterDetails;
@@ -304,9 +308,17 @@ export namespace migrationcenter_v1alpha1 {
      */
     awsLambdaFunctionDetails?: Schema$AwsLambdaFunctionDetails;
     /**
+     * Output only. Asset information specific for AwsNatGatewayDetails
+     */
+    awsNatGatewayDetails?: Schema$AwsNatGatewayDetails;
+    /**
      * Output only. Asset information specific for AWS Redshift
      */
     awsRedshiftDetails?: Schema$AwsRedshiftDetails;
+    /**
+     * Output only. Asset information specific for AwsRoute53HostedZoneDetails
+     */
+    awsRoute53HostedZoneDetails?: Schema$AwsRoute53HostedZoneDetails;
     /**
      * Output only. Asset information specific for AWS S3 buckets.
      */
@@ -397,6 +409,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     awsCloudFrontDistributionDetails?: Schema$AwsCloudFrontDistributionDetails;
     /**
+     * Asset information specific for AWS DynamoDB tables.
+     */
+    awsDynamodbTableDetails?: Schema$AwsDynamoDBTableDetails;
+    /**
      * Asset information specific for AWS ECS clusters.
      */
     awsEcsClusterDetails?: Schema$AwsEcsClusterDetails;
@@ -417,9 +433,17 @@ export namespace migrationcenter_v1alpha1 {
      */
     awsLambdaFunctionDetails?: Schema$AwsLambdaFunctionDetails;
     /**
+     * Asset information specific for AwsNatGatewayDetails
+     */
+    awsNatGatewayDetails?: Schema$AwsNatGatewayDetails;
+    /**
      * Asset information specific for AWS Redshift clusters.
      */
     awsRedshiftDetails?: Schema$AwsRedshiftDetails;
+    /**
+     * Asset information specific for AwsRoute53HostedZoneDetails
+     */
+    awsRoute53HostedZoneDetails?: Schema$AwsRoute53HostedZoneDetails;
     /**
      * Asset information specific for AWS S3 buckets.
      */
@@ -602,12 +626,7 @@ export namespace migrationcenter_v1alpha1 {
   /**
    * Configuration for network dependencies exports.
    */
-  export interface Schema$AssetsExportJobNetworkDependencies {
-    /**
-     * Optional. When this value is set to a positive integer, network connections data will be returned for the most recent days for which data is available. When this value is unset (or set to zero), all available data is returned.
-     */
-    maxDays?: number | null;
-  }
+  export interface Schema$AssetsExportJobNetworkDependencies {}
   /**
    * Configuration for performance data exports.
    */
@@ -621,6 +640,10 @@ export namespace migrationcenter_v1alpha1 {
    * Details of an AWS CloudFront distribution.
    */
   export interface Schema$AwsCloudFrontDistributionDetails {}
+  /**
+   * Details of an AWS DynamoDB table.
+   */
+  export interface Schema$AwsDynamoDBTableDetails {}
   /**
    * AWS EC2 specific details.
    */
@@ -659,6 +682,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$AwsLambdaFunctionDetails {}
   /**
+   * Details of an AWS NAT Gateway.
+   */
+  export interface Schema$AwsNatGatewayDetails {}
+  /**
    * Specific details for an AWS RDS database deployment.
    */
   export interface Schema$AwsRds {}
@@ -666,6 +693,10 @@ export namespace migrationcenter_v1alpha1 {
    * Details of an AWS Redshift cluster.
    */
   export interface Schema$AwsRedshiftDetails {}
+  /**
+   * Details of an AWS Route 53 Hosted Zone.
+   */
+  export interface Schema$AwsRoute53HostedZoneDetails {}
   /**
    * Asset information specific for AWS S3 buckets.
    */
@@ -5158,7 +5189,7 @@ export namespace migrationcenter_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await migrationcenter.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -5448,7 +5479,7 @@ export namespace migrationcenter_v1alpha1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -6123,12 +6154,15 @@ export namespace migrationcenter_v1alpha1 {
      *   //   "assignedGroups": [],
      *   //   "attributes": {},
      *   //   "awsCloudFrontDistributionDetails": {},
+     *   //   "awsDynamodbTableDetails": {},
      *   //   "awsEcsClusterDetails": {},
      *   //   "awsEfsFileSystemDetails": {},
      *   //   "awsEksClusterDetails": {},
      *   //   "awsElbLoadBalancerDetails": {},
      *   //   "awsLambdaFunctionDetails": {},
+     *   //   "awsNatGatewayDetails": {},
      *   //   "awsRedshiftDetails": {},
+     *   //   "awsRoute53HostedZoneDetails": {},
      *   //   "awsS3BucketDetails": {},
      *   //   "awsVpcDetails": {},
      *   //   "createTime": "my_createTime",
@@ -6441,12 +6475,15 @@ export namespace migrationcenter_v1alpha1 {
      *       //   "assignedGroups": [],
      *       //   "attributes": {},
      *       //   "awsCloudFrontDistributionDetails": {},
+     *       //   "awsDynamodbTableDetails": {},
      *       //   "awsEcsClusterDetails": {},
      *       //   "awsEfsFileSystemDetails": {},
      *       //   "awsEksClusterDetails": {},
      *       //   "awsElbLoadBalancerDetails": {},
      *       //   "awsLambdaFunctionDetails": {},
+     *       //   "awsNatGatewayDetails": {},
      *       //   "awsRedshiftDetails": {},
+     *       //   "awsRoute53HostedZoneDetails": {},
      *       //   "awsS3BucketDetails": {},
      *       //   "awsVpcDetails": {},
      *       //   "createTime": "my_createTime",
@@ -6476,12 +6513,15 @@ export namespace migrationcenter_v1alpha1 {
      *   //   "assignedGroups": [],
      *   //   "attributes": {},
      *   //   "awsCloudFrontDistributionDetails": {},
+     *   //   "awsDynamodbTableDetails": {},
      *   //   "awsEcsClusterDetails": {},
      *   //   "awsEfsFileSystemDetails": {},
      *   //   "awsEksClusterDetails": {},
      *   //   "awsElbLoadBalancerDetails": {},
      *   //   "awsLambdaFunctionDetails": {},
+     *   //   "awsNatGatewayDetails": {},
      *   //   "awsRedshiftDetails": {},
+     *   //   "awsRoute53HostedZoneDetails": {},
      *   //   "awsS3BucketDetails": {},
      *   //   "awsVpcDetails": {},
      *   //   "createTime": "my_createTime",
