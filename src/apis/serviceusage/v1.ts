@@ -646,6 +646,19 @@ export namespace serviceusage_v1 {
     contentSecurityProviders?: Schema$ContentSecurityProvider[];
   }
   /**
+   * Content Security Policy contains the content security related policy of a resource.
+   */
+  export interface Schema$ContentSecurityPolicy {
+    /**
+     * mcp_content_security contains the content security related settings at resource level for MCP traffic.
+     */
+    mcpContentSecurity?: Schema$ContentSecurity;
+    /**
+     * Output only. The resource name of the policy. Only the `default` policy is supported. We allow the following formats: `projects/{PROJECT_NUMBER\}/contentSecurityPolicies/default`, `projects/{PROJECT_ID\}/contentSecurityPolicies/default`, We only support project level content security policy for now.
+     */
+    name?: string | null;
+  }
+  /**
    * ContentSecurityProvider contains the name of content security provider.
    */
   export interface Schema$ContentSecurityProvider {
@@ -1396,10 +1409,6 @@ export namespace serviceusage_v1 {
    */
   export interface Schema$GoogleApiServiceusageV2betaConsumerPolicy {
     /**
-     * Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)
-     */
-    annotations?: {[key: string]: string} | null;
-    /**
      * Output only. The time the policy was created. For singleton policies, this is the first touch of the policy.
      */
     createTime?: string | null;
@@ -1644,6 +1653,10 @@ export namespace serviceusage_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message for the `ListServices` method.
@@ -1739,10 +1752,6 @@ export namespace serviceusage_v1 {
    * MCP Consumer Policy is a set of rules that define MCP related policy for a cloud resource hierarchy.
    */
   export interface Schema$McpPolicy {
-    /**
-     * ContentSecurity contains the content security related fields of a MCP policy.
-     */
-    contentSecurity?: Schema$ContentSecurity;
     /**
      * Output only. The time the policy was created. For singleton policies (such as the `default` policy), this is the first touch of the policy.
      */
@@ -2407,6 +2416,10 @@ export namespace serviceusage_v1 {
    */
   export interface Schema$UpdateConsumerPolicyMetadata {}
   /**
+   * Metadata for the `UpdateContentSecurityPolicy` method.
+   */
+  export interface Schema$UpdateContentSecurityPolicyMetadata {}
+  /**
    * Metadata for the `UpdateMcpPolicy` method.
    */
   export interface Schema$UpdateMcpPolicyMetadata {}
@@ -2909,13 +2922,16 @@ export namespace serviceusage_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -3055,6 +3071,10 @@ export namespace serviceusage_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Services {
