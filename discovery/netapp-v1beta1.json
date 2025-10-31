@@ -2543,7 +2543,7 @@
       }
     }
   },
-  "revision": "20251009",
+  "revision": "20251018",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -3377,7 +3377,7 @@
           "type": "string"
         },
         "cryptoKeyName": {
-          "description": "Required. Customer managed crypto key resource full name. Format: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}.",
+          "description": "Required. Customer managed crypto key resource full name. Format: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}.",
           "type": "string"
         },
         "description": {
