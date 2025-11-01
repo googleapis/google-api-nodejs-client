@@ -586,7 +586,7 @@
       }
     }
   },
-  "revision": "20251012",
+  "revision": "20251026",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "Amount": {
@@ -663,6 +663,10 @@
       "description": "Intent message for creating a Subscription resource.",
       "id": "CreateSubscriptionIntent",
       "properties": {
+        "cycleOptions": {
+          "$ref": "CycleOptions",
+          "description": "Optional. The cycle options for the subscription."
+        },
         "parent": {
           "description": "Required. The parent resource name, which is the identifier of the partner.",
           "type": "string"
@@ -997,6 +1001,21 @@
         "entitleIntent": {
           "$ref": "EntitleSubscriptionIntent",
           "description": "The request to entitle a subscription."
+        },
+        "intentOptions": {
+          "$ref": "IntentPayloadIntentOptions",
+          "description": "Optional. The additional features for the intent."
+        }
+      },
+      "type": "object"
+    },
+    "IntentPayloadIntentOptions": {
+      "description": "The options for the intent.",
+      "id": "IntentPayloadIntentOptions",
+      "properties": {
+        "enableOfferOverride": {
+          "description": "Optional. If true, Google may use a different product and promotion id from the ones in the `create_intent` based on the user's eligibility. Only applicable for certain YouTube free trial offers.",
+          "type": "boolean"
         }
       },
       "type": "object"
