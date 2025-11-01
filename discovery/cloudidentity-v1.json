@@ -2179,7 +2179,7 @@
     "policies": {
       "methods": {
         "get": {
-          "description": "Get a Policy",
+          "description": "Get a policy.",
           "flatPath": "v1/policies/{policiesId}",
           "httpMethod": "GET",
           "id": "cloudidentity.policies.get",
@@ -2205,7 +2205,7 @@
           ]
         },
         "list": {
-          "description": "List Policies",
+          "description": "List policies.",
           "flatPath": "v1/policies",
           "httpMethod": "GET",
           "id": "cloudidentity.policies.list",
@@ -2240,7 +2240,7 @@
       }
     }
   },
-  "revision": "20250923",
+  "revision": "20251021",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {

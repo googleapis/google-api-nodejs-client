@@ -2216,8 +2216,51 @@
     },
     "policies": {
       "methods": {
+        "create": {
+          "description": "Create a policy.",
+          "flatPath": "v1beta1/policies",
+          "httpMethod": "POST",
+          "id": "cloudidentity.policies.create",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1beta1/policies",
+          "request": {
+            "$ref": "Policy"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.policies"
+          ]
+        },
+        "delete": {
+          "description": "Delete a policy.",
+          "flatPath": "v1beta1/policies/{policiesId}",
+          "httpMethod": "DELETE",
+          "id": "cloudidentity.policies.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the policy to retrieve. Format: \"policies/{policy}\".",
+              "location": "path",
+              "pattern": "^policies/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+name}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.policies"
+          ]
+        },
         "get": {
-          "description": "Get a Policy",
+          "description": "Get a policy.",
           "flatPath": "v1beta1/policies/{policiesId}",
           "httpMethod": "GET",
           "id": "cloudidentity.policies.get",
@@ -2243,7 +2286,7 @@
           ]
         },
         "list": {
-          "description": "List Policies",
+          "description": "List policies.",
           "flatPath": "v1beta1/policies",
           "httpMethod": "GET",
           "id": "cloudidentity.policies.list",
@@ -2274,11 +2317,39 @@
             "https://www.googleapis.com/auth/cloud-identity.policies",
             "https://www.googleapis.com/auth/cloud-identity.policies.readonly"
           ]
+        },
+        "patch": {
+          "description": "Update a policy.",
+          "flatPath": "v1beta1/policies/{policiesId}",
+          "httpMethod": "PATCH",
+          "id": "cloudidentity.policies.patch",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Output only. Identifier. The [resource name](https://cloud.google.com/apis/design/resource_names) of the Policy. Format: policies/{policy}.",
+              "location": "path",
+              "pattern": "^policies/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+name}",
+          "request": {
+            "$ref": "Policy"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.policies"
+          ]
         }
       }
     }
   },
-  "revision": "20250916",
+  "revision": "20251027",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
