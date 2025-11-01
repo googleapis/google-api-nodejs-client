@@ -1028,7 +1028,7 @@
       }
     }
   },
-  "revision": "20250828",
+  "revision": "20251024",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1754,11 +1754,12 @@
                   "QUOTA_INFO_UNAVAILABLE",
                   "RESOURCE_USES_GLOBAL_DNS",
                   "RATE_LIMIT_EXCEEDED",
-                  "RESERVED_ENTRY_135",
+                  "UPCOMING_MAINTENANCES_UNAVAILABLE",
                   "RESERVED_ENTRY_136",
                   "RESERVED_ENTRY_139",
                   "RESERVED_ENTRY_141",
-                  "RESERVED_ENTRY_142"
+                  "RESERVED_ENTRY_142",
+                  "RESERVED_ENTRY_143"
                 ],
                 "enumDeprecated": [
                   false,
@@ -1777,6 +1778,7 @@
                   false,
                   false,
                   true,
+                  false,
                   false,
                   false,
                   false,
@@ -1838,6 +1840,7 @@
                   "Quota information is not available to client requests (e.g: regions.list).",
                   "Indicates that a VM is using global DNS. Can also be used to indicate that a resource has attributes that could result in the creation of a VM that uses global DNS.",
                   "Resource can't be retrieved due to api quota exceeded.",
+                  "Upcoming maintenance schedule is unavailable for the resource.",
                   "Reserved entries for quickly adding new warnings without breaking dependent clients.",
                   "",
                   "",
@@ -2061,11 +2064,12 @@
                   "QUOTA_INFO_UNAVAILABLE",
                   "RESOURCE_USES_GLOBAL_DNS",
                   "RATE_LIMIT_EXCEEDED",
-                  "RESERVED_ENTRY_135",
+                  "UPCOMING_MAINTENANCES_UNAVAILABLE",
                   "RESERVED_ENTRY_136",
                   "RESERVED_ENTRY_139",
                   "RESERVED_ENTRY_141",
-                  "RESERVED_ENTRY_142"
+                  "RESERVED_ENTRY_142",
+                  "RESERVED_ENTRY_143"
                 ],
                 "enumDeprecated": [
                   false,
@@ -2084,6 +2088,7 @@
                   false,
                   false,
                   true,
+                  false,
                   false,
                   false,
                   false,
@@ -2145,6 +2150,7 @@
                   "Quota information is not available to client requests (e.g: regions.list).",
                   "Indicates that a VM is using global DNS. Can also be used to indicate that a resource has attributes that could result in the creation of a VM that uses global DNS.",
                   "Resource can't be retrieved due to api quota exceeded.",
+                  "Upcoming maintenance schedule is unavailable for the resource.",
                   "Reserved entries for quickly adding new warnings without breaking dependent clients.",
                   "",
                   "",
@@ -2350,11 +2356,12 @@
                   "QUOTA_INFO_UNAVAILABLE",
                   "RESOURCE_USES_GLOBAL_DNS",
                   "RATE_LIMIT_EXCEEDED",
-                  "RESERVED_ENTRY_135",
+                  "UPCOMING_MAINTENANCES_UNAVAILABLE",
                   "RESERVED_ENTRY_136",
                   "RESERVED_ENTRY_139",
                   "RESERVED_ENTRY_141",
-                  "RESERVED_ENTRY_142"
+                  "RESERVED_ENTRY_142",
+                  "RESERVED_ENTRY_143"
                 ],
                 "enumDeprecated": [
                   false,
@@ -2373,6 +2380,7 @@
                   false,
                   false,
                   true,
+                  false,
                   false,
                   false,
                   false,
@@ -2434,6 +2442,7 @@
                   "Quota information is not available to client requests (e.g: regions.list).",
                   "Indicates that a VM is using global DNS. Can also be used to indicate that a resource has attributes that could result in the creation of a VM that uses global DNS.",
                   "Resource can't be retrieved due to api quota exceeded.",
+                  "Upcoming maintenance schedule is unavailable for the resource.",
                   "Reserved entries for quickly adding new warnings without breaking dependent clients.",
                   "",
                   "",
