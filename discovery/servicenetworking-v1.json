@@ -1034,7 +1034,7 @@
       }
     }
   },
-  "revision": "20250929",
+  "revision": "20251027",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1932,7 +1932,7 @@
       "id": "Control",
       "properties": {
         "environment": {
-          "description": "The service controller environment to use. If empty, no control plane feature (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com",
+          "description": "The service controller environment to use. If empty, no control plane features (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com.",
           "type": "string"
         },
         "methodPolicies": {
