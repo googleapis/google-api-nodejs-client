@@ -1535,7 +1535,7 @@
       }
     }
   },
-  "revision": "20251014",
+  "revision": "20251029",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -2243,7 +2243,7 @@
           "enumDescriptions": [
             "This value is unused.",
             "User deleted their own message.",
-            "A space manager deleted the message.",
+            "An owner or manager deleted the message.",
             "A Google Workspace administrator deleted the message. Administrators can delete any message in the space, including messages sent by any space member or Chat app.",
             "A Chat app deleted its own message when it expired.",
             "A Chat app deleted the message on behalf of the creator (using user authentication).",
@@ -3041,7 +3041,7 @@
           "type": "string"
         },
         "valueMsEpoch": {
-          "description": "Optional. The default value displayed in the widget, in milliseconds since [Unix epoch time](https://en.wikipedia.org/wiki/Unix_time). Specify the value based on the type of picker (`DateTimePickerType`): * `DATE_AND_TIME`: a calendar date and time in UTC. For example, to represent January 1, 2023 at 12:00 PM UTC, use `1672574400000`. * `DATE_ONLY`: a calendar date at 00:00:00 UTC. For example, to represent January 1, 2023, use `1672531200000`. * `TIME_ONLY`: a time in UTC. For example, to represent 12:00 PM, use `43200000` (or `12 * 60 * 60 * 1000`).",
+          "description": "The default value displayed in the widget, in milliseconds since [Unix epoch time](https://en.wikipedia.org/wiki/Unix_time). Specify the value based on the type of picker (`DateTimePickerType`): * `DATE_AND_TIME`: a calendar date and time in UTC. For example, to represent January 1, 2023 at 12:00 PM UTC, use `1672574400000`. * `DATE_ONLY`: a calendar date at 00:00:00 UTC. For example, to represent January 1, 2023, use `1672531200000`. * `TIME_ONLY`: a time in UTC. For example, to represent 12:00 PM, use `43200000` (or `12 * 60 * 60 * 1000`).",
           "format": "int64",
           "type": "string"
         }
@@ -4494,12 +4494,14 @@
           "enum": [
             "MEMBERSHIP_ROLE_UNSPECIFIED",
             "ROLE_MEMBER",
-            "ROLE_MANAGER"
+            "ROLE_MANAGER",
+            "ROLE_ASSISTANT_MANAGER"
           ],
           "enumDescriptions": [
             "Default value. For users: they aren't a member of the space, but can be invited. For Google Groups: they're always assigned this role (other enum values might be used in the future).",
             "A member of the space. In the Chat UI, this role is called Member. The user has basic permissions, like sending messages to the space. Managers and owners can grant members additional permissions in a space, including: - Add or remove members. - Modify space details. - Turn history on or off. - Mention everyone in the space with `@all`. - Manage Chat apps and webhooks installed in the space. In direct messages and unnamed group conversations, everyone has this role.",
-            "A space owner. In the Chat UI, this role is called Owner. The user has the complete set of space permissions to manage the space, including: - Change the role of other members in the space to member, manager, or owner. - Delete the space. Only supported in SpaceType.SPACE (named spaces). To learn more, see [Learn more about your role as a space owner or manager](https://support.google.com/chat/answer/11833441)."
+            "A space owner. In the Chat UI, this role is called Owner. The user has the complete set of space permissions to manage the space, including: - Change the role of other members in the space to member, manager, or owner. - Delete the space. Only supported in SpaceType.SPACE (named spaces). To learn more, see [Learn more about your role as a space owner or manager](https://support.google.com/chat/answer/11833441).",
+            "A space manager. In the Chat UI, this role is called Manager. The user has all basic permissions of `ROLE_MEMBER`, and can be granted a subset of administrative permissions by an owner. By default, managers have all the permissions of an owner except for the ability to: - Delete the space. - Make another space member an owner. - Change an owner's role. By default, managers permissions include but aren't limited to: - Make another member a manager. - Delete messages in the space. - Manage space permissions. - Receive notifications for requests to join the space if the manager has the \"manage members\" permission in the space settings. - Make a space discoverable. Only supported in SpaceType.SPACE (named spaces). To learn more, see [Manage space settings](https://support.google.com/chat/answer/13340792)."
           ],
           "type": "string"
         },
@@ -4871,6 +4873,10 @@
       "description": "Represents a space permission setting.",
       "id": "PermissionSetting",
       "properties": {
+        "assistantManagersAllowed": {
+          "description": "Optional. Whether space managers `ROLE_ASSISTANT_MANAGER`) have this permission.",
+          "type": "boolean"
+        },
         "managersAllowed": {
           "description": "Optional. Whether space owners (`ROLE_MANAGER`) have this permission.",
           "type": "boolean"
@@ -5199,7 +5205,7 @@
           "type": "string"
         },
         "customer": {
-          "description": "Optional. Immutable. The customer id of the domain of the space. Required only when creating a space with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) and `SpaceType` is `SPACE`, otherwise should not be set. In the format `customers/{customer}`, where `customer` is the `id` from the [Admin SDK customer resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). Private apps can also use the `customers/my_customer` alias to create the space in the same Google Workspace organization as the app. For DMs, this field isn't populated.",
+          "description": "Optional. Immutable. The customer id of the domain of the space. Required only when creating a space with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) and `SpaceType` is `SPACE`, otherwise should not be set. In the format `customers/{customer}`, where `customer` is the `id` from the [Admin SDK customer resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). Private apps can also use the `customers/my_customer` alias to create the space in the same Google Workspace organization as the app. This field isn't populated for direct messages (DMs) or when the space is created by non-Google Workspace users.",
           "type": "string"
         },
         "displayName": {
