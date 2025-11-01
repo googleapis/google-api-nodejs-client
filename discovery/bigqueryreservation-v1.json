@@ -1267,7 +1267,7 @@
       }
     }
   },
-  "revision": "20250907",
+  "revision": "20251009",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -1312,6 +1312,10 @@
           "description": "Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. The assignment_id must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.",
           "readOnly": true,
           "type": "string"
+        },
+        "schedulingPolicy": {
+          "$ref": "SchedulingPolicy",
+          "description": "Optional. The scheduling policy to use for jobs and queries of this assignee when running under the associated reservation. The scheduling policy controls how the reservation's resources are distributed. This overrides the default scheduling policy specified on the reservation. This feature is not yet generally available."
         },
         "state": {
           "description": "Output only. State of the assignment.",
@@ -1916,6 +1920,10 @@
           ],
           "type": "string"
         },
+        "schedulingPolicy": {
+          "$ref": "SchedulingPolicy",
+          "description": "Optional. The scheduling policy to use for jobs and queries running under this reservation. The scheduling policy controls how the reservation's resources are distributed. This feature is not yet generally available."
+        },
         "secondaryLocation": {
           "description": "Optional. The current location of the reservation's secondary replica. This field is only set for reservations using the managed disaster recovery feature. Users can set this in create reservation calls to create a failover reservation or in update reservation calls to convert a non-failover reservation to a failover reservation(or vice versa).",
           "type": "string"
@@ -1940,6 +1948,23 @@
       "properties": {
         "name": {
           "description": "Identifier. The resource name of the reservation group, e.g., `projects/*/locations/*/reservationGroups/team1-prod`. The reservation_group_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SchedulingPolicy": {
+      "description": "The scheduling policy controls how a reservation's resources are distributed.",
+      "id": "SchedulingPolicy",
+      "properties": {
+        "concurrency": {
+          "description": "Optional. If present and > 0, the reservation will attempt to limit the concurrency of jobs running for any particular project within it to the given value. This feature is not yet generally available.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxSlots": {
+          "description": "Optional. If present and > 0, the reservation will attempt to limit the slot consumption of queries running for any particular project within it to the given value. This feature is not yet generally available.",
+          "format": "int64",
           "type": "string"
         }
       },
