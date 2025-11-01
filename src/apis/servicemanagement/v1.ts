@@ -629,7 +629,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$Control {
     /**
-     * The service controller environment to use. If empty, no control plane feature (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com
+     * The service controller environment to use. If empty, no control plane features (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com.
      */
     environment?: string | null;
     /**
