@@ -715,7 +715,7 @@
       }
     }
   },
-  "revision": "20251001",
+  "revision": "20251017",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -736,6 +736,24 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "ControlledEgressConfig": {
+      "description": "Controlled egress configuration.",
+      "id": "ControlledEgressConfig",
+      "properties": {
+        "egressFqdns": {
+          "description": "Optional. List of fully qualified domain names to be added to the allowlist for outbound traffic.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "marketplaceEnabled": {
+          "description": "Optional. Whether marketplace is enabled.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "CustomDomain": {
@@ -974,6 +992,14 @@
         "consumerNetwork": {
           "description": "Network name in the consumer project. Format: `projects/{project}/global/networks/{network}`. Note that the consumer network may be in a different GCP project than the consumer project that is hosting the Looker Instance.",
           "type": "string"
+        },
+        "controlledEgressConfig": {
+          "$ref": "ControlledEgressConfig",
+          "description": "Optional. Controlled egress configuration."
+        },
+        "controlledEgressEnabled": {
+          "description": "Optional. Whether controlled egress is enabled on the Looker instance.",
+          "type": "boolean"
         },
         "createTime": {
           "description": "Output only. The time when the Looker instance provisioning was first requested.",

@@ -138,6 +138,19 @@ export namespace looker_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Controlled egress configuration.
+   */
+  export interface Schema$ControlledEgressConfig {
+    /**
+     * Optional. List of fully qualified domain names to be added to the allowlist for outbound traffic.
+     */
+    egressFqdns?: string[] | null;
+    /**
+     * Optional. Whether marketplace is enabled.
+     */
+    marketplaceEnabled?: boolean | null;
+  }
+  /**
    * Custom domain information.
    */
   export interface Schema$CustomDomain {
@@ -298,6 +311,14 @@ export namespace looker_v1 {
      * Network name in the consumer project. Format: `projects/{project\}/global/networks/{network\}`. Note that the consumer network may be in a different GCP project than the consumer project that is hosting the Looker Instance.
      */
     consumerNetwork?: string | null;
+    /**
+     * Optional. Controlled egress configuration.
+     */
+    controlledEgressConfig?: Schema$ControlledEgressConfig;
+    /**
+     * Optional. Whether controlled egress is enabled on the Looker instance.
+     */
+    controlledEgressEnabled?: boolean | null;
     /**
      * Output only. The time when the Looker instance provisioning was first requested.
      */
@@ -1125,6 +1146,8 @@ export namespace looker_v1 {
      *       //   "adminSettings": {},
      *       //   "classType": "my_classType",
      *       //   "consumerNetwork": "my_consumerNetwork",
+     *       //   "controlledEgressConfig": {},
+     *       //   "controlledEgressEnabled": false,
      *       //   "createTime": "my_createTime",
      *       //   "customDomain": {},
      *       //   "denyMaintenancePeriod": {},
@@ -1591,6 +1614,8 @@ export namespace looker_v1 {
      *   //   "adminSettings": {},
      *   //   "classType": "my_classType",
      *   //   "consumerNetwork": "my_consumerNetwork",
+     *   //   "controlledEgressConfig": {},
+     *   //   "controlledEgressEnabled": false,
      *   //   "createTime": "my_createTime",
      *   //   "customDomain": {},
      *   //   "denyMaintenancePeriod": {},
@@ -2048,6 +2073,8 @@ export namespace looker_v1 {
      *       //   "adminSettings": {},
      *       //   "classType": "my_classType",
      *       //   "consumerNetwork": "my_consumerNetwork",
+     *       //   "controlledEgressConfig": {},
+     *       //   "controlledEgressEnabled": false,
      *       //   "createTime": "my_createTime",
      *       //   "customDomain": {},
      *       //   "denyMaintenancePeriod": {},
