@@ -166,6 +166,11 @@
               "description": "The standard list page token.",
               "location": "query",
               "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "v1beta1/operations",
@@ -964,7 +969,7 @@
       }
     }
   },
-  "revision": "20250919",
+  "revision": "20251021",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -1777,6 +1782,22 @@
             "$ref": "ContentSecurityProvider"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ContentSecurityPolicy": {
+      "description": "Content Security Policy contains the content security related policy of a resource.",
+      "id": "ContentSecurityPolicy",
+      "properties": {
+        "mcpContentSecurity": {
+          "$ref": "ContentSecurity",
+          "description": "mcp_content_security contains the content security related settings at resource level for MCP traffic."
+        },
+        "name": {
+          "description": "Output only. The resource name of the policy. Only the `default` policy is supported. We allow the following formats: `projects/{PROJECT_NUMBER}/contentSecurityPolicies/default`, `projects/{PROJECT_ID}/contentSecurityPolicies/default`, We only support project level content security policy for now.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2878,13 +2899,6 @@
       "description": "Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.",
       "id": "GoogleApiServiceusageV2betaConsumerPolicy",
       "properties": {
-        "annotations": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)",
-          "type": "object"
-        },
         "createTime": {
           "description": "Output only. The time the policy was created. For singleton policies, this is the first touch of the policy.",
           "format": "google-datetime",
@@ -3331,6 +3345,13 @@
             "$ref": "Operation"
           },
           "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3463,10 +3484,6 @@
       "description": "MCP Consumer Policy is a set of rules that define MCP related policy for a cloud resource hierarchy.",
       "id": "McpPolicy",
       "properties": {
-        "contentSecurity": {
-          "$ref": "ContentSecurity",
-          "description": "ContentSecurity contains the content security related fields of a MCP policy."
-        },
         "createTime": {
           "description": "Output only. The time the policy was created. For singleton policies (such as the `default` policy), this is the first touch of the policy.",
           "format": "google-datetime",
@@ -4666,6 +4683,12 @@
     "UpdateConsumerPolicyMetadata": {
       "description": "Metadata for the `UpdateConsumerPolicy` method.",
       "id": "UpdateConsumerPolicyMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "UpdateContentSecurityPolicyMetadata": {
+      "description": "Metadata for the `UpdateContentSecurityPolicy` method.",
+      "id": "UpdateContentSecurityPolicyMetadata",
       "properties": {},
       "type": "object"
     },
