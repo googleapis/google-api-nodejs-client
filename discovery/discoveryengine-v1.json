@@ -730,7 +730,7 @@
                           "type": "string"
                         },
                         "userPseudoId": {
-                          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                           "location": "query",
                           "type": "string"
                         }
@@ -2275,6 +2275,69 @@
                           },
                           "response": {
                             "$ref": "GoogleCloudDiscoveryengineV1AnswerQueryResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.servingConfigs.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1ServingConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists all ServingConfigs linked to this dataStore.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.servingConfigs.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Full resource name of the parent resource. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/servingConfigs",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1ListServingConfigsResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform",
@@ -4238,6 +4301,69 @@
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
+                        "get": {
+                          "description": "Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/servingConfigs/{servingConfigsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.servingConfigs.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1ServingConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists all ServingConfigs linked to this dataStore.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/servingConfigs",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.servingConfigs.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Full resource name of the parent resource. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/servingConfigs",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1ListServingConfigsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
                         "patch": {
                           "description": "Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/servingConfigs/{servingConfigsId}",
@@ -4717,7 +4843,7 @@
                       "type": "string"
                     },
                     "userPseudoId": {
-                      "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                       "location": "query",
                       "type": "string"
                     }
@@ -6124,6 +6250,69 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1AnswerQueryResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.dataStores.servingConfigs.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1ServingConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all ServingConfigs linked to this dataStore.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/servingConfigs",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.dataStores.servingConfigs.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Full resource name of the parent resource. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/servingConfigs",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1ListServingConfigsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -7795,6 +7984,127 @@
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
+                },
+                "create": {
+                  "description": "Creates a new User Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/userStores",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.userStores.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent collection resource name, such as `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "userStoreId": {
+                      "description": "Required. The ID of the User Store to create. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 63 characters.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/userStores",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1UserStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1UserStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the User Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}",
+                  "httpMethod": "DELETE",
+                  "id": "discoveryengine.projects.locations.userStores.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the User Store to delete. Format: `projects/{project}/locations/{location}/userStores/{user_store_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the User Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.userStores.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the User Store to get. Format: `projects/{project}/locations/{location}/userStores/{user_store_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1UserStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the User Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}",
+                  "httpMethod": "PATCH",
+                  "id": "discoveryengine.projects.locations.userStores.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The full resource name of the User Store, in the format of `projects/{project}/locations/{location}/userStores/{user_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1UserStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1UserStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
                 }
               },
               "resources": {
@@ -7957,7 +8267,7 @@
       }
     }
   },
-  "revision": "20251017",
+  "revision": "20251030",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GdataBlobstore2Info": {
@@ -8912,7 +9222,7 @@
           "description": "Optional. Information about the end user. This should be the same identifier information as UserEvent.user_info and SearchRequest.user_info."
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128",
           "type": "string"
         }
       },
@@ -13154,6 +13464,12 @@
           ],
           "type": "string"
         },
+        "configurableBillingApproachUpdateTime": {
+          "description": "Output only. The timestamp when configurable_billing_approach was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -15251,6 +15567,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1ListServingConfigsResponse": {
+      "description": "Response for ListServingConfigs method.",
+      "id": "GoogleCloudDiscoveryengineV1ListServingConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Pagination token, if not returned indicates the last page.",
+          "type": "string"
+        },
+        "servingConfigs": {
+          "description": "All the ServingConfigs for a given dataStore.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1ServingConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1ListSessionsResponse": {
       "description": "Response for ListSessions method.",
       "id": "GoogleCloudDiscoveryengineV1ListSessionsResponse",
@@ -15405,6 +15739,11 @@
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1Project",
       "properties": {
+        "configurableBillingStatus": {
+          "$ref": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus",
+          "description": "Output only. The current status of the project's configurable billing.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. The timestamp when this project is created.",
           "format": "google-datetime",
@@ -15437,6 +15776,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus": {
+      "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+      "id": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus",
+      "properties": {
+        "effectiveIndexingCoreThreshold": {
+          "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "effectiveSearchQpmThreshold": {
+          "description": "Optional. The currently effective Search QPM threshold in queries per minute. This is the threshold against which QPM usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The start time of the currently active billing subscription.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig": {
       "description": "Customer provided configurations.",
       "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig",
@@ -15455,6 +15816,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "optOutNotebookSharing": {
+          "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -16331,7 +16696,7 @@
           "type": "object"
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         }
       },
@@ -18353,6 +18718,33 @@
         },
         "userProfile": {
           "description": "Optional. The user profile. We user user full name(First name + Last name) as user profile.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1UserStore": {
+      "description": "Configures metadata that is used for End User entities.",
+      "id": "GoogleCloudDiscoveryengineV1UserStore",
+      "properties": {
+        "defaultLicenseConfig": {
+          "description": "Optional. The default subscription LicenseConfig for the UserStore, if UserStore.enable_license_auto_register is true, new users will automatically register under the default subscription. If default LicenseConfig doesn't have remaining license seats left, new users will not be assigned with license and will be blocked for Vertex AI Search features. This is used if `license_assignment_tier_rules` is not configured.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the User Store.",
+          "type": "string"
+        },
+        "enableExpiredLicenseAutoUpdate": {
+          "description": "Optional. Whether to enable license auto update for users in this User Store. If true, users with expired licenses will automatically be updated to use the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "enableLicenseAutoRegister": {
+          "description": "Optional. Whether to enable license auto register for users in this User Store. If true, new users will automatically register under the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the User Store, in the format of `projects/{project}/locations/{location}/userStores/{user_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
@@ -20994,6 +21386,12 @@
           ],
           "type": "string"
         },
+        "configurableBillingApproachUpdateTime": {
+          "description": "Output only. The timestamp when configurable_billing_approach was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -21187,6 +21585,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDeleteAgentMetadata": {
+      "description": "Metadata related to the progress of the AgentService.DeleteAgent operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteAgentMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata": {
       "description": "Metadata related to the progress of the CmekConfigService.DeleteCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata",
@@ -21329,6 +21744,23 @@
         "updateTime": {
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDeleteUserStoreMetadata": {
+      "description": "Metadata related to the progress of the UserStoreService.DeleteUserStore operation. This will be returned by the google.longrunning.Operation.metadata field. Delete UserStore will delete all the end users under the user store, return the number of end users successfully deleted or failed to delete in the metadata.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteUserStoreMetadata",
+      "properties": {
+        "failureCount": {
+          "description": "The number of end users under the user store that failed to be deleted.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of end users under the user store that were successfully deleted.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -22932,6 +23364,11 @@
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1alphaProject",
       "properties": {
+        "configurableBillingStatus": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus",
+          "description": "Output only. The current status of the project's configurable billing.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. The timestamp when this project is created.",
           "format": "google-datetime",
@@ -22964,6 +23401,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus": {
+      "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+      "id": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus",
+      "properties": {
+        "effectiveIndexingCoreThreshold": {
+          "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "effectiveSearchQpmThreshold": {
+          "description": "Optional. The currently effective Search QPM threshold in queries per minute. This is the threshold against which QPM usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The start time of the currently active billing subscription.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig": {
       "description": "Customer provided configurations.",
       "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig",
@@ -22982,6 +23441,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "optOutNotebookSharing": {
+          "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -23807,7 +24270,7 @@
           "type": "object"
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         }
       },
@@ -25701,6 +26164,12 @@
           ],
           "type": "string"
         },
+        "configurableBillingApproachUpdateTime": {
+          "description": "Output only. The timestamp when configurable_billing_approach was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -27164,6 +27633,11 @@
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1betaProject",
       "properties": {
+        "configurableBillingStatus": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus",
+          "description": "Output only. The current status of the project's configurable billing.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. The timestamp when this project is created.",
           "format": "google-datetime",
@@ -27196,6 +27670,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus": {
+      "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus",
+      "properties": {
+        "effectiveIndexingCoreThreshold": {
+          "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "effectiveSearchQpmThreshold": {
+          "description": "Optional. The currently effective Search QPM threshold in queries per minute. This is the threshold against which QPM usage is compared for overage calculations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The start time of the currently active billing subscription.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig": {
       "description": "Customer provided configurations.",
       "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig",
@@ -27214,6 +27710,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "optOutNotebookSharing": {
+          "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -27713,7 +28213,7 @@
           "type": "object"
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         }
       },
@@ -28748,6 +29248,33 @@
         },
         "userProfile": {
           "description": "Optional. The user profile. We user user full name(First name + Last name) as user profile.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaUserStore": {
+      "description": "Configures metadata that is used for End User entities.",
+      "id": "GoogleCloudDiscoveryengineV1betaUserStore",
+      "properties": {
+        "defaultLicenseConfig": {
+          "description": "Optional. The default subscription LicenseConfig for the UserStore, if UserStore.enable_license_auto_register is true, new users will automatically register under the default subscription. If default LicenseConfig doesn't have remaining license seats left, new users will not be assigned with license and will be blocked for Vertex AI Search features. This is used if `license_assignment_tier_rules` is not configured.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the User Store.",
+          "type": "string"
+        },
+        "enableExpiredLicenseAutoUpdate": {
+          "description": "Optional. Whether to enable license auto update for users in this User Store. If true, users with expired licenses will automatically be updated to use the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "enableLicenseAutoRegister": {
+          "description": "Optional. Whether to enable license auto register for users in this User Store. If true, new users will automatically register under the default license config as long as the default license config has seats left.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the User Store, in the format of `projects/{project}/locations/{location}/userStores/{user_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
