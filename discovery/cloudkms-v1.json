@@ -203,7 +203,7 @@
     "folders": {
       "methods": {
         "getAutokeyConfig": {
-          "description": "Returns the AutokeyConfig for a folder or project.",
+          "description": "Returns the AutokeyConfig for a folder.",
           "flatPath": "v1/folders/{foldersId}/autokeyConfig",
           "httpMethod": "GET",
           "id": "cloudkms.folders.getAutokeyConfig",
@@ -212,7 +212,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.",
               "location": "path",
               "pattern": "^folders/[^/]+/autokeyConfig$",
               "required": true,
@@ -393,32 +393,6 @@
     },
     "projects": {
       "methods": {
-        "getAutokeyConfig": {
-          "description": "Returns the AutokeyConfig for a folder or project.",
-          "flatPath": "v1/projects/{projectsId}/autokeyConfig",
-          "httpMethod": "GET",
-          "id": "cloudkms.projects.getAutokeyConfig",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
-              "location": "path",
-              "pattern": "^projects/[^/]+/autokeyConfig$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}",
-          "response": {
-            "$ref": "AutokeyConfig"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloudkms"
-          ]
-        },
         "getKajPolicyConfig": {
           "description": "Gets the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.",
           "flatPath": "v1/projects/{projectsId}/kajPolicyConfig",
@@ -517,41 +491,6 @@
           "path": "v1/{+project}:showEffectiveKeyAccessJustificationsPolicyConfig",
           "response": {
             "$ref": "ShowEffectiveKeyAccessJustificationsPolicyConfigResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloudkms"
-          ]
-        },
-        "updateAutokeyConfig": {
-          "description": "Updates the AutokeyConfig for a folder. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.",
-          "flatPath": "v1/projects/{projectsId}/autokeyConfig",
-          "httpMethod": "PATCH",
-          "id": "cloudkms.projects.updateAutokeyConfig",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` `projects/{PROJECT_NUMBER}/autokeyConfig`.",
-              "location": "path",
-              "pattern": "^projects/[^/]+/autokeyConfig$",
-              "required": true,
-              "type": "string"
-            },
-            "updateMask": {
-              "description": "Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.",
-              "format": "google-fieldmask",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}",
-          "request": {
-            "$ref": "AutokeyConfig"
-          },
-          "response": {
-            "$ref": "AutokeyConfig"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -688,7 +627,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2496,7 +2435,7 @@
       }
     }
   },
-  "revision": "20250926",
+  "revision": "20251023",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2965,7 +2904,9 @@
             "ML_KEM_768",
             "ML_KEM_1024",
             "KEM_XWING",
+            "PQ_SIGN_ML_DSA_44",
             "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_ML_DSA_87",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
           ],
@@ -3009,7 +2950,9 @@
             "ML-KEM-768 (FIPS 203)",
             "ML-KEM-1024 (FIPS 203)",
             "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
           ],
@@ -3183,7 +3126,9 @@
             "ML_KEM_768",
             "ML_KEM_1024",
             "KEM_XWING",
+            "PQ_SIGN_ML_DSA_44",
             "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_ML_DSA_87",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
           ],
@@ -3227,7 +3172,9 @@
             "ML-KEM-768 (FIPS 203)",
             "ML-KEM-1024 (FIPS 203)",
             "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
           ],
@@ -3676,7 +3623,9 @@
             "ML_KEM_768",
             "ML_KEM_1024",
             "KEM_XWING",
+            "PQ_SIGN_ML_DSA_44",
             "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_ML_DSA_87",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
           ],
@@ -3720,7 +3669,9 @@
             "ML-KEM-768 (FIPS 203)",
             "ML-KEM-1024 (FIPS 203)",
             "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
           ],
@@ -4437,7 +4388,9 @@
             "ML_KEM_768",
             "ML_KEM_1024",
             "KEM_XWING",
+            "PQ_SIGN_ML_DSA_44",
             "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_ML_DSA_87",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
           ],
@@ -4481,7 +4434,9 @@
             "ML-KEM-768 (FIPS 203)",
             "ML-KEM-1024 (FIPS 203)",
             "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
           ],
