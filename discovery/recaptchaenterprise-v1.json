@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20251006",
+  "revision": "20251026",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -918,7 +918,6 @@
           "type": "string"
         },
         "annotation": {
-          "description": "Optional. The annotation that is assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent.",
           "enum": [
             "ANNOTATION_UNSPECIFIED",
             "LEGITIMATE",
@@ -952,7 +951,6 @@
           "description": "Optional. If using an external multi-factor authentication provider, provide phone authentication details for fraud detection purposes."
         },
         "reasons": {
-          "description": "Optional. Reasons for the annotation that are assigned to the event.",
           "items": {
             "enum": [
               "REASON_UNSPECIFIED",
@@ -1092,7 +1090,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment",
       "properties": {
         "client": {
-          "description": "Optional. Identifies the client module initiating the CreateAssessment request. This can be the link to the client module's project. Examples include: - \"github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager\" - \"cloud.google.com/recaptcha/docs/implement-waf-akamai\" - \"cloud.google.com/recaptcha/docs/implement-waf-cloudflare\" - \"wordpress.org/plugins/recaptcha-something\"",
+          "description": "Optional. Identifies the client module initiating the CreateAssessment request. This can be the link to the client module's project. Examples include: - \"github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager\" - \"wordpress.org/plugins/recaptcha-something\"",
           "type": "string"
         },
         "version": {
@@ -2177,7 +2175,8 @@
             "EXPIRED",
             "DUPE",
             "MISSING",
-            "BROWSER_ERROR"
+            "BROWSER_ERROR",
+            "UNEXPECTED_ACTION"
           ],
           "enumDescriptions": [
             "Default unspecified type.",
@@ -2186,7 +2185,8 @@
             "The user verification token had expired.",
             "The user verification had already been seen.",
             "The user verification token was not present.",
-            "A retriable error (such as network failure) occurred on the browser. Could easily be simulated by an attacker."
+            "A retriable error (such as network failure) occurred on the browser. Could easily be simulated by an attacker.",
+            "The action provided at token generation was different than the `expected_action` in the assessment request. The comparison is case-insensitive. This reason can only be returned if all of the following are true: - your `site_key` has the POLICY_BASED_CHALLENGE integration type - you set an action score threshold higher than 0.0 - you provided a non-empty `expected_action`"
           ],
           "readOnly": true,
           "type": "string"
