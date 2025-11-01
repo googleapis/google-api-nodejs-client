@@ -2123,7 +2123,7 @@ export namespace merchantapi_accounts_v1 {
     checkoutUriTemplate?: string | null;
   }
   /**
-   * The `User` message represents a user associated with a Merchant Center account. It is used to manage user permissions and access rights within the account. For more information, see [Frequently asked questions about people and access levels](//support.google.com/merchants/answer/12160472).
+   * The `User` resource represents a user associated with a Merchant Center account. It is used to manage user permissions and access rights within the account. For more information, see [Frequently asked questions about people and access levels](//support.google.com/merchants/answer/12160472).
    */
   export interface Schema$User {
     /**
@@ -2721,149 +2721,6 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
-     * Retrieves the merchant account that the calling GCP is registered with.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await merchantapi.accounts.getAccountForGcpRegistration({});
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getAccountForGcpRegistration(
-      params: Params$Resource$Accounts$Getaccountforgcpregistration,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    getAccountForGcpRegistration(
-      params?: Params$Resource$Accounts$Getaccountforgcpregistration,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GetAccountForGcpRegistrationResponse>
-    >;
-    getAccountForGcpRegistration(
-      params: Params$Resource$Accounts$Getaccountforgcpregistration,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getAccountForGcpRegistration(
-      params: Params$Resource$Accounts$Getaccountforgcpregistration,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>,
-      callback: BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
-    ): void;
-    getAccountForGcpRegistration(
-      params: Params$Resource$Accounts$Getaccountforgcpregistration,
-      callback: BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
-    ): void;
-    getAccountForGcpRegistration(
-      callback: BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
-    ): void;
-    getAccountForGcpRegistration(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Getaccountforgcpregistration
-        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GetAccountForGcpRegistrationResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Getaccountforgcpregistration;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Getaccountforgcpregistration;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/accounts/v1/accounts:getAccountForGcpRegistration'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GetAccountForGcpRegistrationResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GetAccountForGcpRegistrationResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.
      * @example
      * ```js
@@ -3334,8 +3191,6 @@ export namespace merchantapi_accounts_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Getaccountforgcpregistration
-    extends StandardParameters {}
   export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Optional. Returns only accounts that match the [filter](https://developers.google.com/merchant/api/guides/accounts/filter). For more details, see the [filter syntax reference](https://developers.google.com/merchant/api/guides/accounts/filter-syntax).
@@ -4726,6 +4581,153 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
+     * Retrieves the merchant account that the calling GCP is registered with.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.developerRegistration.getAccountForGcpRegistration(
+     *       {},
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAccountForGcpRegistration(
+      params: Params$Resource$Accounts$Developerregistration$Getaccountforgcpregistration,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getAccountForGcpRegistration(
+      params?: Params$Resource$Accounts$Developerregistration$Getaccountforgcpregistration,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetAccountForGcpRegistrationResponse>
+    >;
+    getAccountForGcpRegistration(
+      params: Params$Resource$Accounts$Developerregistration$Getaccountforgcpregistration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAccountForGcpRegistration(
+      params: Params$Resource$Accounts$Developerregistration$Getaccountforgcpregistration,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>,
+      callback: BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+    ): void;
+    getAccountForGcpRegistration(
+      params: Params$Resource$Accounts$Developerregistration$Getaccountforgcpregistration,
+      callback: BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+    ): void;
+    getAccountForGcpRegistration(
+      callback: BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+    ): void;
+    getAccountForGcpRegistration(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Developerregistration$Getaccountforgcpregistration
+        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetAccountForGcpRegistrationResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Developerregistration$Getaccountforgcpregistration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Developerregistration$Getaccountforgcpregistration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1/accounts:getAccountForGcpRegistration'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetAccountForGcpRegistrationResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetAccountForGcpRegistrationResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Retrieves a developer registration for a merchant.
      * @example
      * ```js
@@ -5163,6 +5165,8 @@ export namespace merchantapi_accounts_v1 {
     }
   }
 
+  export interface Params$Resource$Accounts$Developerregistration$Getaccountforgcpregistration
+    extends StandardParameters {}
   export interface Params$Resource$Accounts$Developerregistration$Getdeveloperregistration
     extends StandardParameters {
     /**
