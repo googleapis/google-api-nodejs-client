@@ -5555,7 +5555,7 @@
       }
     }
   },
-  "revision": "20250904",
+  "revision": "20251028",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -9456,13 +9456,15 @@
             "AVAILABILITY_UNSPECIFIED",
             "AVAILABLE",
             "NO_LONGER_AVAILABLE",
-            "AVAILABLE_IF_RELEASED"
+            "AVAILABLE_IF_RELEASED",
+            "AVAILABLE_FOR_OFFERS_ONLY"
           ],
           "enumDescriptions": [
             "Unspecified availability. Must not be used.",
             "The purchase option is available to users.",
             "The purchase option is no longer available to users. This value can only be used if the availability was previously set as AVAILABLE.",
-            "The purchase option is initially unavailable, but made available via a released pre-order offer."
+            "The purchase option is initially unavailable, but made available via a released pre-order offer.",
+            "The purchase option is unavailable but offers linked to it (i.e. Play Points offer) are available."
           ],
           "type": "string"
         },
@@ -9517,6 +9519,10 @@
         "offerId": {
           "description": "The offer ID of the one-time purchase offer.",
           "type": "string"
+        },
+        "preorderDetails": {
+          "$ref": "PreorderDetails",
+          "description": "The details of a pre-order purchase. Only set if it is a pre-order purchase. Note that this field will be set even after pre-order is fulfilled."
         },
         "purchaseOptionId": {
           "description": "ID of the purchase option. This field is set for both purchase options and variant offers. For purchase options, this ID identifies the purchase option itself. For variant offers, this ID refers to the associated purchase option, and in conjunction with offer_id it identifies the variant offer.",
@@ -9855,6 +9861,24 @@
       },
       "type": "object"
     },
+    "PreorderDetails": {
+      "description": "Details of a pre-order purchase.",
+      "id": "PreorderDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "PreorderOfferDetails": {
+      "description": "Offer details information related to a preorder line item.",
+      "id": "PreorderOfferDetails",
+      "properties": {
+        "preorderReleaseTime": {
+          "description": "The time when a preordered item is released for a preorder purchase.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PrepaidBasePlanType": {
       "description": "Represents a base plan that does not automatically renew at the end of the base plan, and must be manually renewed by the user.",
       "id": "PrepaidBasePlanType",
@@ -10000,6 +10024,10 @@
         "offerToken": {
           "description": "The per-transaction offer token used to make this purchase line item.",
           "type": "string"
+        },
+        "preorderOfferDetails": {
+          "$ref": "PreorderOfferDetails",
+          "description": "Offer details for a preorder offer. This will only be set for preorders."
         },
         "purchaseOptionId": {
           "description": "The purchase option ID.",

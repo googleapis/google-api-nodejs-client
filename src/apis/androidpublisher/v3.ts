@@ -2899,6 +2899,10 @@ export namespace androidpublisher_v3 {
      */
     offerId?: string | null;
     /**
+     * The details of a pre-order purchase. Only set if it is a pre-order purchase. Note that this field will be set even after pre-order is fulfilled.
+     */
+    preorderDetails?: Schema$PreorderDetails;
+    /**
      * ID of the purchase option. This field is set for both purchase options and variant offers. For purchase options, this ID identifies the purchase option itself. For variant offers, this ID refers to the associated purchase option, and in conjunction with offer_id it identifies the variant offer.
      */
     purchaseOptionId?: string | null;
@@ -3156,6 +3160,19 @@ export namespace androidpublisher_v3 {
     pointsSpent?: string | null;
   }
   /**
+   * Details of a pre-order purchase.
+   */
+  export interface Schema$PreorderDetails {}
+  /**
+   * Offer details information related to a preorder line item.
+   */
+  export interface Schema$PreorderOfferDetails {
+    /**
+     * The time when a preordered item is released for a preorder purchase.
+     */
+    preorderReleaseTime?: string | null;
+  }
+  /**
    * Represents a base plan that does not automatically renew at the end of the base plan, and must be manually renewed by the user.
    */
   export interface Schema$PrepaidBasePlanType {
@@ -3249,6 +3266,10 @@ export namespace androidpublisher_v3 {
      * The per-transaction offer token used to make this purchase line item.
      */
     offerToken?: string | null;
+    /**
+     * Offer details for a preorder offer. This will only be set for preorders.
+     */
+    preorderOfferDetails?: Schema$PreorderOfferDetails;
     /**
      * The purchase option ID.
      */
