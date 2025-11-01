@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1078,7 +1078,7 @@
       }
     }
   },
-  "revision": "20251009",
+  "revision": "20251021",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1950,7 +1950,8 @@
             "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
             "SIGNAL_TYPE_NO_ROOT_PASSWORD",
             "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
-            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS"
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT"
           ],
           "enumDescriptions": [
             "Unspecified signal type.",
@@ -1958,7 +1959,8 @@
             "Represents database auditing is disabled.",
             "Represents if a database has a password configured for the root account or not.",
             "Represents if a resource is exposed to public access.",
-            "Represents if a resources requires all incoming connections to use SSL or not."
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a resource version is in extended support."
           ],
           "type": "string"
         }
@@ -2327,7 +2329,8 @@
             "SIGNAL_TYPE_OUTDATED_VERSION",
             "SIGNAL_TYPE_OUTDATED_CLIENT",
             "SIGNAL_TYPE_DATABOOST_DISABLED",
-            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES"
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT"
           ],
           "enumDeprecated": [
             false,
@@ -2336,6 +2339,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -2539,7 +2543,8 @@
             "Outdated version.",
             "Outdated client.",
             "Databoost is disabled.",
-            "Recommended maintenance policy."
+            "Recommended maintenance policy.",
+            "Resource version is in extended support."
           ],
           "type": "string"
         },
@@ -2979,7 +2984,8 @@
             "SIGNAL_TYPE_OUTDATED_VERSION",
             "SIGNAL_TYPE_OUTDATED_CLIENT",
             "SIGNAL_TYPE_DATABOOST_DISABLED",
-            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES"
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT"
           ],
           "enumDeprecated": [
             false,
@@ -2988,6 +2994,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -3191,7 +3198,8 @@
             "Outdated version.",
             "Outdated client.",
             "Databoost is disabled.",
-            "Recommended maintenance policy."
+            "Recommended maintenance policy.",
+            "Resource version is in extended support."
           ],
           "type": "string"
         }
@@ -3244,7 +3252,8 @@
             "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
             "SIGNAL_TYPE_NO_ROOT_PASSWORD",
             "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
-            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS"
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT"
           ],
           "enumDescriptions": [
             "Unspecified signal type.",
@@ -3252,7 +3261,8 @@
             "Represents database auditing is disabled.",
             "Represents if a database has a password configured for the root account or not.",
             "Represents if a resource is exposed to public access.",
-            "Represents if a resources requires all incoming connections to use SSL or not."
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a resource version is in extended support."
           ],
           "type": "string"
         }
@@ -4992,29 +5002,6 @@
           "type": "string"
         },
         "phase": {
-          "deprecated": true,
-          "description": "Optional. Phase of the maintenance window. This is to capture order of maintenance. For example, for Cloud SQL resources, this can be used to capture if the maintenance window is in Week1, Week2, Week5, etc. Non production resources are usually part of early phase. For more details, refer to Cloud SQL resources - https://cloud.google.com/sql/docs/mysql/maintenance Deprecated. Use phase instead.",
-          "enum": [
-            "WINDOW_PHASE_UNSPECIFIED",
-            "WINDOW_PHASE_ANY",
-            "WINDOW_PHASE_WEEK1",
-            "WINDOW_PHASE_WEEK2",
-            "WINDOW_PHASE_WEEK5"
-          ],
-          "enumDescriptions": [
-            "Phase is unspecified.",
-            "Any phase.",
-            "Week 1.",
-            "Week 2.",
-            "Week 5."
-          ],
-          "type": "string"
-        },
-        "time": {
-          "$ref": "TimeOfDay",
-          "description": "Optional. Preferred time to start the maintenance operation on the specified day."
-        },
-        "week": {
           "description": "Optional. Phase of the maintenance window. This is to capture order of maintenance. For example, for Cloud SQL resources, this can be used to capture if the maintenance window is in Week1, Week2, Week5, etc. Non production resources are usually part of early phase. For more details, refer to Cloud SQL resources - https://cloud.google.com/sql/docs/mysql/maintenance",
           "enum": [
             "PHASE_UNSPECIFIED",
@@ -5031,6 +5018,10 @@
             "Week 5."
           ],
           "type": "string"
+        },
+        "time": {
+          "$ref": "TimeOfDay",
+          "description": "Optional. Preferred time to start the maintenance operation on the specified day."
         }
       },
       "type": "object"
