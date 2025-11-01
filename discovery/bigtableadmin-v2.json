@@ -3070,7 +3070,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -3118,7 +3118,7 @@
       }
     }
   },
-  "revision": "20251012",
+  "revision": "20251026",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -3627,7 +3627,7 @@
         },
         "valueType": {
           "$ref": "Type",
-          "description": "The type of data stored in each of this family's cell values, including its full encoding. If omitted, the family only serves raw untyped bytes. For now, only the `Aggregate` type is supported. `Aggregate` can only be set at family creation and is immutable afterwards. If `value_type` is `Aggregate`, written data must be compatible with: * `value_type.input_type` for `AddInput` mutations"
+          "description": "The type of data stored in each of this family's cell values, including its full encoding. If omitted, the family only serves raw untyped bytes. For now, only the `Aggregate` type is supported. `Aggregate` can only be set at family creation and is immutable afterwards. This field is mutually exclusive with `sql_type`. If `value_type` is `Aggregate`, written data must be compatible with: * `value_type.input_type` for `AddInput` mutations"
         }
       },
       "type": "object"
