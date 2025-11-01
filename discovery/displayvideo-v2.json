@@ -9081,7 +9081,7 @@
       }
     }
   },
-  "revision": "20250925",
+  "revision": "20251027",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -12074,7 +12074,8 @@
             "SDF_VERSION_8",
             "SDF_VERSION_8_1",
             "SDF_VERSION_9",
-            "SDF_VERSION_9_1"
+            "SDF_VERSION_9_1",
+            "SDF_VERSION_9_2"
           ],
           "enumDeprecated": [
             false,
@@ -12089,6 +12090,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -12114,7 +12116,8 @@
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
             "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
-            "SDF version 9.1."
+            "SDF version 9.1.",
+            "SDF version 9.2."
           ],
           "type": "string"
         }
@@ -15926,12 +15929,14 @@
           "enum": [
             "SUSPICIOUS_ACTIVITY_UNSPECIFIED",
             "SUSPICIOUS_ACTIVITY_HR",
-            "SUSPICIOUS_ACTIVITY_HMR"
+            "SUSPICIOUS_ACTIVITY_HMR",
+            "SUSPICIOUS_ACTIVITY_FD"
           ],
           "enumDescriptions": [
             "This enum is only a placeholder and it doesn't specify any ad fraud prevention options.",
             "Ad Fraud - Exclude High Risk.",
-            "Ad Fraud - Exclude High and Moderate Risk."
+            "Ad Fraud - Exclude High and Moderate Risk.",
+            "Ad Fraud - Exclude Fraudulent Device."
           ],
           "type": "string"
         },
@@ -19420,7 +19425,8 @@
             "SDF_VERSION_8",
             "SDF_VERSION_8_1",
             "SDF_VERSION_9",
-            "SDF_VERSION_9_1"
+            "SDF_VERSION_9_1",
+            "SDF_VERSION_9_2"
           ],
           "enumDeprecated": [
             false,
@@ -19435,6 +19441,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -19460,7 +19467,8 @@
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
             "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
-            "SDF version 9.1."
+            "SDF version 9.1.",
+            "SDF version 9.2."
           ],
           "type": "string"
         }
@@ -19512,7 +19520,8 @@
             "SDF_VERSION_8",
             "SDF_VERSION_8_1",
             "SDF_VERSION_9",
-            "SDF_VERSION_9_1"
+            "SDF_VERSION_9_1",
+            "SDF_VERSION_9_2"
           ],
           "enumDeprecated": [
             false,
@@ -19527,6 +19536,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -19552,7 +19562,8 @@
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
             "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
-            "SDF version 9.1."
+            "SDF version 9.1.",
+            "SDF version 9.2."
           ],
           "type": "string"
         }
