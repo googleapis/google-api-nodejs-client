@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1624,7 +1624,7 @@
       }
     }
   },
-  "revision": "20251009",
+  "revision": "20251023",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2149,6 +2149,10 @@
             "The database version is Postgres 17."
           ],
           "type": "string"
+        },
+        "dataplexConfig": {
+          "$ref": "DataplexConfig",
+          "description": "Optional. Configuration for Dataplex integration."
         },
         "deleteTime": {
           "description": "Output only. Delete time stamp",
@@ -2702,6 +2706,17 @@
         "table": {
           "description": "Required. The database table to import CSV file into.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataplexConfig": {
+      "description": "Configuration for Dataplex integration.",
+      "id": "DataplexConfig",
+      "properties": {
+        "enabled": {
+          "description": "Dataplex is enabled by default for resources such as clusters and instances. This flag controls the integration of AlloyDB PG resources (like databases, schemas, and tables) with Dataplex.\"",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4577,7 +4592,8 @@
             "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
             "SIGNAL_TYPE_NO_ROOT_PASSWORD",
             "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
-            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS"
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT"
           ],
           "enumDescriptions": [
             "Unspecified signal type.",
@@ -4585,7 +4601,8 @@
             "Represents database auditing is disabled.",
             "Represents if a database has a password configured for the root account or not.",
             "Represents if a resource is exposed to public access.",
-            "Represents if a resources requires all incoming connections to use SSL or not."
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a resource version is in extended support."
           ],
           "type": "string"
         }
@@ -4893,7 +4910,8 @@
             "SIGNAL_TYPE_OUTDATED_VERSION",
             "SIGNAL_TYPE_OUTDATED_CLIENT",
             "SIGNAL_TYPE_DATABOOST_DISABLED",
-            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES"
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT"
           ],
           "enumDeprecated": [
             false,
@@ -4902,6 +4920,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -5105,7 +5124,8 @@
             "Outdated version.",
             "Outdated client.",
             "Databoost is disabled.",
-            "Recommended maintenance policy."
+            "Recommended maintenance policy.",
+            "Resource version is in extended support."
           ],
           "type": "string"
         },
@@ -5545,7 +5565,8 @@
             "SIGNAL_TYPE_OUTDATED_VERSION",
             "SIGNAL_TYPE_OUTDATED_CLIENT",
             "SIGNAL_TYPE_DATABOOST_DISABLED",
-            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES"
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT"
           ],
           "enumDeprecated": [
             false,
@@ -5554,6 +5575,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -5757,7 +5779,8 @@
             "Outdated version.",
             "Outdated client.",
             "Databoost is disabled.",
-            "Recommended maintenance policy."
+            "Recommended maintenance policy.",
+            "Resource version is in extended support."
           ],
           "type": "string"
         }
@@ -5810,7 +5833,8 @@
             "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
             "SIGNAL_TYPE_NO_ROOT_PASSWORD",
             "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
-            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS"
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT"
           ],
           "enumDescriptions": [
             "Unspecified signal type.",
@@ -5818,7 +5842,8 @@
             "Represents database auditing is disabled.",
             "Represents if a database has a password configured for the root account or not.",
             "Represents if a resource is exposed to public access.",
-            "Represents if a resources requires all incoming connections to use SSL or not."
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a resource version is in extended support."
           ],
           "type": "string"
         }
