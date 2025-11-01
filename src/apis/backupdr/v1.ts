@@ -424,6 +424,10 @@ export namespace backupdr_v1 {
      */
     gcpBackupPlanInfo?: Schema$GCPBackupPlanInfo;
     /**
+     * Output only. Unique identifier of the GCP resource that is being backed up.
+     */
+    gcpResource?: Schema$BackupGcpResource;
+    /**
      * Optional. Resource labels to represent user provided metadata. No labels currently defined.
      */
     labels?: {[key: string]: string} | null;
@@ -649,6 +653,23 @@ export namespace backupdr_v1 {
     thirdPartyManagementUri?: string | null;
   }
   /**
+   * Minimum details to identify a Google Cloud resource for a backup.
+   */
+  export interface Schema$BackupGcpResource {
+    /**
+     * Name of the Google Cloud resource.
+     */
+    gcpResourcename?: string | null;
+    /**
+     * Location of the resource: //"global"/"unspecified".
+     */
+    location?: string | null;
+    /**
+     * Type of the resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.
+     */
+    type?: string | null;
+  }
+  /**
    * BackupLocation represents a cloud location where a backup can be stored.
    */
   export interface Schema$BackupLocation {
@@ -714,6 +735,10 @@ export namespace backupdr_v1 {
      * Optional. Applicable only for CloudSQL resource_type. Configures how long logs will be stored. It is defined in “days”. This value should be greater than or equal to minimum enforced log retention duration of the backup vault.
      */
     logRetentionDays?: string | null;
+    /**
+     * Optional. Optional field to configure the maximum number of days for which a backup can be retained. This field is only applicable for on-demand backups taken with custom retention value.
+     */
+    maxCustomOnDemandRetentionDays?: number | null;
     /**
      * Output only. Identifier. The resource name of the `BackupPlan`. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}`
      */
@@ -962,6 +987,14 @@ export namespace backupdr_v1 {
      * Output only. Whether the backup is a final backup.
      */
     finalBackup?: boolean | null;
+    /**
+     * Output only. The instance creation timestamp.
+     */
+    instanceCreateTime?: string | null;
+    /**
+     * Output only. The instance delete timestamp.
+     */
+    instanceDeleteTime?: string | null;
     /**
      * Output only. The tier (or machine type) for this instance. Example: `db-custom-1-3840`
      */
@@ -1445,6 +1478,10 @@ export namespace backupdr_v1 {
      * Identifier. The resource name of the DataSourceReference. Format: projects/{project\}/locations/{location\}/dataSourceReferences/{data_source_reference\}
      */
     name?: string | null;
+    /**
+     * Output only. Total size of the storage used by all backup resources for the referenced datasource.
+     */
+    totalStoredBytes?: string | null;
   }
   /**
    * DiskBackupProperties represents the properties of a Disk backup.
@@ -1713,6 +1750,19 @@ export namespace backupdr_v1 {
     backupPlanAssociations?: Schema$BackupPlanAssociation[];
     /**
      * Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response for the FetchBackupsForResourceType method.
+   */
+  export interface Schema$FetchBackupsForResourceTypeResponse {
+    /**
+     * The Backups from the specified parent.
+     */
+    backups?: Schema$Backup[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
   }
@@ -2026,6 +2076,19 @@ export namespace backupdr_v1 {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Response for the ListDataSourceReferences method.
+   */
+  export interface Schema$ListDataSourceReferencesResponse {
+    /**
+     * The DataSourceReferences from the specified parent.
+     */
+    dataSourceReferences?: Schema$DataSourceReference[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing DataSources.
@@ -2771,6 +2834,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$TriggerBackupRequest {
     /**
+     * Optional. The duration for which backup data will be kept, while taking an on-demand backup with custom retention. It is defined in "days". It is mutually exclusive with rule_id. This field is required if rule_id is not provided.
+     */
+    customRetentionDays?: number | null;
+    /**
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
@@ -3171,7 +3238,7 @@ export namespace backupdr_v1 {
      *
      *   // Do the magic
      *   const res = await backupdr.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3306,7 +3373,7 @@ export namespace backupdr_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -4306,6 +4373,7 @@ export namespace backupdr_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "customRetentionDays": 0,
      *         //   "requestId": "my_requestId",
      *         //   "ruleId": "my_ruleId"
      *         // }
@@ -4597,6 +4665,7 @@ export namespace backupdr_v1 {
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "logRetentionDays": "my_logRetentionDays",
+     *       //   "maxCustomOnDemandRetentionDays": 0,
      *       //   "name": "my_name",
      *       //   "resourceType": "my_resourceType",
      *       //   "revisionId": "my_revisionId",
@@ -4900,6 +4969,7 @@ export namespace backupdr_v1 {
      *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "logRetentionDays": "my_logRetentionDays",
+     *   //   "maxCustomOnDemandRetentionDays": 0,
      *   //   "name": "my_name",
      *   //   "resourceType": "my_resourceType",
      *   //   "revisionId": "my_revisionId",
@@ -5201,6 +5271,7 @@ export namespace backupdr_v1 {
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "logRetentionDays": "my_logRetentionDays",
+     *       //   "maxCustomOnDemandRetentionDays": 0,
      *       //   "name": "my_name",
      *       //   "resourceType": "my_resourceType",
      *       //   "revisionId": "my_revisionId",
@@ -8666,6 +8737,170 @@ export namespace backupdr_v1 {
     }
 
     /**
+     * Fetch Backups for a given resource type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.backupVaults.dataSources.backups.fetchForResourceType(
+     *       {
+     *         // Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields:
+     *         filter: 'placeholder-value',
+     *         // Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of Backups to return. The service may return fewer than this value. If unspecified, at most 50 Backups will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous call of `FetchBackupsForResourceType`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchBackupsForResourceType` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Datasources are the parent resource for the backups. Format: projects/{project\}/locations/{location\}/backupVaults/{backupVaultId\}/dataSources/{datasourceId\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/backupVaults/my-backupVault/dataSources/my-dataSource',
+     *         // Required. The type of the GCP resource. Ex: sqladmin.googleapis.com/Instance
+     *         resourceType: 'placeholder-value',
+     *         // Optional. This parameter is used to specify the view of the backup. If not specified, the default view is BASIC.
+     *         view: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backups": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Fetchforresourcetype,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchForResourceType(
+      params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Fetchforresourcetype,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchBackupsForResourceTypeResponse>
+    >;
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Fetchforresourcetype,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Fetchforresourcetype,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchBackupsForResourceTypeResponse>,
+      callback: BodyResponseCallback<Schema$FetchBackupsForResourceTypeResponse>
+    ): void;
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Fetchforresourcetype,
+      callback: BodyResponseCallback<Schema$FetchBackupsForResourceTypeResponse>
+    ): void;
+    fetchForResourceType(
+      callback: BodyResponseCallback<Schema$FetchBackupsForResourceTypeResponse>
+    ): void;
+    fetchForResourceType(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Fetchforresourcetype
+        | BodyResponseCallback<Schema$FetchBackupsForResourceTypeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchBackupsForResourceTypeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchBackupsForResourceTypeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchBackupsForResourceTypeResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Fetchforresourcetype;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Fetchforresourcetype;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/backups:fetchForResourceType'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchBackupsForResourceTypeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchBackupsForResourceTypeResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets details of a Backup.
      * @example
      * ```js
@@ -8720,6 +8955,7 @@ export namespace backupdr_v1 {
      *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
      *   //   "gcpBackupPlanInfo": {},
+     *   //   "gcpResource": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "resourceSizeBytes": "my_resourceSizeBytes",
@@ -9033,6 +9269,7 @@ export namespace backupdr_v1 {
      *         //   "etag": "my_etag",
      *         //   "expireTime": "my_expireTime",
      *         //   "gcpBackupPlanInfo": {},
+     *         //   "gcpResource": {},
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "resourceSizeBytes": "my_resourceSizeBytes",
@@ -9317,6 +9554,37 @@ export namespace backupdr_v1 {
      */
     requestId?: string;
   }
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Fetchforresourcetype
+    extends StandardParameters {
+    /**
+     * Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields:
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of Backups to return. The service may return fewer than this value. If unspecified, at most 50 Backups will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous call of `FetchBackupsForResourceType`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchBackupsForResourceType` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Datasources are the parent resource for the backups. Format: projects/{project\}/locations/{location\}/backupVaults/{backupVaultId\}/dataSources/{datasourceId\}
+     */
+    parent?: string;
+    /**
+     * Required. The type of the GCP resource. Ex: sqladmin.googleapis.com/Instance
+     */
+    resourceType?: string;
+    /**
+     * Optional. This parameter is used to specify the view of the backup. If not specified, the default view is BASIC.
+     */
+    view?: string;
+  }
   export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Get
     extends StandardParameters {
     /**
@@ -9600,7 +9868,8 @@ export namespace backupdr_v1 {
      *   //   "dataSourceBackupConfigState": "my_dataSourceBackupConfigState",
      *   //   "dataSourceBackupCount": "my_dataSourceBackupCount",
      *   //   "dataSourceGcpResourceInfo": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "totalStoredBytes": "my_totalStoredBytes"
      *   // }
      * }
      *
@@ -9696,6 +9965,163 @@ export namespace backupdr_v1 {
         return createAPIRequest<Schema$DataSourceReference>(parameters);
       }
     }
+
+    /**
+     * Lists DataSourceReferences for a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await backupdr.projects.locations.dataSourceReferences.list({
+     *     // Optional. A filter expression that filters the results listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The following field and operator combinations are supported: * data_source_gcp_resource_info.gcp_resourcename with `=`, `!=` * data_source_gcp_resource_info.type with `=`, `!=`
+     *     filter: 'placeholder-value',
+     *     // Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * data_source * data_source_gcp_resource_info.gcp_resourcename
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of DataSourceReferences to return. The service may return fewer than this value. If unspecified, at most 50 DataSourceReferences will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListDataSourceReferences` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDataSourceReferences` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceReferences": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datasourcereferences$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListDataSourceReferencesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDataSourceReferencesResponse>,
+      callback: BodyResponseCallback<Schema$ListDataSourceReferencesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$List,
+      callback: BodyResponseCallback<Schema$ListDataSourceReferencesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDataSourceReferencesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasourcereferences$List
+        | BodyResponseCallback<Schema$ListDataSourceReferencesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDataSourceReferencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDataSourceReferencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListDataSourceReferencesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasourcereferences$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasourcereferences$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dataSourceReferences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDataSourceReferencesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDataSourceReferencesResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype
@@ -9731,6 +10157,29 @@ export namespace backupdr_v1 {
      * Required. The name of the DataSourceReference to retrieve. Format: projects/{project\}/locations/{location\}/dataSourceReferences/{data_source_reference\}
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasourcereferences$List
+    extends StandardParameters {
+    /**
+     * Optional. A filter expression that filters the results listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The following field and operator combinations are supported: * data_source_gcp_resource_info.gcp_resourcename with `=`, `!=` * data_source_gcp_resource_info.type with `=`, `!=`
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * data_source * data_source_gcp_resource_info.gcp_resourcename
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of DataSourceReferences to return. The service may return fewer than this value. If unspecified, at most 50 DataSourceReferences will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListDataSourceReferences` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDataSourceReferences` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Managementservers {
