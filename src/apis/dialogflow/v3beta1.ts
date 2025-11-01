@@ -981,6 +981,15 @@ export namespace dialogflow_v3beta1 {
     userEmail?: string | null;
   }
   /**
+   * Represents a code block.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1CodeBlock {
+    /**
+     * Optional. Source code of the block in Python.
+     */
+    code?: string | null;
+  }
+  /**
    * The request message for Versions.CompareVersions.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1CompareVersionsRequest {
@@ -3934,6 +3943,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Playbook {
     /**
+     * Optional. The playbook's scoped code block, which may implement handlers and actions.
+     */
+    codeBlock?: Schema$GoogleCloudDialogflowCxV3beta1CodeBlock;
+    /**
      * Output only. The timestamp of initial playbook creation.
      */
     createTime?: string | null;
@@ -3949,6 +3962,10 @@ export namespace dialogflow_v3beta1 {
      * Optional. A list of registered handlers to execute based on the specified triggers.
      */
     handlers?: Schema$GoogleCloudDialogflowCxV3beta1Handler[];
+    /**
+     * Optional. Output only. Names of inline actions scoped to this playbook. These actions are in addition to those belonging to referenced tools, child playbooks, and flows, e.g. actions that are defined in the playbook's code block.
+     */
+    inlineActions?: string[] | null;
     /**
      * Optional. Defined structured input parameters for this playbook.
      */
@@ -5147,6 +5164,10 @@ export namespace dialogflow_v3beta1 {
      */
     oauthConfig?: Schema$GoogleCloudDialogflowCxV3beta1ToolAuthenticationOAuthConfig;
     /**
+     * Configuration for service account authentication.
+     */
+    serviceAccountAuthConfig?: Schema$GoogleCloudDialogflowCxV3beta1ToolAuthenticationServiceAccountAuthConfig;
+    /**
      * Config for [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent) auth.
      */
     serviceAgentAuthConfig?: Schema$GoogleCloudDialogflowCxV3beta1ToolAuthenticationServiceAgentAuthConfig;
@@ -5213,6 +5234,15 @@ export namespace dialogflow_v3beta1 {
      * Required. The token endpoint in the OAuth provider to exchange for an access token.
      */
     tokenEndpoint?: string | null;
+  }
+  /**
+   * Configuration for authentication using a service account.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolAuthenticationServiceAccountAuthConfig {
+    /**
+     * Required. The email address of the service account used to authenticate the tool call. Dialogflow uses this service account to exchange an access token and the access token is then sent in the `Authorization` header of the tool request. The service account must have the `roles/iam.serviceAccountTokenCreator` role granted to the [Dialogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+     */
+    serviceAccount?: string | null;
   }
   /**
    * Config for auth using [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
@@ -5969,6 +5999,10 @@ export namespace dialogflow_v3beta1 {
       ]: Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue;
     } | null;
     /**
+     * Optional. Configuration for service account authentication.
+     */
+    serviceAccountAuthConfig?: Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceServiceAccountAuthConfig;
+    /**
      * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
      */
     serviceAgentAuth?: string | null;
@@ -6018,6 +6052,15 @@ export namespace dialogflow_v3beta1 {
      * Required. The SecretManager secret version resource storing the header value. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
      */
     secretVersion?: string | null;
+  }
+  /**
+   * Configuration for authentication using a service account.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceServiceAccountAuthConfig {
+    /**
+     * Required. The email address of the service account used to authenticate the webhook call. Dialogflow uses this service account to exchange an access token and the access token is then sent in the `Authorization` header of the webhook request. The service account must have the `roles/iam.serviceAccountTokenCreator` role granted to the [Dialogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+     */
+    serviceAccount?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -7658,6 +7701,10 @@ export namespace dialogflow_v3beta1 {
       ]: Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue;
     } | null;
     /**
+     * Optional. Configuration for service account authentication.
+     */
+    serviceAccountAuthConfig?: Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceServiceAccountAuthConfig;
+    /**
      * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
      */
     serviceAgentAuth?: string | null;
@@ -7707,6 +7754,15 @@ export namespace dialogflow_v3beta1 {
      * Required. The SecretManager secret version resource storing the header value. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
      */
     secretVersion?: string | null;
+  }
+  /**
+   * Configuration for authentication using a service account.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceServiceAccountAuthConfig {
+    /**
+     * Required. The email address of the service account used to authenticate the webhook call. Dialogflow uses this service account to exchange an access token and the access token is then sent in the `Authorization` header of the webhook request. The service account must have the `roles/iam.serviceAccountTokenCreator` role granted to the [Dialogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+     */
+    serviceAccount?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -12496,7 +12552,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -12632,7 +12688,7 @@ export namespace dialogflow_v3beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -28366,10 +28422,12 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "codeBlock": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "goal": "my_goal",
      *       //   "handlers": [],
+     *       //   "inlineActions": [],
      *       //   "inputParameterDefinitions": [],
      *       //   "instruction": {},
      *       //   "llmModelSettings": {},
@@ -28389,10 +28447,12 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "codeBlock": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "goal": "my_goal",
      *   //   "handlers": [],
+     *   //   "inlineActions": [],
      *   //   "inputParameterDefinitions": [],
      *   //   "instruction": {},
      *   //   "llmModelSettings": {},
@@ -28849,10 +28909,12 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "codeBlock": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "goal": "my_goal",
      *   //   "handlers": [],
+     *   //   "inlineActions": [],
      *   //   "inputParameterDefinitions": [],
      *   //   "instruction": {},
      *   //   "llmModelSettings": {},
@@ -29327,10 +29389,12 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "codeBlock": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "goal": "my_goal",
      *       //   "handlers": [],
+     *       //   "inlineActions": [],
      *       //   "inputParameterDefinitions": [],
      *       //   "instruction": {},
      *       //   "llmModelSettings": {},
@@ -29350,10 +29414,12 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "codeBlock": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "goal": "my_goal",
      *   //   "handlers": [],
+     *   //   "inlineActions": [],
      *   //   "inputParameterDefinitions": [],
      *   //   "instruction": {},
      *   //   "llmModelSettings": {},

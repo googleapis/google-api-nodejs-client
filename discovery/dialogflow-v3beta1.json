@@ -148,7 +148,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -5446,7 +5446,7 @@
       }
     }
   },
-  "revision": "20251009",
+  "revision": "20251027",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -7590,6 +7590,10 @@
           "description": "Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.",
           "type": "object"
         },
+        "serviceAccountAuthConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3WebhookGenericWebServiceServiceAccountAuthConfig",
+          "description": "Optional. Configuration for service account authentication."
+        },
         "serviceAgentAuth": {
           "description": "Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.",
           "enum": [
@@ -7668,6 +7672,17 @@
       "properties": {
         "secretVersion": {
           "description": "Required. The SecretManager secret version resource storing the header value. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3WebhookGenericWebServiceServiceAccountAuthConfig": {
+      "description": "Configuration for authentication using a service account.",
+      "id": "GoogleCloudDialogflowCxV3WebhookGenericWebServiceServiceAccountAuthConfig",
+      "properties": {
+        "serviceAccount": {
+          "description": "Required. The email address of the service account used to authenticate the webhook call. Dialogflow uses this service account to exchange an access token and the access token is then sent in the `Authorization` header of the webhook request. The service account must have the `roles/iam.serviceAccountTokenCreator` role granted to the [Dialogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).",
           "type": "string"
         }
       },
@@ -8806,6 +8821,17 @@
         },
         "userEmail": {
           "description": "Email address of the authenticated user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1CodeBlock": {
+      "description": "Represents a code block.",
+      "id": "GoogleCloudDialogflowCxV3beta1CodeBlock",
+      "properties": {
+        "code": {
+          "description": "Optional. Source code of the block in Python.",
           "type": "string"
         }
       },
@@ -13011,6 +13037,10 @@
       "description": "Playbook is the basic building block to instruct the LLM how to execute a certain task. A playbook consists of a goal to accomplish, an optional list of step by step instructions (the step instruction may refers to name of the custom or default plugin tools to use) to perform the task, a list of contextual input data to be passed in at the beginning of the invoked, and a list of output parameters to store the playbook result.",
       "id": "GoogleCloudDialogflowCxV3beta1Playbook",
       "properties": {
+        "codeBlock": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1CodeBlock",
+          "description": "Optional. The playbook's scoped code block, which may implement handlers and actions."
+        },
         "createTime": {
           "description": "Output only. The timestamp of initial playbook creation.",
           "format": "google-datetime",
@@ -13030,6 +13060,14 @@
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1Handler"
           },
+          "type": "array"
+        },
+        "inlineActions": {
+          "description": "Optional. Output only. Names of inline actions scoped to this playbook. These actions are in addition to those belonging to referenced tools, child playbooks, and flows, e.g. actions that are defined in the playbook's code block.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "inputParameterDefinitions": {
@@ -14755,6 +14793,10 @@
           "$ref": "GoogleCloudDialogflowCxV3beta1ToolAuthenticationOAuthConfig",
           "description": "Config for OAuth."
         },
+        "serviceAccountAuthConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolAuthenticationServiceAccountAuthConfig",
+          "description": "Configuration for service account authentication."
+        },
         "serviceAgentAuthConfig": {
           "$ref": "GoogleCloudDialogflowCxV3beta1ToolAuthenticationServiceAgentAuthConfig",
           "description": "Config for [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent) auth."
@@ -14847,6 +14889,17 @@
         },
         "tokenEndpoint": {
           "description": "Required. The token endpoint in the OAuth provider to exchange for an access token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolAuthenticationServiceAccountAuthConfig": {
+      "description": "Configuration for authentication using a service account.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolAuthenticationServiceAccountAuthConfig",
+      "properties": {
+        "serviceAccount": {
+          "description": "Required. The email address of the service account used to authenticate the tool call. Dialogflow uses this service account to exchange an access token and the access token is then sent in the `Authorization` header of the tool request. The service account must have the `roles/iam.serviceAccountTokenCreator` role granted to the [Dialogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).",
           "type": "string"
         }
       },
@@ -15922,6 +15975,10 @@
           "description": "Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.",
           "type": "object"
         },
+        "serviceAccountAuthConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceServiceAccountAuthConfig",
+          "description": "Optional. Configuration for service account authentication."
+        },
         "serviceAgentAuth": {
           "description": "Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.",
           "enum": [
@@ -16000,6 +16057,17 @@
       "properties": {
         "secretVersion": {
           "description": "Required. The SecretManager secret version resource storing the header value. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceServiceAccountAuthConfig": {
+      "description": "Configuration for authentication using a service account.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceServiceAccountAuthConfig",
+      "properties": {
+        "serviceAccount": {
+          "description": "Required. The email address of the service account used to authenticate the webhook call. Dialogflow uses this service account to exchange an access token and the access token is then sent in the `Authorization` header of the webhook request. The service account must have the `roles/iam.serviceAccountTokenCreator` role granted to the [Dialogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).",
           "type": "string"
         }
       },
