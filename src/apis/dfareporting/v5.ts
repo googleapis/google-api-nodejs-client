@@ -630,6 +630,10 @@ export namespace dfareporting_v5 {
      */
     compatibility?: string | null;
     /**
+     * Optional. Contextual keyword targeting information for this ad.
+     */
+    contextualKeywordTargeting?: Schema$ContextualKeywordTargeting;
+    /**
      * Information about the creation of this ad. This is a read-only field.
      */
     createInfo?: Schema$LastModifiedInfo;
@@ -1759,6 +1763,24 @@ export namespace dfareporting_v5 {
      * Output only. The separator of the content source.
      */
     separator?: string | null;
+  }
+  /**
+   * Contains information about a Contextual Keyword that can be targeted by ads.
+   */
+  export interface Schema$ContextualKeyword {
+    /**
+     * The keyword that can be targeted by ads.
+     */
+    keyword?: string | null;
+  }
+  /**
+   * Contextual Keyword Targeting.
+   */
+  export interface Schema$ContextualKeywordTargeting {
+    /**
+     * Contextual keywords that this ad targets
+     */
+    keywords?: Schema$ContextualKeyword[];
   }
   /**
    * A Conversion represents when a user successfully performs a desired action after seeing an ad.
@@ -5110,7 +5132,7 @@ export namespace dfareporting_v5 {
      */
     additionalSizes?: Schema$Size[];
     /**
-     * Optional. Ad serving platform ID to identify the ad serving platform used by the placement. Measurement partners can use this field to add ad-server specific macros. Possible values are: * `1`, Adelphic * `2`, Adform * `3`, Adobe * `4`, Amobee * `5`, Basis (Centro) * `6`, Beeswax * `7`, Amazon * `8`, DV360 (DBM) * `9`, Innovid * `10`, MediaMath * `11`, Roku OneView DSP * `12`, TabMo Hawk * `13`, The Trade Desk * `14`, Xandr Invest DSP * `15`, Yahoo DSP * `16`, Zeta Global * `17`, Scaleout * `18`, Bidtellect * `19`, Unicorn * `20`, Teads * `21`, Quantcast * `22`, Cognitiv
+     * Optional. Ad serving platform ID to identify the ad serving platform used by the placement. Measurement partners can use this field to add ad-server specific macros. Possible values are: * `1`, Adelphic * `2`, Adform * `3`, Adobe * `4`, Amobee * `5`, Basis (Centro) * `6`, Beeswax * `7`, Amazon * `8`, DV360 (DBM) * `9`, Innovid * `10`, MediaMath * `11`, Roku OneView DSP * `12`, TabMo Hawk * `13`, The Trade Desk * `14`, Xandr Invest DSP * `15`, Yahoo DSP * `16`, Zeta Global * `17`, Scaleout * `18`, Bidtellect * `19`, Unicorn * `20`, Teads * `21`, Quantcast * `22`, Cognitiv * `23`, AdTheorent * `24`, DeepIntent * `25`, Pulsepoint
      */
     adServingPlatformId?: string | null;
     /**
@@ -6152,7 +6174,7 @@ export namespace dfareporting_v5 {
      */
     accountId?: string | null;
     /**
-     * Optional. Ad serving platform ID to identify the ad serving platform used by the site. Measurement partners can use this field to add ad-server specific macros. If set, this value acts as the default during placement creation. Possible values are: * `1`, Adelphic * `2`, Adform * `3`, Adobe * `4`, Amobee * `5`, Basis (Centro) * `6`, Beeswax * `7`, Amazon * `8`, DV360 (DBM) * `9`, Innovid * `10`, MediaMath * `11`, Roku OneView DSP * `12`, TabMo Hawk * `13`, The Trade Desk * `14`, Xandr Invest DSP * `15`, Yahoo DSP * `16`, Zeta Global * `17`, Scaleout * `18`, Bidtellect * `19`, Unicorn * `20`, Teads * `21`, Quantcast * `22`, Cognitiv
+     * Optional. Ad serving platform ID to identify the ad serving platform used by the site. Measurement partners can use this field to add ad-server specific macros. If set, this value acts as the default during placement creation. Possible values are: * `1`, Adelphic * `2`, Adform * `3`, Adobe * `4`, Amobee * `5`, Basis (Centro) * `6`, Beeswax * `7`, Amazon * `8`, DV360 (DBM) * `9`, Innovid * `10`, MediaMath * `11`, Roku OneView DSP * `12`, TabMo Hawk * `13`, The Trade Desk * `14`, Xandr Invest DSP * `15`, Yahoo DSP * `16`, Zeta Global * `17`, Scaleout * `18`, Bidtellect * `19`, Unicorn * `20`, Teads * `21`, Quantcast * `22`, Cognitiv * `23`, AdTheorent * `24`, DeepIntent * `25`, Pulsepoint
      */
     adServingPlatformId?: string | null;
     /**
@@ -6770,6 +6792,10 @@ export namespace dfareporting_v5 {
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
+    /**
+     * Optional. Contextual keyword targeting criteria.
+     */
+    contextualKeywordTargeting?: Schema$ContextualKeywordTargeting;
     /**
      * Time and day targeting criteria.
      */
@@ -9901,6 +9927,7 @@ export namespace dfareporting_v5 {
      *   //   "clickThroughUrlSuffixProperties": {},
      *   //   "comments": "my_comments",
      *   //   "compatibility": "my_compatibility",
+     *   //   "contextualKeywordTargeting": {},
      *   //   "createInfo": {},
      *   //   "creativeGroupAssignments": [],
      *   //   "creativeRotation": {},
@@ -10074,6 +10101,7 @@ export namespace dfareporting_v5 {
      *       //   "clickThroughUrlSuffixProperties": {},
      *       //   "comments": "my_comments",
      *       //   "compatibility": "my_compatibility",
+     *       //   "contextualKeywordTargeting": {},
      *       //   "createInfo": {},
      *       //   "creativeGroupAssignments": [],
      *       //   "creativeRotation": {},
@@ -10120,6 +10148,7 @@ export namespace dfareporting_v5 {
      *   //   "clickThroughUrlSuffixProperties": {},
      *   //   "comments": "my_comments",
      *   //   "compatibility": "my_compatibility",
+     *   //   "contextualKeywordTargeting": {},
      *   //   "createInfo": {},
      *   //   "creativeGroupAssignments": [],
      *   //   "creativeRotation": {},
@@ -10478,6 +10507,7 @@ export namespace dfareporting_v5 {
      *       //   "clickThroughUrlSuffixProperties": {},
      *       //   "comments": "my_comments",
      *       //   "compatibility": "my_compatibility",
+     *       //   "contextualKeywordTargeting": {},
      *       //   "createInfo": {},
      *       //   "creativeGroupAssignments": [],
      *       //   "creativeRotation": {},
@@ -10524,6 +10554,7 @@ export namespace dfareporting_v5 {
      *   //   "clickThroughUrlSuffixProperties": {},
      *   //   "comments": "my_comments",
      *   //   "compatibility": "my_compatibility",
+     *   //   "contextualKeywordTargeting": {},
      *   //   "createInfo": {},
      *   //   "creativeGroupAssignments": [],
      *   //   "creativeRotation": {},
@@ -10697,6 +10728,7 @@ export namespace dfareporting_v5 {
      *       //   "clickThroughUrlSuffixProperties": {},
      *       //   "comments": "my_comments",
      *       //   "compatibility": "my_compatibility",
+     *       //   "contextualKeywordTargeting": {},
      *       //   "createInfo": {},
      *       //   "creativeGroupAssignments": [],
      *       //   "creativeRotation": {},
@@ -10743,6 +10775,7 @@ export namespace dfareporting_v5 {
      *   //   "clickThroughUrlSuffixProperties": {},
      *   //   "comments": "my_comments",
      *   //   "compatibility": "my_compatibility",
+     *   //   "contextualKeywordTargeting": {},
      *   //   "createInfo": {},
      *   //   "creativeGroupAssignments": [],
      *   //   "creativeRotation": {},
@@ -42856,6 +42889,7 @@ export namespace dfareporting_v5 {
      *   //   "accountId": "my_accountId",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "contextualKeywordTargeting": {},
      *   //   "dayPartTargeting": {},
      *   //   "geoTargeting": {},
      *   //   "id": "my_id",
@@ -43005,6 +43039,7 @@ export namespace dfareporting_v5 {
      *       //   "accountId": "my_accountId",
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
+     *       //   "contextualKeywordTargeting": {},
      *       //   "dayPartTargeting": {},
      *       //   "geoTargeting": {},
      *       //   "id": "my_id",
@@ -43025,6 +43060,7 @@ export namespace dfareporting_v5 {
      *   //   "accountId": "my_accountId",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "contextualKeywordTargeting": {},
      *   //   "dayPartTargeting": {},
      *   //   "geoTargeting": {},
      *   //   "id": "my_id",
@@ -43335,6 +43371,7 @@ export namespace dfareporting_v5 {
      *       //   "accountId": "my_accountId",
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
+     *       //   "contextualKeywordTargeting": {},
      *       //   "dayPartTargeting": {},
      *       //   "geoTargeting": {},
      *       //   "id": "my_id",
@@ -43355,6 +43392,7 @@ export namespace dfareporting_v5 {
      *   //   "accountId": "my_accountId",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "contextualKeywordTargeting": {},
      *   //   "dayPartTargeting": {},
      *   //   "geoTargeting": {},
      *   //   "id": "my_id",
@@ -43504,6 +43542,7 @@ export namespace dfareporting_v5 {
      *       //   "accountId": "my_accountId",
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
+     *       //   "contextualKeywordTargeting": {},
      *       //   "dayPartTargeting": {},
      *       //   "geoTargeting": {},
      *       //   "id": "my_id",
@@ -43524,6 +43563,7 @@ export namespace dfareporting_v5 {
      *   //   "accountId": "my_accountId",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "contextualKeywordTargeting": {},
      *   //   "dayPartTargeting": {},
      *   //   "geoTargeting": {},
      *   //   "id": "my_id",
