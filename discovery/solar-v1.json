@@ -114,6 +114,11 @@
           "id": "solar.buildingInsights.findClosest",
           "parameterOrder": [],
           "parameters": {
+            "exactQualityRequired": {
+              "description": "Optional. Whether to require exact quality of the imagery. If set to false, the `required_quality` field is interpreted as the minimum required quality, such that HIGH quality imagery may be returned when `required_quality` is set to MEDIUM. If set to true, `required_quality` is interpreted as the exact required quality and only `MEDIUM` quality imagery is returned if `required_quality` is set to `MEDIUM`.",
+              "location": "query",
+              "type": "boolean"
+            },
             "experiments": {
               "description": "Optional. Specifies the pre-GA features to enable.",
               "enum": [
@@ -299,7 +304,7 @@
       }
     }
   },
-  "revision": "20250804",
+  "revision": "20251027",
   "rootUrl": "https://solar.googleapis.com/",
   "schemas": {
     "BuildingInsights": {

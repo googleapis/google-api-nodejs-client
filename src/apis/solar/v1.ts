@@ -681,6 +681,8 @@ export namespace solar_v1 {
      *
      *   // Do the magic
      *   const res = await solar.buildingInsights.findClosest({
+     *     // Optional. Whether to require exact quality of the imagery. If set to false, the `required_quality` field is interpreted as the minimum required quality, such that HIGH quality imagery may be returned when `required_quality` is set to MEDIUM. If set to true, `required_quality` is interpreted as the exact required quality and only `MEDIUM` quality imagery is returned if `required_quality` is set to `MEDIUM`.
+     *     exactQualityRequired: 'placeholder-value',
      *     // Optional. Specifies the pre-GA features to enable.
      *     experiments: 'placeholder-value',
      *     // The latitude in degrees. It must be in the range [-90.0, +90.0].
@@ -806,6 +808,10 @@ export namespace solar_v1 {
 
   export interface Params$Resource$Buildinginsights$Findclosest
     extends StandardParameters {
+    /**
+     * Optional. Whether to require exact quality of the imagery. If set to false, the `required_quality` field is interpreted as the minimum required quality, such that HIGH quality imagery may be returned when `required_quality` is set to MEDIUM. If set to true, `required_quality` is interpreted as the exact required quality and only `MEDIUM` quality imagery is returned if `required_quality` is set to `MEDIUM`.
+     */
+    exactQualityRequired?: boolean;
     /**
      * Optional. Specifies the pre-GA features to enable.
      */
