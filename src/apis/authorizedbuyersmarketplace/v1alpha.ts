@@ -1681,6 +1681,158 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         return createAPIRequest<Schema$ListFinalizedDealsResponse>(parameters);
       }
     }
+
+    /**
+     * Sets the given finalized deal as ready to serve. By default, deals are set as ready to serve as soon as they're finalized. If you want to opt out of the default behavior, and manually indicate that deals are ready to serve, ask your Technical Account Manager to add you to the allowlist. If you choose to use this method, finalized deals belonging to the bidder and its child seats don't start serving until after you call `setReadyToServe`, and after the deals become active. For example, you can use this method to delay receiving bid requests until your creative is ready. In addition, bidders can use the URL path "/v1alpha/bidders/{accountId\}/finalizedDeals/{dealId\}" to set ready to serve for the finalized deals belong to itself, its child seats and all their clients. This method only applies to programmatic guaranteed deals.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await authorizedbuyersmarketplace.bidders.finalizedDeals.setReadyToServe({
+     *       // Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}` or `bidders/{accountId\}/finalizedDeals/{dealId\}`
+     *       deal: 'bidders/my-bidder/finalizedDeals/my-finalizedDeal',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deal": {},
+     *   //   "dealPausingInfo": {},
+     *   //   "dealServingStatus": "my_dealServingStatus",
+     *   //   "name": "my_name",
+     *   //   "readyToServe": false,
+     *   //   "rtbMetrics": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setReadyToServe(
+      params: Params$Resource$Bidders$Finalizeddeals$Setreadytoserve,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setReadyToServe(
+      params?: Params$Resource$Bidders$Finalizeddeals$Setreadytoserve,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>;
+    setReadyToServe(
+      params: Params$Resource$Bidders$Finalizeddeals$Setreadytoserve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setReadyToServe(
+      params: Params$Resource$Bidders$Finalizeddeals$Setreadytoserve,
+      options: MethodOptions | BodyResponseCallback<Schema$FinalizedDeal>,
+      callback: BodyResponseCallback<Schema$FinalizedDeal>
+    ): void;
+    setReadyToServe(
+      params: Params$Resource$Bidders$Finalizeddeals$Setreadytoserve,
+      callback: BodyResponseCallback<Schema$FinalizedDeal>
+    ): void;
+    setReadyToServe(callback: BodyResponseCallback<Schema$FinalizedDeal>): void;
+    setReadyToServe(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Finalizeddeals$Setreadytoserve
+        | BodyResponseCallback<Schema$FinalizedDeal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FinalizedDeal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FinalizedDeal>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Finalizeddeals$Setreadytoserve;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Finalizeddeals$Setreadytoserve;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://authorizedbuyersmarketplace.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+deal}:setReadyToServe').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['deal'],
+        pathParams: ['deal'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FinalizedDeal>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FinalizedDeal>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Bidders$Finalizeddeals$List
@@ -1705,6 +1857,18 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      * Required. The buyer to list the finalized deals for, in the format: `buyers/{accountId\}`. When used to list finalized deals for a bidder, its buyers and clients, in the format `bidders/{accountId\}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Bidders$Finalizeddeals$Setreadytoserve
+    extends StandardParameters {
+    /**
+     * Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}` or `bidders/{accountId\}/finalizedDeals/{dealId\}`
+     */
+    deal?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetReadyToServeRequest;
   }
 
   export class Resource$Buyers {
@@ -6430,7 +6594,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     }
 
     /**
-     * Sets the given finalized deal as ready to serve. By default, deals are set as ready to serve as soon as they're finalized. If you want to opt out of the default behavior, and manually indicate that deals are ready to serve, ask your Technical Account Manager to add you to the allowlist. If you choose to use this method, finalized deals belonging to the bidder and its child seats don't start serving until after you call `setReadyToServe`, and after the deals become active. For example, you can use this method to delay receiving bid requests until your creative is ready. This method only applies to programmatic guaranteed deals.
+     * Sets the given finalized deal as ready to serve. By default, deals are set as ready to serve as soon as they're finalized. If you want to opt out of the default behavior, and manually indicate that deals are ready to serve, ask your Technical Account Manager to add you to the allowlist. If you choose to use this method, finalized deals belonging to the bidder and its child seats don't start serving until after you call `setReadyToServe`, and after the deals become active. For example, you can use this method to delay receiving bid requests until your creative is ready. In addition, bidders can use the URL path "/v1alpha/bidders/{accountId\}/finalizedDeals/{dealId\}" to set ready to serve for the finalized deals belong to itself, its child seats and all their clients. This method only applies to programmatic guaranteed deals.
      * @example
      * ```js
      * // Before running the sample:
@@ -6462,7 +6626,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *   // Do the magic
      *   const res =
      *     await authorizedbuyersmarketplace.buyers.finalizedDeals.setReadyToServe({
-     *       // Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}`
+     *       // Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}` or `bidders/{accountId\}/finalizedDeals/{dealId\}`
      *       deal: 'buyers/my-buyer/finalizedDeals/my-finalizedDeal',
      *
      *       // Request body metadata
@@ -6651,7 +6815,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
   export interface Params$Resource$Buyers$Finalizeddeals$Setreadytoserve
     extends StandardParameters {
     /**
-     * Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}`
+     * Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}` or `bidders/{accountId\}/finalizedDeals/{dealId\}`
      */
     deal?: string;
 
