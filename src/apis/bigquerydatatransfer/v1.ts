@@ -587,6 +587,10 @@ export namespace bigquerydatatransfer_v1 {
      */
     error?: Schema$Status;
     /**
+     * The classification of the destination table.
+     */
+    managedTableType?: string | null;
+    /**
      * Identifier. The resource name of the transfer config. Transfer config names have the form either `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}` or `projects/{project_id\}/transferConfigs/{config_id\}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
      */
     name?: string | null;
@@ -2633,6 +2637,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "emailPreferences": {},
      *         //   "encryptionConfiguration": {},
      *         //   "error": {},
+     *         //   "managedTableType": "my_managedTableType",
      *         //   "name": "my_name",
      *         //   "nextRunTime": "my_nextRunTime",
      *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -2660,6 +2665,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "emailPreferences": {},
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
+     *   //   "managedTableType": "my_managedTableType",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -2962,6 +2968,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "emailPreferences": {},
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
+     *   //   "managedTableType": "my_managedTableType",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -3279,6 +3286,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "emailPreferences": {},
      *         //   "encryptionConfiguration": {},
      *         //   "error": {},
+     *         //   "managedTableType": "my_managedTableType",
      *         //   "name": "my_name",
      *         //   "nextRunTime": "my_nextRunTime",
      *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -3306,6 +3314,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "emailPreferences": {},
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
+     *   //   "managedTableType": "my_managedTableType",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -4584,6 +4593,7 @@ export namespace bigquerydatatransfer_v1 {
      *       //   "emailPreferences": {},
      *       //   "encryptionConfiguration": {},
      *       //   "error": {},
+     *       //   "managedTableType": "my_managedTableType",
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -4611,6 +4621,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "emailPreferences": {},
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
+     *   //   "managedTableType": "my_managedTableType",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -4908,6 +4919,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "emailPreferences": {},
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
+     *   //   "managedTableType": "my_managedTableType",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -5223,6 +5235,7 @@ export namespace bigquerydatatransfer_v1 {
      *       //   "emailPreferences": {},
      *       //   "encryptionConfiguration": {},
      *       //   "error": {},
+     *       //   "managedTableType": "my_managedTableType",
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -5250,6 +5263,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "emailPreferences": {},
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
+     *   //   "managedTableType": "my_managedTableType",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
