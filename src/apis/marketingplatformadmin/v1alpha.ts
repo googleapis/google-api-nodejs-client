@@ -146,9 +146,82 @@ export namespace marketingplatformadmin_v1alpha {
     name?: string | null;
   }
   /**
+   * Contains the bill amount.
+   */
+  export interface Schema$BillInfo {
+    /**
+     * The amount of the monthly base fee.
+     */
+    baseFee?: Schema$Money;
+    /**
+     * The amount of the event fee.
+     */
+    eventFee?: Schema$Money;
+    /**
+     * The amount of the price protection credit, this is only available for eligible customers.
+     */
+    priceProtectionCredit?: Schema$Money;
+    /**
+     * The total amount of the bill.
+     */
+    total?: Schema$Money;
+  }
+  /**
+   * Contains the client data.
+   */
+  export interface Schema$ClientData {
+    /**
+     * The end date of the contract between the sales org and the end client.
+     */
+    endDate?: Schema$Date;
+    /**
+     * The end client that has/had contract with the requested sales org.
+     */
+    organization?: Schema$Organization;
+    /**
+     * The start date of the contract between the sales org and the end client.
+     */
+    startDate?: Schema$Date;
+  }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Request message for FindSalesPartnerManagedClients RPC.
+   */
+  export interface Schema$FindSalesPartnerManagedClientsRequest {
+    /**
+     * Optional. If set, only active and just ended clients will be returned.
+     */
+    isActive?: boolean | null;
+  }
+  /**
+   * Response message for FindSalesPartnerManagedClients RPC.
+   */
+  export interface Schema$FindSalesPartnerManagedClientsResponse {
+    /**
+     * The clients managed by the sales org.
+     */
+    clientData?: Schema$ClientData[];
+  }
   /**
    * Response message for ListAnalyticsAccountLinks RPC.
    */
@@ -163,6 +236,36 @@ export namespace marketingplatformadmin_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListOrganizations RPC.
+   */
+  export interface Schema$ListOrganizationsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The Organization resource that the user has access to, which includes the org id and display name.
+     */
+    organizations?: Schema$Organization[];
+  }
+  /**
+   * Represents an amount of money with its currency type.
+   */
+  export interface Schema$Money {
+    /**
+     * The three-letter currency code defined in ISO 4217.
+     */
+    currencyCode?: string | null;
+    /**
+     * Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+     */
+    nanos?: number | null;
+    /**
+     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+     */
+    units?: string | null;
+  }
+  /**
    * A resource message representing a Google Marketing Platform organization.
    */
   export interface Schema$Organization {
@@ -174,6 +277,61 @@ export namespace marketingplatformadmin_v1alpha {
      * Identifier. The resource name of the GMP organization. Format: organizations/{org_id\}
      */
     name?: string | null;
+  }
+  /**
+   * Contains the count of events received by the property, along with metadata that influences the volume of `billable` events.
+   */
+  export interface Schema$PropertyUsage {
+    /**
+     * The ID of the property's parent account.
+     */
+    accountId?: string | null;
+    /**
+     * The number of events for which the property is billed in the requested month.
+     */
+    billableEventCount?: string | null;
+    /**
+     * The display name of the property.
+     */
+    displayName?: string | null;
+    /**
+     * The name of the Google Analytics Admin API property resource. Format: analyticsadmin.googleapis.com/properties/{property_id\}
+     */
+    property?: string | null;
+    /**
+     * The subtype of the analytics property. This affects the billable event count.
+     */
+    propertyType?: string | null;
+    /**
+     * The service level of the property.
+     */
+    serviceLevel?: string | null;
+    /**
+     * Total event count that the property received during the requested month.
+     */
+    totalEventCount?: string | null;
+  }
+  /**
+   * Request message for ReportPropertyUsage RPC.
+   */
+  export interface Schema$ReportPropertyUsageRequest {
+    /**
+     * Required. The target month to list property usages. Format: YYYY-MM. For example, "2025-05"
+     */
+    month?: string | null;
+  }
+  /**
+   * Response message for ReportPropertyUsage RPC.
+   */
+  export interface Schema$ReportPropertyUsageResponse {
+    /**
+     * Bill amount in the specified organization and month. Will be empty if user only has access to usage data.
+     */
+    billInfo?: Schema$BillInfo;
+    /**
+     * Usage data for all properties in the specified organization and month.
+     */
+    propertyUsages?: Schema$PropertyUsage[];
   }
   /**
    * Request message for SetPropertyServiceLevel RPC.
@@ -200,6 +358,167 @@ export namespace marketingplatformadmin_v1alpha {
       this.context = context;
       this.analyticsAccountLinks =
         new Resource$Organizations$Analyticsaccountlinks(this.context);
+    }
+
+    /**
+     * Returns a list of clients managed by the sales partner organization. User needs to be an OrgAdmin/BillingAdmin on the sales partner organization in order to view the end clients.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/marketingplatformadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const marketingplatformadmin = google.marketingplatformadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/marketingplatformadmin.analytics.read',
+     *       'https://www.googleapis.com/auth/marketingplatformadmin.analytics.update',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await marketingplatformadmin.organizations.findSalesPartnerManagedClients({
+     *       // Required. The name of the sales partner organization. Format: organizations/{org_id\}
+     *       organization: 'organizations/my-organization',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "isActive": false
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientData": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    findSalesPartnerManagedClients(
+      params: Params$Resource$Organizations$Findsalespartnermanagedclients,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    findSalesPartnerManagedClients(
+      params?: Params$Resource$Organizations$Findsalespartnermanagedclients,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FindSalesPartnerManagedClientsResponse>
+    >;
+    findSalesPartnerManagedClients(
+      params: Params$Resource$Organizations$Findsalespartnermanagedclients,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    findSalesPartnerManagedClients(
+      params: Params$Resource$Organizations$Findsalespartnermanagedclients,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FindSalesPartnerManagedClientsResponse>,
+      callback: BodyResponseCallback<Schema$FindSalesPartnerManagedClientsResponse>
+    ): void;
+    findSalesPartnerManagedClients(
+      params: Params$Resource$Organizations$Findsalespartnermanagedclients,
+      callback: BodyResponseCallback<Schema$FindSalesPartnerManagedClientsResponse>
+    ): void;
+    findSalesPartnerManagedClients(
+      callback: BodyResponseCallback<Schema$FindSalesPartnerManagedClientsResponse>
+    ): void;
+    findSalesPartnerManagedClients(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Findsalespartnermanagedclients
+        | BodyResponseCallback<Schema$FindSalesPartnerManagedClientsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FindSalesPartnerManagedClientsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FindSalesPartnerManagedClientsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FindSalesPartnerManagedClientsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Findsalespartnermanagedclients;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Findsalespartnermanagedclients;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://marketingplatformadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1alpha/{+organization}:findSalesPartnerManagedClients'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization'],
+        pathParams: ['organization'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FindSalesPartnerManagedClientsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FindSalesPartnerManagedClientsResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -340,14 +659,350 @@ export namespace marketingplatformadmin_v1alpha {
         return createAPIRequest<Schema$Organization>(parameters);
       }
     }
+
+    /**
+     * Returns a list of organizations that the user has access to.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/marketingplatformadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const marketingplatformadmin = google.marketingplatformadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/marketingplatformadmin.analytics.read',
+     *       'https://www.googleapis.com/auth/marketingplatformadmin.analytics.update',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await marketingplatformadmin.organizations.list({
+     *     // Optional. The maximum number of organizations to return in one call. The service may return fewer than this value. If unspecified, at most 50 organizations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous ListOrganizations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOrganizations` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "organizations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Organizations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOrganizationsResponse>>;
+    list(
+      params: Params$Resource$Organizations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrganizationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOrganizationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$List,
+      callback: BodyResponseCallback<Schema$ListOrganizationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListOrganizationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$List
+        | BodyResponseCallback<Schema$ListOrganizationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOrganizationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOrganizationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOrganizationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://marketingplatformadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/organizations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOrganizationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOrganizationsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Get the usage and billing data for properties within the organization for the specified month. Per direct client org, user needs to be OrgAdmin/BillingAdmin on the organization in order to view the billing and usage data. Per sales partner client org, user needs to be OrgAdmin/BillingAdmin on the sales partner org in order to view the billing and usage data, or OrgAdmin/BillingAdmin on the sales partner client org in order to view the usage data only.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/marketingplatformadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const marketingplatformadmin = google.marketingplatformadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/marketingplatformadmin.analytics.read',
+     *       'https://www.googleapis.com/auth/marketingplatformadmin.analytics.update',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await marketingplatformadmin.organizations.reportPropertyUsage({
+     *     // Required. Specifies the organization whose property usage will be listed. Format: organizations/{org_id\}
+     *     organization: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "month": "my_month"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billInfo": {},
+     *   //   "propertyUsages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reportPropertyUsage(
+      params: Params$Resource$Organizations$Reportpropertyusage,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    reportPropertyUsage(
+      params?: Params$Resource$Organizations$Reportpropertyusage,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportPropertyUsageResponse>>;
+    reportPropertyUsage(
+      params: Params$Resource$Organizations$Reportpropertyusage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reportPropertyUsage(
+      params: Params$Resource$Organizations$Reportpropertyusage,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReportPropertyUsageResponse>,
+      callback: BodyResponseCallback<Schema$ReportPropertyUsageResponse>
+    ): void;
+    reportPropertyUsage(
+      params: Params$Resource$Organizations$Reportpropertyusage,
+      callback: BodyResponseCallback<Schema$ReportPropertyUsageResponse>
+    ): void;
+    reportPropertyUsage(
+      callback: BodyResponseCallback<Schema$ReportPropertyUsageResponse>
+    ): void;
+    reportPropertyUsage(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Reportpropertyusage
+        | BodyResponseCallback<Schema$ReportPropertyUsageResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReportPropertyUsageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReportPropertyUsageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReportPropertyUsageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Reportpropertyusage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Reportpropertyusage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://marketingplatformadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+organization}:reportPropertyUsage'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization'],
+        pathParams: ['organization'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReportPropertyUsageResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReportPropertyUsageResponse>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Organizations$Findsalespartnermanagedclients
+    extends StandardParameters {
+    /**
+     * Required. The name of the sales partner organization. Format: organizations/{org_id\}
+     */
+    organization?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FindSalesPartnerManagedClientsRequest;
+  }
   export interface Params$Resource$Organizations$Get
     extends StandardParameters {
     /**
      * Required. The name of the Organization to retrieve. Format: organizations/{org_id\}
      */
     name?: string;
+  }
+  export interface Params$Resource$Organizations$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of organizations to return in one call. The service may return fewer than this value. If unspecified, at most 50 organizations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous ListOrganizations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOrganizations` must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Organizations$Reportpropertyusage
+    extends StandardParameters {
+    /**
+     * Required. Specifies the organization whose property usage will be listed. Format: organizations/{org_id\}
+     */
+    organization?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReportPropertyUsageRequest;
   }
 
   export class Resource$Organizations$Analyticsaccountlinks {
