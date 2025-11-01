@@ -550,7 +550,7 @@ export namespace sqladmin_v1 {
      */
     databaseNames?: string[] | null;
     /**
-     * Name of the Cloud SQL instance to be created as a clone.
+     * Required. Name of the Cloud SQL instance to be created as a clone.
      */
     destinationInstanceName?: string | null;
     /**
@@ -1512,7 +1512,7 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$InstancesCloneRequest {
     /**
-     * Contains details about the clone operation.
+     * Required. Contains details about the clone operation.
      */
     cloneContext?: Schema$CloneContext;
   }
@@ -2532,6 +2532,10 @@ export namespace sqladmin_v1 {
      * Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property was only applicable to First Generation instances.
      */
     crashSafeReplicationEnabled?: boolean | null;
+    /**
+     * This parameter controls whether to allow using Data API to connect to the instance. Not allowed by default.
+     */
+    dataApiAccess?: string | null;
     /**
      * The database flags passed to the instance at startup.
      */
@@ -7029,9 +7033,9 @@ export namespace sqladmin_v1 {
      *
      *   // Do the magic
      *   const res = await sql.instances.clone({
-     *     // The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
+     *     // Required. The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
      *     instance: 'placeholder-value',
-     *     // Project ID of the source as well as the clone Cloud SQL instance.
+     *     // Required. Project ID of the source as well as the clone Cloud SQL instance.
      *     project: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11976,11 +11980,11 @@ export namespace sqladmin_v1 {
   }
   export interface Params$Resource$Instances$Clone extends StandardParameters {
     /**
-     * The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
+     * Required. The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
      */
     instance?: string;
     /**
-     * Project ID of the source as well as the clone Cloud SQL instance.
+     * Required. Project ID of the source as well as the clone Cloud SQL instance.
      */
     project?: string;
 

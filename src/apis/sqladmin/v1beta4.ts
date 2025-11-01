@@ -2536,6 +2536,10 @@ export namespace sqladmin_v1beta4 {
      */
     crashSafeReplicationEnabled?: boolean | null;
     /**
+     * This parameter controls whether to allow using Data API to connect to the instance. Not allowed by default.
+     */
+    dataApiAccess?: string | null;
+    /**
      * The database flags passed to the instance at startup.
      */
     databaseFlags?: Schema$DatabaseFlags[];

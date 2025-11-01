@@ -962,13 +962,13 @@
           ],
           "parameters": {
             "instance": {
-              "description": "The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.",
+              "description": "Required. The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "project": {
-              "description": "Project ID of the source as well as the clone Cloud SQL instance.",
+              "description": "Required. Project ID of the source as well as the clone Cloud SQL instance.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2685,7 +2685,7 @@
       }
     }
   },
-  "revision": "20251006",
+  "revision": "20251019",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -3626,7 +3626,7 @@
           "type": "array"
         },
         "destinationInstanceName": {
-          "description": "Name of the Cloud SQL instance to be created as a clone.",
+          "description": "Required. Name of the Cloud SQL instance to be created as a clone.",
           "type": "string"
         },
         "kind": {
@@ -5681,7 +5681,7 @@
       "properties": {
         "cloneContext": {
           "$ref": "CloneContext",
-          "description": "Contains details about the clone operation."
+          "description": "Required. Contains details about the clone operation."
         }
       },
       "type": "object"
@@ -7420,6 +7420,20 @@
           "deprecated": true,
           "description": "Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property was only applicable to First Generation instances.",
           "type": "boolean"
+        },
+        "dataApiAccess": {
+          "description": "This parameter controls whether to allow using Data API to connect to the instance. Not allowed by default.",
+          "enum": [
+            "DATA_API_ACCESS_UNSPECIFIED",
+            "DISALLOW_DATA_API",
+            "ALLOW_DATA_API"
+          ],
+          "enumDescriptions": [
+            "Unspecified, effectively the same as `DISALLOW_DATA_API`.",
+            "Disallow using Data API to connect to the instance.",
+            "Allow using Data API to connect to the instance. For private IP instances, this will allow authorized users to access the instance from the public internet."
+          ],
+          "type": "string"
         },
         "dataCacheConfig": {
           "$ref": "DataCacheConfig",
