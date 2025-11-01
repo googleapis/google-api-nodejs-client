@@ -724,7 +724,7 @@
       }
     }
   },
-  "revision": "20250919",
+  "revision": "20251023",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "Api": {
@@ -3450,6 +3450,10 @@
         },
         "name": {
           "description": "P4 service identity resource name. An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123/serviceIdentities/default`",
+          "type": "string"
+        },
+        "projectRole": {
+          "description": "The project-level IAM role defined in the service agent's grant configuration. This is the standard role intended for this service agent. This field is populated regardless of the `skip_role_attach` option in the request. If `skip_role_attach` is true, the caller can use this value to know which role they are responsible for granting.",
           "type": "string"
         },
         "tag": {
