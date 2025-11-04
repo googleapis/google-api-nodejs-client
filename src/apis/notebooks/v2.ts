@@ -429,6 +429,10 @@ export namespace notebooks_v2 {
      */
     gpuDriverConfig?: Schema$GPUDriverConfig;
     /**
+     * Output only. The unique ID of the Compute Engine instance resource.
+     */
+    instanceId?: string | null;
+    /**
      * Optional. The machine type of the VM instance. https://cloud.google.com/compute/docs/machine-resource
      */
     machineType?: string | null;
