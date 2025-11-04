@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmwareengine-v7.0.0...vmwareengine-v7.1.0) (2025-11-04)
+
+
+### Features
+
+* **vmwareengine:** update the API ([9bf13b3](https://github.com/googleapis/google-api-nodejs-client/commit/9bf13b33771f5dd9c32cdffe9fa9567700e0ef3a))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmwareengine-v6.0.0...vmwareengine-v7.0.0) (2025-10-15)
 
 

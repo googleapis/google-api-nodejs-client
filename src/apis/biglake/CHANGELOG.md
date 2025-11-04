@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/biglake-v4.0.0...biglake-v4.1.0) (2025-11-04)
+
+
+### Features
+
+* **biglake:** update the API ([f393856](https://github.com/googleapis/google-api-nodejs-client/commit/f3938567b736e5ad69279f62c6fc3b3e19869d60))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/biglake-v3.0.0...biglake-v4.0.0) (2025-10-15)
 
 

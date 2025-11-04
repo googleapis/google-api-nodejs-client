@@ -1,5 +1,12 @@
 # Changelog
 
+## [21.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v21.1.0...container-v21.2.0) (2025-11-04)
+
+
+### Features
+
+* **container:** update the API ([7da4d8c](https://github.com/googleapis/google-api-nodejs-client/commit/7da4d8cb74b03bf5afa81adaaa7b4fee6453bb12))
+
 ## [21.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v21.0.0...container-v21.1.0) (2025-10-20)
 
 
