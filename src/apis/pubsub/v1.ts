@@ -432,6 +432,10 @@ export namespace pubsub_v1 {
      * Required. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription's backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription's topic following the successful completion of the CreateSnapshot request. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * Dead lettering is done on a best effort basis. The same message might be dead lettered multiple times. If validation on any of the fields fails at subscription creation/updation, the create/update subscription request will fail.
@@ -1024,6 +1028,10 @@ export namespace pubsub_v1 {
      */
     state?: string | null;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * Required. The name of the topic from which this subscription is receiving messages. Format is `projects/{project\}/topics/{topic\}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
      */
     topic?: string | null;
@@ -1107,6 +1115,10 @@ export namespace pubsub_v1 {
      * Output only. An output-only field indicating the state of the topic.
      */
     state?: string | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * Request for the UpdateSnapshot method.
@@ -3353,7 +3365,8 @@ export namespace pubsub_v1 {
      *       // request body parameters
      *       // {
      *       //   "labels": {},
-     *       //   "subscription": "my_subscription"
+     *       //   "subscription": "my_subscription",
+     *       //   "tags": {}
      *       // }
      *     },
      *   });
@@ -4778,6 +4791,7 @@ export namespace pubsub_v1 {
      *       //   "retainAckedMessages": false,
      *       //   "retryPolicy": {},
      *       //   "state": "my_state",
+     *       //   "tags": {},
      *       //   "topic": "my_topic",
      *       //   "topicMessageRetentionDuration": "my_topicMessageRetentionDuration"
      *       // }
@@ -4805,6 +4819,7 @@ export namespace pubsub_v1 {
      *   //   "retainAckedMessages": false,
      *   //   "retryPolicy": {},
      *   //   "state": "my_state",
+     *   //   "tags": {},
      *   //   "topic": "my_topic",
      *   //   "topicMessageRetentionDuration": "my_topicMessageRetentionDuration"
      *   // }
@@ -5241,6 +5256,7 @@ export namespace pubsub_v1 {
      *   //   "retainAckedMessages": false,
      *   //   "retryPolicy": {},
      *   //   "state": "my_state",
+     *   //   "tags": {},
      *   //   "topic": "my_topic",
      *   //   "topicMessageRetentionDuration": "my_topicMessageRetentionDuration"
      *   // }
@@ -5995,6 +6011,7 @@ export namespace pubsub_v1 {
      *   //   "retainAckedMessages": false,
      *   //   "retryPolicy": {},
      *   //   "state": "my_state",
+     *   //   "tags": {},
      *   //   "topic": "my_topic",
      *   //   "topicMessageRetentionDuration": "my_topicMessageRetentionDuration"
      *   // }
@@ -6910,7 +6927,8 @@ export namespace pubsub_v1 {
      *       //   "name": "my_name",
      *       //   "satisfiesPzs": false,
      *       //   "schemaSettings": {},
-     *       //   "state": "my_state"
+     *       //   "state": "my_state",
+     *       //   "tags": {}
      *       // }
      *     },
      *   });
@@ -6927,7 +6945,8 @@ export namespace pubsub_v1 {
      *   //   "name": "my_name",
      *   //   "satisfiesPzs": false,
      *   //   "schemaSettings": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "tags": {}
      *   // }
      * }
      *
@@ -7208,7 +7227,8 @@ export namespace pubsub_v1 {
      *   //   "name": "my_name",
      *   //   "satisfiesPzs": false,
      *   //   "schemaSettings": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "tags": {}
      *   // }
      * }
      *
@@ -7652,7 +7672,8 @@ export namespace pubsub_v1 {
      *   //   "name": "my_name",
      *   //   "satisfiesPzs": false,
      *   //   "schemaSettings": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "tags": {}
      *   // }
      * }
      *
