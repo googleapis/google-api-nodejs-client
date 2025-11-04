@@ -842,6 +842,10 @@ export namespace vmmigration_v1 {
      */
     serviceAccount?: string | null;
     /**
+     * Optional. If specified this will be the storage pool in which the disk is created. This is the full path of the storage pool resource, for example: "projects/my-project/zones/us-central1-a/storagePools/my-storage-pool". The storage pool must be in the same project and zone as the target disks. The storage pool's type must match the disk type.
+     */
+    storagePool?: string | null;
+    /**
      * The full path of the resource of type TargetProject which represents the Compute Engine project in which to create this VM.
      */
     targetProject?: string | null;
@@ -946,6 +950,10 @@ export namespace vmmigration_v1 {
      * The service account to associate the VM with.
      */
     serviceAccount?: string | null;
+    /**
+     * Optional. The storage pool used for the VM disks. If specified this will be the storage pool in which the disk is created. This is the full path of the storage pool resource, for example: "projects/my-project/zones/us-central1-a/storagePools/my-storage-pool". The storage pool must be in the same project and zone as the target disks. The storage pool's type must match the disk type.
+     */
+    storagePool?: string | null;
     /**
      * The name of the VM to create.
      */
@@ -1166,7 +1174,7 @@ export namespace vmmigration_v1 {
     version?: string | null;
   }
   /**
-   * Mentions that the image import is not using OS adaptation process.
+   * Used when the image import is not using OS adaptation process.
    */
   export interface Schema$DataDiskImageImport {}
   /**
