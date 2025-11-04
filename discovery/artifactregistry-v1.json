@@ -637,6 +637,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "exportArtifact": {
+                  "description": "Exports an artifact.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:exportArtifact",
+                  "httpMethod": "POST",
+                  "id": "artifactregistry.projects.locations.repositories.exportArtifact",
+                  "parameterOrder": [
+                    "repository"
+                  ],
+                  "parameters": {
+                    "repository": {
+                      "description": "Required. The repository of the artifact to export. Format: projects/{project}/locations/{location}/repositories/{repository}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+repository}:exportArtifact",
+                  "request": {
+                    "$ref": "ExportArtifactRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets a repository.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}",
@@ -2465,7 +2493,7 @@
       }
     }
   },
-  "revision": "20251007",
+  "revision": "20251017",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -2847,6 +2875,72 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "ExportArtifactMetadata": {
+      "description": "The LRO metadata for exporting an artifact.",
+      "id": "ExportArtifactMetadata",
+      "properties": {
+        "exportedFiles": {
+          "description": "The exported artifact files.",
+          "items": {
+            "$ref": "ExportedFile"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExportArtifactRequest": {
+      "description": "The request for exporting an artifact to a destination.",
+      "id": "ExportArtifactRequest",
+      "properties": {
+        "gcsPath": {
+          "description": "The Cloud Storage path to export the artifact to. Should start with the bucket name, and optionally have a directory path. Examples: `dst_bucket`, `dst_bucket/sub_dir`. Existing objects with the same path will be overwritten.",
+          "type": "string"
+        },
+        "sourceTag": {
+          "description": "The artifact tag to export. Format:projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}",
+          "type": "string"
+        },
+        "sourceVersion": {
+          "description": "The artifact version to export. Format: projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExportArtifactResponse": {
+      "description": "The response for exporting an artifact to a destination.",
+      "id": "ExportArtifactResponse",
+      "properties": {
+        "exportedVersion": {
+          "$ref": "Version",
+          "description": "The exported version. Should be the same as the request version with fingerprint resource name."
+        }
+      },
+      "type": "object"
+    },
+    "ExportedFile": {
+      "description": "The exported artifact file.",
+      "id": "ExportedFile",
+      "properties": {
+        "gcsObjectPath": {
+          "description": "Cloud Storage Object path of the exported file. Examples: `dst_bucket/file1`, `dst_bucket/sub_dir/file1`",
+          "type": "string"
+        },
+        "hashes": {
+          "description": "The hashes of the file content.",
+          "items": {
+            "$ref": "Hash"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Name of the exported artifact file. Format: `projects/p1/locations/us/repositories/repo1/files/file1`",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Expr": {
