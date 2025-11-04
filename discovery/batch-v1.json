@@ -600,7 +600,7 @@
       }
     }
   },
-  "revision": "20251005",
+  "revision": "20251020",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1304,13 +1304,15 @@
             "STANDARD",
             "SPOT",
             "PREEMPTIBLE",
-            "RESERVATION_BOUND"
+            "RESERVATION_BOUND",
+            "FLEX_START"
           ],
           "enumDeprecated": [
             false,
             false,
             false,
             true,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -1318,7 +1320,8 @@
             "Standard VM.",
             "SPOT VM.",
             "Preemptible VM (PVM). Above SPOT VM is the preferable model for preemptible VM instances: the old preemptible VM model (indicated by this field) is the older model, and has been migrated to use the SPOT model as the underlying technology. This old model will still be supported.",
-            "Bound to the lifecycle of the reservation in which it is provisioned."
+            "Bound to the lifecycle of the reservation in which it is provisioned.",
+            "Instance is provisioned with DWS Flex Start and has limited max run duration."
           ],
           "type": "string"
         },
@@ -1375,13 +1378,15 @@
             "STANDARD",
             "SPOT",
             "PREEMPTIBLE",
-            "RESERVATION_BOUND"
+            "RESERVATION_BOUND",
+            "FLEX_START"
           ],
           "enumDeprecated": [
             false,
             false,
             false,
             true,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -1389,7 +1394,8 @@
             "Standard VM.",
             "SPOT VM.",
             "Preemptible VM (PVM). Above SPOT VM is the preferable model for preemptible VM instances: the old preemptible VM model (indicated by this field) is the older model, and has been migrated to use the SPOT model as the underlying technology. This old model will still be supported.",
-            "Bound to the lifecycle of the reservation in which it is provisioned."
+            "Bound to the lifecycle of the reservation in which it is provisioned.",
+            "Instance is provisioned with DWS Flex Start and has limited max run duration."
           ],
           "type": "string"
         },
