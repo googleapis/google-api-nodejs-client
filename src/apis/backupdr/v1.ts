@@ -736,6 +736,10 @@ export namespace backupdr_v1 {
      */
     logRetentionDays?: string | null;
     /**
+     * Optional. Optional field to configure the maximum number of days for which a backup can be retained. This field is only applicable for on-demand backups taken with custom retention value.
+     */
+    maxCustomOnDemandRetentionDays?: number | null;
+    /**
      * Output only. Identifier. The resource name of the `BackupPlan`. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}`
      */
     name?: string | null;
@@ -2830,6 +2834,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$TriggerBackupRequest {
     /**
+     * Optional. The duration for which backup data will be kept, while taking an on-demand backup with custom retention. It is defined in "days". It is mutually exclusive with rule_id. This field is required if rule_id is not provided.
+     */
+    customRetentionDays?: number | null;
+    /**
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
@@ -3230,7 +3238,7 @@ export namespace backupdr_v1 {
      *
      *   // Do the magic
      *   const res = await backupdr.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3365,7 +3373,7 @@ export namespace backupdr_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -4365,6 +4373,7 @@ export namespace backupdr_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "customRetentionDays": 0,
      *         //   "requestId": "my_requestId",
      *         //   "ruleId": "my_ruleId"
      *         // }
@@ -4656,6 +4665,7 @@ export namespace backupdr_v1 {
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "logRetentionDays": "my_logRetentionDays",
+     *       //   "maxCustomOnDemandRetentionDays": 0,
      *       //   "name": "my_name",
      *       //   "resourceType": "my_resourceType",
      *       //   "revisionId": "my_revisionId",
@@ -4959,6 +4969,7 @@ export namespace backupdr_v1 {
      *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "logRetentionDays": "my_logRetentionDays",
+     *   //   "maxCustomOnDemandRetentionDays": 0,
      *   //   "name": "my_name",
      *   //   "resourceType": "my_resourceType",
      *   //   "revisionId": "my_revisionId",
@@ -5260,6 +5271,7 @@ export namespace backupdr_v1 {
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "logRetentionDays": "my_logRetentionDays",
+     *       //   "maxCustomOnDemandRetentionDays": 0,
      *       //   "name": "my_name",
      *       //   "resourceType": "my_resourceType",
      *       //   "revisionId": "my_revisionId",

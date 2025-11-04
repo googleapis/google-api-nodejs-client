@@ -169,7 +169,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2234,7 +2234,7 @@
       }
     }
   },
-  "revision": "20251015",
+  "revision": "20251022",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -3181,6 +3181,11 @@
           "description": "Optional. Applicable only for CloudSQL resource_type. Configures how long logs will be stored. It is defined in “days”. This value should be greater than or equal to minimum enforced log retention duration of the backup vault.",
           "format": "int64",
           "type": "string"
+        },
+        "maxCustomOnDemandRetentionDays": {
+          "description": "Optional. Optional field to configure the maximum number of days for which a backup can be retained. This field is only applicable for on-demand backups taken with custom retention value.",
+          "format": "int32",
+          "type": "integer"
         },
         "name": {
           "description": "Output only. Identifier. The resource name of the `BackupPlan`. Format: `projects/{project}/locations/{location}/backupPlans/{backup_plan}`",
@@ -6385,6 +6390,11 @@
       "description": "Request message for triggering a backup.",
       "id": "TriggerBackupRequest",
       "properties": {
+        "customRetentionDays": {
+          "description": "Optional. The duration for which backup data will be kept, while taking an on-demand backup with custom retention. It is defined in \"days\". It is mutually exclusive with rule_id. This field is required if rule_id is not provided.",
+          "format": "int32",
+          "type": "integer"
+        },
         "requestId": {
           "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
