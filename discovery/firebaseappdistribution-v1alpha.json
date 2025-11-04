@@ -868,7 +868,7 @@
       }
     }
   },
-  "revision": "20251022",
+  "revision": "20251030",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -1335,6 +1335,23 @@
         "device": {
           "$ref": "GoogleFirebaseAppdistroV1alphaTestDevice",
           "description": "Required. The device that the test was run on."
+        },
+        "executionType": {
+          "description": "Output only. The type of execution for the test.",
+          "enum": [
+            "EXECUTION_TYPE_UNSPECIFIED",
+            "AI",
+            "ACTION_BASED_REPLAY",
+            "AI_REPLAY"
+          ],
+          "enumDescriptions": [
+            "Execution type unspecified.",
+            "An AI-driven test.",
+            "A replay of a previous test run.",
+            "A failed replay that was rerun using the AI agent."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "failedReason": {
           "description": "Output only. The reason why the test failed.",

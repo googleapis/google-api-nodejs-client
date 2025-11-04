@@ -365,6 +365,10 @@ export namespace firebaseappdistribution_v1alpha {
      */
     device?: Schema$GoogleFirebaseAppdistroV1alphaTestDevice;
     /**
+     * Output only. The type of execution for the test.
+     */
+    executionType?: string | null;
+    /**
      * Output only. The reason why the test failed.
      */
     failedReason?: string | null;
