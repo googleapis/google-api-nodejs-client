@@ -174,6 +174,69 @@
                 "https://www.googleapis.com/auth/discoveryengine.readwrite"
               ]
             },
+            "get": {
+              "description": "Gets a BillingAccountLicenseConfig.",
+              "flatPath": "v1alpha/billingAccounts/{billingAccountsId}/billingAccountLicenseConfigs/{billingAccountLicenseConfigsId}",
+              "httpMethod": "GET",
+              "id": "discoveryengine.billingAccounts.billingAccountLicenseConfigs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Full resource name of BillingAccountLicenseConfig. Format: `billingAccounts/{billing_account}/billingAccountLicenseConfigs/{billing_account_license_config_id}`.",
+                  "location": "path",
+                  "pattern": "^billingAccounts/[^/]+/billingAccountLicenseConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+              ]
+            },
+            "list": {
+              "description": "Lists all BillingAccountLicenseConfigs for a given billing account.",
+              "flatPath": "v1alpha/billingAccounts/{billingAccountsId}/billingAccountLicenseConfigs",
+              "httpMethod": "GET",
+              "id": "discoveryengine.billingAccounts.billingAccountLicenseConfigs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. Not supported.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Not supported.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Format: `billingAccounts/{billing_account}`.",
+                  "location": "path",
+                  "pattern": "^billingAccounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/billingAccountLicenseConfigs",
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+              ]
+            },
             "retractLicenseConfig": {
               "description": "This method is called from the billing account side to retract the LicenseConfig from the given project back to the billing account.",
               "flatPath": "v1alpha/billingAccounts/{billingAccountsId}/billingAccountLicenseConfigs/{billingAccountLicenseConfigsId}:retractLicenseConfig",
@@ -247,6 +310,48 @@
           ],
           "supportsMediaDownload": true,
           "useMediaDownloadService": true
+        },
+        "upload": {
+          "description": "Uploads a file for the assistant to use as a source of information within the session.",
+          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}:uploadFile",
+          "httpMethod": "POST",
+          "id": "discoveryengine.media.upload",
+          "mediaUpload": {
+            "accept": [
+              "*/*"
+            ],
+            "protocols": {
+              "simple": {
+                "multipart": true,
+                "path": "/upload/v1alpha/{+name}:uploadFile"
+              }
+            }
+          },
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the Session. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}`",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}:uploadFile",
+          "request": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+          ],
+          "supportsMediaUpload": true
         }
       }
     },
@@ -1510,7 +1615,7 @@
                           "type": "string"
                         },
                         "userPseudoId": {
-                          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                           "location": "query",
                           "type": "string"
                         }
@@ -4648,6 +4753,42 @@
                             "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
+                        },
+                        "patch": {
+                          "description": "Update a WidgetConfig.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/widgetConfigs/{widgetConfigsId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.widgetConfigs.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. The full resource name of the widget config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/widgetConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfig"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
                         }
                       }
                     }
@@ -5063,6 +5204,209 @@
                         }
                       },
                       "resources": {
+                        "agents": {
+                          "methods": {
+                            "create": {
+                              "description": "Creates an Agent.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.create",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/agents",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "delete": {
+                              "description": "Deletes an Agent.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}",
+                              "httpMethod": "DELETE",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.delete",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Resource name of Agent. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/agents/{agent}` If the caller does not have permission to delete the agent, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the agent to delete does not exist, a `NOT_FOUND` error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "get": {
+                              "description": "Gets an Agent.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Resource name of Agent. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/agents/{agent}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "list": {
+                              "description": "Lists all Agents under an Assistant which were created by the caller.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "orderBy": {
+                                  "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `is_pinned` Example: * \"update_time desc\" * \"is_pinned desc,update_time desc\": list agents by is_pinned first, then by update_time.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "pageSize": {
+                                  "description": "Optional. Maximum number of Agents to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "Optional. A page token ListAgentsResponse.next_page_token, received from a previous AgentService.ListAgents call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAgents must match the call that provided the page token.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/agents",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaListAgentsResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "patch": {
+                              "description": "Updates an Agent",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}",
+                              "httpMethod": "PATCH",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.patch",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Identifier. Resource name of the agent. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/agents/{agent}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "updateMask": {
+                                  "description": "Optional. The list of fields to update.",
+                                  "format": "google-fieldmask",
+                                  "location": "query",
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            }
+                          },
+                          "resources": {
+                            "files": {
+                              "methods": {
+                                "import": {
+                                  "description": "Imports a file to an Agent. Currently only No-Code agents are supported.",
+                                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/files:import",
+                                  "httpMethod": "POST",
+                                  "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.files.import",
+                                  "parameterOrder": [
+                                    "parent"
+                                  ],
+                                  "parameters": {
+                                    "parent": {
+                                      "description": "Required. The resource name of the Agent. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/agents/{agent}`",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1alpha/{+parent}/files:import",
+                                  "request": {
+                                    "$ref": "GoogleCloudDiscoveryengineV1alphaImportAgentFileRequest"
+                                  },
+                                  "response": {
+                                    "$ref": "GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform",
+                                    "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        },
                         "cannedQueries": {
                           "methods": {
                             "create": {
@@ -6290,6 +6634,42 @@
                             "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
+                        },
+                        "patch": {
+                          "description": "Update a WidgetConfig.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/widgetConfigs/{widgetConfigsId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.engines.widgetConfigs.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. The full resource name of the widget config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/widgetConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfig"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
                         }
                       }
                     }
@@ -6408,7 +6788,7 @@
                       "type": "string"
                     },
                     "userPseudoId": {
-                      "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                       "location": "query",
                       "type": "string"
                     }
@@ -9131,6 +9511,42 @@
                         "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                         "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
+                    },
+                    "patch": {
+                      "description": "Update a WidgetConfig.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/widgetConfigs/{widgetConfigsId}",
+                      "httpMethod": "PATCH",
+                      "id": "discoveryengine.projects.locations.dataStores.widgetConfigs.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Immutable. The full resource name of the widget config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/widgetConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfig"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
                     }
                   }
                 }
@@ -11118,7 +11534,7 @@
       }
     }
   },
-  "revision": "20251026",
+  "revision": "20251030",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -15942,6 +16358,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaA2AAgentDefinition": {
+      "description": "Stored definition of an agent that uses A2A.",
+      "id": "GoogleCloudDiscoveryengineV1alphaA2AAgentDefinition",
+      "properties": {
+        "jsonAgentCard": {
+          "description": "Optional. The agent card is a JSON string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaAclConfig": {
       "description": "Access Control Configuration.",
       "id": "GoogleCloudDiscoveryengineV1alphaAclConfig",
@@ -16010,6 +16437,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaAdkAgentDefinition": {
+      "description": "Stores the definition of an agent that uses ADK and is deployed to Agent Engine (formerly known as Reasoning Engine).",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdkAgentDefinition",
+      "properties": {
+        "provisionedReasoningEngine": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAdkAgentDefinitionProvisionedReasoningEngine",
+          "description": "Optional. The reasoning engine that the agent is connected to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAdkAgentDefinitionProvisionedReasoningEngine": {
+      "description": "Keeps track of the reasoning engine that the agent is connected to. This message is not intended to keep track of agent's lifecycle. Instead it is only used to define parameters to connect to the agent that is already deployed to a reasoning engine.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdkAgentDefinitionProvisionedReasoningEngine",
+      "properties": {
+        "reasoningEngine": {
+          "description": "Required. The reasoning engine that the agent is connected to. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequest": {
       "description": "Request message for CompletionService.AdvancedCompleteQuery method. .",
       "id": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequest",
@@ -16072,7 +16521,7 @@
           "description": "Optional. Information about the end user. This should be the same identifier information as UserEvent.user_info and SearchRequest.user_info."
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128",
           "type": "string"
         }
       },
@@ -16333,6 +16782,157 @@
         "disableInitialIndex": {
           "description": "If set true, initial indexing is disabled for the DataStore.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAgent": {
+      "description": "Performs a predefined, specific task.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAgent",
+      "properties": {
+        "a2aAgentDefinition": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaA2AAgentDefinition",
+          "description": "Optional. The behavior of the agent is defined as an A2A agent."
+        },
+        "adkAgentDefinition": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAdkAgentDefinition",
+          "description": "Optional. The behavior of the agent is defined as an ADK agent."
+        },
+        "authorizationConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAuthorizationConfig",
+          "description": "Optional. The authorizations that are required by the agent."
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when this Agent was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customPlaceholderText": {
+          "description": "Optional. The custom placeholder text that appears in the text box before the user enters any text.",
+          "type": "string"
+        },
+        "deploymentFailureReason": {
+          "description": "Output only. The reason why the agent deployment failed. Only set if the state is DEPLOYMENT_FAILED.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Required. Human-readable description of the agent. This might be used by an LLM to automatically select an agent to respond to a user query.",
+          "type": "string"
+        },
+        "dialogflowAgentDefinition": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDialogflowAgentDefinition",
+          "description": "Optional. The behavior of the agent is defined as a Dialogflow agent."
+        },
+        "displayName": {
+          "description": "Required. Display name of the agent. This might be used by an LLM to automatically select an agent to respond to a user query.",
+          "type": "string"
+        },
+        "icon": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAgentImage",
+          "description": "Optional. The icon that represents the agent on the UI."
+        },
+        "languageCode": {
+          "description": "Optional. The code of the language of the text in the description, display_name and starter_prompts fields.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the agent. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/agents/{agent}`",
+          "type": "string"
+        },
+        "rejectionReason": {
+          "description": "Output only. The reason why the agent was rejected. Only set if the state is PRIVATE, and got there via rejection.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "starterPrompts": {
+          "description": "Optional. The starter prompt suggestions to show the user on the landing page of the agent.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAgentStarterPrompt"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The lifecycle state of the agent.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CONFIGURED",
+            "DEPLOYING",
+            "DISABLED",
+            "DEPLOYMENT_FAILED",
+            "PRIVATE",
+            "ENABLED",
+            "SUSPENDED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The agent is configured, but no deployment triggered yet.",
+            "The agent is being deployed.",
+            "The agent is available for admins only.",
+            "The agent deployment failed.",
+            "Agent is available only to its creator..",
+            "Agent is available for users who have access.",
+            "Agent is temporarily unavailable, though visible to users who have access."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "suspensionReason": {
+          "description": "Output only. The reason why the agent was suspended. Only set if the state is SUSPENDED.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this Agent was most recently updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAgentFile": {
+      "description": "Describes a file used internally by an agent as a context on each invocation.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAgentFile",
+      "properties": {
+        "fileName": {
+          "description": "Required. The name of the file.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Immutable. The content type of the file.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the file. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/agents/{agent}/files/{file}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAgentImage": {
+      "description": "Represents an image.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAgentImage",
+      "properties": {
+        "content": {
+          "description": "Base64-encoded image file contents.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Image URI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAgentStarterPrompt": {
+      "description": "The starter prompt suggestion to show the user on the landing page of the agent.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAgentStarterPrompt",
+      "properties": {
+        "text": {
+          "description": "Required. The text of the starter prompt.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -18351,6 +18951,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaAuthorizationConfig": {
+      "description": "Describes the authorizations required.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAuthorizationConfig",
+      "properties": {
+        "agentAuthorization": {
+          "description": "Optional. The authorization that is required to invoke the agent. Auth tokens will be passed to the agent as part of the request auth header.",
+          "type": "string"
+        },
+        "toolAuthorizations": {
+          "description": "Optional. List of required authorizations for agent to access other resources. Auth tokens will be passed to the agent as part of the request body.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaAuthorizationServerSideOAuth2": {
       "description": "OAuth2 configuration.",
       "id": "GoogleCloudDiscoveryengineV1alphaAuthorizationServerSideOAuth2",
@@ -18804,6 +19422,124 @@
         },
         "tableId": {
           "description": "Required. The table ID of the Cloud Bigtable that needs to be imported.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig": {
+      "description": "Information about license configs at billing account level.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig",
+      "properties": {
+        "autoRenew": {
+          "description": "Whether the BillingAccountLicenseConfig is auto renewed when it reaches the end date.",
+          "type": "boolean"
+        },
+        "endDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Optional. The planed subscription end date."
+        },
+        "geminiBundle": {
+          "description": "Whether the license config is for Gemini bundle.",
+          "type": "boolean"
+        },
+        "licenseConfigDistributions": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "A map of LicenseConfig names to the number of licenses distributed to each. The key is the full resource name of the LicenseConfig, such as `projects/{project}/locations/{location}/licenseConfigs/{license_config}`. The value is the count of licenses allocated to it.",
+          "type": "object"
+        },
+        "licenseCount": {
+          "description": "Required. The number of licenses purchased under this billing account license config.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The fully qualified resource name of the billing account license config. Format: `billingAccounts/{billing_account}/billingAccountLicenseConfigs/{billing_account_license_config}`.",
+          "type": "string"
+        },
+        "procurementEntitlementId": {
+          "description": "The procurement entitlement id of the subscription.",
+          "type": "string"
+        },
+        "startDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Required. The subscription start date."
+        },
+        "state": {
+          "description": "Output only. The state of the BillingAccountLicenseConfig.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "EXPIRED",
+            "NOT_STARTED"
+          ],
+          "enumDescriptions": [
+            "The BillingAccountLicenseConfig does not exist. Default value. Do not use.",
+            "The BillingAccountLicenseConfig is active and being used.",
+            "The BillingAccountLicenseConfig has expired.",
+            "The BillingAccountLicenseConfig has not started yet, and its start date is in the future."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "subscriptionDisplayName": {
+          "description": "The subscription display name.",
+          "type": "string"
+        },
+        "subscriptionName": {
+          "description": "Output only. The corresponding SubV3 subscription name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subscriptionTerm": {
+          "description": "Required. The subscription term.",
+          "enum": [
+            "SUBSCRIPTION_TERM_UNSPECIFIED",
+            "SUBSCRIPTION_TERM_ONE_MONTH",
+            "SUBSCRIPTION_TERM_ONE_YEAR",
+            "SUBSCRIPTION_TERM_THREE_YEARS"
+          ],
+          "enumDescriptions": [
+            "Default value, do not use.",
+            "1 month.",
+            "1 year.",
+            "3 years."
+          ],
+          "type": "string"
+        },
+        "subscriptionTier": {
+          "description": "Required. The subscription tier.",
+          "enum": [
+            "SUBSCRIPTION_TIER_UNSPECIFIED",
+            "SUBSCRIPTION_TIER_SEARCH",
+            "SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT",
+            "SUBSCRIPTION_TIER_NOTEBOOK_LM",
+            "SUBSCRIPTION_TIER_FRONTLINE_WORKER",
+            "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
+            "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
+            "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_EDU",
+            "SUBSCRIPTION_TIER_EDU_PRO",
+            "SUBSCRIPTION_TIER_EDU_EMERGING",
+            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
+            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
+            "Frontline worker tier.",
+            "Agentspace Starter tier.",
+            "Agentspace Business tier.",
+            "Enterprise tier.",
+            "EDU tier.",
+            "EDU Pro tier.",
+            "EDU emerging market tier.",
+            "EDU Pro emerging market tier."
+          ],
           "type": "string"
         }
       },
@@ -21320,6 +22056,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDeleteAgentMetadata": {
+      "description": "Metadata related to the progress of the AgentService.DeleteAgent operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteAgentMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata": {
       "description": "Metadata related to the progress of the CmekConfigService.DeleteCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata",
@@ -21526,6 +22279,17 @@
           "description": "Optional. Target port number accepted by the destination.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDialogflowAgentDefinition": {
+      "description": "Stored definition of an agent that uses a Dialogflow agent.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDialogflowAgentDefinition",
+      "properties": {
+        "dialogflowAgent": {
+          "description": "Required. Resource name of the underlying Dialogflow Agent. Format: `projects/{project}/locations/{location}/agents/{agent}`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -23340,6 +24104,32 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaImportAgentFileRequest": {
+      "description": "Request for the AgentService.ImportAgentFile method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaImportAgentFileRequest",
+      "properties": {
+        "fileName": {
+          "description": "Required. The name of the file.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Optional. The content type of the file, see https://www.iana.org/assignments/media-types/media-types.xhtml. This field is required when the data source does not provide the content type.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse": {
+      "description": "Response for the AgentService.ImportAgentFile method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse",
+      "properties": {
+        "agentFile": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAgentFile",
+          "description": "The imported AgentFile."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsMetadata": {
       "description": "Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsMetadata",
@@ -24022,6 +24812,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaListAgentsResponse": {
+      "description": "Response message for the AgentService.ListAgents method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListAgentsResponse",
+      "properties": {
+        "agents": {
+          "description": "The agents visible to the caller under the parent Assistant.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as ListAgentsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaListAuthorizationsResponse": {
       "description": "Response message for the AuthorizationService.ListAuthorizations method.",
       "id": "GoogleCloudDiscoveryengineV1alphaListAuthorizationsResponse",
@@ -24035,6 +24843,24 @@
         },
         "nextPageToken": {
           "description": "A token that can be sent as ListAuthorizationsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse": {
+      "description": "Response message for LicenseConfigService.ListBillingAccountLicenseConfigs method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse",
+      "properties": {
+        "billingAccountLicenseConfigs": {
+          "description": "All BillingAccountLicenseConfigs for the given billing account.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as ListBillingAccountLicenseConfigsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -26373,7 +27199,7 @@
           "type": "object"
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         }
       },
@@ -28919,6 +29745,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaUploadAgentFileRequest": {
+      "description": "Request message for the AgentService.UploadAgentFile method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUploadAgentFileRequest",
+      "properties": {
+        "blob": {
+          "$ref": "GdataMedia",
+          "description": "Information about the file being uploaded."
+        },
+        "mediaRequestInfo": {
+          "$ref": "ApiservingMediaRequestInfo",
+          "description": "Media upload request metadata."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaUploadAgentFileResponse": {
+      "description": "Response message for the AgentService.UploadAgentFile method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUploadAgentFileResponse",
+      "properties": {
+        "agentFile": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAgentFile",
+          "description": "The uploaded AgentFile."
+        },
+        "mediaResponseInfo": {
+          "$ref": "ApiservingMediaResponseInfo",
+          "description": "Media upload response metadata."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest": {
       "description": "Request for the AssistantService.UploadSessionFile method.",
       "id": "GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest",
@@ -29363,13 +30219,6 @@
           "description": "Whether to enable standalone web app.",
           "type": "boolean"
         },
-        "experimentalFeatures": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Allows to toggle unstable/experimental features in the widget (or web app)",
-          "type": "object"
-        },
         "facetField": {
           "deprecated": true,
           "description": "The configuration and appearance of facets in the end user view.",
@@ -29741,7 +30590,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigHomepageSetting",
       "properties": {
         "shortcuts": {
-          "description": "Optional. The shortcuts to display on the homepage. LINT.IfChange(max_shortcuts_number) LINT.ThenChange( //depot/google3/cloud/console/web/ai/unified_cloud_search/components/widget_preview/widget_homepage_shortcut_config_form.ts:max_shortcuts_number )",
+          "description": "Optional. The shortcuts to display on the homepage.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigHomepageSettingShortcut"
           },
@@ -29921,6 +30770,10 @@
             "Display results from extractive answers field."
           ],
           "type": "string"
+        },
+        "searchAddonSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsSearchAddonSpec",
+          "description": "Optional. SearchAddonSpec is used to disable add-ons for search. This field is only supported for search requests."
         }
       },
       "type": "object"
@@ -29982,6 +30835,25 @@
           "description": "The number of top results to generate the answer from. Up to 10.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsSearchAddonSpec": {
+      "description": "SearchAddonSpec is used to disable add-ons for search. By default, if this field is not specified, add-ons are enabled wherever applicable.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsSearchAddonSpec",
+      "properties": {
+        "generativeAnswerAddOnDisabled": {
+          "description": "Optional. If true, generative answer add-on is disabled. Generative answer add-on includes natural language to filters and simple answers.",
+          "type": "boolean"
+        },
+        "kpiPersonalizationAddOnDisabled": {
+          "description": "Optional. If true, disables event re-ranking and personalization to optimize KPIs & personalize results.",
+          "type": "boolean"
+        },
+        "semanticAddOnDisabled": {
+          "description": "Optional. If true, semantic add-on is disabled. Semantic add-on includes embeddings and jetstream.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -32709,7 +33581,7 @@
           "type": "object"
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         }
       },
