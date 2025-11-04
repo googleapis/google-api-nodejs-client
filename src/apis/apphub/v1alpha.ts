@@ -395,6 +395,15 @@ export namespace apphub_v1alpha {
     unreachable?: string[] | null;
   }
   /**
+   * The functional type of a service or workload.
+   */
+  export interface Schema$FunctionalType {
+    /**
+     * Output only. The functional type of a service or workload.
+     */
+    type?: string | null;
+  }
+  /**
    * Response for ListApplications.
    */
   export interface Schema$ListApplicationsResponse {
@@ -745,6 +754,10 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$ServiceProperties {
     /**
+     * Output only. The type of the service.
+     */
+    functionalType?: Schema$FunctionalType;
+    /**
      * Output only. The service project identifier that the underlying cloud resource resides in.
      */
     gcpProject?: string | null;
@@ -871,6 +884,10 @@ export namespace apphub_v1alpha {
    * Properties of an underlying compute resource represented by the Workload.
    */
   export interface Schema$WorkloadProperties {
+    /**
+     * Output only. The type of the workload.
+     */
+    functionalType?: Schema$FunctionalType;
     /**
      * Output only. The service project identifier that the underlying cloud resource resides in. Empty for non-cloud resources.
      */
@@ -1246,7 +1263,7 @@ export namespace apphub_v1alpha {
      *
      *   // Do the magic
      *   const res = await apphub.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1533,7 +1550,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

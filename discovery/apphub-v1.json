@@ -172,7 +172,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1357,7 +1357,7 @@
       }
     }
   },
-  "revision": "20251001",
+  "revision": "20251028",
   "rootUrl": "https://apphub.googleapis.com/",
   "schemas": {
     "Application": {
@@ -1676,6 +1676,28 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FunctionalType": {
+      "description": "The functional type of a service or workload.",
+      "id": "FunctionalType",
+      "properties": {
+        "type": {
+          "description": "Output only. The functional type of a service or workload.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "AGENT",
+            "MCP_SERVER"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Agent type.",
+            "MCP Server type."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2223,6 +2245,11 @@
       "description": "Properties of an underlying cloud resource that can comprise a Service.",
       "id": "ServiceProperties",
       "properties": {
+        "functionalType": {
+          "$ref": "FunctionalType",
+          "description": "Output only. The type of the service.",
+          "readOnly": true
+        },
         "gcpProject": {
           "description": "Output only. The service project identifier that the underlying cloud resource resides in.",
           "readOnly": true,
@@ -2401,6 +2428,11 @@
       "description": "Properties of an underlying compute resource represented by the Workload.",
       "id": "WorkloadProperties",
       "properties": {
+        "functionalType": {
+          "$ref": "FunctionalType",
+          "description": "Output only. The type of the workload.",
+          "readOnly": true
+        },
         "gcpProject": {
           "description": "Output only. The service project identifier that the underlying cloud resource resides in. Empty for non-cloud resources.",
           "readOnly": true,
