@@ -5116,7 +5116,7 @@ export namespace firebasedataconnect_v1 {
     }
 
     /**
-     * Lists Schemas in a given project and location. Note that only `schemas/main` is supported, so this will always return at most one Schema.
+     * Lists Schemas in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
