@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v13.0.0...cloudfunctions-v13.1.0) (2025-11-04)
+
+
+### Features
+
+* **cloudfunctions:** update the API ([aadb45b](https://github.com/googleapis/google-api-nodejs-client/commit/aadb45bf0fc31e85b05e5d29d407adeb1b672821))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v12.0.0...cloudfunctions-v13.0.0) (2025-10-15)
 
 

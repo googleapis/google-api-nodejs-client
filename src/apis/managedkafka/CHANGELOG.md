@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v7.1.0...managedkafka-v7.2.0) (2025-11-04)
+
+
+### Features
+
+* **managedkafka:** update the API ([5da7a01](https://github.com/googleapis/google-api-nodejs-client/commit/5da7a019a1f3e112252b558b242b2135053bf405))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v7.0.0...managedkafka-v7.1.0) (2025-10-20)
 
 

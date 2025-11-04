@@ -1,5 +1,16 @@
 # Changelog
 
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v20.0.0...serviceusage-v21.0.0) (2025-11-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **serviceusage:** This release has breaking changes.
+
+### Features
+
+* **serviceusage:** update the API ([a8bdeb6](https://github.com/googleapis/google-api-nodejs-client/commit/a8bdeb6548c69eda1f9377e512aaf389e27a36e0))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v19.0.0...serviceusage-v20.0.0) (2025-10-15)
 
 

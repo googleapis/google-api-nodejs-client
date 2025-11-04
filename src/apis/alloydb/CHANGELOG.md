@@ -1,5 +1,17 @@
 # Changelog
 
+## [18.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v18.1.0...alloydb-v18.2.0) (2025-11-04)
+
+
+### Features
+
+* **alloydb:** update the API ([dd0af78](https://github.com/googleapis/google-api-nodejs-client/commit/dd0af781b14032c9e2b5819e31097943bb44d670))
+
+
+### Bug Fixes
+
+* **alloydb:** update the API ([3a14160](https://github.com/googleapis/google-api-nodejs-client/commit/3a14160798c1ee1632be1f93e56e2a875704c7c3))
+
 ## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v18.0.0...alloydb-v18.1.0) (2025-10-20)
 
 
