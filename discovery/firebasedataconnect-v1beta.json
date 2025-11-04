@@ -1062,7 +1062,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Schemas in a given project and location. Note that only `schemas/main` is supported, so this will always return at most one Schema.",
+                      "description": "Lists Schemas in a given project and location.",
                       "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas",
                       "httpMethod": "GET",
                       "id": "firebasedataconnect.projects.locations.services.schemas.list",
@@ -1165,7 +1165,7 @@
       }
     }
   },
-  "revision": "20251021",
+  "revision": "20251026",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
