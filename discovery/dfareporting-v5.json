@@ -10005,7 +10005,7 @@
       }
     }
   },
-  "revision": "20251009",
+  "revision": "20251023",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -10528,6 +10528,10 @@
             ""
           ],
           "type": "string"
+        },
+        "contextualKeywordTargeting": {
+          "$ref": "ContextualKeywordTargeting",
+          "description": "Optional. Contextual keyword targeting information for this ad."
         },
         "createInfo": {
           "$ref": "LastModifiedInfo",
@@ -12057,6 +12061,31 @@
       },
       "type": "object"
     },
+    "ContextualKeyword": {
+      "description": "Contains information about a Contextual Keyword that can be targeted by ads.",
+      "id": "ContextualKeyword",
+      "properties": {
+        "keyword": {
+          "description": "The keyword that can be targeted by ads.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContextualKeywordTargeting": {
+      "description": "Contextual Keyword Targeting.",
+      "id": "ContextualKeywordTargeting",
+      "properties": {
+        "keywords": {
+          "description": "Contextual keywords that this ad targets",
+          "items": {
+            "$ref": "ContextualKeyword"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Conversion": {
       "description": "A Conversion represents when a user successfully performs a desired action after seeing an ad.",
       "id": "Conversion",
@@ -12435,7 +12464,10 @@
             "CREATIVE_AUTHORING_SOURCE_GWD",
             "CREATIVE_AUTHORING_SOURCE_ACS",
             "CREATIVE_AUTHORING_SOURCE_ADOBE",
-            "CREATIVE_AUTHORING_SOURCE_TYPEFACE_AI"
+            "CREATIVE_AUTHORING_SOURCE_TYPEFACE_AI",
+            "CREATIVE_AUTHORING_SOURCE_REMBRAND",
+            "CREATIVE_AUTHORING_SOURCE_TRACKTO_STUDIO",
+            "CREATIVE_AUTHORING_SOURCE_BORNLOGIC"
           ],
           "enumDescriptions": [
             "DCM-UI or external API used to author the creative.",
@@ -12444,7 +12476,10 @@
             "Google Web Designer used to author the creative.",
             "ACS-UI used to author the creative.",
             "Creative authoring source is Adobe.",
-            "Creative authoring source is Typeface.ai."
+            "Creative authoring source is Typeface.ai.",
+            "Creative authoring source is Rembrand.",
+            "Creative authoring source is Trackto.",
+            "Creative authoring source is Bornlogic."
           ],
           "type": "string"
         },
@@ -18273,7 +18308,7 @@
           "type": "boolean"
         },
         "adServingPlatformId": {
-          "description": "Optional. Ad serving platform ID to identify the ad serving platform used by the placement. Measurement partners can use this field to add ad-server specific macros. Possible values are: * `1`, Adelphic * `2`, Adform * `3`, Adobe * `4`, Amobee * `5`, Basis (Centro) * `6`, Beeswax * `7`, Amazon * `8`, DV360 (DBM) * `9`, Innovid * `10`, MediaMath * `11`, Roku OneView DSP * `12`, TabMo Hawk * `13`, The Trade Desk * `14`, Xandr Invest DSP * `15`, Yahoo DSP * `16`, Zeta Global * `17`, Scaleout * `18`, Bidtellect * `19`, Unicorn * `20`, Teads * `21`, Quantcast * `22`, Cognitiv",
+          "description": "Optional. Ad serving platform ID to identify the ad serving platform used by the placement. Measurement partners can use this field to add ad-server specific macros. Possible values are: * `1`, Adelphic * `2`, Adform * `3`, Adobe * `4`, Amobee * `5`, Basis (Centro) * `6`, Beeswax * `7`, Amazon * `8`, DV360 (DBM) * `9`, Innovid * `10`, MediaMath * `11`, Roku OneView DSP * `12`, TabMo Hawk * `13`, The Trade Desk * `14`, Xandr Invest DSP * `15`, Yahoo DSP * `16`, Zeta Global * `17`, Scaleout * `18`, Bidtellect * `19`, Unicorn * `20`, Teads * `21`, Quantcast * `22`, Cognitiv * `23`, AdTheorent * `24`, DeepIntent * `25`, Pulsepoint",
           "format": "int64",
           "type": "string"
         },
@@ -20078,7 +20113,7 @@
           "type": "string"
         },
         "adServingPlatformId": {
-          "description": "Optional. Ad serving platform ID to identify the ad serving platform used by the site. Measurement partners can use this field to add ad-server specific macros. If set, this value acts as the default during placement creation. Possible values are: * `1`, Adelphic * `2`, Adform * `3`, Adobe * `4`, Amobee * `5`, Basis (Centro) * `6`, Beeswax * `7`, Amazon * `8`, DV360 (DBM) * `9`, Innovid * `10`, MediaMath * `11`, Roku OneView DSP * `12`, TabMo Hawk * `13`, The Trade Desk * `14`, Xandr Invest DSP * `15`, Yahoo DSP * `16`, Zeta Global * `17`, Scaleout * `18`, Bidtellect * `19`, Unicorn * `20`, Teads * `21`, Quantcast * `22`, Cognitiv",
+          "description": "Optional. Ad serving platform ID to identify the ad serving platform used by the site. Measurement partners can use this field to add ad-server specific macros. If set, this value acts as the default during placement creation. Possible values are: * `1`, Adelphic * `2`, Adform * `3`, Adobe * `4`, Amobee * `5`, Basis (Centro) * `6`, Beeswax * `7`, Amazon * `8`, DV360 (DBM) * `9`, Innovid * `10`, MediaMath * `11`, Roku OneView DSP * `12`, TabMo Hawk * `13`, The Trade Desk * `14`, Xandr Invest DSP * `15`, Yahoo DSP * `16`, Zeta Global * `17`, Scaleout * `18`, Bidtellect * `19`, Unicorn * `20`, Teads * `21`, Quantcast * `22`, Cognitiv * `23`, AdTheorent * `24`, DeepIntent * `25`, Pulsepoint",
           "format": "int64",
           "type": "string"
         },
@@ -21001,6 +21036,10 @@
           "$ref": "DimensionValue",
           "description": "Dimension value for the ID of the advertiser. This is a read-only, auto-generated field."
         },
+        "contextualKeywordTargeting": {
+          "$ref": "ContextualKeywordTargeting",
+          "description": "Optional. Contextual keyword targeting criteria."
+        },
         "dayPartTargeting": {
           "$ref": "DayPartTargeting",
           "description": "Time and day targeting criteria."
@@ -21353,9 +21392,11 @@
             "AD_ID_OFFICIAL",
             "CLEARCAST",
             "DCM",
-            "ARPP"
+            "ARPP",
+            "CUSV"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
