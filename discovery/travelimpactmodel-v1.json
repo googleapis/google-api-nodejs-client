@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20251008",
+  "revision": "20251102",
   "rootUrl": "https://travelimpactmodel.googleapis.com/",
   "schemas": {
     "ComputeFlightEmissionsRequest": {
@@ -505,7 +505,7 @@
           "type": "string"
         },
         "carrierCode": {
-          "description": "Optional. IATA carrier code, e.g. `KE`. This is required if specific flight matching is desired. Otherwise, this is unused for typical flight and distance-based emissions models. This could be both operating and marketing carrier code (i.e. codeshare is covered).",
+          "description": "Optional. 2-character [IATA carrier code](https://www.iata.org/en/publications/directories/code-search/), e.g. `KE`. This is required if specific flight matching is desired. Otherwise, this is unused for typical flight and distance-based emissions models. This could be both operating and marketing carrier code (i.e. codeshare is covered).",
           "type": "string"
         },
         "departureDate": {
@@ -513,21 +513,21 @@
           "description": "Required. Date of the flight in the time zone of the origin airport. Only year is required for typical flight and distance-based emissions models (month and day values are ignored and therefore, can be either omitted, set to 0, or set to a valid date for those cases). Correspondingly, if a specific date is not provided for TIM emissions, we will fallback to typical flight (or distance-based) emissions."
         },
         "destination": {
-          "description": "Optional. IATA airport code for flight destination, e.g. `ICN`. This is used to match specific flight if provided alongside origin, carrier, and flight number. If there is no match, we will first try to match the flight to a typical flight between the provided origin and destination airports. Otherwise, we will use the distance-based emissions model if the flight distance is provided.",
+          "description": "Optional. 3-character [IATA airport code](https://www.iata.org/en/publications/directories/code-search/) for flight destination, e.g. `ICN`. This is used to match specific flight if provided alongside origin, carrier, and flight number. If there is no match, we will first try to match the flight to a typical flight between the provided origin and destination airports. Otherwise, we will use the distance-based emissions model if the flight distance is provided.",
           "type": "string"
         },
         "distanceKm": {
-          "description": "Optional. Distance in kilometers, e.g. `2423`. This is used to match a flight to distance-based emissions when origin and destination are not provided or there are no matching typical flights. This field supports values between 0 and 2.5e16 km.",
+          "description": "Optional. Distance in kilometers, e.g. `2423`, from [1, 2.5e16) km. This is used to match a flight to distance-based emissions when origin and destination are not provided or there are no matching typical flights.",
           "format": "int64",
           "type": "string"
         },
         "flightNumber": {
-          "description": "Optional. Flight number, e.g. `71`. This is first used to match a specific flight if a flight number is specified alongside origin, destination, and carrier. If a flight number is not specified, we will first try to match the flight to a typical flight between the provided origin and destination airports. If that fails and/or origin & destination are not provided, we will use the distance-based emissions model based on the flight distance provided.",
+          "description": "Optional. Up to 4-digit [flight number](https://en.wikipedia.org/wiki/Flight_number), e.g. `71`, from [1, 9999]. This is first used to match a specific flight if a flight number is specified alongside origin, destination, and carrier. If a flight number is not specified, we will first try to match the flight to a typical flight between the provided origin and destination airports. If that fails and/or origin & destination are not provided, we will use the distance-based emissions model based on the flight distance provided.",
           "format": "int32",
           "type": "integer"
         },
         "origin": {
-          "description": "Optional. IATA airport code for flight origin, e.g. `YVR`. This is used to match specific flight if provided alongside destination, carrier, and flight number. If there is no match, we will first try to match the flight to a typical flight between the provided origin and destination airports. Otherwise, we will use the distance-based emissions model if the flight distance is provided.",
+          "description": "Optional. 3-character [IATA airport code](https://www.iata.org/en/publications/directories/code-search/) for flight origin, e.g. `YVR`. This is used to match specific flight if provided alongside destination, carrier, and flight number. If there is no match, we will first try to match the flight to a typical flight between the provided origin and destination airports. Otherwise, we will use the distance-based emissions model if the flight distance is provided.",
           "type": "string"
         }
       },
