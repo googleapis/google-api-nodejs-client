@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -923,7 +923,7 @@
       }
     }
   },
-  "revision": "20251001",
+  "revision": "20251022",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -3430,7 +3430,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Details of the violation.",
+          "description": "Details of the violation. TODO(b/452163887)",
           "type": "object"
         },
         "serviceAccount": {
