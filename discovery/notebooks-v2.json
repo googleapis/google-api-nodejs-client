@@ -971,7 +971,7 @@
       }
     }
   },
-  "revision": "20251008",
+  "revision": "20251016",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1463,6 +1463,11 @@
         "gpuDriverConfig": {
           "$ref": "GPUDriverConfig",
           "description": "Optional. Configuration for GPU drivers."
+        },
+        "instanceId": {
+          "description": "Output only. The unique ID of the Compute Engine instance resource.",
+          "readOnly": true,
+          "type": "string"
         },
         "machineType": {
           "description": "Optional. The machine type of the VM instance. https://cloud.google.com/compute/docs/machine-resource",
