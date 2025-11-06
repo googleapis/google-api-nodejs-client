@@ -1,5 +1,12 @@
 # Changelog
 
+## [31.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v31.0.0...networkservices-v31.1.0) (2025-11-04)
+
+
+### Features
+
+* **networkservices:** update the API ([ef20dce](https://github.com/googleapis/google-api-nodejs-client/commit/ef20dce8043270f0ea34097c2ef97f880d3566de))
+
 ## [31.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v30.0.0...networkservices-v31.0.0) (2025-10-15)
 
 

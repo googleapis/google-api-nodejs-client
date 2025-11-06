@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v20.0.0...retail-v20.1.0) (2025-11-04)
+
+
+### Features
+
+* **retail:** update the API ([e1d579b](https://github.com/googleapis/google-api-nodejs-client/commit/e1d579b947ec01160055d9cfdbb8415688e50454))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v19.1.0...retail-v20.0.0) (2025-10-15)
 
 

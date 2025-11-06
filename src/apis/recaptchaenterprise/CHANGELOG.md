@@ -1,5 +1,16 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v12.0.0...recaptchaenterprise-v13.0.0) (2025-11-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **recaptchaenterprise:** This release has breaking changes.
+
+### Features
+
+* **recaptchaenterprise:** update the API ([23e45c6](https://github.com/googleapis/google-api-nodejs-client/commit/23e45c6f7db2945e24b739bc540f7f278b18c429))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v11.0.0...recaptchaenterprise-v12.0.0) (2025-10-15)
 
 

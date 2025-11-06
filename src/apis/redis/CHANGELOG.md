@@ -1,5 +1,16 @@
 # Changelog
 
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v20.1.0...redis-v21.0.0) (2025-11-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **redis:** This release has breaking changes.
+
+### Features
+
+* **redis:** update the API ([b58cea2](https://github.com/googleapis/google-api-nodejs-client/commit/b58cea2f1a3b55f9fb145fbe023c8e9fefbbb3dc))
+
 ## [20.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v20.0.0...redis-v20.1.0) (2025-10-20)
 
 

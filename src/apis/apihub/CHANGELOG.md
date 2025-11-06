@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v5.0.0...apihub-v5.1.0) (2025-11-04)
+
+
+### Features
+
+* **apihub:** update the API ([a40106f](https://github.com/googleapis/google-api-nodejs-client/commit/a40106f08067efb8fbee8ed4218c55068c0c6aa9))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v4.0.0...apihub-v5.0.0) (2025-10-15)
 
 

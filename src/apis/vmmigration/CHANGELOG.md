@@ -1,5 +1,17 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v17.0.0...vmmigration-v17.1.0) (2025-11-04)
+
+
+### Features
+
+* **vmmigration:** update the API ([14fa2ba](https://github.com/googleapis/google-api-nodejs-client/commit/14fa2ba029123e1e75d7751d504cda32657959cc))
+
+
+### Bug Fixes
+
+* **vmmigration:** update the API ([09cf0b2](https://github.com/googleapis/google-api-nodejs-client/commit/09cf0b23a6223de3994e25c31870bddafacfd809))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v16.1.0...vmmigration-v17.0.0) (2025-10-15)
 
 

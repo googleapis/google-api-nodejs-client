@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/solar-v4.0.0...solar-v4.1.0) (2025-11-04)
+
+
+### Features
+
+* **solar:** update the API ([a345662](https://github.com/googleapis/google-api-nodejs-client/commit/a3456624d10f08bb0f333c8230009f8ef57be1bf))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/solar-v3.0.0...solar-v4.0.0) (2025-10-15)
 
 

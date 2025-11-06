@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v25.0.0...gkehub-v25.0.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* **gkehub:** update the API ([11f9a0e](https://github.com/googleapis/google-api-nodejs-client/commit/11f9a0e0445fdd7bb3756efe01ced75e4260da12))
+
 ## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v24.0.0...gkehub-v25.0.0) (2025-10-15)
 
 

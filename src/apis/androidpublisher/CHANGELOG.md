@@ -1,5 +1,12 @@
 # Changelog
 
+## [33.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v33.0.0...androidpublisher-v33.1.0) (2025-11-04)
+
+
+### Features
+
+* **androidpublisher:** update the API ([cbd34da](https://github.com/googleapis/google-api-nodejs-client/commit/cbd34da18bf1a20974386350851e585ce6e13295))
+
 ## [33.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v32.0.0...androidpublisher-v33.0.0) (2025-10-15)
 
 

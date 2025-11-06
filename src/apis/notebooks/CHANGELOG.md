@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v13.1.0...notebooks-v13.2.0) (2025-11-04)
+
+
+### Features
+
+* **notebooks:** update the API ([8289b58](https://github.com/googleapis/google-api-nodejs-client/commit/8289b587aed78fd01277d1cbb06cbf5196153224))
+
 ## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v13.0.0...notebooks-v13.1.0) (2025-10-20)
 
 
