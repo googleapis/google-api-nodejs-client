@@ -1106,7 +1106,7 @@
       }
     }
   },
-  "revision": "20251023",
+  "revision": "20251030",
   "rootUrl": "https://firebaseapphosting.googleapis.com/",
   "schemas": {
     "ArchiveSource": {
@@ -1455,7 +1455,7 @@
       "id": "Config",
       "properties": {
         "env": {
-          "description": "Optional. Environment variables for this build.",
+          "description": "Optional. Supplied environment variables for a specific build. Provided at Build creation time and immutable afterwards. This field is only applicable for Builds using a build image - (e.g., ContainerSource or ArchiveSource with locally_build_source) Attempts to set this for other build types will result in an error",
           "items": {
             "$ref": "EnvironmentVariable"
           },
