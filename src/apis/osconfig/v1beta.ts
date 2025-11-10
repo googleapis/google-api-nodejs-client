@@ -714,6 +714,10 @@ export namespace osconfig_v1beta {
      */
     rebootConfig?: string | null;
     /**
+     * Optional. Enables enhanced reporting for the patch job: 1. Allows the patch job to skip unpatchable instances, reporting them as SKIPPED. An instance can be unpatchable for two reasons: a. The instance runs Container-Optimized OS (COS), which cannot be patched. b. The patch job's configuration prohibits patching on Managed Instance Groups (MIGs) through the PatchConfig.migInstancesAllowed field, and the instance is part of one. 2. The system reports the patch job as SUCCEEDED if it completes without errors, regardless of whether any instances were SKIPPED. 3. The system reports the patch job as COMPLETED_WITH_INACTIVE_VMS if it completes without errors, but some instances were INACTIVE and therefore not patched.
+     */
+    skipUnpatchableVms?: boolean | null;
+    /**
      * Windows update settings. Use this override the default windows patch rules.
      */
     windowsUpdate?: Schema$WindowsUpdateSettings;
@@ -951,6 +955,10 @@ export namespace osconfig_v1beta {
      * Number of instances rebooting.
      */
     rebootingInstanceCount?: string | null;
+    /**
+     * Number of instances that were skipped during patching.
+     */
+    skippedInstanceCount?: string | null;
     /**
      * Number of instances that have started.
      */

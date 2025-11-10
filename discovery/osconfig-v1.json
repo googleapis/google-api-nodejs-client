@@ -1083,7 +1083,7 @@
       }
     }
   },
-  "revision": "20250727",
+  "revision": "20251030",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -3061,6 +3061,10 @@
           ],
           "type": "string"
         },
+        "skipUnpatchableVms": {
+          "description": "Optional. Enables enhanced reporting for the patch job: 1. Allows the patch job to skip unpatchable instances, reporting them as SKIPPED. An instance can be unpatchable for two reasons: a. The instance runs Container-Optimized OS (COS), which cannot be patched. b. The patch job's configuration prohibits patching on Managed Instance Groups (MIGs) through the PatchConfig.migInstancesAllowed field, and the instance is part of one. 2. The system reports the patch job as SUCCEEDED if it completes without errors, regardless of whether any instances were SKIPPED. 3. The system reports the patch job as COMPLETED_WITH_INACTIVE_VMS if it completes without errors, but some instances were INACTIVE and therefore not patched.",
+          "type": "boolean"
+        },
         "windowsUpdate": {
           "$ref": "WindowsUpdateSettings",
           "description": "Windows update settings. Use this override the default windows patch rules."
@@ -3270,6 +3274,7 @@
             "INSTANCE_LOOKUP",
             "PATCHING",
             "SUCCEEDED",
+            "COMPLETED_WITH_INACTIVE_VMS",
             "COMPLETED_WITH_ERRORS",
             "CANCELED",
             "TIMED_OUT"
@@ -3280,6 +3285,7 @@
             "The patch job is looking up instances to run the patch on.",
             "Instances are being patched.",
             "Patch job completed successfully.",
+            "The patch job completed without errors, but some instances were inactive and therefore not patched.",
             "Patch job completed but there were errors.",
             "The patch job was canceled.",
             "The patch job timed out."
@@ -3333,7 +3339,8 @@
             "TIMED_OUT",
             "RUNNING_PRE_PATCH_STEP",
             "RUNNING_POST_PATCH_STEP",
-            "NO_AGENT_DETECTED"
+            "NO_AGENT_DETECTED",
+            "SKIPPED"
           ],
           "enumDescriptions": [
             "Unspecified.",
@@ -3351,7 +3358,8 @@
             "The instance exceeded the time out while applying the patch.",
             "The instance is running the pre-patch step.",
             "The instance is running the post-patch step.",
-            "The service could not detect the presence of the agent. Check to ensure that the agent is installed, running, and able to communicate with the service."
+            "The service could not detect the presence of the agent. Check to ensure that the agent is installed, running, and able to communicate with the service.",
+            "The instance was skipped during patching due to one of two reasons: 1. The instance runs Container-Optimized OS (COS), which cannot be patched. 2. The patch job's configuration prohibits patching on Managed Instance Groups (MIGs), and the instance is part of one."
           ],
           "type": "string"
         }
@@ -3414,6 +3422,11 @@
         },
         "rebootingInstanceCount": {
           "description": "Number of instances rebooting.",
+          "format": "int64",
+          "type": "string"
+        },
+        "skippedInstanceCount": {
+          "description": "Number of instances that were skipped during patching.",
           "format": "int64",
           "type": "string"
         },
