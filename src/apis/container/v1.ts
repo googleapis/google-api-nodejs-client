@@ -611,6 +611,28 @@ export namespace container_v1 {
     gcpSecretManagerCertificateConfig?: Schema$GCPSecretManagerCertificateConfig;
   }
   /**
+   * CertificateConfig configures certificate for the registry.
+   */
+  export interface Schema$CertificateConfig {
+    /**
+     * The URI configures a secret from [Secret Manager](https://cloud.google.com/secret-manager) in the format "projects/$PROJECT_ID/secrets/$SECRET_NAME/versions/$VERSION" for global secret or "projects/$PROJECT_ID/locations/$REGION/secrets/$SECRET_NAME/versions/$VERSION" for regional secret. Version can be fixed (e.g. "2") or "latest"
+     */
+    gcpSecretManagerSecretUri?: string | null;
+  }
+  /**
+   * CertificateConfigPair configures pairs of certificates, which is used for client certificate and key pairs under a registry.
+   */
+  export interface Schema$CertificateConfigPair {
+    /**
+     * Cert configures the client certificate.
+     */
+    cert?: Schema$CertificateConfig;
+    /**
+     * Key configures the client private key. Optional.
+     */
+    key?: Schema$CertificateConfig;
+  }
+  /**
    * CheckAutopilotCompatibilityResponse has a list of compatibility issues.
    */
   export interface Schema$CheckAutopilotCompatibilityResponse {
@@ -1434,6 +1456,10 @@ export namespace container_v1 {
      */
     privateRegistryAccessConfig?: Schema$PrivateRegistryAccessConfig;
     /**
+     * RegistryHostConfig configures containerd registry host configuration. Each registry_hosts represents a hosts.toml file. At most 25 registry_hosts are allowed.
+     */
+    registryHosts?: Schema$RegistryHostConfig[];
+    /**
      * Optional. WritableCgroups defines writable cgroups configuration for the node pool.
      */
     writableCgroups?: Schema$WritableCgroups;
@@ -1950,6 +1976,39 @@ export namespace container_v1 {
     disabled?: boolean | null;
   }
   /**
+   * HostConfig configures the registry host under a given Server.
+   */
+  export interface Schema$HostConfig {
+    /**
+     * CA configures the registry host certificate.
+     */
+    ca?: Schema$CertificateConfig[];
+    /**
+     * Capabilities represent the capabilities of the registry host, specifying what operations a host is capable of performing. If not set, containerd enables all capabilities by default.
+     */
+    capabilities?: string[] | null;
+    /**
+     * Client configures the registry host client certificate and key.
+     */
+    client?: Schema$CertificateConfigPair[];
+    /**
+     * Specifies the maximum duration allowed for a connection attempt to complete. A shorter timeout helps reduce delays when falling back to the original registry if the mirror is unreachable. Maximum allowed value is 180s. If not set, containerd sets default 30s. The value should be a decimal number of seconds with an `s` suffix.
+     */
+    dialTimeout?: string | null;
+    /**
+     * Header configures the registry host headers.
+     */
+    header?: Schema$RegistryHeader[];
+    /**
+     * Host configures the registry host/mirror. It supports fully qualified domain names (FQDN) and IP addresses: Specifying port is supported. Wildcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000
+     */
+    host?: string | null;
+    /**
+     * OverridePath is used to indicate the host's API root endpoint is defined in the URL path rather than by the API specification. This may be used with non-compliant OCI registries which are missing the /v2 prefix. If not set, containerd sets default false.
+     */
+    overridePath?: boolean | null;
+  }
+  /**
    * RFC-2616: cache control support
    */
   export interface Schema$HttpCacheControlResponseHeader {
@@ -2335,7 +2394,7 @@ export namespace container_v1 {
      */
     enabled?: boolean | null;
     /**
-     * If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag.
+     * If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag. Deprecated: This flag is no longer required as of GKE node version 1.33.2-gke.4655000, unless you are connecting to a Lustre instance that has the `gke-support-enabled` flag.
      */
     enableLegacyLustrePort?: boolean | null;
   }
@@ -3593,6 +3652,32 @@ export namespace container_v1 {
      * The window of the first recurrence.
      */
     window?: Schema$TimeWindow;
+  }
+  /**
+   * RegistryHeader configures headers for the registry.
+   */
+  export interface Schema$RegistryHeader {
+    /**
+     * Key configures the header key.
+     */
+    key?: string | null;
+    /**
+     * Value configures the header value.
+     */
+    value?: string[] | null;
+  }
+  /**
+   * RegistryHostConfig configures the top-level structure for a single containerd registry server's configuration, which represents one hosts.toml file on the node. It will override the same fqdns in PrivateRegistryAccessConfig.
+   */
+  export interface Schema$RegistryHostConfig {
+    /**
+     * HostConfig configures a list of host-specific configurations for the server. Each server can have at most 10 host configurations.
+     */
+    hosts?: Schema$HostConfig[];
+    /**
+     * Defines the host name of the registry server, which will be used to create configuration file as /etc/containerd/hosts.d//hosts.toml. It supports fully qualified domain names (FQDN) and IP addresses: Specifying port is supported. Wildcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000
+     */
+    server?: string | null;
   }
   /**
    * ReleaseChannel indicates which release channel a cluster is subscribed to. Release channels are arranged in order of risk. When a cluster is subscribed to a release channel, Google maintains both the master version and the node version. Node auto-upgrade defaults to true and cannot be disabled.

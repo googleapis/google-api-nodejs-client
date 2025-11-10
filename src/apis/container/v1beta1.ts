@@ -282,6 +282,10 @@ export namespace container_v1beta1 {
      */
     parallelstoreCsiDriverConfig?: Schema$ParallelstoreCsiDriverConfig;
     /**
+     * Configuration for the Pod Snapshot feature.
+     */
+    podSnapshotConfig?: Schema$PodSnapshotConfig;
+    /**
      * Optional. Configuration for Ray Operator addon.
      */
     rayOperatorConfig?: Schema$RayOperatorConfig;
@@ -666,6 +670,28 @@ export namespace container_v1beta1 {
     gcpSecretManagerCertificateConfig?: Schema$GCPSecretManagerCertificateConfig;
   }
   /**
+   * CertificateConfig configures certificate for the registry.
+   */
+  export interface Schema$CertificateConfig {
+    /**
+     * The URI configures a secret from [Secret Manager](https://cloud.google.com/secret-manager) in the format "projects/$PROJECT_ID/secrets/$SECRET_NAME/versions/$VERSION" for global secret or "projects/$PROJECT_ID/locations/$REGION/secrets/$SECRET_NAME/versions/$VERSION" for regional secret. Version can be fixed (e.g. "2") or "latest"
+     */
+    gcpSecretManagerSecretUri?: string | null;
+  }
+  /**
+   * CertificateConfigPair configures pairs of certificates, which is used for client certificate and key pairs under a registry.
+   */
+  export interface Schema$CertificateConfigPair {
+    /**
+     * Cert configures the client certificate.
+     */
+    cert?: Schema$CertificateConfig;
+    /**
+     * Key configures the client private key. Optional.
+     */
+    key?: Schema$CertificateConfig;
+  }
+  /**
    * CheckAutopilotCompatibilityResponse has a list of compatibility issues.
    */
   export interface Schema$CheckAutopilotCompatibilityResponse {
@@ -777,6 +803,10 @@ export namespace container_v1beta1 {
      * Output only. The time the cluster was created, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     createTime?: string | null;
+    /**
+     * Output only. The current emulated version of the master endpoint. The version is in minor version format, e.g. 1.30. No value or empty string means the cluster has no emulated version.
+     */
+    currentEmulatedVersion?: string | null;
     /**
      * Output only. The current software version of the master endpoint.
      */
@@ -997,6 +1027,10 @@ export namespace container_v1beta1 {
      * Configuration for exporting resource usages. Resource usage export is disabled when this config unspecified.
      */
     resourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
+    /**
+     * The rollback safe upgrade information of the cluster. This field is used when user manually triggers a rollback safe upgrade.
+     */
+    rollbackSafeUpgrade?: Schema$RollbackSafeUpgrade;
     /**
      * Output only. Reserved for future use.
      */
@@ -1386,6 +1420,10 @@ export namespace container_v1beta1 {
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
     /**
+     * The desired rollback safe upgrade configuration.
+     */
+    desiredRollbackSafeUpgrade?: Schema$RollbackSafeUpgrade;
+    /**
      * Enable/Disable Secret Manager Config.
      */
     desiredSecretManagerConfig?: Schema$SecretManagerConfig;
@@ -1487,9 +1525,35 @@ export namespace container_v1beta1 {
      */
     pausedReason?: string[] | null;
     /**
+     * The cluster's rollback-safe upgrade status.
+     */
+    rollbackSafeUpgradeStatus?: Schema$RollbackSafeUpgradeStatus;
+    /**
      * The list of past auto upgrades.
      */
     upgradeDetails?: Schema$UpgradeDetails[];
+  }
+  /**
+   * CompatibilityStatus is the status regarding the control plane's compatibility.
+   */
+  export interface Schema$CompatibilityStatus {
+    /**
+     * Output only. The GKE version that the cluster can be safely downgraded to if the cluster is emulating the previous minor version. It is usually the cluster's previous version before a minor version upgrade.
+     */
+    downgradableVersion?: string | null;
+    /**
+     * Output only. Last time the control plane became available after a minor version binary upgrade with emulated version set. It indicates the last time the cluster entered the rollback safe mode.
+     */
+    emulatedVersionTime?: string | null;
+  }
+  /**
+   * CompleteControlPlaneUpgradeRequest sets the name of target cluster to complete upgrade.
+   */
+  export interface Schema$CompleteControlPlaneUpgradeRequest {
+    /**
+     * API request version that initiates this operation.
+     */
+    version?: string | null;
   }
   /**
    * CompleteIPRotationRequest moves the cluster master back into single-IP mode.
@@ -1577,6 +1641,10 @@ export namespace container_v1beta1 {
      * PrivateRegistryAccessConfig is used to configure access configuration for private container registries.
      */
     privateRegistryAccessConfig?: Schema$PrivateRegistryAccessConfig;
+    /**
+     * RegistryHostConfig configures containerd registry host configuration. Each registry_hosts represents a hosts.toml file. At most 25 registry_hosts are allowed.
+     */
+    registryHosts?: Schema$RegistryHostConfig[];
     /**
      * Optional. WritableCgroups defines writable cgroups configuration for the node pool.
      */
@@ -2151,6 +2219,39 @@ export namespace container_v1beta1 {
     disabled?: boolean | null;
   }
   /**
+   * HostConfig configures the registry host under a given Server.
+   */
+  export interface Schema$HostConfig {
+    /**
+     * CA configures the registry host certificate.
+     */
+    ca?: Schema$CertificateConfig[];
+    /**
+     * Capabilities represent the capabilities of the registry host, specifying what operations a host is capable of performing. If not set, containerd enables all capabilities by default.
+     */
+    capabilities?: string[] | null;
+    /**
+     * Client configures the registry host client certificate and key.
+     */
+    client?: Schema$CertificateConfigPair[];
+    /**
+     * Specifies the maximum duration allowed for a connection attempt to complete. A shorter timeout helps reduce delays when falling back to the original registry if the mirror is unreachable. Maximum allowed value is 180s. If not set, containerd sets default 30s. The value should be a decimal number of seconds with an `s` suffix.
+     */
+    dialTimeout?: string | null;
+    /**
+     * Header configures the registry host headers.
+     */
+    header?: Schema$RegistryHeader[];
+    /**
+     * Host configures the registry host/mirror. It supports fully qualified domain names (FQDN) and IP addresses: Specifying port is supported. Wildcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000
+     */
+    host?: string | null;
+    /**
+     * OverridePath is used to indicate the host's API root endpoint is defined in the URL path rather than by the API specification. This may be used with non-compliant OCI registries which are missing the /v2 prefix. If not set, containerd sets default false.
+     */
+    overridePath?: boolean | null;
+  }
+  /**
    * HostMaintenancePolicy contains the maintenance policy for the hosts on which the GKE VMs run on.
    */
   export interface Schema$HostMaintenancePolicy {
@@ -2609,7 +2710,7 @@ export namespace container_v1beta1 {
      */
     enabled?: boolean | null;
     /**
-     * If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag.
+     * If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag. Deprecated: This flag is no longer required as of GKE node version 1.33.2-gke.4655000, unless you are connecting to a Lustre instance that has the `gke-support-enabled` flag.
      */
     enableLegacyLustrePort?: boolean | null;
   }
@@ -2672,7 +2773,12 @@ export namespace container_v1beta1 {
   /**
    * Master is the configuration for components on master.
    */
-  export interface Schema$Master {}
+  export interface Schema$Master {
+    /**
+     * Output only. The compatibility status of the control plane. It should be empty if the cluster does not have emulated version. For details, see go/user-initiated-rollbackable-upgrade-design.
+     */
+    compatibilityStatus?: Schema$CompatibilityStatus;
+  }
   /**
    * The authentication information for accessing the master endpoint. Authentication can be done using HTTP basic auth or using client certificates.
    */
@@ -3751,6 +3857,15 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
+   * PodSnapshotConfig is the configuration for GKE Pod Snapshots feature.
+   */
+  export interface Schema$PodSnapshotConfig {
+    /**
+     * Whether or not the Pod Snapshots feature is enabled.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * Binauthz policy that applies to this cluster.
    */
   export interface Schema$PolicyBinding {
@@ -3941,6 +4056,32 @@ export namespace container_v1beta1 {
     window?: Schema$TimeWindow;
   }
   /**
+   * RegistryHeader configures headers for the registry.
+   */
+  export interface Schema$RegistryHeader {
+    /**
+     * Key configures the header key.
+     */
+    key?: string | null;
+    /**
+     * Value configures the header value.
+     */
+    value?: string[] | null;
+  }
+  /**
+   * RegistryHostConfig configures the top-level structure for a single containerd registry server's configuration, which represents one hosts.toml file on the node. It will override the same fqdns in PrivateRegistryAccessConfig.
+   */
+  export interface Schema$RegistryHostConfig {
+    /**
+     * HostConfig configures a list of host-specific configurations for the server. Each server can have at most 10 host configurations.
+     */
+    hosts?: Schema$HostConfig[];
+    /**
+     * Defines the host name of the registry server, which will be used to create configuration file as /etc/containerd/hosts.d//hosts.toml. It supports fully qualified domain names (FQDN) and IP addresses: Specifying port is supported. Wildcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000
+     */
+    server?: string | null;
+  }
+  /**
    * ReleaseChannel indicates which release channel a cluster is subscribed to. Release channels are arranged in order of risk. When a cluster is subscribed to a release channel, Google maintains both the master version and the node version. Node auto-upgrade defaults to true and cannot be disabled.
    */
   export interface Schema$ReleaseChannel {
@@ -4071,6 +4212,32 @@ export namespace container_v1beta1 {
      * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
+  }
+  /**
+   * RollbackSafeUpgrade is the configuration for the rollback safe upgrade.
+   */
+  export interface Schema$RollbackSafeUpgrade {
+    /**
+     * A user-defined period for the cluster remains in the rollbackable state. ex: {seconds: 21600\}.
+     */
+    controlPlaneSoakDuration?: string | null;
+  }
+  /**
+   * RollbackSafeUpgradeStatus contains the rollback-safe upgrade status of a cluster.
+   */
+  export interface Schema$RollbackSafeUpgradeStatus {
+    /**
+     * The rollback-safe mode expiration time.
+     */
+    controlPlaneUpgradeRollbackEndTime?: string | null;
+    /**
+     * The mode of the rollback-safe upgrade.
+     */
+    mode?: string | null;
+    /**
+     * The GKE version that the cluster previously used before step-one upgrade.
+     */
+    previousVersion?: string | null;
   }
   /**
    * RotationConfig is config for secret manager auto rotation.
@@ -5008,6 +5175,10 @@ export namespace container_v1beta1 {
      */
     endTime?: string | null;
     /**
+     * The emulated version before the upgrade.
+     */
+    initialEmulatedVersion?: string | null;
+    /**
      * The version before the upgrade.
      */
     initialVersion?: string | null;
@@ -5023,6 +5194,10 @@ export namespace container_v1beta1 {
      * Output only. The state of the upgrade.
      */
     state?: string | null;
+    /**
+     * The emulated version after the upgrade.
+     */
+    targetEmulatedVersion?: string | null;
     /**
      * The version after the upgrade.
      */
@@ -6046,6 +6221,168 @@ export namespace container_v1beta1 {
     }
 
     /**
+     * CompleteControlPlaneUpgrade completes the rollback-safe upgrade by performing the step two upgrade for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.locations.clusters.completeControlPlaneUpgrade({
+     *       // The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x`.
+     *       name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "version": "my_version"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    completeControlPlaneUpgrade(
+      params?: Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+name}:completeControlPlaneUpgrade'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Completes master IP rotation.
      * @example
      * ```js
@@ -6571,6 +6908,7 @@ export namespace container_v1beta1 {
      *   //   "minorTargetVersion": "my_minorTargetVersion",
      *   //   "patchTargetVersion": "my_patchTargetVersion",
      *   //   "pausedReason": [],
+     *   //   "rollbackSafeUpgradeStatus": {},
      *   //   "upgradeDetails": []
      *   // }
      * }
@@ -6732,6 +7070,7 @@ export namespace container_v1beta1 {
      *   //   "controlPlaneEndpointsConfig": {},
      *   //   "costManagementConfig": {},
      *   //   "createTime": "my_createTime",
+     *   //   "currentEmulatedVersion": "my_currentEmulatedVersion",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,
      *   //   "currentNodeVersion": "my_currentNodeVersion",
@@ -6787,6 +7126,7 @@ export namespace container_v1beta1 {
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
      *   //   "resourceUsageExportConfig": {},
+     *   //   "rollbackSafeUpgrade": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "secretManagerConfig": {},
@@ -9158,6 +9498,18 @@ export namespace container_v1beta1 {
      * The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade
+    extends StandardParameters {
+    /**
+     * The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CompleteControlPlaneUpgradeRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Completeiprotation
     extends StandardParameters {
@@ -12360,6 +12712,168 @@ export namespace container_v1beta1 {
     }
 
     /**
+     * CompleteControlPlaneUpgrade completes the rollback-safe upgrade by performing the step two upgrade for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.zones.clusters.completeControlPlaneUpgrade({
+     *       // The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x`.
+     *       name: 'projects/my-project/zones/my-zone/clusters/my-cluster',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "version": "my_version"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    completeControlPlaneUpgrade(
+      params?: Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+name}:completeControlPlaneUpgrade'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Completes master IP rotation.
      * @example
      * ```js
@@ -12892,6 +13406,7 @@ export namespace container_v1beta1 {
      *   //   "minorTargetVersion": "my_minorTargetVersion",
      *   //   "patchTargetVersion": "my_patchTargetVersion",
      *   //   "pausedReason": [],
+     *   //   "rollbackSafeUpgradeStatus": {},
      *   //   "upgradeDetails": []
      *   // }
      * }
@@ -13053,6 +13568,7 @@ export namespace container_v1beta1 {
      *   //   "controlPlaneEndpointsConfig": {},
      *   //   "costManagementConfig": {},
      *   //   "createTime": "my_createTime",
+     *   //   "currentEmulatedVersion": "my_currentEmulatedVersion",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,
      *   //   "currentNodeVersion": "my_currentNodeVersion",
@@ -13108,6 +13624,7 @@ export namespace container_v1beta1 {
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
      *   //   "resourceUsageExportConfig": {},
+     *   //   "rollbackSafeUpgrade": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "secretManagerConfig": {},
@@ -15230,6 +15747,18 @@ export namespace container_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$SetAddonsConfigRequest;
+  }
+  export interface Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade
+    extends StandardParameters {
+    /**
+     * The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CompleteControlPlaneUpgradeRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Completeiprotation
     extends StandardParameters {
