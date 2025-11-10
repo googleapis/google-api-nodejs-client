@@ -88,6 +88,16 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://dataproc.asia-south1.rep.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataproc.asia-south2.rep.googleapis.com/",
+      "location": "asia-south2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://dataproc.me-central2.rep.googleapis.com/",
       "location": "me-central2"
     }
@@ -5022,7 +5032,7 @@
       }
     }
   },
-  "revision": "20251021",
+  "revision": "20251104",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5959,6 +5969,10 @@
         "dataprocMetricConfig": {
           "$ref": "DataprocMetricConfig",
           "description": "Optional. The config for Dataproc metrics."
+        },
+        "diagnosticBucket": {
+          "description": "Optional. A Cloud Storage bucket used to collect checkpoint diagnostic data (https://cloud.google.com/dataproc/docs/support/diagnose-clusters#checkpoint_diagnostic_data). If you do not specify a diagnostic bucket, Cloud Dataproc will use the Dataproc temp bucket to collect the checkpoint diagnostic data. This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.",
+          "type": "string"
         },
         "encryptionConfig": {
           "$ref": "EncryptionConfig",
