@@ -1624,6 +1624,238 @@
                 }
               }
             },
+            "rolloutSequences": {
+              "methods": {
+                "create": {
+                  "description": "Create a new rollout sequence resource.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/rolloutSequences",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.rolloutSequences.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this rollout sequence will be created. projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "rolloutSequenceId": {
+                      "description": "Required. User provided identifier that is used as part of the resource name; must conform to RFC-1034 and additionally restrict to lower-cased letters. This comes out roughly to: /^a-z+[a-z0-9]$/",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/rolloutSequences",
+                  "request": {
+                    "$ref": "RolloutSequence"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Remove a RolloutSequence.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/rolloutSequences/{rolloutSequencesId}",
+                  "httpMethod": "DELETE",
+                  "id": "gkehub.projects.locations.rolloutSequences.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout sequence to delete. projects/{project}/locations/{location}/rolloutSequences/{rollout_sequence}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rolloutSequences/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieve a single rollout sequence.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/rolloutSequences/{rolloutSequencesId}",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.rolloutSequences.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout sequence to retrieve. projects/{project}/locations/{location}/rolloutSequences/{rollout_sequence}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rolloutSequences/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "RolloutSequence"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Retrieve the list of all rollout sequences.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/rolloutSequences",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.rolloutSequences.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Lists Rollout Sequences that match the filter expression, following the syntax outlined in https://google.aip.dev/160.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of rollout sequences to return. The service may return fewer than this value. If unspecified, at most 50 rollout sequences will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListRolloutSequences` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRolloutSequences` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of rollout sequences. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/rolloutSequences",
+                  "response": {
+                    "$ref": "ListRolloutSequencesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a rollout sequence.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/rolloutSequences/{rolloutSequencesId}",
+                  "httpMethod": "PATCH",
+                  "id": "gkehub.projects.locations.rolloutSequences.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Name of the rollout sequence in the format of: projects/{PROJECT_ID}/locations/global/rolloutSequences/{NAME}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rolloutSequences/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "RolloutSequence"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "rollouts": {
+              "methods": {
+                "get": {
+                  "description": "Retrieve a single rollout.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.rollouts.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout to retrieve. projects/{project}/locations/{location}/rollouts/{rollout}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rollouts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Rollout"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Retrieve the list of all rollouts.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/rollouts",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.rollouts.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Lists Rollouts that match the filter expression, following the syntax outlined in https://google.aip.dev/160.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of rollout to return. The service may return fewer than this value. If unspecified, at most 50 rollouts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListRollouts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRollouts` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of rollout. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/rollouts",
+                  "response": {
+                    "$ref": "ListRolloutsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "scopes": {
               "methods": {
                 "create": {
@@ -2266,7 +2498,7 @@
       }
     }
   },
-  "revision": "20251026",
+  "revision": "20251103",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2471,6 +2703,17 @@
         },
         "version": {
           "description": "Version of the cloud build software on the cluster.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterSelector": {
+      "description": "Selector for clusters.",
+      "id": "ClusterSelector",
+      "properties": {
+        "labelSelector": {
+          "description": "The label selector must be a valid CEL (go/cel) expression which evaluates resource.labels.",
           "type": "string"
         }
       },
@@ -4082,6 +4325,35 @@
       "properties": {},
       "type": "object"
     },
+    "ExcludedCluster": {
+      "description": "An excluded cluster from the rollout.",
+      "id": "ExcludedCluster",
+      "properties": {
+        "membership": {
+          "description": "Output only. The name of the fleet Membership resource associated to the excluded cluster.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reason": {
+          "description": "Output only. The reason for excluding the cluster from the rollout.",
+          "enum": [
+            "REASON_UNSPECIFIED",
+            "EXCLUDED_BY_FILTER",
+            "ALREADY_UPGRADED",
+            "VERSION_TOO_OLD"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The cluster was excluded by the rollout filter.",
+            "The cluster was already upgraded.",
+            "The cluster version is too old."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -4282,6 +4554,21 @@
           "description": "The time this status and any related Feature-specific details were updated.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FeatureUpdate": {
+      "description": "LINT.IfChange Feature config to use for Rollout.",
+      "id": "FeatureUpdate",
+      "properties": {
+        "binaryAuthorizationConfig": {
+          "$ref": "BinaryAuthorizationConfig",
+          "description": "Optional. Configuration for Binary Authorization."
+        },
+        "securityPostureConfig": {
+          "$ref": "SecurityPostureConfig",
+          "description": "Optional. Configuration for Security Posture."
         }
       },
       "type": "object"
@@ -5274,6 +5561,42 @@
           "description": "The list of permitted Scopes",
           "items": {
             "$ref": "Scope"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListRolloutSequencesResponse": {
+      "description": "Response message for listing rollout sequences.",
+      "id": "ListRolloutSequencesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "rolloutSequences": {
+          "description": "The rollout sequences from the specified parent resource.",
+          "items": {
+            "$ref": "RolloutSequence"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListRolloutsResponse": {
+      "description": "Response message for listing rollouts.",
+      "id": "ListRolloutsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "rollouts": {
+          "description": "The rollouts from the specified parent resource.",
+          "items": {
+            "$ref": "Rollout"
           },
           "type": "array"
         }
@@ -6656,6 +6979,331 @@
       },
       "type": "object"
     },
+    "Rollout": {
+      "description": "Rollout contains the Rollout metadata and configuration.",
+      "id": "Rollout",
+      "properties": {
+        "completeTime": {
+          "description": "Output only. The timestamp at which the Rollout was completed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp at which the Rollout was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The timestamp at the Rollout was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Human readable display name of the Rollout.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. etag of the Rollout Ex. abc1234",
+          "readOnly": true,
+          "type": "string"
+        },
+        "excludedClusters": {
+          "description": "Optional. Output only. The excluded clusters from the rollout.",
+          "items": {
+            "$ref": "ExcludedCluster"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "feature": {
+          "$ref": "FeatureUpdate",
+          "description": "Optional. Feature config to use for Rollout."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for this Rollout.",
+          "type": "object"
+        },
+        "membershipStates": {
+          "additionalProperties": {
+            "$ref": "RolloutMembershipState"
+          },
+          "description": "Output only. States of upgrading control plane or node pool targets of a single cluster (GKE Hub membership) that's part of this Rollout. The key is the membership name of the cluster. The value is the state of the cluster.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The full, unique resource name of this Rollout in the format of `projects/{project}/locations/global/rollouts/{rollout}`.",
+          "type": "string"
+        },
+        "rolloutSequence": {
+          "description": "Optional. Immutable. The full, unique resource name of the rollout sequence that initiatied this Rollout. In the format of `projects/{project}/locations/global/rolloutSequences/{rollout_sequence}`. Empty for user initiated rollouts.",
+          "type": "string"
+        },
+        "schedule": {
+          "$ref": "Schedule",
+          "description": "Output only. The schedule of the Rollout.",
+          "readOnly": true
+        },
+        "stages": {
+          "description": "Output only. The stages of the Rollout. Note: this is only populated for google-initiated rollouts.",
+          "items": {
+            "$ref": "RolloutStage"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. State specifies various states of the Rollout.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "PAUSED",
+            "CANCELLED",
+            "COMPLETED",
+            "SCHEDULED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The Rollout is running.",
+            "The Rollout is paused.",
+            "The Rollout is in a failure terminal state.",
+            "The Rollout is in a terminal state.",
+            "The Rollout is scheduled to start."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateReason": {
+          "description": "Output only. A human-readable description explaining the reason for the current state.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. Google-generated UUID for this resource. This is unique across all Rollout resources. If a Rollout resource is deleted and another resource with the same name is created, it gets a different uid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp at which the Rollout was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "versionUpgrade": {
+          "$ref": "VersionUpgrade",
+          "description": "Optional. Config for version upgrade of clusters. Note: Currently for GDCE clusters only."
+        }
+      },
+      "type": "object"
+    },
+    "RolloutMembershipState": {
+      "description": "Metadata about single cluster (GKE Hub membership) that's part of this Rollout.",
+      "id": "RolloutMembershipState",
+      "properties": {
+        "lastUpdateTime": {
+          "description": "Optional. Output only. The time this status and any related Rollout-specific details for the membership were updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "stageAssignment": {
+          "description": "Output only. The stage assignment of this cluster in this rollout.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "targets": {
+          "description": "Output only. The targets of the rollout - clusters or node pools that are being upgraded. All targets belongs to the same cluster, identified by the membership name (key of membership_states map).",
+          "items": {
+            "$ref": "RolloutTarget"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RolloutSequence": {
+      "description": "RolloutSequence defines the desired order of upgrades.",
+      "id": "RolloutSequence",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp at which the Rollout Sequence was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The timestamp at the Rollout Sequence was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Human readable display name of the Rollout Sequence.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. etag of the Rollout Sequence Ex. abc1234",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for this Rollout Sequence.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. Name of the rollout sequence in the format of: projects/{PROJECT_ID}/locations/global/rolloutSequences/{NAME}",
+          "type": "string"
+        },
+        "stages": {
+          "description": "Required. Ordered list of stages that constitutes this Rollout.",
+          "items": {
+            "$ref": "Stage"
+          },
+          "type": "array"
+        },
+        "uid": {
+          "description": "Output only. Google-generated UUID for this resource. This is unique across all Rollout Sequence resources. If a Rollout Sequence resource is deleted and another resource with the same name is created, it gets a different uid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp at which the Rollout Sequence was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RolloutStage": {
+      "description": "Stage represents a single stage in the Rollout.",
+      "id": "RolloutStage",
+      "properties": {
+        "endTime": {
+          "description": "Optional. Output only. The time at which the wave ended.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "soakDuration": {
+          "description": "Optional. Duration to soak after this wave before starting the next wave.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "stageNumber": {
+          "description": "Output only. The wave number to which this status applies.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "startTime": {
+          "description": "Optional. Output only. The time at which the wave started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the wave.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "SOAKING",
+            "COMPLETED",
+            "FORCED_SOAKING"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The wave is pending.",
+            "The wave is running.",
+            "The wave is soaking.",
+            "The wave is completed.",
+            "The wave is force soaking."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RolloutTarget": {
+      "description": "Metadata about the status of targets (clusters or node pools) involved in the Rollout.",
+      "id": "RolloutTarget",
+      "properties": {
+        "cluster": {
+          "description": "Optional. Output only. The resource link of the Cluster resource upgraded in this Rollout. It is formatted as: ///projects//locations//clusters/. I.e. for GKE clusters, it is formatted as: //container.googleapis.com/projects//locations//clusters/. For GDCE, it is formatted as: //edgecontainer.googleapis.com/projects//locations//clusters/.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nodePool": {
+          "description": "Optional. Output only. The resource link of the NodePool resource upgraded in this Rollout. It is formatted as: ///projects//locations//clusters//nodePools/.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "operation": {
+          "description": "Optional. Output only. The operation resource name performing the mutation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reason": {
+          "description": "Optional. Output only. A human-readable description of the current status.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The high-level, machine-readable status of this Rollout for the target.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "FAILED",
+            "SUCCEEDED",
+            "PAUSED",
+            "REMOVED",
+            "INELIGIBLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The Rollout is pending for the target.",
+            "The Rollout is running for the target.",
+            "The Rollout failed for the target.",
+            "The Rollout succeeded for the target.",
+            "The Rollout is paused for the target.",
+            "The target was removed from the Rollout.",
+            "The target is ineligible for the Rollout."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Schedule": {
+      "description": "Schedule represents the schedule of the Rollout.",
+      "id": "Schedule",
+      "properties": {
+        "waves": {
+          "description": "Output only. The schedule of each wave in the Rollout.",
+          "items": {
+            "$ref": "WaveSchedule"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Scope": {
       "description": "Scope represents a Scope in a Fleet.",
       "id": "Scope",
@@ -7424,6 +8072,29 @@
       },
       "type": "object"
     },
+    "Stage": {
+      "description": "Rollout stage.",
+      "id": "Stage",
+      "properties": {
+        "clusterSelector": {
+          "$ref": "ClusterSelector",
+          "description": "Optional. Filter members of fleets (above) to a subset of clusters. If not specified, all clusters in the fleets are selected."
+        },
+        "fleetProjects": {
+          "description": "Required. List of Fleet projects to select the clusters from. Expected format: projects/{project}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "soakDuration": {
+          "description": "Optional. Soak time after upgrading all the clusters in the stage.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "Status specifies state for the subcomponent.",
       "id": "Status",
@@ -7560,6 +8231,58 @@
             "CROSS_PROJECT_PERMISSION validator validates that the cross-project role binding for the service agent is in place.",
             "FLEET_ALLOWED_FOR_PROJECT_GUARDRAIL validator validates that the fleet project is allowed for the project guardrail."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VersionUpgrade": {
+      "description": "Config for version upgrade of clusters.",
+      "id": "VersionUpgrade",
+      "properties": {
+        "desiredVersion": {
+          "description": "Optional. Desired version of the component.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. Type of version upgrade specifies which component should be upgraded.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_CONTROL_PLANE",
+            "TYPE_NODE_POOL",
+            "TYPE_CONFIG_SYNC"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Control plane upgrade.",
+            "Node pool upgrade.",
+            "Config Sync upgrade."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WaveSchedule": {
+      "description": "WaveSchedule represents the schedule of a single rollout wave.",
+      "id": "WaveSchedule",
+      "properties": {
+        "waveEndTime": {
+          "description": "Output only. The time at which the wave ends.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "waveNumber": {
+          "description": "Output only. The wave number to which this schedule applies.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "waveStartTime": {
+          "description": "Output only. The time at which the wave starts.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
