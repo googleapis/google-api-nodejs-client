@@ -736,7 +736,7 @@
           ]
         },
         "insert": {
-          "description": "Creates a secondary calendar.",
+          "description": "Creates a secondary calendar.\nThe authenticated user for the request is made the data owner of the new calendar.\n\nNote: We recommend to authenticate as the intended data owner of the calendar. You can use domain-wide delegation of authority to allow applications to act on behalf of a specific user. Don't use a service account for authentication. If you use a service account for authentication, the service account is the data owner, which can lead to unexpected behavior. For example, if a service account is the data owner, data ownership cannot be transferred.",
           "httpMethod": "POST",
           "id": "calendar.calendars.insert",
           "path": "calendars",
@@ -1890,7 +1890,7 @@
       }
     }
   },
-  "revision": "20250404",
+  "revision": "20251028",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -1945,7 +1945,7 @@
               "calendar.acl.insert"
             ]
           },
-          "description": "The role assigned to the scope. Possible values are:  \n- \"none\" - Provides no access. \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. Provides read access to the calendar's ACLs. \n- \"owner\" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to manipulate ACLs.",
+          "description": "The role assigned to the scope. Possible values are:  \n- \"none\" - Provides no access. \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. Provides read access to the calendar's ACLs. \n- \"owner\" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to modify access levels of other users.\nImportant: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.",
           "type": "string"
         },
         "scope": {
@@ -1983,6 +1983,10 @@
         "conferenceProperties": {
           "$ref": "ConferenceProperties",
           "description": "Conferencing properties for this calendar, for example what types of conferences are allowed."
+        },
+        "dataOwner": {
+          "description": "The email of the owner of the calendar. Set only for secondary calendars. Read-only.",
+          "type": "string"
         },
         "description": {
           "description": "Description of the calendar. Optional.",
@@ -2055,7 +2059,7 @@
       "id": "CalendarListEntry",
       "properties": {
         "accessRole": {
-          "description": "The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:  \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.",
+          "description": "The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:  \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.\nImportant: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.",
           "type": "string"
         },
         "backgroundColor": {
@@ -2069,6 +2073,10 @@
         "conferenceProperties": {
           "$ref": "ConferenceProperties",
           "description": "Conferencing properties for this calendar, for example what types of conferences are allowed."
+        },
+        "dataOwner": {
+          "description": "The email of the owner of the calendar. Set only for secondary calendars. Read-only.",
+          "type": "string"
         },
         "defaultReminders": {
           "description": "The default reminders that the authenticated user has for this calendar.",
@@ -3015,7 +3023,7 @@
       "id": "Events",
       "properties": {
         "accessRole": {
-          "description": "The user's access role for this calendar. Read-only. Possible values are:  \n- \"none\" - The user has no access. \n- \"freeBusyReader\" - The user has read access to free/busy information. \n- \"reader\" - The user has read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - The user has read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - The user has ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.",
+          "description": "The user's access role for this calendar. Read-only. Possible values are:  \n- \"none\" - The user has no access. \n- \"freeBusyReader\" - The user has read access to free/busy information. \n- \"reader\" - The user has read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - The user has read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - The user has manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.\nImportant: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.",
           "type": "string"
         },
         "defaultReminders": {
