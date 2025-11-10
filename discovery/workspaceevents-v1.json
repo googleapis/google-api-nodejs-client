@@ -159,6 +159,25 @@
   },
   "protocol": "rest",
   "resources": {
+    "message": {
+      "methods": {
+        "stream": {
+          "description": "SendStreamingMessage is a streaming call that will return a stream of task update events until the Task is in an interrupted or terminal state.",
+          "flatPath": "v1/message:stream",
+          "httpMethod": "POST",
+          "id": "workspaceevents.message.stream",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/message:stream",
+          "request": {
+            "$ref": "SendMessageRequest"
+          },
+          "response": {
+            "$ref": "StreamResponse"
+          }
+        }
+      }
+    },
     "operations": {
       "methods": {
         "get": {
@@ -490,11 +509,682 @@
           ]
         }
       }
+    },
+    "tasks": {
+      "methods": {
+        "cancel": {
+          "description": "Cancel a task from the agent. If supported one should expect no more task updates for the task.",
+          "flatPath": "v1/tasks/{tasksId}:cancel",
+          "httpMethod": "POST",
+          "id": "workspaceevents.tasks.cancel",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The resource name of the task to cancel. Format: tasks/{task_id}",
+              "location": "path",
+              "pattern": "^tasks/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:cancel",
+          "request": {
+            "$ref": "CancelTaskRequest"
+          },
+          "response": {
+            "$ref": "Task"
+          }
+        },
+        "get": {
+          "description": "Get the current state of a task from the agent.",
+          "flatPath": "v1/tasks/{tasksId}",
+          "httpMethod": "GET",
+          "id": "workspaceevents.tasks.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "historyLength": {
+              "description": "The number of most recent messages from the task's history to retrieve.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "name": {
+              "description": "Required. The resource name of the task. Format: tasks/{task_id}",
+              "location": "path",
+              "pattern": "^tasks/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "Task"
+          }
+        },
+        "subscribe": {
+          "description": "TaskSubscription is a streaming call that will return a stream of task update events. This attaches the stream to an existing in process task. If the task is complete the stream will return the completed task (like GetTask) and close the stream.",
+          "flatPath": "v1/tasks/{tasksId}:subscribe",
+          "httpMethod": "GET",
+          "id": "workspaceevents.tasks.subscribe",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The resource name of the task to subscribe to. Format: tasks/{task_id}",
+              "location": "path",
+              "pattern": "^tasks/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:subscribe",
+          "response": {
+            "$ref": "StreamResponse"
+          }
+        }
+      },
+      "resources": {
+        "pushNotificationConfigs": {
+          "methods": {
+            "create": {
+              "description": "Set a push notification config for a task.",
+              "flatPath": "v1/tasks/{tasksId}/pushNotificationConfigs",
+              "httpMethod": "POST",
+              "id": "workspaceevents.tasks.pushNotificationConfigs.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "configId": {
+                  "description": "Required. The ID for the new config.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent task resource for this config. Format: tasks/{task_id}",
+                  "location": "path",
+                  "pattern": "^tasks/[^/]+/pushNotificationConfigs$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}",
+              "request": {
+                "$ref": "TaskPushNotificationConfig"
+              },
+              "response": {
+                "$ref": "TaskPushNotificationConfig"
+              }
+            },
+            "delete": {
+              "description": "Delete a push notification config for a task.",
+              "flatPath": "v1/tasks/{tasksId}/pushNotificationConfigs/{pushNotificationConfigsId}",
+              "httpMethod": "DELETE",
+              "id": "workspaceevents.tasks.pushNotificationConfigs.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The resource name of the config to delete. Format: tasks/{task_id}/pushNotificationConfigs/{config_id}",
+                  "location": "path",
+                  "pattern": "^tasks/[^/]+/pushNotificationConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              }
+            },
+            "get": {
+              "description": "Get a push notification config for a task.",
+              "flatPath": "v1/tasks/{tasksId}/pushNotificationConfigs/{pushNotificationConfigsId}",
+              "httpMethod": "GET",
+              "id": "workspaceevents.tasks.pushNotificationConfigs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The resource name of the config to retrieve. Format: tasks/{task_id}/pushNotificationConfigs/{config_id}",
+                  "location": "path",
+                  "pattern": "^tasks/[^/]+/pushNotificationConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "TaskPushNotificationConfig"
+              }
+            },
+            "list": {
+              "description": "Get a list of push notifications configured for a task.",
+              "flatPath": "v1/tasks/{tasksId}/pushNotificationConfigs",
+              "httpMethod": "GET",
+              "id": "workspaceevents.tasks.pushNotificationConfigs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "For AIP-158 these fields are present. Usually not used/needed. The maximum number of configurations to return. If unspecified, all configs will be returned.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from a previous ListTaskPushNotificationConfigRequest call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTaskPushNotificationConfigRequest` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "The parent task resource. Format: tasks/{task_id}",
+                  "location": "path",
+                  "pattern": "^tasks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/pushNotificationConfigs",
+              "response": {
+                "$ref": "ListTaskPushNotificationConfigResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "v1": {
+      "methods": {
+        "getCard": {
+          "description": "GetAgentCard returns the agent card for the agent.",
+          "flatPath": "v1/card",
+          "httpMethod": "GET",
+          "id": "workspaceevents.getCard",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/card",
+          "response": {
+            "$ref": "AgentCard"
+          }
+        }
+      }
     }
   },
-  "revision": "20250930",
+  "revision": "20251102",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
+    "APIKeySecurityScheme": {
+      "id": "APIKeySecurityScheme",
+      "properties": {
+        "description": {
+          "description": "Description of this security scheme.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of the API key, valid values are \"query\", \"header\", or \"cookie\"",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the header, query or cookie parameter to be used.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentCapabilities": {
+      "description": "Defines the A2A feature set supported by the agent",
+      "id": "AgentCapabilities",
+      "properties": {
+        "extensions": {
+          "description": "Extensions supported by this agent.",
+          "items": {
+            "$ref": "AgentExtension"
+          },
+          "type": "array"
+        },
+        "pushNotifications": {
+          "description": "If the agent can send push notifications to the clients webhook",
+          "type": "boolean"
+        },
+        "streaming": {
+          "description": "If the agent will support streaming responses",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AgentCard": {
+      "description": "AgentCard conveys key information: - Overall details (version, name, description, uses) - Skills; a set of actions/solutions the agent can perform - Default modalities/content types supported by the agent. - Authentication requirements Next ID: 19",
+      "id": "AgentCard",
+      "properties": {
+        "additionalInterfaces": {
+          "description": "Announcement of additional supported transports. Client can use any of the supported transports.",
+          "items": {
+            "$ref": "AgentInterface"
+          },
+          "type": "array"
+        },
+        "capabilities": {
+          "$ref": "AgentCapabilities",
+          "description": "A2A Capability set supported by the agent."
+        },
+        "defaultInputModes": {
+          "description": "protolint:enable REPEATED_FIELD_NAMES_PLURALIZED The set of interaction modes that the agent supports across all skills. This can be overridden per skill. Defined as mime types.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "defaultOutputModes": {
+          "description": "The mime types supported as outputs from this agent.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "A description of the agent's domain of action/solution space. Example: \"Agent that helps users with recipes and cooking.\"",
+          "type": "string"
+        },
+        "documentationUrl": {
+          "description": "A url to provide additional documentation about the agent.",
+          "type": "string"
+        },
+        "iconUrl": {
+          "description": "An optional URL to an icon for the agent.",
+          "type": "string"
+        },
+        "name": {
+          "description": "A human readable name for the agent. Example: \"Recipe Agent\"",
+          "type": "string"
+        },
+        "preferredTransport": {
+          "description": "The transport of the preferred endpoint. If empty, defaults to JSONRPC.",
+          "type": "string"
+        },
+        "protocolVersion": {
+          "description": "The version of the A2A protocol this agent supports.",
+          "type": "string"
+        },
+        "provider": {
+          "$ref": "AgentProvider",
+          "description": "The service provider of the agent."
+        },
+        "security": {
+          "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security requirements for contacting the agent. This list can be seen as an OR of ANDs. Each object in the list describes one possible set of security requirements that must be present on a request. This allows specifying, for example, \"callers must either use OAuth OR an API Key AND mTLS.\" Example: security { schemes { key: \"oauth\" value { list: [\"read\"] } } } security { schemes { key: \"api-key\" } schemes { key: \"mtls\" } }",
+          "items": {
+            "$ref": "Security"
+          },
+          "type": "array"
+        },
+        "securitySchemes": {
+          "additionalProperties": {
+            "$ref": "SecurityScheme"
+          },
+          "description": "The security scheme details used for authenticating with this agent.",
+          "type": "object"
+        },
+        "signatures": {
+          "description": "JSON Web Signatures computed for this AgentCard.",
+          "items": {
+            "$ref": "AgentCardSignature"
+          },
+          "type": "array"
+        },
+        "skills": {
+          "description": "Skills represent a unit of ability an agent can perform. This may somewhat abstract but represents a more focused set of actions that the agent is highly likely to succeed at.",
+          "items": {
+            "$ref": "AgentSkill"
+          },
+          "type": "array"
+        },
+        "supportsAuthenticatedExtendedCard": {
+          "description": "Whether the agent supports providing an extended agent card when the user is authenticated, i.e. is the card from .well-known different than the card from GetAgentCard.",
+          "type": "boolean"
+        },
+        "url": {
+          "description": "A URL to the address the agent is hosted at. This represents the preferred endpoint as declared by the agent.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the agent. Example: \"1.0.0\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentCardSignature": {
+      "description": "AgentCardSignature represents a JWS signature of an AgentCard. This follows the JSON format of an RFC 7515 JSON Web Signature (JWS).",
+      "id": "AgentCardSignature",
+      "properties": {
+        "header": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The unprotected JWS header values.",
+          "type": "object"
+        },
+        "protected": {
+          "description": "Required. The protected JWS header for the signature. This is always a base64url-encoded JSON object. Required.",
+          "type": "string"
+        },
+        "signature": {
+          "description": "Required. The computed signature, base64url-encoded. Required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentExtension": {
+      "description": "A declaration of an extension supported by an Agent.",
+      "id": "AgentExtension",
+      "properties": {
+        "description": {
+          "description": "A description of how this agent uses this extension. Example: \"Google OAuth 2.0 authentication\"",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional configuration for the extension.",
+          "type": "object"
+        },
+        "required": {
+          "description": "Whether the client must follow specific requirements of the extension. Example: false",
+          "type": "boolean"
+        },
+        "uri": {
+          "description": "The URI of the extension. Example: \"https://developers.google.com/identity/protocols/oauth2\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentInterface": {
+      "description": "Defines additional transport information for the agent.",
+      "id": "AgentInterface",
+      "properties": {
+        "transport": {
+          "description": "The transport supported this url. This is an open form string, to be easily extended for many transport protocols. The core ones officially supported are JSONRPC, GRPC and HTTP+JSON.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The url this interface is found at.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentProvider": {
+      "description": "Represents information about the service provider of an agent.",
+      "id": "AgentProvider",
+      "properties": {
+        "organization": {
+          "description": "The providers organization name Example: \"Google\"",
+          "type": "string"
+        },
+        "url": {
+          "description": "The providers reference url Example: \"https://ai.google.dev\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentSkill": {
+      "description": "AgentSkill represents a unit of action/solution that the agent can perform. One can think of this as a type of highly reliable solution that an agent can be tasked to provide. Agents have the autonomy to choose how and when to use specific skills, but clients should have confidence that if the skill is defined that unit of action can be reliably performed.",
+      "id": "AgentSkill",
+      "properties": {
+        "description": {
+          "description": "A human (or llm) readable description of the skill details and behaviors.",
+          "type": "string"
+        },
+        "examples": {
+          "description": "A set of example queries that this skill is designed to address. These examples should help the caller to understand how to craft requests to the agent to achieve specific goals. Example: [\"I need a recipe for bread\"]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Unique identifier of the skill within this agent.",
+          "type": "string"
+        },
+        "inputModes": {
+          "description": "Possible input modalities supported.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "A human readable name for the skill.",
+          "type": "string"
+        },
+        "outputModes": {
+          "description": "Possible output modalities produced",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "security": {
+          "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security schemes necessary for the agent to leverage this skill. As in the overall AgentCard.security, this list represents a logical OR of security requirement objects. Each object is a set of security schemes that must be used together (a logical AND). protolint:enable REPEATED_FIELD_NAMES_PLURALIZED",
+          "items": {
+            "$ref": "Security"
+          },
+          "type": "array"
+        },
+        "tags": {
+          "description": "A set of tags for the skill to enhance categorization/utilization. Example: [\"cooking\", \"customer support\", \"billing\"]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Artifact": {
+      "description": "Artifacts are the container for task completed results. These are similar to Messages but are intended to be the product of a task, as opposed to point-to-point communication.",
+      "id": "Artifact",
+      "properties": {
+        "artifactId": {
+          "description": "Unique identifier (e.g. UUID) for the artifact. It must be at least unique within a task.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A human readable description of the artifact, optional.",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "The URIs of extensions that are present or contributed to this Artifact.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional metadata included with the artifact.",
+          "type": "object"
+        },
+        "name": {
+          "description": "A human readable name for the artifact.",
+          "type": "string"
+        },
+        "parts": {
+          "description": "The content of the artifact.",
+          "items": {
+            "$ref": "Part"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AuthenticationInfo": {
+      "description": "Defines authentication details, used for push notifications.",
+      "id": "AuthenticationInfo",
+      "properties": {
+        "credentials": {
+          "description": "Optional credentials",
+          "type": "string"
+        },
+        "schemes": {
+          "description": "Supported authentication schemes - e.g. Basic, Bearer, etc",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AuthorizationCodeOAuthFlow": {
+      "id": "AuthorizationCodeOAuthFlow",
+      "properties": {
+        "authorizationUrl": {
+          "description": "The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS",
+          "type": "string"
+        },
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
+          "type": "object"
+        },
+        "tokenUrl": {
+          "description": "The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CancelTaskRequest": {
+      "id": "CancelTaskRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "ClientCredentialsOAuthFlow": {
+      "id": "ClientCredentialsOAuthFlow",
+      "properties": {
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
+          "type": "object"
+        },
+        "tokenUrl": {
+          "description": "The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataPart": {
+      "description": "DataPart represents a structured blob. This is most commonly a JSON payload.",
+      "id": "DataPart",
+      "properties": {
+        "data": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "FilePart": {
+      "description": "FilePart represents the different ways files can be provided. If files are small, directly feeding the bytes is supported via file_with_bytes. If the file is large, the agent should read the content as appropriate directly from the file_with_uri source.",
+      "id": "FilePart",
+      "properties": {
+        "fileWithBytes": {
+          "format": "byte",
+          "type": "string"
+        },
+        "fileWithUri": {
+          "type": "string"
+        },
+        "mimeType": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HTTPAuthSecurityScheme": {
+      "id": "HTTPAuthSecurityScheme",
+      "properties": {
+        "bearerFormat": {
+          "description": "A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of this security scheme.",
+          "type": "string"
+        },
+        "scheme": {
+          "description": "The name of the HTTP Authentication scheme to be used in the Authorization header as defined in RFC7235. The values used SHOULD be registered in the IANA Authentication Scheme registry. The value is case-insensitive, as defined in RFC7235.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImplicitOAuthFlow": {
+      "id": "ImplicitOAuthFlow",
+      "properties": {
+        "authorizationUrl": {
+          "description": "The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS",
+          "type": "string"
+        },
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "ListSubscriptionsResponse": {
       "description": "The response message for SubscriptionsService.ListSubscriptions.",
       "id": "ListSubscriptionsResponse",
@@ -513,12 +1203,144 @@
       },
       "type": "object"
     },
+    "ListTaskPushNotificationConfigResponse": {
+      "id": "ListTaskPushNotificationConfigResponse",
+      "properties": {
+        "configs": {
+          "description": "The list of push notification configurations.",
+          "items": {
+            "$ref": "TaskPushNotificationConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Message": {
+      "description": "Message is one unit of communication between client and server. It is associated with a context and optionally a task. Since the server is responsible for the context definition, it must always provide a context_id in its messages. The client can optionally provide the context_id if it knows the context to associate the message to. Similarly for task_id, except the server decides if a task is created and whether to include the task_id.",
+      "id": "Message",
+      "properties": {
+        "content": {
+          "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Content is the container of the message content.",
+          "items": {
+            "$ref": "Part"
+          },
+          "type": "array"
+        },
+        "contextId": {
+          "description": "The context id of the message. This is optional and if set, the message will be associated with the given context.",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "The URIs of extensions that are present or contributed to this Message.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "messageId": {
+          "description": "The unique identifier (e.g. UUID)of the message. This is required and created by the message creator.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "protolint:enable REPEATED_FIELD_NAMES_PLURALIZED Any optional metadata to provide along with the message.",
+          "type": "object"
+        },
+        "role": {
+          "description": "A role for the message.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "ROLE_USER",
+            "ROLE_AGENT"
+          ],
+          "enumDescriptions": [
+            "",
+            "USER role refers to communication from the client to the server.",
+            "AGENT role refers to communication from the server to the client."
+          ],
+          "type": "string"
+        },
+        "taskId": {
+          "description": "The task id of the message. This is optional and if set, the message will be associated with the given task.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MutualTlsSecurityScheme": {
+      "id": "MutualTlsSecurityScheme",
+      "properties": {
+        "description": {
+          "description": "Description of this security scheme.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NotificationEndpoint": {
       "description": "The endpoint where the subscription delivers events.",
       "id": "NotificationEndpoint",
       "properties": {
         "pubsubTopic": {
           "description": "Immutable. The Pub/Sub topic that receives events for the subscription. Format: `projects/{project}/topics/{topic}` You must create the topic in the same Google Cloud project where you create this subscription. Note: The Google Workspace Events API uses [ordering keys](https://cloud.google.com/pubsub/docs/ordering) for the benefit of sequential events. If the Cloud Pub/Sub topic has a [message storage policy](https://cloud.google.com/pubsub/docs/resource-location-restriction#exceptions) configured to exclude the nearest Google Cloud region, publishing events with ordering keys will fail. When the topic receives events, the events are encoded as Pub/Sub messages. For details, see the [Google Cloud Pub/Sub Protocol Binding for CloudEvents](https://github.com/googleapis/google-cloudevents/blob/main/docs/spec/pubsub.md).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OAuth2SecurityScheme": {
+      "id": "OAuth2SecurityScheme",
+      "properties": {
+        "description": {
+          "description": "Description of this security scheme.",
+          "type": "string"
+        },
+        "flows": {
+          "$ref": "OAuthFlows",
+          "description": "An object containing configuration information for the flow types supported"
+        },
+        "oauth2MetadataUrl": {
+          "description": "URL to the oauth2 authorization server metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414). TLS is required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OAuthFlows": {
+      "id": "OAuthFlows",
+      "properties": {
+        "authorizationCode": {
+          "$ref": "AuthorizationCodeOAuthFlow"
+        },
+        "clientCredentials": {
+          "$ref": "ClientCredentialsOAuthFlow"
+        },
+        "implicit": {
+          "$ref": "ImplicitOAuthFlow"
+        },
+        "password": {
+          "$ref": "PasswordOAuthFlow"
+        }
+      },
+      "type": "object"
+    },
+    "OpenIdConnectSecurityScheme": {
+      "id": "OpenIdConnectSecurityScheme",
+      "properties": {
+        "description": {
+          "description": "Description of this security scheme.",
+          "type": "string"
+        },
+        "openIdConnectUrl": {
+          "description": "Well-known URL to discover the [[OpenID-Connect-Discovery]] provider metadata.",
           "type": "string"
         }
       },
@@ -559,6 +1381,51 @@
       },
       "type": "object"
     },
+    "Part": {
+      "description": "Part represents a container for a section of communication content. Parts can be purely textual, some sort of file (image, video, etc) or a structured data blob (i.e. JSON).",
+      "id": "Part",
+      "properties": {
+        "data": {
+          "$ref": "DataPart"
+        },
+        "file": {
+          "$ref": "FilePart"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional metadata associated with this part.",
+          "type": "object"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PasswordOAuthFlow": {
+      "id": "PasswordOAuthFlow",
+      "properties": {
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
+          "type": "object"
+        },
+        "tokenUrl": {
+          "description": "The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PayloadOptions": {
       "description": "Options about what data to include in the event payload. Only supported for Google Chat and Google Drive events.",
       "id": "PayloadOptions",
@@ -575,10 +1442,116 @@
       },
       "type": "object"
     },
+    "PushNotificationConfig": {
+      "description": "Configuration for setting up push notifications for task updates.",
+      "id": "PushNotificationConfig",
+      "properties": {
+        "authentication": {
+          "$ref": "AuthenticationInfo",
+          "description": "Information about the authentication to sent with the notification"
+        },
+        "id": {
+          "description": "A unique identifier (e.g. UUID) for this push notification.",
+          "type": "string"
+        },
+        "token": {
+          "description": "Token unique for this task/session",
+          "type": "string"
+        },
+        "url": {
+          "description": "Url to send the notification too",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReactivateSubscriptionRequest": {
       "description": "The request message for SubscriptionsService.ReactivateSubscription.",
       "id": "ReactivateSubscriptionRequest",
       "properties": {},
+      "type": "object"
+    },
+    "Security": {
+      "id": "Security",
+      "properties": {
+        "schemes": {
+          "additionalProperties": {
+            "$ref": "StringList"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "SecurityScheme": {
+      "id": "SecurityScheme",
+      "properties": {
+        "apiKeySecurityScheme": {
+          "$ref": "APIKeySecurityScheme"
+        },
+        "httpAuthSecurityScheme": {
+          "$ref": "HTTPAuthSecurityScheme"
+        },
+        "mtlsSecurityScheme": {
+          "$ref": "MutualTlsSecurityScheme"
+        },
+        "oauth2SecurityScheme": {
+          "$ref": "OAuth2SecurityScheme"
+        },
+        "openIdConnectSecurityScheme": {
+          "$ref": "OpenIdConnectSecurityScheme"
+        }
+      },
+      "type": "object"
+    },
+    "SendMessageConfiguration": {
+      "description": "Configuration of a send message request.",
+      "id": "SendMessageConfiguration",
+      "properties": {
+        "acceptedOutputModes": {
+          "description": "The output modes that the agent is expected to respond with.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "blocking": {
+          "description": "If true, the message will be blocking until the task is completed. If false, the message will be non-blocking and the task will be returned immediately. It is the caller's responsibility to check for any task updates.",
+          "type": "boolean"
+        },
+        "historyLength": {
+          "description": "The maximum number of messages to include in the history. if 0, the history will be unlimited.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pushNotification": {
+          "$ref": "PushNotificationConfig",
+          "description": "A configuration of a webhook that can be used to receive updates"
+        }
+      },
+      "type": "object"
+    },
+    "SendMessageRequest": {
+      "description": "/////////// Request Messages ///////////",
+      "id": "SendMessageRequest",
+      "properties": {
+        "configuration": {
+          "$ref": "SendMessageConfiguration",
+          "description": "Configuration for the send request."
+        },
+        "message": {
+          "$ref": "Message",
+          "description": "Required. The message to send to the agent."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional metadata for the request.",
+          "type": "object"
+        }
+      },
       "type": "object"
     },
     "Status": {
@@ -604,6 +1577,38 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StreamResponse": {
+      "description": "The stream response for a message. The stream should be one of the following sequences: If the response is a message, the stream should contain one, and only one, message and then close If the response is a task lifecycle, the first response should be a Task object followed by zero or more TaskStatusUpdateEvents and TaskArtifactUpdateEvents. The stream should complete when the Task if in an interrupted or terminal state. A stream that ends before these conditions are met are",
+      "id": "StreamResponse",
+      "properties": {
+        "artifactUpdate": {
+          "$ref": "TaskArtifactUpdateEvent"
+        },
+        "message": {
+          "$ref": "Message"
+        },
+        "statusUpdate": {
+          "$ref": "TaskStatusUpdateEvent"
+        },
+        "task": {
+          "$ref": "Task"
+        }
+      },
+      "type": "object"
+    },
+    "StringList": {
+      "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED",
+      "id": "StringList",
+      "properties": {
+        "list": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -716,6 +1721,169 @@
           "description": "Output only. The last time that the subscription is updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Task": {
+      "description": "Task is the core unit of action for A2A. It has a current status and when results are created for the task they are stored in the artifact. If there are multiple turns for a task, these are stored in history.",
+      "id": "Task",
+      "properties": {
+        "artifacts": {
+          "description": "A set of output artifacts for a Task.",
+          "items": {
+            "$ref": "Artifact"
+          },
+          "type": "array"
+        },
+        "contextId": {
+          "description": "Unique identifier (e.g. UUID) for the contextual collection of interactions (tasks and messages). Created by the A2A server.",
+          "type": "string"
+        },
+        "history": {
+          "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED The history of interactions from a task.",
+          "items": {
+            "$ref": "Message"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Unique identifier (e.g. UUID) for the task, generated by the server for a new task.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "protolint:enable REPEATED_FIELD_NAMES_PLURALIZED A key/value object to store custom metadata about a task.",
+          "type": "object"
+        },
+        "status": {
+          "$ref": "TaskStatus",
+          "description": "The current status of a Task, including state and a message."
+        }
+      },
+      "type": "object"
+    },
+    "TaskArtifactUpdateEvent": {
+      "description": "TaskArtifactUpdateEvent represents a task delta where an artifact has been generated.",
+      "id": "TaskArtifactUpdateEvent",
+      "properties": {
+        "append": {
+          "description": "Whether this should be appended to a prior one produced",
+          "type": "boolean"
+        },
+        "artifact": {
+          "$ref": "Artifact",
+          "description": "The artifact itself"
+        },
+        "contextId": {
+          "description": "The id of the context that this task belongs too",
+          "type": "string"
+        },
+        "lastChunk": {
+          "description": "Whether this represents the last part of an artifact",
+          "type": "boolean"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional metadata associated with the artifact update.",
+          "type": "object"
+        },
+        "taskId": {
+          "description": "The id of the task for this artifact",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaskPushNotificationConfig": {
+      "id": "TaskPushNotificationConfig",
+      "properties": {
+        "name": {
+          "description": "The resource name of the config. Format: tasks/{task_id}/pushNotificationConfigs/{config_id}",
+          "type": "string"
+        },
+        "pushNotificationConfig": {
+          "$ref": "PushNotificationConfig",
+          "description": "The push notification configuration details."
+        }
+      },
+      "type": "object"
+    },
+    "TaskStatus": {
+      "description": "A container for the status of a task",
+      "id": "TaskStatus",
+      "properties": {
+        "message": {
+          "$ref": "Message",
+          "description": "A message associated with the status."
+        },
+        "state": {
+          "description": "The current state of this task",
+          "enum": [
+            "TASK_STATE_UNSPECIFIED",
+            "TASK_STATE_SUBMITTED",
+            "TASK_STATE_WORKING",
+            "TASK_STATE_COMPLETED",
+            "TASK_STATE_FAILED",
+            "TASK_STATE_CANCELLED",
+            "TASK_STATE_INPUT_REQUIRED",
+            "TASK_STATE_REJECTED",
+            "TASK_STATE_AUTH_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "Represents the status that acknowledges a task is created",
+            "Represents the status that a task is actively being processed",
+            "Represents the status a task is finished. This is a terminal state",
+            "Represents the status a task is done but failed. This is a terminal state",
+            "Represents the status a task was cancelled before it finished. This is a terminal state.",
+            "Represents the status that the task requires information to complete. This is an interrupted state.",
+            "Represents the status that the agent has decided to not perform the task. This may be done during initial task creation or later once an agent has determined it can't or won't proceed. This is a terminal state.",
+            "Represents the state that some authentication is needed from the upstream client. Authentication is expected to come out-of-band thus this is not an interrupted or terminal state."
+          ],
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "Timestamp when the status was recorded. Example: \"2023-10-27T10:00:00Z\"",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaskStatusUpdateEvent": {
+      "description": "TaskStatusUpdateEvent is a delta even on a task indicating that a task has changed.",
+      "id": "TaskStatusUpdateEvent",
+      "properties": {
+        "contextId": {
+          "description": "The id of the context that the task belongs to",
+          "type": "string"
+        },
+        "final": {
+          "description": "Whether this is the last status update expected for this task.",
+          "type": "boolean"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional metadata to associate with the task update.",
+          "type": "object"
+        },
+        "status": {
+          "$ref": "TaskStatus",
+          "description": "The new status of the task."
+        },
+        "taskId": {
+          "description": "The id of the task that is changed",
           "type": "string"
         }
       },
