@@ -497,7 +497,7 @@ export namespace firebaseappdistribution_v1 {
    */
   export interface Schema$GoogleFirebaseAppdistroV1BatchDeleteReleasesRequest {
     /**
-     * Required. The names of the release resources to delete. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}` A maximum of 100 releases can be deleted per request.
+     * Required. The names of the release resources to delete. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}` A maximum of 100 releases can be deleted per request.
      */
     names?: string[] | null;
   }
@@ -693,7 +693,7 @@ export namespace firebaseappdistribution_v1 {
      */
     firebaseConsoleUri?: string | null;
     /**
-     * The name of the release resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     * The name of the release resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      */
     name?: string | null;
     /**
@@ -896,7 +896,7 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.media.upload({
-     *     // Required. The name of the app resource. Format: `projects/{project_number\}/apps/{app_id\}`
+     *     // Required. The name of the app resource. Format: `projects/{project_number\}/apps/{app\}`
      *     app: 'projects/my-project/apps/my-app',
      *
      *     // Request body metadata
@@ -1029,7 +1029,7 @@ export namespace firebaseappdistribution_v1 {
 
   export interface Params$Resource$Media$Upload extends StandardParameters {
     /**
-     * Required. The name of the app resource. Format: `projects/{project_number\}/apps/{app_id\}`
+     * Required. The name of the app resource. Format: `projects/{project_number\}/apps/{app\}`
      */
     app?: string;
 
@@ -1106,7 +1106,7 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.getAabInfo({
-     *     // Required. The name of the `AabInfo` resource to retrieve. Format: `projects/{project_number\}/apps/{app_id\}/aabInfo`
+     *     // Required. The name of the `AabInfo` resource to retrieve. Format: `projects/{project_number\}/apps/{app\}/aabInfo`
      *     name: 'projects/my-project/apps/my-app/aabInfo',
      *   });
      *   console.log(res.data);
@@ -1226,7 +1226,7 @@ export namespace firebaseappdistribution_v1 {
   export interface Params$Resource$Projects$Apps$Getaabinfo
     extends StandardParameters {
     /**
-     * Required. The name of the `AabInfo` resource to retrieve. Format: `projects/{project_number\}/apps/{app_id\}/aabInfo`
+     * Required. The name of the `AabInfo` resource to retrieve. Format: `projects/{project_number\}/apps/{app\}/aabInfo`
      */
     name?: string;
   }
@@ -1275,7 +1275,7 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.releases.batchDelete({
-     *     // Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app_id\}`
+     *     // Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app\}`
      *     parent: 'projects/my-project/apps/my-app',
      *
      *     // Request body metadata
@@ -1421,7 +1421,7 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.releases.distribute({
-     *     // Required. The name of the release resource to distribute. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     *     // Required. The name of the release resource to distribute. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      *     name: 'projects/my-project/apps/my-app/releases/my-release',
      *
      *     // Request body metadata
@@ -1576,7 +1576,7 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.releases.get({
-     *     // Required. The name of the release resource to retrieve. Format: projects/{project_number\}/apps/{app_id\}/releases/{release_id\}
+     *     // Required. The name of the release resource to retrieve. Format: projects/{project_number\}/apps/{app\}/releases/{release\}
      *     name: 'projects/my-project/apps/my-app/releases/my-release',
      *   });
      *   console.log(res.data);
@@ -1738,7 +1738,7 @@ export namespace firebaseappdistribution_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListReleases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleases` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app_id\}`
+     *     // Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app\}`
      *     parent: 'projects/my-project/apps/my-app',
      *   });
      *   console.log(res.data);
@@ -1887,7 +1887,7 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.releases.patch({
-     *     // The name of the release resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     *     // The name of the release resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      *     name: 'projects/my-project/apps/my-app/releases/my-release',
      *     // Optional. The list of fields to update.
      *     updateMask: 'placeholder-value',
@@ -2033,7 +2033,7 @@ export namespace firebaseappdistribution_v1 {
   export interface Params$Resource$Projects$Apps$Releases$Batchdelete
     extends StandardParameters {
     /**
-     * Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app_id\}`
+     * Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app\}`
      */
     parent?: string;
 
@@ -2045,7 +2045,7 @@ export namespace firebaseappdistribution_v1 {
   export interface Params$Resource$Projects$Apps$Releases$Distribute
     extends StandardParameters {
     /**
-     * Required. The name of the release resource to distribute. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     * Required. The name of the release resource to distribute. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      */
     name?: string;
 
@@ -2057,7 +2057,7 @@ export namespace firebaseappdistribution_v1 {
   export interface Params$Resource$Projects$Apps$Releases$Get
     extends StandardParameters {
     /**
-     * Required. The name of the release resource to retrieve. Format: projects/{project_number\}/apps/{app_id\}/releases/{release_id\}
+     * Required. The name of the release resource to retrieve. Format: projects/{project_number\}/apps/{app\}/releases/{release\}
      */
     name?: string;
   }
@@ -2080,14 +2080,14 @@ export namespace firebaseappdistribution_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app_id\}`
+     * Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Apps$Releases$Patch
     extends StandardParameters {
     /**
-     * The name of the release resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     * The name of the release resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      */
     name?: string;
     /**

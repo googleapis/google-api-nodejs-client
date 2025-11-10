@@ -396,7 +396,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the `TestConfig` resource to retrieve. Format: `projects/{project_number}/apps/{app_id}/testConfig`",
+                  "description": "Required. The name of the `TestConfig` resource to retrieve. Format: `projects/{project_number}/apps/{app}/testConfig`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/apps/[^/]+/testConfig$",
                   "required": true,
@@ -421,7 +421,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Identifier. The name of the test configuration resource. Format: `projects/{project_number}/apps/{app_id}/testConfig`",
+                  "description": "Identifier. The name of the test configuration resource. Format: `projects/{project_number}/apps/{app}/testConfig`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/apps/[^/]+/testConfig$",
                   "required": true,
@@ -461,7 +461,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the release test resource. Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}/tests/{test_id}`",
+                          "description": "Required. The name of the release test resource. Format: `projects/{project_number}/apps/{app}/releases/{release}/tests/{test}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/apps/[^/]+/releases/[^/]+/tests/[^/]+$",
                           "required": true,
@@ -486,7 +486,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The name of the release resource, which is the parent of the test Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}`",
+                          "description": "Required. The name of the release resource, which is the parent of the test Format: `projects/{project_number}/apps/{app}/releases/{release}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/apps/[^/]+/releases/[^/]+$",
                           "required": true,
@@ -519,7 +519,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the release test resource. Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}/tests/{test_id}`",
+                          "description": "Required. The name of the release test resource. Format: `projects/{project_number}/apps/{app}/releases/{release}/tests/{test}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/apps/[^/]+/releases/[^/]+/tests/[^/]+$",
                           "required": true,
@@ -555,7 +555,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The name of the release resource, which is the parent of the tests Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}`",
+                          "description": "Required. The name of the release resource, which is the parent of the tests Format: `projects/{project_number}/apps/{app}/releases/{release}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/apps/[^/]+/releases/[^/]+$",
                           "required": true,
@@ -601,7 +601,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource of the test cases being deleted. Format: `projects/{project_number}/apps/{app_id}`",
+                      "description": "Required. The parent resource of the test cases being deleted. Format: `projects/{project_number}/apps/{app}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+$",
                       "required": true,
@@ -629,7 +629,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource of the test cases being updated. Format: `projects/{project_number}/apps/{app_id}`",
+                      "description": "Required. The parent resource of the test cases being updated. Format: `projects/{project_number}/apps/{app}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+$",
                       "required": true,
@@ -657,7 +657,7 @@
                   ],
                   "parameters": {
                     "testCase": {
-                      "description": "Required. The name of the test case resource for which to clear the cache. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+                      "description": "Required. The name of the test case resource for which to clear the cache. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+/testCases/[^/]+$",
                       "required": true,
@@ -685,7 +685,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource where this test case will be created. Format: `projects/{project_number}/apps/{app_id}`",
+                      "description": "Required. The parent resource where this test case will be created. Format: `projects/{project_number}/apps/{app}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+$",
                       "required": true,
@@ -718,7 +718,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the test case resource to delete. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+                      "description": "Required. The name of the test case resource to delete. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+/testCases/[^/]+$",
                       "required": true,
@@ -743,7 +743,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the test case resource to retrieve. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+                      "description": "Required. The name of the test case resource to retrieve. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+/testCases/[^/]+$",
                       "required": true,
@@ -779,7 +779,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource from which to list test cases. Format: `projects/{project_number}/apps/{app_id}`",
+                      "description": "Required. The parent resource from which to list test cases. Format: `projects/{project_number}/apps/{app}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+$",
                       "required": true,
@@ -809,7 +809,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+                      "description": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+/testCases/[^/]+$",
                       "required": true,
@@ -868,7 +868,7 @@
       }
     }
   },
-  "revision": "20251030",
+  "revision": "20251107",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -946,7 +946,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the release resource. Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}`",
+          "description": "The name of the release resource. Format: `projects/{project_number}/apps/{app}/releases/{release}`",
           "type": "string"
         },
         "releaseNotes": {
@@ -1210,7 +1210,7 @@
       "id": "GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest",
       "properties": {
         "names": {
-          "description": "Required. The name of the test cases to delete. A maximum number of 1000 test cases can be deleted in one batch Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+          "description": "Required. The name of the test cases to delete. A maximum number of 1000 test cases can be deleted in one batch Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
           "items": {
             "type": "string"
           },
@@ -1402,6 +1402,15 @@
             "APK contains no code. See also https://developer.android.com/guide/topics/manifest/application-element.html#code",
             "APK is built for a preview SDK which is unsupported."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the device execution resource. Format: `projects/{project_number}/apps/{app}/releases/{release}/tests/{test}/deviceExecutions/{device_execution}`",
+          "type": "string"
+        },
+        "originDeviceExecution": {
+          "description": "Output only. The device execution from which cached steps were used during this execution. Note: This field is only populated for ACTION_BASED_REPLAY executions. If the original device execution no longer exists, this field will be empty. Format: `projects/{project_number}/apps/{app}/releases/{release}/tests/{test}/deviceExecutions/{device_execution}`",
           "readOnly": true,
           "type": "string"
         },
@@ -1998,7 +2007,7 @@
           "description": "Optional. Input only. Login credentials for the test. Input only."
         },
         "name": {
-          "description": "The name of the release test resource. Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}/tests/{test_id}`",
+          "description": "The name of the release test resource. Format: `projects/{project_number}/apps/{app}/releases/{release}/tests/{test}`",
           "type": "string"
         },
         "testCase": {
@@ -2150,7 +2159,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+          "description": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
           "type": "string"
         },
         "prerequisiteTestCase": {
@@ -2169,7 +2178,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The name of the test configuration resource. Format: `projects/{project_number}/apps/{app_id}/testConfig`",
+          "description": "Identifier. The name of the test configuration resource. Format: `projects/{project_number}/apps/{app}/testConfig`",
           "type": "string"
         },
         "roboCrawler": {
@@ -2261,7 +2270,7 @@
         },
         "testCase": {
           "$ref": "GoogleFirebaseAppdistroV1alphaTestCase",
-          "description": "Required. The test case to update. The test case's `name` field is used to identify the test case to update. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`"
+          "description": "Required. The test case to update. The test case's `name` field is used to identify the test case to update. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`"
         }
       },
       "type": "object"
