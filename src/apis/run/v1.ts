@@ -1139,6 +1139,10 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1BuiltImage {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Docker Registry 2.0 digest.
      */
     digest?: string | null;
@@ -1645,6 +1649,10 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedGoModule {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Hash types and values of the Go Module Artifact.
      */
     fileHashes?: Schema$GoogleDevtoolsCloudbuildV1FileHashes;
@@ -1661,6 +1669,10 @@ export namespace run_v1 {
    * A Maven artifact uploaded using the MavenArtifact directive.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedMavenArtifact {
+    /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
     /**
      * Hash types and values of the Maven Artifact.
      */
@@ -1679,6 +1691,10 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedNpmPackage {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Hash types and values of the npm package.
      */
     fileHashes?: Schema$GoogleDevtoolsCloudbuildV1FileHashes;
@@ -1695,6 +1711,10 @@ export namespace run_v1 {
    * Artifact uploaded using the PythonPackage directive.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedPythonPackage {
+    /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
     /**
      * Hash types and values of the Python Artifact.
      */

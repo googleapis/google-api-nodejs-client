@@ -251,6 +251,23 @@ export namespace run_v2 {
     instances?: string[] | null;
   }
   /**
+   * Cloud Storage source.
+   */
+  export interface Schema$GoogleCloudRunV2CloudStorageSource {
+    /**
+     * Required. The Cloud Storage bucket name.
+     */
+    bucket?: string | null;
+    /**
+     * Optional. The Cloud Storage object generation.
+     */
+    generation?: string | null;
+    /**
+     * Required. The Cloud Storage object name.
+     */
+    object?: string | null;
+  }
+  /**
    * Defines a status condition for a resource.
    */
   export interface Schema$GoogleCloudRunV2Condition {
@@ -335,6 +352,10 @@ export namespace run_v2 {
      * Compute Resource requirements by this container.
      */
     resources?: Schema$GoogleCloudRunV2ResourceRequirements;
+    /**
+     * Optional. Location of the source.
+     */
+    sourceCode?: Schema$GoogleCloudRunV2SourceCode;
     /**
      * Startup probe of application within the container. All other probes are disabled if a startup probe is provided, until it succeeds. Container will not be added to service endpoints if the probe fails.
      */
@@ -1540,6 +1561,15 @@ export namespace run_v2 {
     scalingMode?: string | null;
   }
   /**
+   * Source type for the container.
+   */
+  export interface Schema$GoogleCloudRunV2SourceCode {
+    /**
+     * The source is a Cloud Storage bucket.
+     */
+    cloudStorageSource?: Schema$GoogleCloudRunV2CloudStorageSource;
+  }
+  /**
    * Location of the source in an archive file in Google Cloud Storage.
    */
   export interface Schema$GoogleCloudRunV2StorageSource {
@@ -2529,6 +2559,10 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1BuiltImage {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Docker Registry 2.0 digest.
      */
     digest?: string | null;
@@ -3035,6 +3069,10 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedGoModule {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Hash types and values of the Go Module Artifact.
      */
     fileHashes?: Schema$GoogleDevtoolsCloudbuildV1FileHashes;
@@ -3051,6 +3089,10 @@ export namespace run_v2 {
    * A Maven artifact uploaded using the MavenArtifact directive.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedMavenArtifact {
+    /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
     /**
      * Hash types and values of the Maven Artifact.
      */
@@ -3069,6 +3111,10 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedNpmPackage {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Hash types and values of the npm package.
      */
     fileHashes?: Schema$GoogleDevtoolsCloudbuildV1FileHashes;
@@ -3085,6 +3131,10 @@ export namespace run_v2 {
    * Artifact uploaded using the PythonPackage directive.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedPythonPackage {
+    /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
     /**
      * Hash types and values of the Python Artifact.
      */
