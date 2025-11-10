@@ -150,7 +150,7 @@ export namespace firebasestorage_v1beta {
      */
     location?: string | null;
     /**
-     * Resource name of the default bucket.
+     * Identifier. Resource name of the default bucket.
      */
     name?: string | null;
     /**

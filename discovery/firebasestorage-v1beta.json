@@ -325,7 +325,7 @@
       }
     }
   },
-  "revision": "20241218",
+  "revision": "20251031",
   "rootUrl": "https://firebasestorage.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -360,7 +360,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name of the default bucket.",
+          "description": "Identifier. Resource name of the default bucket.",
           "type": "string"
         },
         "storageClass": {
