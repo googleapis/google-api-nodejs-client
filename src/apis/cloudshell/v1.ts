@@ -231,6 +231,15 @@ export namespace cloudshell_v1 {
     webHost?: string | null;
   }
   /**
+   * Response message for GenerateAccessToken.
+   */
+  export interface Schema$GenerateAccessTokenResponse {
+    /**
+     * The access token.
+     */
+    accessToken?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -1261,6 +1270,151 @@ export namespace cloudshell_v1 {
     }
 
     /**
+     * Generates an access token for the user's environment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.generateAccessToken({
+     *     // Required. The environment to generate the access token for.
+     *     environment: 'users/my-user/environments/my-environment',
+     *     // Desired expiration time of the access token. This value must be at most 24 hours in the future. If a value is not specified, the token's expiration time will be set to a default value of 1 hour in the future.
+     *     expireTime: 'placeholder-value',
+     *     // Desired lifetime duration of the access token. This value must be at most 24 hours. If a value is not specified, the token's lifetime will be set to a default value of 1 hour.
+     *     ttl: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessToken": "my_accessToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateAccessToken(
+      params: Params$Resource$Users$Environments$Generateaccesstoken,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateAccessToken(
+      params?: Params$Resource$Users$Environments$Generateaccesstoken,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateAccessTokenResponse>>;
+    generateAccessToken(
+      params: Params$Resource$Users$Environments$Generateaccesstoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateAccessToken(
+      params: Params$Resource$Users$Environments$Generateaccesstoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
+      callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+    ): void;
+    generateAccessToken(
+      params: Params$Resource$Users$Environments$Generateaccesstoken,
+      callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+    ): void;
+    generateAccessToken(
+      callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+    ): void;
+    generateAccessToken(
+      paramsOrCallback?:
+        | Params$Resource$Users$Environments$Generateaccesstoken
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateAccessTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Environments$Generateaccesstoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Environments$Generateaccesstoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+environment}:generateAccessToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateAccessTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateAccessTokenResponse>(parameters);
+      }
+    }
+
+    /**
      * Gets an environment. Returns NOT_FOUND if the environment does not exist.
      * @example
      * ```js
@@ -1722,6 +1876,21 @@ export namespace cloudshell_v1 {
      * Request body metadata
      */
     requestBody?: Schema$AuthorizeEnvironmentRequest;
+  }
+  export interface Params$Resource$Users$Environments$Generateaccesstoken
+    extends StandardParameters {
+    /**
+     * Required. The environment to generate the access token for.
+     */
+    environment?: string;
+    /**
+     * Desired expiration time of the access token. This value must be at most 24 hours in the future. If a value is not specified, the token's expiration time will be set to a default value of 1 hour in the future.
+     */
+    expireTime?: string;
+    /**
+     * Desired lifetime duration of the access token. This value must be at most 24 hours. If a value is not specified, the token's lifetime will be set to a default value of 1 hour.
+     */
+    ttl?: string;
   }
   export interface Params$Resource$Users$Environments$Get
     extends StandardParameters {
