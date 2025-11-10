@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2011,7 +2011,7 @@
       }
     }
   },
-  "revision": "20250917",
+  "revision": "20251103",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -2679,6 +2679,11 @@
         "createTime": {
           "description": "Output only. The timestamp when the resource was created.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveUnitFilter": {
+          "description": "Optional. Output only. Output only snapshot of the effective unit filter at Rollout start time. Contains a CEL(https://github.com/google/cel-spec) expression consisting of a conjunction of Rollout.unit_filter and RolloutKind.unit_filter. This field captures the filter applied by the Rollout to determine the Unit population. If the associated RolloutKind's unit_filter is modified after the rollout is started, it will not be updated here.",
           "readOnly": true,
           "type": "string"
         },
