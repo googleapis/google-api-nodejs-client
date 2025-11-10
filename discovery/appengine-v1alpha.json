@@ -599,7 +599,7 @@
                   "type": "string"
                 },
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -766,7 +766,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1286,6 +1286,57 @@
                         "https://www.googleapis.com/auth/cloud-platform.read-only"
                       ]
                     },
+                    "list": {
+                      "description": "Lists the domain mappings on an application.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings",
+                      "httpMethod": "GET",
+                      "id": "appengine.projects.locations.applications.domainMappings.list",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `parent`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `parent`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Maximum results to return per page.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Continuation token for fetching the next page of results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings",
+                      "response": {
+                        "$ref": "ListDomainMappingsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/appengine.admin",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
                     "patch": {
                       "description": "Updates the specified domain mapping. To map an SSL certificate to a domain mapping, update certificate_id to point to an AuthorizedCertificate resource. A user must be authorized to administer the associated domain in order to update a DomainMapping resource.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}",
@@ -1452,7 +1503,7 @@
       }
     }
   },
-  "revision": "20250930",
+  "revision": "20251103",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {
@@ -1473,10 +1524,11 @@
           "type": "integer"
         },
         "domainNames": {
-          "description": "Topmost applicable domains of this certificate. This certificate applies to these domains and their subdomains. Example: example.com.@OutputOnly",
+          "description": "Output only. Topmost applicable domains of this certificate. This certificate applies to these domains and their subdomains. Example: example.com.@OutputOnly",
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "expireTime": {
@@ -1485,7 +1537,8 @@
           "type": "string"
         },
         "id": {
-          "description": "Relative name of the certificate. This is a unique value autogenerated on AuthorizedCertificate resource creation. Example: 12345.@OutputOnly",
+          "description": "Output only. Relative name of the certificate. This is a unique value autogenerated on AuthorizedCertificate resource creation. Example: 12345.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "managedCertificate": {
@@ -1493,14 +1546,16 @@
           "description": "Only applicable if this certificate is managed by App Engine. Managed certificates are tied to the lifecycle of a DomainMapping and cannot be updated or deleted via the AuthorizedCertificates API. If this certificate is manually administered by the user, this field will be empty.@OutputOnly"
         },
         "name": {
-          "description": "Full path to the AuthorizedCertificate resource in the API. Example: apps/myapp/authorizedCertificates/12345.@OutputOnly",
+          "description": "Output only. Full path to the AuthorizedCertificate resource in the API. Example: apps/myapp/authorizedCertificates/12345.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "visibleDomainMappings": {
-          "description": "The full paths to user visible Domain Mapping resources that have this certificate mapped. Example: apps/myapp/domainMappings/example.com.This may not represent the full list of mapped domain mappings if the user does not have VIEWER permissions on all of the applications that have this certificate mapped. See domain_mappings_count for a complete count.Only returned by GET or LIST requests when specifically requested by the view=FULL_CERTIFICATE option.@OutputOnly",
+          "description": "Output only. The full paths to user visible Domain Mapping resources that have this certificate mapped. Example: apps/myapp/domainMappings/example.com.This may not represent the full list of mapped domain mappings if the user does not have VIEWER permissions on all of the applications that have this certificate mapped. See domain_mappings_count for a complete count.Only returned by GET or LIST requests when specifically requested by the view=FULL_CERTIFICATE option.@OutputOnly",
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -1608,14 +1663,16 @@
           "type": "string"
         },
         "name": {
-          "description": "Full path to the DomainMapping resource in the API. Example: apps/myapp/domainMapping/example.com.@OutputOnly",
+          "description": "Output only. Full path to the DomainMapping resource in the API. Example: apps/myapp/domainMapping/example.com.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "resourceRecords": {
-          "description": "The resource records required to configure this domain mapping. These records must be added to the domain's DNS configuration in order to serve the application via this domain mapping.@OutputOnly",
+          "description": "Output only. The resource records required to configure this domain mapping. These records must be added to the domain's DNS configuration in order to serve the application via this domain mapping.@OutputOnly",
           "items": {
             "$ref": "ResourceRecord"
           },
+          "readOnly": true,
           "type": "array"
         },
         "sslSettings": {
@@ -2272,7 +2329,8 @@
           "type": "string"
         },
         "isManagedCertificate": {
-          "description": "Whether the mapped certificate is an App Engine managed certificate. Managed certificates are created by default with a domain mapping. To opt out, specify no_managed_certificate on a CREATE or UPDATE request.@OutputOnly",
+          "description": "Output only. Whether the mapped certificate is an App Engine managed certificate. Managed certificates are created by default with a domain mapping. To opt out, specify no_managed_certificate on a CREATE or UPDATE request.@OutputOnly",
+          "readOnly": true,
           "type": "boolean"
         }
       },
