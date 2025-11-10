@@ -4107,7 +4107,7 @@
       }
     }
   },
-  "revision": "20250929",
+  "revision": "20251104",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "AddOnAttachment": {
@@ -4995,11 +4995,11 @@
           "type": "string"
         },
         "title": {
-          "description": "Title of the Gem. Read-only.",
+          "description": "Title of the Gem.",
           "type": "string"
         },
         "url": {
-          "description": "URL that can be used to access the Gem. Read-only.",
+          "description": "URL that can be used to access the Gem.",
           "type": "string"
         }
       },
@@ -5751,11 +5751,11 @@
           "type": "string"
         },
         "title": {
-          "description": "Title of the Notebook. Read-only.",
+          "description": "Title of the Notebook.",
           "type": "string"
         },
         "url": {
-          "description": "URL that can be used to access the Notebook. Read-only.",
+          "description": "URL that can be used to access the Notebook.",
           "type": "string"
         }
       },
