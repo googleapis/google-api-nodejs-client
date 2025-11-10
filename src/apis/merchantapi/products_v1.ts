@@ -799,6 +799,10 @@ export namespace merchantapi_products_v1 {
      */
     shipping?: Schema$Shipping[];
     /**
+     * The business days during which orders can be handled. If not provided, Monday to Friday business days will be assumed.
+     */
+    shippingHandlingBusinessDays?: Schema$ShippingBusinessDaysConfig[];
+    /**
      * Height of the item for shipping.
      */
     shippingHeight?: Schema$ShippingDimension;
@@ -810,6 +814,10 @@ export namespace merchantapi_products_v1 {
      * Length of the item for shipping.
      */
     shippingLength?: Schema$ShippingDimension;
+    /**
+     * The business days during which orders are in transit. If not provided, Monday to Friday business days will be assumed.
+     */
+    shippingTransitBusinessDays?: Schema$ShippingBusinessDaysConfig[];
     /**
      * Weight of the item for shipping.
      */
@@ -1157,6 +1165,19 @@ export namespace merchantapi_products_v1 {
      * A free-form description of the service class or delivery speed.
      */
     service?: string | null;
+  }
+  /**
+   * The business days during which orders are on their path to fulfillment. If not provided, Monday to Friday business days will be assumed.
+   */
+  export interface Schema$ShippingBusinessDaysConfig {
+    /**
+     * Effective days of the week considered for the delivery time calculation. May not be empty. The more business days included the faster the delivery. Can be set through individual days (e.g. `MTWRF`), or day ranges (e.g. `Mon-Fri`). For more information about accepted formats, see [Shipping handling business days](https://support.google.com/merchants/answer/16072859).
+     */
+    businessDays?: string | null;
+    /**
+     * The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.
+     */
+    country?: string | null;
   }
   /**
    * The ShippingDimension of the product.
