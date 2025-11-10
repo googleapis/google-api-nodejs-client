@@ -125,11 +125,14 @@ export namespace documentai_v1beta3 {
   }
 
   /**
-   * Definition of the validation rules. Those are the input to the validator logic and they are used to validate a document.
+   * Definition of the validation rules. Those are the input to the validator logic and they are used to validate a document. Next ID: 3
    */
   export interface Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInput {
     validationRules?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule[];
   }
+  /**
+   * Next ID: 9
+   */
   export interface Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule {
     childAlignmentRule?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleChildAlignmentRule;
     /**
@@ -144,6 +147,10 @@ export namespace documentai_v1beta3 {
      * Name of the validation rule.
      */
     name?: string | null;
+    /**
+     * Unique identifier of the rule. Optional.
+     */
+    ruleId?: string | null;
   }
   /**
    * A rule for checking field alignment. Horizontal alignment checks if fields are on the same row by comparing y-coordinates of bounding box centers, while vertical alignment checks if fields are on the same column by comparing x-coordinates of bounding box centers.
@@ -5658,7 +5665,7 @@ export namespace documentai_v1beta3 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -5801,7 +5808,7 @@ export namespace documentai_v1beta3 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

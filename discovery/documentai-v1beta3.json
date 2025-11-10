@@ -169,7 +169,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1634,11 +1634,11 @@
       }
     }
   },
-  "revision": "20251020",
+  "revision": "20251030",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
-      "description": "Definition of the validation rules. Those are the input to the validator logic and they are used to validate a document.",
+      "description": "Definition of the validation rules. Those are the input to the validator logic and they are used to validate a document. Next ID: 3",
       "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput",
       "properties": {
         "validationRules": {
@@ -1651,6 +1651,7 @@
       "type": "object"
     },
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule": {
+      "description": "Next ID: 9",
       "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule",
       "properties": {
         "childAlignmentRule": {
@@ -1674,6 +1675,10 @@
         },
         "name": {
           "description": "Name of the validation rule.",
+          "type": "string"
+        },
+        "ruleId": {
+          "description": "Unique identifier of the rule. Optional.",
           "type": "string"
         }
       },
