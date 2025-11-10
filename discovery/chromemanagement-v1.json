@@ -705,6 +705,49 @@
         },
         "reports": {
           "methods": {
+            "countActiveDevices": {
+              "description": "Get a count of active devices per set time frames.",
+              "flatPath": "v1/customers/{customersId}/reports:countActiveDevices",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countActiveDevices",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Obfuscated customer ID prefixed with \"customers/C\" or \"customers/my_customer\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "date.day": {
+                  "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "date.month": {
+                  "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "date.year": {
+                  "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                }
+              },
+              "path": "v1/{+customer}/reports:countActiveDevices",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountActiveDevicesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
             "countChromeBrowsersNeedingAttention": {
               "description": "Count of Chrome Browsers that have been recently enrolled, have new policy to be synced, or have no recent activity.",
               "flatPath": "v1/customers/{customersId}/reports:countChromeBrowsersNeedingAttention",
@@ -928,6 +971,92 @@
               "path": "v1/{+customer}/reports:countChromeVersions",
               "response": {
                 "$ref": "GoogleChromeManagementV1CountChromeVersionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
+            "countDevicesPerBootType": {
+              "description": "Get a count of devices per boot type.",
+              "flatPath": "v1/customers/{customersId}/reports:countDevicesPerBootType",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countDevicesPerBootType",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Obfuscated customer ID prefixed with \"customers/C\" or \"customers/my_customer\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "date.day": {
+                  "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "date.month": {
+                  "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "date.year": {
+                  "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                }
+              },
+              "path": "v1/{+customer}/reports:countDevicesPerBootType",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountDevicesPerBootTypeResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
+            "countDevicesPerReleaseChannel": {
+              "description": "Get a count of devices per channel.",
+              "flatPath": "v1/customers/{customersId}/reports:countDevicesPerReleaseChannel",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countDevicesPerReleaseChannel",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Obfuscated customer ID prefixed with \"customers/C\" or \"customers/my_customer\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "date.day": {
+                  "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "date.month": {
+                  "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "date.year": {
+                  "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                }
+              },
+              "path": "v1/{+customer}/reports:countDevicesPerReleaseChannel",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/chrome.management.reports.readonly"
@@ -1657,7 +1786,7 @@
       }
     }
   },
-  "revision": "20251014",
+  "revision": "20251105",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -2375,6 +2504,23 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1CountActiveDevicesResponse": {
+      "description": "Response containing the number of active devices.",
+      "id": "GoogleChromeManagementV1CountActiveDevicesResponse",
+      "properties": {
+        "sevenDaysCount": {
+          "description": "Number of active devices in the 7 days leading up to the date specified in the request.",
+          "format": "int64",
+          "type": "string"
+        },
+        "thirtyDaysCount": {
+          "description": "Number of active devices in the 30 days leading up to the date specified in the request.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1CountChromeAppRequestsResponse": {
       "description": "Response containing summary of requested app installations.",
       "id": "GoogleChromeManagementV1CountChromeAppRequestsResponse",
@@ -2554,6 +2700,75 @@
           "description": "Total number browser versions matching request.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountDevicesPerBootTypeResponse": {
+      "description": "Response containing the number of devices with the given boot type.",
+      "id": "GoogleChromeManagementV1CountDevicesPerBootTypeResponse",
+      "properties": {
+        "devBootTypeCount": {
+          "description": "Number of devices with dev boot type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unreportedBootTypeCount": {
+          "description": "Number of devices with unreported boot type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "verifiedBootTypeCount": {
+          "description": "Number of devices with verified boot type.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse": {
+      "description": "Response containing the number of devices with the given channel.",
+      "id": "GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse",
+      "properties": {
+        "betaChannelCount": {
+          "description": "Number of devices with beta release channel.",
+          "format": "int64",
+          "type": "string"
+        },
+        "canaryChannelCount": {
+          "description": "Number of devices with canary release channel.",
+          "format": "int64",
+          "type": "string"
+        },
+        "devChannelCount": {
+          "description": "Number of devices with dev release channel.",
+          "format": "int64",
+          "type": "string"
+        },
+        "ltcChannelCount": {
+          "description": "Number of devices with ltc release channel.",
+          "format": "int64",
+          "type": "string"
+        },
+        "ltsChannelCount": {
+          "description": "Number of devices with lts release channel.",
+          "format": "int64",
+          "type": "string"
+        },
+        "stableChannelCount": {
+          "description": "Number of devices with stable release channel.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unreportedChannelCount": {
+          "description": "Number of devices with an unreported release channel.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unsupportedChannelCount": {
+          "description": "Number of devices with unsupported release channel.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"

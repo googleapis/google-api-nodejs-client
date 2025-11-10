@@ -554,6 +554,19 @@ export namespace chromemanagement_v1 {
     hostMatch?: string | null;
   }
   /**
+   * Response containing the number of active devices.
+   */
+  export interface Schema$GoogleChromeManagementV1CountActiveDevicesResponse {
+    /**
+     * Number of active devices in the 7 days leading up to the date specified in the request.
+     */
+    sevenDaysCount?: string | null;
+    /**
+     * Number of active devices in the 30 days leading up to the date specified in the request.
+     */
+    thirtyDaysCount?: string | null;
+  }
+  /**
    * Response containing summary of requested app installations.
    */
   export interface Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse {
@@ -684,6 +697,60 @@ export namespace chromemanagement_v1 {
      * Total number browser versions matching request.
      */
     totalSize?: number | null;
+  }
+  /**
+   * Response containing the number of devices with the given boot type.
+   */
+  export interface Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse {
+    /**
+     * Number of devices with dev boot type.
+     */
+    devBootTypeCount?: string | null;
+    /**
+     * Number of devices with unreported boot type.
+     */
+    unreportedBootTypeCount?: string | null;
+    /**
+     * Number of devices with verified boot type.
+     */
+    verifiedBootTypeCount?: string | null;
+  }
+  /**
+   * Response containing the number of devices with the given channel.
+   */
+  export interface Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse {
+    /**
+     * Number of devices with beta release channel.
+     */
+    betaChannelCount?: string | null;
+    /**
+     * Number of devices with canary release channel.
+     */
+    canaryChannelCount?: string | null;
+    /**
+     * Number of devices with dev release channel.
+     */
+    devChannelCount?: string | null;
+    /**
+     * Number of devices with ltc release channel.
+     */
+    ltcChannelCount?: string | null;
+    /**
+     * Number of devices with lts release channel.
+     */
+    ltsChannelCount?: string | null;
+    /**
+     * Number of devices with stable release channel.
+     */
+    stableChannelCount?: string | null;
+    /**
+     * Number of devices with an unreported release channel.
+     */
+    unreportedChannelCount?: string | null;
+    /**
+     * Number of devices with unsupported release channel.
+     */
+    unsupportedChannelCount?: string | null;
   }
   /**
    * Response containing details of queried installed apps.
@@ -6238,6 +6305,162 @@ export namespace chromemanagement_v1 {
     }
 
     /**
+     * Get a count of active devices per set time frames.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.countActiveDevices({
+     *     // Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     *     customer: 'customers/my-customer',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'date.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'date.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'date.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sevenDaysCount": "my_sevenDaysCount",
+     *   //   "thirtyDaysCount": "my_thirtyDaysCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countActiveDevices(
+      params: Params$Resource$Customers$Reports$Countactivedevices,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    countActiveDevices(
+      params?: Params$Resource$Customers$Reports$Countactivedevices,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountActiveDevicesResponse>
+    >;
+    countActiveDevices(
+      params: Params$Resource$Customers$Reports$Countactivedevices,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countActiveDevices(
+      params: Params$Resource$Customers$Reports$Countactivedevices,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountActiveDevicesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountActiveDevicesResponse>
+    ): void;
+    countActiveDevices(
+      params: Params$Resource$Customers$Reports$Countactivedevices,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountActiveDevicesResponse>
+    ): void;
+    countActiveDevices(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountActiveDevicesResponse>
+    ): void;
+    countActiveDevices(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countactivedevices
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountActiveDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountActiveDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountActiveDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountActiveDevicesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countactivedevices;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Reports$Countactivedevices;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:countActiveDevices'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountActiveDevicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountActiveDevicesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Count of Chrome Browsers that have been recently enrolled, have new policy to be synced, or have no recent activity.
      * @example
      * ```js
@@ -7191,6 +7414,328 @@ export namespace chromemanagement_v1 {
     }
 
     /**
+     * Get a count of devices per boot type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.countDevicesPerBootType({
+     *     // Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     *     customer: 'customers/my-customer',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'date.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'date.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'date.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devBootTypeCount": "my_devBootTypeCount",
+     *   //   "unreportedBootTypeCount": "my_unreportedBootTypeCount",
+     *   //   "verifiedBootTypeCount": "my_verifiedBootTypeCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countDevicesPerBootType(
+      params: Params$Resource$Customers$Reports$Countdevicesperboottype,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    countDevicesPerBootType(
+      params?: Params$Resource$Customers$Reports$Countdevicesperboottype,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse>
+    >;
+    countDevicesPerBootType(
+      params: Params$Resource$Customers$Reports$Countdevicesperboottype,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countDevicesPerBootType(
+      params: Params$Resource$Customers$Reports$Countdevicesperboottype,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse>
+    ): void;
+    countDevicesPerBootType(
+      params: Params$Resource$Customers$Reports$Countdevicesperboottype,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse>
+    ): void;
+    countDevicesPerBootType(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse>
+    ): void;
+    countDevicesPerBootType(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countdevicesperboottype
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countdevicesperboottype;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Reports$Countdevicesperboottype;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:countDevicesPerBootType'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountDevicesPerBootTypeResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get a count of devices per channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.reports.countDevicesPerReleaseChannel({
+     *       // Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     *       customer: 'customers/my-customer',
+     *       // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *       'date.day': 'placeholder-value',
+     *       // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *       'date.month': 'placeholder-value',
+     *       // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *       'date.year': 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "betaChannelCount": "my_betaChannelCount",
+     *   //   "canaryChannelCount": "my_canaryChannelCount",
+     *   //   "devChannelCount": "my_devChannelCount",
+     *   //   "ltcChannelCount": "my_ltcChannelCount",
+     *   //   "ltsChannelCount": "my_ltsChannelCount",
+     *   //   "stableChannelCount": "my_stableChannelCount",
+     *   //   "unreportedChannelCount": "my_unreportedChannelCount",
+     *   //   "unsupportedChannelCount": "my_unsupportedChannelCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countDevicesPerReleaseChannel(
+      params: Params$Resource$Customers$Reports$Countdevicesperreleasechannel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    countDevicesPerReleaseChannel(
+      params?: Params$Resource$Customers$Reports$Countdevicesperreleasechannel,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse>
+    >;
+    countDevicesPerReleaseChannel(
+      params: Params$Resource$Customers$Reports$Countdevicesperreleasechannel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countDevicesPerReleaseChannel(
+      params: Params$Resource$Customers$Reports$Countdevicesperreleasechannel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse>
+    ): void;
+    countDevicesPerReleaseChannel(
+      params: Params$Resource$Customers$Reports$Countdevicesperreleasechannel,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse>
+    ): void;
+    countDevicesPerReleaseChannel(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse>
+    ): void;
+    countDevicesPerReleaseChannel(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countdevicesperreleasechannel
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countdevicesperreleasechannel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Reports$Countdevicesperreleasechannel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:countDevicesPerReleaseChannel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Generate report of app installations.
      * @example
      * ```js
@@ -8002,6 +8547,25 @@ export namespace chromemanagement_v1 {
     }
   }
 
+  export interface Params$Resource$Customers$Reports$Countactivedevices
+    extends StandardParameters {
+    /**
+     * Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     */
+    customer?: string;
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    'date.day'?: number;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    'date.month'?: number;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    'date.year'?: number;
+  }
   export interface Params$Resource$Customers$Reports$Countchromebrowsersneedingattention
     extends StandardParameters {
     /**
@@ -8103,6 +8667,44 @@ export namespace chromemanagement_v1 {
      * Token to specify the page of the request to be returned.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Customers$Reports$Countdevicesperboottype
+    extends StandardParameters {
+    /**
+     * Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     */
+    customer?: string;
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    'date.day'?: number;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    'date.month'?: number;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    'date.year'?: number;
+  }
+  export interface Params$Resource$Customers$Reports$Countdevicesperreleasechannel
+    extends StandardParameters {
+    /**
+     * Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     */
+    customer?: string;
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    'date.day'?: number;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    'date.month'?: number;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    'date.year'?: number;
   }
   export interface Params$Resource$Customers$Reports$Countinstalledapps
     extends StandardParameters {
