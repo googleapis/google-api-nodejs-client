@@ -196,7 +196,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1318,7 +1318,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Delete a single Insight.",
+                  "description": "Deletes a single Insight.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/insightsConfigs/{insightsConfigsId}",
                   "httpMethod": "DELETE",
                   "id": "developerconnect.projects.locations.insightsConfigs.delete",
@@ -1606,7 +1606,7 @@
       }
     }
   },
-  "revision": "20251016",
+  "revision": "20251030",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -2381,7 +2381,7 @@
           "type": "array"
         },
         "createTime": {
-          "description": "Output only. [Output only] Create timestamp",
+          "description": "Output only. Create timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2435,7 +2435,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update timestamp",
+          "description": "Output only. Update timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"

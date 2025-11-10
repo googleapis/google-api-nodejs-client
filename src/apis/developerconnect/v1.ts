@@ -735,7 +735,7 @@ export namespace developerconnect_v1 {
      */
     artifactConfigs?: Schema$ArtifactConfig[];
     /**
-     * Output only. [Output only] Create timestamp
+     * Output only. Create timestamp.
      */
     createTime?: string | null;
     /**
@@ -763,7 +763,7 @@ export namespace developerconnect_v1 {
      */
     state?: string | null;
     /**
-     * Output only. [Output only] Update timestamp
+     * Output only. Update timestamp.
      */
     updateTime?: string | null;
   }
@@ -1369,7 +1369,7 @@ export namespace developerconnect_v1 {
      *
      *   // Do the magic
      *   const res = await developerconnect.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1498,7 +1498,7 @@ export namespace developerconnect_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -6667,7 +6667,7 @@ export namespace developerconnect_v1 {
     }
 
     /**
-     * Delete a single Insight.
+     * Deletes a single Insight.
      * @example
      * ```js
      * // Before running the sample:
