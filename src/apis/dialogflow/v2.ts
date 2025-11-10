@@ -8127,7 +8127,7 @@ export namespace dialogflow_v2 {
      */
     enableCompletenessEvaluation?: boolean | null;
     /**
-     * Output only. Version for summarization evaluation.
+     * Optional. Version for summarization evaluation.
      */
     evaluatorVersion?: string | null;
   }
