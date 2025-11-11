@@ -497,7 +497,7 @@ export namespace merchantapi_datasources_v1beta {
     feedLabel?: string | null;
   }
   /**
-   * The supplemental data source for local and online products. After creation, you should make sure to link the supplemental product data source into one or more primary product data sources.
+   * The [supplemental data source](https://developers.google.com/merchant/api/guides/data-sources/api-sources#link-supplemental-data-source) for local and online products. After creation,you should make sure to link the supplemental product data source into one or more primary product data sources.
    */
   export interface Schema$SupplementalProductDataSource {
     /**

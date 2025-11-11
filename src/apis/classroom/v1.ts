@@ -787,11 +787,11 @@ export namespace classroom_v1 {
      */
     id?: string | null;
     /**
-     * Title of the Gem. Read-only.
+     * Title of the Gem.
      */
     title?: string | null;
     /**
-     * URL that can be used to access the Gem. Read-only.
+     * URL that can be used to access the Gem.
      */
     url?: string | null;
   }
@@ -1318,11 +1318,11 @@ export namespace classroom_v1 {
      */
     id?: string | null;
     /**
-     * Title of the Notebook. Read-only.
+     * Title of the Notebook.
      */
     title?: string | null;
     /**
-     * URL that can be used to access the Notebook. Read-only.
+     * URL that can be used to access the Notebook.
      */
     url?: string | null;
   }

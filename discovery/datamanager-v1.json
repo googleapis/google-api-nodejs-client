@@ -193,7 +193,7 @@
       }
     }
   },
-  "revision": "20251006",
+  "revision": "20251105",
   "rootUrl": "https://datamanager.googleapis.com/",
   "schemas": {
     "AdIdentifiers": {
@@ -272,6 +272,37 @@
         "userData": {
           "$ref": "UserData",
           "description": "User-provided data that identifies the user."
+        }
+      },
+      "type": "object"
+    },
+    "AwsWrappedKeyInfo": {
+      "description": "A data encryption key wrapped by an AWS KMS key.",
+      "id": "AwsWrappedKeyInfo",
+      "properties": {
+        "encryptedDek": {
+          "description": "Required. The base64 encoded encrypted data encryption key.",
+          "type": "string"
+        },
+        "kekUri": {
+          "description": "Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in the format of \"arn:{partition}:kms:{region}:{account_id}:key/{key_id}\"",
+          "type": "string"
+        },
+        "keyType": {
+          "description": "Required. The type of algorithm used to encrypt the data.",
+          "enum": [
+            "KEY_TYPE_UNSPECIFIED",
+            "XCHACHA20_POLY1305"
+          ],
+          "enumDescriptions": [
+            "Unspecified key type. Should never be used.",
+            "Algorithm XChaCha20-Poly1305"
+          ],
+          "type": "string"
+        },
+        "roleArn": {
+          "description": "Required. The Amazon Resource Name of the IAM Role to assume for KMS decryption access. Should be in the format of \"arn:{partition}:iam::{account_id}:role/{role_name}\"",
+          "type": "string"
         }
       },
       "type": "object"
@@ -410,6 +441,10 @@
       "description": "Encryption information for the data being ingested.",
       "id": "EncryptionInfo",
       "properties": {
+        "awsWrappedKeyInfo": {
+          "$ref": "AwsWrappedKeyInfo",
+          "description": "Amazon Web Services wrapped key information."
+        },
         "gcpWrappedKeyInfo": {
           "$ref": "GcpWrappedKeyInfo",
           "description": "Google Cloud Platform wrapped key information."
@@ -449,6 +484,7 @@
             "PROCESSING_ERROR_REASON_INVALID_KEK",
             "PROCESSING_ERROR_REASON_WIP_AUTH_FAILED",
             "PROCESSING_ERROR_REASON_KEK_PERMISSION_DENIED",
+            "PROCESSING_ERROR_REASON_AWS_AUTH_FAILED",
             "PROCESSING_ERROR_REASON_USER_IDENTIFIER_DECRYPTION_ERROR",
             "PROCESSING_ERROR_OPERATING_ACCOUNT_MISMATCH_FOR_AD_IDENTIFIER"
           ],
@@ -478,6 +514,7 @@
             "The KEK cannot decrypt data because it is the wrong KEK, or it does not exist.",
             "The WIP could not be used because it was rejected by its attestation condition.",
             "The system did not have the permissions needed to access the KEK.",
+            "The system failed to authenticate with AWS.",
             "Failed to decrypt the UserIdentifier data using the DEK.",
             "The user attempted to ingest events with an ad identifier that isn't from the operating account's ads."
           ],
@@ -513,9 +550,20 @@
           "$ref": "AdIdentifiers",
           "description": "Optional. Identifiers and other information used to match the conversion event with other online activity (such as ad clicks)."
         },
+        "additionalEventParameters": {
+          "description": "Optional. A bucket of any [event parameters](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events) to be included within the event that were not already specified using other structured fields.",
+          "items": {
+            "$ref": "EventParameter"
+          },
+          "type": "array"
+        },
         "cartData": {
           "$ref": "CartData",
           "description": "Optional. Information about the transaction and items associated with the event."
+        },
+        "clientId": {
+          "description": "Optional. A unique identifier for the user instance of a web client for this GA4 web stream.",
+          "type": "string"
         },
         "consent": {
           "$ref": "Consent",
@@ -547,6 +595,10 @@
         "eventDeviceInfo": {
           "$ref": "DeviceInfo",
           "description": "Optional. Information gathered about the device being used (if any) when the event happened."
+        },
+        "eventName": {
+          "description": "Optional. The name of the event. Required for GA4 events.",
+          "type": "string"
         },
         "eventSource": {
           "description": "Optional. Signal for where the event happened (web, app, in-store, etc.).",
@@ -593,9 +645,28 @@
           "$ref": "UserData",
           "description": "Optional. Pieces of user provided data, representing the user the event is associated with."
         },
+        "userId": {
+          "description": "Optional. A unique identifier for a user, as defined by the advertiser.",
+          "type": "string"
+        },
         "userProperties": {
           "$ref": "UserProperties",
           "description": "Optional. Advertiser-assessed information about the user at the time that the event happened."
+        }
+      },
+      "type": "object"
+    },
+    "EventParameter": {
+      "description": "Event parameter for GA4 events.",
+      "id": "EventParameter",
+      "properties": {
+        "parameterName": {
+          "description": "Required. The name of the parameter to use.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The string representation of the value of the parameter to set.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -882,6 +953,17 @@
       "description": "Represents an item in the cart associated with the event.",
       "id": "Item",
       "properties": {
+        "additionalItemParameters": {
+          "description": "Optional. A bucket of any [event parameters related to an item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events) to be included within the event that were not already specified using other structured fields.",
+          "items": {
+            "$ref": "ItemParameter"
+          },
+          "type": "array"
+        },
+        "itemId": {
+          "description": "Optional. A unique identifier to reference the item.",
+          "type": "string"
+        },
         "merchantProductId": {
           "description": "Optional. The product ID within the Merchant Center account.",
           "type": "string"
@@ -895,6 +977,21 @@
           "description": "Optional. The unit price excluding tax, shipping, and any transaction level discounts.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ItemParameter": {
+      "description": "A bucket of any [event parameters related to an item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events) to be included within the event that were not already specified using other structured fields.",
+      "id": "ItemParameter",
+      "properties": {
+        "parameterName": {
+          "description": "Required. The name of the parameter to use.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The string representation of the value of the parameter to set.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -942,14 +1039,16 @@
             "GOOGLE_ADS",
             "DISPLAY_VIDEO_PARTNER",
             "DISPLAY_VIDEO_ADVERTISER",
-            "DATA_PARTNER"
+            "DATA_PARTNER",
+            "GOOGLE_ANALYTICS_PROPERTY"
           ],
           "enumDescriptions": [
             "Unspecified product. Should never be used.",
             "Google Ads.",
             "Display & Video 360 partner.",
             "Display & Video 360 advertiser.",
-            "Data Partner."
+            "Data Partner.",
+            "Google Analytics."
           ],
           "type": "string"
         },
@@ -1220,6 +1319,13 @@
       "description": "Advertiser-assessed information about the user at the time that the event happened. See https://support.google.com/google-ads/answer/14007601 for more details.",
       "id": "UserProperties",
       "properties": {
+        "additionalUserProperties": {
+          "description": "Optional. A bucket of any additional [user properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties) for the user associated with this event.",
+          "items": {
+            "$ref": "UserProperty"
+          },
+          "type": "array"
+        },
         "customerType": {
           "description": "Optional. Type of the customer associated with the event.",
           "enum": [
@@ -1255,6 +1361,21 @@
       },
       "type": "object"
     },
+    "UserProperty": {
+      "description": "A bucket of any additional [user properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties) for the user associated with this event.",
+      "id": "UserProperty",
+      "properties": {
+        "propertyName": {
+          "description": "Required. The name of the user property to use.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The string representation of the value of the user property to use.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "WarningCount": {
       "description": "The warning count for a given warning reason.",
       "id": "WarningCount",
@@ -1270,7 +1391,8 @@
             "PROCESSING_WARNING_REASON_INVALID_WIP",
             "PROCESSING_WARNING_REASON_INVALID_KEK",
             "PROCESSING_WARNING_REASON_USER_IDENTIFIER_DECRYPTION_ERROR",
-            "PROCESSING_WARNING_REASON_INTERNAL_ERROR"
+            "PROCESSING_WARNING_REASON_INTERNAL_ERROR",
+            "PROCESSING_WARNING_REASON_AWS_AUTH_FAILED"
           ],
           "enumDescriptions": [
             "The processing warning reason is unknown.",
@@ -1281,7 +1403,8 @@
             "The WIP is formatted incorrectly or the WIP does not exist.",
             "The KEK cannot decrypt data because it is the wrong KEK, or it does not exist.",
             "Failed to decrypt th UserIdentifier data using the DEK.",
-            "Internal error."
+            "Internal error.",
+            "The system failed to authenticate with AWS."
           ],
           "type": "string"
         },

@@ -36,6 +36,16 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://dataflow.asia-northeast1.rep.googleapis.com/",
+      "location": "asia-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataflow.asia-northeast2.rep.googleapis.com/",
+      "location": "asia-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://dataflow.asia-northeast3.rep.googleapis.com/",
       "location": "asia-northeast3"
     },
@@ -48,6 +58,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://dataflow.asia-south2.rep.googleapis.com/",
       "location": "asia-south2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataflow.asia-southeast1.rep.googleapis.com/",
+      "location": "asia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataflow.asia-southeast2.rep.googleapis.com/",
+      "location": "asia-southeast2"
     },
     {
       "description": "Regional Endpoint",
@@ -76,13 +96,28 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://dataflow.europe-west1.rep.googleapis.com/",
+      "location": "europe-west1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://dataflow.europe-west10.rep.googleapis.com/",
       "location": "europe-west10"
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://dataflow.europe-west12.rep.googleapis.com/",
+      "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://dataflow.europe-west3.rep.googleapis.com/",
       "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataflow.europe-west6.rep.googleapis.com/",
+      "location": "europe-west6"
     },
     {
       "description": "Regional Endpoint",
@@ -113,6 +148,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://dataflow.northamerica-northeast1.rep.googleapis.com/",
       "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataflow.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2"
     },
     {
       "description": "Regional Endpoint",
@@ -2335,7 +2375,7 @@
       }
     }
   },
-  "revision": "20251026",
+  "revision": "20251030",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {

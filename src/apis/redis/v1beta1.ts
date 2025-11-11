@@ -837,7 +837,7 @@ export namespace redis_v1beta1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 29
+   * Common model for database resource instance metadata. Next ID: 30
    */
   export interface Schema$DatabaseResourceMetadata {
     /**
@@ -892,6 +892,10 @@ export namespace redis_v1beta1 {
      * The type of the instance. Specified at creation time.
      */
     instanceType?: string | null;
+    /**
+     * Optional. Whether deletion protection is enabled for this resource.
+     */
+    isDeletionProtectionEnabled?: boolean | null;
     /**
      * The resource location. REQUIRED
      */

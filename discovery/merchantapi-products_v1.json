@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20251007",
+  "revision": "20251104",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AutomatedDiscounts": {
@@ -1696,6 +1696,13 @@
           },
           "type": "array"
         },
+        "shippingHandlingBusinessDays": {
+          "description": "The business days during which orders can be handled. If not provided, Monday to Friday business days will be assumed.",
+          "items": {
+            "$ref": "ShippingBusinessDaysConfig"
+          },
+          "type": "array"
+        },
         "shippingHeight": {
           "$ref": "ShippingDimension",
           "description": "Height of the item for shipping."
@@ -1707,6 +1714,13 @@
         "shippingLength": {
           "$ref": "ShippingDimension",
           "description": "Length of the item for shipping."
+        },
+        "shippingTransitBusinessDays": {
+          "description": "The business days during which orders are in transit. If not provided, Monday to Friday business days will be assumed.",
+          "items": {
+            "$ref": "ShippingBusinessDaysConfig"
+          },
+          "type": "array"
         },
         "shippingWeight": {
           "$ref": "ShippingWeight",
@@ -2289,6 +2303,21 @@
         },
         "service": {
           "description": "A free-form description of the service class or delivery speed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ShippingBusinessDaysConfig": {
+      "description": "The business days during which orders are on their path to fulfillment. If not provided, Monday to Friday business days will be assumed.",
+      "id": "ShippingBusinessDaysConfig",
+      "properties": {
+        "businessDays": {
+          "description": "Effective days of the week considered for the delivery time calculation. May not be empty. The more business days included the faster the delivery. Can be set through individual days (e.g. `MTWRF`), or day ranges (e.g. `Mon-Fri`). For more information about accepted formats, see [Shipping handling business days](https://support.google.com/merchants/answer/16072859).",
+          "type": "string"
+        },
+        "country": {
+          "description": "The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.",
           "type": "string"
         }
       },

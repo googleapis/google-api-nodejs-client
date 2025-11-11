@@ -1395,7 +1395,7 @@
       }
     }
   },
-  "revision": "20251028",
+  "revision": "20251104",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -2500,10 +2500,11 @@
       "type": "object"
     },
     "MediaPlanner": {
-      "description": "Describes a single Media Planner account.",
+      "description": "Represents a media planner account.",
       "id": "MediaPlanner",
       "properties": {
         "accountId": {
+          "deprecated": true,
           "description": "Output only. Account ID of the media planner.",
           "readOnly": true,
           "type": "string"

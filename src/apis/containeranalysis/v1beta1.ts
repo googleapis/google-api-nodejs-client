@@ -1032,6 +1032,10 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Docker Registry 2.0 digest.
      */
     digest?: string | null;
@@ -1438,6 +1442,10 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Hash types and values of the Go Module Artifact.
      */
     fileHashes?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes;
@@ -1454,6 +1462,10 @@ export namespace containeranalysis_v1beta1 {
    * A Maven artifact uploaded using the MavenArtifact directive.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact {
+    /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
     /**
      * Hash types and values of the Maven Artifact.
      */
@@ -1472,6 +1484,10 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Hash types and values of the npm package.
      */
     fileHashes?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes;
@@ -1488,6 +1504,10 @@ export namespace containeranalysis_v1beta1 {
    * Artifact uploaded using the PythonPackage directive.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage {
+    /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
     /**
      * Hash types and values of the Python Artifact.
      */

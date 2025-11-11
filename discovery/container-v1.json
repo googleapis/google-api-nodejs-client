@@ -2660,7 +2660,7 @@
       }
     }
   },
-  "revision": "20251021",
+  "revision": "20251028",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3326,6 +3326,32 @@
         "gcpSecretManagerCertificateConfig": {
           "$ref": "GCPSecretManagerCertificateConfig",
           "description": "Google Secret Manager (GCP) certificate configuration."
+        }
+      },
+      "type": "object"
+    },
+    "CertificateConfig": {
+      "description": "CertificateConfig configures certificate for the registry.",
+      "id": "CertificateConfig",
+      "properties": {
+        "gcpSecretManagerSecretUri": {
+          "description": "The URI configures a secret from [Secret Manager](https://cloud.google.com/secret-manager) in the format \"projects/$PROJECT_ID/secrets/$SECRET_NAME/versions/$VERSION\" for global secret or \"projects/$PROJECT_ID/locations/$REGION/secrets/$SECRET_NAME/versions/$VERSION\" for regional secret. Version can be fixed (e.g. \"2\") or \"latest\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CertificateConfigPair": {
+      "description": "CertificateConfigPair configures pairs of certificates, which is used for client certificate and key pairs under a registry.",
+      "id": "CertificateConfigPair",
+      "properties": {
+        "cert": {
+          "$ref": "CertificateConfig",
+          "description": "Cert configures the client certificate."
+        },
+        "key": {
+          "$ref": "CertificateConfig",
+          "description": "Key configures the client private key. Optional."
         }
       },
       "type": "object"
@@ -4407,6 +4433,13 @@
           "$ref": "PrivateRegistryAccessConfig",
           "description": "PrivateRegistryAccessConfig is used to configure access configuration for private container registries."
         },
+        "registryHosts": {
+          "description": "RegistryHostConfig configures containerd registry host configuration. Each registry_hosts represents a hosts.toml file. At most 25 registry_hosts are allowed.",
+          "items": {
+            "$ref": "RegistryHostConfig"
+          },
+          "type": "array"
+        },
         "writableCgroups": {
           "$ref": "WritableCgroups",
           "description": "Optional. WritableCgroups defines writable cgroups configuration for the node pool."
@@ -5195,6 +5228,66 @@
       },
       "type": "object"
     },
+    "HostConfig": {
+      "description": "HostConfig configures the registry host under a given Server.",
+      "id": "HostConfig",
+      "properties": {
+        "ca": {
+          "description": "CA configures the registry host certificate.",
+          "items": {
+            "$ref": "CertificateConfig"
+          },
+          "type": "array"
+        },
+        "capabilities": {
+          "description": "Capabilities represent the capabilities of the registry host, specifying what operations a host is capable of performing. If not set, containerd enables all capabilities by default.",
+          "items": {
+            "enum": [
+              "HOST_CAPABILITY_UNSPECIFIED",
+              "HOST_CAPABILITY_PULL",
+              "HOST_CAPABILITY_RESOLVE",
+              "HOST_CAPABILITY_PUSH"
+            ],
+            "enumDescriptions": [
+              "UNKNOWN should never be set.",
+              "Pull represents the capability to fetch manifests and blobs by digest.",
+              "Resolve represents the capability to fetch manifests by name.",
+              "Push represents the capability to push blobs and manifests."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "client": {
+          "description": "Client configures the registry host client certificate and key.",
+          "items": {
+            "$ref": "CertificateConfigPair"
+          },
+          "type": "array"
+        },
+        "dialTimeout": {
+          "description": "Specifies the maximum duration allowed for a connection attempt to complete. A shorter timeout helps reduce delays when falling back to the original registry if the mirror is unreachable. Maximum allowed value is 180s. If not set, containerd sets default 30s. The value should be a decimal number of seconds with an `s` suffix.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "header": {
+          "description": "Header configures the registry host headers.",
+          "items": {
+            "$ref": "RegistryHeader"
+          },
+          "type": "array"
+        },
+        "host": {
+          "description": "Host configures the registry host/mirror. It supports fully qualified domain names (FQDN) and IP addresses: Specifying port is supported. Wildcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000",
+          "type": "string"
+        },
+        "overridePath": {
+          "description": "OverridePath is used to indicate the host's API root endpoint is defined in the URL path rather than by the API specification. This may be used with non-compliant OCI registries which are missing the /v2 prefix. If not set, containerd sets default false.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "HttpCacheControlResponseHeader": {
       "description": "RFC-2616: cache control support",
       "id": "HttpCacheControlResponseHeader",
@@ -5756,7 +5849,7 @@
       "properties": {
         "enableLegacyLustrePort": {
           "deprecated": true,
-          "description": "If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag.",
+          "description": "If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag. Deprecated: This flag is no longer required as of GKE node version 1.33.2-gke.4655000, unless you are connecting to a Lustre instance that has the `gke-support-enabled` flag.",
           "type": "boolean"
         },
         "enabled": {
@@ -7617,6 +7710,42 @@
         "window": {
           "$ref": "TimeWindow",
           "description": "The window of the first recurrence."
+        }
+      },
+      "type": "object"
+    },
+    "RegistryHeader": {
+      "description": "RegistryHeader configures headers for the registry.",
+      "id": "RegistryHeader",
+      "properties": {
+        "key": {
+          "description": "Key configures the header key.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value configures the header value.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RegistryHostConfig": {
+      "description": "RegistryHostConfig configures the top-level structure for a single containerd registry server's configuration, which represents one hosts.toml file on the node. It will override the same fqdns in PrivateRegistryAccessConfig.",
+      "id": "RegistryHostConfig",
+      "properties": {
+        "hosts": {
+          "description": "HostConfig configures a list of host-specific configurations for the server. Each server can have at most 10 host configurations.",
+          "items": {
+            "$ref": "HostConfig"
+          },
+          "type": "array"
+        },
+        "server": {
+          "description": "Defines the host name of the registry server, which will be used to create configuration file as /etc/containerd/hosts.d//hosts.toml. It supports fully qualified domain names (FQDN) and IP addresses: Specifying port is supported. Wildcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000",
+          "type": "string"
         }
       },
       "type": "object"

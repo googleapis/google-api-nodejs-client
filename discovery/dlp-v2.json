@@ -5123,7 +5123,7 @@
       }
     }
   },
-  "revision": "20251019",
+  "revision": "20251102",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -8451,9 +8451,9 @@
           ],
           "enumDescriptions": [
             "Invalid.",
-            "Full match. - Dictionary: join of Dictionary results matched complete finding quote - Regex: all regex matches fill a finding quote start to end - Exclude info type: completely inside affecting info types findings",
-            "Partial match. - Dictionary: at least one of the tokens in the finding matches - Regex: substring of the finding matches - Exclude info type: intersects with affecting info types findings",
-            "Inverse match. - Dictionary: no tokens in the finding match the dictionary - Regex: finding doesn't match the regex - Exclude info type: no intersection with affecting info types findings"
+            "Full match. - Dictionary: join of Dictionary results matched the complete finding quote - Regex: all regex matches fill a finding quote from start to end - Exclude infoType: completely inside affecting infoTypes findings",
+            "Partial match. - Dictionary: at least one of the tokens in the finding matches - Regex: substring of the finding matches - Exclude infoType: intersects with affecting infoTypes findings",
+            "Inverse match. - Dictionary: no tokens in the finding match the dictionary - Regex: finding doesn't match the regex - Exclude infoType: no intersection with affecting infoTypes findings"
           ],
           "type": "string"
         },

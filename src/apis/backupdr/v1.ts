@@ -2089,6 +2089,10 @@ export namespace backupdr_v1 {
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message for listing DataSources.
@@ -10013,7 +10017,8 @@ export namespace backupdr_v1 {
      *   // Example response
      *   // {
      *   //   "dataSourceReferences": [],
-     *   //   "nextPageToken": "my_nextPageToken"
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
      *   // }
      * }
      *

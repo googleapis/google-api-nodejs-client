@@ -180,6 +180,10 @@ export namespace storagebatchoperations_v1 {
      */
     succeededObjectCount?: string | null;
     /**
+     * Output only. Number of bytes found from source. This field is only populated for jobs with a prefix list object configuration.
+     */
+    totalBytesFound?: string | null;
+    /**
      * Output only. Number of objects listed.
      */
     totalObjectCount?: string | null;
@@ -255,6 +259,10 @@ export namespace storagebatchoperations_v1 {
      * Optional. A description provided by the user for the job. Its max length is 1024 bytes when Unicode-encoded.
      */
     description?: string | null;
+    /**
+     * Optional. If true, the job will run in dry run mode, returning the total object count and, if the object configuration is a prefix list, the bytes found from source. No transformations will be performed.
+     */
+    dryRun?: boolean | null;
     /**
      * Output only. Summarizes errors encountered with sample error log entries.
      */
@@ -1071,6 +1079,7 @@ export namespace storagebatchoperations_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "deleteObject": {},
      *       //   "description": "my_description",
+     *       //   "dryRun": false,
      *       //   "errorSummaries": [],
      *       //   "loggingConfig": {},
      *       //   "name": "my_name",
@@ -1366,6 +1375,7 @@ export namespace storagebatchoperations_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "deleteObject": {},
      *   //   "description": "my_description",
+     *   //   "dryRun": false,
      *   //   "errorSummaries": [],
      *   //   "loggingConfig": {},
      *   //   "name": "my_name",

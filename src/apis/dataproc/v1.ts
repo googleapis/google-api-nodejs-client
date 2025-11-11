@@ -701,6 +701,10 @@ export namespace dataproc_v1 {
      */
     dataprocMetricConfig?: Schema$DataprocMetricConfig;
     /**
+     * Optional. A Cloud Storage bucket used to collect checkpoint diagnostic data (https://cloud.google.com/dataproc/docs/support/diagnose-clusters#checkpoint_diagnostic_data). If you do not specify a diagnostic bucket, Cloud Dataproc will use the Dataproc temp bucket to collect the checkpoint diagnostic data. This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
+     */
+    diagnosticBucket?: string | null;
+    /**
      * Optional. Encryption settings for the cluster.
      */
     encryptionConfig?: Schema$EncryptionConfig;

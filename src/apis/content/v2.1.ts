@@ -1113,15 +1113,15 @@ export namespace content_v2_1 {
      */
     emailAddress?: string | null;
     /**
-     * Whether user is an order manager.
+     * This role is deprecated and can no longer be assigned. Any value set will be ignored.
      */
     orderManager?: boolean | null;
     /**
-     * Whether user can access payment statements.
+     * This role is deprecated and can no longer be assigned. Any value set will be ignored.
      */
     paymentsAnalyst?: boolean | null;
     /**
-     * Whether user can manage payment settings.
+     * This role is deprecated and can no longer be assigned. Any value set will be ignored.
      */
     paymentsManager?: boolean | null;
     /**

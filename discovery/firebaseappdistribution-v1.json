@@ -128,7 +128,7 @@
           ],
           "parameters": {
             "app": {
-              "description": "Required. The name of the app resource. Format: `projects/{project_number}/apps/{app_id}`",
+              "description": "Required. The name of the app resource. Format: `projects/{project_number}/apps/{app}`",
               "location": "path",
               "pattern": "^projects/[^/]+/apps/[^/]+$",
               "required": true,
@@ -163,7 +163,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the `AabInfo` resource to retrieve. Format: `projects/{project_number}/apps/{app_id}/aabInfo`",
+                  "description": "Required. The name of the `AabInfo` resource to retrieve. Format: `projects/{project_number}/apps/{app}/aabInfo`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/apps/[^/]+/aabInfo$",
                   "required": true,
@@ -192,7 +192,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number}/apps/{app_id}`",
+                      "description": "Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number}/apps/{app}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+$",
                       "required": true,
@@ -220,7 +220,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the release resource to distribute. Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}`",
+                      "description": "Required. The name of the release resource to distribute. Format: `projects/{project_number}/apps/{app}/releases/{release}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+/releases/[^/]+$",
                       "required": true,
@@ -248,7 +248,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the release resource to retrieve. Format: projects/{project_number}/apps/{app_id}/releases/{release_id}",
+                      "description": "Required. The name of the release resource to retrieve. Format: projects/{project_number}/apps/{app}/releases/{release}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+/releases/[^/]+$",
                       "required": true,
@@ -294,7 +294,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number}/apps/{app_id}`",
+                      "description": "Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number}/apps/{app}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+$",
                       "required": true,
@@ -319,7 +319,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the release resource. Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}`",
+                      "description": "The name of the release resource. Format: `projects/{project_number}/apps/{app}/releases/{release}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+/releases/[^/]+$",
                       "required": true,
@@ -946,7 +946,7 @@
       }
     }
   },
-  "revision": "20250924",
+  "revision": "20251104",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "GdataBlobstore2Info": {
@@ -1449,7 +1449,7 @@
       "id": "GoogleFirebaseAppdistroV1BatchDeleteReleasesRequest",
       "properties": {
         "names": {
-          "description": "Required. The names of the release resources to delete. Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}` A maximum of 100 releases can be deleted per request.",
+          "description": "Required. The names of the release resources to delete. Format: `projects/{project_number}/apps/{app}/releases/{release}` A maximum of 100 releases can be deleted per request.",
           "items": {
             "type": "string"
           },
@@ -1724,7 +1724,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the release resource. Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}`",
+          "description": "The name of the release resource. Format: `projects/{project_number}/apps/{app}/releases/{release}`",
           "type": "string"
         },
         "releaseNotes": {
