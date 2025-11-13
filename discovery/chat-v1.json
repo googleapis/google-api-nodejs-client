@@ -1535,7 +1535,7 @@
       }
     }
   },
-  "revision": "20251029",
+  "revision": "20251109",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -1802,7 +1802,7 @@
           "readOnly": true
         },
         "name": {
-          "description": "Optional. Resource name of the attachment, in the form `spaces/{space}/messages/{message}/attachments/{attachment}`.",
+          "description": "Identifier. Resource name of the attachment. Format: `spaces/{space}/messages/{message}/attachments/{attachment}`.",
           "type": "string"
         },
         "source": {
@@ -2649,7 +2649,7 @@
           "type": "string"
         },
         "expressionData": {
-          "description": "The expression data for the card. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "description": "The expression data for the card. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
           "items": {
             "$ref": "GoogleAppsCardV1ExpressionData"
           },
@@ -2961,7 +2961,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1CommonWidgetAction": {
-      "description": "Represents an action that is not specific to a widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "description": "Represents an action that is not specific to a widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1CommonWidgetAction",
       "properties": {
         "updateVisibilityAction": {
@@ -2972,7 +2972,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Condition": {
-      "description": "Represents a condition that can be used to trigger an action. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "description": "Represents a condition that can be used to trigger an action. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1Condition",
       "properties": {
         "actionRuleId": {
@@ -2987,7 +2987,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1DataSourceConfig": {
-      "description": "A configuration object that helps configure the data sources for a widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "description": "A configuration object that helps configure the data sources for a widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1DataSourceConfig",
       "properties": {
         "platformDataSource": {
@@ -3007,7 +3007,7 @@
       "properties": {
         "hostAppDataSource": {
           "$ref": "HostAppDataSourceMarkup",
-          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Only supported by Google Workspace Workflows, but not Google Chat API or Google Workspace Add-ons."
+          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps."
         },
         "label": {
           "description": "The text that prompts users to input a date, a time, or a date and time. For example, if users are scheduling an appointment, use a label such as `Appointment date` or `Appointment date and time`.",
@@ -3131,7 +3131,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1EventAction": {
-      "description": "Represents an actionthat can be performed on an ui element. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "description": "Represents an actionthat can be performed on an ui element. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1EventAction",
       "properties": {
         "actionRuleId": {
@@ -3153,7 +3153,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1ExpressionData": {
-      "description": "Represents the data that is used to evaluate an expression. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "description": "Represents the data that is used to evaluate an expression. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1ExpressionData",
       "properties": {
         "conditions": {
@@ -3182,7 +3182,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1ExpressionDataCondition": {
-      "description": "Represents a condition that is evaluated using CEL. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "description": "Represents a condition that is evaluated using CEL. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1ExpressionDataCondition",
       "properties": {
         "conditionType": {
@@ -3560,7 +3560,7 @@
           "type": "string"
         },
         "id": {
-          "description": "A unique ID assigned to the section that's used to identify the section to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+`. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "description": "A unique ID assigned to the section that's used to identify the section to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+`. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
           "type": "string"
         },
         "uncollapsibleWidgetsCount": {
@@ -3583,7 +3583,7 @@
       "id": "GoogleAppsCardV1SelectionInput",
       "properties": {
         "dataSourceConfigs": {
-          "description": "Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "description": "Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
           "items": {
             "$ref": "GoogleAppsCardV1DataSourceConfig"
           },
@@ -3594,7 +3594,7 @@
           "description": "An external data source, such as a relational database."
         },
         "hintText": {
-          "description": "Optional. Text that appears below the selection input field meant to assist users by prompting them to enter a certain value. This text is always visible. Only supported by Google Workspace Workflows, but not Google Chat API or Google Workspace Add-ons.",
+          "description": "Optional. Text that appears below the selection input field meant to assist users by prompting them to enter a certain value. This text is always visible. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
           "type": "string"
         },
         "items": {
@@ -3753,7 +3753,7 @@
         },
         "hostAppDataSource": {
           "$ref": "HostAppDataSourceMarkup",
-          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons."
+          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps."
         },
         "initialSuggestions": {
           "$ref": "GoogleAppsCardV1Suggestions",
@@ -3829,7 +3829,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Trigger": {
-      "description": "Represents a trigger. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "description": "Represents a trigger. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1Trigger",
       "properties": {
         "actionRuleId": {
@@ -3840,7 +3840,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1UpdateVisibilityAction": {
-      "description": "Represents an action that updates the visibility of a widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "description": "Represents an action that updates the visibility of a widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1UpdateVisibilityAction",
       "properties": {
         "visibility": {
@@ -3925,7 +3925,7 @@
           "description": "Displays a horizontal line divider between widgets. For example, the following JSON creates a divider: ``` \"divider\": { } ```"
         },
         "eventActions": {
-          "description": "Specifies the event actions that can be performed on the widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "description": "Specifies the event actions that can be performed on the widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
           "items": {
             "$ref": "GoogleAppsCardV1EventAction"
           },
@@ -3952,7 +3952,7 @@
           "type": "string"
         },
         "id": {
-          "description": "A unique ID assigned to the widget that's used to identify the widget to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+` and. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "description": "A unique ID assigned to the widget that's used to identify the widget to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+` and. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
           "type": "string"
         },
         "image": {
@@ -3972,7 +3972,7 @@
           "description": "Displays a text paragraph. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/workspace/chat/format-messages#card-formatting) and [Formatting text in Google Workspace add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). For example, the following JSON creates a bolded text: ``` \"textParagraph\": { \"text\": \" *bold text*\" } ```"
         },
         "visibility": {
-          "description": "Specifies whether the widget is visible or hidden. The default value is `VISIBLE`. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "description": "Specifies whether the widget is visible or hidden. The default value is `VISIBLE`. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
           "enum": [
             "VISIBILITY_UNSPECIFIED",
             "VISIBLE",
