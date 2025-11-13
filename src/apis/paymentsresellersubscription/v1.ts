@@ -626,6 +626,10 @@ export namespace paymentsresellersubscription_v1 {
      * Optional. The cycle options for the subscription.
      */
     cycleOptions?: Schema$CycleOptions;
+    /**
+     * Optional. The mode to resume the subscription.
+     */
+    resumeMode?: string | null;
   }
   /**
    * Response that contains the resumed subscription.
@@ -2500,7 +2504,8 @@ export namespace paymentsresellersubscription_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "cycleOptions": {}
+     *       //   "cycleOptions": {},
+     *       //   "resumeMode": "my_resumeMode"
      *       // }
      *     },
      *   });
