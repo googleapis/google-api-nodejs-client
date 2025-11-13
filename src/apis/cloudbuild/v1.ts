@@ -885,6 +885,10 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$BuiltImage {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Docker Registry 2.0 digest.
      */
     digest?: string | null;
@@ -2399,6 +2403,10 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$UploadedGoModule {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Hash types and values of the Go Module Artifact.
      */
     fileHashes?: Schema$FileHashes;
@@ -2415,6 +2423,10 @@ export namespace cloudbuild_v1 {
    * A Maven artifact uploaded using the MavenArtifact directive.
    */
   export interface Schema$UploadedMavenArtifact {
+    /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
     /**
      * Hash types and values of the Maven Artifact.
      */
@@ -2433,6 +2445,10 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$UploadedNpmPackage {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Hash types and values of the npm package.
      */
     fileHashes?: Schema$FileHashes;
@@ -2449,6 +2465,10 @@ export namespace cloudbuild_v1 {
    * Artifact uploaded using the PythonPackage directive.
    */
   export interface Schema$UploadedPythonPackage {
+    /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
     /**
      * Hash types and values of the Python Artifact.
      */
