@@ -380,6 +380,10 @@ export namespace backupdr_v1 {
      */
     backupApplianceLocks?: Schema$BackupLock[];
     /**
+     * Output only. Setting for how the enforced retention end time is inherited. This value is copied from this backup's BackupVault.
+     */
+    backupRetentionInheritance?: string | null;
+    /**
      * Output only. Type of the backup, unspecified, scheduled or ondemand.
      */
     backupType?: string | null;
@@ -427,6 +431,10 @@ export namespace backupdr_v1 {
      * Output only. Unique identifier of the GCP resource that is being backed up.
      */
     gcpResource?: Schema$BackupGcpResource;
+    /**
+     * Optional. Output only. The list of KMS key versions used to encrypt the backup.
+     */
+    kmsKeyVersions?: string[] | null;
     /**
      * Optional. Resource labels to represent user provided metadata. No labels currently defined.
      */
@@ -884,6 +892,10 @@ export namespace backupdr_v1 {
      */
     backupMinimumEnforcedRetentionDuration?: string | null;
     /**
+     * Optional. Setting for how a backup's enforced retention end time is inherited.
+     */
+    backupRetentionInheritance?: string | null;
+    /**
      * Output only. The time when the instance was created.
      */
     createTime?: string | null;
@@ -899,6 +911,10 @@ export namespace backupdr_v1 {
      * Optional. Time after which the BackupVault resource is locked.
      */
     effectiveTime?: string | null;
+    /**
+     * Optional. The encryption config of the backup vault.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
     /**
      * Optional. Server specified ETag for the backup vault resource to prevent simultaneous updates from overwiting each other.
      */
@@ -1676,6 +1692,15 @@ export namespace backupdr_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Message describing the EncryptionConfig of backup vault. This determines how data within the vault is encrypted at rest.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * Optional. The Cloud KMS key name to encrypt backups in this backup vault. Must be in the same region as the vault. Some workload backups like compute disk backups may use their inherited source key instead. Format: projects/{project\}/locations/{location\}/keyRings/{ring\}/cryptoKeys/{key\}
+     */
+    kmsKeyName?: string | null;
+  }
   /**
    * A key/value pair to be used for storing metadata.
    */
@@ -2554,6 +2579,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$RestoreBackupRequest {
     /**
+     * Optional. A field mask used to clear server-side default values for fields within the `instance_properties` oneof. When a field in this mask is cleared, the server will not apply its default logic (like inheriting a value from the source) for that field. The most common current use case is clearing default encryption keys. Examples of field mask paths: - Compute Instance Disks: `compute_instance_restore_properties.disks.*.disk_encryption_key` - Single Disk: `disk_restore_properties.disk_encryption_key`
+     */
+    clearOverridesFieldMask?: string | null;
+    /**
      * Compute Engine instance properties to be overridden during restore.
      */
     computeInstanceRestoreProperties?: Schema$ComputeInstanceRestoreProperties;
@@ -2841,6 +2870,10 @@ export namespace backupdr_v1 {
      * Optional. The duration for which backup data will be kept, while taking an on-demand backup with custom retention. It is defined in "days". It is mutually exclusive with rule_id. This field is required if rule_id is not provided.
      */
     customRetentionDays?: number | null;
+    /**
+     * Optional. Labels to be applied on the backup.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
@@ -4378,6 +4411,7 @@ export namespace backupdr_v1 {
      *         // request body parameters
      *         // {
      *         //   "customRetentionDays": 0,
+     *         //   "labels": {},
      *         //   "requestId": "my_requestId",
      *         //   "ruleId": "my_ruleId"
      *         // }
@@ -5850,10 +5884,12 @@ export namespace backupdr_v1 {
      *       //   "annotations": {},
      *       //   "backupCount": "my_backupCount",
      *       //   "backupMinimumEnforcedRetentionDuration": "my_backupMinimumEnforcedRetentionDuration",
+     *       //   "backupRetentionInheritance": "my_backupRetentionInheritance",
      *       //   "createTime": "my_createTime",
      *       //   "deletable": false,
      *       //   "description": "my_description",
      *       //   "effectiveTime": "my_effectiveTime",
+     *       //   "encryptionConfig": {},
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -6320,10 +6356,12 @@ export namespace backupdr_v1 {
      *   //   "annotations": {},
      *   //   "backupCount": "my_backupCount",
      *   //   "backupMinimumEnforcedRetentionDuration": "my_backupMinimumEnforcedRetentionDuration",
+     *   //   "backupRetentionInheritance": "my_backupRetentionInheritance",
      *   //   "createTime": "my_createTime",
      *   //   "deletable": false,
      *   //   "description": "my_description",
      *   //   "effectiveTime": "my_effectiveTime",
+     *   //   "encryptionConfig": {},
      *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -6630,10 +6668,12 @@ export namespace backupdr_v1 {
      *       //   "annotations": {},
      *       //   "backupCount": "my_backupCount",
      *       //   "backupMinimumEnforcedRetentionDuration": "my_backupMinimumEnforcedRetentionDuration",
+     *       //   "backupRetentionInheritance": "my_backupRetentionInheritance",
      *       //   "createTime": "my_createTime",
      *       //   "deletable": false,
      *       //   "description": "my_description",
      *       //   "effectiveTime": "my_effectiveTime",
+     *       //   "encryptionConfig": {},
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -8948,6 +8988,7 @@ export namespace backupdr_v1 {
      *   //   "alloyDbBackupProperties": {},
      *   //   "backupApplianceBackupProperties": {},
      *   //   "backupApplianceLocks": [],
+     *   //   "backupRetentionInheritance": "my_backupRetentionInheritance",
      *   //   "backupType": "my_backupType",
      *   //   "cloudSqlInstanceBackupProperties": {},
      *   //   "computeInstanceBackupProperties": {},
@@ -8960,6 +9001,7 @@ export namespace backupdr_v1 {
      *   //   "expireTime": "my_expireTime",
      *   //   "gcpBackupPlanInfo": {},
      *   //   "gcpResource": {},
+     *   //   "kmsKeyVersions": [],
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "resourceSizeBytes": "my_resourceSizeBytes",
@@ -9262,6 +9304,7 @@ export namespace backupdr_v1 {
      *         //   "alloyDbBackupProperties": {},
      *         //   "backupApplianceBackupProperties": {},
      *         //   "backupApplianceLocks": [],
+     *         //   "backupRetentionInheritance": "my_backupRetentionInheritance",
      *         //   "backupType": "my_backupType",
      *         //   "cloudSqlInstanceBackupProperties": {},
      *         //   "computeInstanceBackupProperties": {},
@@ -9274,6 +9317,7 @@ export namespace backupdr_v1 {
      *         //   "expireTime": "my_expireTime",
      *         //   "gcpBackupPlanInfo": {},
      *         //   "gcpResource": {},
+     *         //   "kmsKeyVersions": [],
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "resourceSizeBytes": "my_resourceSizeBytes",
@@ -9429,6 +9473,7 @@ export namespace backupdr_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "clearOverridesFieldMask": "my_clearOverridesFieldMask",
      *         //   "computeInstanceRestoreProperties": {},
      *         //   "computeInstanceTargetEnvironment": {},
      *         //   "diskRestoreProperties": {},
