@@ -1096,6 +1096,8 @@ export namespace merchantapi_issueresolution_v1 {
      *     languageCode: 'placeholder-value',
      *     // Required. The name of the product to fetch issues for. Format: `accounts/{account\}/products/{product\}`
      *     name: 'accounts/my-account/products/my-product',
+     *     // Optional. If true, the `{product\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     *     productIdBase64UrlEncoded: 'placeholder-value',
      *     // Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in an issue resolution content. For example 'America/Los_Angeles'. If not set, results will use as a default UTC.
      *     timeZone: 'placeholder-value',
      *
@@ -1396,6 +1398,10 @@ export namespace merchantapi_issueresolution_v1 {
      * Required. The name of the product to fetch issues for. Format: `accounts/{account\}/products/{product\}`
      */
     name?: string;
+    /**
+     * Optional. If true, the `{product\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     */
+    productIdBase64UrlEncoded?: boolean;
     /**
      * Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in an issue resolution content. For example 'America/Los_Angeles'. If not set, results will use as a default UTC.
      */
