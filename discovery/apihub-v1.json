@@ -264,6 +264,104 @@
             }
           },
           "resources": {
+            "addons": {
+              "methods": {
+                "get": {
+                  "description": "Get an addon.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/addons/{addonsId}",
+                  "httpMethod": "GET",
+                  "id": "apihub.projects.locations.addons.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the addon to get. Format: `projects/{project}/locations/{location}/addons/{addon}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/addons/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApihubV1Addon"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List addons.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/addons",
+                  "httpMethod": "GET",
+                  "id": "apihub.projects.locations.addons.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression that filters the list of addons. The only supported filter is `plugin_instance_name`. It can be used to filter addons that are enabled for a given plugin instance. The format of the filter is `plugin_instance_name = \"projects/{project}/locations/{location}/plugins/{plugin}/instances/{instance}\"`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of hub addons to return. The service may return fewer than this value. If unspecified, at most 50 hub addons will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListAddons` call. Provide this to retrieve the subsequent page. When paginating, all other parameters (except page_size) provided to `ListAddons` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where this addon will be created. Format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/addons",
+                  "response": {
+                    "$ref": "GoogleCloudApihubV1ListAddonsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "manageConfig": {
+                  "description": "Manage addon config. This RPC is used for managing the config of the addon. Calling this RPC moves the addon into an updating state until the long-running operation succeeds.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/addons/{addonsId}:manageConfig",
+                  "httpMethod": "POST",
+                  "id": "apihub.projects.locations.addons.manageConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the addon for which the config is to be managed. Format: `projects/{project}/locations/{location}/addons/{addon}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/addons/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:manageConfig",
+                  "request": {
+                    "$ref": "GoogleCloudApihubV1ManageAddonConfigRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "apiHubInstances": {
               "methods": {
                 "create": {
@@ -2979,7 +3077,7 @@
       }
     }
   },
-  "revision": "20251025",
+  "revision": "20251110",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -3027,6 +3125,100 @@
         "actionId": {
           "description": "Required. The action id of the plugin to execute.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1Addon": {
+      "description": "Addon resource.",
+      "id": "GoogleCloudApihubV1Addon",
+      "properties": {
+        "config": {
+          "$ref": "GoogleCloudApihubV1AddonConfig",
+          "description": "Required. The configuration of the addon."
+        },
+        "createTime": {
+          "description": "Output only. The time at which the addon was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataSource": {
+          "description": "Required. The data source on which the addon operates. This determines which field in the `config` oneof is used.",
+          "enum": [
+            "DATA_SOURCE_UNSPECIFIED",
+            "PLUGIN_INSTANCE",
+            "ALL_DATA"
+          ],
+          "enumDescriptions": [
+            "The data source of the addon is not specified.",
+            "Addon operates on data collected from specific plugin instances.",
+            "Addon operates on all data in the API hub."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the addon.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the addon.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the addon to enable. Format: `projects/{project}/locations/{location}/addons/{addon}`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the addon.",
+          "enum": [
+            "ADDON_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "UPDATING",
+            "ERROR",
+            "INACTIVE"
+          ],
+          "enumDescriptions": [
+            "The addon state is not specified.",
+            "The addon is active.",
+            "The addon is being updated.",
+            "The addon is in error state.",
+            "The addon is inactive."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the addon was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1AddonConfig": {
+      "description": "Configuration for the addon.",
+      "id": "GoogleCloudApihubV1AddonConfig",
+      "properties": {
+        "allDataAddonConfig": {
+          "$ref": "GoogleCloudApihubV1AllDataAddonConfig",
+          "description": "Configuration for addons which act on all data in the API hub."
+        },
+        "gatewayPluginAddonConfig": {
+          "$ref": "GoogleCloudApihubV1GatewayPluginAddonConfig",
+          "description": "Configuration for gateway plugin addons."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1AllDataAddonConfig": {
+      "description": "Configuration for addons which act on all data in the API hub. This is used to specify if the addon is enabled for all data in the API hub.",
+      "id": "GoogleCloudApihubV1AllDataAddonConfig",
+      "properties": {
+        "enabled": {
+          "description": "Required. If true, the addon is enabled for all data in the API hub.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3356,6 +3548,39 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1ApigeeEdgeConfig": {
+      "description": "Configuration for Apigee Edge gateways. Applicability of a filter is determined by the filter being provided. If none of the filters are provided the addon will be enabled for all data brought in by the gateway plugin instance.",
+      "id": "GoogleCloudApihubV1ApigeeEdgeConfig",
+      "properties": {
+        "environmentFilter": {
+          "$ref": "GoogleCloudApihubV1EnvironmentFilter",
+          "description": "Optional. The filter to apply on the resources managed by the gateway plugin instance. If provided this filter applies environment specific filtering."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1ApigeeOPDKConfig": {
+      "description": "Configuration for Apigee OPDK gateways. Applicability of a filter is determined by the filter being provided. If none of the filters are provided the addon will be enabled for all data brought in by the gateway plugin instance.",
+      "id": "GoogleCloudApihubV1ApigeeOPDKConfig",
+      "properties": {
+        "environmentFilter": {
+          "$ref": "GoogleCloudApihubV1EnvironmentFilter",
+          "description": "Optional. The filter to apply on the resources managed by the gateway plugin instance. If provided this filter applies environment specific filtering."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1ApigeeXHybridConfig": {
+      "description": "Configuration for Apigee X and Apigee Hybrid gateways. Applicability of a filter is determined by the filter being provided. If none of the filters are provided the addon will be enabled for all data brought in by the gateway plugin instance.",
+      "id": "GoogleCloudApihubV1ApigeeXHybridConfig",
+      "properties": {
+        "environmentFilter": {
+          "$ref": "GoogleCloudApihubV1EnvironmentFilter",
+          "description": "Optional. The filter to apply on the resources managed by the gateway plugin instance. If provided this filter applies environment specific filtering."
         }
       },
       "type": "object"
@@ -4455,6 +4680,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApihubV1EnvironmentFilter": {
+      "description": "Filter for environments.",
+      "id": "GoogleCloudApihubV1EnvironmentFilter",
+      "properties": {
+        "allEnvironments": {
+          "description": "Optional. Indicates if this filter should match all environments or only a subset of environments. If set to true, all environments are matched.",
+          "type": "boolean"
+        },
+        "environments": {
+          "description": "Optional. If provided, only environments in this list are matched. This field is ignored if `all_environments` is true.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApihubV1ExecutePluginInstanceActionRequest": {
       "description": "The ExecutePluginInstanceAction method's request.",
       "id": "GoogleCloudApihubV1ExecutePluginInstanceActionRequest",
@@ -4544,6 +4787,43 @@
           "description": "Output only. Last update timestamp.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1GatewayPluginAddonConfig": {
+      "description": "Configuration for gateway plugin addons. This is used to specify the list of gateway plugin configs for which the addon is enabled.",
+      "id": "GoogleCloudApihubV1GatewayPluginAddonConfig",
+      "properties": {
+        "gatewayPluginConfigs": {
+          "description": "Required. The list of gateway plugin configs for which the addon is enabled. Each gateway plugin config should have a unique plugin instance.",
+          "items": {
+            "$ref": "GoogleCloudApihubV1GatewayPluginConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1GatewayPluginConfig": {
+      "description": "Configuration for a gateway plugin. This is used to specify configs for different gateways.",
+      "id": "GoogleCloudApihubV1GatewayPluginConfig",
+      "properties": {
+        "apigeeEdgeConfig": {
+          "$ref": "GoogleCloudApihubV1ApigeeEdgeConfig",
+          "description": "Configuration for Apigee Edge gateways."
+        },
+        "apigeeOpdkConfig": {
+          "$ref": "GoogleCloudApihubV1ApigeeOPDKConfig",
+          "description": "Configuration for Apigee OPDK gateways."
+        },
+        "apigeeXHybridConfig": {
+          "$ref": "GoogleCloudApihubV1ApigeeXHybridConfig",
+          "description": "Configuration for Apigee X and Apigee Hybrid gateways."
+        },
+        "pluginInstance": {
+          "description": "Required. The name of the gateway plugin instance for which the config is to be specified. Format: projects/{project}/locations/{location}/plugins/{plugin}/pluginInstances/{plugin_instance}",
           "type": "string"
         }
       },
@@ -4881,6 +5161,24 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudApihubV1ListAddonsResponse": {
+      "description": "The ListAddons method's response.",
+      "id": "GoogleCloudApihubV1ListAddonsResponse",
+      "properties": {
+        "addons": {
+          "description": "The list of addons.",
+          "items": {
+            "$ref": "GoogleCloudApihubV1Addon"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApihubV1ListApiOperationsResponse": {
       "description": "The ListApiOperations method's response.",
       "id": "GoogleCloudApihubV1ListApiOperationsResponse",
@@ -5169,6 +5467,17 @@
         "runtimeProjectAttachment": {
           "$ref": "GoogleCloudApihubV1RuntimeProjectAttachment",
           "description": "Runtime project attachment for a project if exists, empty otherwise."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1ManageAddonConfigRequest": {
+      "description": "The ManageAddonConfig method's request.",
+      "id": "GoogleCloudApihubV1ManageAddonConfigRequest",
+      "properties": {
+        "config": {
+          "$ref": "GoogleCloudApihubV1AddonConfig",
+          "description": "Required. The config of the addon to be managed. This config will replace the config present in the addon. The type of the config should match the config type already present in the addon."
         }
       },
       "type": "object"
@@ -5658,6 +5967,13 @@
           "description": "Identifier. The unique name of the plugin instance resource. Format: `projects/{project}/locations/{location}/plugins/{plugin}/instances/{instance}`",
           "type": "string"
         },
+        "sourceEnvironmentsConfig": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudApihubV1SourceEnvironment"
+          },
+          "description": "Optional. The source environment's config present in the gateway instance linked to the plugin instance. The key is the `source_environment` name from the SourceEnvironment message.",
+          "type": "object"
+        },
         "sourceProjectId": {
           "description": "Optional. The source project id of the plugin instance. This will be the id of runtime project in case of gcp based plugins and org id in case of non gcp based plugins. This field will be a required field for Google provided on-ramp plugins.",
           "type": "string"
@@ -5978,6 +6294,31 @@
       "properties": {
         "secretVersion": {
           "description": "Required. The resource name of the secret version in the format, format as: `projects/*/secrets/*/versions/*`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1SourceEnvironment": {
+      "description": "Message representing the source environment details.",
+      "id": "GoogleCloudApihubV1SourceEnvironment",
+      "properties": {
+        "createTime": {
+          "description": "Optional. The time at which the environment was created at the source.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sourceEnvironment": {
+          "description": "Required. The name of the environment at the source. This should map to Deployment.",
+          "type": "string"
+        },
+        "sourceEnvironmentUri": {
+          "description": "The location where additional information about source environments can be found. The location should be relative path of the environment manifest with respect to a plugin instance.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Optional. The time at which the environment was last updated at the source.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
