@@ -1562,6 +1562,23 @@ export namespace sqladmin_v1 {
     importContext?: Schema$ImportContext;
   }
   /**
+   * Instances ListEntraIdCertificates response.
+   */
+  export interface Schema$InstancesListEntraIdCertificatesResponse {
+    /**
+     * The `sha1_fingerprint` of the active certificate from `certs`.
+     */
+    activeVersion?: string | null;
+    /**
+     * List of Entra ID certificates for the instance.
+     */
+    certs?: Schema$SslCert[];
+    /**
+     * This is always `sql#instancesListEntraIdCertificates`.
+     */
+    kind?: string | null;
+  }
+  /**
    * Database instances list response.
    */
   export interface Schema$InstancesListResponse {
@@ -1661,6 +1678,15 @@ export namespace sqladmin_v1 {
     restoreInstanceSettings?: Schema$DatabaseInstance;
   }
   /**
+   * Rotate Entra ID certificate request.
+   */
+  export interface Schema$InstancesRotateEntraIdCertificateRequest {
+    /**
+     * Optional. Contains details about the rotate server certificate operation.
+     */
+    rotateEntraIdCertificateContext?: Schema$RotateEntraIdCertificateContext;
+  }
+  /**
    * Rotate server CA request.
    */
   export interface Schema$InstancesRotateServerCaRequest {
@@ -1744,6 +1770,10 @@ export namespace sqladmin_v1 {
      * Optional. The resource name of the server CA pool for an instance with `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`. Format: projects/{PROJECT\}/locations/{REGION\}/caPools/{CA_POOL_ID\}
      */
     serverCaPool?: string | null;
+    /**
+     * Optional. Controls the automatic server certificate rotation feature. This feature is disabled by default. When enabled, the server certificate will be automatically rotated during Cloud SQL scheduled maintenance or self-service maintenance updates up to six months before it expires. This setting can only be set if server_ca_mode is either GOOGLE_MANAGED_CAS_CA or CUSTOMER_MANAGED_CAS_CA.
+     */
+    serverCertificateRotationMode?: string | null;
     /**
      * Specify how SSL/TLS is enforced in database connections. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: For PostgreSQL and MySQL: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` For SQL Server: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true` The value of `ssl_mode` has priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL connections, while `require_ssl=false` means accept both non-SSL and SSL connections. In this case, MySQL and PostgreSQL databases respect `ssl_mode` and accepts only SSL connections.
      */
@@ -2172,7 +2202,7 @@ export namespace sqladmin_v1 {
     targetSizeGb?: string | null;
   }
   /**
-   * The context to perform a point-in-time recovery of an instance managed by Google Cloud Backup and Disaster Recovery.
+   * The context to perform a point-in-time recovery of an instance managed by Backup and Disaster Recovery (DR) Service.
    */
   export interface Schema$PointInTimeRestoreContext {
     /**
@@ -2180,7 +2210,7 @@ export namespace sqladmin_v1 {
      */
     allocatedIpRange?: string | null;
     /**
-     * The Google Cloud Backup and Disaster Recovery Datasource URI. Format: projects/{project\}/locations/{region\}/backupVaults/{backupvault\}/dataSources/{datasource\}.
+     * The Backup and Disaster Recovery (DR) Service Datasource URI. Format: projects/{project\}/locations/{region\}/backupVaults/{backupvault\}/dataSources/{datasource\}.
      */
     datasource?: string | null;
     /**
@@ -2441,6 +2471,19 @@ export namespace sqladmin_v1 {
     project?: string | null;
   }
   /**
+   * Instance rotate Entra ID certificate context.
+   */
+  export interface Schema$RotateEntraIdCertificateContext {
+    /**
+     * Optional. This is always `sql#rotateEntraIdCertificateContext`.
+     */
+    kind?: string | null;
+    /**
+     * Optional. The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server certificate version.
+     */
+    nextVersion?: string | null;
+  }
+  /**
    * Instance rotate server CA context.
    */
   export interface Schema$RotateServerCaContext {
@@ -2533,7 +2576,7 @@ export namespace sqladmin_v1 {
      */
     crashSafeReplicationEnabled?: boolean | null;
     /**
-     * This parameter controls whether to allow using Data API to connect to the instance. Not allowed by default.
+     * This parameter controls whether to allow using ExecuteSql API to connect to the instance. Not allowed by default.
      */
     dataApiAccess?: string | null;
     /**
@@ -2584,6 +2627,10 @@ export namespace sqladmin_v1 {
      * Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for MySQL and Cloud SQL for PostgreSQL instances.
      */
     enableGoogleMlIntegration?: boolean | null;
+    /**
+     * Optional. The Microsoft Entra ID configuration for the SQL Server instance.
+     */
+    entraidConfig?: Schema$SqlServerEntraIdConfig;
     /**
      * Optional. The final backup configuration for the instance.
      */
@@ -2938,6 +2985,23 @@ export namespace sqladmin_v1 {
     recoveryModel?: string | null;
   }
   /**
+   * SQL Server Entra ID configuration.
+   */
+  export interface Schema$SqlServerEntraIdConfig {
+    /**
+     * Optional. The application ID for the Entra ID configuration.
+     */
+    applicationId?: string | null;
+    /**
+     * Output only. This is always sql#sqlServerEntraIdConfig
+     */
+    kind?: string | null;
+    /**
+     * Optional. The tenant ID for the Entra ID configuration.
+     */
+    tenantId?: string | null;
+  }
+  /**
    * Represents a Sql Server user on the Cloud SQL instance.
    */
   export interface Schema$SqlServerUserDetails {
@@ -3167,6 +3231,10 @@ export namespace sqladmin_v1 {
    * A Cloud SQL user resource.
    */
   export interface Schema$User {
+    /**
+     * Optional. Role memberships of the user
+     */
+    databaseRoles?: string[] | null;
     /**
      * Dual password status for the user.
      */
@@ -8885,6 +8953,160 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Lists all versions of EntraID certificates for the specified instance. There can be up to three sets of certificates listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.ListEntraIdCertificates({
+     *     // Required. Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Required. Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeVersion": "my_activeVersion",
+     *   //   "certs": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    ListEntraIdCertificates(
+      params: Params$Resource$Instances$Listentraidcertificates,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    ListEntraIdCertificates(
+      params?: Params$Resource$Instances$Listentraidcertificates,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$InstancesListEntraIdCertificatesResponse>
+    >;
+    ListEntraIdCertificates(
+      params: Params$Resource$Instances$Listentraidcertificates,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    ListEntraIdCertificates(
+      params: Params$Resource$Instances$Listentraidcertificates,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstancesListEntraIdCertificatesResponse>,
+      callback: BodyResponseCallback<Schema$InstancesListEntraIdCertificatesResponse>
+    ): void;
+    ListEntraIdCertificates(
+      params: Params$Resource$Instances$Listentraidcertificates,
+      callback: BodyResponseCallback<Schema$InstancesListEntraIdCertificatesResponse>
+    ): void;
+    ListEntraIdCertificates(
+      callback: BodyResponseCallback<Schema$InstancesListEntraIdCertificatesResponse>
+    ): void;
+    ListEntraIdCertificates(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Listentraidcertificates
+        | BodyResponseCallback<Schema$InstancesListEntraIdCertificatesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InstancesListEntraIdCertificatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InstancesListEntraIdCertificatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$InstancesListEntraIdCertificatesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Listentraidcertificates;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Listentraidcertificates;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/listEntraIdCertificates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InstancesListEntraIdCertificatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InstancesListEntraIdCertificatesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lists all of the trusted Certificate Authorities (CAs) for the specified instance. There can be up to three CAs listed: the CA that was used to sign the certificate that is currently in use, a CA that has been added but not yet used to sign a certificate, and a CA used to sign a certificate that has previously rotated out.
      * @example
      * ```js
@@ -10730,6 +10952,177 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Rotates the server certificate version to one previously added with the addEntraIdCertificate method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.RotateEntraIdCertificate({
+     *     // Required. Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Required. Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "rotateEntraIdCertificateContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    RotateEntraIdCertificate(
+      params: Params$Resource$Instances$Rotateentraidcertificate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    RotateEntraIdCertificate(
+      params?: Params$Resource$Instances$Rotateentraidcertificate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    RotateEntraIdCertificate(
+      params: Params$Resource$Instances$Rotateentraidcertificate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    RotateEntraIdCertificate(
+      params: Params$Resource$Instances$Rotateentraidcertificate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    RotateEntraIdCertificate(
+      params: Params$Resource$Instances$Rotateentraidcertificate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    RotateEntraIdCertificate(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    RotateEntraIdCertificate(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Rotateentraidcertificate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Rotateentraidcertificate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Rotateentraidcertificate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/rotateEntraIdCertificate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, use RotateServerCertificate to rotate the server certificate.
      * @example
      * ```js
@@ -12151,6 +12544,17 @@ export namespace sqladmin_v1 {
      */
     project?: string;
   }
+  export interface Params$Resource$Instances$Listentraidcertificates
+    extends StandardParameters {
+    /**
+     * Required. Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Required. Project ID of the project that contains the instance.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Instances$Listservercas
     extends StandardParameters {
     /**
@@ -12299,6 +12703,22 @@ export namespace sqladmin_v1 {
      * Request body metadata
      */
     requestBody?: Schema$InstancesRestoreBackupRequest;
+  }
+  export interface Params$Resource$Instances$Rotateentraidcertificate
+    extends StandardParameters {
+    /**
+     * Required. Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Required. Project ID of the project that contains the instance.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstancesRotateEntraIdCertificateRequest;
   }
   export interface Params$Resource$Instances$Rotateserverca
     extends StandardParameters {
@@ -15393,6 +15813,7 @@ export namespace sqladmin_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "databaseRoles": [],
      *   //   "dualPasswordType": "my_dualPasswordType",
      *   //   "etag": "my_etag",
      *   //   "host": "my_host",
@@ -15546,6 +15967,7 @@ export namespace sqladmin_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseRoles": [],
      *       //   "dualPasswordType": "my_dualPasswordType",
      *       //   "etag": "my_etag",
      *       //   "host": "my_host",
@@ -15858,6 +16280,8 @@ export namespace sqladmin_v1 {
      *
      *   // Do the magic
      *   const res = await sql.users.update({
+     *     // Optional. List of database roles to grant to the user. body.database_roles will be ignored for update request.
+     *     databaseRoles: 'placeholder-value',
      *     // Optional. Host of the user in the instance.
      *     host: 'placeholder-value',
      *     // Database instance ID. This does not include the project ID.
@@ -15871,6 +16295,7 @@ export namespace sqladmin_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseRoles": [],
      *       //   "dualPasswordType": "my_dualPasswordType",
      *       //   "etag": "my_etag",
      *       //   "host": "my_host",
@@ -16070,6 +16495,10 @@ export namespace sqladmin_v1 {
     project?: string;
   }
   export interface Params$Resource$Users$Update extends StandardParameters {
+    /**
+     * Optional. List of database roles to grant to the user. body.database_roles will be ignored for update request.
+     */
+    databaseRoles?: string[];
     /**
      * Optional. Host of the user in the instance.
      */
