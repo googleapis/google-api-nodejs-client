@@ -1951,6 +1951,34 @@
               "resources": {
                 "reports": {
                   "methods": {
+                    "artifactLink": {
+                      "description": "Gets the link to the generated artifact of a given type for a Report.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}:artifactLink",
+                      "httpMethod": "POST",
+                      "id": "migrationcenter.projects.locations.reportConfigs.reports.artifactLink",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+/reports/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:artifactLink",
+                      "request": {
+                        "$ref": "GenerateReportArtifactLinkRequest"
+                      },
+                      "response": {
+                        "$ref": "ReportArtifactLink"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a report.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports",
@@ -2412,7 +2440,7 @@
       }
     }
   },
-  "revision": "20251023",
+  "revision": "20251106",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -3999,6 +4027,29 @@
             "$ref": "FstabEntry"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateReportArtifactLinkRequest": {
+      "description": "A request to generate a link to an artifact for a Report.",
+      "id": "GenerateReportArtifactLinkRequest",
+      "properties": {
+        "artifactType": {
+          "description": "Required. Type of the artifact requested.",
+          "enum": [
+            "ARTIFACT_TYPE_UNSPECIFIED",
+            "PRESENTATION",
+            "SPREADSHEET",
+            "CSV"
+          ],
+          "enumDescriptions": [
+            "Unspecified (default value).",
+            "Google Slides presentation.",
+            "Google Sheets document.",
+            "Comma Separated Value Text File."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -6030,6 +6081,24 @@
         },
         "updateTime": {
           "description": "Output only. Last update timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportArtifactLink": {
+      "description": "Describes a link to a generated artifact of the report.",
+      "id": "ReportArtifactLink",
+      "properties": {
+        "uri": {
+          "description": "Output only. URI of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uriExpirationTime": {
+          "description": "Output only. Expiration time of the URI.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"

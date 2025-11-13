@@ -1833,6 +1833,19 @@ export namespace migrationcenter_v1alpha1 {
     totalRowsCount?: number | null;
   }
   /**
+   * Request to export a detailed pricing report.
+   */
+  export interface Schema$ExportReportRequest {}
+  /**
+   * Response message for exporting report.
+   */
+  export interface Schema$ExportReportResponse {
+    /**
+     * For large generated report, we may return multiple links
+     */
+    reportArtifactLinks?: Schema$ReportArtifactLink[];
+  }
+  /**
    * A resource that aggregates the validation errors found in an import job file.
    */
   export interface Schema$FileValidationReport {
@@ -1934,6 +1947,15 @@ export namespace migrationcenter_v1alpha1 {
      * The payload path in Google Cloud Storage.
      */
     path?: string | null;
+  }
+  /**
+   * A request to generate a link to an artifact for a Report.
+   */
+  export interface Schema$GenerateReportArtifactLinkRequest {
+    /**
+     * Required. Type of the artifact requested.
+     */
+    artifactType?: string | null;
   }
   /**
    * A generic insight about an asset.
@@ -2634,6 +2656,19 @@ export namespace migrationcenter_v1alpha1 {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Response message for listing report export jobs.
+   */
+  export interface Schema$ListReportExportJobsResponse {
+    /**
+     * Output only. A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. The list of report export jobs.
+     */
+    reportExportJobs?: Schema$ReportExportJob[];
   }
   /**
    * Response message for listing Reports.
@@ -3581,6 +3616,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     summary?: Schema$ReportSummary;
     /**
+     * Output only. Detailed data related to TCO reports.
+     */
+    tcoDetails?: Schema$ReportTotalCostOfOwnershipDetails;
+    /**
      * Report type.
      */
     type?: string | null;
@@ -3588,6 +3627,23 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Last update timestamp.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Describes a link to a generated artifact of the report.
+   */
+  export interface Schema$ReportArtifactLink {
+    /**
+     * Output only. Human friendly display name of the artifact.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. URI of the artifact.
+     */
+    uri?: string | null;
+    /**
+     * Output only. Expiration time of the URI.
+     */
+    uriExpirationTime?: string | null;
   }
   /**
    * A response to a call to `ReportAssetFrame`.
@@ -3634,6 +3690,69 @@ export namespace migrationcenter_v1alpha1 {
      * Required. Name of the Preference Set.
      */
     preferenceSet?: string | null;
+  }
+  /**
+   * Execution status of report export operation.
+   */
+  export interface Schema$ReportExportExecution {
+    /**
+     * Output only. Completion time of the export.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Globally unique identifier of the execution.
+     */
+    executionId?: string | null;
+    /**
+     * Output only. Expiration time for the export and artifacts.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. Represents the progress of the execution. It reaches 100 when the execution is successfully completed. When the execution finishes with a failure, the progress is set to 0.
+     */
+    progressPercentage?: number | null;
+    /**
+     * Output only. Result of the export execution.
+     */
+    result?: Schema$ReportExportExecutionResult;
+    /**
+     * Output only. Execution start timestamp.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Contains the result of the report export.
+   */
+  export interface Schema$ReportExportExecutionResult {
+    /**
+     * Output only. Error encountered during export.
+     */
+    error?: Schema$Status;
+    /**
+     * Output only. List of output files.
+     */
+    outputFiles?: Schema$OutputFileList;
+    /**
+     * Output only. Signed URLs for downloading export artifacts.
+     */
+    signedUris?: Schema$SignedUris;
+  }
+  /**
+   * Report export job message.
+   */
+  export interface Schema$ReportExportJob {
+    /**
+     * Output only. Identifier. Resource name.
+     */
+    name?: string | null;
+    /**
+     * Output only. Recent not expired executions of the export report job.
+     */
+    recentExecutions?: Schema$ReportExportExecution[];
+    /**
+     * Export with a SignedUri.
+     */
+    signedUriDestination?: Schema$SignedUriDestination;
   }
   /**
    * Describes the Summary view of a Report, which contains aggregated values for all the groups and preference sets included in this Report.
@@ -4029,6 +4148,15 @@ export namespace migrationcenter_v1alpha1 {
     vmwareNode?: Schema$ReportSummaryVMWareNode;
   }
   /**
+   * Detailed data related to Total Cost of Ownership (TCO) pricing.
+   */
+  export interface Schema$ReportTotalCostOfOwnershipDetails {
+    /**
+     * Output only. Whether the report has detailed pricing data.
+     */
+    hasPricingData?: boolean | null;
+  }
+  /**
    * Location of a resource.
    */
   export interface Schema$ResourceLocation {
@@ -4151,6 +4279,24 @@ export namespace migrationcenter_v1alpha1 {
      * Running service entries.
      */
     services?: Schema$RunningService[];
+  }
+  /**
+   * A request to run a report export job.
+   */
+  export interface Schema$RunReportExportJobRequest {
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
+   * Response message for running a report export job.
+   */
+  export interface Schema$RunReportExportJobResponse {
+    /**
+     * Output only. Execution status of the export operation.
+     */
+    reportExportExecution?: Schema$ReportExportExecution;
   }
   /**
    * Runtime networking information.
@@ -14260,8 +14406,167 @@ export namespace migrationcenter_v1alpha1 {
 
   export class Resource$Projects$Locations$Reportconfigs$Reports {
     context: APIRequestContext;
+    reportExportJobs: Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.reportExportJobs =
+        new Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs(
+          this.context
+        );
+    }
+
+    /**
+     * Gets the link to the generated artifact of a given type for a Report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await migrationcenter.projects.locations.reportConfigs.reports.artifactLink(
+     *       {
+     *         // Required. Name of the resource.
+     *         name: 'projects/my-project/locations/my-location/reportConfigs/my-reportConfig/reports/my-report',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "artifactType": "my_artifactType"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "uri": "my_uri",
+     *   //   "uriExpirationTime": "my_uriExpirationTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    artifactLink(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    artifactLink(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportArtifactLink>>;
+    artifactLink(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    artifactLink(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink,
+      options: MethodOptions | BodyResponseCallback<Schema$ReportArtifactLink>,
+      callback: BodyResponseCallback<Schema$ReportArtifactLink>
+    ): void;
+    artifactLink(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink,
+      callback: BodyResponseCallback<Schema$ReportArtifactLink>
+    ): void;
+    artifactLink(
+      callback: BodyResponseCallback<Schema$ReportArtifactLink>
+    ): void;
+    artifactLink(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink
+        | BodyResponseCallback<Schema$ReportArtifactLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReportArtifactLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReportArtifactLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReportArtifactLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}:artifactLink').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReportArtifactLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReportArtifactLink>(parameters);
+      }
     }
 
     /**
@@ -14314,6 +14619,7 @@ export namespace migrationcenter_v1alpha1 {
      *         //   "name": "my_name",
      *         //   "state": "my_state",
      *         //   "summary": {},
+     *         //   "tcoDetails": {},
      *         //   "type": "my_type",
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -14572,6 +14878,156 @@ export namespace migrationcenter_v1alpha1 {
     }
 
     /**
+     * Export a Report into a supported format.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await migrationcenter.projects.locations.reportConfigs.reports.export({
+     *       // Required. Name of the resource.
+     *       name: 'projects/my-project/locations/my-location/reportConfigs/my-reportConfig/reports/my-report',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Export,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    export(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Export,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    export(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Export,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Export,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(callback: BodyResponseCallback<Schema$Operation>): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Export
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}:export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Gets details of a single Report.
      * @example
      * ```js
@@ -14618,6 +15074,7 @@ export namespace migrationcenter_v1alpha1 {
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "summary": {},
+     *   //   "tcoDetails": {},
      *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -14871,6 +15328,18 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateReportArtifactLinkRequest;
+  }
   export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Create
     extends StandardParameters {
     /**
@@ -14901,6 +15370,18 @@ export namespace migrationcenter_v1alpha1 {
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Export
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportReportRequest;
   }
   export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Get
     extends StandardParameters {
@@ -14939,6 +15420,834 @@ export namespace migrationcenter_v1alpha1 {
      * Determines what information to retrieve for each Report.
      */
     view?: string;
+  }
+
+  export class Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Export a Report into a supported destination.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await migrationcenter.projects.locations.reportConfigs.reports.reportExportJobs.create(
+     *       {
+     *         // Required. The parent resource where this export job will be created.
+     *         parent:
+     *           'projects/my-project/locations/my-location/reportConfigs/my-reportConfig/reports/my-report',
+     *         // Required. The ID to use for the report export job.
+     *         reportExportJobId: 'placeholder-value',
+     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "name": "my_name",
+     *           //   "recentExecutions": [],
+     *           //   "signedUriDestination": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/reportExportJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an report export job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await migrationcenter.projects.locations.reportConfigs.reports.reportExportJobs.delete(
+     *       {
+     *         // Required. Name of the resource.
+     *         name: 'projects/my-project/locations/my-location/reportConfigs/my-reportConfig/reports/my-report/reportExportJobs/my-reportExportJob',
+     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of a report export job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await migrationcenter.projects.locations.reportConfigs.reports.reportExportJobs.get(
+     *       {
+     *         // Required. Name of the resource.
+     *         name: 'projects/my-project/locations/my-location/reportConfigs/my-reportConfig/reports/my-report/reportExportJobs/my-reportExportJob',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "recentExecutions": [],
+     *   //   "signedUriDestination": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportExportJob>>;
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ReportExportJob>,
+      callback: BodyResponseCallback<Schema$ReportExportJob>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Get,
+      callback: BodyResponseCallback<Schema$ReportExportJob>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ReportExportJob>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Get
+        | BodyResponseCallback<Schema$ReportExportJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReportExportJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReportExportJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReportExportJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReportExportJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReportExportJob>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the report export jobs for a given report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await migrationcenter.projects.locations.reportConfigs.reports.reportExportJobs.list(
+     *       {
+     *         // Optional. Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A token identifying a page of results that the server should return.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent report owning the export jobs.
+     *         parent:
+     *           'projects/my-project/locations/my-location/reportConfigs/my-reportConfig/reports/my-report',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reportExportJobs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListReportExportJobsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReportExportJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListReportExportJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$List,
+      callback: BodyResponseCallback<Schema$ListReportExportJobsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListReportExportJobsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$List
+        | BodyResponseCallback<Schema$ListReportExportJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReportExportJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReportExportJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListReportExportJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/reportExportJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReportExportJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListReportExportJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Runs a report export job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await migrationcenter.projects.locations.reportConfigs.reports.reportExportJobs.run(
+     *       {
+     *         // Required. Name of the resource.
+     *         name: 'projects/my-project/locations/my-location/reportConfigs/my-reportConfig/reports/my-report/reportExportJobs/my-reportExportJob',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requestId": "my_requestId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    run(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Run,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    run(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Run,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    run(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Run,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(callback: BodyResponseCallback<Schema$Operation>): void;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Run
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Run;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}:run').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this export job will be created.
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the report export job.
+     */
+    reportExportJobId?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReportExportJob;
+  }
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$List
+    extends StandardParameters {
+    /**
+     * Optional. Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results that the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent report owning the export jobs.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Run
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RunReportExportJobRequest;
   }
 
   export class Resource$Projects$Locations$Sources {
