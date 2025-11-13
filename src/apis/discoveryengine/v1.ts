@@ -3131,6 +3131,10 @@ export namespace discoveryengine_v1 {
      */
     enableImageAnnotation?: boolean | null;
     /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     */
+    enableLlmLayoutParsing?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the table during parsing.
      */
     enableTableAnnotation?: boolean | null;
@@ -3198,6 +3202,10 @@ export namespace discoveryengine_v1 {
      */
     chatEngineMetadata?: Schema$GoogleCloudDiscoveryengineV1alphaEngineChatEngineMetadata;
     /**
+     * Output only. CMEK-related information for the Engine.
+     */
+    cmekConfig?: Schema$GoogleCloudDiscoveryengineV1alphaCmekConfig;
+    /**
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineCommonConfig;
@@ -3233,6 +3241,10 @@ export namespace discoveryengine_v1 {
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig;
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.
+     */
+    modelConfigs?: {[key: string]: string} | null;
     /**
      * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -7639,6 +7651,10 @@ export namespace discoveryengine_v1 {
      */
     enableImageAnnotation?: boolean | null;
     /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     */
+    enableLlmLayoutParsing?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the table during parsing.
      */
     enableTableAnnotation?: boolean | null;
@@ -7706,6 +7722,10 @@ export namespace discoveryengine_v1 {
      */
     chatEngineMetadata?: Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineMetadata;
     /**
+     * Output only. CMEK-related information for the Engine.
+     */
+    cmekConfig?: Schema$GoogleCloudDiscoveryengineV1betaCmekConfig;
+    /**
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineCommonConfig;
@@ -7741,6 +7761,10 @@ export namespace discoveryengine_v1 {
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig;
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.
+     */
+    modelConfigs?: {[key: string]: string} | null;
     /**
      * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -11232,6 +11256,10 @@ export namespace discoveryengine_v1 {
      */
     enableImageAnnotation?: boolean | null;
     /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     */
+    enableLlmLayoutParsing?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the table during parsing.
      */
     enableTableAnnotation?: boolean | null;
@@ -11312,6 +11340,10 @@ export namespace discoveryengine_v1 {
      */
     chatEngineMetadata?: Schema$GoogleCloudDiscoveryengineV1EngineChatEngineMetadata;
     /**
+     * Output only. CMEK-related information for the Engine.
+     */
+    cmekConfig?: Schema$GoogleCloudDiscoveryengineV1CmekConfig;
+    /**
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1EngineCommonConfig;
@@ -11347,6 +11379,10 @@ export namespace discoveryengine_v1 {
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig;
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.
+     */
+    modelConfigs?: {[key: string]: string} | null;
     /**
      * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -12140,6 +12176,19 @@ export namespace discoveryengine_v1 {
     subscriptionTier?: string | null;
   }
   /**
+   * Stats about users' licenses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1LicenseConfigUsageStats {
+    /**
+     * Required. The LicenseConfig name.
+     */
+    licenseConfig?: string | null;
+    /**
+     * Required. The number of licenses used.
+     */
+    usedLicenseCount?: string | null;
+  }
+  /**
    * Response message for CmekConfigService.ListCmekConfigs method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ListCmekConfigsResponse {
@@ -12247,6 +12296,15 @@ export namespace discoveryengine_v1 {
      * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for UserLicenseService.ListLicenseConfigUsageStats method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse {
+    /**
+     * All the customer's LicenseConfigUsageStats.
+     */
+    licenseConfigUsageStats?: Schema$GoogleCloudDiscoveryengineV1LicenseConfigUsageStats[];
   }
   /**
    * Response message for SchemaService.ListSchemas method.
@@ -14585,6 +14643,481 @@ export namespace discoveryengine_v1 {
      * Immutable. The full resource name of the User Store, in the format of `projects/{project\}/locations/{location\}/userStores/{user_store\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
+  }
+  /**
+   * WidgetConfig captures configs at the Widget level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfig {
+    /**
+     * Will be used for all widget access settings seen in cloud console integration page. Replaces top deprecated top level properties.
+     */
+    accessSettings?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigAccessSettings;
+    /**
+     * Allowlisted domains that can load this widget.
+     */
+    allowlistedDomains?: string[] | null;
+    /**
+     * Whether allow no-auth integration with widget. If set true, public access to search or other solutions from widget is allowed without authenication token provided by customer hosted backend server.
+     */
+    allowPublicAccess?: boolean | null;
+    /**
+     * Optional. Output only. Describes the assistant settings of the widget.
+     */
+    assistantSettings?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigAssistantSettings;
+    /**
+     * Output only. Collection components that lists all collections and child data stores associated with the widget config, those data sources can be used for filtering in widget service APIs, users can return results that from selected data sources.
+     */
+    collectionComponents?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigCollectionComponent[];
+    /**
+     * Output only. Unique obfuscated identifier of a WidgetConfig.
+     */
+    configId?: string | null;
+    /**
+     * The content search spec that configs the desired behavior of content search.
+     */
+    contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpec;
+    /**
+     * Output only. Timestamp the WidgetConfig was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Output only. Describes the customer related configurations, currently only used for government customers. This field cannot be modified after project onboarding.
+     */
+    customerProvidedConfig?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfig;
+    /**
+     * Output only. The type of the parent data store.
+     */
+    dataStoreType?: string | null;
+    /**
+     * Configurable UI configurations per data store.
+     */
+    dataStoreUiConfigs?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigDataStoreUiConfig[];
+    /**
+     * The default ordering for search results if specified. Used to set SearchRequest#order_by on applicable requests. https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/projects.locations.dataStores.servingConfigs/search#request-body
+     */
+    defaultSearchRequestOrderBy?: string | null;
+    /**
+     * Required. The human readable widget config display name. Used in Discovery UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    displayName?: string | null;
+    /**
+     * Whether or not to enable autocomplete.
+     */
+    enableAutocomplete?: boolean | null;
+    /**
+     * Whether to allow conversational search (LLM, multi-turn) or not (non-LLM, single-turn).
+     */
+    enableConversationalSearch?: boolean | null;
+    /**
+     * Optional. Output only. Whether to enable private knowledge graph.
+     */
+    enablePrivateKnowledgeGraph?: boolean | null;
+    /**
+     * Turn on or off collecting the search result quality feedback from end users.
+     */
+    enableQualityFeedback?: boolean | null;
+    /**
+     * Whether to show the result score.
+     */
+    enableResultScore?: boolean | null;
+    /**
+     * Whether to enable safe search.
+     */
+    enableSafeSearch?: boolean | null;
+    /**
+     * Whether to enable search-as-you-type behavior for the search widget
+     */
+    enableSearchAsYouType?: boolean | null;
+    /**
+     * Turn on or off summary for each snippets result.
+     */
+    enableSnippetResultSummary?: boolean | null;
+    /**
+     * Turn on or off summarization for the search response.
+     */
+    enableSummarization?: boolean | null;
+    /**
+     * Whether to enable standalone web app.
+     */
+    enableWebApp?: boolean | null;
+    /**
+     * The configuration and appearance of facets in the end user view.
+     */
+    facetField?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigFacetField[];
+    /**
+     * The key is the UI component. Mock. Currently supported `title`, `thumbnail`, `url`, `custom1`, `custom2`, `custom3`. The value is the name of the field along with its device visibility. The 3 custom fields are optional and can be added or removed. `title`, `thumbnail`, `url` are required UI components that cannot be removed.
+     */
+    fieldsUiComponentsMap?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDiscoveryengineV1WidgetConfigUIComponentField;
+    } | null;
+    /**
+     * Output only. Whether the subscription is gemini bundle or not.
+     */
+    geminiBundle?: boolean | null;
+    /**
+     * Optional. Describes the homepage settings of the widget.
+     */
+    homepageSetting?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigHomepageSetting;
+    /**
+     * Output only. The industry vertical that the WidgetConfig registers. The WidgetConfig industry vertical is based on the associated Engine.
+     */
+    industryVertical?: string | null;
+    /**
+     * Output only. Whether LLM is enabled in the corresponding data store.
+     */
+    llmEnabled?: boolean | null;
+    /**
+     * Output only. Whether the customer accepted data use terms.
+     */
+    minimumDataTermAccepted?: boolean | null;
+    /**
+     * Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * The type of snippet to display in UCS widget. - RESULT_DISPLAY_TYPE_UNSPECIFIED for existing users. - SNIPPET for new non-enterprise search users. - EXTRACTIVE_ANSWER for new enterprise search users.
+     */
+    resultDisplayType?: string | null;
+    /**
+     * Required. Immutable. Specifies the solution type that this WidgetConfig can be used for.
+     */
+    solutionType?: string | null;
+    /**
+     * Describes search widget UI branding settings, such as the widget title, logo, favicons, and colors.
+     */
+    uiBranding?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigUiBrandingSettings;
+    /**
+     * Describes general widget search settings as seen in cloud console widget configuration page. Replaces top deprecated top level properties.
+     */
+    uiSettings?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigUiSettings;
+    /**
+     * Output only. Timestamp the WidgetConfig was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Describes widget access settings.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigAccessSettings {
+    /**
+     * List of domains that are allowed to integrate the search widget.
+     */
+    allowlistedDomains?: string[] | null;
+    /**
+     * Whether public unauthenticated access is allowed.
+     */
+    allowPublicAccess?: boolean | null;
+    /**
+     * Whether web app access is enabled.
+     */
+    enableWebApp?: boolean | null;
+    /**
+     * Optional. Language code for user interface. Use language tags defined by [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). If unset, the default language code is "en-US".
+     */
+    languageCode?: string | null;
+    /**
+     * Optional. The workforce identity pool provider used to access the widget.
+     */
+    workforceIdentityPoolProvider?: string | null;
+  }
+  /**
+   * Describes the assistant settings of the widget.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigAssistantSettings {
+    /**
+     * Output only. This field controls the default web grounding toggle for end users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web grounding enabled by default on UI. If true, grounding toggle will be disabled by default on UI. End users can still enable web grounding in the UI if web grounding is enabled.
+     */
+    defaultWebGroundingToggleOff?: boolean | null;
+    /**
+     * Optional. Output only. Whether to disable user location context.
+     */
+    disableLocationContext?: boolean | null;
+    /**
+     * Whether or not the Google search grounding toggle is shown. Deprecated. Use web_grounding_type instead.
+     */
+    googleSearchGroundingEnabled?: boolean | null;
+    /**
+     * Optional. The type of web grounding to use.
+     */
+    webGroundingType?: string | null;
+  }
+  /**
+   * Read-only collection component that contains data store collections fields that may be used for filtering
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigCollectionComponent {
+    /**
+     * Output only. The icon link of the connector source.
+     */
+    connectorIconLink?: string | null;
+    /**
+     * The name of the data source, retrieved from `Collection.data_connector.data_source`.
+     */
+    dataSource?: string | null;
+    /**
+     * Output only. The display name of the data source.
+     */
+    dataSourceDisplayName?: string | null;
+    /**
+     * For the data store collection, list of the children data stores.
+     */
+    dataStoreComponents?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigDataStoreComponent[];
+    /**
+     * The display name of the collection.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. the identifier of the collection, used for widget service. For now it refers to collection_id, in the future we will migrate the field to encrypted collection name UUID.
+     */
+    id?: string | null;
+    /**
+     * The name of the collection. It should be collection resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.
+     */
+    name?: string | null;
+  }
+  /**
+   * Customer provided configurations.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfig {
+    /**
+     * Customer type.
+     */
+    customerType?: string | null;
+  }
+  /**
+   * Read-only data store component that contains data stores fields that may be used for filtering, it's the child of `CollectionComponent`.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigDataStoreComponent {
+    /**
+     * Output only. The type of the data store config.
+     */
+    dataStoreConfigType?: string | null;
+    /**
+     * The display name of the data store.
+     */
+    displayName?: string | null;
+    /**
+     * The name of the entity, retrieved from `Collection.data_connector.entities.entityName`.
+     */
+    entityName?: string | null;
+    /**
+     * Output only. the identifier of the data store, used for widget service. For now it refers to data_store_id, in the future we will migrate the field to encrypted data store name UUID.
+     */
+    id?: string | null;
+    /**
+     * The name of the data store. It should be data store resource name Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.
+     */
+    name?: string | null;
+  }
+  /**
+   * UI component configuration for data store.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigDataStoreUiConfig {
+    /**
+     * Facet fields that store the mapping of fields to end user widget appearance.
+     */
+    facetField?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigFacetField[];
+    /**
+     * The key is the UI component. Mock. Currently supported `title`, `thumbnail`, `url`, `custom1`, `custom2`, `custom3`. The value is the name of the field along with its device visibility. The 3 custom fields are optional and can be added or removed. `title`, `thumbnail`, `url` are required UI components that cannot be removed.
+     */
+    fieldsUiComponentsMap?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDiscoveryengineV1WidgetConfigUIComponentField;
+    } | null;
+    /**
+     * Output only. the identifier of the data store, used for widget service. For now it refers to data_store_id, in the future we will migrate the field to encrypted data store name UUID.
+     */
+    id?: string | null;
+    /**
+     * The name of the data store. It should be data store resource name Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.
+     */
+    name?: string | null;
+  }
+  /**
+   * Facet fields that store the mapping of fields to end user widget appearance.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigFacetField {
+    /**
+     * Optional. The field name that end users will see.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Registered field name. The format is `field.abc`.
+     */
+    field?: string | null;
+  }
+  /**
+   * Describes the homepage setting of the widget. It includes all homepage related settings and configurations, such as shortcuts.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigHomepageSetting {
+    /**
+     * Optional. The shortcuts to display on the homepage.
+     */
+    shortcuts?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigHomepageSettingShortcut[];
+  }
+  /**
+   * Describes an entity of shortcut (aka pinned content) on the homepage. The home page will render these shortcuts in the same order as what the API returns. If a customer wants to reorder or remove a shortcut, the UI should always provide the new full list of shortcuts.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigHomepageSettingShortcut {
+    /**
+     * Optional. Destination URL of shortcut.
+     */
+    destinationUri?: string | null;
+    /**
+     * Optional. Icon URL of shortcut.
+     */
+    icon?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigImage;
+    /**
+     * Optional. Title of the shortcut.
+     */
+    title?: string | null;
+  }
+  /**
+   * Options to store an image.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigImage {
+    /**
+     * Image URL.
+     */
+    url?: string | null;
+  }
+  /**
+   * Describes widget UI branding settings.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigUiBrandingSettings {
+    /**
+     * Logo image.
+     */
+    logo?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigImage;
+  }
+  /**
+   * Facet field that maps to a UI Component.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigUIComponentField {
+    /**
+     * The field visibility on different types of devices.
+     */
+    deviceVisibility?: string[] | null;
+    /**
+     * The template to customize how the field is displayed. An example value would be a string that looks like: "Price: {value\}".
+     */
+    displayTemplate?: string | null;
+    /**
+     * Required. Registered field name. The format is `field.abc`.
+     */
+    field?: string | null;
+  }
+  /**
+   * Describes general widget (or web app) UI settings as seen in the cloud console UI configuration page.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigUiSettings {
+    /**
+     * Per data store configuration.
+     */
+    dataStoreUiConfigs?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigDataStoreUiConfig[];
+    /**
+     * The default ordering for search results if specified. Used to set SearchRequest#order_by on applicable requests. https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/projects.locations.dataStores.servingConfigs/search#request-body
+     */
+    defaultSearchRequestOrderBy?: string | null;
+    /**
+     * If set to true, the widget will not collect user events.
+     */
+    disableUserEventsCollection?: boolean | null;
+    /**
+     * Whether or not to enable autocomplete.
+     */
+    enableAutocomplete?: boolean | null;
+    /**
+     * Optional. If set to true, the widget will enable the create agent button.
+     */
+    enableCreateAgentButton?: boolean | null;
+    /**
+     * Optional. If set to true, the widget will enable people search.
+     */
+    enablePeopleSearch?: boolean | null;
+    /**
+     * Turn on or off collecting the search result quality feedback from end users.
+     */
+    enableQualityFeedback?: boolean | null;
+    /**
+     * Whether to enable safe search.
+     */
+    enableSafeSearch?: boolean | null;
+    /**
+     * Whether to enable search-as-you-type behavior for the search widget.
+     */
+    enableSearchAsYouType?: boolean | null;
+    /**
+     * If set to true, the widget will enable visual content summary on applicable search requests. Only used by healthcare search.
+     */
+    enableVisualContentSummary?: boolean | null;
+    /**
+     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
+     */
+    features?: {[key: string]: string} | null;
+    /**
+     * Describes generative answer configuration.
+     */
+    generativeAnswerConfig?: Schema$GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsGenerativeAnswerConfig;
+    /**
+     * Describes widget (or web app) interaction type
+     */
+    interactionType?: string | null;
+    /**
+     * Output only. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.
+     */
+    modelConfigs?: {[key: string]: string} | null;
+    /**
+     * Controls whether result extract is display and how (snippet or extractive answer). Default to no result if unspecified.
+     */
+    resultDescriptionType?: string | null;
+  }
+  /**
+   * Describes configuration for generative answer.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsGenerativeAnswerConfig {
+    /**
+     * Whether generated answer contains suggested related questions.
+     */
+    disableRelatedQuestions?: boolean | null;
+    /**
+     * Optional. Specifies whether to filter out queries that are adversarial.
+     */
+    ignoreAdversarialQuery?: boolean | null;
+    /**
+     * Optional. Specifies whether to filter out queries that are not relevant to the content.
+     */
+    ignoreLowRelevantContent?: boolean | null;
+    /**
+     * Optional. Specifies whether to filter out queries that are not answer-seeking. The default value is `false`. No answer is returned if the search query is classified as a non-answer seeking query. If this field is set to `true`, we skip generating answers for non-answer seeking queries and return fallback messages instead.
+     */
+    ignoreNonAnswerSeekingQuery?: boolean | null;
+    /**
+     * Optional. Source of image returned in the answer.
+     */
+    imageSource?: string | null;
+    /**
+     * Language code for Summary. Use language tags defined by [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). Note: This is an experimental feature.
+     */
+    languageCode?: string | null;
+    /**
+     * Max rephrase steps. The max number is 5 steps. If not set or set to < 1, it will be set to 1 by default.
+     */
+    maxRephraseSteps?: number | null;
+    /**
+     * Text at the beginning of the prompt that instructs the model that generates the answer.
+     */
+    modelPromptPreamble?: string | null;
+    /**
+     * The model version used to generate the answer.
+     */
+    modelVersion?: string | null;
+    /**
+     * The number of top results to generate the answer from. Up to 10.
+     */
+    resultCount?: number | null;
   }
   /**
    * Config to store data store type configuration for workspace data
@@ -17987,6 +18520,7 @@ export namespace discoveryengine_v1 {
     siteSearchEngine: Resource$Projects$Locations$Collections$Datastores$Sitesearchengine;
     suggestionDenyListEntries: Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries;
     userEvents: Resource$Projects$Locations$Collections$Datastores$Userevents;
+    widgetConfigs: Resource$Projects$Locations$Collections$Datastores$Widgetconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.branches =
@@ -18043,6 +18577,10 @@ export namespace discoveryengine_v1 {
         );
       this.userEvents =
         new Resource$Projects$Locations$Collections$Datastores$Userevents(
+          this.context
+        );
+      this.widgetConfigs =
+        new Resource$Projects$Locations$Collections$Datastores$Widgetconfigs(
           this.context
         );
     }
@@ -33072,6 +33610,471 @@ export namespace discoveryengine_v1 {
     requestBody?: Schema$GoogleCloudDiscoveryengineV1UserEvent;
   }
 
+  export class Resource$Projects$Locations$Collections$Datastores$Widgetconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.widgetConfigs.get(
+     *       {
+     *         // Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.
+     *         acceptCache: 'placeholder-value',
+     *         // Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.
+     *         'getWidgetConfigRequestOption.turnOffCollectionComponents':
+     *           'placeholder-value',
+     *         // Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/widgetConfigs/my-widgetConfig',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "geminiBundle": false,
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.widgetConfigs.patch(
+     *       {
+     *         // Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/widgetConfigs/my-widgetConfig',
+     *         // Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "accessSettings": {},
+     *           //   "allowPublicAccess": false,
+     *           //   "allowlistedDomains": [],
+     *           //   "assistantSettings": {},
+     *           //   "collectionComponents": [],
+     *           //   "configId": "my_configId",
+     *           //   "contentSearchSpec": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "customerProvidedConfig": {},
+     *           //   "dataStoreType": "my_dataStoreType",
+     *           //   "dataStoreUiConfigs": [],
+     *           //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *           //   "displayName": "my_displayName",
+     *           //   "enableAutocomplete": false,
+     *           //   "enableConversationalSearch": false,
+     *           //   "enablePrivateKnowledgeGraph": false,
+     *           //   "enableQualityFeedback": false,
+     *           //   "enableResultScore": false,
+     *           //   "enableSafeSearch": false,
+     *           //   "enableSearchAsYouType": false,
+     *           //   "enableSnippetResultSummary": false,
+     *           //   "enableSummarization": false,
+     *           //   "enableWebApp": false,
+     *           //   "facetField": [],
+     *           //   "fieldsUiComponentsMap": {},
+     *           //   "geminiBundle": false,
+     *           //   "homepageSetting": {},
+     *           //   "industryVertical": "my_industryVertical",
+     *           //   "llmEnabled": false,
+     *           //   "minimumDataTermAccepted": false,
+     *           //   "name": "my_name",
+     *           //   "resultDisplayType": "my_resultDisplayType",
+     *           //   "solutionType": "my_solutionType",
+     *           //   "uiBranding": {},
+     *           //   "uiSettings": {},
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "geminiBundle": false,
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Get
+    extends StandardParameters {
+    /**
+     * Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.
+     */
+    acceptCache?: boolean;
+    /**
+     * Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.
+     */
+    'getWidgetConfigRequestOption.turnOffCollectionComponents'?: boolean;
+    /**
+     * Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1WidgetConfig;
+  }
+
   export class Resource$Projects$Locations$Collections$Engines {
     context: APIRequestContext;
     assistants: Resource$Projects$Locations$Collections$Engines$Assistants;
@@ -33081,6 +34084,7 @@ export namespace discoveryengine_v1 {
     operations: Resource$Projects$Locations$Collections$Engines$Operations;
     servingConfigs: Resource$Projects$Locations$Collections$Engines$Servingconfigs;
     sessions: Resource$Projects$Locations$Collections$Engines$Sessions;
+    widgetConfigs: Resource$Projects$Locations$Collections$Engines$Widgetconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assistants =
@@ -33109,6 +34113,10 @@ export namespace discoveryengine_v1 {
         );
       this.sessions =
         new Resource$Projects$Locations$Collections$Engines$Sessions(
+          this.context
+        );
+      this.widgetConfigs =
+        new Resource$Projects$Locations$Collections$Engines$Widgetconfigs(
           this.context
         );
     }
@@ -33161,6 +34169,7 @@ export namespace discoveryengine_v1 {
      *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
+     *         //   "cmekConfig": {},
      *         //   "commonConfig": {},
      *         //   "configurableBillingApproach": "my_configurableBillingApproach",
      *         //   "createTime": "my_createTime",
@@ -33170,6 +34179,7 @@ export namespace discoveryengine_v1 {
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
      *         //   "mediaRecommendationEngineConfig": {},
+     *         //   "modelConfigs": {},
      *         //   "name": "my_name",
      *         //   "searchEngineConfig": {},
      *         //   "solutionType": "my_solutionType",
@@ -33482,6 +34492,7 @@ export namespace discoveryengine_v1 {
      *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
+     *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
@@ -33491,6 +34502,7 @@ export namespace discoveryengine_v1 {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
@@ -33811,6 +34823,7 @@ export namespace discoveryengine_v1 {
      *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
+     *         //   "cmekConfig": {},
      *         //   "commonConfig": {},
      *         //   "configurableBillingApproach": "my_configurableBillingApproach",
      *         //   "createTime": "my_createTime",
@@ -33820,6 +34833,7 @@ export namespace discoveryengine_v1 {
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
      *         //   "mediaRecommendationEngineConfig": {},
+     *         //   "modelConfigs": {},
      *         //   "name": "my_name",
      *         //   "searchEngineConfig": {},
      *         //   "solutionType": "my_solutionType",
@@ -33834,6 +34848,7 @@ export namespace discoveryengine_v1 {
      *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
+     *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
@@ -33843,6 +34858,7 @@ export namespace discoveryengine_v1 {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
@@ -39900,6 +40916,471 @@ export namespace discoveryengine_v1 {
     name?: string;
   }
 
+  export class Resource$Projects$Locations$Collections$Engines$Widgetconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.widgetConfigs.get(
+     *       {
+     *         // Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.
+     *         acceptCache: 'placeholder-value',
+     *         // Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.
+     *         'getWidgetConfigRequestOption.turnOffCollectionComponents':
+     *           'placeholder-value',
+     *         // Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/widgetConfigs/my-widgetConfig',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "geminiBundle": false,
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.widgetConfigs.patch(
+     *       {
+     *         // Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/widgetConfigs/my-widgetConfig',
+     *         // Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "accessSettings": {},
+     *           //   "allowPublicAccess": false,
+     *           //   "allowlistedDomains": [],
+     *           //   "assistantSettings": {},
+     *           //   "collectionComponents": [],
+     *           //   "configId": "my_configId",
+     *           //   "contentSearchSpec": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "customerProvidedConfig": {},
+     *           //   "dataStoreType": "my_dataStoreType",
+     *           //   "dataStoreUiConfigs": [],
+     *           //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *           //   "displayName": "my_displayName",
+     *           //   "enableAutocomplete": false,
+     *           //   "enableConversationalSearch": false,
+     *           //   "enablePrivateKnowledgeGraph": false,
+     *           //   "enableQualityFeedback": false,
+     *           //   "enableResultScore": false,
+     *           //   "enableSafeSearch": false,
+     *           //   "enableSearchAsYouType": false,
+     *           //   "enableSnippetResultSummary": false,
+     *           //   "enableSummarization": false,
+     *           //   "enableWebApp": false,
+     *           //   "facetField": [],
+     *           //   "fieldsUiComponentsMap": {},
+     *           //   "geminiBundle": false,
+     *           //   "homepageSetting": {},
+     *           //   "industryVertical": "my_industryVertical",
+     *           //   "llmEnabled": false,
+     *           //   "minimumDataTermAccepted": false,
+     *           //   "name": "my_name",
+     *           //   "resultDisplayType": "my_resultDisplayType",
+     *           //   "solutionType": "my_solutionType",
+     *           //   "uiBranding": {},
+     *           //   "uiSettings": {},
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "geminiBundle": false,
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Get
+    extends StandardParameters {
+    /**
+     * Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.
+     */
+    acceptCache?: boolean;
+    /**
+     * Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.
+     */
+    'getWidgetConfigRequestOption.turnOffCollectionComponents'?: boolean;
+    /**
+     * Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1WidgetConfig;
+  }
+
   export class Resource$Projects$Locations$Collections$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -40264,6 +41745,7 @@ export namespace discoveryengine_v1 {
     siteSearchEngine: Resource$Projects$Locations$Datastores$Sitesearchengine;
     suggestionDenyListEntries: Resource$Projects$Locations$Datastores$Suggestiondenylistentries;
     userEvents: Resource$Projects$Locations$Datastores$Userevents;
+    widgetConfigs: Resource$Projects$Locations$Datastores$Widgetconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.branches = new Resource$Projects$Locations$Datastores$Branches(
@@ -40307,6 +41789,8 @@ export namespace discoveryengine_v1 {
       this.userEvents = new Resource$Projects$Locations$Datastores$Userevents(
         this.context
       );
+      this.widgetConfigs =
+        new Resource$Projects$Locations$Datastores$Widgetconfigs(this.context);
     }
 
     /**
@@ -53474,6 +54958,467 @@ export namespace discoveryengine_v1 {
     requestBody?: Schema$GoogleCloudDiscoveryengineV1UserEvent;
   }
 
+  export class Resource$Projects$Locations$Datastores$Widgetconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.widgetConfigs.get({
+     *       // Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.
+     *       acceptCache: 'placeholder-value',
+     *       // Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.
+     *       'getWidgetConfigRequestOption.turnOffCollectionComponents':
+     *         'placeholder-value',
+     *       // Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/widgetConfigs/my-widgetConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "geminiBundle": false,
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.widgetConfigs.patch({
+     *       // Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/widgetConfigs/my-widgetConfig',
+     *       // Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "accessSettings": {},
+     *         //   "allowPublicAccess": false,
+     *         //   "allowlistedDomains": [],
+     *         //   "assistantSettings": {},
+     *         //   "collectionComponents": [],
+     *         //   "configId": "my_configId",
+     *         //   "contentSearchSpec": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "customerProvidedConfig": {},
+     *         //   "dataStoreType": "my_dataStoreType",
+     *         //   "dataStoreUiConfigs": [],
+     *         //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *         //   "displayName": "my_displayName",
+     *         //   "enableAutocomplete": false,
+     *         //   "enableConversationalSearch": false,
+     *         //   "enablePrivateKnowledgeGraph": false,
+     *         //   "enableQualityFeedback": false,
+     *         //   "enableResultScore": false,
+     *         //   "enableSafeSearch": false,
+     *         //   "enableSearchAsYouType": false,
+     *         //   "enableSnippetResultSummary": false,
+     *         //   "enableSummarization": false,
+     *         //   "enableWebApp": false,
+     *         //   "facetField": [],
+     *         //   "fieldsUiComponentsMap": {},
+     *         //   "geminiBundle": false,
+     *         //   "homepageSetting": {},
+     *         //   "industryVertical": "my_industryVertical",
+     *         //   "llmEnabled": false,
+     *         //   "minimumDataTermAccepted": false,
+     *         //   "name": "my_name",
+     *         //   "resultDisplayType": "my_resultDisplayType",
+     *         //   "solutionType": "my_solutionType",
+     *         //   "uiBranding": {},
+     *         //   "uiSettings": {},
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "geminiBundle": false,
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1WidgetConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Get
+    extends StandardParameters {
+    /**
+     * Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.
+     */
+    acceptCache?: boolean;
+    /**
+     * Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.
+     */
+    'getWidgetConfigRequestOption.turnOffCollectionComponents'?: boolean;
+    /**
+     * Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1WidgetConfig;
+  }
+
   export class Resource$Projects$Locations$Groundingconfigs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -57066,9 +59011,14 @@ export namespace discoveryengine_v1 {
 
   export class Resource$Projects$Locations$Userstores {
     context: APIRequestContext;
+    licenseConfigsUsageStats: Resource$Projects$Locations$Userstores$Licenseconfigsusagestats;
     userLicenses: Resource$Projects$Locations$Userstores$Userlicenses;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.licenseConfigsUsageStats =
+        new Resource$Projects$Locations$Userstores$Licenseconfigsusagestats(
+          this.context
+        );
       this.userLicenses =
         new Resource$Projects$Locations$Userstores$Userlicenses(this.context);
     }
@@ -57929,6 +59879,177 @@ export namespace discoveryengine_v1 {
     requestBody?: Schema$GoogleCloudDiscoveryengineV1UserStore;
   }
 
+  export class Resource$Projects$Locations$Userstores$Licenseconfigsusagestats {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all the LicenseConfigUsageStatss associated with the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.userStores.licenseConfigsUsageStats.list(
+     *       {
+     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/userStores/my-userStore',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "licenseConfigUsageStats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/licenseConfigsUsageStats').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List
+    extends StandardParameters {
+    /**
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Userstores$Userlicenses {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -57970,7 +60091,7 @@ export namespace discoveryengine_v1 {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.userStores.userLicenses.list({
-     *       // Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
+     *       // Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
      *       filter: 'placeholder-value',
      *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.
      *       pageSize: 'placeholder-value',
@@ -58100,7 +60221,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Userstores$Userlicenses$List
     extends StandardParameters {
     /**
-     * Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
+     * Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
      */
     filter?: string;
     /**
