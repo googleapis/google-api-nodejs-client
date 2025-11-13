@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v8.1.0...docs-v8.1.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* **docs:** update the API ([6a1c1db](https://github.com/googleapis/google-api-nodejs-client/commit/6a1c1db6c202819876de9f74c5b98a190762750e))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v8.0.0...docs-v8.1.0) (2025-10-20)
 
 

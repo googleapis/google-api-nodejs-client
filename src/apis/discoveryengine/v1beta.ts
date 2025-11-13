@@ -2627,6 +2627,19 @@ export namespace discoveryengine_v1beta {
     userTriggeredCrawlRate?: Schema$GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries;
   }
   /**
+   * Metadata related to the progress of the AgentService.DeleteAgent operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDeleteAgentMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Metadata related to the progress of the CmekConfigService.DeleteCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata {
@@ -2884,6 +2897,10 @@ export namespace discoveryengine_v1beta {
      */
     enableImageAnnotation?: boolean | null;
     /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     */
+    enableLlmLayoutParsing?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the table during parsing.
      */
     enableTableAnnotation?: boolean | null;
@@ -2951,6 +2968,10 @@ export namespace discoveryengine_v1beta {
      */
     chatEngineMetadata?: Schema$GoogleCloudDiscoveryengineV1alphaEngineChatEngineMetadata;
     /**
+     * Output only. CMEK-related information for the Engine.
+     */
+    cmekConfig?: Schema$GoogleCloudDiscoveryengineV1alphaCmekConfig;
+    /**
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineCommonConfig;
@@ -2986,6 +3007,10 @@ export namespace discoveryengine_v1beta {
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig;
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.
+     */
+    modelConfigs?: {[key: string]: string} | null;
     /**
      * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -4431,7 +4456,7 @@ export namespace discoveryengine_v1beta {
      */
     userLabels?: {[key: string]: string} | null;
     /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     userPseudoId?: string | null;
   }
@@ -5568,7 +5593,7 @@ export namespace discoveryengine_v1beta {
      */
     userInfo?: Schema$GoogleCloudDiscoveryengineV1betaUserInfo;
     /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128
+     * Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128
      */
     userPseudoId?: string | null;
   }
@@ -8630,6 +8655,10 @@ export namespace discoveryengine_v1beta {
      */
     enableImageAnnotation?: boolean | null;
     /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     */
+    enableLlmLayoutParsing?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the table during parsing.
      */
     enableTableAnnotation?: boolean | null;
@@ -8719,6 +8748,10 @@ export namespace discoveryengine_v1beta {
      */
     chatEngineMetadata?: Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineMetadata;
     /**
+     * Output only. CMEK-related information for the Engine.
+     */
+    cmekConfig?: Schema$GoogleCloudDiscoveryengineV1betaCmekConfig;
+    /**
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineCommonConfig;
@@ -8754,6 +8787,10 @@ export namespace discoveryengine_v1beta {
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig;
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.
+     */
+    modelConfigs?: {[key: string]: string} | null;
     /**
      * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -9682,6 +9719,19 @@ export namespace discoveryengine_v1beta {
     subscriptionTier?: string | null;
   }
   /**
+   * Stats about users' licenses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaLicenseConfigUsageStats {
+    /**
+     * Required. The LicenseConfig name.
+     */
+    licenseConfig?: string | null;
+    /**
+     * Required. The number of licenses used.
+     */
+    usedLicenseCount?: string | null;
+  }
+  /**
    * Response message for CmekConfigService.ListCmekConfigs method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse {
@@ -9828,6 +9878,15 @@ export namespace discoveryengine_v1beta {
      * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for UserLicenseService.ListLicenseConfigUsageStats method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse {
+    /**
+     * All the customer's LicenseConfigUsageStats.
+     */
+    licenseConfigUsageStats?: Schema$GoogleCloudDiscoveryengineV1betaLicenseConfigUsageStats[];
   }
   /**
    * Response message for SampleQueryService.ListSampleQueries method.
@@ -10961,7 +11020,7 @@ export namespace discoveryengine_v1beta {
      */
     userLabels?: {[key: string]: string} | null;
     /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     userPseudoId?: string | null;
   }
@@ -13739,6 +13798,10 @@ export namespace discoveryengine_v1beta {
      */
     enableImageAnnotation?: boolean | null;
     /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     */
+    enableLlmLayoutParsing?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the table during parsing.
      */
     enableTableAnnotation?: boolean | null;
@@ -13806,6 +13869,10 @@ export namespace discoveryengine_v1beta {
      */
     chatEngineMetadata?: Schema$GoogleCloudDiscoveryengineV1EngineChatEngineMetadata;
     /**
+     * Output only. CMEK-related information for the Engine.
+     */
+    cmekConfig?: Schema$GoogleCloudDiscoveryengineV1CmekConfig;
+    /**
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1EngineCommonConfig;
@@ -13841,6 +13908,10 @@ export namespace discoveryengine_v1beta {
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig;
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.
+     */
+    modelConfigs?: {[key: string]: string} | null;
     /**
      * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -18072,7 +18143,7 @@ export namespace discoveryengine_v1beta {
      *         query: 'placeholder-value',
      *         // Specifies the autocomplete data model. This overrides any model specified in the Configuration \> Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
      *         queryModel: 'placeholder-value',
-     *         // A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *         // Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *         userPseudoId: 'placeholder-value',
      *       },
      *     );
@@ -19406,7 +19477,7 @@ export namespace discoveryengine_v1beta {
      */
     queryModel?: string;
     /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     userPseudoId?: string;
   }
@@ -33179,6 +33250,7 @@ export namespace discoveryengine_v1beta {
      *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
+     *         //   "cmekConfig": {},
      *         //   "commonConfig": {},
      *         //   "configurableBillingApproach": "my_configurableBillingApproach",
      *         //   "createTime": "my_createTime",
@@ -33188,6 +33260,7 @@ export namespace discoveryengine_v1beta {
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
      *         //   "mediaRecommendationEngineConfig": {},
+     *         //   "modelConfigs": {},
      *         //   "name": "my_name",
      *         //   "searchEngineConfig": {},
      *         //   "solutionType": "my_solutionType",
@@ -33500,6 +33573,7 @@ export namespace discoveryengine_v1beta {
      *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
+     *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
@@ -33509,6 +33583,7 @@ export namespace discoveryengine_v1beta {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
@@ -33829,6 +33904,7 @@ export namespace discoveryengine_v1beta {
      *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
+     *         //   "cmekConfig": {},
      *         //   "commonConfig": {},
      *         //   "configurableBillingApproach": "my_configurableBillingApproach",
      *         //   "createTime": "my_createTime",
@@ -33838,6 +33914,7 @@ export namespace discoveryengine_v1beta {
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
      *         //   "mediaRecommendationEngineConfig": {},
+     *         //   "modelConfigs": {},
      *         //   "name": "my_name",
      *         //   "searchEngineConfig": {},
      *         //   "solutionType": "my_solutionType",
@@ -33852,6 +33929,7 @@ export namespace discoveryengine_v1beta {
      *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
+     *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
@@ -33861,6 +33939,7 @@ export namespace discoveryengine_v1beta {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
@@ -34023,6 +34102,7 @@ export namespace discoveryengine_v1beta {
      *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
+     *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
@@ -34032,6 +34112,7 @@ export namespace discoveryengine_v1beta {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
@@ -34197,6 +34278,7 @@ export namespace discoveryengine_v1beta {
      *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
+     *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
@@ -34206,6 +34288,7 @@ export namespace discoveryengine_v1beta {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
@@ -40963,7 +41046,7 @@ export namespace discoveryengine_v1beta {
      *       query: 'placeholder-value',
      *       // Specifies the autocomplete data model. This overrides any model specified in the Configuration \> Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
      *       queryModel: 'placeholder-value',
-     *       // A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *       // Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *       userPseudoId: 'placeholder-value',
      *     },
      *   );
@@ -42118,7 +42201,7 @@ export namespace discoveryengine_v1beta {
      */
     queryModel?: string;
     /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     userPseudoId?: string;
   }
@@ -60623,9 +60706,14 @@ export namespace discoveryengine_v1beta {
 
   export class Resource$Projects$Locations$Userstores {
     context: APIRequestContext;
+    licenseConfigsUsageStats: Resource$Projects$Locations$Userstores$Licenseconfigsusagestats;
     userLicenses: Resource$Projects$Locations$Userstores$Userlicenses;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.licenseConfigsUsageStats =
+        new Resource$Projects$Locations$Userstores$Licenseconfigsusagestats(
+          this.context
+        );
       this.userLicenses =
         new Resource$Projects$Locations$Userstores$Userlicenses(this.context);
     }
@@ -61485,6 +61573,176 @@ export namespace discoveryengine_v1beta {
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaUserStore;
   }
 
+  export class Resource$Projects$Locations$Userstores$Licenseconfigsusagestats {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all the LicenseConfigUsageStatss associated with the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.userStores.licenseConfigsUsageStats.list(
+     *       {
+     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/userStores/my-userStore',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "licenseConfigUsageStats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta/{+parent}/licenseConfigsUsageStats'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List
+    extends StandardParameters {
+    /**
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Userstores$Userlicenses {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -61526,7 +61784,7 @@ export namespace discoveryengine_v1beta {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.userStores.userLicenses.list({
-     *       // Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
+     *       // Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
      *       filter: 'placeholder-value',
      *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.
      *       pageSize: 'placeholder-value',
@@ -61656,7 +61914,7 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Userstores$Userlicenses$List
     extends StandardParameters {
     /**
-     * Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
+     * Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
      */
     filter?: string;
     /**

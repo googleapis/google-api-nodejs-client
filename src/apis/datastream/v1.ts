@@ -922,6 +922,10 @@ export namespace datastream_v1 {
      */
     includeObjects?: Schema$MongodbCluster;
     /**
+     * Optional. MongoDB JSON mode to use for the stream.
+     */
+    jsonMode?: string | null;
+    /**
      * Optional. Maximum number of concurrent backfill tasks. The number should be non-negative and less than or equal to 50. If not set (or set to 0), the system's default value is used
      */
     maxConcurrentBackfillTasks?: number | null;

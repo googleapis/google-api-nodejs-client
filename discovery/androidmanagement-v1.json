@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20251022",
+  "revision": "20251104",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -5445,7 +5445,8 @@
             "REQUIRED_ACCOUNT_NOT_IN_ENTERPRISE",
             "NEW_ACCOUNT_NOT_IN_ENTERPRISE",
             "DEFAULT_APPLICATION_SETTING_UNSUPPORTED_SCOPES",
-            "DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE"
+            "DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE",
+            "PRIVATE_DNS_HOST_NOT_SERVING"
           ],
           "enumDescriptions": [
             "Specific non-compliance reason is not specified. Fields in specific_non_compliance_context are not set.",
@@ -5461,7 +5462,8 @@
             "Work account required by the workAccountSetupConfig policy setting is not part of the enterprise anymore. nonComplianceReason is set to USER_ACTION.",
             "Work account added by the user is not part of the enterprise. nonComplianceReason is set to USER_ACTION.",
             "The default application setting is applied to the scopes that are not supported by the management mode, even if the management mode itself is supported for the app type (e.g., a policy with DEFAULT_BROWSER app type and SCOPE_PERSONAL_PROFILE list sent to a fully managed device results in the scopes being inapplicable for the management mode). If the management mode is not supported for the app type, a NonComplianceDetail with MANAGEMENT_MODE is reported, without a specificNonComplianceReason.nonComplianceReason is set to MANAGEMENT_MODE.",
-            "The default application setting failed to apply for a specific scope. defaultApplicationContext is set. nonComplianceReason is set to INVALID_VALUE or APP_NOT_INSTALLED."
+            "The default application setting failed to apply for a specific scope. defaultApplicationContext is set. nonComplianceReason is set to INVALID_VALUE or APP_NOT_INSTALLED.",
+            "The specified host for private DNS is a valid hostname but was found to not be a private DNS server. nonComplianceReason is set to INVALID_VALUE."
           ],
           "type": "string"
         }

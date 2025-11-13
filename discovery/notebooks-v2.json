@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -971,7 +971,7 @@
       }
     }
   },
-  "revision": "20251008",
+  "revision": "20251029",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1463,6 +1463,11 @@
         "gpuDriverConfig": {
           "$ref": "GPUDriverConfig",
           "description": "Optional. Configuration for GPU drivers."
+        },
+        "instanceId": {
+          "description": "Output only. The unique ID of the Compute Engine instance resource.",
+          "readOnly": true,
+          "type": "string"
         },
         "machineType": {
           "description": "Optional. The machine type of the VM instance. https://cloud.google.com/compute/docs/machine-resource",

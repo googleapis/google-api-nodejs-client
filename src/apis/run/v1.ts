@@ -1139,6 +1139,10 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1BuiltImage {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Docker Registry 2.0 digest.
      */
     digest?: string | null;
@@ -1645,6 +1649,10 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedGoModule {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Hash types and values of the Go Module Artifact.
      */
     fileHashes?: Schema$GoogleDevtoolsCloudbuildV1FileHashes;
@@ -1661,6 +1669,10 @@ export namespace run_v1 {
    * A Maven artifact uploaded using the MavenArtifact directive.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedMavenArtifact {
+    /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
     /**
      * Hash types and values of the Maven Artifact.
      */
@@ -1679,6 +1691,10 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedNpmPackage {
     /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
      * Hash types and values of the npm package.
      */
     fileHashes?: Schema$GoogleDevtoolsCloudbuildV1FileHashes;
@@ -1695,6 +1711,10 @@ export namespace run_v1 {
    * Artifact uploaded using the PythonPackage directive.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1UploadedPythonPackage {
+    /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
     /**
      * Hash types and values of the Python Artifact.
      */
@@ -9217,7 +9237,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -9338,7 +9358,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

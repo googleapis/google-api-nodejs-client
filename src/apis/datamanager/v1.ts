@@ -200,6 +200,27 @@ export namespace datamanager_v1 {
     userData?: Schema$UserData;
   }
   /**
+   * A data encryption key wrapped by an AWS KMS key.
+   */
+  export interface Schema$AwsWrappedKeyInfo {
+    /**
+     * Required. The base64 encoded encrypted data encryption key.
+     */
+    encryptedDek?: string | null;
+    /**
+     * Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in the format of "arn:{partition\}:kms:{region\}:{account_id\}:key/{key_id\}"
+     */
+    kekUri?: string | null;
+    /**
+     * Required. The type of algorithm used to encrypt the data.
+     */
+    keyType?: string | null;
+    /**
+     * Required. The Amazon Resource Name of the IAM Role to assume for KMS decryption access. Should be in the format of "arn:{partition\}:iam::{account_id\}:role/{role_name\}"
+     */
+    roleArn?: string | null;
+  }
+  /**
    * The cart data associated with the event.
    */
   export interface Schema$CartData {
@@ -297,6 +318,10 @@ export namespace datamanager_v1 {
    */
   export interface Schema$EncryptionInfo {
     /**
+     * Amazon Web Services wrapped key information.
+     */
+    awsWrappedKeyInfo?: Schema$AwsWrappedKeyInfo;
+    /**
      * Google Cloud Platform wrapped key information.
      */
     gcpWrappedKeyInfo?: Schema$GcpWrappedKeyInfo;
@@ -328,6 +353,10 @@ export namespace datamanager_v1 {
    */
   export interface Schema$Event {
     /**
+     * Optional. A bucket of any [event parameters](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events) to be included within the event that were not already specified using other structured fields.
+     */
+    additionalEventParameters?: Schema$EventParameter[];
+    /**
      * Optional. Identifiers and other information used to match the conversion event with other online activity (such as ad clicks).
      */
     adIdentifiers?: Schema$AdIdentifiers;
@@ -335,6 +364,10 @@ export namespace datamanager_v1 {
      * Optional. Information about the transaction and items associated with the event.
      */
     cartData?: Schema$CartData;
+    /**
+     * Optional. A unique identifier for the user instance of a web client for this GA4 web stream.
+     */
+    clientId?: string | null;
     /**
      * Optional. Information about whether the associated user has provided different types of consent.
      */
@@ -360,6 +393,10 @@ export namespace datamanager_v1 {
      */
     eventDeviceInfo?: Schema$DeviceInfo;
     /**
+     * Optional. The name of the event. Required for GA4 events.
+     */
+    eventName?: string | null;
+    /**
      * Optional. Signal for where the event happened (web, app, in-store, etc.).
      */
     eventSource?: string | null;
@@ -384,9 +421,26 @@ export namespace datamanager_v1 {
      */
     userData?: Schema$UserData;
     /**
+     * Optional. A unique identifier for a user, as defined by the advertiser.
+     */
+    userId?: string | null;
+    /**
      * Optional. Advertiser-assessed information about the user at the time that the event happened.
      */
     userProperties?: Schema$UserProperties;
+  }
+  /**
+   * Event parameter for GA4 events.
+   */
+  export interface Schema$EventParameter {
+    /**
+     * Required. The name of the parameter to use.
+     */
+    parameterName?: string | null;
+    /**
+     * Required. The string representation of the value of the parameter to set.
+     */
+    value?: string | null;
   }
   /**
    * Experimental field representing unofficial fields.
@@ -576,6 +630,14 @@ export namespace datamanager_v1 {
    */
   export interface Schema$Item {
     /**
+     * Optional. A bucket of any [event parameters related to an item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events) to be included within the event that were not already specified using other structured fields.
+     */
+    additionalItemParameters?: Schema$ItemParameter[];
+    /**
+     * Optional. A unique identifier to reference the item.
+     */
+    itemId?: string | null;
+    /**
      * Optional. The product ID within the Merchant Center account.
      */
     merchantProductId?: string | null;
@@ -587,6 +649,19 @@ export namespace datamanager_v1 {
      * Optional. The unit price excluding tax, shipping, and any transaction level discounts.
      */
     unitPrice?: number | null;
+  }
+  /**
+   * A bucket of any [event parameters related to an item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events) to be included within the event that were not already specified using other structured fields.
+   */
+  export interface Schema$ItemParameter {
+    /**
+     * Required. The name of the parameter to use.
+     */
+    parameterName?: string | null;
+    /**
+     * Required. The string representation of the value of the parameter to set.
+     */
+    value?: string | null;
   }
   /**
    * Mobile IDs for the audience. At least one mobile ID is required.
@@ -795,6 +870,10 @@ export namespace datamanager_v1 {
    */
   export interface Schema$UserProperties {
     /**
+     * Optional. A bucket of any additional [user properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties) for the user associated with this event.
+     */
+    additionalUserProperties?: Schema$UserProperty[];
+    /**
      * Optional. Type of the customer associated with the event.
      */
     customerType?: string | null;
@@ -802,6 +881,19 @@ export namespace datamanager_v1 {
      * Optional. The advertiser-assessed value of the customer.
      */
     customerValueBucket?: string | null;
+  }
+  /**
+   * A bucket of any additional [user properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties) for the user associated with this event.
+   */
+  export interface Schema$UserProperty {
+    /**
+     * Required. The name of the user property to use.
+     */
+    propertyName?: string | null;
+    /**
+     * Required. The string representation of the value of the user property to use.
+     */
+    value?: string | null;
   }
   /**
    * The warning count for a given warning reason.

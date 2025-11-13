@@ -249,6 +249,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "completeControlPlaneUpgrade": {
+                  "description": "CompleteControlPlaneUpgrade completes the rollback-safe upgrade by performing the step two upgrade for a specific cluster.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:completeControlPlaneUpgrade",
+                  "httpMethod": "POST",
+                  "id": "container.projects.locations.clusters.completeControlPlaneUpgrade",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/*/locations/*/clusters/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:completeControlPlaneUpgrade",
+                  "request": {
+                    "$ref": "CompleteControlPlaneUpgradeRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "completeIpRotation": {
                   "description": "Completes master IP rotation.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:completeIpRotation",
@@ -1407,6 +1435,34 @@
                   "path": "v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/addons",
                   "request": {
                     "$ref": "SetAddonsConfigRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "completeControlPlaneUpgrade": {
+                  "description": "CompleteControlPlaneUpgrade completes the rollback-safe upgrade by performing the step two upgrade for a specific cluster.",
+                  "flatPath": "v1beta1/projects/{projectsId}/zones/{zonesId}/clusters/{clustersId}:completeControlPlaneUpgrade",
+                  "httpMethod": "POST",
+                  "id": "container.projects.zones.clusters.completeControlPlaneUpgrade",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/*/locations/*/clusters/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/zones/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:completeControlPlaneUpgrade",
+                  "request": {
+                    "$ref": "CompleteControlPlaneUpgradeRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -2685,7 +2741,7 @@
       }
     }
   },
-  "revision": "20251021",
+  "revision": "20251028",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2870,6 +2926,10 @@
         "parallelstoreCsiDriverConfig": {
           "$ref": "ParallelstoreCsiDriverConfig",
           "description": "Configuration for the Cloud Storage Parallelstore CSI driver."
+        },
+        "podSnapshotConfig": {
+          "$ref": "PodSnapshotConfig",
+          "description": "Configuration for the Pod Snapshot feature."
         },
         "rayOperatorConfig": {
           "$ref": "RayOperatorConfig",
@@ -3442,6 +3502,32 @@
       },
       "type": "object"
     },
+    "CertificateConfig": {
+      "description": "CertificateConfig configures certificate for the registry.",
+      "id": "CertificateConfig",
+      "properties": {
+        "gcpSecretManagerSecretUri": {
+          "description": "The URI configures a secret from [Secret Manager](https://cloud.google.com/secret-manager) in the format \"projects/$PROJECT_ID/secrets/$SECRET_NAME/versions/$VERSION\" for global secret or \"projects/$PROJECT_ID/locations/$REGION/secrets/$SECRET_NAME/versions/$VERSION\" for regional secret. Version can be fixed (e.g. \"2\") or \"latest\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CertificateConfigPair": {
+      "description": "CertificateConfigPair configures pairs of certificates, which is used for client certificate and key pairs under a registry.",
+      "id": "CertificateConfigPair",
+      "properties": {
+        "cert": {
+          "$ref": "CertificateConfig",
+          "description": "Cert configures the client certificate."
+        },
+        "key": {
+          "$ref": "CertificateConfig",
+          "description": "Key configures the client private key. Optional."
+        }
+      },
+      "type": "object"
+    },
     "CheckAutopilotCompatibilityResponse": {
       "description": "CheckAutopilotCompatibilityResponse has a list of compatibility issues.",
       "id": "CheckAutopilotCompatibilityResponse",
@@ -3579,6 +3665,11 @@
         },
         "createTime": {
           "description": "Output only. The time the cluster was created, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "currentEmulatedVersion": {
+          "description": "Output only. The current emulated version of the master endpoint. The version is in minor version format, e.g. 1.30. No value or empty string means the cluster has no emulated version.",
           "readOnly": true,
           "type": "string"
         },
@@ -3836,6 +3927,10 @@
         "resourceUsageExportConfig": {
           "$ref": "ResourceUsageExportConfig",
           "description": "Configuration for exporting resource usages. Resource usage export is disabled when this config unspecified."
+        },
+        "rollbackSafeUpgrade": {
+          "$ref": "RollbackSafeUpgrade",
+          "description": "The rollback safe upgrade information of the cluster. This field is used when user manually triggers a rollback safe upgrade."
         },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
@@ -4339,6 +4434,10 @@
           "$ref": "ResourceUsageExportConfig",
           "description": "The desired configuration for exporting resource usage."
         },
+        "desiredRollbackSafeUpgrade": {
+          "$ref": "RollbackSafeUpgrade",
+          "description": "The desired rollback safe upgrade configuration."
+        },
         "desiredSecretManagerConfig": {
           "$ref": "SecretManagerConfig",
           "description": "Enable/Disable Secret Manager Config."
@@ -4491,12 +4590,45 @@
           },
           "type": "array"
         },
+        "rollbackSafeUpgradeStatus": {
+          "$ref": "RollbackSafeUpgradeStatus",
+          "description": "The cluster's rollback-safe upgrade status."
+        },
         "upgradeDetails": {
           "description": "The list of past auto upgrades.",
           "items": {
             "$ref": "UpgradeDetails"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CompatibilityStatus": {
+      "description": "CompatibilityStatus is the status regarding the control plane's compatibility.",
+      "id": "CompatibilityStatus",
+      "properties": {
+        "downgradableVersion": {
+          "description": "Output only. The GKE version that the cluster can be safely downgraded to if the cluster is emulating the previous minor version. It is usually the cluster's previous version before a minor version upgrade.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "emulatedVersionTime": {
+          "description": "Output only. Last time the control plane became available after a minor version binary upgrade with emulated version set. It indicates the last time the cluster entered the rollback safe mode.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CompleteControlPlaneUpgradeRequest": {
+      "description": "CompleteControlPlaneUpgradeRequest sets the name of target cluster to complete upgrade.",
+      "id": "CompleteControlPlaneUpgradeRequest",
+      "properties": {
+        "version": {
+          "description": "API request version that initiates this operation.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4628,6 +4760,13 @@
         "privateRegistryAccessConfig": {
           "$ref": "PrivateRegistryAccessConfig",
           "description": "PrivateRegistryAccessConfig is used to configure access configuration for private container registries."
+        },
+        "registryHosts": {
+          "description": "RegistryHostConfig configures containerd registry host configuration. Each registry_hosts represents a hosts.toml file. At most 25 registry_hosts are allowed.",
+          "items": {
+            "$ref": "RegistryHostConfig"
+          },
+          "type": "array"
         },
         "writableCgroups": {
           "$ref": "WritableCgroups",
@@ -5491,6 +5630,66 @@
       },
       "type": "object"
     },
+    "HostConfig": {
+      "description": "HostConfig configures the registry host under a given Server.",
+      "id": "HostConfig",
+      "properties": {
+        "ca": {
+          "description": "CA configures the registry host certificate.",
+          "items": {
+            "$ref": "CertificateConfig"
+          },
+          "type": "array"
+        },
+        "capabilities": {
+          "description": "Capabilities represent the capabilities of the registry host, specifying what operations a host is capable of performing. If not set, containerd enables all capabilities by default.",
+          "items": {
+            "enum": [
+              "HOST_CAPABILITY_UNSPECIFIED",
+              "HOST_CAPABILITY_PULL",
+              "HOST_CAPABILITY_RESOLVE",
+              "HOST_CAPABILITY_PUSH"
+            ],
+            "enumDescriptions": [
+              "UNKNOWN should never be set.",
+              "Pull represents the capability to fetch manifests and blobs by digest.",
+              "Resolve represents the capability to fetch manifests by name.",
+              "Push represents the capability to push blobs and manifests."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "client": {
+          "description": "Client configures the registry host client certificate and key.",
+          "items": {
+            "$ref": "CertificateConfigPair"
+          },
+          "type": "array"
+        },
+        "dialTimeout": {
+          "description": "Specifies the maximum duration allowed for a connection attempt to complete. A shorter timeout helps reduce delays when falling back to the original registry if the mirror is unreachable. Maximum allowed value is 180s. If not set, containerd sets default 30s. The value should be a decimal number of seconds with an `s` suffix.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "header": {
+          "description": "Header configures the registry host headers.",
+          "items": {
+            "$ref": "RegistryHeader"
+          },
+          "type": "array"
+        },
+        "host": {
+          "description": "Host configures the registry host/mirror. It supports fully qualified domain names (FQDN) and IP addresses: Specifying port is supported. Wildcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000",
+          "type": "string"
+        },
+        "overridePath": {
+          "description": "OverridePath is used to indicate the host's API root endpoint is defined in the URL path rather than by the API specification. This may be used with non-compliant OCI registries which are missing the /v2 prefix. If not set, containerd sets default false.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "HostMaintenancePolicy": {
       "description": "HostMaintenancePolicy contains the maintenance policy for the hosts on which the GKE VMs run on.",
       "id": "HostMaintenancePolicy",
@@ -6169,7 +6368,7 @@
       "properties": {
         "enableLegacyLustrePort": {
           "deprecated": true,
-          "description": "If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag.",
+          "description": "If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag. Deprecated: This flag is no longer required as of GKE node version 1.33.2-gke.4655000, unless you are connecting to a Lustre instance that has the `gke-support-enabled` flag.",
           "type": "boolean"
         },
         "enabled": {
@@ -6267,7 +6466,13 @@
     "Master": {
       "description": "Master is the configuration for components on master.",
       "id": "Master",
-      "properties": {},
+      "properties": {
+        "compatibilityStatus": {
+          "$ref": "CompatibilityStatus",
+          "description": "Output only. The compatibility status of the control plane. It should be empty if the cluster does not have emulated version. For details, see go/user-initiated-rollbackable-upgrade-design.",
+          "readOnly": true
+        }
+      },
       "type": "object"
     },
     "MasterAuth": {
@@ -7911,6 +8116,17 @@
       },
       "type": "object"
     },
+    "PodSnapshotConfig": {
+      "description": "PodSnapshotConfig is the configuration for GKE Pod Snapshots feature.",
+      "id": "PodSnapshotConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether or not the Pod Snapshots feature is enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "PolicyBinding": {
       "description": "Binauthz policy that applies to this cluster.",
       "id": "PolicyBinding",
@@ -8157,6 +8373,42 @@
       },
       "type": "object"
     },
+    "RegistryHeader": {
+      "description": "RegistryHeader configures headers for the registry.",
+      "id": "RegistryHeader",
+      "properties": {
+        "key": {
+          "description": "Key configures the header key.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value configures the header value.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RegistryHostConfig": {
+      "description": "RegistryHostConfig configures the top-level structure for a single containerd registry server's configuration, which represents one hosts.toml file on the node. It will override the same fqdns in PrivateRegistryAccessConfig.",
+      "id": "RegistryHostConfig",
+      "properties": {
+        "hosts": {
+          "description": "HostConfig configures a list of host-specific configurations for the server. Each server can have at most 10 host configurations.",
+          "items": {
+            "$ref": "HostConfig"
+          },
+          "type": "array"
+        },
+        "server": {
+          "description": "Defines the host name of the registry server, which will be used to create configuration file as /etc/containerd/hosts.d//hosts.toml. It supports fully qualified domain names (FQDN) and IP addresses: Specifying port is supported. Wildcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReleaseChannel": {
       "description": "ReleaseChannel indicates which release channel a cluster is subscribed to. Release channels are arranged in order of risk. When a cluster is subscribed to a release channel, Google maintains both the master version and the node version. Node auto-upgrade defaults to true and cannot be disabled.",
       "id": "ReleaseChannel",
@@ -8362,6 +8614,46 @@
         "zone": {
           "deprecated": true,
           "description": "Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RollbackSafeUpgrade": {
+      "description": "RollbackSafeUpgrade is the configuration for the rollback safe upgrade.",
+      "id": "RollbackSafeUpgrade",
+      "properties": {
+        "controlPlaneSoakDuration": {
+          "description": "A user-defined period for the cluster remains in the rollbackable state. ex: {seconds: 21600}.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RollbackSafeUpgradeStatus": {
+      "description": "RollbackSafeUpgradeStatus contains the rollback-safe upgrade status of a cluster.",
+      "id": "RollbackSafeUpgradeStatus",
+      "properties": {
+        "controlPlaneUpgradeRollbackEndTime": {
+          "description": "The rollback-safe mode expiration time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "mode": {
+          "description": "The mode of the rollback-safe upgrade.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "KCP_MINOR_UPGRADE_ROLLBACK_SAFE_MODE"
+          ],
+          "enumDescriptions": [
+            "MODE_UNSPECIFIED means it's in regular upgrade mode.",
+            "KCP_MINOR_UPGRADE_ROLLBACK_SAFE_MODE means it's in rollback-safe mode after a KCP minor version step-one upgrade."
+          ],
+          "type": "string"
+        },
+        "previousVersion": {
+          "description": "The GKE version that the cluster previously used before step-one upgrade.",
           "type": "string"
         }
       },
@@ -9621,6 +9913,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "initialEmulatedVersion": {
+          "description": "The emulated version before the upgrade.",
+          "type": "string"
+        },
         "initialVersion": {
           "description": "The version before the upgrade.",
           "type": "string"
@@ -9661,6 +9957,10 @@
             "Upgrade is running."
           ],
           "readOnly": true,
+          "type": "string"
+        },
+        "targetEmulatedVersion": {
+          "description": "The emulated version after the upgrade.",
           "type": "string"
         },
         "targetVersion": {

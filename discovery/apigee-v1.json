@@ -10405,6 +10405,21 @@
                   "pattern": "^organizations/[^/]+/securityProfilesV2/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "riskAssessmentType": {
+                  "description": "Optional. The risk assessment type of the security profile. Defaults to ADVANCED_API_SECURITY.",
+                  "enum": [
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED",
+                    "APIGEE",
+                    "API_HUB"
+                  ],
+                  "enumDescriptions": [
+                    "Risk assessment type is not specified.",
+                    "Risk assessment type is Apigee.",
+                    "Risk assessment type is API Hub."
+                  ],
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "v1/{+name}",
@@ -10429,6 +10444,21 @@
                   "location": "path",
                   "pattern": "^organizations/[^/]+/securityProfilesV2/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "riskAssessmentType": {
+                  "description": "Optional. The risk assessment type of the security profile. Defaults to ADVANCED_API_SECURITY.",
+                  "enum": [
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED",
+                    "APIGEE",
+                    "API_HUB"
+                  ],
+                  "enumDescriptions": [
+                    "Risk assessment type is not specified.",
+                    "Risk assessment type is Apigee.",
+                    "Risk assessment type is API Hub."
+                  ],
+                  "location": "query",
                   "type": "string"
                 }
               },
@@ -10465,6 +10495,21 @@
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "riskAssessmentType": {
+                  "description": "Optional. The risk assessment type of the security profiles. Defaults to ADVANCED_API_SECURITY.",
+                  "enum": [
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED",
+                    "APIGEE",
+                    "API_HUB"
+                  ],
+                  "enumDescriptions": [
+                    "Risk assessment type is not specified.",
+                    "Risk assessment type is Apigee.",
+                    "Risk assessment type is API Hub."
+                  ],
+                  "location": "query",
                   "type": "string"
                 }
               },
@@ -11448,7 +11493,7 @@
       }
     }
   },
-  "revision": "20251016",
+  "revision": "20251105",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -12813,6 +12858,14 @@
       "description": "Request for BatchComputeSecurityAssessmentResults.",
       "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequest",
       "properties": {
+        "apiHubApis": {
+          "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestApiHubApiArray",
+          "description": "An array of API Hub APIs to assess. A maximum of 1 API can be assessed."
+        },
+        "apiHubGateways": {
+          "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestApiHubGatewayArray",
+          "description": "An array of API Hub Gateways to assess. A maximum of 3 gateways can be assessed."
+        },
         "include": {
           "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray",
           "description": "Include only these resources."
@@ -12835,8 +12888,36 @@
           "type": "string"
         },
         "scope": {
-          "description": "Optional. Scope of the resources for the computation. For Apigee, the environment is the scope of the resources.",
+          "description": "Optional. Scope of the resources for the computation. When computing scores for Apigee proxies, the scope should be set to the environment of the resources. When computing scores for API Hub deployments, api_hub_scope should be set instead.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestApiHubApiArray": {
+      "description": "Message for the array of API Hub APIs.",
+      "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestApiHubApiArray",
+      "properties": {
+        "apis": {
+          "description": "Required. The array of API Hub API IDs. Format: `projects/{project}/locations/{location}/apis/{api}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestApiHubGatewayArray": {
+      "description": "Message for the array of API Hub Gateways.",
+      "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestApiHubGatewayArray",
+      "properties": {
+        "gateways": {
+          "description": "Required. The array of API Hub Gateway IDs. Format: `projects/{project}/locations/{location}/plugins/{plugin}/instances/{instance}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -12866,18 +12947,20 @@
       "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArrayResource",
       "properties": {
         "name": {
-          "description": "Required. Name of this resource.",
+          "description": "Required. Name of this resource. For an Apigee API Proxy, this should be the id of the API proxy. For an API Hub Deployment, this should be the id of the deployment.",
           "type": "string"
         },
         "type": {
           "description": "Required. Type of this resource.",
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
-            "API_PROXY"
+            "API_PROXY",
+            "API_HUB_DEPLOYMENT"
           ],
           "enumDescriptions": [
             "ResourceType not specified.",
-            "Resource is an Apigee Proxy."
+            "Resource is an Apigee Proxy.",
+            "Resource is an API Hub deployment."
           ],
           "type": "string"
         }
@@ -18695,8 +18778,13 @@
       "description": "Resource for which we are computing security assessment.",
       "id": "GoogleCloudApigeeV1SecurityAssessmentResultResource",
       "properties": {
+        "apiHubDeploymentDetails": {
+          "$ref": "GoogleCloudApigeeV1SecurityAssessmentResultResourceApiHubDeploymentDetails",
+          "description": "Output only. Additional details for the API Hub deployment.",
+          "readOnly": true
+        },
         "name": {
-          "description": "Required. Name of this resource.",
+          "description": "Required. Name of this resource. For an Apigee API Proxy, this should be the id of the API proxy. For an API Hub Deployment, this should be the id of the deployment.",
           "type": "string"
         },
         "resourceRevisionId": {
@@ -18707,12 +18795,55 @@
           "description": "Required. Type of this resource.",
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
-            "API_PROXY"
+            "API_PROXY",
+            "API_HUB_DEPLOYMENT"
           ],
           "enumDescriptions": [
             "ResourceType not specified.",
-            "Resource is an Apigee Proxy."
+            "Resource is an Apigee Proxy.",
+            "Resource is an API Hub deployment."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityAssessmentResultResourceApiHubDeploymentDetails": {
+      "description": "Additional details if the resource is an API Hub deployment.",
+      "id": "GoogleCloudApigeeV1SecurityAssessmentResultResourceApiHubDeploymentDetails",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the API Hub deployment.",
+          "type": "string"
+        },
+        "gateway": {
+          "description": "The gateway for the API Hub deployment. Format: `projects/{project}/locations/{location}/plugins/{plugin}/instances/{instance}`",
+          "type": "string"
+        },
+        "gatewayType": {
+          "description": "The gateway type for the API Hub deployment.",
+          "enum": [
+            "API_HUB_GATEWAY_TYPE_UNSPECIFIED",
+            "APIGEE_X",
+            "APIGEE_HYBRID",
+            "APIGEE_EDGE",
+            "APIGEE_OPDK"
+          ],
+          "enumDescriptions": [
+            "Gateway type is not specified.",
+            "Gateway is Apigee X for API Hub.",
+            "Gateway is Apigee Hybrid for API Hub.",
+            "Gateway is Apigee Edge for API Hub.",
+            "Gateway is Apigee OPDK for API Hub."
+          ],
+          "type": "string"
+        },
+        "resourceUri": {
+          "description": "The resource uri for the API Hub deployment.",
+          "type": "string"
+        },
+        "sourceProject": {
+          "description": "The source project for the API Hub deployment.",
           "type": "string"
         }
       },
@@ -18792,12 +18923,14 @@
           "enum": [
             "VERDICT_UNSPECIFIED",
             "PASS",
-            "FAIL"
+            "FAIL",
+            "NOT_APPLICABLE"
           ],
           "enumDescriptions": [
             "The verdict is unspecified.",
             "The assessment has passed.",
-            "The assessment has failed."
+            "The assessment has failed.",
+            "The verdict is not applicable."
           ],
           "type": "string"
         },
@@ -19242,6 +19375,20 @@
           "description": "Required. The configuration for each assessment in this profile. Key is the name/id of the assessment.",
           "type": "object"
         },
+        "riskAssessmentType": {
+          "description": "Optional. The risk assessment type of the security profile. Defaults to ADVANCED_API_SECURITY.",
+          "enum": [
+            "RISK_ASSESSMENT_TYPE_UNSPECIFIED",
+            "APIGEE",
+            "API_HUB"
+          ],
+          "enumDescriptions": [
+            "Risk assessment type is not specified.",
+            "Risk assessment type is Apigee.",
+            "Risk assessment type is API Hub."
+          ],
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. The time of the security profile update.",
           "format": "google-datetime",
@@ -19255,6 +19402,10 @@
       "description": "The configuration definition for a specific assessment.",
       "id": "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfig",
       "properties": {
+        "include": {
+          "$ref": "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfigApiHubGatewayTypeArray",
+          "description": "Include only these Gateway Types."
+        },
         "weight": {
           "description": "The weight of the assessment.",
           "enum": [
@@ -19270,6 +19421,34 @@
             "The weight is major."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfigApiHubGatewayTypeArray": {
+      "description": "Message for the array of API Hub Gateway Types.",
+      "id": "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfigApiHubGatewayTypeArray",
+      "properties": {
+        "gatewayTypes": {
+          "description": "Required. The array of API Hub Gateway Types.",
+          "items": {
+            "enum": [
+              "API_HUB_GATEWAY_TYPE_UNSPECIFIED",
+              "APIGEE_X",
+              "APIGEE_HYBRID",
+              "APIGEE_EDGE",
+              "APIGEE_OPDK"
+            ],
+            "enumDescriptions": [
+              "Gateway type is not specified.",
+              "Gateway is Apigee X for API Hub.",
+              "Gateway is Apigee Hybrid for API Hub.",
+              "Gateway is Apigee Edge for API Hub.",
+              "Gateway is Apigee OPDK for API Hub."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

@@ -1452,7 +1452,7 @@
       }
     }
   },
-  "revision": "20250928",
+  "revision": "20251030",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -3184,6 +3184,11 @@
       "description": "An image built by the pipeline.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage",
       "properties": {
+        "artifactRegistryPackage": {
+          "description": "Output only. Path to the artifact in Artifact Registry.",
+          "readOnly": true,
+          "type": "string"
+        },
         "digest": {
           "description": "Docker Registry 2.0 digest.",
           "type": "string"
@@ -3710,6 +3715,11 @@
       "description": "A Go module artifact uploaded to Artifact Registry using the GoModule directive.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule",
       "properties": {
+        "artifactRegistryPackage": {
+          "description": "Output only. Path to the artifact in Artifact Registry.",
+          "readOnly": true,
+          "type": "string"
+        },
         "fileHashes": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes",
           "description": "Hash types and values of the Go Module Artifact."
@@ -3730,6 +3740,11 @@
       "description": "A Maven artifact uploaded using the MavenArtifact directive.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact",
       "properties": {
+        "artifactRegistryPackage": {
+          "description": "Output only. Path to the artifact in Artifact Registry.",
+          "readOnly": true,
+          "type": "string"
+        },
         "fileHashes": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes",
           "description": "Hash types and values of the Maven Artifact."
@@ -3750,6 +3765,11 @@
       "description": "An npm package uploaded to Artifact Registry using the NpmPackage directive.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage",
       "properties": {
+        "artifactRegistryPackage": {
+          "description": "Output only. Path to the artifact in Artifact Registry.",
+          "readOnly": true,
+          "type": "string"
+        },
         "fileHashes": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes",
           "description": "Hash types and values of the npm package."
@@ -3770,6 +3790,11 @@
       "description": "Artifact uploaded using the PythonPackage directive.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage",
       "properties": {
+        "artifactRegistryPackage": {
+          "description": "Output only. Path to the artifact in Artifact Registry.",
+          "readOnly": true,
+          "type": "string"
+        },
         "fileHashes": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes",
           "description": "Hash types and values of the Python Artifact."

@@ -730,7 +730,7 @@
                           "type": "string"
                         },
                         "userPseudoId": {
-                          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                           "location": "query",
                           "type": "string"
                         }
@@ -2281,6 +2281,69 @@
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
+                        "get": {
+                          "description": "Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.servingConfigs.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1ServingConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists all ServingConfigs linked to this dataStore.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.servingConfigs.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Full resource name of the parent resource. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/servingConfigs",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1ListServingConfigsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
                         "patch": {
                           "description": "Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}",
@@ -3436,6 +3499,83 @@
                           ]
                         }
                       }
+                    },
+                    "widgetConfigs": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets a WidgetConfig.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/widgetConfigs/{widgetConfigsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.widgetConfigs.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "acceptCache": {
+                              "description": "Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "getWidgetConfigRequestOption.turnOffCollectionComponents": {
+                              "description": "Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "description": "Required. Full WidgetConfig resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/widgetConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Update a WidgetConfig.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/widgetConfigs/{widgetConfigsId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.widgetConfigs.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. The full resource name of the widget config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/widgetConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfig"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        }
+                      }
                     }
                   }
                 },
@@ -4238,6 +4378,69 @@
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
+                        "get": {
+                          "description": "Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/servingConfigs/{servingConfigsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.servingConfigs.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1ServingConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists all ServingConfigs linked to this dataStore.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/servingConfigs",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.servingConfigs.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Full resource name of the parent resource. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/servingConfigs",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1ListServingConfigsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
                         "patch": {
                           "description": "Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/servingConfigs/{servingConfigsId}",
@@ -4601,6 +4804,83 @@
                           }
                         }
                       }
+                    },
+                    "widgetConfigs": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets a WidgetConfig.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/widgetConfigs/{widgetConfigsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.widgetConfigs.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "acceptCache": {
+                              "description": "Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "getWidgetConfigRequestOption.turnOffCollectionComponents": {
+                              "description": "Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "description": "Required. Full WidgetConfig resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/widgetConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Update a WidgetConfig.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/widgetConfigs/{widgetConfigsId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.engines.widgetConfigs.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. The full resource name of the widget config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/widgetConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfig"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        }
+                      }
                     }
                   }
                 },
@@ -4717,7 +4997,7 @@
                       "type": "string"
                     },
                     "userPseudoId": {
-                      "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                       "location": "query",
                       "type": "string"
                     }
@@ -6130,6 +6410,69 @@
                         "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
+                    "get": {
+                      "description": "Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.dataStores.servingConfigs.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1ServingConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all ServingConfigs linked to this dataStore.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/servingConfigs",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.dataStores.servingConfigs.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Full resource name of the parent resource. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/servingConfigs",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1ListServingConfigsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
                     "patch": {
                       "description": "Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}",
@@ -7063,6 +7406,83 @@
                       ]
                     }
                   }
+                },
+                "widgetConfigs": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets a WidgetConfig.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/widgetConfigs/{widgetConfigsId}",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.dataStores.widgetConfigs.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "acceptCache": {
+                          "description": "Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "getWidgetConfigRequestOption.turnOffCollectionComponents": {
+                          "description": "Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "Required. Full WidgetConfig resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/widgetConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1WidgetConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Update a WidgetConfig.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/widgetConfigs/{widgetConfigsId}",
+                      "httpMethod": "PATCH",
+                      "id": "discoveryengine.projects.locations.dataStores.widgetConfigs.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Immutable. The full resource name of the widget config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/widgetConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1WidgetConfig"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1WidgetConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -7919,6 +8339,36 @@
                 }
               },
               "resources": {
+                "licenseConfigsUsageStats": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists all the LicenseConfigUsageStatss associated with the project.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}/licenseConfigsUsageStats",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.userStores.licenseConfigsUsageStats.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}/userStores/{user_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/licenseConfigsUsageStats",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    }
+                  }
+                },
                 "userLicenses": {
                   "methods": {
                     "list": {
@@ -7931,7 +8381,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.",
+                          "description": "Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.",
                           "location": "query",
                           "type": "string"
                         },
@@ -8078,7 +8528,7 @@
       }
     }
   },
-  "revision": "20251026",
+  "revision": "20251109",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GdataBlobstore2Info": {
@@ -9033,7 +9483,7 @@
           "description": "Optional. Information about the end user. This should be the same identifier information as UserEvent.user_info and SearchRequest.user_info."
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128",
           "type": "string"
         }
       },
@@ -13918,6 +14368,10 @@
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
         },
+        "enableLlmLayoutParsing": {
+          "description": "Optional. If true, the pdf layout will be refined using an LLM.",
+          "type": "boolean"
+        },
         "enableTableAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
           "type": "boolean"
@@ -14041,6 +14495,11 @@
           "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
           "readOnly": true
         },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1CmekConfig",
+          "description": "Output only. CMEK-related information for the Engine.",
+          "readOnly": true
+        },
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
@@ -14114,6 +14573,23 @@
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
+        },
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ],
+            "enumDescriptions": [
+              "The model state is unspecified.",
+              "The model is enabled by admin.",
+              "The model is disabled by admin."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.",
+          "type": "object"
         },
         "name": {
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -15206,6 +15682,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1LicenseConfigUsageStats": {
+      "description": "Stats about users' licenses.",
+      "id": "GoogleCloudDiscoveryengineV1LicenseConfigUsageStats",
+      "properties": {
+        "licenseConfig": {
+          "description": "Required. The LicenseConfig name.",
+          "type": "string"
+        },
+        "usedLicenseCount": {
+          "description": "Required. The number of licenses used.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1ListCmekConfigsResponse": {
       "description": "Response message for CmekConfigService.ListCmekConfigs method.",
       "id": "GoogleCloudDiscoveryengineV1ListCmekConfigsResponse",
@@ -15360,6 +15852,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse": {
+      "description": "Response message for UserLicenseService.ListLicenseConfigUsageStats method.",
+      "id": "GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse",
+      "properties": {
+        "licenseConfigUsageStats": {
+          "description": "All the customer's LicenseConfigUsageStats.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1LicenseConfigUsageStats"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1ListSchemasResponse": {
       "description": "Response message for SchemaService.ListSchemas method.",
       "id": "GoogleCloudDiscoveryengineV1ListSchemasResponse",
@@ -15372,6 +15878,24 @@
           "description": "The Schemas.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1Schema"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ListServingConfigsResponse": {
+      "description": "Response for ListServingConfigs method.",
+      "id": "GoogleCloudDiscoveryengineV1ListServingConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Pagination token, if not returned indicates the last page.",
+          "type": "string"
+        },
+        "servingConfigs": {
+          "description": "All the ServingConfigs for a given dataStore.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1ServingConfig"
           },
           "type": "array"
         }
@@ -16489,7 +17013,7 @@
           "type": "object"
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         }
       },
@@ -18539,6 +19063,734 @@
         "name": {
           "description": "Immutable. The full resource name of the User Store, in the format of `projects/{project}/locations/{location}/userStores/{user_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfig": {
+      "description": "WidgetConfig captures configs at the Widget level.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfig",
+      "properties": {
+        "accessSettings": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigAccessSettings",
+          "description": "Will be used for all widget access settings seen in cloud console integration page. Replaces top deprecated top level properties."
+        },
+        "allowPublicAccess": {
+          "deprecated": true,
+          "description": "Whether allow no-auth integration with widget. If set true, public access to search or other solutions from widget is allowed without authenication token provided by customer hosted backend server.",
+          "type": "boolean"
+        },
+        "allowlistedDomains": {
+          "deprecated": true,
+          "description": "Allowlisted domains that can load this widget.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "assistantSettings": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigAssistantSettings",
+          "description": "Optional. Output only. Describes the assistant settings of the widget.",
+          "readOnly": true
+        },
+        "collectionComponents": {
+          "description": "Output only. Collection components that lists all collections and child data stores associated with the widget config, those data sources can be used for filtering in widget service APIs, users can return results that from selected data sources.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigCollectionComponent"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "configId": {
+          "description": "Output only. Unique obfuscated identifier of a WidgetConfig.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "contentSearchSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpec",
+          "deprecated": true,
+          "description": "The content search spec that configs the desired behavior of content search."
+        },
+        "createTime": {
+          "description": "Output only. Timestamp the WidgetConfig was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customerProvidedConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfig",
+          "description": "Optional. Output only. Describes the customer related configurations, currently only used for government customers. This field cannot be modified after project onboarding.",
+          "readOnly": true
+        },
+        "dataStoreType": {
+          "description": "Output only. The type of the parent data store.",
+          "enum": [
+            "DATA_STORE_TYPE_UNSPECIFIED",
+            "SITE_SEARCH",
+            "STRUCTURED",
+            "UNSTRUCTURED",
+            "BLENDED"
+          ],
+          "enumDescriptions": [
+            "Unspecified data store type.",
+            "The parent data store contains a site search engine.",
+            "The parent data store contains a search engine for structured data.",
+            "The parent data store contains a search engine for unstructured data.",
+            "The parent data store is served for blended search with multiple data stores."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataStoreUiConfigs": {
+          "deprecated": true,
+          "description": "Configurable UI configurations per data store.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigDataStoreUiConfig"
+          },
+          "type": "array"
+        },
+        "defaultSearchRequestOrderBy": {
+          "deprecated": true,
+          "description": "The default ordering for search results if specified. Used to set SearchRequest#order_by on applicable requests. https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/projects.locations.dataStores.servingConfigs/search#request-body",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The human readable widget config display name. Used in Discovery UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "enableAutocomplete": {
+          "deprecated": true,
+          "description": "Whether or not to enable autocomplete.",
+          "type": "boolean"
+        },
+        "enableConversationalSearch": {
+          "deprecated": true,
+          "description": "Whether to allow conversational search (LLM, multi-turn) or not (non-LLM, single-turn).",
+          "type": "boolean"
+        },
+        "enablePrivateKnowledgeGraph": {
+          "description": "Optional. Output only. Whether to enable private knowledge graph.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "enableQualityFeedback": {
+          "deprecated": true,
+          "description": "Turn on or off collecting the search result quality feedback from end users.",
+          "type": "boolean"
+        },
+        "enableResultScore": {
+          "description": "Whether to show the result score.",
+          "type": "boolean"
+        },
+        "enableSafeSearch": {
+          "deprecated": true,
+          "description": "Whether to enable safe search.",
+          "type": "boolean"
+        },
+        "enableSearchAsYouType": {
+          "deprecated": true,
+          "description": "Whether to enable search-as-you-type behavior for the search widget",
+          "type": "boolean"
+        },
+        "enableSnippetResultSummary": {
+          "deprecated": true,
+          "description": "Turn on or off summary for each snippets result.",
+          "type": "boolean"
+        },
+        "enableSummarization": {
+          "deprecated": true,
+          "description": "Turn on or off summarization for the search response.",
+          "type": "boolean"
+        },
+        "enableWebApp": {
+          "deprecated": true,
+          "description": "Whether to enable standalone web app.",
+          "type": "boolean"
+        },
+        "facetField": {
+          "deprecated": true,
+          "description": "The configuration and appearance of facets in the end user view.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigFacetField"
+          },
+          "type": "array"
+        },
+        "fieldsUiComponentsMap": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUIComponentField"
+          },
+          "deprecated": true,
+          "description": "The key is the UI component. Mock. Currently supported `title`, `thumbnail`, `url`, `custom1`, `custom2`, `custom3`. The value is the name of the field along with its device visibility. The 3 custom fields are optional and can be added or removed. `title`, `thumbnail`, `url` are required UI components that cannot be removed.",
+          "type": "object"
+        },
+        "geminiBundle": {
+          "description": "Output only. Whether the subscription is gemini bundle or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "homepageSetting": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigHomepageSetting",
+          "description": "Optional. Describes the homepage settings of the widget."
+        },
+        "industryVertical": {
+          "description": "Output only. The industry vertical that the WidgetConfig registers. The WidgetConfig industry vertical is based on the associated Engine.",
+          "enum": [
+            "INDUSTRY_VERTICAL_UNSPECIFIED",
+            "GENERIC",
+            "MEDIA",
+            "HEALTHCARE_FHIR"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "The generic vertical for documents that are not specific to any industry vertical.",
+            "The media industry vertical.",
+            "The healthcare FHIR vertical."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "llmEnabled": {
+          "description": "Output only. Whether LLM is enabled in the corresponding data store.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "minimumDataTermAccepted": {
+          "description": "Output only. Whether the customer accepted data use terms.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the widget config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "resultDisplayType": {
+          "deprecated": true,
+          "description": "The type of snippet to display in UCS widget. - RESULT_DISPLAY_TYPE_UNSPECIFIED for existing users. - SNIPPET for new non-enterprise search users. - EXTRACTIVE_ANSWER for new enterprise search users.",
+          "enum": [
+            "RESULT_DISPLAY_TYPE_UNSPECIFIED",
+            "SNIPPET",
+            "EXTRACTIVE_ANSWER"
+          ],
+          "enumDescriptions": [
+            "Unspecified display type (default to showing snippet).",
+            "Display results from the snippet field.",
+            "Display results from extractive answers field."
+          ],
+          "type": "string"
+        },
+        "solutionType": {
+          "description": "Required. Immutable. Specifies the solution type that this WidgetConfig can be used for.",
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+            "SOLUTION_TYPE_CHAT",
+            "SOLUTION_TYPE_GENERATIVE_CHAT"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Used for Recommendations AI.",
+            "Used for Discovery Search.",
+            "Used for use cases related to the Generative AI agent.",
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+          ],
+          "type": "string"
+        },
+        "uiBranding": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUiBrandingSettings",
+          "description": "Describes search widget UI branding settings, such as the widget title, logo, favicons, and colors."
+        },
+        "uiSettings": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettings",
+          "description": "Describes general widget search settings as seen in cloud console widget configuration page. Replaces top deprecated top level properties."
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp the WidgetConfig was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigAccessSettings": {
+      "description": "Describes widget access settings.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigAccessSettings",
+      "properties": {
+        "allowPublicAccess": {
+          "description": "Whether public unauthenticated access is allowed.",
+          "type": "boolean"
+        },
+        "allowlistedDomains": {
+          "description": "List of domains that are allowed to integrate the search widget.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "enableWebApp": {
+          "description": "Whether web app access is enabled.",
+          "type": "boolean"
+        },
+        "languageCode": {
+          "description": "Optional. Language code for user interface. Use language tags defined by [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). If unset, the default language code is \"en-US\".",
+          "type": "string"
+        },
+        "workforceIdentityPoolProvider": {
+          "description": "Optional. The workforce identity pool provider used to access the widget.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigAssistantSettings": {
+      "description": "Describes the assistant settings of the widget.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigAssistantSettings",
+      "properties": {
+        "defaultWebGroundingToggleOff": {
+          "description": "Output only. This field controls the default web grounding toggle for end users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web grounding enabled by default on UI. If true, grounding toggle will be disabled by default on UI. End users can still enable web grounding in the UI if web grounding is enabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "disableLocationContext": {
+          "description": "Optional. Output only. Whether to disable user location context.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "googleSearchGroundingEnabled": {
+          "deprecated": true,
+          "description": "Whether or not the Google search grounding toggle is shown. Deprecated. Use web_grounding_type instead.",
+          "type": "boolean"
+        },
+        "webGroundingType": {
+          "description": "Optional. The type of web grounding to use.",
+          "enum": [
+            "WEB_GROUNDING_TYPE_UNSPECIFIED",
+            "WEB_GROUNDING_TYPE_DISABLED",
+            "WEB_GROUNDING_TYPE_GOOGLE_SEARCH",
+            "WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH"
+          ],
+          "enumDescriptions": [
+            "Default, unspecified setting. This is the same as disabled.",
+            "Web grounding is disabled.",
+            "Grounding with Google Search is enabled.",
+            "Grounding with Enterprise Web Search is enabled."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigCollectionComponent": {
+      "description": "Read-only collection component that contains data store collections fields that may be used for filtering",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigCollectionComponent",
+      "properties": {
+        "connectorIconLink": {
+          "description": "Output only. The icon link of the connector source.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataSource": {
+          "description": "The name of the data source, retrieved from `Collection.data_connector.data_source`.",
+          "type": "string"
+        },
+        "dataSourceDisplayName": {
+          "description": "Output only. The display name of the data source.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataStoreComponents": {
+          "description": "For the data store collection, list of the children data stores.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigDataStoreComponent"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "The display name of the collection.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. the identifier of the collection, used for widget service. For now it refers to collection_id, in the future we will migrate the field to encrypted collection name UUID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the collection. It should be collection resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfig": {
+      "description": "Customer provided configurations.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfig",
+      "properties": {
+        "customerType": {
+          "description": "Customer type.",
+          "enum": [
+            "DEFAULT_CUSTOMER",
+            "GOVERNMENT_CUSTOMER"
+          ],
+          "enumDescriptions": [
+            "Default customer type.",
+            "Government customer type. Some features are disabled for government customers due to legal requirements."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigDataStoreComponent": {
+      "description": "Read-only data store component that contains data stores fields that may be used for filtering, it's the child of `CollectionComponent`.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigDataStoreComponent",
+      "properties": {
+        "dataStoreConfigType": {
+          "description": "Output only. The type of the data store config.",
+          "enum": [
+            "DATA_STORE_CONFIG_TYPE_UNSPECIFIED",
+            "ALLOW_DB_CONFIG",
+            "THIRD_PARTY_OAUTH_CONFIG",
+            "NOTEBOOKLM_CONFIG"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The data store is connected to AlloyDB",
+            "The data store is a connected to a third party data source.",
+            "The data store is a connected to NotebookLM Enterprise."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the data store.",
+          "type": "string"
+        },
+        "entityName": {
+          "description": "The name of the entity, retrieved from `Collection.data_connector.entities.entityName`.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. the identifier of the data store, used for widget service. For now it refers to data_store_id, in the future we will migrate the field to encrypted data store name UUID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the data store. It should be data store resource name Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigDataStoreUiConfig": {
+      "description": "UI component configuration for data store.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigDataStoreUiConfig",
+      "properties": {
+        "facetField": {
+          "description": "Facet fields that store the mapping of fields to end user widget appearance.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigFacetField"
+          },
+          "type": "array"
+        },
+        "fieldsUiComponentsMap": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUIComponentField"
+          },
+          "description": "The key is the UI component. Mock. Currently supported `title`, `thumbnail`, `url`, `custom1`, `custom2`, `custom3`. The value is the name of the field along with its device visibility. The 3 custom fields are optional and can be added or removed. `title`, `thumbnail`, `url` are required UI components that cannot be removed.",
+          "type": "object"
+        },
+        "id": {
+          "description": "Output only. the identifier of the data store, used for widget service. For now it refers to data_store_id, in the future we will migrate the field to encrypted data store name UUID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the data store. It should be data store resource name Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigFacetField": {
+      "description": "Facet fields that store the mapping of fields to end user widget appearance.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigFacetField",
+      "properties": {
+        "displayName": {
+          "description": "Optional. The field name that end users will see.",
+          "type": "string"
+        },
+        "field": {
+          "description": "Required. Registered field name. The format is `field.abc`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigHomepageSetting": {
+      "description": "Describes the homepage setting of the widget. It includes all homepage related settings and configurations, such as shortcuts.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigHomepageSetting",
+      "properties": {
+        "shortcuts": {
+          "description": "Optional. The shortcuts to display on the homepage.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigHomepageSettingShortcut"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigHomepageSettingShortcut": {
+      "description": "Describes an entity of shortcut (aka pinned content) on the homepage. The home page will render these shortcuts in the same order as what the API returns. If a customer wants to reorder or remove a shortcut, the UI should always provide the new full list of shortcuts.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigHomepageSettingShortcut",
+      "properties": {
+        "destinationUri": {
+          "description": "Optional. Destination URL of shortcut.",
+          "type": "string"
+        },
+        "icon": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigImage",
+          "description": "Optional. Icon URL of shortcut."
+        },
+        "title": {
+          "description": "Optional. Title of the shortcut.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigImage": {
+      "description": "Options to store an image.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigImage",
+      "properties": {
+        "url": {
+          "description": "Image URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigUIComponentField": {
+      "description": "Facet field that maps to a UI Component.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigUIComponentField",
+      "properties": {
+        "deviceVisibility": {
+          "description": "The field visibility on different types of devices.",
+          "items": {
+            "enum": [
+              "DEVICE_VISIBILITY_UNSPECIFIED",
+              "MOBILE",
+              "DESKTOP"
+            ],
+            "enumDescriptions": [
+              "Default value when not specified. Server returns INVALID_ARGUMENT if used in requests.",
+              "The UI component is visible on Mobile devices.",
+              "The UI component is visible on Browser-based client."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayTemplate": {
+          "description": "The template to customize how the field is displayed. An example value would be a string that looks like: \"Price: {value}\".",
+          "type": "string"
+        },
+        "field": {
+          "description": "Required. Registered field name. The format is `field.abc`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigUiBrandingSettings": {
+      "description": "Describes widget UI branding settings.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigUiBrandingSettings",
+      "properties": {
+        "logo": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigImage",
+          "description": "Logo image."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigUiSettings": {
+      "description": "Describes general widget (or web app) UI settings as seen in the cloud console UI configuration page.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettings",
+      "properties": {
+        "dataStoreUiConfigs": {
+          "description": "Per data store configuration.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigDataStoreUiConfig"
+          },
+          "type": "array"
+        },
+        "defaultSearchRequestOrderBy": {
+          "description": "The default ordering for search results if specified. Used to set SearchRequest#order_by on applicable requests. https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/projects.locations.dataStores.servingConfigs/search#request-body",
+          "type": "string"
+        },
+        "disableUserEventsCollection": {
+          "description": "If set to true, the widget will not collect user events.",
+          "type": "boolean"
+        },
+        "enableAutocomplete": {
+          "description": "Whether or not to enable autocomplete.",
+          "type": "boolean"
+        },
+        "enableCreateAgentButton": {
+          "description": "Optional. If set to true, the widget will enable the create agent button.",
+          "type": "boolean"
+        },
+        "enablePeopleSearch": {
+          "description": "Optional. If set to true, the widget will enable people search.",
+          "type": "boolean"
+        },
+        "enableQualityFeedback": {
+          "description": "Turn on or off collecting the search result quality feedback from end users.",
+          "type": "boolean"
+        },
+        "enableSafeSearch": {
+          "description": "Whether to enable safe search.",
+          "type": "boolean"
+        },
+        "enableSearchAsYouType": {
+          "description": "Whether to enable search-as-you-type behavior for the search widget.",
+          "type": "boolean"
+        },
+        "enableVisualContentSummary": {
+          "description": "If set to true, the widget will enable visual content summary on applicable search requests. Only used by healthcare search.",
+          "type": "boolean"
+        },
+        "features": {
+          "additionalProperties": {
+            "enum": [
+              "FEATURE_STATE_UNSPECIFIED",
+              "FEATURE_STATE_ON",
+              "FEATURE_STATE_OFF"
+            ],
+            "enumDescriptions": [
+              "The feature state is unspecified.",
+              "The feature is turned on to be accessible.",
+              "The feature is turned off to be inaccessible."
+            ],
+            "type": "string"
+          },
+          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`",
+          "readOnly": true,
+          "type": "object"
+        },
+        "generativeAnswerConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsGenerativeAnswerConfig",
+          "description": "Describes generative answer configuration."
+        },
+        "interactionType": {
+          "description": "Describes widget (or web app) interaction type",
+          "enum": [
+            "INTERACTION_TYPE_UNSPECIFIED",
+            "SEARCH_ONLY",
+            "SEARCH_WITH_ANSWER",
+            "SEARCH_WITH_FOLLOW_UPS"
+          ],
+          "enumDescriptions": [
+            "Not specified. Defaults to SEARCH_ONLY.",
+            "Search without a generative answer.",
+            "Search with the generative answer.",
+            "Search with the generative answer that supports follow up questions. Also known as multi-turn search."
+          ],
+          "type": "string"
+        },
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ],
+            "enumDescriptions": [
+              "The model state is unspecified.",
+              "The model is enabled by admin.",
+              "The model is disabled by admin."
+            ],
+            "type": "string"
+          },
+          "description": "Output only. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "resultDescriptionType": {
+          "description": "Controls whether result extract is display and how (snippet or extractive answer). Default to no result if unspecified.",
+          "enum": [
+            "RESULT_DISPLAY_TYPE_UNSPECIFIED",
+            "SNIPPET",
+            "EXTRACTIVE_ANSWER"
+          ],
+          "enumDescriptions": [
+            "Unspecified display type (default to showing snippet).",
+            "Display results from the snippet field.",
+            "Display results from extractive answers field."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsGenerativeAnswerConfig": {
+      "description": "Describes configuration for generative answer.",
+      "id": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsGenerativeAnswerConfig",
+      "properties": {
+        "disableRelatedQuestions": {
+          "description": "Whether generated answer contains suggested related questions.",
+          "type": "boolean"
+        },
+        "ignoreAdversarialQuery": {
+          "description": "Optional. Specifies whether to filter out queries that are adversarial.",
+          "type": "boolean"
+        },
+        "ignoreLowRelevantContent": {
+          "description": "Optional. Specifies whether to filter out queries that are not relevant to the content.",
+          "type": "boolean"
+        },
+        "ignoreNonAnswerSeekingQuery": {
+          "description": "Optional. Specifies whether to filter out queries that are not answer-seeking. The default value is `false`. No answer is returned if the search query is classified as a non-answer seeking query. If this field is set to `true`, we skip generating answers for non-answer seeking queries and return fallback messages instead.",
+          "type": "boolean"
+        },
+        "imageSource": {
+          "description": "Optional. Source of image returned in the answer.",
+          "enum": [
+            "IMAGE_SOURCE_UNSPECIFIED",
+            "ALL_AVAILABLE_SOURCES",
+            "CORPUS_IMAGE_ONLY",
+            "FIGURE_GENERATION_ONLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified image source (multimodal feature is disabled by default)",
+            "Behavior when service determines the pick from all available sources.",
+            "Include image from corpus in the answer.",
+            "Triggers figure generation in the answer."
+          ],
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Language code for Summary. Use language tags defined by [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). Note: This is an experimental feature.",
+          "type": "string"
+        },
+        "maxRephraseSteps": {
+          "description": "Max rephrase steps. The max number is 5 steps. If not set or set to < 1, it will be set to 1 by default.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "modelPromptPreamble": {
+          "description": "Text at the beginning of the prompt that instructs the model that generates the answer.",
+          "type": "string"
+        },
+        "modelVersion": {
+          "description": "The model version used to generate the answer.",
+          "type": "string"
+        },
+        "resultCount": {
+          "description": "The number of top results to generate the answer from. Up to 10.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -21378,6 +22630,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDeleteAgentMetadata": {
+      "description": "Metadata related to the progress of the AgentService.DeleteAgent operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteAgentMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata": {
       "description": "Metadata related to the progress of the CmekConfigService.DeleteCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata",
@@ -21701,6 +22970,10 @@
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
         },
+        "enableLlmLayoutParsing": {
+          "description": "Optional. If true, the pdf layout will be refined using an LLM.",
+          "type": "boolean"
+        },
         "enableTableAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
           "type": "boolean"
@@ -21803,6 +23076,11 @@
           "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
           "readOnly": true
         },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaCmekConfig",
+          "description": "Output only. CMEK-related information for the Engine.",
+          "readOnly": true
+        },
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
@@ -21876,6 +23154,23 @@
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
+        },
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ],
+            "enumDescriptions": [
+              "The model state is unspecified.",
+              "The model is enabled by admin.",
+              "The model is disabled by admin."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.",
+          "type": "object"
         },
         "name": {
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -24046,7 +25341,7 @@
           "type": "object"
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         }
       },
@@ -26349,6 +27644,10 @@
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
         },
+        "enableLlmLayoutParsing": {
+          "description": "Optional. If true, the pdf layout will be refined using an LLM.",
+          "type": "boolean"
+        },
         "enableTableAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
           "type": "boolean"
@@ -26451,6 +27750,11 @@
           "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
           "readOnly": true
         },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig",
+          "description": "Output only. CMEK-related information for the Engine.",
+          "readOnly": true
+        },
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
@@ -26524,6 +27828,23 @@
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
+        },
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ],
+            "enumDescriptions": [
+              "The model state is unspecified.",
+              "The model is enabled by admin.",
+              "The model is disabled by admin."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.",
+          "type": "object"
         },
         "name": {
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -27989,7 +29310,7 @@
           "type": "object"
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         }
       },

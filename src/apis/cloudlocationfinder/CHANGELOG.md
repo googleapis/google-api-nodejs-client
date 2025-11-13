@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudlocationfinder-v5.0.0...cloudlocationfinder-v5.0.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* **cloudlocationfinder:** update the API ([caf859a](https://github.com/googleapis/google-api-nodejs-client/commit/caf859acd946a3f863d6e69e8b3dff59940c7948))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudlocationfinder-v4.0.0...cloudlocationfinder-v5.0.0) (2025-10-15)
 
 

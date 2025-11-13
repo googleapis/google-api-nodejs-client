@@ -169,7 +169,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2234,7 +2234,7 @@
       }
     }
   },
-  "revision": "20251015",
+  "revision": "20251105",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -2646,6 +2646,21 @@
           },
           "type": "array"
         },
+        "backupRetentionInheritance": {
+          "description": "Output only. Setting for how the enforced retention end time is inherited. This value is copied from this backup's BackupVault.",
+          "enum": [
+            "BACKUP_RETENTION_INHERITANCE_UNSPECIFIED",
+            "INHERIT_VAULT_RETENTION",
+            "MATCH_BACKUP_EXPIRE_TIME"
+          ],
+          "enumDescriptions": [
+            "Inheritance behavior not set. This will default to `INHERIT_VAULT_RETENTION`.",
+            "The enforced retention end time of a backup will be inherited from the backup vault's `backup_minimum_enforced_retention_duration` field. This is the default behavior.",
+            "The enforced retention end time of a backup will always match the expire time of the backup. If this is set, the backup's enforced retention end time will be set to match the expire time during creation of the backup. When updating, the ERET and expire time must be updated together and have the same value. Invalid update requests will be rejected by the server."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "backupType": {
           "description": "Output only. Type of the backup, unspecified, scheduled or ondemand.",
           "enum": [
@@ -2718,6 +2733,14 @@
           "$ref": "BackupGcpResource",
           "description": "Output only. Unique identifier of the GCP resource that is being backed up.",
           "readOnly": true
+        },
+        "kmsKeyVersions": {
+          "description": "Optional. Output only. The list of KMS key versions used to encrypt the backup.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "labels": {
           "additionalProperties": {
@@ -3182,6 +3205,11 @@
           "format": "int64",
           "type": "string"
         },
+        "maxCustomOnDemandRetentionDays": {
+          "description": "Optional. Optional field to configure the maximum number of days for which a backup can be retained. This field is only applicable for on-demand backups taken with custom retention value.",
+          "format": "int32",
+          "type": "integer"
+        },
         "name": {
           "description": "Output only. Identifier. The resource name of the `BackupPlan`. Format: `projects/{project}/locations/{location}/backupPlans/{backup_plan}`",
           "readOnly": true,
@@ -3430,6 +3458,20 @@
           "format": "google-duration",
           "type": "string"
         },
+        "backupRetentionInheritance": {
+          "description": "Optional. Setting for how a backup's enforced retention end time is inherited.",
+          "enum": [
+            "BACKUP_RETENTION_INHERITANCE_UNSPECIFIED",
+            "INHERIT_VAULT_RETENTION",
+            "MATCH_BACKUP_EXPIRE_TIME"
+          ],
+          "enumDescriptions": [
+            "Inheritance behavior not set. This will default to `INHERIT_VAULT_RETENTION`.",
+            "The enforced retention end time of a backup will be inherited from the backup vault's `backup_minimum_enforced_retention_duration` field. This is the default behavior.",
+            "The enforced retention end time of a backup will always match the expire time of the backup. If this is set, the backup's enforced retention end time will be set to match the expire time during creation of the backup. When updating, the ERET and expire time must be updated together and have the same value. Invalid update requests will be rejected by the server."
+          ],
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. The time when the instance was created.",
           "format": "google-datetime",
@@ -3449,6 +3491,10 @@
           "description": "Optional. Time after which the BackupVault resource is locked.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig",
+          "description": "Optional. The encryption config of the backup vault."
         },
         "etag": {
           "description": "Optional. Server specified ETag for the backup vault resource to prevent simultaneous updates from overwiting each other.",
@@ -4561,6 +4607,17 @@
       "properties": {},
       "type": "object"
     },
+    "EncryptionConfig": {
+      "description": "Message describing the EncryptionConfig of backup vault. This determines how data within the vault is encrypted at rest.",
+      "id": "EncryptionConfig",
+      "properties": {
+        "kmsKeyName": {
+          "description": "Optional. The Cloud KMS key name to encrypt backups in this backup vault. Must be in the same region as the vault. Some workload backups like compute disk backups may use their inherited source key instead. Format: projects/{project}/locations/{location}/keyRings/{ring}/cryptoKeys/{key}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Entry": {
       "description": "A key/value pair to be used for storing metadata.",
       "id": "Entry",
@@ -5124,6 +5181,13 @@
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5867,6 +5931,11 @@
       "description": "Request message for restoring from a Backup.",
       "id": "RestoreBackupRequest",
       "properties": {
+        "clearOverridesFieldMask": {
+          "description": "Optional. A field mask used to clear server-side default values for fields within the `instance_properties` oneof. When a field in this mask is cleared, the server will not apply its default logic (like inheriting a value from the source) for that field. The most common current use case is clearing default encryption keys. Examples of field mask paths: - Compute Instance Disks: `compute_instance_restore_properties.disks.*.disk_encryption_key` - Single Disk: `disk_restore_properties.disk_encryption_key`",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
         "computeInstanceRestoreProperties": {
           "$ref": "ComputeInstanceRestoreProperties",
           "description": "Compute Engine instance properties to be overridden during restore."
@@ -6385,6 +6454,18 @@
       "description": "Request message for triggering a backup.",
       "id": "TriggerBackupRequest",
       "properties": {
+        "customRetentionDays": {
+          "description": "Optional. The duration for which backup data will be kept, while taking an on-demand backup with custom retention. It is defined in \"days\". It is mutually exclusive with rule_id. This field is required if rule_id is not provided.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels to be applied on the backup.",
+          "type": "object"
+        },
         "requestId": {
           "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"

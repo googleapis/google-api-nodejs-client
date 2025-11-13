@@ -1,5 +1,24 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v11.2.0...firebaseappdistribution-v12.0.0) (2025-11-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3831](https://github.com/googleapis/google-api-nodejs-client/issues/3831)) ([3d39e40](https://github.com/googleapis/google-api-nodejs-client/commit/3d39e405c4c218bb5de165bfab54dceca74d928a))
+
+## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v11.1.0...firebaseappdistribution-v11.2.0) (2025-11-04)
+
+
+### Features
+
+* **firebaseappdistribution:** update the API ([a686d4d](https://github.com/googleapis/google-api-nodejs-client/commit/a686d4d7bd65c7436fa0bbe11d20a0bcd640adb7))
+* **firebaseappdistribution:** update the API ([73ff10f](https://github.com/googleapis/google-api-nodejs-client/commit/73ff10f305333e3e9ea267590b362901f3ec1779))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v11.0.0...firebaseappdistribution-v11.1.0) (2025-10-20)
 
 

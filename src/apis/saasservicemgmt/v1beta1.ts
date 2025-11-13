@@ -584,6 +584,10 @@ export namespace saasservicemgmt_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Output only. Output only snapshot of the effective unit filter at Rollout start time. Contains a CEL(https://github.com/google/cel-spec) expression consisting of a conjunction of Rollout.unit_filter and RolloutKind.unit_filter. This field captures the filter applied by the Rollout to determine the Unit population. If the associated RolloutKind's unit_filter is modified after the rollout is started, it will not be updated here.
+     */
+    effectiveUnitFilter?: string | null;
+    /**
      * Optional. Output only. The time when the rollout finished execution (regardless of success, failure, or cancellation). Will be empty if the rollout hasn't finished yet. Once set, the rollout is in terminal state and all the results are final.
      */
     endTime?: string | null;
@@ -1402,7 +1406,7 @@ export namespace saasservicemgmt_v1beta1 {
      *
      *   // Do the magic
      *   const res = await saasservicemgmt.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1531,7 +1535,7 @@ export namespace saasservicemgmt_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -4290,6 +4294,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "annotations": {},
      *       //   "control": {},
      *       //   "createTime": "my_createTime",
+     *       //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *       //   "endTime": "my_endTime",
      *       //   "etag": "my_etag",
      *       //   "labels": {},
@@ -4317,6 +4322,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "annotations": {},
      *   //   "control": {},
      *   //   "createTime": "my_createTime",
+     *   //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *   //   "endTime": "my_endTime",
      *   //   "etag": "my_etag",
      *   //   "labels": {},
@@ -4613,6 +4619,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "annotations": {},
      *   //   "control": {},
      *   //   "createTime": "my_createTime",
+     *   //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *   //   "endTime": "my_endTime",
      *   //   "etag": "my_etag",
      *   //   "labels": {},
@@ -4923,6 +4930,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "annotations": {},
      *       //   "control": {},
      *       //   "createTime": "my_createTime",
+     *       //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *       //   "endTime": "my_endTime",
      *       //   "etag": "my_etag",
      *       //   "labels": {},
@@ -4950,6 +4958,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "annotations": {},
      *   //   "control": {},
      *   //   "createTime": "my_createTime",
+     *   //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *   //   "endTime": "my_endTime",
      *   //   "etag": "my_etag",
      *   //   "labels": {},

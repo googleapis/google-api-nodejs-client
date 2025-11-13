@@ -656,7 +656,7 @@
                           "type": "string"
                         },
                         "userPseudoId": {
-                          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                           "location": "query",
                           "type": "string"
                         }
@@ -4857,7 +4857,7 @@
                       "type": "string"
                     },
                     "userPseudoId": {
-                      "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                       "location": "query",
                       "type": "string"
                     }
@@ -8672,6 +8672,36 @@
                 }
               },
               "resources": {
+                "licenseConfigsUsageStats": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists all the LicenseConfigUsageStatss associated with the project.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}/licenseConfigsUsageStats",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.userStores.licenseConfigsUsageStats.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}/userStores/{user_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/licenseConfigsUsageStats",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    }
+                  }
+                },
                 "userLicenses": {
                   "methods": {
                     "list": {
@@ -8684,7 +8714,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.",
+                          "description": "Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.",
                           "location": "query",
                           "type": "string"
                         },
@@ -8802,7 +8832,7 @@
       }
     }
   },
-  "revision": "20251026",
+  "revision": "20251109",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GdataBlobstore2Info": {
@@ -11548,6 +11578,10 @@
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
         },
+        "enableLlmLayoutParsing": {
+          "description": "Optional. If true, the pdf layout will be refined using an LLM.",
+          "type": "boolean"
+        },
         "enableTableAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
           "type": "boolean"
@@ -11650,6 +11684,11 @@
           "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
           "readOnly": true
         },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1CmekConfig",
+          "description": "Output only. CMEK-related information for the Engine.",
+          "readOnly": true
+        },
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
@@ -11723,6 +11762,23 @@
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
+        },
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ],
+            "enumDescriptions": [
+              "The model state is unspecified.",
+              "The model is enabled by admin.",
+              "The model is disabled by admin."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.",
+          "type": "object"
         },
         "name": {
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -16249,6 +16305,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDeleteAgentMetadata": {
+      "description": "Metadata related to the progress of the AgentService.DeleteAgent operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteAgentMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata": {
       "description": "Metadata related to the progress of the CmekConfigService.DeleteCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata",
@@ -16572,6 +16645,10 @@
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
         },
+        "enableLlmLayoutParsing": {
+          "description": "Optional. If true, the pdf layout will be refined using an LLM.",
+          "type": "boolean"
+        },
         "enableTableAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
           "type": "boolean"
@@ -16674,6 +16751,11 @@
           "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
           "readOnly": true
         },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaCmekConfig",
+          "description": "Output only. CMEK-related information for the Engine.",
+          "readOnly": true
+        },
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
@@ -16747,6 +16829,23 @@
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
+        },
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ],
+            "enumDescriptions": [
+              "The model state is unspecified.",
+              "The model is enabled by admin.",
+              "The model is disabled by admin."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.",
+          "type": "object"
         },
         "name": {
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -18917,7 +19016,7 @@
           "type": "object"
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         }
       },
@@ -20270,7 +20369,7 @@
           "description": "Optional. Information about the end user. This should be the same identifier information as UserEvent.user_info and SearchRequest.user_info."
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128",
           "type": "string"
         }
       },
@@ -24649,6 +24748,10 @@
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
         },
+        "enableLlmLayoutParsing": {
+          "description": "Optional. If true, the pdf layout will be refined using an LLM.",
+          "type": "boolean"
+        },
         "enableTableAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
           "type": "boolean"
@@ -24783,6 +24886,11 @@
           "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
           "readOnly": true
         },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig",
+          "description": "Output only. CMEK-related information for the Engine.",
+          "readOnly": true
+        },
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
@@ -24856,6 +24964,23 @@
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
+        },
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ],
+            "enumDescriptions": [
+              "The model state is unspecified.",
+              "The model is enabled by admin.",
+              "The model is disabled by admin."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.",
+          "type": "object"
         },
         "name": {
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -26135,6 +26260,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaLicenseConfigUsageStats": {
+      "description": "Stats about users' licenses.",
+      "id": "GoogleCloudDiscoveryengineV1betaLicenseConfigUsageStats",
+      "properties": {
+        "licenseConfig": {
+          "description": "Required. The LicenseConfig name.",
+          "type": "string"
+        },
+        "usedLicenseCount": {
+          "description": "Required. The number of licenses used.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse": {
       "description": "Response message for CmekConfigService.ListCmekConfigs method.",
       "id": "GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse",
@@ -26338,6 +26479,20 @@
         "nextPageToken": {
           "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse": {
+      "description": "Response message for UserLicenseService.ListLicenseConfigUsageStats method.",
+      "id": "GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse",
+      "properties": {
+        "licenseConfigUsageStats": {
+          "description": "All the customer's LicenseConfigUsageStats.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaLicenseConfigUsageStats"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -27872,7 +28027,7 @@
           "type": "object"
         },
         "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         }
       },

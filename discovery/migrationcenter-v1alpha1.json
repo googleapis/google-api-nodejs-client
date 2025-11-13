@@ -2098,6 +2098,34 @@
               "resources": {
                 "reports": {
                   "methods": {
+                    "artifactLink": {
+                      "description": "Gets the link to the generated artifact of a given type for a Report.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}:artifactLink",
+                      "httpMethod": "POST",
+                      "id": "migrationcenter.projects.locations.reportConfigs.reports.artifactLink",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+/reports/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+name}:artifactLink",
+                      "request": {
+                        "$ref": "GenerateReportArtifactLinkRequest"
+                      },
+                      "response": {
+                        "$ref": "ReportArtifactLink"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a report.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports",
@@ -2159,6 +2187,34 @@
                         }
                       },
                       "path": "v1alpha1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "export": {
+                      "description": "Export a Report into a supported format.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}:export",
+                      "httpMethod": "POST",
+                      "id": "migrationcenter.projects.locations.reportConfigs.reports.export",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+/reports/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+name}:export",
+                      "request": {
+                        "$ref": "ExportReportRequest"
+                      },
                       "response": {
                         "$ref": "Operation"
                       },
@@ -2270,6 +2326,169 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  },
+                  "resources": {
+                    "reportExportJobs": {
+                      "methods": {
+                        "create": {
+                          "description": "Export a Report into a supported destination.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}/reportExportJobs",
+                          "httpMethod": "POST",
+                          "id": "migrationcenter.projects.locations.reportConfigs.reports.reportExportJobs.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent resource where this export job will be created.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+/reports/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "reportExportJobId": {
+                              "description": "Required. The ID to use for the report export job.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "requestId": {
+                              "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+parent}/reportExportJobs",
+                          "request": {
+                            "$ref": "ReportExportJob"
+                          },
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes an report export job.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}/reportExportJobs/{reportExportJobsId}",
+                          "httpMethod": "DELETE",
+                          "id": "migrationcenter.projects.locations.reportConfigs.reports.reportExportJobs.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Name of the resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+/reports/[^/]+/reportExportJobs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "requestId": {
+                              "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+name}",
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets the details of a report export job.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}/reportExportJobs/{reportExportJobsId}",
+                          "httpMethod": "GET",
+                          "id": "migrationcenter.projects.locations.reportConfigs.reports.reportExportJobs.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Name of the resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+/reports/[^/]+/reportExportJobs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+name}",
+                          "response": {
+                            "$ref": "ReportExportJob"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists all the report export jobs for a given report.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}/reportExportJobs",
+                          "httpMethod": "GET",
+                          "id": "migrationcenter.projects.locations.reportConfigs.reports.reportExportJobs.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. A token identifying a page of results that the server should return.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Parent report owning the export jobs.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+/reports/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+parent}/reportExportJobs",
+                          "response": {
+                            "$ref": "ListReportExportJobsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "run": {
+                          "description": "Runs a report export job.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}/reportExportJobs/{reportExportJobsId}:run",
+                          "httpMethod": "POST",
+                          "id": "migrationcenter.projects.locations.reportConfigs.reports.reportExportJobs.run",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Name of the resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+/reports/[^/]+/reportExportJobs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+name}:run",
+                          "request": {
+                            "$ref": "RunReportExportJobRequest"
+                          },
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 }
@@ -2559,7 +2778,7 @@
       }
     }
   },
-  "revision": "20251023",
+  "revision": "20251106",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -5144,6 +5363,26 @@
       },
       "type": "object"
     },
+    "ExportReportRequest": {
+      "description": "Request to export a detailed pricing report.",
+      "id": "ExportReportRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "ExportReportResponse": {
+      "description": "Response message for exporting report.",
+      "id": "ExportReportResponse",
+      "properties": {
+        "reportArtifactLinks": {
+          "description": "For large generated report, we may return multiple links",
+          "items": {
+            "$ref": "ReportArtifactLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "FileValidationReport": {
       "description": "A resource that aggregates the validation errors found in an import job file.",
       "id": "FileValidationReport",
@@ -5313,6 +5552,29 @@
         },
         "path": {
           "description": "The payload path in Google Cloud Storage.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateReportArtifactLinkRequest": {
+      "description": "A request to generate a link to an artifact for a Report.",
+      "id": "GenerateReportArtifactLinkRequest",
+      "properties": {
+        "artifactType": {
+          "description": "Required. Type of the artifact requested.",
+          "enum": [
+            "ARTIFACT_TYPE_UNSPECIFIED",
+            "PRESENTATION",
+            "SPREADSHEET",
+            "CSV"
+          ],
+          "enumDescriptions": [
+            "Unspecified (default value).",
+            "Google Slides presentation.",
+            "Google Sheets document.",
+            "Comma Separated Value Text File."
+          ],
           "type": "string"
         }
       },
@@ -6386,6 +6648,26 @@
           "items": {
             "type": "string"
           },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListReportExportJobsResponse": {
+      "description": "Response message for listing report export jobs.",
+      "id": "ListReportExportJobsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Output only. A token identifying a page of results the server should return.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reportExportJobs": {
+          "description": "Output only. The list of report export jobs.",
+          "items": {
+            "$ref": "ReportExportJob"
+          },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -7706,6 +7988,11 @@
           "description": "Output only. Summary view of the Report.",
           "readOnly": true
         },
+        "tcoDetails": {
+          "$ref": "ReportTotalCostOfOwnershipDetails",
+          "description": "Output only. Detailed data related to TCO reports.",
+          "readOnly": true
+        },
         "type": {
           "description": "Report type.",
           "enum": [
@@ -7720,6 +8007,30 @@
         },
         "updateTime": {
           "description": "Output only. Last update timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportArtifactLink": {
+      "description": "Describes a link to a generated artifact of the report.",
+      "id": "ReportArtifactLink",
+      "properties": {
+        "displayName": {
+          "description": "Output only. Human friendly display name of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. URI of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uriExpirationTime": {
+          "deprecated": true,
+          "description": "Output only. Expiration time of the URI.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -7783,6 +8094,93 @@
         "preferenceSet": {
           "description": "Required. Name of the Preference Set.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportExportExecution": {
+      "description": "Execution status of report export operation.",
+      "id": "ReportExportExecution",
+      "properties": {
+        "endTime": {
+          "description": "Output only. Completion time of the export.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "executionId": {
+          "description": "Output only. Globally unique identifier of the execution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. Expiration time for the export and artifacts.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "progressPercentage": {
+          "description": "Output only. Represents the progress of the execution. It reaches 100 when the execution is successfully completed. When the execution finishes with a failure, the progress is set to 0.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "result": {
+          "$ref": "ReportExportExecutionResult",
+          "description": "Output only. Result of the export execution.",
+          "readOnly": true
+        },
+        "startTime": {
+          "description": "Output only. Execution start timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportExportExecutionResult": {
+      "description": "Contains the result of the report export.",
+      "id": "ReportExportExecutionResult",
+      "properties": {
+        "error": {
+          "$ref": "Status",
+          "description": "Output only. Error encountered during export.",
+          "readOnly": true
+        },
+        "outputFiles": {
+          "$ref": "OutputFileList",
+          "description": "Output only. List of output files.",
+          "readOnly": true
+        },
+        "signedUris": {
+          "$ref": "SignedUris",
+          "description": "Output only. Signed URLs for downloading export artifacts.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ReportExportJob": {
+      "description": "Report export job message.",
+      "id": "ReportExportJob",
+      "properties": {
+        "name": {
+          "description": "Output only. Identifier. Resource name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "recentExecutions": {
+          "description": "Output only. Recent not expired executions of the export report job.",
+          "items": {
+            "$ref": "ReportExportExecution"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "signedUriDestination": {
+          "$ref": "SignedUriDestination",
+          "description": "Export with a SignedUri."
         }
       },
       "type": "object"
@@ -8331,6 +8729,18 @@
       },
       "type": "object"
     },
+    "ReportTotalCostOfOwnershipDetails": {
+      "description": "Detailed data related to Total Cost of Ownership (TCO) pricing.",
+      "id": "ReportTotalCostOfOwnershipDetails",
+      "properties": {
+        "hasPricingData": {
+          "description": "Output only. Whether the report has detailed pricing data.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "ResourceLocation": {
       "description": "Location of a resource.",
       "id": "ResourceLocation",
@@ -8372,6 +8782,29 @@
         "requestId": {
           "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RunReportExportJobRequest": {
+      "description": "A request to run a report export job.",
+      "id": "RunReportExportJobRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RunReportExportJobResponse": {
+      "description": "Response message for running a report export job.",
+      "id": "RunReportExportJobResponse",
+      "properties": {
+        "reportExportExecution": {
+          "$ref": "ReportExportExecution",
+          "description": "Output only. Execution status of the export operation.",
+          "readOnly": true
         }
       },
       "type": "object"

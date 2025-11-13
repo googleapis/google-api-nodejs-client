@@ -5319,7 +5319,7 @@
       }
     }
   },
-  "revision": "20251027",
+  "revision": "20251105",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3Action": {
@@ -15465,7 +15465,7 @@
           "enumDescriptions": [
             "Type not set.",
             "A new conversation has been opened. This is fired when a telephone call is answered, or a conversation is created via the API.",
-            "An existing conversation has closed. This is fired when a telephone call is terminated, or a conversation is closed via the API.",
+            "An existing conversation has closed. This is fired when a telephone call is terminated, or a conversation is closed via the API. The event is fired for every CompleteConversation call, even if the conversation is already closed.",
             "An existing conversation has received notification from Dialogflow that human intervention is required.",
             "An existing conversation has received a new message, either from API or telephony. It is configured in ConversationProfile.new_message_event_notification_config",
             "An existing conversation has received a new speech recognition result. This is mainly for delivering intermediate transcripts. The notification is configured in ConversationProfile.new_recognition_event_notification_config.",
@@ -18298,7 +18298,7 @@
           "enumDescriptions": [
             "Type not set.",
             "A new conversation has been opened. This is fired when a telephone call is answered, or a conversation is created via the API.",
-            "An existing conversation has closed. This is fired when a telephone call is terminated, or a conversation is closed via the API.",
+            "An existing conversation has closed. This is fired when a telephone call is terminated, or a conversation is closed via the API. The event is fired for every CompleteConversation call, even if the conversation is already closed.",
             "An existing conversation has received notification from Dialogflow that human intervention is required.",
             "An existing conversation has received a new message, either from API or telephony. It is configured in ConversationProfile.new_message_event_notification_config",
             "An existing conversation has received a new speech recognition result. This is mainly for delivering intermediate transcripts. The notification is configured in ConversationProfile.new_recognition_event_notification_config.",

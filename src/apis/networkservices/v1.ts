@@ -296,7 +296,7 @@ export namespace networkservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Identifier. Name of the EndpointPolicy resource. It matches pattern `projects/{project\}/locations/global/endpointPolicies/{endpoint_policy\}`.
+     * Identifier. Name of the EndpointPolicy resource. It matches pattern `projects/{project\}/locations/x/endpointPolicies/{endpoint_policy\}`.
      */
     name?: string | null;
     /**
@@ -378,6 +378,10 @@ export namespace networkservices_v1 {
      * Optional. The name for this extension. The name is logged as part of the HTTP request logs. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number. This field is required except for AuthzExtension.
      */
     name?: string | null;
+    /**
+     * Optional. When set to `TRUE`, enables `observability_mode` on the `ext_proc` filter. This makes `ext_proc` calls asynchronous. Envoy doesn't check for the response from `ext_proc` calls. For more information about the filter, see: https://www.envoyproxy.io/docs/envoy/v1.32.3/api-v3/extensions/filters/http/ext_proc/v3/ext_proc.proto#extensions-filters-http-ext-proc-v3-externalprocessor This field is helpful when you want to try out the extension in async log-only mode. Supported by regional `LbTrafficExtension` and `LbRouteExtension` resources. Only `STREAMED` (default) body processing mode is supported.
+     */
+    observabilityMode?: boolean | null;
     /**
      * Optional. Configures the send mode for request body processing. The field can only be set if `supported_events` includes `REQUEST_BODY`. If `supported_events` includes `REQUEST_BODY`, but `request_body_send_mode` is unset, the default value `STREAMED` is used. When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events` must include both `REQUEST_BODY` and `REQUEST_TRAILERS`. This field can be set only for `LbTrafficExtension` and `LbRouteExtension` resources, and only when the `service` field of the extension points to a `BackendService`. Only `FULL_DUPLEX_STREAMED` mode is supported for `LbRouteExtension` resources.
      */
@@ -523,7 +527,7 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Gateways defines a list of gateways this GrpcRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
+     * Optional. Gateways defines a list of gateways this GrpcRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/x/gateways/`
      */
     gateways?: string[] | null;
     /**
@@ -535,11 +539,11 @@ export namespace networkservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Meshes defines a list of meshes this GrpcRoute is attached to, as one of the routing rules to route the requests served by the mesh. Each mesh reference should match the pattern: `projects/x/locations/global/meshes/`
+     * Optional. Meshes defines a list of meshes this GrpcRoute is attached to, as one of the routing rules to route the requests served by the mesh. Each mesh reference should match the pattern: `projects/x/locations/x/meshes/`
      */
     meshes?: string[] | null;
     /**
-     * Identifier. Name of the GrpcRoute resource. It matches pattern `projects/x/locations/global/grpcRoutes/`
+     * Identifier. Name of the GrpcRoute resource. It matches pattern `projects/x/locations/x/grpcRoutes/`
      */
     name?: string | null;
     /**
@@ -735,7 +739,7 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Gateways defines a list of gateways this HttpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
+     * Optional. Gateways defines a list of gateways this HttpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/x/gateways/`
      */
     gateways?: string[] | null;
     /**
@@ -747,11 +751,11 @@ export namespace networkservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Meshes defines a list of meshes this HttpRoute is attached to, as one of the routing rules to route the requests served by the mesh. Each mesh reference should match the pattern: `projects/x/locations/global/meshes/` The attached Mesh should be of a type SIDECAR
+     * Optional. Meshes defines a list of meshes this HttpRoute is attached to, as one of the routing rules to route the requests served by the mesh. Each mesh reference should match the pattern: `projects/x/locations/x/meshes/` The attached Mesh should be of a type SIDECAR
      */
     meshes?: string[] | null;
     /**
-     * Identifier. Name of the HttpRoute resource. It matches pattern `projects/x/locations/global/httpRoutes/http_route_name\>`.
+     * Identifier. Name of the HttpRoute resource. It matches pattern `projects/x/locations/x/httpRoutes/http_route_name\>`.
      */
     name?: string | null;
     /**
@@ -1650,7 +1654,7 @@ export namespace networkservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Identifier. Name of the Mesh resource. It matches pattern `projects/x/locations/global/meshes/`.
+     * Identifier. Name of the Mesh resource. It matches pattern `projects/x/locations/x/meshes/`.
      */
     name?: string | null;
     /**
@@ -1920,7 +1924,7 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Gateways defines a list of gateways this TcpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
+     * Optional. Gateways defines a list of gateways this TcpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/x/gateways/`
      */
     gateways?: string[] | null;
     /**
@@ -1928,11 +1932,11 @@ export namespace networkservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Meshes defines a list of meshes this TcpRoute is attached to, as one of the routing rules to route the requests served by the mesh. Each mesh reference should match the pattern: `projects/x/locations/global/meshes/` The attached Mesh should be of a type SIDECAR
+     * Optional. Meshes defines a list of meshes this TcpRoute is attached to, as one of the routing rules to route the requests served by the mesh. Each mesh reference should match the pattern: `projects/x/locations/x/meshes/` The attached Mesh should be of a type SIDECAR
      */
     meshes?: string[] | null;
     /**
-     * Identifier. Name of the TcpRoute resource. It matches pattern `projects/x/locations/global/tcpRoutes/tcp_route_name\>`.
+     * Identifier. Name of the TcpRoute resource. It matches pattern `projects/x/locations/x/tcpRoutes/tcp_route_name\>`.
      */
     name?: string | null;
     /**
@@ -2035,7 +2039,7 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Gateways defines a list of gateways this TlsRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
+     * Optional. Gateways defines a list of gateways this TlsRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/x/gateways/`
      */
     gateways?: string[] | null;
     /**
@@ -2043,11 +2047,11 @@ export namespace networkservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Meshes defines a list of meshes this TlsRoute is attached to, as one of the routing rules to route the requests served by the mesh. Each mesh reference should match the pattern: `projects/x/locations/global/meshes/` The attached Mesh should be of a type SIDECAR
+     * Optional. Meshes defines a list of meshes this TlsRoute is attached to, as one of the routing rules to route the requests served by the mesh. Each mesh reference should match the pattern: `projects/x/locations/x/meshes/` The attached Mesh should be of a type SIDECAR
      */
     meshes?: string[] | null;
     /**
-     * Identifier. Name of the TlsRoute resource. It matches pattern `projects/x/locations/global/tlsRoutes/tls_route_name\>`.
+     * Identifier. Name of the TlsRoute resource. It matches pattern `projects/x/locations/x/tlsRoutes/tls_route_name\>`.
      */
     name?: string | null;
     /**
@@ -2523,7 +2527,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2652,7 +2656,7 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -5063,7 +5067,7 @@ export namespace networkservices_v1 {
      *   const res = await networkservices.projects.locations.endpointPolicies.create({
      *     // Required. Short name of the EndpointPolicy resource to be created. E.g. "CustomECS".
      *     endpointPolicyId: 'placeholder-value',
-     *     // Required. The parent resource of the EndpointPolicy. Must be in the format `projects/x/locations/global`.
+     *     // Required. The parent resource of the EndpointPolicy. Must be in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -5224,7 +5228,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.endpointPolicies.delete({
-     *     // Required. A name of the EndpointPolicy to delete. Must be in the format `projects/x/locations/global/endpointPolicies/x`.
+     *     // Required. A name of the EndpointPolicy to delete. Must be in the format `projects/x/locations/x/endpointPolicies/x`.
      *     name: 'projects/my-project/locations/my-location/endpointPolicies/my-endpointPolicie',
      *   });
      *   console.log(res.data);
@@ -5364,7 +5368,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.endpointPolicies.get({
-     *     // Required. A name of the EndpointPolicy to get. Must be in the format `projects/x/locations/global/endpointPolicies/x`.
+     *     // Required. A name of the EndpointPolicy to get. Must be in the format `projects/x/locations/x/endpointPolicies/x`.
      *     name: 'projects/my-project/locations/my-location/endpointPolicies/my-endpointPolicie',
      *   });
      *   console.log(res.data);
@@ -5513,7 +5517,7 @@ export namespace networkservices_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListEndpointPoliciesResponse` Indicates that this is a continuation of a prior `ListEndpointPolicies` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location from which the EndpointPolicies should be listed, specified in the format `projects/x/locations/global`.
+     *     // Required. The project and location from which the EndpointPolicies should be listed, specified in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
      *     returnPartialSuccess: 'placeholder-value',
@@ -5661,7 +5665,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.endpointPolicies.patch({
-     *     // Identifier. Name of the EndpointPolicy resource. It matches pattern `projects/{project\}/locations/global/endpointPolicies/{endpoint_policy\}`.
+     *     // Identifier. Name of the EndpointPolicy resource. It matches pattern `projects/{project\}/locations/x/endpointPolicies/{endpoint_policy\}`.
      *     name: 'projects/my-project/locations/my-location/endpointPolicies/my-endpointPolicie',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the EndpointPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -5798,7 +5802,7 @@ export namespace networkservices_v1 {
      */
     endpointPolicyId?: string;
     /**
-     * Required. The parent resource of the EndpointPolicy. Must be in the format `projects/x/locations/global`.
+     * Required. The parent resource of the EndpointPolicy. Must be in the format `projects/x/locations/x`.
      */
     parent?: string;
 
@@ -5810,14 +5814,14 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Endpointpolicies$Delete
     extends StandardParameters {
     /**
-     * Required. A name of the EndpointPolicy to delete. Must be in the format `projects/x/locations/global/endpointPolicies/x`.
+     * Required. A name of the EndpointPolicy to delete. Must be in the format `projects/x/locations/x/endpointPolicies/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Endpointpolicies$Get
     extends StandardParameters {
     /**
-     * Required. A name of the EndpointPolicy to get. Must be in the format `projects/x/locations/global/endpointPolicies/x`.
+     * Required. A name of the EndpointPolicy to get. Must be in the format `projects/x/locations/x/endpointPolicies/x`.
      */
     name?: string;
   }
@@ -5832,7 +5836,7 @@ export namespace networkservices_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the EndpointPolicies should be listed, specified in the format `projects/x/locations/global`.
+     * Required. The project and location from which the EndpointPolicies should be listed, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
     /**
@@ -5843,7 +5847,7 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Endpointpolicies$Patch
     extends StandardParameters {
     /**
-     * Identifier. Name of the EndpointPolicy resource. It matches pattern `projects/{project\}/locations/global/endpointPolicies/{endpoint_policy\}`.
+     * Identifier. Name of the EndpointPolicy resource. It matches pattern `projects/{project\}/locations/x/endpointPolicies/{endpoint_policy\}`.
      */
     name?: string;
     /**
@@ -7064,7 +7068,7 @@ export namespace networkservices_v1 {
      *   const res = await networkservices.projects.locations.grpcRoutes.create({
      *     // Required. Short name of the GrpcRoute resource to be created.
      *     grpcRouteId: 'placeholder-value',
-     *     // Required. The parent resource of the GrpcRoute. Must be in the format `projects/x/locations/global`.
+     *     // Required. The parent resource of the GrpcRoute. Must be in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -7223,7 +7227,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.grpcRoutes.delete({
-     *     // Required. A name of the GrpcRoute to delete. Must be in the format `projects/x/locations/global/grpcRoutes/x`.
+     *     // Required. A name of the GrpcRoute to delete. Must be in the format `projects/x/locations/x/grpcRoutes/x`.
      *     name: 'projects/my-project/locations/my-location/grpcRoutes/my-grpcRoute',
      *   });
      *   console.log(res.data);
@@ -7362,7 +7366,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.grpcRoutes.get({
-     *     // Required. A name of the GrpcRoute to get. Must be in the format `projects/x/locations/global/grpcRoutes/x`.
+     *     // Required. A name of the GrpcRoute to get. Must be in the format `projects/x/locations/x/grpcRoutes/x`.
      *     name: 'projects/my-project/locations/my-location/grpcRoutes/my-grpcRoute',
      *   });
      *   console.log(res.data);
@@ -7510,7 +7514,7 @@ export namespace networkservices_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListGrpcRoutesResponse` Indicates that this is a continuation of a prior `ListGrpcRoutes` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location from which the GrpcRoutes should be listed, specified in the format `projects/x/locations/global`.
+     *     // Required. The project and location from which the GrpcRoutes should be listed, specified in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
      *     returnPartialSuccess: 'placeholder-value',
@@ -7654,7 +7658,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.grpcRoutes.patch({
-     *     // Identifier. Name of the GrpcRoute resource. It matches pattern `projects/x/locations/global/grpcRoutes/`
+     *     // Identifier. Name of the GrpcRoute resource. It matches pattern `projects/x/locations/x/grpcRoutes/`
      *     name: 'projects/my-project/locations/my-location/grpcRoutes/my-grpcRoute',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the GrpcRoute resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -7789,7 +7793,7 @@ export namespace networkservices_v1 {
      */
     grpcRouteId?: string;
     /**
-     * Required. The parent resource of the GrpcRoute. Must be in the format `projects/x/locations/global`.
+     * Required. The parent resource of the GrpcRoute. Must be in the format `projects/x/locations/x`.
      */
     parent?: string;
 
@@ -7801,14 +7805,14 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Grpcroutes$Delete
     extends StandardParameters {
     /**
-     * Required. A name of the GrpcRoute to delete. Must be in the format `projects/x/locations/global/grpcRoutes/x`.
+     * Required. A name of the GrpcRoute to delete. Must be in the format `projects/x/locations/x/grpcRoutes/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Grpcroutes$Get
     extends StandardParameters {
     /**
-     * Required. A name of the GrpcRoute to get. Must be in the format `projects/x/locations/global/grpcRoutes/x`.
+     * Required. A name of the GrpcRoute to get. Must be in the format `projects/x/locations/x/grpcRoutes/x`.
      */
     name?: string;
   }
@@ -7823,7 +7827,7 @@ export namespace networkservices_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the GrpcRoutes should be listed, specified in the format `projects/x/locations/global`.
+     * Required. The project and location from which the GrpcRoutes should be listed, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
     /**
@@ -7834,7 +7838,7 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Grpcroutes$Patch
     extends StandardParameters {
     /**
-     * Identifier. Name of the GrpcRoute resource. It matches pattern `projects/x/locations/global/grpcRoutes/`
+     * Identifier. Name of the GrpcRoute resource. It matches pattern `projects/x/locations/x/grpcRoutes/`
      */
     name?: string;
     /**
@@ -7887,7 +7891,7 @@ export namespace networkservices_v1 {
      *   const res = await networkservices.projects.locations.httpRoutes.create({
      *     // Required. Short name of the HttpRoute resource to be created.
      *     httpRouteId: 'placeholder-value',
-     *     // Required. The parent resource of the HttpRoute. Must be in the format `projects/x/locations/global`.
+     *     // Required. The parent resource of the HttpRoute. Must be in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -8046,7 +8050,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.httpRoutes.delete({
-     *     // Required. A name of the HttpRoute to delete. Must be in the format `projects/x/locations/global/httpRoutes/x`.
+     *     // Required. A name of the HttpRoute to delete. Must be in the format `projects/x/locations/x/httpRoutes/x`.
      *     name: 'projects/my-project/locations/my-location/httpRoutes/my-httpRoute',
      *   });
      *   console.log(res.data);
@@ -8185,7 +8189,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.httpRoutes.get({
-     *     // Required. A name of the HttpRoute to get. Must be in the format `projects/x/locations/global/httpRoutes/x`.
+     *     // Required. A name of the HttpRoute to get. Must be in the format `projects/x/locations/x/httpRoutes/x`.
      *     name: 'projects/my-project/locations/my-location/httpRoutes/my-httpRoute',
      *   });
      *   console.log(res.data);
@@ -8333,7 +8337,7 @@ export namespace networkservices_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListHttpRoutesResponse` Indicates that this is a continuation of a prior `ListHttpRoutes` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location from which the HttpRoutes should be listed, specified in the format `projects/x/locations/global`.
+     *     // Required. The project and location from which the HttpRoutes should be listed, specified in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
      *     returnPartialSuccess: 'placeholder-value',
@@ -8477,7 +8481,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.httpRoutes.patch({
-     *     // Identifier. Name of the HttpRoute resource. It matches pattern `projects/x/locations/global/httpRoutes/http_route_name\>`.
+     *     // Identifier. Name of the HttpRoute resource. It matches pattern `projects/x/locations/x/httpRoutes/http_route_name\>`.
      *     name: 'projects/my-project/locations/my-location/httpRoutes/my-httpRoute',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the HttpRoute resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -8612,7 +8616,7 @@ export namespace networkservices_v1 {
      */
     httpRouteId?: string;
     /**
-     * Required. The parent resource of the HttpRoute. Must be in the format `projects/x/locations/global`.
+     * Required. The parent resource of the HttpRoute. Must be in the format `projects/x/locations/x`.
      */
     parent?: string;
 
@@ -8624,14 +8628,14 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Httproutes$Delete
     extends StandardParameters {
     /**
-     * Required. A name of the HttpRoute to delete. Must be in the format `projects/x/locations/global/httpRoutes/x`.
+     * Required. A name of the HttpRoute to delete. Must be in the format `projects/x/locations/x/httpRoutes/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Httproutes$Get
     extends StandardParameters {
     /**
-     * Required. A name of the HttpRoute to get. Must be in the format `projects/x/locations/global/httpRoutes/x`.
+     * Required. A name of the HttpRoute to get. Must be in the format `projects/x/locations/x/httpRoutes/x`.
      */
     name?: string;
   }
@@ -8646,7 +8650,7 @@ export namespace networkservices_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the HttpRoutes should be listed, specified in the format `projects/x/locations/global`.
+     * Required. The project and location from which the HttpRoutes should be listed, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
     /**
@@ -8657,7 +8661,7 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Httproutes$Patch
     extends StandardParameters {
     /**
-     * Identifier. Name of the HttpRoute resource. It matches pattern `projects/x/locations/global/httpRoutes/http_route_name\>`.
+     * Identifier. Name of the HttpRoute resource. It matches pattern `projects/x/locations/x/httpRoutes/http_route_name\>`.
      */
     name?: string;
     /**
@@ -11276,7 +11280,7 @@ export namespace networkservices_v1 {
      *   const res = await networkservices.projects.locations.meshes.create({
      *     // Required. Short name of the Mesh resource to be created.
      *     meshId: 'placeholder-value',
-     *     // Required. The parent resource of the Mesh. Must be in the format `projects/x/locations/global`.
+     *     // Required. The parent resource of the Mesh. Must be in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -11433,7 +11437,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.meshes.delete({
-     *     // Required. A name of the Mesh to delete. Must be in the format `projects/x/locations/global/meshes/x`.
+     *     // Required. A name of the Mesh to delete. Must be in the format `projects/x/locations/x/meshes/x`.
      *     name: 'projects/my-project/locations/my-location/meshes/my-meshe',
      *   });
      *   console.log(res.data);
@@ -11572,7 +11576,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.meshes.get({
-     *     // Required. A name of the Mesh to get. Must be in the format `projects/x/locations/global/meshes/x`.
+     *     // Required. A name of the Mesh to get. Must be in the format `projects/x/locations/x/meshes/x`.
      *     name: 'projects/my-project/locations/my-location/meshes/my-meshe',
      *   });
      *   console.log(res.data);
@@ -11718,7 +11722,7 @@ export namespace networkservices_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListMeshesResponse` Indicates that this is a continuation of a prior `ListMeshes` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location from which the Meshes should be listed, specified in the format `projects/x/locations/global`.
+     *     // Required. The project and location from which the Meshes should be listed, specified in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
      *     returnPartialSuccess: 'placeholder-value',
@@ -11860,7 +11864,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.meshes.patch({
-     *     // Identifier. Name of the Mesh resource. It matches pattern `projects/x/locations/global/meshes/`.
+     *     // Identifier. Name of the Mesh resource. It matches pattern `projects/x/locations/x/meshes/`.
      *     name: 'projects/my-project/locations/my-location/meshes/my-meshe',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the Mesh resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -11993,7 +11997,7 @@ export namespace networkservices_v1 {
      */
     meshId?: string;
     /**
-     * Required. The parent resource of the Mesh. Must be in the format `projects/x/locations/global`.
+     * Required. The parent resource of the Mesh. Must be in the format `projects/x/locations/x`.
      */
     parent?: string;
 
@@ -12005,14 +12009,14 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Meshes$Delete
     extends StandardParameters {
     /**
-     * Required. A name of the Mesh to delete. Must be in the format `projects/x/locations/global/meshes/x`.
+     * Required. A name of the Mesh to delete. Must be in the format `projects/x/locations/x/meshes/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Meshes$Get
     extends StandardParameters {
     /**
-     * Required. A name of the Mesh to get. Must be in the format `projects/x/locations/global/meshes/x`.
+     * Required. A name of the Mesh to get. Must be in the format `projects/x/locations/x/meshes/x`.
      */
     name?: string;
   }
@@ -12027,7 +12031,7 @@ export namespace networkservices_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the Meshes should be listed, specified in the format `projects/x/locations/global`.
+     * Required. The project and location from which the Meshes should be listed, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
     /**
@@ -12038,7 +12042,7 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Meshes$Patch
     extends StandardParameters {
     /**
-     * Identifier. Name of the Mesh resource. It matches pattern `projects/x/locations/global/meshes/`.
+     * Identifier. Name of the Mesh resource. It matches pattern `projects/x/locations/x/meshes/`.
      */
     name?: string;
     /**
@@ -14663,7 +14667,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.tcpRoutes.create({
-     *     // Required. The parent resource of the TcpRoute. Must be in the format `projects/x/locations/global`.
+     *     // Required. The parent resource of the TcpRoute. Must be in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. Short name of the TcpRoute resource to be created.
      *     tcpRouteId: 'placeholder-value',
@@ -14823,7 +14827,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.tcpRoutes.delete({
-     *     // Required. A name of the TcpRoute to delete. Must be in the format `projects/x/locations/global/tcpRoutes/x`.
+     *     // Required. A name of the TcpRoute to delete. Must be in the format `projects/x/locations/x/tcpRoutes/x`.
      *     name: 'projects/my-project/locations/my-location/tcpRoutes/my-tcpRoute',
      *   });
      *   console.log(res.data);
@@ -14962,7 +14966,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.tcpRoutes.get({
-     *     // Required. A name of the TcpRoute to get. Must be in the format `projects/x/locations/global/tcpRoutes/x`.
+     *     // Required. A name of the TcpRoute to get. Must be in the format `projects/x/locations/x/tcpRoutes/x`.
      *     name: 'projects/my-project/locations/my-location/tcpRoutes/my-tcpRoute',
      *   });
      *   console.log(res.data);
@@ -15109,7 +15113,7 @@ export namespace networkservices_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListTcpRoutesResponse` Indicates that this is a continuation of a prior `ListTcpRoutes` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location from which the TcpRoutes should be listed, specified in the format `projects/x/locations/global`.
+     *     // Required. The project and location from which the TcpRoutes should be listed, specified in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
      *     returnPartialSuccess: 'placeholder-value',
@@ -15253,7 +15257,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.tcpRoutes.patch({
-     *     // Identifier. Name of the TcpRoute resource. It matches pattern `projects/x/locations/global/tcpRoutes/tcp_route_name\>`.
+     *     // Identifier. Name of the TcpRoute resource. It matches pattern `projects/x/locations/x/tcpRoutes/tcp_route_name\>`.
      *     name: 'projects/my-project/locations/my-location/tcpRoutes/my-tcpRoute',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the TcpRoute resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -15383,7 +15387,7 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Tcproutes$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource of the TcpRoute. Must be in the format `projects/x/locations/global`.
+     * Required. The parent resource of the TcpRoute. Must be in the format `projects/x/locations/x`.
      */
     parent?: string;
     /**
@@ -15399,14 +15403,14 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Tcproutes$Delete
     extends StandardParameters {
     /**
-     * Required. A name of the TcpRoute to delete. Must be in the format `projects/x/locations/global/tcpRoutes/x`.
+     * Required. A name of the TcpRoute to delete. Must be in the format `projects/x/locations/x/tcpRoutes/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Tcproutes$Get
     extends StandardParameters {
     /**
-     * Required. A name of the TcpRoute to get. Must be in the format `projects/x/locations/global/tcpRoutes/x`.
+     * Required. A name of the TcpRoute to get. Must be in the format `projects/x/locations/x/tcpRoutes/x`.
      */
     name?: string;
   }
@@ -15421,7 +15425,7 @@ export namespace networkservices_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the TcpRoutes should be listed, specified in the format `projects/x/locations/global`.
+     * Required. The project and location from which the TcpRoutes should be listed, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
     /**
@@ -15432,7 +15436,7 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Tcproutes$Patch
     extends StandardParameters {
     /**
-     * Identifier. Name of the TcpRoute resource. It matches pattern `projects/x/locations/global/tcpRoutes/tcp_route_name\>`.
+     * Identifier. Name of the TcpRoute resource. It matches pattern `projects/x/locations/x/tcpRoutes/tcp_route_name\>`.
      */
     name?: string;
     /**
@@ -15483,7 +15487,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.tlsRoutes.create({
-     *     // Required. The parent resource of the TlsRoute. Must be in the format `projects/x/locations/global`.
+     *     // Required. The parent resource of the TlsRoute. Must be in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. Short name of the TlsRoute resource to be created.
      *     tlsRouteId: 'placeholder-value',
@@ -15643,7 +15647,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.tlsRoutes.delete({
-     *     // Required. A name of the TlsRoute to delete. Must be in the format `projects/x/locations/global/tlsRoutes/x`.
+     *     // Required. A name of the TlsRoute to delete. Must be in the format `projects/x/locations/x/tlsRoutes/x`.
      *     name: 'projects/my-project/locations/my-location/tlsRoutes/my-tlsRoute',
      *   });
      *   console.log(res.data);
@@ -15782,7 +15786,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.tlsRoutes.get({
-     *     // Required. A name of the TlsRoute to get. Must be in the format `projects/x/locations/global/tlsRoutes/x`.
+     *     // Required. A name of the TlsRoute to get. Must be in the format `projects/x/locations/x/tlsRoutes/x`.
      *     name: 'projects/my-project/locations/my-location/tlsRoutes/my-tlsRoute',
      *   });
      *   console.log(res.data);
@@ -15929,7 +15933,7 @@ export namespace networkservices_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListTlsRoutesResponse` Indicates that this is a continuation of a prior `ListTlsRoutes` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location from which the TlsRoutes should be listed, specified in the format `projects/x/locations/global`.
+     *     // Required. The project and location from which the TlsRoutes should be listed, specified in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
      *     returnPartialSuccess: 'placeholder-value',
@@ -16073,7 +16077,7 @@ export namespace networkservices_v1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.tlsRoutes.patch({
-     *     // Identifier. Name of the TlsRoute resource. It matches pattern `projects/x/locations/global/tlsRoutes/tls_route_name\>`.
+     *     // Identifier. Name of the TlsRoute resource. It matches pattern `projects/x/locations/x/tlsRoutes/tls_route_name\>`.
      *     name: 'projects/my-project/locations/my-location/tlsRoutes/my-tlsRoute',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the TlsRoute resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -16203,7 +16207,7 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Tlsroutes$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource of the TlsRoute. Must be in the format `projects/x/locations/global`.
+     * Required. The parent resource of the TlsRoute. Must be in the format `projects/x/locations/x`.
      */
     parent?: string;
     /**
@@ -16219,14 +16223,14 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Tlsroutes$Delete
     extends StandardParameters {
     /**
-     * Required. A name of the TlsRoute to delete. Must be in the format `projects/x/locations/global/tlsRoutes/x`.
+     * Required. A name of the TlsRoute to delete. Must be in the format `projects/x/locations/x/tlsRoutes/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Tlsroutes$Get
     extends StandardParameters {
     /**
-     * Required. A name of the TlsRoute to get. Must be in the format `projects/x/locations/global/tlsRoutes/x`.
+     * Required. A name of the TlsRoute to get. Must be in the format `projects/x/locations/x/tlsRoutes/x`.
      */
     name?: string;
   }
@@ -16241,7 +16245,7 @@ export namespace networkservices_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the TlsRoutes should be listed, specified in the format `projects/x/locations/global`.
+     * Required. The project and location from which the TlsRoutes should be listed, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
     /**
@@ -16252,7 +16256,7 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Tlsroutes$Patch
     extends StandardParameters {
     /**
-     * Identifier. Name of the TlsRoute resource. It matches pattern `projects/x/locations/global/tlsRoutes/tls_route_name\>`.
+     * Identifier. Name of the TlsRoute resource. It matches pattern `projects/x/locations/x/tlsRoutes/tls_route_name\>`.
      */
     name?: string;
     /**

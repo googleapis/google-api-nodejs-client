@@ -1266,7 +1266,7 @@
       }
     }
   },
-  "revision": "20251021",
+  "revision": "20251029",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -2319,6 +2319,20 @@
         "includeObjects": {
           "$ref": "MongodbCluster",
           "description": "MongoDB collections to include in the stream."
+        },
+        "jsonMode": {
+          "description": "Optional. MongoDB JSON mode to use for the stream.",
+          "enum": [
+            "MONGODB_JSON_MODE_UNSPECIFIED",
+            "STRICT",
+            "CANONICAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified JSON mode.",
+            "Strict JSON mode.",
+            "Canonical JSON mode."
+          ],
+          "type": "string"
         },
         "maxConcurrentBackfillTasks": {
           "description": "Optional. Maximum number of concurrent backfill tasks. The number should be non-negative and less than or equal to 50. If not set (or set to 0), the system's default value is used",

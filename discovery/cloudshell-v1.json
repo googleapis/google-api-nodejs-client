@@ -293,6 +293,43 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "generateAccessToken": {
+              "description": "Generates an access token for the user's environment.",
+              "flatPath": "v1/users/{usersId}/environments/{environmentsId}:generateAccessToken",
+              "httpMethod": "GET",
+              "id": "cloudshell.users.environments.generateAccessToken",
+              "parameterOrder": [
+                "environment"
+              ],
+              "parameters": {
+                "environment": {
+                  "description": "Required. The environment to generate the access token for.",
+                  "location": "path",
+                  "pattern": "^users/[^/]+/environments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "expireTime": {
+                  "description": "Desired expiration time of the access token. This value must be at most 24 hours in the future. If a value is not specified, the token's expiration time will be set to a default value of 1 hour in the future.",
+                  "format": "google-datetime",
+                  "location": "query",
+                  "type": "string"
+                },
+                "ttl": {
+                  "description": "Desired lifetime duration of the access token. This value must be at most 24 hours. If a value is not specified, the token's lifetime will be set to a default value of 1 hour.",
+                  "format": "google-duration",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+environment}:generateAccessToken",
+              "response": {
+                "$ref": "GenerateAccessTokenResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "get": {
               "description": "Gets an environment. Returns NOT_FOUND if the environment does not exist.",
               "flatPath": "v1/users/{usersId}/environments/{environmentsId}",
@@ -379,7 +416,7 @@
       }
     }
   },
-  "revision": "20250930",
+  "revision": "20251105",
   "rootUrl": "https://cloudshell.googleapis.com/",
   "schemas": {
     "AddPublicKeyMetadata": {
@@ -529,6 +566,17 @@
         "webHost": {
           "description": "Output only. Host to which clients can connect to initiate HTTPS or WSS connections with the environment.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateAccessTokenResponse": {
+      "description": "Response message for GenerateAccessToken.",
+      "id": "GenerateAccessTokenResponse",
+      "properties": {
+        "accessToken": {
+          "description": "The access token.",
           "type": "string"
         }
       },

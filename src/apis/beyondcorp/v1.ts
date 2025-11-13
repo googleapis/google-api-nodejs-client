@@ -102,7 +102,7 @@ export namespace beyondcorp_v1 {
   /**
    * BeyondCorp API
    *
-   * Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity solutions.
+   * Chrome Enterprise Premium is a secure enterprise browsing solution that provides secure access to applications and resources, and offers integrated threat and data protection. It adds an extra layer of security to safeguard your Chrome browser environment, including Data Loss Prevention (DLP), real-time URL and file scanning, and Context-Aware Access for SaaS and web apps.
    *
    * @example
    * ```js
@@ -1042,7 +1042,7 @@ export namespace beyondcorp_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. Endpoint matchers associated with an application. A combination of hostname and ports as endpoint matchers is used to match the application. Match conditions for OR logic. An array of match conditions to allow for multiple matching criteria. The rule is considered a match if one of the conditions is met. The conditions should be the following combination: (Hostname & Ports) EXAMPLES: Hostname and Ports - ("*.example.com", "443"), ("example.com" and "22"), ("example.com" and "22,33") etc
+     * Optional. An array of conditions to match the application's network endpoint. Each element in the array is an EndpointMatcher object, which defines a specific combination of a hostname pattern and one or more ports. The application is considered matched if at least one of the EndpointMatcher conditions in this array is met (the conditions are combined using OR logic). Each EndpointMatcher must contain a hostname pattern, such as "example.com", and one or more port numbers specified as a string, such as "443". Hostname and port number examples: "*.example.com", "443" "example.com" and "22" "example.com" and "22,33"
      */
     endpointMatchers?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1EndpointMatcher[];
     /**
@@ -1106,11 +1106,11 @@ export namespace beyondcorp_v1 {
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders {
     /**
-     * Optional. Device info configuration.
+     * Optional. The device information configuration.
      */
     deviceInfo?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo;
     /**
-     * Optional. Group info configuration.
+     * Optional. Group details.
      */
     groupInfo?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo;
     /**
@@ -1118,34 +1118,34 @@ export namespace beyondcorp_v1 {
      */
     outputType?: string | null;
     /**
-     * Optional. User info configuration.
+     * Optional. User details.
      */
     userInfo?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo;
   }
   /**
-   * Delegated device info configuration.
+   * The delegated device information configuration.
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo {
     /**
-     * Optional. The output type of the delegated device info.
+     * Optional. The output type details for the delegated device.
      */
     outputType?: string | null;
   }
   /**
-   * Delegated group info configuration.
+   * The delegated group configuration details.
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo {
     /**
-     * Optional. The output type of the delegated group info.
+     * Optional. The output type of the delegated group information.
      */
     outputType?: string | null;
   }
   /**
-   * Delegated user info configuration.
+   * The configuration information for the delegated user.
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo {
     /**
-     * Optional. The output type of the delegated user info.
+     * Optional. The delegated user's information.
      */
     outputType?: string | null;
   }
@@ -1180,7 +1180,7 @@ export namespace beyondcorp_v1 {
      */
     hostname?: string | null;
     /**
-     * Required. Ports of the application.
+     * Required. The ports of the application.
      */
     ports?: number[] | null;
   }
@@ -1253,11 +1253,11 @@ export namespace beyondcorp_v1 {
      */
     contextualHeaders?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders;
     /**
-     * Optional. Gateway identity configuration.
+     * Optional. The security gateway identity configuration.
      */
     gatewayIdentity?: string | null;
     /**
-     * Optional. Custom resource specific headers along with the values. The names should conform to RFC 9110: \> Field names SHOULD constrain themselves to alphanumeric characters, "-", and ".", and SHOULD begin with a letter. Field values SHOULD contain only ASCII printable characters and tab.
+     * Optional. Custom resource specific headers along with the values. The names should conform to RFC 9110: \>Field names can contain alphanumeric characters, hyphens, and periods, can contain only ASCII-printable characters and tabs, and must start with a letter.
      */
     metadataHeaders?: {[key: string]: string} | null;
   }
@@ -1364,7 +1364,7 @@ export namespace beyondcorp_v1 {
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ServiceDiscoveryApiGatewayOperationDescriptor {
     /**
-     * Required. Contains uri path fragment where HTTP request is sent.
+     * Required. Contains the URI path fragment where HTTP request is sent.
      */
     path?: string | null;
   }
@@ -2497,7 +2497,7 @@ export namespace beyondcorp_v1 {
      *
      *   // Do the magic
      *   const res = await beyondcorp.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2633,7 +2633,7 @@ export namespace beyondcorp_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

@@ -487,7 +487,7 @@
       }
     }
   },
-  "revision": "20251022",
+  "revision": "20251029",
   "rootUrl": "https://storagebatchoperations.googleapis.com/",
   "schemas": {
     "Bucket": {
@@ -558,6 +558,12 @@
         },
         "succeededObjectCount": {
           "description": "Output only. Number of objects completed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalBytesFound": {
+          "description": "Output only. Number of bytes found from source. This field is only populated for jobs with a prefix list object configuration.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -701,6 +707,10 @@
         "description": {
           "description": "Optional. A description provided by the user for the job. Its max length is 1024 bytes when Unicode-encoded.",
           "type": "string"
+        },
+        "dryRun": {
+          "description": "Optional. If true, the job will run in dry run mode, returning the total object count and, if the object configuration is a prefix list, the bytes found from source. No transformations will be performed.",
+          "type": "boolean"
         },
         "errorSummaries": {
           "description": "Output only. Summarizes errors encountered with sample error log entries.",

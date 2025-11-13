@@ -1,5 +1,27 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iamcredentials-v9.0.0...iamcredentials-v10.0.0) (2025-11-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3831](https://github.com/googleapis/google-api-nodejs-client/issues/3831)) ([3d39e40](https://github.com/googleapis/google-api-nodejs-client/commit/3d39e405c4c218bb5de165bfab54dceca74d928a))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iamcredentials-v8.0.0...iamcredentials-v9.0.0) (2025-11-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **iamcredentials:** This release has breaking changes.
+
+### Features
+
+* **iamcredentials:** update the API ([ed97fc6](https://github.com/googleapis/google-api-nodejs-client/commit/ed97fc6b086f63942e0c720832a54d643899c440))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iamcredentials-v7.0.0...iamcredentials-v8.0.0) (2025-10-15)
 
 

@@ -386,6 +386,58 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * The LRO metadata for exporting an artifact.
+   */
+  export interface Schema$ExportArtifactMetadata {
+    /**
+     * The exported artifact files.
+     */
+    exportedFiles?: Schema$ExportedFile[];
+  }
+  /**
+   * The request for exporting an artifact to a destination.
+   */
+  export interface Schema$ExportArtifactRequest {
+    /**
+     * The Cloud Storage path to export the artifact to. Should start with the bucket name, and optionally have a directory path. Examples: `dst_bucket`, `dst_bucket/sub_dir`. Existing objects with the same path will be overwritten.
+     */
+    gcsPath?: string | null;
+    /**
+     * The artifact tag to export. Format:projects/{project\}/locations/{location\}/repositories/{repository\}/packages/{package\}/tags/{tag\}
+     */
+    sourceTag?: string | null;
+    /**
+     * The artifact version to export. Format: projects/{project\}/locations/{location\}/repositories/{repository\}/packages/{package\}/versions/{version\}
+     */
+    sourceVersion?: string | null;
+  }
+  /**
+   * The response for exporting an artifact to a destination.
+   */
+  export interface Schema$ExportArtifactResponse {
+    /**
+     * The exported version. Should be the same as the request version with fingerprint resource name.
+     */
+    exportedVersion?: Schema$Version;
+  }
+  /**
+   * The exported artifact file.
+   */
+  export interface Schema$ExportedFile {
+    /**
+     * Cloud Storage Object path of the exported file. Examples: `dst_bucket/file1`, `dst_bucket/sub_dir/file1`
+     */
+    gcsObjectPath?: string | null;
+    /**
+     * The hashes of the file content.
+     */
+    hashes?: Schema$Hash[];
+    /**
+     * Name of the exported artifact file. Format: `projects/p1/locations/us/repositories/repo1/files/file1`
+     */
+    name?: string | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -2359,7 +2411,7 @@ export namespace artifactregistry_v1 {
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2642,7 +2694,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3194,6 +3246,161 @@ export namespace artifactregistry_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Exports an artifact.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.exportArtifact({
+     *       // Required. The repository of the artifact to export. Format: projects/{project\}/locations/{location\}/repositories/{repository\}
+     *       repository:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "gcsPath": "my_gcsPath",
+     *         //   "sourceTag": "my_sourceTag",
+     *         //   "sourceVersion": "my_sourceVersion"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Exportartifact,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    exportArtifact(
+      params?: Params$Resource$Projects$Locations$Repositories$Exportartifact,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    exportArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Exportartifact,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Exportartifact,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    exportArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Exportartifact,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    exportArtifact(callback: BodyResponseCallback<Schema$Operation>): void;
+    exportArtifact(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Exportartifact
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Exportartifact;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Exportartifact;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+repository}:exportArtifact').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['repository'],
+        pathParams: ['repository'],
         context: this.context,
       };
       if (callback) {
@@ -4176,6 +4383,18 @@ export namespace artifactregistry_v1 {
      * Required. The name of the repository to delete.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Exportartifact
+    extends StandardParameters {
+    /**
+     * Required. The repository of the artifact to export. Format: projects/{project\}/locations/{location\}/repositories/{repository\}
+     */
+    repository?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportArtifactRequest;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Get
     extends StandardParameters {

@@ -1,5 +1,23 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v12.0.1...dataform-v13.0.0) (2025-11-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3831](https://github.com/googleapis/google-api-nodejs-client/issues/3831)) ([3d39e40](https://github.com/googleapis/google-api-nodejs-client/commit/3d39e405c4c218bb5de165bfab54dceca74d928a))
+
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v12.0.0...dataform-v12.0.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* **dataform:** update the API ([c3134df](https://github.com/googleapis/google-api-nodejs-client/commit/c3134df48cfa2b5fd95d72a103e3e74f845b7881))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v11.0.0...dataform-v12.0.0) (2025-10-15)
 
 

@@ -949,6 +949,15 @@ export namespace discoveryengine_v1alpha {
     enrollState?: string | null;
   }
   /**
+   * Stored definition of an agent that uses A2A.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaA2AAgentDefinition {
+    /**
+     * Optional. The agent card is a JSON string.
+     */
+    jsonAgentCard?: string | null;
+  }
+  /**
    * Access Control Configuration.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAclConfig {
@@ -1004,6 +1013,24 @@ export namespace discoveryengine_v1alpha {
     useStaticSecrets?: boolean | null;
   }
   /**
+   * Stores the definition of an agent that uses ADK and is deployed to Agent Engine (formerly known as Reasoning Engine).
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAdkAgentDefinition {
+    /**
+     * Optional. The reasoning engine that the agent is connected to.
+     */
+    provisionedReasoningEngine?: Schema$GoogleCloudDiscoveryengineV1alphaAdkAgentDefinitionProvisionedReasoningEngine;
+  }
+  /**
+   * Keeps track of the reasoning engine that the agent is connected to. This message is not intended to keep track of agent's lifecycle. Instead it is only used to define parameters to connect to the agent that is already deployed to a reasoning engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAdkAgentDefinitionProvisionedReasoningEngine {
+    /**
+     * Required. The reasoning engine that the agent is connected to. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
+     */
+    reasoningEngine?: string | null;
+  }
+  /**
    * Request message for CompletionService.AdvancedCompleteQuery method. .
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequest {
@@ -1040,7 +1067,7 @@ export namespace discoveryengine_v1alpha {
      */
     userInfo?: Schema$GoogleCloudDiscoveryengineV1alphaUserInfo;
     /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128
+     * Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128
      */
     userPseudoId?: string | null;
   }
@@ -1220,6 +1247,238 @@ export namespace discoveryengine_v1alpha {
      * If set true, initial indexing is disabled for the DataStore.
      */
     disableInitialIndex?: boolean | null;
+  }
+  /**
+   * Performs a predefined, specific task.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAgent {
+    /**
+     * Optional. The behavior of the agent is defined as an A2A agent.
+     */
+    a2aAgentDefinition?: Schema$GoogleCloudDiscoveryengineV1alphaA2AAgentDefinition;
+    /**
+     * Optional. The behavior of the agent is defined as an ADK agent.
+     */
+    adkAgentDefinition?: Schema$GoogleCloudDiscoveryengineV1alphaAdkAgentDefinition;
+    /**
+     * Optional. The authorizations that are required by the agent.
+     */
+    authorizationConfig?: Schema$GoogleCloudDiscoveryengineV1alphaAuthorizationConfig;
+    /**
+     * Output only. Timestamp when this Agent was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The custom placeholder text that appears in the text box before the user enters any text.
+     */
+    customPlaceholderText?: string | null;
+    /**
+     * Output only. The reason why the agent deployment failed. Only set if the state is DEPLOYMENT_FAILED.
+     */
+    deploymentFailureReason?: string | null;
+    /**
+     * Required. Human-readable description of the agent. This might be used by an LLM to automatically select an agent to respond to a user query.
+     */
+    description?: string | null;
+    /**
+     * Optional. The behavior of the agent is defined as a Dialogflow agent.
+     */
+    dialogflowAgentDefinition?: Schema$GoogleCloudDiscoveryengineV1alphaDialogflowAgentDefinition;
+    /**
+     * Required. Display name of the agent. This might be used by an LLM to automatically select an agent to respond to a user query.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. The icon that represents the agent on the UI.
+     */
+    icon?: Schema$GoogleCloudDiscoveryengineV1alphaAgentImage;
+    /**
+     * Optional. The code of the language of the text in the description, display_name and starter_prompts fields.
+     */
+    languageCode?: string | null;
+    /**
+     * Identifier. Resource name of the agent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The reason why the agent was rejected. Only set if the state is PRIVATE, and got there via rejection.
+     */
+    rejectionReason?: string | null;
+    /**
+     * Optional. The sharing config of the agent.
+     */
+    sharingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaAgentSharingConfig;
+    /**
+     * Optional. The starter prompt suggestions to show the user on the landing page of the agent.
+     */
+    starterPrompts?: Schema$GoogleCloudDiscoveryengineV1alphaAgentStarterPrompt[];
+    /**
+     * Output only. The lifecycle state of the agent.
+     */
+    state?: string | null;
+    /**
+     * Output only. The reason why the agent was suspended. Only set if the state is SUSPENDED.
+     */
+    suspensionReason?: string | null;
+    /**
+     * Output only. Timestamp when this Agent was most recently updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Describes a file used internally by an agent as a context on each invocation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAgentFile {
+    /**
+     * Required. The name of the file.
+     */
+    fileName?: string | null;
+    /**
+     * Immutable. The content type of the file.
+     */
+    mimeType?: string | null;
+    /**
+     * Identifier. The resource name of the file. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}/files/{file\}`
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents an image.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAgentImage {
+    /**
+     * Base64-encoded image file contents.
+     */
+    content?: string | null;
+    /**
+     * Image URI.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Sharing related configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAgentSharingConfig {
+    /**
+     * Optional. The sharing scope of the agent.
+     */
+    scope?: string | null;
+  }
+  /**
+   * The starter prompt suggestion to show the user on the landing page of the agent.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAgentStarterPrompt {
+    /**
+     * Required. The text of the starter prompt.
+     */
+    text?: string | null;
+  }
+  /**
+   * The data for displaying an Agent.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAgentView {
+    /**
+     * Immutable. The origin of the Agent.
+     */
+    agentOrigin?: string | null;
+    /**
+     * Output only. The sharing state of the agent.
+     */
+    agentSharingState?: string | null;
+    /**
+     * Output only. The type of the agent.
+     */
+    agentType?: string | null;
+    /**
+     * The custom placeholder text that appears in the text box before the user enters any text.
+     */
+    customPlaceholderText?: string | null;
+    /**
+     * The reason why the agent deployment failed. Only set if the state is DEPLOYMENT_FAILED.
+     */
+    deploymentFailureReason?: string | null;
+    /**
+     * Required. Human-readable description of the agent. This might be used by an LLM to automatically select an agent to respond to a user query and to generate the first version of the steps for the agent that can be modified by the user. The language of this is either Agent.language_code, or ListAvailableAgentViewsRequest.language_code if translations are enabled.
+     */
+    description?: string | null;
+    /**
+     * Required. Display name of the agent. The language of this is either Agent.language_code, or ListAvailableAgentViewsRequest.language_code if translations are enabled.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. The icon that represents the agent on the UI.
+     */
+    icon?: Schema$GoogleCloudDiscoveryengineV1alphaAgentImage;
+    /**
+     * Resource name of the agent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     */
+    name?: string | null;
+    /**
+     * The reason why the agent was rejected. Only set if the state is PRIVATE, and got there via rejection.
+     */
+    rejectionReason?: string | null;
+    /**
+     * Output only. The state of the Agent.
+     */
+    state?: string | null;
+    /**
+     * Optional. The suggested prompts for the agent, to be shown on the agent landing page.
+     */
+    suggestedPrompts?: Schema$GoogleCloudDiscoveryengineV1alphaAgentViewSuggestedPrompt[];
+    /**
+     * The reason why the agent was suspended. Only set if the state is SUSPENDED.
+     */
+    suspensionReason?: string | null;
+    /**
+     * Optional. Per-user annotations of the current caller for the agent.
+     */
+    userAnnotations?: Schema$GoogleCloudDiscoveryengineV1alphaUserAnnotations;
+    /**
+     * The permissions of the user for this Agent.
+     */
+    userPermissions?: Schema$GoogleCloudDiscoveryengineV1alphaAgentViewUserPermissions;
+  }
+  /**
+   * A suggested prompt for the agent, to be shown on the agent landing page.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAgentViewSuggestedPrompt {
+    /**
+     * Required. The text of the suggested prompt. The language of this is either Agent.language_code, or ListAvailableAgentViewsRequest.language_code if translations are enabled.
+     */
+    text?: string | null;
+  }
+  /**
+   * The permissions of the user on an Agent.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAgentViewUserPermissions {
+    /**
+     * If the user can delete this Agent.
+     */
+    canDelete?: boolean | null;
+    /**
+     * If the user can edit this Agent.
+     */
+    canEdit?: boolean | null;
+    /**
+     * If the user can propose other users to share the Agent with.
+     */
+    canProposeUsers?: boolean | null;
+    /**
+     * If the user can request a review for this Agent.
+     */
+    canRequestReview?: boolean | null;
+    /**
+     * If the user can run this Agent.
+     */
+    canRun?: boolean | null;
+    /**
+     * If the user can view the source of this Agent.
+     */
+    canView?: boolean | null;
+    /**
+     * If the user can withdraw this Agent.
+     */
+    canWithdraw?: boolean | null;
   }
   /**
    * The connector level alert config.
@@ -2627,6 +2886,19 @@ export namespace discoveryengine_v1alpha {
     serverSideOauth2?: Schema$GoogleCloudDiscoveryengineV1alphaAuthorizationServerSideOAuth2;
   }
   /**
+   * Describes the authorizations required.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAuthorizationConfig {
+    /**
+     * Optional. The authorization that is required to invoke the agent. Auth tokens will be passed to the agent as part of the request auth header.
+     */
+    agentAuthorization?: string | null;
+    /**
+     * Optional. List of required authorizations for agent to access other resources. Auth tokens will be passed to the agent as part of the request body.
+     */
+    toolAuthorizations?: string[] | null;
+  }
+  /**
    * OAuth2 configuration.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAuthorizationServerSideOAuth2 {
@@ -2923,6 +3195,63 @@ export namespace discoveryengine_v1alpha {
      * Required. The table ID of the Cloud Bigtable that needs to be imported.
      */
     tableId?: string | null;
+  }
+  /**
+   * Information about license configs at billing account level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig {
+    /**
+     * Whether the BillingAccountLicenseConfig is auto renewed when it reaches the end date.
+     */
+    autoRenew?: boolean | null;
+    /**
+     * Optional. The planed subscription end date.
+     */
+    endDate?: Schema$GoogleTypeDate;
+    /**
+     * Whether the license config is for Gemini bundle.
+     */
+    geminiBundle?: boolean | null;
+    /**
+     * A map of LicenseConfig names to the number of licenses distributed to each. The key is the full resource name of the LicenseConfig, such as `projects/{project\}/locations/{location\}/licenseConfigs/{license_config\}`. The value is the count of licenses allocated to it.
+     */
+    licenseConfigDistributions?: {[key: string]: string} | null;
+    /**
+     * Required. The number of licenses purchased under this billing account license config.
+     */
+    licenseCount?: string | null;
+    /**
+     * Immutable. Identifier. The fully qualified resource name of the billing account license config. Format: `billingAccounts/{billing_account\}/billingAccountLicenseConfigs/{billing_account_license_config\}`.
+     */
+    name?: string | null;
+    /**
+     * The procurement entitlement id of the subscription.
+     */
+    procurementEntitlementId?: string | null;
+    /**
+     * Required. The subscription start date.
+     */
+    startDate?: Schema$GoogleTypeDate;
+    /**
+     * Output only. The state of the BillingAccountLicenseConfig.
+     */
+    state?: string | null;
+    /**
+     * The subscription display name.
+     */
+    subscriptionDisplayName?: string | null;
+    /**
+     * Output only. The corresponding SubV3 subscription name.
+     */
+    subscriptionName?: string | null;
+    /**
+     * Required. The subscription term.
+     */
+    subscriptionTerm?: string | null;
+    /**
+     * Required. The subscription tier.
+     */
+    subscriptionTier?: string | null;
   }
   /**
    * A data branch that stores Documents.
@@ -4566,6 +4895,19 @@ export namespace discoveryengine_v1alpha {
     userTriggeredCrawlRate?: Schema$GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries;
   }
   /**
+   * Metadata related to the progress of the AgentService.DeleteAgent operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDeleteAgentMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Metadata related to the progress of the CmekConfigService.DeleteCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata {
@@ -4724,6 +5066,15 @@ export namespace discoveryengine_v1alpha {
      * Optional. Target port number accepted by the destination.
      */
     port?: number | null;
+  }
+  /**
+   * Stored definition of an agent that uses a Dialogflow agent.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDialogflowAgentDefinition {
+    /**
+     * Required. Resource name of the underlying Dialogflow Agent. Format: `projects/{project\}/locations/{location\}/agents/{agent\}`
+     */
+    dialogflowAgent?: string | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -4995,6 +5346,10 @@ export namespace discoveryengine_v1alpha {
      */
     enableImageAnnotation?: boolean | null;
     /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     */
+    enableLlmLayoutParsing?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the table during parsing.
      */
     enableTableAnnotation?: boolean | null;
@@ -5084,6 +5439,10 @@ export namespace discoveryengine_v1alpha {
      */
     chatEngineMetadata?: Schema$GoogleCloudDiscoveryengineV1alphaEngineChatEngineMetadata;
     /**
+     * Output only. CMEK-related information for the Engine.
+     */
+    cmekConfig?: Schema$GoogleCloudDiscoveryengineV1alphaCmekConfig;
+    /**
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineCommonConfig;
@@ -5119,6 +5478,10 @@ export namespace discoveryengine_v1alpha {
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig;
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.
+     */
+    modelConfigs?: {[key: string]: string} | null;
     /**
      * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -5748,6 +6111,15 @@ export namespace discoveryengine_v1alpha {
     inputUris?: string[] | null;
   }
   /**
+   * Response message for the AgentService.GetAgentView method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse {
+    /**
+     * The data for displaying an Agent.
+     */
+    agentView?: Schema$GoogleCloudDiscoveryengineV1alphaAgentView;
+  }
+  /**
    * Response message for DataConnectorService.GetConnectorSecret.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse {
@@ -5951,6 +6323,28 @@ export namespace discoveryengine_v1alpha {
      * Output only. Image width in pixels.
      */
     width?: number | null;
+  }
+  /**
+   * Request for the AgentService.ImportAgentFile method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileRequest {
+    /**
+     * Required. The name of the file.
+     */
+    fileName?: string | null;
+    /**
+     * Optional. The content type of the file, see https://www.iana.org/assignments/media-types/media-types.xhtml. This field is required when the data source does not provide the content type.
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * Response for the AgentService.ImportAgentFile method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse {
+    /**
+     * The imported AgentFile.
+     */
+    agentFile?: Schema$GoogleCloudDiscoveryengineV1alphaAgentFile;
   }
   /**
    * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -6448,6 +6842,32 @@ export namespace discoveryengine_v1alpha {
     subscriptionTier?: string | null;
   }
   /**
+   * Stats about users' licenses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfigUsageStats {
+    /**
+     * Required. The LicenseConfig name.
+     */
+    licenseConfig?: string | null;
+    /**
+     * Required. The number of licenses used.
+     */
+    usedLicenseCount?: string | null;
+  }
+  /**
+   * Response message for the AgentService.ListAgents method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse {
+    /**
+     * The agents visible to the caller under the parent Assistant.
+     */
+    agents?: Schema$GoogleCloudDiscoveryengineV1alphaAgent[];
+    /**
+     * A token that can be sent as ListAgentsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for the AuthorizationService.ListAuthorizations method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListAuthorizationsResponse {
@@ -6457,6 +6877,32 @@ export namespace discoveryengine_v1alpha {
     authorizations?: Schema$GoogleCloudDiscoveryengineV1alphaAuthorization[];
     /**
      * A token that can be sent as ListAuthorizationsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for the AgentService.ListAvailableAgentViews method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse {
+    /**
+     * The agent sources visible to the caller under the parent Assistant.
+     */
+    agentViews?: Schema$GoogleCloudDiscoveryengineV1alphaAgentView[];
+    /**
+     * A token that can be sent as ListAvailableAgentViewsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for LicenseConfigService.ListBillingAccountLicenseConfigs method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse {
+    /**
+     * All BillingAccountLicenseConfigs for the given billing account.
+     */
+    billingAccountLicenseConfigs?: Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig[];
+    /**
+     * A token that can be sent as ListBillingAccountLicenseConfigsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
   }
@@ -6681,6 +7127,15 @@ export namespace discoveryengine_v1alpha {
      * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for UserLicenseService.ListLicenseConfigUsageStats method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse {
+    /**
+     * All the customer's LicenseConfigUsageStats.
+     */
+    licenseConfigUsageStats?: Schema$GoogleCloudDiscoveryengineV1alphaLicenseConfigUsageStats[];
   }
   /**
    * Response message for SampleQueryService.ListSampleQueries method.
@@ -8188,7 +8643,7 @@ export namespace discoveryengine_v1alpha {
      */
     userLabels?: {[key: string]: string} | null;
     /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     userPseudoId?: string | null;
   }
@@ -9981,6 +10436,32 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * Request message for the AgentService.UploadAgentFile method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaUploadAgentFileRequest {
+    /**
+     * Information about the file being uploaded.
+     */
+    blob?: Schema$GdataMedia;
+    /**
+     * Media upload request metadata.
+     */
+    mediaRequestInfo?: Schema$ApiservingMediaRequestInfo;
+  }
+  /**
+   * Response message for the AgentService.UploadAgentFile method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaUploadAgentFileResponse {
+    /**
+     * The uploaded AgentFile.
+     */
+    agentFile?: Schema$GoogleCloudDiscoveryengineV1alphaAgentFile;
+    /**
+     * Media upload response metadata.
+     */
+    mediaResponseInfo?: Schema$ApiservingMediaResponseInfo;
+  }
+  /**
    * Request for the AssistantService.UploadSessionFile method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest {
@@ -10005,6 +10486,19 @@ export namespace discoveryengine_v1alpha {
      * Media upload response metadata.
      */
     mediaResponseInfo?: Schema$ApiservingMediaResponseInfo;
+  }
+  /**
+   * Per-user annotations for an Agent, based on UserAnnotation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaUserAnnotations {
+    /**
+     * Optional. Whether the agent is pinned, pinned agent will be displayed on the top of the agent list.
+     */
+    pinned?: boolean | null;
+    /**
+     * Optional. Whether the agent has been viewed by the user.
+     */
+    viewed?: boolean | null;
   }
   /**
    * UserEvent captures all metadata information Discovery Engine API needs to know about how end users interact with your website.
@@ -10310,10 +10804,6 @@ export namespace discoveryengine_v1alpha {
      */
     enableWebApp?: boolean | null;
     /**
-     * Allows to toggle unstable/experimental features in the widget (or web app)
-     */
-    experimentalFeatures?: {[key: string]: string} | null;
-    /**
      * The configuration and appearance of facets in the end user view.
      */
     facetField?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField[];
@@ -10534,7 +11024,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigHomepageSetting {
     /**
-     * Optional. The shortcuts to display on the homepage. LINT.IfChange(max_shortcuts_number) LINT.ThenChange( //depot/google3/cloud/console/web/ai/unified_cloud_search/components/widget_preview/widget_homepage_shortcut_config_form.ts:max_shortcuts_number )
+     * Optional. The shortcuts to display on the homepage.
      */
     shortcuts?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigHomepageSettingShortcut[];
   }
@@ -10647,9 +11137,17 @@ export namespace discoveryengine_v1alpha {
      */
     interactionType?: string | null;
     /**
+     * Output only. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.
+     */
+    modelConfigs?: {[key: string]: string} | null;
+    /**
      * Controls whether result extract is display and how (snippet or extractive answer). Default to no result if unspecified.
      */
     resultDescriptionType?: string | null;
+    /**
+     * Optional. SearchAddonSpec is used to disable add-ons for search. This field is only supported for search requests.
+     */
+    searchAddonSpec?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsSearchAddonSpec;
   }
   /**
    * Describes configuration for generative answer.
@@ -10695,6 +11193,23 @@ export namespace discoveryengine_v1alpha {
      * The number of top results to generate the answer from. Up to 10.
      */
     resultCount?: number | null;
+  }
+  /**
+   * SearchAddonSpec is used to disable add-ons for search. By default, if this field is not specified, add-ons are enabled wherever applicable.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsSearchAddonSpec {
+    /**
+     * Optional. If true, generative answer add-on is disabled. Generative answer add-on includes natural language to filters and simple answers.
+     */
+    generativeAnswerAddOnDisabled?: boolean | null;
+    /**
+     * Optional. If true, disables event re-ranking and personalization to optimize KPIs & personalize results.
+     */
+    kpiPersonalizationAddOnDisabled?: boolean | null;
+    /**
+     * Optional. If true, semantic add-on is disabled. Semantic add-on includes embeddings and jetstream.
+     */
+    semanticAddOnDisabled?: boolean | null;
   }
   /**
    * Config to store data store type configuration for workspace data
@@ -11683,6 +12198,10 @@ export namespace discoveryengine_v1alpha {
      */
     enableImageAnnotation?: boolean | null;
     /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     */
+    enableLlmLayoutParsing?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the table during parsing.
      */
     enableTableAnnotation?: boolean | null;
@@ -11750,6 +12269,10 @@ export namespace discoveryengine_v1alpha {
      */
     chatEngineMetadata?: Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineMetadata;
     /**
+     * Output only. CMEK-related information for the Engine.
+     */
+    cmekConfig?: Schema$GoogleCloudDiscoveryengineV1betaCmekConfig;
+    /**
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineCommonConfig;
@@ -11785,6 +12308,10 @@ export namespace discoveryengine_v1alpha {
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig;
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.
+     */
+    modelConfigs?: {[key: string]: string} | null;
     /**
      * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -12820,7 +13347,7 @@ export namespace discoveryengine_v1alpha {
      */
     userLabels?: {[key: string]: string} | null;
     /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     userPseudoId?: string | null;
   }
@@ -14495,6 +15022,10 @@ export namespace discoveryengine_v1alpha {
      */
     enableImageAnnotation?: boolean | null;
     /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     */
+    enableLlmLayoutParsing?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the table during parsing.
      */
     enableTableAnnotation?: boolean | null;
@@ -14562,6 +15093,10 @@ export namespace discoveryengine_v1alpha {
      */
     chatEngineMetadata?: Schema$GoogleCloudDiscoveryengineV1EngineChatEngineMetadata;
     /**
+     * Output only. CMEK-related information for the Engine.
+     */
+    cmekConfig?: Schema$GoogleCloudDiscoveryengineV1CmekConfig;
+    /**
      * Common config spec that specifies the metadata of the engine.
      */
     commonConfig?: Schema$GoogleCloudDiscoveryengineV1EngineCommonConfig;
@@ -14597,6 +15132,10 @@ export namespace discoveryengine_v1alpha {
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig;
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.
+     */
+    modelConfigs?: {[key: string]: string} | null;
     /**
      * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -16409,6 +16948,49 @@ export namespace discoveryengine_v1alpha {
     videoId?: string | null;
   }
   /**
+   * Associates `members`, or principals, with a `role`.
+   */
+  export interface Schema$GoogleIamV1Binding {
+    /**
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    condition?: Schema$GoogleTypeExpr;
+    /**
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/group/{group_id\}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/x`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/group/{group_id\}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x`: All identities in a workload identity pool. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.
+     */
+    members?: string[] | null;
+    /**
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
+     */
+    role?: string | null;
+  }
+  /**
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   */
+  export interface Schema$GoogleIamV1Policy {
+    /**
+     * Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.
+     */
+    bindings?: Schema$GoogleIamV1Binding[];
+    /**
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     */
+    etag?: string | null;
+    /**
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    version?: number | null;
+  }
+  /**
+   * Request message for `SetIamPolicy` method.
+   */
+  export interface Schema$GoogleIamV1SetIamPolicyRequest {
+    /**
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
+     */
+    policy?: Schema$GoogleIamV1Policy;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$GoogleLongrunningCancelOperationRequest {}
@@ -16840,6 +17422,325 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Gets a BillingAccountLicenseConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.billingAccounts.billingAccountLicenseConfigs.get({
+     *       // Required. Full resource name of BillingAccountLicenseConfig. Format: `billingAccounts/{billing_account\}/billingAccountLicenseConfigs/{billing_account_license_config_id\}`.
+     *       name: 'billingAccounts/my-billingAccount/billingAccountLicenseConfigs/my-billingAccountLicenseConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoRenew": false,
+     *   //   "endDate": {},
+     *   //   "geminiBundle": false,
+     *   //   "licenseConfigDistributions": {},
+     *   //   "licenseCount": "my_licenseCount",
+     *   //   "name": "my_name",
+     *   //   "procurementEntitlementId": "my_procurementEntitlementId",
+     *   //   "startDate": {},
+     *   //   "state": "my_state",
+     *   //   "subscriptionDisplayName": "my_subscriptionDisplayName",
+     *   //   "subscriptionName": "my_subscriptionName",
+     *   //   "subscriptionTerm": "my_subscriptionTerm",
+     *   //   "subscriptionTier": "my_subscriptionTier"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig>
+    >;
+    get(
+      params: Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all BillingAccountLicenseConfigs for a given billing account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.billingAccounts.billingAccountLicenseConfigs.list({
+     *       // Optional. Not supported.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Not supported.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Format: `billingAccounts/{billing_account\}`.
+     *       parent: 'billingAccounts/my-billingAccount',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingAccountLicenseConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse>
+    >;
+    list(
+      params: Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/billingAccountLicenseConfigs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * This method is called from the billing account side to retract the LicenseConfig from the given project back to the billing account.
      * @example
      * ```js
@@ -17017,6 +17918,28 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaDistributeLicenseConfigRequest;
+  }
+  export interface Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of BillingAccountLicenseConfig. Format: `billingAccounts/{billing_account\}/billingAccountLicenseConfigs/{billing_account_license_config_id\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Not supported.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Not supported.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: `billingAccounts/{billing_account\}`.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Billingaccounts$Billingaccountlicenseconfigs$Retractlicenseconfig
     extends StandardParameters {
@@ -17210,6 +18133,175 @@ export namespace discoveryengine_v1alpha {
         return createAPIRequest<Schema$GdataMedia>(parameters);
       }
     }
+
+    /**
+     * Uploads a file for the assistant to use as a source of information within the session.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.media.upload({
+     *     // Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
+     *     name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/sessions/my-session',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "blob": {},
+     *       //   "mediaRequestInfo": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fileId": "my_fileId",
+     *   //   "mediaResponseInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    upload(
+      params?: Params$Resource$Media$Upload,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse>
+    >;
+    upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Media$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Media$Upload,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Media$Upload
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Media$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:uploadFile').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (rootUrl + '/upload/v1alpha/{+name}:uploadFile').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Media$Download extends StandardParameters {
@@ -17225,6 +18317,32 @@ export namespace discoveryengine_v1alpha {
      * Optional. The ID of the view to be downloaded.
      */
     viewId?: string;
+  }
+  export interface Params$Resource$Media$Upload extends StandardParameters {
+    /**
+     * Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 
   export class Resource$Projects {
@@ -23951,7 +25069,7 @@ export namespace discoveryengine_v1alpha {
      *         query: 'placeholder-value',
      *         // Specifies the autocomplete data model. This overrides any model specified in the Configuration \> Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
      *         queryModel: 'placeholder-value',
-     *         // A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *         // Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *         userPseudoId: 'placeholder-value',
      *       },
      *     );
@@ -25612,7 +26730,7 @@ export namespace discoveryengine_v1alpha {
      */
     queryModel?: string;
     /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     userPseudoId?: string;
   }
@@ -40624,7 +41742,6 @@ export namespace discoveryengine_v1alpha {
      *   //   "enableSnippetResultSummary": false,
      *   //   "enableSummarization": false,
      *   //   "enableWebApp": false,
-     *   //   "experimentalFeatures": {},
      *   //   "facetField": [],
      *   //   "fieldsUiComponentsMap": {},
      *   //   "geminiBundle": false,
@@ -40744,6 +41861,239 @@ export namespace discoveryengine_v1alpha {
         );
       }
     }
+
+    /**
+     * Update a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.widgetConfigs.patch(
+     *       {
+     *         // Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/widgetConfigs/my-widgetConfig',
+     *         // Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "accessSettings": {},
+     *           //   "allowPublicAccess": false,
+     *           //   "allowlistedDomains": [],
+     *           //   "assistantSettings": {},
+     *           //   "collectionComponents": [],
+     *           //   "configId": "my_configId",
+     *           //   "contentSearchSpec": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "customerProvidedConfig": {},
+     *           //   "dataStoreType": "my_dataStoreType",
+     *           //   "dataStoreUiConfigs": [],
+     *           //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *           //   "displayName": "my_displayName",
+     *           //   "enableAutocomplete": false,
+     *           //   "enableConversationalSearch": false,
+     *           //   "enablePrivateKnowledgeGraph": false,
+     *           //   "enableQualityFeedback": false,
+     *           //   "enableResultScore": false,
+     *           //   "enableSafeSearch": false,
+     *           //   "enableSearchAsYouType": false,
+     *           //   "enableSnippetResultSummary": false,
+     *           //   "enableSummarization": false,
+     *           //   "enableWebApp": false,
+     *           //   "facetField": [],
+     *           //   "fieldsUiComponentsMap": {},
+     *           //   "geminiBundle": false,
+     *           //   "homepageSetting": {},
+     *           //   "industryVertical": "my_industryVertical",
+     *           //   "llmEnabled": false,
+     *           //   "minimumDataTermAccepted": false,
+     *           //   "name": "my_name",
+     *           //   "resultDisplayType": "my_resultDisplayType",
+     *           //   "solutionType": "my_solutionType",
+     *           //   "uiBranding": {},
+     *           //   "uiSettings": {},
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "geminiBundle": false,
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Get
@@ -40760,6 +42110,22 @@ export namespace discoveryengine_v1alpha {
      * Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Widgetconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig;
   }
 
   export class Resource$Projects$Locations$Collections$Engines {
@@ -40861,6 +42227,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
+     *         //   "cmekConfig": {},
      *         //   "commonConfig": {},
      *         //   "configurableBillingApproach": "my_configurableBillingApproach",
      *         //   "createTime": "my_createTime",
@@ -40870,6 +42237,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
      *         //   "mediaRecommendationEngineConfig": {},
+     *         //   "modelConfigs": {},
      *         //   "name": "my_name",
      *         //   "recommendationMetadata": {},
      *         //   "searchEngineConfig": {},
@@ -41184,6 +42552,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
+     *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
@@ -41193,6 +42562,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "recommendationMetadata": {},
      *   //   "searchEngineConfig": {},
@@ -41670,6 +43040,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
+     *         //   "cmekConfig": {},
      *         //   "commonConfig": {},
      *         //   "configurableBillingApproach": "my_configurableBillingApproach",
      *         //   "createTime": "my_createTime",
@@ -41679,6 +43050,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
      *         //   "mediaRecommendationEngineConfig": {},
+     *         //   "modelConfigs": {},
      *         //   "name": "my_name",
      *         //   "recommendationMetadata": {},
      *         //   "searchEngineConfig": {},
@@ -41695,6 +43067,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
+     *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
@@ -41704,6 +43077,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "recommendationMetadata": {},
      *   //   "searchEngineConfig": {},
@@ -41868,6 +43242,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
+     *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
@@ -41877,6 +43252,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "recommendationMetadata": {},
      *   //   "searchEngineConfig": {},
@@ -42044,6 +43420,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
+     *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
      *   //   "createTime": "my_createTime",
@@ -42053,6 +43430,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "recommendationMetadata": {},
      *   //   "searchEngineConfig": {},
@@ -42621,9 +43999,14 @@ export namespace discoveryengine_v1alpha {
 
   export class Resource$Projects$Locations$Collections$Engines$Assistants {
     context: APIRequestContext;
+    agents: Resource$Projects$Locations$Collections$Engines$Assistants$Agents;
     cannedQueries: Resource$Projects$Locations$Collections$Engines$Assistants$Cannedqueries;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.agents =
+        new Resource$Projects$Locations$Collections$Engines$Assistants$Agents(
+          this.context
+        );
       this.cannedQueries =
         new Resource$Projects$Locations$Collections$Engines$Assistants$Cannedqueries(
           this.context
@@ -42782,6 +44165,177 @@ export namespace discoveryengine_v1alpha {
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists the data for displaying the Agents under an Assistant which are available to the caller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.listAvailableAgentViews(
+     *       {
+     *         // Optional. The origin of the Agent.
+     *         agentOrigin: 'placeholder-value',
+     *         // Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the files being filtered. Filter expression is case-sensitive. Allowed fields are: * `display_name` * `state` Some examples of filters would be: * `display_name = 'agent_1'` * `display_name = 'agent_1' AND state = ENABLED` For a full description of the filter format, please see https://google.aip.dev/160.
+     *         filter: 'placeholder-value',
+     *         // Optional. The UI language currently shown to the user. Specifying this field request that the texts in the AgentViews in the response should be translated to this language.
+     *         languageCode: 'placeholder-value',
+     *         // Optional. The maximum number of suggested prompts to return per agent.
+     *         maxSuggestedPrompts: 'placeholder-value',
+     *         // Optional. Maximum number of AgentViewss to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token ListAvailableAgentViewsResponse.next_page_token, received from a previous AgentService.ListAvailableAgentViews call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAvailableAgentViews must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *         // Optional. The field to sort by. Can have the following values: - display-name: The display name of the agent. - description: The description of the agent. - create-time: The creation time of the agent. - state: The state of the agent.
+     *         sortBy: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agentViews": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listAvailableAgentViews(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Listavailableagentviews,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    listAvailableAgentViews(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Listavailableagentviews,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse>
+    >;
+    listAvailableAgentViews(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Listavailableagentviews,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listAvailableAgentViews(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Listavailableagentviews,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse>
+    ): void;
+    listAvailableAgentViews(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Listavailableagentviews,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse>
+    ): void;
+    listAvailableAgentViews(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse>
+    ): void;
+    listAvailableAgentViews(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Listavailableagentviews
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Listavailableagentviews;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Listavailableagentviews;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}:listAvailableAgentViews'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse>(
           parameters
         );
       }
@@ -43136,6 +44690,41 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Listavailableagentviews
+    extends StandardParameters {
+    /**
+     * Optional. The origin of the Agent.
+     */
+    agentOrigin?: string;
+    /**
+     * Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the files being filtered. Filter expression is case-sensitive. Allowed fields are: * `display_name` * `state` Some examples of filters would be: * `display_name = 'agent_1'` * `display_name = 'agent_1' AND state = ENABLED` For a full description of the filter format, please see https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Optional. The UI language currently shown to the user. Specifying this field request that the texts in the AgentViews in the response should be translated to this language.
+     */
+    languageCode?: string;
+    /**
+     * Optional. The maximum number of suggested prompts to return per agent.
+     */
+    maxSuggestedPrompts?: number;
+    /**
+     * Optional. Maximum number of AgentViewss to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token ListAvailableAgentViewsResponse.next_page_token, received from a previous AgentService.ListAvailableAgentViews call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAvailableAgentViews must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     */
+    parent?: string;
+    /**
+     * Optional. The field to sort by. Can have the following values: - display-name: The display name of the agent. - description: The description of the agent. - create-time: The creation time of the agent. - state: The state of the agent.
+     */
+    sortBy?: string;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch
     extends StandardParameters {
     /**
@@ -43163,6 +44752,2203 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaStreamAssistRequest;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents {
+    context: APIRequestContext;
+    files: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.files =
+        new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files(
+          this.context
+        );
+    }
+
+    /**
+     * Creates an Agent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.create(
+     *       {
+     *         // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "a2aAgentDefinition": {},
+     *           //   "adkAgentDefinition": {},
+     *           //   "authorizationConfig": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "customPlaceholderText": "my_customPlaceholderText",
+     *           //   "deploymentFailureReason": "my_deploymentFailureReason",
+     *           //   "description": "my_description",
+     *           //   "dialogflowAgentDefinition": {},
+     *           //   "displayName": "my_displayName",
+     *           //   "icon": {},
+     *           //   "languageCode": "my_languageCode",
+     *           //   "name": "my_name",
+     *           //   "rejectionReason": "my_rejectionReason",
+     *           //   "sharingConfig": {},
+     *           //   "starterPrompts": [],
+     *           //   "state": "my_state",
+     *           //   "suspensionReason": "my_suspensionReason",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "a2aAgentDefinition": {},
+     *   //   "adkAgentDefinition": {},
+     *   //   "authorizationConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customPlaceholderText": "my_customPlaceholderText",
+     *   //   "deploymentFailureReason": "my_deploymentFailureReason",
+     *   //   "description": "my_description",
+     *   //   "dialogflowAgentDefinition": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "icon": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name",
+     *   //   "rejectionReason": "my_rejectionReason",
+     *   //   "sharingConfig": {},
+     *   //   "starterPrompts": [],
+     *   //   "state": "my_state",
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Create
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/agents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an Agent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.delete(
+     *       {
+     *         // Required. Resource name of Agent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}` If the caller does not have permission to delete the agent, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the agent to delete does not exist, a `NOT_FOUND` error is returned.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Disables an Agent. The `state` of the Agent becomes `DISABLED`. Can be called on an Agent in the state `ENABLED` or`SUSPENDED`, otherwise it returns an error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.disableAgent(
+     *       {
+     *         // Required. The name of the Agent to disable. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "a2aAgentDefinition": {},
+     *   //   "adkAgentDefinition": {},
+     *   //   "authorizationConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customPlaceholderText": "my_customPlaceholderText",
+     *   //   "deploymentFailureReason": "my_deploymentFailureReason",
+     *   //   "description": "my_description",
+     *   //   "dialogflowAgentDefinition": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "icon": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name",
+     *   //   "rejectionReason": "my_rejectionReason",
+     *   //   "sharingConfig": {},
+     *   //   "starterPrompts": [],
+     *   //   "state": "my_state",
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    disableAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Disableagent,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    disableAgent(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Disableagent,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    >;
+    disableAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Disableagent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    disableAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Disableagent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    disableAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Disableagent,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    disableAgent(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    disableAgent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Disableagent
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Disableagent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Disableagent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:disableAgent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Enables an Agent. The `state` of the Agent becomes `ENABLED`. Can be called on an Agent in the state `DISABLED` or 'SUSPENDED', otherwise it returns an error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.enableAgent(
+     *       {
+     *         // Required. The name of the Agent to enable. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "a2aAgentDefinition": {},
+     *   //   "adkAgentDefinition": {},
+     *   //   "authorizationConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customPlaceholderText": "my_customPlaceholderText",
+     *   //   "deploymentFailureReason": "my_deploymentFailureReason",
+     *   //   "description": "my_description",
+     *   //   "dialogflowAgentDefinition": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "icon": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name",
+     *   //   "rejectionReason": "my_rejectionReason",
+     *   //   "sharingConfig": {},
+     *   //   "starterPrompts": [],
+     *   //   "state": "my_state",
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enableAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Enableagent,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    enableAgent(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Enableagent,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    >;
+    enableAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Enableagent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enableAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Enableagent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    enableAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Enableagent,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    enableAgent(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    enableAgent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Enableagent
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Enableagent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Enableagent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:enableAgent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets an Agent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.get(
+     *       {
+     *         // Required. Resource name of Agent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "a2aAgentDefinition": {},
+     *   //   "adkAgentDefinition": {},
+     *   //   "authorizationConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customPlaceholderText": "my_customPlaceholderText",
+     *   //   "deploymentFailureReason": "my_deploymentFailureReason",
+     *   //   "description": "my_description",
+     *   //   "dialogflowAgentDefinition": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "icon": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name",
+     *   //   "rejectionReason": "my_rejectionReason",
+     *   //   "sharingConfig": {},
+     *   //   "starterPrompts": [],
+     *   //   "state": "my_state",
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns a AgentView for a given Agent, which contains additional information about the Agent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.getAgentView(
+     *       {
+     *         // Optional. The UI language currently shown to the user. Specifying this field request that the texts in the AgentView in the response should be translated to this language.
+     *         languageCode: 'placeholder-value',
+     *         // Optional. The maximum number of suggested prompts to return per agent.
+     *         maxSuggestedPrompts: 'placeholder-value',
+     *         // Required. The name of the Agent to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agentView": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAgentView(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getagentview,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getAgentView(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getagentview,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse>
+    >;
+    getAgentView(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getagentview,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAgentView(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getagentview,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse>
+    ): void;
+    getAgentView(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getagentview,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse>
+    ): void;
+    getAgentView(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse>
+    ): void;
+    getAgentView(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getagentview
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getagentview;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getagentview;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:getAgentView').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets the access control policy for an agent resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.getIamPolicy(
+     *       {
+     *         // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         'options.requestedPolicyVersion': 'placeholder-value',
+     *         // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists all Agents under an Assistant which were created by the caller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.list(
+     *       {
+     *         // Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `is_pinned` Example: * "update_time desc" * "is_pinned desc,update_time desc": list agents by is_pinned first, then by update_time.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. Maximum number of Agents to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token ListAgentsResponse.next_page_token, received from a previous AgentService.ListAgents call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAgents must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/agents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListAgentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an Agent
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.patch(
+     *       {
+     *         // Identifier. Resource name of the agent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *         // Optional. The list of fields to update.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "a2aAgentDefinition": {},
+     *           //   "adkAgentDefinition": {},
+     *           //   "authorizationConfig": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "customPlaceholderText": "my_customPlaceholderText",
+     *           //   "deploymentFailureReason": "my_deploymentFailureReason",
+     *           //   "description": "my_description",
+     *           //   "dialogflowAgentDefinition": {},
+     *           //   "displayName": "my_displayName",
+     *           //   "icon": {},
+     *           //   "languageCode": "my_languageCode",
+     *           //   "name": "my_name",
+     *           //   "rejectionReason": "my_rejectionReason",
+     *           //   "sharingConfig": {},
+     *           //   "starterPrompts": [],
+     *           //   "state": "my_state",
+     *           //   "suspensionReason": "my_suspensionReason",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "a2aAgentDefinition": {},
+     *   //   "adkAgentDefinition": {},
+     *   //   "authorizationConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customPlaceholderText": "my_customPlaceholderText",
+     *   //   "deploymentFailureReason": "my_deploymentFailureReason",
+     *   //   "description": "my_description",
+     *   //   "dialogflowAgentDefinition": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "icon": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name",
+     *   //   "rejectionReason": "my_rejectionReason",
+     *   //   "sharingConfig": {},
+     *   //   "starterPrompts": [],
+     *   //   "state": "my_state",
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Sets the access control policy for an agent resource. A `NOT_FOUND` error is returned if the resource does not exist. Policy can only contain `roles/discoveryengine.agentUser`, `roles/discoveryengine.agentViewer` and `roles/discoveryengine.agentEditor` roles.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.setIamPolicy(
+     *       {
+     *         // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "policy": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Suspends an Agent. It is still available for viewing but not for use. The `state` of the Agent becomes `SUSPENDED`. Can be called on an Agent in the state `ENABLED`, otherwise it returns an error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.suspendAgent(
+     *       {
+     *         // Required. The name of the Agent to suspend. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *         // Required. The reason for suspending the Agent. This will be shown to the users of the Agent.
+     *         suspensionReason: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "a2aAgentDefinition": {},
+     *   //   "adkAgentDefinition": {},
+     *   //   "authorizationConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customPlaceholderText": "my_customPlaceholderText",
+     *   //   "deploymentFailureReason": "my_deploymentFailureReason",
+     *   //   "description": "my_description",
+     *   //   "dialogflowAgentDefinition": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "icon": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name",
+     *   //   "rejectionReason": "my_rejectionReason",
+     *   //   "sharingConfig": {},
+     *   //   "starterPrompts": [],
+     *   //   "state": "my_state",
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suspendAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Suspendagent,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    suspendAgent(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Suspendagent,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    >;
+    suspendAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Suspendagent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suspendAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Suspendagent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    suspendAgent(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Suspendagent,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    suspendAgent(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+    ): void;
+    suspendAgent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Suspendagent
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAgent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Suspendagent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Suspendagent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:suspendAgent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAgent>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAgent;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of Agent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}` If the caller does not have permission to delete the agent, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the agent to delete does not exist, a `NOT_FOUND` error is returned.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Disableagent
+    extends StandardParameters {
+    /**
+     * Required. The name of the Agent to disable. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Enableagent
+    extends StandardParameters {
+    /**
+     * Required. The name of the Agent to enable. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of Agent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getagentview
+    extends StandardParameters {
+    /**
+     * Optional. The UI language currently shown to the user. Specifying this field request that the texts in the AgentView in the response should be translated to this language.
+     */
+    languageCode?: string;
+    /**
+     * Optional. The maximum number of suggested prompts to return per agent.
+     */
+    maxSuggestedPrompts?: number;
+    /**
+     * Required. The name of the Agent to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$List
+    extends StandardParameters {
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `is_pinned` Example: * "update_time desc" * "is_pinned desc,update_time desc": list agents by is_pinned first, then by update_time.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of Agents to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token ListAgentsResponse.next_page_token, received from a previous AgentService.ListAgents call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAgents must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Resource name of the agent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAgent;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Suspendagent
+    extends StandardParameters {
+    /**
+     * Required. The name of the Agent to suspend. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     */
+    name?: string;
+    /**
+     * Required. The reason for suspending the Agent. This will be shown to the users of the Agent.
+     */
+    suspensionReason?: string;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Imports a file to an Agent. Currently only No-Code agents are supported.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.files.import(
+     *       {
+     *         // Required. The resource name of the Agent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "fileName": "my_fileName",
+     *           //   "mimeType": "my_mimeType"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agentFile": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files$Import,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    import(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files$Import,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse>
+    >;
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files$Import,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files$Import
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/files:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files$Import
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Agent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaImportAgentFileRequest;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Assistants$Cannedqueries {
@@ -49734,7 +53520,6 @@ export namespace discoveryengine_v1alpha {
      *   //   "enableSnippetResultSummary": false,
      *   //   "enableSummarization": false,
      *   //   "enableWebApp": false,
-     *   //   "experimentalFeatures": {},
      *   //   "facetField": [],
      *   //   "fieldsUiComponentsMap": {},
      *   //   "geminiBundle": false,
@@ -49854,6 +53639,239 @@ export namespace discoveryengine_v1alpha {
         );
       }
     }
+
+    /**
+     * Update a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.widgetConfigs.patch(
+     *       {
+     *         // Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/widgetConfigs/my-widgetConfig',
+     *         // Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "accessSettings": {},
+     *           //   "allowPublicAccess": false,
+     *           //   "allowlistedDomains": [],
+     *           //   "assistantSettings": {},
+     *           //   "collectionComponents": [],
+     *           //   "configId": "my_configId",
+     *           //   "contentSearchSpec": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "customerProvidedConfig": {},
+     *           //   "dataStoreType": "my_dataStoreType",
+     *           //   "dataStoreUiConfigs": [],
+     *           //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *           //   "displayName": "my_displayName",
+     *           //   "enableAutocomplete": false,
+     *           //   "enableConversationalSearch": false,
+     *           //   "enablePrivateKnowledgeGraph": false,
+     *           //   "enableQualityFeedback": false,
+     *           //   "enableResultScore": false,
+     *           //   "enableSafeSearch": false,
+     *           //   "enableSearchAsYouType": false,
+     *           //   "enableSnippetResultSummary": false,
+     *           //   "enableSummarization": false,
+     *           //   "enableWebApp": false,
+     *           //   "facetField": [],
+     *           //   "fieldsUiComponentsMap": {},
+     *           //   "geminiBundle": false,
+     *           //   "homepageSetting": {},
+     *           //   "industryVertical": "my_industryVertical",
+     *           //   "llmEnabled": false,
+     *           //   "minimumDataTermAccepted": false,
+     *           //   "name": "my_name",
+     *           //   "resultDisplayType": "my_resultDisplayType",
+     *           //   "solutionType": "my_solutionType",
+     *           //   "uiBranding": {},
+     *           //   "uiSettings": {},
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "geminiBundle": false,
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Get
@@ -49870,6 +53888,22 @@ export namespace discoveryengine_v1alpha {
      * Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Widgetconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig;
   }
 
   export class Resource$Projects$Locations$Collections$Operations {
@@ -50329,7 +54363,7 @@ export namespace discoveryengine_v1alpha {
      *       query: 'placeholder-value',
      *       // Specifies the autocomplete data model. This overrides any model specified in the Configuration \> Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
      *       queryModel: 'placeholder-value',
-     *       // A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *       // Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *       userPseudoId: 'placeholder-value',
      *     },
      *   );
@@ -51811,7 +55845,7 @@ export namespace discoveryengine_v1alpha {
      */
     queryModel?: string;
     /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     userPseudoId?: string;
   }
@@ -64800,7 +68834,6 @@ export namespace discoveryengine_v1alpha {
      *   //   "enableSnippetResultSummary": false,
      *   //   "enableSummarization": false,
      *   //   "enableWebApp": false,
-     *   //   "experimentalFeatures": {},
      *   //   "facetField": [],
      *   //   "fieldsUiComponentsMap": {},
      *   //   "geminiBundle": false,
@@ -64920,6 +68953,237 @@ export namespace discoveryengine_v1alpha {
         );
       }
     }
+
+    /**
+     * Update a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.widgetConfigs.patch({
+     *       // Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/widgetConfigs/my-widgetConfig',
+     *       // Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "accessSettings": {},
+     *         //   "allowPublicAccess": false,
+     *         //   "allowlistedDomains": [],
+     *         //   "assistantSettings": {},
+     *         //   "collectionComponents": [],
+     *         //   "configId": "my_configId",
+     *         //   "contentSearchSpec": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "customerProvidedConfig": {},
+     *         //   "dataStoreType": "my_dataStoreType",
+     *         //   "dataStoreUiConfigs": [],
+     *         //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *         //   "displayName": "my_displayName",
+     *         //   "enableAutocomplete": false,
+     *         //   "enableConversationalSearch": false,
+     *         //   "enablePrivateKnowledgeGraph": false,
+     *         //   "enableQualityFeedback": false,
+     *         //   "enableResultScore": false,
+     *         //   "enableSafeSearch": false,
+     *         //   "enableSearchAsYouType": false,
+     *         //   "enableSnippetResultSummary": false,
+     *         //   "enableSummarization": false,
+     *         //   "enableWebApp": false,
+     *         //   "facetField": [],
+     *         //   "fieldsUiComponentsMap": {},
+     *         //   "geminiBundle": false,
+     *         //   "homepageSetting": {},
+     *         //   "industryVertical": "my_industryVertical",
+     *         //   "llmEnabled": false,
+     *         //   "minimumDataTermAccepted": false,
+     *         //   "name": "my_name",
+     *         //   "resultDisplayType": "my_resultDisplayType",
+     *         //   "solutionType": "my_solutionType",
+     *         //   "uiBranding": {},
+     *         //   "uiSettings": {},
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "geminiBundle": false,
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Get
@@ -64936,6 +69200,22 @@ export namespace discoveryengine_v1alpha {
      * Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Widgetconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided WidgetConfig to update. The following are the only supported fields: * WidgetConfig.enable_autocomplete If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig;
   }
 
   export class Resource$Projects$Locations$Evaluations {
@@ -73506,10 +77786,15 @@ export namespace discoveryengine_v1alpha {
 
   export class Resource$Projects$Locations$Userstores {
     context: APIRequestContext;
+    licenseConfigsUsageStats: Resource$Projects$Locations$Userstores$Licenseconfigsusagestats;
     operations: Resource$Projects$Locations$Userstores$Operations;
     userLicenses: Resource$Projects$Locations$Userstores$Userlicenses;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.licenseConfigsUsageStats =
+        new Resource$Projects$Locations$Userstores$Licenseconfigsusagestats(
+          this.context
+        );
       this.operations = new Resource$Projects$Locations$Userstores$Operations(
         this.context
       );
@@ -74372,6 +78657,176 @@ export namespace discoveryengine_v1alpha {
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaUserStore;
   }
 
+  export class Resource$Projects$Locations$Userstores$Licenseconfigsusagestats {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all the LicenseConfigUsageStatss associated with the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.userStores.licenseConfigsUsageStats.list(
+     *       {
+     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/userStores/my-userStore',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "licenseConfigUsageStats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/licenseConfigsUsageStats'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List
+    extends StandardParameters {
+    /**
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Userstores$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -74762,7 +79217,7 @@ export namespace discoveryengine_v1alpha {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.userStores.userLicenses.list({
-     *       // Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
+     *       // Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
      *       filter: 'placeholder-value',
      *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.
      *       pageSize: 'placeholder-value',
@@ -74892,7 +79347,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Userstores$Userlicenses$List
     extends StandardParameters {
     /**
-     * Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
+     * Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
      */
     filter?: string;
     /**

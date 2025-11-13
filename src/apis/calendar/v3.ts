@@ -163,7 +163,8 @@ export namespace calendar_v3 {
      * - "freeBusyReader" - Provides read access to free/busy information.
      * - "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
      * - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. Provides read access to the calendar's ACLs.
-     * - "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to manipulate ACLs.
+     * - "owner" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to modify access levels of other users.
+     * Important: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.
      */
     role?: string | null;
     /**
@@ -176,6 +177,10 @@ export namespace calendar_v3 {
      * Conferencing properties for this calendar, for example what types of conferences are allowed.
      */
     conferenceProperties?: Schema$ConferenceProperties;
+    /**
+     * The email of the owner of the calendar. Set only for secondary calendars. Read-only.
+     */
+    dataOwner?: string | null;
     /**
      * Description of the calendar. Optional.
      */
@@ -233,7 +238,8 @@ export namespace calendar_v3 {
      * - "freeBusyReader" - Provides read access to free/busy information.
      * - "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
      * - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.
-     * - "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+     * - "owner" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.
+     * Important: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.
      */
     accessRole?: string | null;
     /**
@@ -248,6 +254,10 @@ export namespace calendar_v3 {
      * Conferencing properties for this calendar, for example what types of conferences are allowed.
      */
     conferenceProperties?: Schema$ConferenceProperties;
+    /**
+     * The email of the owner of the calendar. Set only for secondary calendars. Read-only.
+     */
+    dataOwner?: string | null;
     /**
      * The default reminders that the authenticated user has for this calendar.
      */
@@ -973,7 +983,8 @@ export namespace calendar_v3 {
      * - "freeBusyReader" - The user has read access to free/busy information.
      * - "reader" - The user has read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
      * - "writer" - The user has read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.
-     * - "owner" - The user has ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+     * - "owner" - The user has manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.
+     * Important: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.
      */
     accessRole?: string | null;
     /**
@@ -2576,6 +2587,7 @@ export namespace calendar_v3 {
      *   //   "backgroundColor": "my_backgroundColor",
      *   //   "colorId": "my_colorId",
      *   //   "conferenceProperties": {},
+     *   //   "dataOwner": "my_dataOwner",
      *   //   "defaultReminders": [],
      *   //   "deleted": false,
      *   //   "description": "my_description",
@@ -2732,6 +2744,7 @@ export namespace calendar_v3 {
      *       //   "backgroundColor": "my_backgroundColor",
      *       //   "colorId": "my_colorId",
      *       //   "conferenceProperties": {},
+     *       //   "dataOwner": "my_dataOwner",
      *       //   "defaultReminders": [],
      *       //   "deleted": false,
      *       //   "description": "my_description",
@@ -2758,6 +2771,7 @@ export namespace calendar_v3 {
      *   //   "backgroundColor": "my_backgroundColor",
      *   //   "colorId": "my_colorId",
      *   //   "conferenceProperties": {},
+     *   //   "dataOwner": "my_dataOwner",
      *   //   "defaultReminders": [],
      *   //   "deleted": false,
      *   //   "description": "my_description",
@@ -3079,6 +3093,7 @@ export namespace calendar_v3 {
      *       //   "backgroundColor": "my_backgroundColor",
      *       //   "colorId": "my_colorId",
      *       //   "conferenceProperties": {},
+     *       //   "dataOwner": "my_dataOwner",
      *       //   "defaultReminders": [],
      *       //   "deleted": false,
      *       //   "description": "my_description",
@@ -3105,6 +3120,7 @@ export namespace calendar_v3 {
      *   //   "backgroundColor": "my_backgroundColor",
      *   //   "colorId": "my_colorId",
      *   //   "conferenceProperties": {},
+     *   //   "dataOwner": "my_dataOwner",
      *   //   "defaultReminders": [],
      *   //   "deleted": false,
      *   //   "description": "my_description",
@@ -3265,6 +3281,7 @@ export namespace calendar_v3 {
      *       //   "backgroundColor": "my_backgroundColor",
      *       //   "colorId": "my_colorId",
      *       //   "conferenceProperties": {},
+     *       //   "dataOwner": "my_dataOwner",
      *       //   "defaultReminders": [],
      *       //   "deleted": false,
      *       //   "description": "my_description",
@@ -3291,6 +3308,7 @@ export namespace calendar_v3 {
      *   //   "backgroundColor": "my_backgroundColor",
      *   //   "colorId": "my_colorId",
      *   //   "conferenceProperties": {},
+     *   //   "dataOwner": "my_dataOwner",
      *   //   "defaultReminders": [],
      *   //   "deleted": false,
      *   //   "description": "my_description",
@@ -4026,6 +4044,7 @@ export namespace calendar_v3 {
      *   // Example response
      *   // {
      *   //   "conferenceProperties": {},
+     *   //   "dataOwner": "my_dataOwner",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",
@@ -4132,6 +4151,9 @@ export namespace calendar_v3 {
 
     /**
      * Creates a secondary calendar.
+     * The authenticated user for the request is made the data owner of the new calendar.
+     *
+     * Note: We recommend to authenticate as the intended data owner of the calendar. You can use domain-wide delegation of authority to allow applications to act on behalf of a specific user. Don't use a service account for authentication. If you use a service account for authentication, the service account is the data owner, which can lead to unexpected behavior. For example, if a service account is the data owner, data ownership cannot be transferred.
      * @example
      * ```js
      * // Before running the sample:
@@ -4170,6 +4192,7 @@ export namespace calendar_v3 {
      *       // request body parameters
      *       // {
      *       //   "conferenceProperties": {},
+     *       //   "dataOwner": "my_dataOwner",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "id": "my_id",
@@ -4185,6 +4208,7 @@ export namespace calendar_v3 {
      *   // Example response
      *   // {
      *   //   "conferenceProperties": {},
+     *   //   "dataOwner": "my_dataOwner",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",
@@ -4332,6 +4356,7 @@ export namespace calendar_v3 {
      *       // request body parameters
      *       // {
      *       //   "conferenceProperties": {},
+     *       //   "dataOwner": "my_dataOwner",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "id": "my_id",
@@ -4347,6 +4372,7 @@ export namespace calendar_v3 {
      *   // Example response
      *   // {
      *   //   "conferenceProperties": {},
+     *   //   "dataOwner": "my_dataOwner",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",
@@ -4494,6 +4520,7 @@ export namespace calendar_v3 {
      *       // request body parameters
      *       // {
      *       //   "conferenceProperties": {},
+     *       //   "dataOwner": "my_dataOwner",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "id": "my_id",
@@ -4509,6 +4536,7 @@ export namespace calendar_v3 {
      *   // Example response
      *   // {
      *   //   "conferenceProperties": {},
+     *   //   "dataOwner": "my_dataOwner",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",

@@ -238,6 +238,15 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Selector for clusters.
+   */
+  export interface Schema$ClusterSelector {
+    /**
+     * The label selector must be a valid CEL (go/cel) expression which evaluates resource.labels.
+     */
+    labelSelector?: string | null;
+  }
+  /**
    * **ClusterUpgrade**: The configuration for the fleet-level ClusterUpgrade feature.
    */
   export interface Schema$ClusterUpgradeFleetSpec {
@@ -1210,6 +1219,19 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$Empty {}
   /**
+   * An excluded cluster from the rollout.
+   */
+  export interface Schema$ExcludedCluster {
+    /**
+     * Output only. The name of the fleet Membership resource associated to the excluded cluster.
+     */
+    membership?: string | null;
+    /**
+     * Output only. The reason for excluding the cluster from the rollout.
+     */
+    reason?: string | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -1316,6 +1338,19 @@ export namespace gkehub_v1beta {
      * The time this status and any related Feature-specific details were updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * LINT.IfChange Feature config to use for Rollout.
+   */
+  export interface Schema$FeatureUpdate {
+    /**
+     * Optional. Configuration for Binary Authorization.
+     */
+    binaryAuthorizationConfig?: Schema$BinaryAuthorizationConfig;
+    /**
+     * Optional. Configuration for Security Posture.
+     */
+    securityPostureConfig?: Schema$SecurityPostureConfig;
   }
   /**
    * Fleet contains the Fleet-wide metadata and configuration.
@@ -2036,6 +2071,32 @@ export namespace gkehub_v1beta {
      * The list of permitted Scopes
      */
     scopes?: Schema$Scope[];
+  }
+  /**
+   * Response message for listing rollout sequences.
+   */
+  export interface Schema$ListRolloutSequencesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The rollout sequences from the specified parent resource.
+     */
+    rolloutSequences?: Schema$RolloutSequence[];
+  }
+  /**
+   * Response message for listing rollouts.
+   */
+  export interface Schema$ListRolloutsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The rollouts from the specified parent resource.
+     */
+    rollouts?: Schema$Rollout[];
   }
   /**
    * List of fleet namespaces.
@@ -2915,6 +2976,200 @@ export namespace gkehub_v1beta {
     predefinedRole?: string | null;
   }
   /**
+   * Rollout contains the Rollout metadata and configuration.
+   */
+  export interface Schema$Rollout {
+    /**
+     * Output only. The timestamp at which the Rollout was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Output only. The timestamp at which the Rollout was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The timestamp at the Rollout was deleted.
+     */
+    deleteTime?: string | null;
+    /**
+     * Optional. Human readable display name of the Rollout.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. etag of the Rollout Ex. abc1234
+     */
+    etag?: string | null;
+    /**
+     * Optional. Output only. The excluded clusters from the rollout.
+     */
+    excludedClusters?: Schema$ExcludedCluster[];
+    /**
+     * Optional. Feature config to use for Rollout.
+     */
+    feature?: Schema$FeatureUpdate;
+    /**
+     * Optional. Labels for this Rollout.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. States of upgrading control plane or node pool targets of a single cluster (GKE Hub membership) that's part of this Rollout. The key is the membership name of the cluster. The value is the state of the cluster.
+     */
+    membershipStates?: {[key: string]: Schema$RolloutMembershipState} | null;
+    /**
+     * Identifier. The full, unique resource name of this Rollout in the format of `projects/{project\}/locations/global/rollouts/{rollout\}`.
+     */
+    name?: string | null;
+    /**
+     * Optional. Immutable. The full, unique resource name of the rollout sequence that initiatied this Rollout. In the format of `projects/{project\}/locations/global/rolloutSequences/{rollout_sequence\}`. Empty for user initiated rollouts.
+     */
+    rolloutSequence?: string | null;
+    /**
+     * Output only. The schedule of the Rollout.
+     */
+    schedule?: Schema$Schedule;
+    /**
+     * Output only. The stages of the Rollout. Note: this is only populated for google-initiated rollouts.
+     */
+    stages?: Schema$RolloutStage[];
+    /**
+     * Output only. State specifies various states of the Rollout.
+     */
+    state?: string | null;
+    /**
+     * Output only. A human-readable description explaining the reason for the current state.
+     */
+    stateReason?: string | null;
+    /**
+     * Output only. Google-generated UUID for this resource. This is unique across all Rollout resources. If a Rollout resource is deleted and another resource with the same name is created, it gets a different uid.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The timestamp at which the Rollout was last updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Optional. Config for version upgrade of clusters. Note: Currently for GDCE clusters only.
+     */
+    versionUpgrade?: Schema$VersionUpgrade;
+  }
+  /**
+   * Metadata about single cluster (GKE Hub membership) that's part of this Rollout.
+   */
+  export interface Schema$RolloutMembershipState {
+    /**
+     * Optional. Output only. The time this status and any related Rollout-specific details for the membership were updated.
+     */
+    lastUpdateTime?: string | null;
+    /**
+     * Output only. The stage assignment of this cluster in this rollout.
+     */
+    stageAssignment?: number | null;
+    /**
+     * Output only. The targets of the rollout - clusters or node pools that are being upgraded. All targets belongs to the same cluster, identified by the membership name (key of membership_states map).
+     */
+    targets?: Schema$RolloutTarget[];
+  }
+  /**
+   * RolloutSequence defines the desired order of upgrades.
+   */
+  export interface Schema$RolloutSequence {
+    /**
+     * Output only. The timestamp at which the Rollout Sequence was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The timestamp at the Rollout Sequence was deleted.
+     */
+    deleteTime?: string | null;
+    /**
+     * Optional. Human readable display name of the Rollout Sequence.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. etag of the Rollout Sequence Ex. abc1234
+     */
+    etag?: string | null;
+    /**
+     * Optional. Labels for this Rollout Sequence.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. Name of the rollout sequence in the format of: projects/{PROJECT_ID\}/locations/global/rolloutSequences/{NAME\}
+     */
+    name?: string | null;
+    /**
+     * Required. Ordered list of stages that constitutes this Rollout.
+     */
+    stages?: Schema$Stage[];
+    /**
+     * Output only. Google-generated UUID for this resource. This is unique across all Rollout Sequence resources. If a Rollout Sequence resource is deleted and another resource with the same name is created, it gets a different uid.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The timestamp at which the Rollout Sequence was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Stage represents a single stage in the Rollout.
+   */
+  export interface Schema$RolloutStage {
+    /**
+     * Optional. Output only. The time at which the wave ended.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. Duration to soak after this wave before starting the next wave.
+     */
+    soakDuration?: string | null;
+    /**
+     * Output only. The wave number to which this status applies.
+     */
+    stageNumber?: number | null;
+    /**
+     * Optional. Output only. The time at which the wave started.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The state of the wave.
+     */
+    state?: string | null;
+  }
+  /**
+   * Metadata about the status of targets (clusters or node pools) involved in the Rollout.
+   */
+  export interface Schema$RolloutTarget {
+    /**
+     * Optional. Output only. The resource link of the Cluster resource upgraded in this Rollout. It is formatted as: ///projects//locations//clusters/. I.e. for GKE clusters, it is formatted as: //container.googleapis.com/projects//locations//clusters/. For GDCE, it is formatted as: //edgecontainer.googleapis.com/projects//locations//clusters/.
+     */
+    cluster?: string | null;
+    /**
+     * Optional. Output only. The resource link of the NodePool resource upgraded in this Rollout. It is formatted as: ///projects//locations//clusters//nodePools/.
+     */
+    nodePool?: string | null;
+    /**
+     * Optional. Output only. The operation resource name performing the mutation.
+     */
+    operation?: string | null;
+    /**
+     * Optional. Output only. A human-readable description of the current status.
+     */
+    reason?: string | null;
+    /**
+     * Output only. The high-level, machine-readable status of this Rollout for the target.
+     */
+    state?: string | null;
+  }
+  /**
+   * Schedule represents the schedule of the Rollout.
+   */
+  export interface Schema$Schedule {
+    /**
+     * Output only. The schedule of each wave in the Rollout.
+     */
+    waves?: Schema$WaveSchedule[];
+  }
+  /**
    * Scope represents a Scope in a Fleet.
    */
   export interface Schema$Scope {
@@ -3098,6 +3353,23 @@ export namespace gkehub_v1beta {
     updateMask?: string | null;
   }
   /**
+   * Rollout stage.
+   */
+  export interface Schema$Stage {
+    /**
+     * Optional. Filter members of fleets (above) to a subset of clusters. If not specified, all clusters in the fleets are selected.
+     */
+    clusterSelector?: Schema$ClusterSelector;
+    /**
+     * Required. List of Fleet projects to select the clusters from. Expected format: projects/{project\}
+     */
+    fleetProjects?: string[] | null;
+    /**
+     * Optional. Soak time after upgrading all the clusters in the stage.
+     */
+    soakDuration?: string | null;
+  }
+  /**
    * Status specifies state for the subcomponent.
    */
   export interface Schema$Status {
@@ -3140,6 +3412,36 @@ export namespace gkehub_v1beta {
      * Kind of the resource (e.g. Deployment).
      */
     kind?: string | null;
+  }
+  /**
+   * Config for version upgrade of clusters.
+   */
+  export interface Schema$VersionUpgrade {
+    /**
+     * Optional. Desired version of the component.
+     */
+    desiredVersion?: string | null;
+    /**
+     * Optional. Type of version upgrade specifies which component should be upgraded.
+     */
+    type?: string | null;
+  }
+  /**
+   * WaveSchedule represents the schedule of a single rollout wave.
+   */
+  export interface Schema$WaveSchedule {
+    /**
+     * Output only. The time at which the wave ends.
+     */
+    waveEndTime?: string | null;
+    /**
+     * Output only. The wave number to which this schedule applies.
+     */
+    waveNumber?: number | null;
+    /**
+     * Output only. The time at which the wave starts.
+     */
+    waveStartTime?: string | null;
   }
 
   export class Resource$Organizations {
@@ -3340,6 +3642,8 @@ export namespace gkehub_v1beta {
     fleets: Resource$Projects$Locations$Fleets;
     memberships: Resource$Projects$Locations$Memberships;
     operations: Resource$Projects$Locations$Operations;
+    rollouts: Resource$Projects$Locations$Rollouts;
+    rolloutSequences: Resource$Projects$Locations$Rolloutsequences;
     scopes: Resource$Projects$Locations$Scopes;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -3349,6 +3653,10 @@ export namespace gkehub_v1beta {
         this.context
       );
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.rollouts = new Resource$Projects$Locations$Rollouts(this.context);
+      this.rolloutSequences = new Resource$Projects$Locations$Rolloutsequences(
         this.context
       );
       this.scopes = new Resource$Projects$Locations$Scopes(this.context);
@@ -3523,7 +3831,7 @@ export namespace gkehub_v1beta {
      *
      *   // Do the magic
      *   const res = await gkehub.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3651,7 +3959,7 @@ export namespace gkehub_v1beta {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -9817,6 +10125,1158 @@ export namespace gkehub_v1beta {
      * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Rollouts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieve a single rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.rollouts.get({
+     *     // Required. The name of the rollout to retrieve. projects/{project\}/locations/{location\}/rollouts/{rollout\}
+     *     name: 'projects/my-project/locations/my-location/rollouts/my-rollout',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completeTime": "my_completeTime",
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "excludedClusters": [],
+     *   //   "feature": {},
+     *   //   "labels": {},
+     *   //   "membershipStates": {},
+     *   //   "name": "my_name",
+     *   //   "rolloutSequence": "my_rolloutSequence",
+     *   //   "schedule": {},
+     *   //   "stages": [],
+     *   //   "state": "my_state",
+     *   //   "stateReason": "my_stateReason",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "versionUpgrade": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Rollouts$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Rollouts$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>;
+    get(
+      params: Params$Resource$Projects$Locations$Rollouts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Rollouts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Rollout>,
+      callback: BodyResponseCallback<Schema$Rollout>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Rollouts$Get,
+      callback: BodyResponseCallback<Schema$Rollout>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Rollout>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Rollouts$Get
+        | BodyResponseCallback<Schema$Rollout>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Rollout>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Rollout>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Rollouts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Rollouts$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Rollout>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Rollout>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve the list of all rollouts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.rollouts.list({
+     *     // Optional. Lists Rollouts that match the filter expression, following the syntax outlined in https://google.aip.dev/160.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of rollout to return. The service may return fewer than this value. If unspecified, at most 50 rollouts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListRollouts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRollouts` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of rollout. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rollouts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Rollouts$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Rollouts$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRolloutsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Rollouts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Rollouts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRolloutsResponse>,
+      callback: BodyResponseCallback<Schema$ListRolloutsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Rollouts$List,
+      callback: BodyResponseCallback<Schema$ListRolloutsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRolloutsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Rollouts$List
+        | BodyResponseCallback<Schema$ListRolloutsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRolloutsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRolloutsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRolloutsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Rollouts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Rollouts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/rollouts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRolloutsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRolloutsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Rollouts$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the rollout to retrieve. projects/{project\}/locations/{location\}/rollouts/{rollout\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Rollouts$List
+    extends StandardParameters {
+    /**
+     * Optional. Lists Rollouts that match the filter expression, following the syntax outlined in https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * The maximum number of rollout to return. The service may return fewer than this value. If unspecified, at most 50 rollouts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListRollouts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRollouts` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of rollout. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Rolloutsequences {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a new rollout sequence resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.rolloutSequences.create({
+     *     // Required. The parent resource where this rollout sequence will be created. projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Required. User provided identifier that is used as part of the resource name; must conform to RFC-1034 and additionally restrict to lower-cased letters. This comes out roughly to: /^a-z+[a-z0-9]$/
+     *     rolloutSequenceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "stages": [],
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Rolloutsequences$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Rolloutsequences$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Rolloutsequences$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Rolloutsequences$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/rolloutSequences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Remove a RolloutSequence.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.rolloutSequences.delete({
+     *     // Required. The name of the rollout sequence to delete. projects/{project\}/locations/{location\}/rolloutSequences/{rollout_sequence\}
+     *     name: 'projects/my-project/locations/my-location/rolloutSequences/my-rolloutSequence',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Rolloutsequences$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Rolloutsequences$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Rolloutsequences$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Rolloutsequences$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve a single rollout sequence.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.rolloutSequences.get({
+     *     // Required. The name of the rollout sequence to retrieve. projects/{project\}/locations/{location\}/rolloutSequences/{rollout_sequence\}
+     *     name: 'projects/my-project/locations/my-location/rolloutSequences/my-rolloutSequence',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "stages": [],
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Rolloutsequences$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RolloutSequence>>;
+    get(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RolloutSequence>,
+      callback: BodyResponseCallback<Schema$RolloutSequence>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Get,
+      callback: BodyResponseCallback<Schema$RolloutSequence>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RolloutSequence>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Rolloutsequences$Get
+        | BodyResponseCallback<Schema$RolloutSequence>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RolloutSequence>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RolloutSequence>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RolloutSequence>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Rolloutsequences$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Rolloutsequences$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RolloutSequence>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RolloutSequence>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve the list of all rollout sequences.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.rolloutSequences.list({
+     *     // Optional. Lists Rollout Sequences that match the filter expression, following the syntax outlined in https://google.aip.dev/160.
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of rollout sequences to return. The service may return fewer than this value. If unspecified, at most 50 rollout sequences will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListRolloutSequences` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRolloutSequences` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of rollout sequences. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rolloutSequences": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Rolloutsequences$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRolloutSequencesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRolloutSequencesResponse>,
+      callback: BodyResponseCallback<Schema$ListRolloutSequencesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$List,
+      callback: BodyResponseCallback<Schema$ListRolloutSequencesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRolloutSequencesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Rolloutsequences$List
+        | BodyResponseCallback<Schema$ListRolloutSequencesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRolloutSequencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRolloutSequencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRolloutSequencesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Rolloutsequences$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Rolloutsequences$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/rolloutSequences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRolloutSequencesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRolloutSequencesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a rollout sequence.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.rolloutSequences.patch({
+     *     // Identifier. Name of the rollout sequence in the format of: projects/{PROJECT_ID\}/locations/global/rolloutSequences/{NAME\}
+     *     name: 'projects/my-project/locations/my-location/rolloutSequences/my-rolloutSequence',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "stages": [],
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Rolloutsequences$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Rolloutsequences$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Rolloutsequences$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Rolloutsequences$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Rolloutsequences$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Rolloutsequences$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this rollout sequence will be created. projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+    /**
+     * Required. User provided identifier that is used as part of the resource name; must conform to RFC-1034 and additionally restrict to lower-cased letters. This comes out roughly to: /^a-z+[a-z0-9]$/
+     */
+    rolloutSequenceId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RolloutSequence;
+  }
+  export interface Params$Resource$Projects$Locations$Rolloutsequences$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the rollout sequence to delete. projects/{project\}/locations/{location\}/rolloutSequences/{rollout_sequence\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Rolloutsequences$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the rollout sequence to retrieve. projects/{project\}/locations/{location\}/rolloutSequences/{rollout_sequence\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Rolloutsequences$List
+    extends StandardParameters {
+    /**
+     * Optional. Lists Rollout Sequences that match the filter expression, following the syntax outlined in https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of rollout sequences to return. The service may return fewer than this value. If unspecified, at most 50 rollout sequences will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListRolloutSequences` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRolloutSequences` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of rollout sequences. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Rolloutsequences$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Name of the rollout sequence in the format of: projects/{PROJECT_ID\}/locations/global/rolloutSequences/{NAME\}
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RolloutSequence;
   }
 
   export class Resource$Projects$Locations$Scopes {

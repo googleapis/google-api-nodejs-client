@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20250721",
+  "revision": "20251102",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -992,7 +992,7 @@
       "type": "object"
     },
     "SupplementalProductDataSource": {
-      "description": "The supplemental data source for local and online products. After creation, you should make sure to link the supplemental product data source into one or more primary product data sources.",
+      "description": "The [supplemental data source](https://developers.google.com/merchant/api/guides/data-sources/api-sources#link-supplemental-data-source) for local and online products. After creation,you should make sure to link the supplemental product data source into one or more primary product data sources.",
       "id": "SupplementalProductDataSource",
       "properties": {
         "contentLanguage": {

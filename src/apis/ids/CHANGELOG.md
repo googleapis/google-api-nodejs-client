@@ -1,5 +1,23 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ids-v8.1.0...ids-v9.0.0) (2025-11-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3831](https://github.com/googleapis/google-api-nodejs-client/issues/3831)) ([3d39e40](https://github.com/googleapis/google-api-nodejs-client/commit/3d39e405c4c218bb5de165bfab54dceca74d928a))
+
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/ids-v8.0.0...ids-v8.1.0) (2025-11-04)
+
+
+### Features
+
+* **ids:** update the API ([e160b8f](https://github.com/googleapis/google-api-nodejs-client/commit/e160b8f178adba6d8bc6c0e962010a63627eb2a3))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ids-v7.0.0...ids-v8.0.0) (2025-10-15)
 
 

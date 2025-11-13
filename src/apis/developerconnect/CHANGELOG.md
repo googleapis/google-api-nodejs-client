@@ -1,5 +1,23 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v7.1.0...developerconnect-v8.0.0) (2025-11-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3831](https://github.com/googleapis/google-api-nodejs-client/issues/3831)) ([3d39e40](https://github.com/googleapis/google-api-nodejs-client/commit/3d39e405c4c218bb5de165bfab54dceca74d928a))
+
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v7.0.0...developerconnect-v7.1.0) (2025-11-04)
+
+
+### Features
+
+* **developerconnect:** update the API ([49d381c](https://github.com/googleapis/google-api-nodejs-client/commit/49d381c561b00df978690316a9037841481220bb))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v6.0.0...developerconnect-v7.0.0) (2025-10-15)
 
 

@@ -680,8 +680,16 @@
     "package": "@google-shopping/css"
   },
   {
+    "api": "geminidataanalytics",
+    "package": "@google-cloud/geminidataanalytics"
+  },
+  {
     "api": "datalabeling",
     "package": "@google-cloud/datalabeling"
+  },
+  {
+    "api": "datamanager",
+    "package": "@google-ads/datamanager"
   },
   {
     "api": "dataqna",

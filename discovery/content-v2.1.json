@@ -4570,7 +4570,7 @@
       }
     }
   },
-  "revision": "20250921",
+  "revision": "20251104",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5358,15 +5358,18 @@
           "type": "string"
         },
         "orderManager": {
-          "description": "Whether user is an order manager.",
+          "deprecated": true,
+          "description": "This role is deprecated and can no longer be assigned. Any value set will be ignored.",
           "type": "boolean"
         },
         "paymentsAnalyst": {
-          "description": "Whether user can access payment statements.",
+          "deprecated": true,
+          "description": "This role is deprecated and can no longer be assigned. Any value set will be ignored.",
           "type": "boolean"
         },
         "paymentsManager": {
-          "description": "Whether user can manage payment settings.",
+          "deprecated": true,
+          "description": "This role is deprecated and can no longer be assigned. Any value set will be ignored.",
           "type": "boolean"
         },
         "readOnly": {

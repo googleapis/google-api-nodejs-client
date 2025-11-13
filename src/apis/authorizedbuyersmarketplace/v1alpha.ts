@@ -799,7 +799,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     videoTargeting?: Schema$VideoTargeting;
   }
   /**
-   * Describes a single Media Planner account.
+   * Represents a media planner account.
    */
   export interface Schema$MediaPlanner {
     /**

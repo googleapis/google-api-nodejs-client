@@ -279,7 +279,7 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest {
     /**
-     * Required. The name of the test cases to delete. A maximum number of 1000 test cases can be deleted in one batch Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     * Required. The name of the test cases to delete. A maximum number of 1000 test cases can be deleted in one batch Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      */
     names?: string[] | null;
   }
@@ -365,6 +365,10 @@ export namespace firebaseappdistribution_v1alpha {
      */
     device?: Schema$GoogleFirebaseAppdistroV1alphaTestDevice;
     /**
+     * Output only. The type of execution for the test.
+     */
+    executionType?: string | null;
+    /**
      * Output only. The reason why the test failed.
      */
     failedReason?: string | null;
@@ -372,6 +376,14 @@ export namespace firebaseappdistribution_v1alpha {
      * Output only. The reason why the test was inconclusive.
      */
     inconclusiveReason?: string | null;
+    /**
+     * Identifier. The name of the device execution resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}/tests/{test\}/deviceExecutions/{device_execution\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The device execution from which cached steps were used during this execution. Note: This field is only populated for ACTION_BASED_REPLAY executions. If the original device execution no longer exists, this field will be empty. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}/tests/{test\}/deviceExecutions/{device_execution\}`
+     */
+    originDeviceExecution?: string | null;
     /**
      * Output only. The path to a directory in Cloud Storage that will eventually contain the results for this execution. For example, gs://bucket/Nexus5-18-en-portrait.
      */
@@ -761,7 +773,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     loginCredential?: Schema$GoogleFirebaseAppdistroV1alphaLoginCredential;
     /**
-     * The name of the release test resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}/tests/{test_id\}`
+     * The name of the release test resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}/tests/{test\}`
      */
     name?: string | null;
     /**
@@ -858,7 +870,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     * Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      */
     name?: string | null;
     /**
@@ -875,7 +887,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Identifier. The name of the test configuration resource. Format: `projects/{project_number\}/apps/{app_id\}/testConfig`
+     * Identifier. The name of the test configuration resource. Format: `projects/{project_number\}/apps/{app\}/testConfig`
      */
     name?: string | null;
     /**
@@ -951,7 +963,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     allowMissing?: boolean | null;
     /**
-     * Required. The test case to update. The test case's `name` field is used to identify the test case to update. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     * Required. The test case to update. The test case's `name` field is used to identify the test case to update. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      */
     testCase?: Schema$GoogleFirebaseAppdistroV1alphaTestCase;
   }
@@ -984,7 +996,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     firebaseConsoleUri?: string | null;
     /**
-     * The name of the release resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     * The name of the release resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      */
     name?: string | null;
     /**
@@ -2446,7 +2458,7 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.getTestConfig({
-     *     // Required. The name of the `TestConfig` resource to retrieve. Format: `projects/{project_number\}/apps/{app_id\}/testConfig`
+     *     // Required. The name of the `TestConfig` resource to retrieve. Format: `projects/{project_number\}/apps/{app\}/testConfig`
      *     name: 'projects/my-project/apps/my-app/testConfig',
      *   });
      *   console.log(res.data);
@@ -2594,7 +2606,7 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.updateTestConfig({
-     *     // Identifier. The name of the test configuration resource. Format: `projects/{project_number\}/apps/{app_id\}/testConfig`
+     *     // Identifier. The name of the test configuration resource. Format: `projects/{project_number\}/apps/{app\}/testConfig`
      *     name: 'projects/my-project/apps/my-app/testConfig',
      *     // Optional. The list of fields to update.
      *     updateMask: 'placeholder-value',
@@ -2728,14 +2740,14 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Projects$Apps$Gettestconfig
     extends StandardParameters {
     /**
-     * Required. The name of the `TestConfig` resource to retrieve. Format: `projects/{project_number\}/apps/{app_id\}/testConfig`
+     * Required. The name of the `TestConfig` resource to retrieve. Format: `projects/{project_number\}/apps/{app\}/testConfig`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Apps$Updatetestconfig
     extends StandardParameters {
     /**
-     * Identifier. The name of the test configuration resource. Format: `projects/{project_number\}/apps/{app_id\}/testConfig`
+     * Identifier. The name of the test configuration resource. Format: `projects/{project_number\}/apps/{app\}/testConfig`
      */
     name?: string;
     /**
@@ -2796,7 +2808,7 @@ export namespace firebaseappdistribution_v1alpha {
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.releases.tests.cancel(
      *     {
-     *       // Required. The name of the release test resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}/tests/{test_id\}`
+     *       // Required. The name of the release test resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}/tests/{test\}`
      *       name: 'projects/my-project/apps/my-app/releases/my-release/tests/my-test',
      *     },
      *   );
@@ -2944,7 +2956,7 @@ export namespace firebaseappdistribution_v1alpha {
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.releases.tests.create(
      *     {
-     *       // Required. The name of the release resource, which is the parent of the test Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     *       // Required. The name of the release resource, which is the parent of the test Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      *       parent: 'projects/my-project/apps/my-app/releases/my-release',
      *       // Optional. The ID to use for the test, which will become the final component of the test's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. If it is not provided one will be automatically generated.
      *       releaseTestId: 'placeholder-value',
@@ -3117,7 +3129,7 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.releases.tests.get({
-     *     // Required. The name of the release test resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}/tests/{test_id\}`
+     *     // Required. The name of the release test resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}/tests/{test\}`
      *     name: 'projects/my-project/apps/my-app/releases/my-release/tests/my-test',
      *   });
      *   console.log(res.data);
@@ -3273,7 +3285,7 @@ export namespace firebaseappdistribution_v1alpha {
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListReleaseTests` call. Provide this to retrieve the subsequent page.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the release resource, which is the parent of the tests Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     *     // Required. The name of the release resource, which is the parent of the tests Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      *     parent: 'projects/my-project/apps/my-app/releases/my-release',
      *     // Optional. The requested view on the returned ReleaseTests. Defaults to the basic view.
      *     view: 'placeholder-value',
@@ -3397,14 +3409,14 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Projects$Apps$Releases$Tests$Cancel
     extends StandardParameters {
     /**
-     * Required. The name of the release test resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}/tests/{test_id\}`
+     * Required. The name of the release test resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}/tests/{test\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Apps$Releases$Tests$Create
     extends StandardParameters {
     /**
-     * Required. The name of the release resource, which is the parent of the test Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     * Required. The name of the release resource, which is the parent of the test Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      */
     parent?: string;
     /**
@@ -3420,7 +3432,7 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Projects$Apps$Releases$Tests$Get
     extends StandardParameters {
     /**
-     * Required. The name of the release test resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}/tests/{test_id\}`
+     * Required. The name of the release test resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}/tests/{test\}`
      */
     name?: string;
   }
@@ -3435,7 +3447,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The name of the release resource, which is the parent of the tests Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     * Required. The name of the release resource, which is the parent of the tests Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      */
     parent?: string;
     /**
@@ -3482,7 +3494,7 @@ export namespace firebaseappdistribution_v1alpha {
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.testCases.batchDelete(
      *     {
-     *       // Required. The parent resource of the test cases being deleted. Format: `projects/{project_number\}/apps/{app_id\}`
+     *       // Required. The parent resource of the test cases being deleted. Format: `projects/{project_number\}/apps/{app\}`
      *       parent: 'projects/my-project/apps/my-app',
      *
      *       // Request body metadata
@@ -3630,7 +3642,7 @@ export namespace firebaseappdistribution_v1alpha {
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.testCases.batchUpdate(
      *     {
-     *       // Required. The parent resource of the test cases being updated. Format: `projects/{project_number\}/apps/{app_id\}`
+     *       // Required. The parent resource of the test cases being updated. Format: `projects/{project_number\}/apps/{app\}`
      *       parent: 'projects/my-project/apps/my-app',
      *
      *       // Request body metadata
@@ -3788,7 +3800,7 @@ export namespace firebaseappdistribution_v1alpha {
      *   // Do the magic
      *   const res =
      *     await firebaseappdistribution.projects.apps.testCases.clearTestCaseCache({
-     *       // Required. The name of the test case resource for which to clear the cache. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     *       // Required. The name of the test case resource for which to clear the cache. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      *       testCase: 'projects/my-project/apps/my-app/testCases/my-testCase',
      *
      *       // Request body metadata
@@ -3943,7 +3955,7 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.testCases.create({
-     *     // Required. The parent resource where this test case will be created. Format: `projects/{project_number\}/apps/{app_id\}`
+     *     // Required. The parent resource where this test case will be created. Format: `projects/{project_number\}/apps/{app\}`
      *     parent: 'projects/my-project/apps/my-app',
      *     // Optional. The ID to use for the test case, which will become the final component of the test case's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
      *     testCaseId: 'placeholder-value',
@@ -4111,7 +4123,7 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.testCases.delete({
-     *     // Required. The name of the test case resource to delete. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     *     // Required. The name of the test case resource to delete. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      *     name: 'projects/my-project/apps/my-app/testCases/my-testCase',
      *   });
      *   console.log(res.data);
@@ -4244,7 +4256,7 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.testCases.get({
-     *     // Required. The name of the test case resource to retrieve. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     *     // Required. The name of the test case resource to retrieve. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      *     name: 'projects/my-project/apps/my-app/testCases/my-testCase',
      *   });
      *   console.log(res.data);
@@ -4398,7 +4410,7 @@ export namespace firebaseappdistribution_v1alpha {
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListTestCases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTestCases` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource from which to list test cases. Format: `projects/{project_number\}/apps/{app_id\}`
+     *     // Required. The parent resource from which to list test cases. Format: `projects/{project_number\}/apps/{app\}`
      *     parent: 'projects/my-project/apps/my-app',
      *   });
      *   console.log(res.data);
@@ -4549,7 +4561,7 @@ export namespace firebaseappdistribution_v1alpha {
      *   const res = await firebaseappdistribution.projects.apps.testCases.patch({
      *     // Optional. If set to true, and the test case is not found, a new test case will be created.
      *     allowMissing: 'placeholder-value',
-     *     // Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     *     // Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      *     name: 'projects/my-project/apps/my-app/testCases/my-testCase',
      *
      *     // Request body metadata
@@ -4685,7 +4697,7 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Projects$Apps$Testcases$Batchdelete
     extends StandardParameters {
     /**
-     * Required. The parent resource of the test cases being deleted. Format: `projects/{project_number\}/apps/{app_id\}`
+     * Required. The parent resource of the test cases being deleted. Format: `projects/{project_number\}/apps/{app\}`
      */
     parent?: string;
 
@@ -4697,7 +4709,7 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Projects$Apps$Testcases$Batchupdate
     extends StandardParameters {
     /**
-     * Required. The parent resource of the test cases being updated. Format: `projects/{project_number\}/apps/{app_id\}`
+     * Required. The parent resource of the test cases being updated. Format: `projects/{project_number\}/apps/{app\}`
      */
     parent?: string;
 
@@ -4709,7 +4721,7 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Projects$Apps$Testcases$Cleartestcasecache
     extends StandardParameters {
     /**
-     * Required. The name of the test case resource for which to clear the cache. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     * Required. The name of the test case resource for which to clear the cache. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      */
     testCase?: string;
 
@@ -4721,7 +4733,7 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Projects$Apps$Testcases$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource where this test case will be created. Format: `projects/{project_number\}/apps/{app_id\}`
+     * Required. The parent resource where this test case will be created. Format: `projects/{project_number\}/apps/{app\}`
      */
     parent?: string;
     /**
@@ -4737,14 +4749,14 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Projects$Apps$Testcases$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the test case resource to delete. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     * Required. The name of the test case resource to delete. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Apps$Testcases$Get
     extends StandardParameters {
     /**
-     * Required. The name of the test case resource to retrieve. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     * Required. The name of the test case resource to retrieve. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      */
     name?: string;
   }
@@ -4759,7 +4771,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource from which to list test cases. Format: `projects/{project_number\}/apps/{app_id\}`
+     * Required. The parent resource from which to list test cases. Format: `projects/{project_number\}/apps/{app\}`
      */
     parent?: string;
   }
@@ -4770,7 +4782,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     allowMissing?: boolean;
     /**
-     * Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     * Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      */
     name?: string;
 

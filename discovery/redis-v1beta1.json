@@ -1078,7 +1078,7 @@
       }
     }
   },
-  "revision": "20251021",
+  "revision": "20251104",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -2608,7 +2608,7 @@
       "type": "object"
     },
     "DatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 29",
+      "description": "Common model for database resource instance metadata. Next ID: 30",
       "id": "DatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -2750,6 +2750,10 @@
             "For rest of the other categories."
           ],
           "type": "string"
+        },
+        "isDeletionProtectionEnabled": {
+          "description": "Optional. Whether deletion protection is enabled for this resource.",
+          "type": "boolean"
         },
         "location": {
           "description": "The resource location. REQUIRED",

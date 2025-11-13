@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/securityposture-v5.0.0...securityposture-v5.1.0) (2025-11-04)
+
+
+### Features
+
+* **securityposture:** update the API ([e23d2b2](https://github.com/googleapis/google-api-nodejs-client/commit/e23d2b2561895935f4ba40ed710219c53d1f5181))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securityposture-v4.0.0...securityposture-v5.0.0) (2025-10-15)
 
 
