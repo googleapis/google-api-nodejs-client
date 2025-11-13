@@ -405,6 +405,8 @@ export namespace merchantapi_inventories_v1 {
      *   const res = await merchantapi.accounts.products.localInventories.delete({
      *     // Required. The name of the local inventory for the given product to delete. Format: `accounts/{account\}/products/{product\}/localInventories/{store_code\}`
      *     name: 'accounts/my-account/products/my-product/localInventories/my-localInventorie',
+     *     // Optional. If true, the `{product\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     *     productIdBase64UrlEncoded: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -541,6 +543,8 @@ export namespace merchantapi_inventories_v1 {
      *   const res = await merchantapi.accounts.products.localInventories.insert({
      *     // Required. The account and product where this inventory will be inserted. Format: `accounts/{account\}/products/{product\}`
      *     parent: 'accounts/my-account/products/my-product',
+     *     // Optional. If true, the `{product\}` in the `parent` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     *     productIdBase64UrlEncoded: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -696,6 +700,8 @@ export namespace merchantapi_inventories_v1 {
      *     pageToken: 'placeholder-value',
      *     // Required. The `name` of the parent product to list local inventories for. Format: `accounts/{account\}/products/{product\}`
      *     parent: 'accounts/my-account/products/my-product',
+     *     // Optional. If true, the `{product\}` in the `parent` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     *     productIdBase64UrlEncoded: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -813,6 +819,10 @@ export namespace merchantapi_inventories_v1 {
      * Required. The name of the local inventory for the given product to delete. Format: `accounts/{account\}/products/{product\}/localInventories/{store_code\}`
      */
     name?: string;
+    /**
+     * Optional. If true, the `{product\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     */
+    productIdBase64UrlEncoded?: boolean;
   }
   export interface Params$Resource$Accounts$Products$Localinventories$Insert
     extends StandardParameters {
@@ -820,6 +830,10 @@ export namespace merchantapi_inventories_v1 {
      * Required. The account and product where this inventory will be inserted. Format: `accounts/{account\}/products/{product\}`
      */
     parent?: string;
+    /**
+     * Optional. If true, the `{product\}` in the `parent` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     */
+    productIdBase64UrlEncoded?: boolean;
 
     /**
      * Request body metadata
@@ -840,6 +854,10 @@ export namespace merchantapi_inventories_v1 {
      * Required. The `name` of the parent product to list local inventories for. Format: `accounts/{account\}/products/{product\}`
      */
     parent?: string;
+    /**
+     * Optional. If true, the `{product\}` in the `parent` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     */
+    productIdBase64UrlEncoded?: boolean;
   }
 
   export class Resource$Accounts$Products$Regionalinventories {
@@ -881,6 +899,8 @@ export namespace merchantapi_inventories_v1 {
      *   const res = await merchantapi.accounts.products.regionalInventories.delete({
      *     // Required. The name of the `RegionalInventory` resource to delete. Format: `accounts/{account\}/products/{product\}/regionalInventories/{region\}`
      *     name: 'accounts/my-account/products/my-product/regionalInventories/my-regionalInventorie',
+     *     // Optional. If true, the `{product\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     *     productIdBase64UrlEncoded: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1017,6 +1037,8 @@ export namespace merchantapi_inventories_v1 {
      *   const res = await merchantapi.accounts.products.regionalInventories.insert({
      *     // Required. The account and product where this inventory will be inserted. Format: `accounts/{account\}/products/{product\}`
      *     parent: 'accounts/my-account/products/my-product',
+     *     // Optional. If true, the `{product\}` in the `parent` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     *     productIdBase64UrlEncoded: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1172,6 +1194,8 @@ export namespace merchantapi_inventories_v1 {
      *     pageToken: 'placeholder-value',
      *     // Required. The `name` of the parent product to list `RegionalInventory` resources for. Format: `accounts/{account\}/products/{product\}`
      *     parent: 'accounts/my-account/products/my-product',
+     *     // Optional. If true, the `{product\}` in the `parent` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     *     productIdBase64UrlEncoded: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1290,6 +1314,10 @@ export namespace merchantapi_inventories_v1 {
      * Required. The name of the `RegionalInventory` resource to delete. Format: `accounts/{account\}/products/{product\}/regionalInventories/{region\}`
      */
     name?: string;
+    /**
+     * Optional. If true, the `{product\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     */
+    productIdBase64UrlEncoded?: boolean;
   }
   export interface Params$Resource$Accounts$Products$Regionalinventories$Insert
     extends StandardParameters {
@@ -1297,6 +1325,10 @@ export namespace merchantapi_inventories_v1 {
      * Required. The account and product where this inventory will be inserted. Format: `accounts/{account\}/products/{product\}`
      */
     parent?: string;
+    /**
+     * Optional. If true, the `{product\}` in the `parent` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     */
+    productIdBase64UrlEncoded?: boolean;
 
     /**
      * Request body metadata
@@ -1317,5 +1349,9 @@ export namespace merchantapi_inventories_v1 {
      * Required. The `name` of the parent product to list `RegionalInventory` resources for. Format: `accounts/{account\}/products/{product\}`
      */
     parent?: string;
+    /**
+     * Optional. If true, the `{product\}` in the `parent` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     */
+    productIdBase64UrlEncoded?: boolean;
   }
 }

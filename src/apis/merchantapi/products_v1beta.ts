@@ -1261,6 +1261,8 @@ export namespace merchantapi_products_v1beta {
      *     dataSource: 'placeholder-value',
      *     // Required. The name of the product input resource to delete. Format: `accounts/{account\}/productInputs/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/en~US~sku123`.
      *     name: 'accounts/my-account/productInputs/my-productInput',
+     *     // Optional. If true, the `{productInput\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{productInput\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     *     productIdBase64UrlEncoded: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1560,6 +1562,8 @@ export namespace merchantapi_products_v1beta {
      *     dataSource: 'placeholder-value',
      *     // Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of: `content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/en~US~sku123`. A legacy local product input name would be `accounts/123/productInputs/local~en~US~sku123`. Note: For calls to the v1beta version, the `productInput` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productInputs/online~en~US~sku123`.
      *     name: 'accounts/my-account/productInputs/my-productInput',
+     *     // Optional. If true, the `{productInput\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{productInput\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     *     productIdBase64UrlEncoded: 'placeholder-value',
      *     // Optional. The list of product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special "*" value for full product replacement is not supported.
      *     updateMask: 'placeholder-value',
      *
@@ -1701,6 +1705,10 @@ export namespace merchantapi_products_v1beta {
      * Required. The name of the product input resource to delete. Format: `accounts/{account\}/productInputs/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/en~US~sku123`.
      */
     name?: string;
+    /**
+     * Optional. If true, the `{productInput\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{productInput\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     */
+    productIdBase64UrlEncoded?: boolean;
   }
   export interface Params$Resource$Accounts$Productinputs$Insert
     extends StandardParameters {
@@ -1728,6 +1736,10 @@ export namespace merchantapi_products_v1beta {
      * Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of: `content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/en~US~sku123`. A legacy local product input name would be `accounts/123/productInputs/local~en~US~sku123`. Note: For calls to the v1beta version, the `productInput` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productInputs/online~en~US~sku123`.
      */
     name?: string;
+    /**
+     * Optional. If true, the `{productInput\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{productInput\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     */
+    productIdBase64UrlEncoded?: boolean;
     /**
      * Optional. The list of product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special "*" value for full product replacement is not supported.
      */
@@ -1778,6 +1790,8 @@ export namespace merchantapi_products_v1beta {
      *   const res = await merchantapi.accounts.products.get({
      *     // Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.
      *     name: 'accounts/my-account/products/my-product',
+     *     // Optional. If true, the `{product\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     *     productIdBase64UrlEncoded: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2043,6 +2057,10 @@ export namespace merchantapi_products_v1beta {
      * Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.
      */
     name?: string;
+    /**
+     * Optional. If true, the `{product\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
+     */
+    productIdBase64UrlEncoded?: boolean;
   }
   export interface Params$Resource$Accounts$Products$List
     extends StandardParameters {
