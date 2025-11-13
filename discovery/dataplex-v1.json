@@ -7229,7 +7229,7 @@
       }
     }
   },
-  "revision": "20251104",
+  "revision": "20251109",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -10005,12 +10005,14 @@
           "enum": [
             "TRIGGER_UNSPECIFIED",
             "ON_DEMAND",
-            "SCHEDULE"
+            "SCHEDULE",
+            "ONE_TIME"
           ],
           "enumDescriptions": [
             "An unspecified trigger type.",
             "Data scan triggers on demand.",
-            "Data scan triggers as per schedule."
+            "Data scan triggers as per schedule.",
+            "Data scan is run one time on creation."
           ],
           "type": "string"
         },
