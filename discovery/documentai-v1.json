@@ -661,8 +661,10 @@
               },
               "resources": {
                 "humanReviewConfig": {
+                  "deprecated": true,
                   "methods": {
                     "reviewDocument": {
+                      "deprecated": true,
                       "description": "Send a document for Human Review. The input document should be processed by the specified processor.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/humanReviewConfig:reviewDocument",
                       "httpMethod": "POST",
@@ -1392,7 +1394,7 @@
       }
     }
   },
-  "revision": "20251030",
+  "revision": "20251108",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
