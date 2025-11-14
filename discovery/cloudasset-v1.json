@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20250711",
+  "revision": "20251102",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -4660,6 +4660,13 @@
       "description": "Resource representation as defined by the corresponding service providing the resource for a given API version.",
       "id": "VersionedResource",
       "properties": {
+        "assetExceptions": {
+          "description": "The exceptions of a resource.",
+          "items": {
+            "$ref": "AssetException"
+          },
+          "type": "array"
+        },
         "resource": {
           "additionalProperties": {
             "description": "Properties of the object.",
