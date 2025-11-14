@@ -1732,6 +1732,10 @@ export namespace appengine_v1beta {
      */
     appEngineApis?: boolean | null;
     /**
+     * List of specific App Engine Bundled Services that are enabled for this Version.
+     */
+    appEngineBundledServices?: string[] | null;
+    /**
      * Automatic scaling is based on request rate, response latencies, and other application metrics. Instances are dynamically created and destroyed as needed in order to handle traffic.
      */
     automaticScaling?: Schema$AutomaticScaling;
@@ -7085,6 +7089,7 @@ export namespace appengine_v1beta {
      *       // {
      *       //   "apiConfig": {},
      *       //   "appEngineApis": false,
+     *       //   "appEngineBundledServices": [],
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},
@@ -7432,6 +7437,7 @@ export namespace appengine_v1beta {
      *   // {
      *   //   "apiConfig": {},
      *   //   "appEngineApis": false,
+     *   //   "appEngineBundledServices": [],
      *   //   "automaticScaling": {},
      *   //   "basicScaling": {},
      *   //   "betaSettings": {},
@@ -7768,6 +7774,7 @@ export namespace appengine_v1beta {
      *       // {
      *       //   "apiConfig": {},
      *       //   "appEngineApis": false,
+     *       //   "appEngineBundledServices": [],
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},
@@ -12020,6 +12027,7 @@ export namespace appengine_v1beta {
      *         // {
      *         //   "apiConfig": {},
      *         //   "appEngineApis": false,
+     *         //   "appEngineBundledServices": [],
      *         //   "automaticScaling": {},
      *         //   "basicScaling": {},
      *         //   "betaSettings": {},
