@@ -2713,6 +2713,10 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$VersionedResource {
     /**
+     * The exceptions of a resource.
+     */
+    assetExceptions?: Schema$AssetException[];
+    /**
      * JSON representation of the resource as defined by the corresponding service providing this resource. Example: If the resource is an instance provided by Compute Engine, this field will contain the JSON representation of the instance as defined by Compute Engine: `https://cloud.google.com/compute/docs/reference/rest/v1/instances`. You can find the resource definition for each supported resource type in this table: `https://cloud.google.com/asset-inventory/docs/supported-asset-types`
      */
     resource?: {[key: string]: any} | null;
