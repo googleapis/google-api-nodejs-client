@@ -162,6 +162,32 @@ export namespace gmail_v1 {
     removeLabelIds?: string[] | null;
   }
   /**
+   * Field values for a classification label.
+   */
+  export interface Schema$ClassificationLabelFieldValue {
+    /**
+     * Required. The field ID for the Classification Label Value. Maps to the ID field of the Google Drive `Label.Field` object.
+     */
+    fieldId?: string | null;
+    /**
+     * Selection choice ID for the selection option. Should only be set if the field type is `SELECTION` in the Google Drive `Label.Field` object. Maps to the id field of the Google Drive `Label.Field.SelectionOptions` resource.
+     */
+    selection?: string | null;
+  }
+  /**
+   * Classification Labels applied to the email message. Classification Labels are different from Gmail inbox labels. Only used for Google Workspace accounts. [Learn more about classification labels](https://support.google.com/a/answer/9292382).
+   */
+  export interface Schema$ClassificationLabelValue {
+    /**
+     * Field values for the given classification label ID.
+     */
+    fields?: Schema$ClassificationLabelFieldValue[];
+    /**
+     * Required. The canonical or raw alphanumeric classification label ID. Maps to the ID field of the Google Drive Label resource.
+     */
+    labelId?: string | null;
+  }
+  /**
    * The client-side encryption (CSE) configuration for the email address of an authenticated user. Gmail uses CSE configurations to save drafts of client-side encrypted email messages, and to sign and send encrypted email messages. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
    */
   export interface Schema$CseIdentity {
@@ -634,6 +660,10 @@ export namespace gmail_v1 {
    * An email message.
    */
   export interface Schema$Message {
+    /**
+     * Classification Label values on the message. Available Classification Label schemas can be queried using the Google Drive Labels API. Each classification label ID must be unique. If duplicate IDs are provided, only one will be retained, and the selection is arbitrary. Only used for Google Workspace accounts.
+     */
+    classificationLabelValues?: Schema$ClassificationLabelValue[];
     /**
      * The ID of the last history record that modified this message.
      */
@@ -2122,6 +2152,7 @@ export namespace gmail_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "classificationLabelValues": [],
      *   //   "historyId": "my_historyId",
      *   //   "id": "my_id",
      *   //   "internalDate": "my_internalDate",
@@ -4205,6 +4236,7 @@ export namespace gmail_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "classificationLabelValues": [],
      *   //   "historyId": "my_historyId",
      *   //   "id": "my_id",
      *   //   "internalDate": "my_internalDate",
@@ -4362,6 +4394,7 @@ export namespace gmail_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "classificationLabelValues": [],
      *       //   "historyId": "my_historyId",
      *       //   "id": "my_id",
      *       //   "internalDate": "my_internalDate",
@@ -4382,6 +4415,7 @@ export namespace gmail_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "classificationLabelValues": [],
      *   //   "historyId": "my_historyId",
      *   //   "id": "my_id",
      *   //   "internalDate": "my_internalDate",
@@ -4538,6 +4572,7 @@ export namespace gmail_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "classificationLabelValues": [],
      *       //   "historyId": "my_historyId",
      *       //   "id": "my_id",
      *       //   "internalDate": "my_internalDate",
@@ -4558,6 +4593,7 @@ export namespace gmail_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "classificationLabelValues": [],
      *   //   "historyId": "my_historyId",
      *   //   "id": "my_id",
      *   //   "internalDate": "my_internalDate",
@@ -4876,6 +4912,7 @@ export namespace gmail_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "classificationLabelValues": [],
      *   //   "historyId": "my_historyId",
      *   //   "id": "my_id",
      *   //   "internalDate": "my_internalDate",
@@ -5026,6 +5063,7 @@ export namespace gmail_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "classificationLabelValues": [],
      *       //   "historyId": "my_historyId",
      *       //   "id": "my_id",
      *       //   "internalDate": "my_internalDate",
@@ -5046,6 +5084,7 @@ export namespace gmail_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "classificationLabelValues": [],
      *   //   "historyId": "my_historyId",
      *   //   "id": "my_id",
      *   //   "internalDate": "my_internalDate",
@@ -5199,6 +5238,7 @@ export namespace gmail_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "classificationLabelValues": [],
      *   //   "historyId": "my_historyId",
      *   //   "id": "my_id",
      *   //   "internalDate": "my_internalDate",
@@ -5348,6 +5388,7 @@ export namespace gmail_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "classificationLabelValues": [],
      *   //   "historyId": "my_historyId",
      *   //   "id": "my_id",
      *   //   "internalDate": "my_internalDate",
