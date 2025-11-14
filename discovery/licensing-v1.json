@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/apps.licensing": {
-          "description": "View and manage G Suite licenses for your domain"
+          "description": "View and manage Google Workspace licenses for your domain"
         }
       }
     }
@@ -400,7 +400,7 @@
       }
     }
   },
-  "revision": "20250419",
+  "revision": "20251108",
   "rootUrl": "https://licensing.googleapis.com/",
   "schemas": {
     "Empty": {

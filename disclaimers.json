@@ -688,6 +688,10 @@
     "package": "@google-cloud/datalabeling"
   },
   {
+    "api": "datamanager",
+    "package": "@google-ads/datamanager"
+  },
+  {
     "api": "dataqna",
     "package": "@google-cloud/data-qna"
   },

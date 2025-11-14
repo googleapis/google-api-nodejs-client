@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20251023",
+  "revision": "20251106",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AbortFunctionUpgradeRequest": {
@@ -2160,7 +2160,8 @@
             "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_SUCCESSFUL",
             "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_ERROR",
             "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC_ERROR",
-            "COMMIT_FUNCTION_UPGRADE_ERROR"
+            "COMMIT_FUNCTION_UPGRADE_ERROR",
+            "COMMIT_FUNCTION_UPGRADE_ERROR_ROLLBACK_SAFE"
           ],
           "enumDescriptions": [
             "Unspecified state. Most functions are in this upgrade state.",
@@ -2173,7 +2174,8 @@
             "RedirectFunctionUpgradeTraffic API was successful and traffic is served by 2nd Gen function stack.",
             "RedirectFunctionUpgradeTraffic API was un-successful.",
             "RollbackFunctionUpgradeTraffic API was un-successful.",
-            "CommitFunctionUpgrade API was un-successful."
+            "CommitFunctionUpgrade API was un-successful and 1st gen function might have broken.",
+            "CommitFunctionUpgrade API was un-successful but safe to rollback traffic or abort."
           ],
           "type": "string"
         }

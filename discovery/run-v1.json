@@ -113,6 +113,11 @@
     },
     {
       "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west15-run.googleapis.com/",
+      "location": "europe-west15"
+    },
+    {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west2-run.googleapis.com/",
       "location": "europe-west2"
     },
@@ -335,6 +340,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://run.europe-west12.rep.googleapis.com/",
       "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://run.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
     },
     {
       "description": "Regional Endpoint",
@@ -3132,7 +3142,7 @@
       }
     }
   },
-  "revision": "20251031",
+  "revision": "20251107",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
