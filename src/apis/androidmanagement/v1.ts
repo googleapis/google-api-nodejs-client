@@ -2966,7 +2966,7 @@ export namespace androidmanagement_v1 {
      */
     setupActions?: Schema$SetupAction[];
     /**
-     * Whether changing the user icon is disabled. The setting has effect only on fully managed devices.
+     * Whether changing the user icon is disabled. This applies only on devices running Android 7 and above.
      */
     setUserIconDisabled?: boolean | null;
     /**
@@ -2974,7 +2974,7 @@ export namespace androidmanagement_v1 {
      */
     setWallpaperDisabled?: boolean | null;
     /**
-     * Whether location sharing is disabled. share_location_disabled is supported for both fully managed devices and personally owned work profiles.
+     * Whether location sharing is disabled.
      */
     shareLocationDisabled?: boolean | null;
     /**
