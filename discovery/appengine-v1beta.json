@@ -2741,7 +2741,7 @@
       }
     }
   },
-  "revision": "20251103",
+  "revision": "20251110",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -5154,6 +5154,49 @@
         "appEngineApis": {
           "description": "Allows App Engine second generation runtimes to access the legacy bundled services.",
           "type": "boolean"
+        },
+        "appEngineBundledServices": {
+          "description": "List of specific App Engine Bundled Services that are enabled for this Version.",
+          "items": {
+            "enum": [
+              "BUNDLED_SERVICE_TYPE_UNSPECIFIED",
+              "BUNDLED_SERVICE_TYPE_APP_IDENTITY_SERVICE",
+              "BUNDLED_SERVICE_TYPE_BLOBSTORE",
+              "BUNDLED_SERVICE_TYPE_CAPABILITY_SERVICE",
+              "BUNDLED_SERVICE_TYPE_DATASTORE_V3",
+              "BUNDLED_SERVICE_TYPE_DEFERRED",
+              "BUNDLED_SERVICE_TYPE_IMAGES",
+              "BUNDLED_SERVICE_TYPE_MAIL",
+              "BUNDLED_SERVICE_TYPE_MEMCACHE",
+              "BUNDLED_SERVICE_TYPE_MODULES",
+              "BUNDLED_SERVICE_TYPE_NAMESPACES",
+              "BUNDLED_SERVICE_TYPE_NDB",
+              "BUNDLED_SERVICE_TYPE_SEARCH",
+              "BUNDLED_SERVICE_TYPE_TASKQUEUES",
+              "BUNDLED_SERVICE_TYPE_URLFETCH",
+              "BUNDLED_SERVICE_TYPE_USERS"
+            ],
+            "enumDescriptions": [
+              "Default, invalid value",
+              "App Identity Service",
+              "Blobstore",
+              "Capability Service",
+              "Datastore V3",
+              "Deferred",
+              "Images",
+              "Mail",
+              "Memcache",
+              "Modules",
+              "Namespaces",
+              "NDB",
+              "Search",
+              "Task Queues",
+              "URL Fetch",
+              "Users"
+            ],
+            "type": "string"
+          },
+          "type": "array"
         },
         "automaticScaling": {
           "$ref": "AutomaticScaling",
