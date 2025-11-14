@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20251021",
+  "revision": "20251107",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5459,7 +5459,7 @@
           "type": "array"
         },
         "bluetoothAdapterInfo": {
-          "description": "Output only. Information about bluetooth adapters of the device.",
+          "description": "Output only. Information about Bluetooth adapters of the device.",
           "items": {
             "$ref": "BluetoothAdapterInfo"
           },
