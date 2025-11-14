@@ -599,7 +599,7 @@ export namespace cloudresourcemanager_v3 {
    */
   export interface Schema$ListTagValuesResponse {
     /**
-     * A pagination token returned from a previous call to `ListTagValues` that indicates from where listing should continue. This is currently not used, but the server may at any point start supplying a valid token.
+     * A pagination token returned from a previous call to `ListTagValues` that indicates from where listing should continue.
      */
     nextPageToken?: string | null;
     /**
@@ -939,6 +939,10 @@ export namespace cloudresourcemanager_v3 {
    * A TagKey, used to group a set of TagValues.
    */
   export interface Schema$TagKey {
+    /**
+     * Optional. Regular expression constraint for freeform tag values. If present, it implicitly allows freeform values (constrained by the regex).
+     */
+    allowedValuesRegex?: string | null;
     /**
      * Output only. Creation time.
      */
@@ -4259,7 +4263,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Updates tag bindings directly attached to a GCP resource.
+     * Updates tag bindings directly attached to a GCP resource. Update_mask can be kept empty or "*".
      * @example
      * ```js
      * // Before running the sample:
@@ -4288,23 +4292,23 @@ export namespace cloudresourcemanager_v3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudresourcemanager.locations.tagBindingCollections.update(
-     *     {
-     *       // Identifier. The name of the TagBindingCollection, following the convention: `locations/{location\}/tagBindingCollections/{encoded-full-resource-name\}` where the encoded-full-resource-name is the UTF-8 encoded name of the GCP resource the TagBindings are bound to. "locations/global/tagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123"
-     *       name: 'locations/my-location/tagBindingCollections/my-tagBindingCollection',
+     *   const res = await cloudresourcemanager.locations.tagBindingCollections.patch({
+     *     // Identifier. The name of the TagBindingCollection, following the convention: `locations/{location\}/tagBindingCollections/{encoded-full-resource-name\}` where the encoded-full-resource-name is the UTF-8 encoded name of the GCP resource the TagBindings are bound to. "locations/global/tagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123"
+     *     name: 'locations/my-location/tagBindingCollections/my-tagBindingCollection',
+     *     // Optional. An update mask to selectively update fields.
+     *     updateMask: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "fullResourceName": "my_fullResourceName",
-     *         //   "name": "my_name",
-     *         //   "tags": {}
-     *         // }
-     *       },
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "fullResourceName": "my_fullResourceName",
+     *       //   "name": "my_name",
+     *       //   "tags": {}
+     *       // }
      *     },
-     *   );
+     *   });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4329,32 +4333,32 @@ export namespace cloudresourcemanager_v3 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    update(
-      params: Params$Resource$Locations$Tagbindingcollections$Update,
+    patch(
+      params: Params$Resource$Locations$Tagbindingcollections$Patch,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    update(
-      params?: Params$Resource$Locations$Tagbindingcollections$Update,
+    patch(
+      params?: Params$Resource$Locations$Tagbindingcollections$Patch,
       options?: MethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
-    update(
-      params: Params$Resource$Locations$Tagbindingcollections$Update,
+    patch(
+      params: Params$Resource$Locations$Tagbindingcollections$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    update(
-      params: Params$Resource$Locations$Tagbindingcollections$Update,
+    patch(
+      params: Params$Resource$Locations$Tagbindingcollections$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
       callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    update(
-      params: Params$Resource$Locations$Tagbindingcollections$Update,
+    patch(
+      params: Params$Resource$Locations$Tagbindingcollections$Patch,
       callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    update(callback: BodyResponseCallback<Schema$Operation>): void;
-    update(
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
       paramsOrCallback?:
-        | Params$Resource$Locations$Tagbindingcollections$Update
+        | Params$Resource$Locations$Tagbindingcollections$Patch
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -4370,12 +4374,12 @@ export namespace cloudresourcemanager_v3 {
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Locations$Tagbindingcollections$Update;
+        {}) as Params$Resource$Locations$Tagbindingcollections$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Locations$Tagbindingcollections$Update;
+        params = {} as Params$Resource$Locations$Tagbindingcollections$Patch;
         options = {};
       }
 
@@ -4390,7 +4394,7 @@ export namespace cloudresourcemanager_v3 {
         options: Object.assign(
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PUT',
+            method: 'PATCH',
             apiVersion: '',
           },
           options
@@ -4418,12 +4422,16 @@ export namespace cloudresourcemanager_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Tagbindingcollections$Update
+  export interface Params$Resource$Locations$Tagbindingcollections$Patch
     extends StandardParameters {
     /**
      * Identifier. The name of the TagBindingCollection, following the convention: `locations/{location\}/tagBindingCollections/{encoded-full-resource-name\}` where the encoded-full-resource-name is the UTF-8 encoded name of the GCP resource the TagBindings are bound to. "locations/global/tagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123"
      */
     name?: string;
+    /**
+     * Optional. An update mask to selectively update fields.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -7693,6 +7701,7 @@ export namespace cloudresourcemanager_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "allowedValuesRegex": "my_allowedValuesRegex",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
@@ -7993,6 +8002,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "allowedValuesRegex": "my_allowedValuesRegex",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
@@ -8291,6 +8301,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "allowedValuesRegex": "my_allowedValuesRegex",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
@@ -8584,6 +8595,7 @@ export namespace cloudresourcemanager_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "allowedValuesRegex": "my_allowedValuesRegex",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",

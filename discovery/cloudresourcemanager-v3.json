@@ -697,11 +697,11 @@
                 "https://www.googleapis.com/auth/cloud-platform.read-only"
               ]
             },
-            "update": {
-              "description": "Updates tag bindings directly attached to a GCP resource.",
+            "patch": {
+              "description": "Updates tag bindings directly attached to a GCP resource. Update_mask can be kept empty or \"*\".",
               "flatPath": "v3/locations/{locationsId}/tagBindingCollections/{tagBindingCollectionsId}",
-              "httpMethod": "PUT",
-              "id": "cloudresourcemanager.locations.tagBindingCollections.update",
+              "httpMethod": "PATCH",
+              "id": "cloudresourcemanager.locations.tagBindingCollections.patch",
               "parameterOrder": [
                 "name"
               ],
@@ -711,6 +711,12 @@
                   "location": "path",
                   "pattern": "^locations/[^/]+/tagBindingCollections/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. An update mask to selectively update fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
                   "type": "string"
                 }
               },
@@ -1962,7 +1968,7 @@
       }
     }
   },
-  "revision": "20250606",
+  "revision": "20251103",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2413,7 +2419,8 @@
             "CYCLE_INTRODUCED_VIOLATION",
             "FOLDER_BEING_MOVED_VIOLATION",
             "FOLDER_TO_DELETE_NON_EMPTY_VIOLATION",
-            "DELETED_FOLDER_HEIGHT_VIOLATION"
+            "DELETED_FOLDER_HEIGHT_VIOLATION",
+            "FOLDER_TO_DELETE_CONFIGURED_CAPABILITY_VIOLATION"
           ],
           "enumDescriptions": [
             "The error type was unrecognized or unspecified.",
@@ -2425,7 +2432,8 @@
             "The attempted action would introduce cycle in resource path.",
             "The attempted action would move a folder that is already being moved.",
             "The folder the caller is trying to delete contains active resources.",
-            "The attempted action would violate the max deleted folder depth constraint."
+            "The attempted action would violate the max deleted folder depth constraint.",
+            "The folder being deleted has a configured capability."
           ],
           "type": "string"
         }
@@ -2621,7 +2629,7 @@
       "id": "ListTagValuesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A pagination token returned from a previous call to `ListTagValues` that indicates from where listing should continue. This is currently not used, but the server may at any point start supplying a valid token.",
+          "description": "A pagination token returned from a previous call to `ListTagValues` that indicates from where listing should continue.",
           "type": "string"
         },
         "tagValues": {
@@ -3091,6 +3099,10 @@
       "description": "A TagKey, used to group a set of TagValues.",
       "id": "TagKey",
       "properties": {
+        "allowedValuesRegex": {
+          "description": "Optional. Regular expression constraint for freeform tag values. If present, it implicitly allows freeform values (constrained by the regex).",
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Creation time.",
           "format": "google-datetime",
