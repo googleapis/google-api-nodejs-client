@@ -138,6 +138,65 @@ export namespace apihub_v1 {
     actionId?: string | null;
   }
   /**
+   * Addon resource.
+   */
+  export interface Schema$GoogleCloudApihubV1Addon {
+    /**
+     * Required. The configuration of the addon.
+     */
+    config?: Schema$GoogleCloudApihubV1AddonConfig;
+    /**
+     * Output only. The time at which the addon was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The data source on which the addon operates. This determines which field in the `config` oneof is used.
+     */
+    dataSource?: string | null;
+    /**
+     * Optional. The description of the addon.
+     */
+    description?: string | null;
+    /**
+     * Required. The display name of the addon.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The name of the addon to enable. Format: `projects/{project\}/locations/{location\}/addons/{addon\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the addon.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time at which the addon was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Configuration for the addon.
+   */
+  export interface Schema$GoogleCloudApihubV1AddonConfig {
+    /**
+     * Configuration for addons which act on all data in the API hub.
+     */
+    allDataAddonConfig?: Schema$GoogleCloudApihubV1AllDataAddonConfig;
+    /**
+     * Configuration for gateway plugin addons.
+     */
+    gatewayPluginAddonConfig?: Schema$GoogleCloudApihubV1GatewayPluginAddonConfig;
+  }
+  /**
+   * Configuration for addons which act on all data in the API hub. This is used to specify if the addon is enabled for all data in the API hub.
+   */
+  export interface Schema$GoogleCloudApihubV1AllDataAddonConfig {
+    /**
+     * Required. If true, the addon is enabled for all data in the API hub.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * The value that can be assigned to the attribute when the data type is enum.
    */
   export interface Schema$GoogleCloudApihubV1AllowedValue {
@@ -253,6 +312,33 @@ export namespace apihub_v1 {
      * Optional. The list of API metadata.
      */
     apiMetadataList?: Schema$GoogleCloudApihubV1ApiMetadataList;
+  }
+  /**
+   * Configuration for Apigee Edge gateways. Applicability of a filter is determined by the filter being provided. If none of the filters are provided the addon will be enabled for all data brought in by the gateway plugin instance.
+   */
+  export interface Schema$GoogleCloudApihubV1ApigeeEdgeConfig {
+    /**
+     * Optional. The filter to apply on the resources managed by the gateway plugin instance. If provided this filter applies environment specific filtering.
+     */
+    environmentFilter?: Schema$GoogleCloudApihubV1EnvironmentFilter;
+  }
+  /**
+   * Configuration for Apigee OPDK gateways. Applicability of a filter is determined by the filter being provided. If none of the filters are provided the addon will be enabled for all data brought in by the gateway plugin instance.
+   */
+  export interface Schema$GoogleCloudApihubV1ApigeeOPDKConfig {
+    /**
+     * Optional. The filter to apply on the resources managed by the gateway plugin instance. If provided this filter applies environment specific filtering.
+     */
+    environmentFilter?: Schema$GoogleCloudApihubV1EnvironmentFilter;
+  }
+  /**
+   * Configuration for Apigee X and Apigee Hybrid gateways. Applicability of a filter is determined by the filter being provided. If none of the filters are provided the addon will be enabled for all data brought in by the gateway plugin instance.
+   */
+  export interface Schema$GoogleCloudApihubV1ApigeeXHybridConfig {
+    /**
+     * Optional. The filter to apply on the resources managed by the gateway plugin instance. If provided this filter applies environment specific filtering.
+     */
+    environmentFilter?: Schema$GoogleCloudApihubV1EnvironmentFilter;
   }
   /**
    * An ApiHubInstance represents the instance resources of the API Hub. Currently, only one ApiHub instance is allowed for each project.
@@ -1116,6 +1202,19 @@ export namespace apihub_v1 {
     values?: Schema$GoogleCloudApihubV1AllowedValue[];
   }
   /**
+   * Filter for environments.
+   */
+  export interface Schema$GoogleCloudApihubV1EnvironmentFilter {
+    /**
+     * Optional. Indicates if this filter should match all environments or only a subset of environments. If set to true, all environments are matched.
+     */
+    allEnvironments?: boolean | null;
+    /**
+     * Optional. If provided, only environments in this list are matched. This field is ignored if `all_environments` is true.
+     */
+    environments?: string[] | null;
+  }
+  /**
    * The ExecutePluginInstanceAction method's request.
    */
   export interface Schema$GoogleCloudApihubV1ExecutePluginInstanceActionRequest {
@@ -1179,6 +1278,36 @@ export namespace apihub_v1 {
      * Output only. Last update timestamp.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Configuration for gateway plugin addons. This is used to specify the list of gateway plugin configs for which the addon is enabled.
+   */
+  export interface Schema$GoogleCloudApihubV1GatewayPluginAddonConfig {
+    /**
+     * Required. The list of gateway plugin configs for which the addon is enabled. Each gateway plugin config should have a unique plugin instance.
+     */
+    gatewayPluginConfigs?: Schema$GoogleCloudApihubV1GatewayPluginConfig[];
+  }
+  /**
+   * Configuration for a gateway plugin. This is used to specify configs for different gateways.
+   */
+  export interface Schema$GoogleCloudApihubV1GatewayPluginConfig {
+    /**
+     * Configuration for Apigee Edge gateways.
+     */
+    apigeeEdgeConfig?: Schema$GoogleCloudApihubV1ApigeeEdgeConfig;
+    /**
+     * Configuration for Apigee OPDK gateways.
+     */
+    apigeeOpdkConfig?: Schema$GoogleCloudApihubV1ApigeeOPDKConfig;
+    /**
+     * Configuration for Apigee X and Apigee Hybrid gateways.
+     */
+    apigeeXHybridConfig?: Schema$GoogleCloudApihubV1ApigeeXHybridConfig;
+    /**
+     * Required. The name of the gateway plugin instance for which the config is to be specified. Format: projects/{project\}/locations/{location\}/plugins/{plugin\}/pluginInstances/{plugin_instance\}
+     */
+    pluginInstance?: string | null;
   }
   /**
    * Config for Google service account authentication.
@@ -1371,6 +1500,19 @@ export namespace apihub_v1 {
    * The LintSpec method's request.
    */
   export interface Schema$GoogleCloudApihubV1LintSpecRequest {}
+  /**
+   * The ListAddons method's response.
+   */
+  export interface Schema$GoogleCloudApihubV1ListAddonsResponse {
+    /**
+     * The list of addons.
+     */
+    addons?: Schema$GoogleCloudApihubV1Addon[];
+    /**
+     * A token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
   /**
    * The ListApiOperations method's response.
    */
@@ -1583,6 +1725,15 @@ export namespace apihub_v1 {
      * Runtime project attachment for a project if exists, empty otherwise.
      */
     runtimeProjectAttachment?: Schema$GoogleCloudApihubV1RuntimeProjectAttachment;
+  }
+  /**
+   * The ManageAddonConfig method's request.
+   */
+  export interface Schema$GoogleCloudApihubV1ManageAddonConfigRequest {
+    /**
+     * Required. The config of the addon to be managed. This config will replace the config present in the addon. The type of the config should match the config type already present in the addon.
+     */
+    config?: Schema$GoogleCloudApihubV1AddonConfig;
   }
   /**
    * The ManagePluginInstanceSourceData method's request.
@@ -1885,6 +2036,12 @@ export namespace apihub_v1 {
      */
     name?: string | null;
     /**
+     * Optional. The source environment's config present in the gateway instance linked to the plugin instance. The key is the `source_environment` name from the SourceEnvironment message.
+     */
+    sourceEnvironmentsConfig?: {
+      [key: string]: Schema$GoogleCloudApihubV1SourceEnvironment;
+    } | null;
+    /**
      * Optional. The source project id of the plugin instance. This will be the id of runtime project in case of gcp based plugins and org id in case of non gcp based plugins. This field will be a required field for Google provided on-ramp plugins.
      */
     sourceProjectId?: string | null;
@@ -2097,6 +2254,27 @@ export namespace apihub_v1 {
      * Required. The resource name of the secret version in the format, format as: `projects/x/secrets/x/versions/x`.
      */
     secretVersion?: string | null;
+  }
+  /**
+   * Message representing the source environment details.
+   */
+  export interface Schema$GoogleCloudApihubV1SourceEnvironment {
+    /**
+     * Optional. The time at which the environment was created at the source.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The name of the environment at the source. This should map to Deployment.
+     */
+    sourceEnvironment?: string | null;
+    /**
+     * The location where additional information about source environments can be found. The location should be relative path of the environment manifest with respect to a plugin instance.
+     */
+    sourceEnvironmentUri?: string | null;
+    /**
+     * Optional. The time at which the environment was last updated at the source.
+     */
+    updateTime?: string | null;
   }
   /**
    * SourceMetadata represents the metadata for a resource at the source.
@@ -2540,6 +2718,7 @@ export namespace apihub_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    addons: Resource$Projects$Locations$Addons;
     apiHubInstances: Resource$Projects$Locations$Apihubinstances;
     apis: Resource$Projects$Locations$Apis;
     attributes: Resource$Projects$Locations$Attributes;
@@ -2554,6 +2733,7 @@ export namespace apihub_v1 {
     runtimeProjectAttachments: Resource$Projects$Locations$Runtimeprojectattachments;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.addons = new Resource$Projects$Locations$Addons(this.context);
       this.apiHubInstances = new Resource$Projects$Locations$Apihubinstances(
         this.context
       );
@@ -3404,6 +3584,502 @@ export namespace apihub_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudApihubV1SearchResourcesRequest;
+  }
+
+  export class Resource$Projects$Locations$Addons {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get an addon.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.addons.get({
+     *     // Required. The name of the addon to get. Format: `projects/{project\}/locations/{location\}/addons/{addon\}`.
+     *     name: 'projects/my-project/locations/my-location/addons/my-addon',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataSource": "my_dataSource",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Addons$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Addons$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1Addon>>;
+    get(
+      params: Params$Resource$Projects$Locations$Addons$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Addons$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1Addon>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Addon>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Addons$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Addon>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Addon>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Addons$Get
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1Addon>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1Addon>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1Addon>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1Addon>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Addons$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Addons$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1Addon>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1Addon>(parameters);
+      }
+    }
+
+    /**
+     * List addons.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.addons.list({
+     *     // Optional. An expression that filters the list of addons. The only supported filter is `plugin_instance_name`. It can be used to filter addons that are enabled for a given plugin instance. The format of the filter is `plugin_instance_name = "projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}"`.
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of hub addons to return. The service may return fewer than this value. If unspecified, at most 50 hub addons will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListAddons` call. Provide this to retrieve the subsequent page. When paginating, all other parameters (except page_size) provided to `ListAddons` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource where this addon will be created. Format: `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addons": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Addons$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Addons$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1ListAddonsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Addons$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Addons$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListAddonsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListAddonsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Addons$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListAddonsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListAddonsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Addons$List
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListAddonsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListAddonsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListAddonsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1ListAddonsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Addons$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Addons$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/addons').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1ListAddonsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1ListAddonsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Manage addon config. This RPC is used for managing the config of the addon. Calling this RPC moves the addon into an updating state until the long-running operation succeeds.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.addons.manageConfig({
+     *     // Required. The name of the addon for which the config is to be managed. Format: `projects/{project\}/locations/{location\}/addons/{addon\}`.
+     *     name: 'projects/my-project/locations/my-location/addons/my-addon',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "config": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    manageConfig(
+      params: Params$Resource$Projects$Locations$Addons$Manageconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    manageConfig(
+      params?: Params$Resource$Projects$Locations$Addons$Manageconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    manageConfig(
+      params: Params$Resource$Projects$Locations$Addons$Manageconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    manageConfig(
+      params: Params$Resource$Projects$Locations$Addons$Manageconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    manageConfig(
+      params: Params$Resource$Projects$Locations$Addons$Manageconfig,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    manageConfig(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    manageConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Addons$Manageconfig
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Addons$Manageconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Addons$Manageconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:manageConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Addons$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the addon to get. Format: `projects/{project\}/locations/{location\}/addons/{addon\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Addons$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression that filters the list of addons. The only supported filter is `plugin_instance_name`. It can be used to filter addons that are enabled for a given plugin instance. The format of the filter is `plugin_instance_name = "projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}"`.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of hub addons to return. The service may return fewer than this value. If unspecified, at most 50 hub addons will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListAddons` call. Provide this to retrieve the subsequent page. When paginating, all other parameters (except page_size) provided to `ListAddons` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource where this addon will be created. Format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Addons$Manageconfig
+    extends StandardParameters {
+    /**
+     * Required. The name of the addon for which the config is to be managed. Format: `projects/{project\}/locations/{location\}/addons/{addon\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudApihubV1ManageAddonConfigRequest;
   }
 
   export class Resource$Projects$Locations$Apihubinstances {
@@ -15495,6 +16171,7 @@ export namespace apihub_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "errorMessage": "my_errorMessage",
      *       //   "name": "my_name",
+     *       //   "sourceEnvironmentsConfig": {},
      *       //   "sourceProjectId": "my_sourceProjectId",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
@@ -16263,6 +16940,7 @@ export namespace apihub_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "errorMessage": "my_errorMessage",
      *   //   "name": "my_name",
+     *   //   "sourceEnvironmentsConfig": {},
      *   //   "sourceProjectId": "my_sourceProjectId",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -16731,6 +17409,7 @@ export namespace apihub_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "errorMessage": "my_errorMessage",
      *       //   "name": "my_name",
+     *       //   "sourceEnvironmentsConfig": {},
      *       //   "sourceProjectId": "my_sourceProjectId",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
@@ -16748,6 +17427,7 @@ export namespace apihub_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "errorMessage": "my_errorMessage",
      *   //   "name": "my_name",
+     *   //   "sourceEnvironmentsConfig": {},
      *   //   "sourceProjectId": "my_sourceProjectId",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
