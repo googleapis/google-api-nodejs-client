@@ -220,6 +220,10 @@ export namespace storagetransfer_v1 {
      */
     path?: string | null;
     /**
+     * Service Directory Service to be used as the endpoint for transfers from a custom VPC. Format: `projects/{project_id\}/locations/{location\}/namespaces/{namespace\}/services/{service\}`
+     */
+    privateNetworkService?: string | null;
+    /**
      * The Amazon Resource Name (ARN) of the role to support temporary credentials via `AssumeRoleWithWebIdentity`. For more information about ARNs, see [IAM ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns). When a role ARN is provided, Transfer Service fetches temporary credentials for the session using a `AssumeRoleWithWebIdentity` call for the provided role using the GoogleServiceAccount for this project.
      */
     roleArn?: string | null;
@@ -248,6 +252,10 @@ export namespace storagetransfer_v1 {
      * Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'.
      */
     path?: string | null;
+    /**
+     * Service Directory Service to be used as the endpoint for transfers from a custom VPC. Format: `projects/{project_id\}/locations/{location\}/namespaces/{namespace\}/services/{service\}`
+     */
+    privateNetworkService?: string | null;
     /**
      * Required. The name of the Azure Storage account.
      */
@@ -542,6 +550,10 @@ export namespace storagetransfer_v1 {
      * If specified, only objects with a "last modification time" on or after this timestamp and objects that don't have a "last modification time" are transferred. The `last_modified_since` and `last_modified_before` fields can be used together for chunked data processing. For example, consider a script that processes each day's worth of data at a time. For that you'd set each of the fields as follows: * `last_modified_since` to the start of the day * `last_modified_before` to the end of the day
      */
     lastModifiedSince?: string | null;
+    /**
+     * Optional. If specified, only objects matching this glob are transferred.
+     */
+    matchGlob?: string | null;
     /**
      * Ensures that objects are not transferred if a specific maximum time has elapsed since the "last modification time". When a TransferOperation begins, objects with a "last modification time" are transferred only if the elapsed time between the start_time of the `TransferOperation`and the "last modification time" of the object is less than the value of max_time_elapsed_since_last_modification`. Objects that do not have a "last modification time" are also transferred.
      */
