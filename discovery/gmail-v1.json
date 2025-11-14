@@ -3077,7 +3077,7 @@
       }
     }
   },
-  "revision": "20250630",
+  "revision": "20251110",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
@@ -3149,6 +3149,39 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ClassificationLabelFieldValue": {
+      "description": "Field values for a classification label.",
+      "id": "ClassificationLabelFieldValue",
+      "properties": {
+        "fieldId": {
+          "description": "Required. The field ID for the Classification Label Value. Maps to the ID field of the Google Drive `Label.Field` object.",
+          "type": "string"
+        },
+        "selection": {
+          "description": "Selection choice ID for the selection option. Should only be set if the field type is `SELECTION` in the Google Drive `Label.Field` object. Maps to the id field of the Google Drive `Label.Field.SelectionOptions` resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClassificationLabelValue": {
+      "description": "Classification Labels applied to the email message. Classification Labels are different from Gmail inbox labels. Only used for Google Workspace accounts. [Learn more about classification labels](https://support.google.com/a/answer/9292382).",
+      "id": "ClassificationLabelValue",
+      "properties": {
+        "fields": {
+          "description": "Field values for the given classification label ID.",
+          "items": {
+            "$ref": "ClassificationLabelFieldValue"
+          },
+          "type": "array"
+        },
+        "labelId": {
+          "description": "Required. The canonical or raw alphanumeric classification label ID. Maps to the ID field of the Google Drive Label resource.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3925,6 +3958,13 @@
       "description": "An email message.",
       "id": "Message",
       "properties": {
+        "classificationLabelValues": {
+          "description": "Classification Label values on the message. Available Classification Label schemas can be queried using the Google Drive Labels API. Each classification label ID must be unique. If duplicate IDs are provided, only one will be retained, and the selection is arbitrary. Only used for Google Workspace accounts.",
+          "items": {
+            "$ref": "ClassificationLabelValue"
+          },
+          "type": "array"
+        },
         "historyId": {
           "description": "The ID of the last history record that modified this message.",
           "format": "uint64",
