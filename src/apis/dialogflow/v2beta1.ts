@@ -7956,6 +7956,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Participant {
     /**
+     * Optional. For tracking the utilization of prebuilt Agent Assist integration modules. This field is only inscope for Integration type that include UI Modules, Backend Modules, and Agent Desktop connector, it is out of scope for CCaaS and Direct Integration. For each human agent, prebuilt UI Modules needs to trigger the UpdateParticipant API to update this field. Both CreateParticipantRequest and UpdateParticipantRequest will be supported.
+     */
+    agentDesktopSource?: string | null;
+    /**
      * Optional. Key-value filters on the metadata of documents returned by article suggestion. If specified, article suggestion only returns suggested documents that match all filters in their Document.metadata. Multiple values for a metadata key should be concatenated by comma. For example, filters to match all documents that have 'US' or 'CA' in their market metadata values and 'agent' in their user metadata values will be ``` documents_metadata_filters { key: "market" value: "US,CA" \} documents_metadata_filters { key: "user" value: "agent" \} ```
      */
     documentsMetadataFilters?: {[key: string]: string} | null;
@@ -27938,6 +27942,7 @@ export namespace dialogflow_v2beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "agentDesktopSource": "my_agentDesktopSource",
      *       //   "documentsMetadataFilters": {},
      *       //   "name": "my_name",
      *       //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
@@ -27949,6 +27954,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "agentDesktopSource": "my_agentDesktopSource",
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
@@ -28103,6 +28109,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "agentDesktopSource": "my_agentDesktopSource",
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
@@ -28410,6 +28417,7 @@ export namespace dialogflow_v2beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "agentDesktopSource": "my_agentDesktopSource",
      *       //   "documentsMetadataFilters": {},
      *       //   "name": "my_name",
      *       //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
@@ -28421,6 +28429,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "agentDesktopSource": "my_agentDesktopSource",
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
@@ -47530,6 +47539,7 @@ export namespace dialogflow_v2beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "agentDesktopSource": "my_agentDesktopSource",
      *         //   "documentsMetadataFilters": {},
      *         //   "name": "my_name",
      *         //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
@@ -47541,6 +47551,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "agentDesktopSource": "my_agentDesktopSource",
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
@@ -47696,6 +47707,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "agentDesktopSource": "my_agentDesktopSource",
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
@@ -48008,6 +48020,7 @@ export namespace dialogflow_v2beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "agentDesktopSource": "my_agentDesktopSource",
      *         //   "documentsMetadataFilters": {},
      *         //   "name": "my_name",
      *         //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
@@ -48019,6 +48032,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "agentDesktopSource": "my_agentDesktopSource",
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
