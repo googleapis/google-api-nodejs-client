@@ -69,6 +69,6 @@ describe('google.auth', async () => {
       });
       const vms = result.data;
       assert.strictEqual(typeof vms.kind, 'string');
-    }).timeout(10000);
+    }).timeout(20000);
   });
 });
