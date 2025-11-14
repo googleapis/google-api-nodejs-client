@@ -1968,7 +1968,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -4326,7 +4326,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -5378,7 +5378,7 @@
       }
     }
   },
-  "revision": "20251023",
+  "revision": "20251112",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -7321,7 +7321,10 @@
             "CLIENT_SENTIMENT_CATEGORY",
             "AGENT_VERSION_ID",
             "AGENT_DEPLOYMENT_ID",
-            "AGENT_ASSIST_SUPERVISOR_ID"
+            "AGENT_ASSIST_SUPERVISOR_ID",
+            "LABEL_KEY",
+            "LABEL_VALUE",
+            "LABEL_KEY_AND_VALUE"
           ],
           "enumDescriptions": [
             "The key of the dimension is unspecified.",
@@ -7341,13 +7344,21 @@
             "The dimension is keyed by the client sentiment category.",
             "The dimension is keyed by the agent version ID.",
             "The dimension is keyed by the agent deployment ID.",
-            "The dimension is keyed by the supervisor ID of the assigned human supervisor for virtual agents."
+            "The dimension is keyed by the supervisor ID of the assigned human supervisor for virtual agents.",
+            "The dimension is keyed by label keys.",
+            "The dimension is keyed by label values.",
+            "The dimension is keyed by label key-value pairs."
           ],
           "type": "string"
         },
         "issueDimensionMetadata": {
           "$ref": "GoogleCloudContactcenterinsightsV1DimensionIssueDimensionMetadata",
           "description": "Output only. Metadata about the issue dimension.",
+          "readOnly": true
+        },
+        "labelDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1DimensionLabelDimensionMetadata",
+          "description": "Output only. Metadata about conversation labels.",
           "readOnly": true
         },
         "mediumDimensionMetadata": {
@@ -7474,6 +7485,21 @@
         },
         "issueModelId": {
           "description": "The parent issue model ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1DimensionLabelDimensionMetadata": {
+      "description": "Metadata about conversation labels.",
+      "id": "GoogleCloudContactcenterinsightsV1DimensionLabelDimensionMetadata",
+      "properties": {
+        "labelKey": {
+          "description": "Optional. The label key.",
+          "type": "string"
+        },
+        "labelValue": {
+          "description": "Optional. The label value.",
           "type": "string"
         }
       },
@@ -11958,7 +11984,10 @@
             "CLIENT_SENTIMENT_CATEGORY",
             "AGENT_VERSION_ID",
             "AGENT_DEPLOYMENT_ID",
-            "AGENT_ASSIST_SUPERVISOR_ID"
+            "AGENT_ASSIST_SUPERVISOR_ID",
+            "LABEL_KEY",
+            "LABEL_VALUE",
+            "LABEL_KEY_AND_VALUE"
           ],
           "enumDescriptions": [
             "The key of the dimension is unspecified.",
@@ -11978,13 +12007,21 @@
             "The dimension is keyed by the client sentiment category.",
             "The dimension is keyed by the agent version ID.",
             "The dimension is keyed by the agent deployment ID.",
-            "The dimension is keyed by the supervisor ID of the assigned human supervisor for virtual agents."
+            "The dimension is keyed by the supervisor ID of the assigned human supervisor for virtual agents.",
+            "The dimension is keyed by label keys.",
+            "The dimension is keyed by label values.",
+            "The dimension is keyed by label key-value pairs."
           ],
           "type": "string"
         },
         "issueDimensionMetadata": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1DimensionIssueDimensionMetadata",
           "description": "Output only. Metadata about the issue dimension.",
+          "readOnly": true
+        },
+        "labelDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1DimensionLabelDimensionMetadata",
+          "description": "Output only. Metadata about conversation labels.",
           "readOnly": true
         },
         "mediumDimensionMetadata": {
@@ -12111,6 +12148,21 @@
         },
         "issueModelId": {
           "description": "The parent issue model ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1DimensionLabelDimensionMetadata": {
+      "description": "Metadata about conversation labels.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1DimensionLabelDimensionMetadata",
+      "properties": {
+        "labelKey": {
+          "description": "Optional. The label key.",
+          "type": "string"
+        },
+        "labelValue": {
+          "description": "Optional. The label value.",
           "type": "string"
         }
       },
@@ -14265,7 +14317,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
