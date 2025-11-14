@@ -5136,6 +5136,82 @@
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
+                        "listAvailableAgentViews": {
+                          "description": "Lists the data for displaying the Agents under an Assistant which are available to the caller.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}:listAvailableAgentViews",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.assistants.listAvailableAgentViews",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "agentOrigin": {
+                              "description": "Optional. The origin of the Agent.",
+                              "enum": [
+                                "AGENT_ORIGIN_UNSPECIFIED",
+                                "GOOGLE",
+                                "ORGANIZATION",
+                                "USER"
+                              ],
+                              "enumDescriptions": [
+                                "The origin is unspecified.",
+                                "Agent defined by Google.",
+                                "Agent defined by the organization.",
+                                "Agent defined by the user."
+                              ],
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "filter": {
+                              "description": "Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the files being filtered. Filter expression is case-sensitive. Allowed fields are: * `display_name` * `state` Some examples of filters would be: * `display_name = 'agent_1'` * `display_name = 'agent_1' AND state = ENABLED` For a full description of the filter format, please see https://google.aip.dev/160.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "languageCode": {
+                              "description": "Optional. The UI language currently shown to the user. Specifying this field request that the texts in the AgentViews in the response should be translated to this language.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "maxSuggestedPrompts": {
+                              "description": "Optional. The maximum number of suggested prompts to return per agent.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageSize": {
+                              "description": "Optional. Maximum number of AgentViewss to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. A page token ListAvailableAgentViewsResponse.next_page_token, received from a previous AgentService.ListAvailableAgentViews call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAvailableAgentViews must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "sortBy": {
+                              "description": "Optional. The field to sort by. Can have the following values: - display-name: The display name of the agent. - description: The description of the agent. - create-time: The creation time of the agent. - state: The state of the agent.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}:listAvailableAgentViews",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
                         "patch": {
                           "description": "Updates an Assistant",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}",
@@ -5263,6 +5339,60 @@
                                 "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             },
+                            "disableAgent": {
+                              "description": "Disables an Agent. The `state` of the Agent becomes `DISABLED`. Can be called on an Agent in the state `ENABLED` or`SUSPENDED`, otherwise it returns an error.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}:disableAgent",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.disableAgent",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The name of the Agent to disable. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/agents/{agent}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}:disableAgent",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "enableAgent": {
+                              "description": "Enables an Agent. The `state` of the Agent becomes `ENABLED`. Can be called on an Agent in the state `DISABLED` or 'SUSPENDED', otherwise it returns an error.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}:enableAgent",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.enableAgent",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The name of the Agent to enable. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/agents/{agent}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}:enableAgent",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
                             "get": {
                               "description": "Gets an Agent.",
                               "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}",
@@ -5283,6 +5413,77 @@
                               "path": "v1alpha/{+name}",
                               "response": {
                                 "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "getAgentView": {
+                              "description": "Returns a AgentView for a given Agent, which contains additional information about the Agent.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}:getAgentView",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.getAgentView",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "languageCode": {
+                                  "description": "Optional. The UI language currently shown to the user. Specifying this field request that the texts in the AgentView in the response should be translated to this language.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "maxSuggestedPrompts": {
+                                  "description": "Optional. The maximum number of suggested prompts to return per agent.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "name": {
+                                  "description": "Required. The name of the Agent to get. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/agents/{agent}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}:getAgentView",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "getIamPolicy": {
+                              "description": "Gets the access control policy for an agent resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}:getIamPolicy",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.getIamPolicy",
+                              "parameterOrder": [
+                                "resource"
+                              ],
+                              "parameters": {
+                                "options.requestedPolicyVersion": {
+                                  "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "resource": {
+                                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+resource}:getIamPolicy",
+                              "response": {
+                                "$ref": "GoogleIamV1Policy"
                               },
                               "scopes": [
                                 "https://www.googleapis.com/auth/cloud-platform",
@@ -5360,6 +5561,68 @@
                               "request": {
                                 "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
                               },
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "setIamPolicy": {
+                              "description": "Sets the access control policy for an agent resource. A `NOT_FOUND` error is returned if the resource does not exist. Policy can only contain `roles/discoveryengine.agentUser`, `roles/discoveryengine.agentViewer` and `roles/discoveryengine.agentEditor` roles.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}:setIamPolicy",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.setIamPolicy",
+                              "parameterOrder": [
+                                "resource"
+                              ],
+                              "parameters": {
+                                "resource": {
+                                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+resource}:setIamPolicy",
+                              "request": {
+                                "$ref": "GoogleIamV1SetIamPolicyRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleIamV1Policy"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            },
+                            "suspendAgent": {
+                              "description": "Suspends an Agent. It is still available for viewing but not for use. The `state` of the Agent becomes `SUSPENDED`. Can be called on an Agent in the state `ENABLED`, otherwise it returns an error.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}:suspendAgent",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.suspendAgent",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The name of the Agent to suspend. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/agents/{agent}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "suspensionReason": {
+                                  "description": "Required. The reason for suspending the Agent. This will be shown to the users of the Agent.",
+                                  "location": "query",
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}:suspendAgent",
                               "response": {
                                 "$ref": "GoogleCloudDiscoveryengineV1alphaAgent"
                               },
@@ -11327,6 +11590,36 @@
                 }
               },
               "resources": {
+                "licenseConfigsUsageStats": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists all the LicenseConfigUsageStatss associated with the project.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}/licenseConfigsUsageStats",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.userStores.licenseConfigsUsageStats.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}/userStores/{user_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/licenseConfigsUsageStats",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    }
+                  }
+                },
                 "operations": {
                   "methods": {
                     "get": {
@@ -11416,7 +11709,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.",
+                          "description": "Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.",
                           "location": "query",
                           "type": "string"
                         },
@@ -11534,7 +11827,7 @@
       }
     }
   },
-  "revision": "20251030",
+  "revision": "20251109",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -14447,6 +14740,10 @@
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
         },
+        "enableLlmLayoutParsing": {
+          "description": "Optional. If true, the pdf layout will be refined using an LLM.",
+          "type": "boolean"
+        },
         "enableTableAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
           "type": "boolean"
@@ -14549,6 +14846,11 @@
           "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
           "readOnly": true
         },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1CmekConfig",
+          "description": "Output only. CMEK-related information for the Engine.",
+          "readOnly": true
+        },
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
@@ -14622,6 +14924,23 @@
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
+        },
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ],
+            "enumDescriptions": [
+              "The model state is unspecified.",
+              "The model is enabled by admin.",
+              "The model is disabled by admin."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.",
+          "type": "object"
         },
         "name": {
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -16846,6 +17165,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "sharingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAgentSharingConfig",
+          "description": "Optional. The sharing config of the agent."
+        },
         "starterPrompts": {
           "description": "Optional. The starter prompt suggestions to show the user on the landing page of the agent.",
           "items": {
@@ -16926,6 +17249,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaAgentSharingConfig": {
+      "description": "Sharing related configuration.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAgentSharingConfig",
+      "properties": {
+        "scope": {
+          "description": "Optional. The sharing scope of the agent.",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "RESTRICTED",
+            "ALL_USERS"
+          ],
+          "enumDescriptions": [
+            "Default value. Behaves as `RESTRICTED`.",
+            "The agent is shared based on the IAM policy.",
+            "The agent is shared with all users."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaAgentStarterPrompt": {
       "description": "The starter prompt suggestion to show the user on the landing page of the agent.",
       "id": "GoogleCloudDiscoveryengineV1alphaAgentStarterPrompt",
@@ -16933,6 +17277,191 @@
         "text": {
           "description": "Required. The text of the starter prompt.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAgentView": {
+      "description": "The data for displaying an Agent.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAgentView",
+      "properties": {
+        "agentOrigin": {
+          "description": "Immutable. The origin of the Agent.",
+          "enum": [
+            "AGENT_ORIGIN_UNSPECIFIED",
+            "GOOGLE",
+            "ORGANIZATION",
+            "USER"
+          ],
+          "enumDescriptions": [
+            "The origin is unspecified.",
+            "Agent defined by Google.",
+            "Agent defined by the organization.",
+            "Agent defined by the user."
+          ],
+          "type": "string"
+        },
+        "agentSharingState": {
+          "description": "Output only. The sharing state of the agent.",
+          "enum": [
+            "AGENT_SHARING_STATE_UNSPECIFIED",
+            "NOT_SHARED",
+            "PENDING",
+            "SHARED",
+            "REJECTED"
+          ],
+          "enumDescriptions": [
+            "The sharing state is unspecified.",
+            "The agent is not shared.",
+            "The agent is pending review.",
+            "The agent is shared with other users.",
+            "The agent sharing request was rejected."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "agentType": {
+          "description": "Output only. The type of the agent.",
+          "enum": [
+            "AGENT_TYPE_UNSPECIFIED",
+            "NO_CODE",
+            "HTTP",
+            "ADK",
+            "MANAGED",
+            "A2A",
+            "DIALOGFLOW",
+            "LOW_CODE"
+          ],
+          "enumDescriptions": [
+            "The agent type is unspecified.",
+            "No-code agent.",
+            "HTTP agent.",
+            "ADK agent.",
+            "Google managed agent.",
+            "A2A agent.",
+            "Dialogflow agent.",
+            "Low-code agent."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "customPlaceholderText": {
+          "description": "The custom placeholder text that appears in the text box before the user enters any text.",
+          "type": "string"
+        },
+        "deploymentFailureReason": {
+          "description": "The reason why the agent deployment failed. Only set if the state is DEPLOYMENT_FAILED.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Required. Human-readable description of the agent. This might be used by an LLM to automatically select an agent to respond to a user query and to generate the first version of the steps for the agent that can be modified by the user. The language of this is either Agent.language_code, or ListAvailableAgentViewsRequest.language_code if translations are enabled.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. Display name of the agent. The language of this is either Agent.language_code, or ListAvailableAgentViewsRequest.language_code if translations are enabled.",
+          "type": "string"
+        },
+        "icon": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAgentImage",
+          "description": "Optional. The icon that represents the agent on the UI."
+        },
+        "name": {
+          "description": "Resource name of the agent. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}/agents/{agent}`",
+          "type": "string"
+        },
+        "rejectionReason": {
+          "description": "The reason why the agent was rejected. Only set if the state is PRIVATE, and got there via rejection.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the Agent.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CONFIGURED",
+            "DEPLOYING",
+            "DISABLED",
+            "DEPLOYMENT_FAILED",
+            "PRIVATE",
+            "ENABLED",
+            "SUSPENDED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The agent is configured, but no deployment triggered yet.",
+            "The agent is being deployed.",
+            "The agent is available for admins only.",
+            "The agent deployment failed.",
+            "Agent is available only to its creator..",
+            "Agent is available for users who have access.",
+            "Agent is temporarily unavailable, though visible to users who have access."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "suggestedPrompts": {
+          "description": "Optional. The suggested prompts for the agent, to be shown on the agent landing page.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAgentViewSuggestedPrompt"
+          },
+          "type": "array"
+        },
+        "suspensionReason": {
+          "description": "The reason why the agent was suspended. Only set if the state is SUSPENDED.",
+          "type": "string"
+        },
+        "userAnnotations": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaUserAnnotations",
+          "description": "Optional. Per-user annotations of the current caller for the agent."
+        },
+        "userPermissions": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAgentViewUserPermissions",
+          "description": "The permissions of the user for this Agent."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAgentViewSuggestedPrompt": {
+      "description": "A suggested prompt for the agent, to be shown on the agent landing page.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAgentViewSuggestedPrompt",
+      "properties": {
+        "text": {
+          "description": "Required. The text of the suggested prompt. The language of this is either Agent.language_code, or ListAvailableAgentViewsRequest.language_code if translations are enabled.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAgentViewUserPermissions": {
+      "description": "The permissions of the user on an Agent.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAgentViewUserPermissions",
+      "properties": {
+        "canDelete": {
+          "description": "If the user can delete this Agent.",
+          "type": "boolean"
+        },
+        "canEdit": {
+          "description": "If the user can edit this Agent.",
+          "type": "boolean"
+        },
+        "canProposeUsers": {
+          "description": "If the user can propose other users to share the Agent with.",
+          "type": "boolean"
+        },
+        "canRequestReview": {
+          "description": "If the user can request a review for this Agent.",
+          "type": "boolean"
+        },
+        "canRun": {
+          "description": "If the user can run this Agent.",
+          "type": "boolean"
+        },
+        "canView": {
+          "description": "If the user can view the source of this Agent.",
+          "type": "boolean"
+        },
+        "canWithdraw": {
+          "description": "If the user can withdraw this Agent.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -22628,6 +23157,10 @@
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
         },
+        "enableLlmLayoutParsing": {
+          "description": "Optional. If true, the pdf layout will be refined using an LLM.",
+          "type": "boolean"
+        },
         "enableTableAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
           "type": "boolean"
@@ -22762,6 +23295,11 @@
           "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
           "readOnly": true
         },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaCmekConfig",
+          "description": "Output only. CMEK-related information for the Engine.",
+          "readOnly": true
+        },
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
@@ -22835,6 +23373,23 @@
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
+        },
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ],
+            "enumDescriptions": [
+              "The model state is unspecified.",
+              "The model is enabled by admin.",
+              "The model is disabled by admin."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.",
+          "type": "object"
         },
         "name": {
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -23819,6 +24374,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse": {
+      "description": "Response message for the AgentService.GetAgentView method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse",
+      "properties": {
+        "agentView": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAgentView",
+          "description": "The data for displaying an Agent."
         }
       },
       "type": "object"
@@ -24812,6 +25378,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaLicenseConfigUsageStats": {
+      "description": "Stats about users' licenses.",
+      "id": "GoogleCloudDiscoveryengineV1alphaLicenseConfigUsageStats",
+      "properties": {
+        "licenseConfig": {
+          "description": "Required. The LicenseConfig name.",
+          "type": "string"
+        },
+        "usedLicenseCount": {
+          "description": "Required. The number of licenses used.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaListAgentsResponse": {
       "description": "Response message for the AgentService.ListAgents method.",
       "id": "GoogleCloudDiscoveryengineV1alphaListAgentsResponse",
@@ -24843,6 +25425,24 @@
         },
         "nextPageToken": {
           "description": "A token that can be sent as ListAuthorizationsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse": {
+      "description": "Response message for the AgentService.ListAvailableAgentViews method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse",
+      "properties": {
+        "agentViews": {
+          "description": "The agent sources visible to the caller under the parent Assistant.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAgentView"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as ListAvailableAgentViewsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -25173,6 +25773,20 @@
         "nextPageToken": {
           "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse": {
+      "description": "Response message for UserLicenseService.ListLicenseConfigUsageStats method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse",
+      "properties": {
+        "licenseConfigUsageStats": {
+          "description": "All the customer's LicenseConfigUsageStats.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaLicenseConfigUsageStats"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -29805,6 +30419,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaUserAnnotations": {
+      "description": "Per-user annotations for an Agent, based on UserAnnotation.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUserAnnotations",
+      "properties": {
+        "pinned": {
+          "description": "Optional. Whether the agent is pinned, pinned agent will be displayed on the top of the agent list.",
+          "type": "boolean"
+        },
+        "viewed": {
+          "description": "Optional. Whether the agent has been viewed by the user.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaUserEvent": {
       "description": "UserEvent captures all metadata information Discovery Engine API needs to know about how end users interact with your website.",
       "id": "GoogleCloudDiscoveryengineV1alphaUserEvent",
@@ -30756,6 +31385,24 @@
             "Search with the generative answer that supports follow up questions. Also known as multi-turn search."
           ],
           "type": "string"
+        },
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ],
+            "enumDescriptions": [
+              "The model state is unspecified.",
+              "The model is enabled by admin.",
+              "The model is disabled by admin."
+            ],
+            "type": "string"
+          },
+          "description": "Output only. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.",
+          "readOnly": true,
+          "type": "object"
         },
         "resultDescriptionType": {
           "description": "Controls whether result extract is display and how (snippet or extractive answer). Default to no result if unspecified.",
@@ -31941,6 +32588,10 @@
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
         },
+        "enableLlmLayoutParsing": {
+          "description": "Optional. If true, the pdf layout will be refined using an LLM.",
+          "type": "boolean"
+        },
         "enableTableAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
           "type": "boolean"
@@ -32043,6 +32694,11 @@
           "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
           "readOnly": true
         },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig",
+          "description": "Output only. CMEK-related information for the Engine.",
+          "readOnly": true
+        },
         "commonConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineCommonConfig",
           "description": "Common config spec that specifies the metadata of the engine."
@@ -32116,6 +32772,23 @@
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
+        },
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ],
+            "enumDescriptions": [
+              "The model state is unspecified.",
+              "The model is enabled by admin.",
+              "The model is disabled by admin."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Maps a model name to its specific configuration for this engine. This allows admin users to turn on/off individual models. This only stores models whose states are overridden by the admin. When the state is unspecified, or model_configs is empty for this model, the system will decide if this model should be available or not based on the default configuration. For example, a preview model should be disabled by default if the admin has not chosen to enable it.",
+          "type": "object"
         },
         "name": {
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -35498,6 +36171,63 @@
           "description": "Output only. The id of the youtube video.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIamV1Binding": {
+      "description": "Associates `members`, or principals, with a `role`.",
+      "id": "GoogleIamV1Binding",
+      "properties": {
+        "condition": {
+          "$ref": "GoogleTypeExpr",
+          "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+        },
+        "members": {
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role": {
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIamV1Policy": {
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "id": "GoogleIamV1Policy",
+      "properties": {
+        "bindings": {
+          "description": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.",
+          "items": {
+            "$ref": "GoogleIamV1Binding"
+          },
+          "type": "array"
+        },
+        "etag": {
+          "description": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.",
+          "format": "byte",
+          "type": "string"
+        },
+        "version": {
+          "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIamV1SetIamPolicyRequest": {
+      "description": "Request message for `SetIamPolicy` method.",
+      "id": "GoogleIamV1SetIamPolicyRequest",
+      "properties": {
+        "policy": {
+          "$ref": "GoogleIamV1Policy",
+          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
         }
       },
       "type": "object"
