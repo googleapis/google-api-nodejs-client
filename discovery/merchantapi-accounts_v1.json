@@ -936,6 +936,76 @@
             }
           }
         },
+        "limits": {
+          "methods": {
+            "get": {
+              "description": "Retrieves an account limit.",
+              "flatPath": "accounts/v1/accounts/{accountsId}/limits/{limitsId}",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.limits.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the limit to retrieve. Format: `accounts/{account}/limits/{limit}` For example: `accounts/123/limits/products~ADS_NON_EEA`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/limits/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1/{+name}",
+              "response": {
+                "$ref": "AccountLimit"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "list": {
+              "description": "Lists the limits of an account.",
+              "flatPath": "accounts/v1/accounts/{accountsId}/limits",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.limits.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Required. A filter on the limit `type` is required, for example, `type = \"products\"`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of limits to return. The service may return fewer than this value. If unspecified, at most 100 limits will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListAccountLimits` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountLimits` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent account. Format: `accounts/{account}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1/{+parent}/limits",
+              "response": {
+                "$ref": "ListAccountLimitsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
         "omnichannelSettings": {
           "methods": {
             "create": {
@@ -2376,7 +2446,7 @@
       }
     }
   },
-  "revision": "20251023",
+  "revision": "20251112",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -2525,6 +2595,21 @@
         "title": {
           "description": "The localized title of the issue.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountLimit": {
+      "description": "A limit of a certain type that is applied to an account.",
+      "id": "AccountLimit",
+      "properties": {
+        "name": {
+          "description": "Identifier. The limit part of the name will be a combination of the type and the scope. For example: `accounts/123/limits/products~ADS_NON_EEA` Format: `accounts/{account}/limits/{limit}`",
+          "type": "string"
+        },
+        "products": {
+          "$ref": "ProductLimit",
+          "description": "The limit for products."
         }
       },
       "type": "object"
@@ -3977,6 +4062,24 @@
       },
       "type": "object"
     },
+    "ListAccountLimitsResponse": {
+      "description": "Response message for the `ListAccountLimits` method.",
+      "id": "ListAccountLimitsResponse",
+      "properties": {
+        "accountLimits": {
+          "description": "The limits for the given account.",
+          "items": {
+            "$ref": "AccountLimit"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAccountRelationshipsResponse": {
       "description": "Response after trying to list account relationships.",
       "id": "ListAccountRelationshipsResponse",
@@ -4702,6 +4805,32 @@
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
             "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
             "YouTube Checkout ."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductLimit": {
+      "description": "The limit for products.",
+      "id": "ProductLimit",
+      "properties": {
+        "limit": {
+          "description": "Required. The maximum number of products that are allowed in the account in the given scope.",
+          "format": "int64",
+          "type": "string"
+        },
+        "scope": {
+          "description": "Required. The scope of the product limit.",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "ADS_NON_EEA",
+            "ADS_EEA"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used.",
+            "Limit for products in non-EEA countries.",
+            "Limit for products in EEA countries."
           ],
           "type": "string"
         }
