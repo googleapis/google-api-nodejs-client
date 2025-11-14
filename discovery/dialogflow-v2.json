@@ -9258,7 +9258,7 @@
       }
     }
   },
-  "revision": "20251105",
+  "revision": "20251110",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -17345,7 +17345,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationModelConfig": {
-      "description": "Custom conversation models used in agent assist feature. Supported feature: ARTICLE_SUGGESTION, SMART_COMPOSE, SMART_REPLY, CONVERSATION_SUMMARIZATION.",
+      "description": "Custom conversation models used in agent assist feature. Supported feature: ARTICLE_SUGGESTION, SMART_COMPOSE, SMART_REPLY, CONVERSATION_SUMMARIZATION",
       "id": "GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationModelConfig",
       "properties": {
         "baselineModelVersion": {
@@ -19756,6 +19756,26 @@
       "description": "Represents a conversation participant (human agent, virtual agent, end-user).",
       "id": "GoogleCloudDialogflowV2Participant",
       "properties": {
+        "agentDesktopSource": {
+          "description": "Optional. For tracking the utilization of prebuilt Agent Assist integration modules. This field is only inscope for Integration type that include UI Modules, Backend Modules, and Agent Desktop connector, it is out of scope for CCaaS and Direct Integration. For each human agent, prebuilt UI Modules needs to trigger the UpdateParticipant API to update this field. Both CreateParticipantRequest and UpdateParticipantRequest will be supported.",
+          "enum": [
+            "AGENT_DESKTOP_SOURCE_UNSPECIFIED",
+            "LIVE_PERSON",
+            "GENESYS_CLOUD",
+            "TWILIO",
+            "SALESFORCE",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Agent Desktop Source is not specified.",
+            "Agent Desktop Source is Live Person.",
+            "Agent Desktop Source is Genesys Cloud.",
+            "Agent Desktop Source is Twilio.",
+            "Agent Desktop Source is Salesforce.",
+            "UI Modules are in use but the desktop is either not currently released or setting this field to the applicable desktop."
+          ],
+          "type": "string"
+        },
         "documentsMetadataFilters": {
           "additionalProperties": {
             "type": "string"
