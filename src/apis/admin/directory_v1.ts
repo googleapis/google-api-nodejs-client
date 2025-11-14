@@ -684,7 +684,7 @@ export namespace admin_directory_v1 {
      */
     backlightInfo?: Schema$BacklightInfo[];
     /**
-     * Output only. Information about bluetooth adapters of the device.
+     * Output only. Information about Bluetooth adapters of the device.
      */
     bluetoothAdapterInfo?: Schema$BluetoothAdapterInfo[];
     /**

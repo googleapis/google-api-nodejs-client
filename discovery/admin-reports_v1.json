@@ -3,10 +3,10 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/admin.reports.audit.readonly": {
-          "description": "View audit reports for your G Suite domain"
+          "description": "View audit reports for your Google Workspace domain"
         },
         "https://www.googleapis.com/auth/admin.reports.usage.readonly": {
-          "description": "View usage reports for your G Suite domain"
+          "description": "View usage reports for your Google Workspace domain"
         }
       }
     }
@@ -635,7 +635,7 @@
       }
     }
   },
-  "revision": "20250818",
+  "revision": "20251107",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
