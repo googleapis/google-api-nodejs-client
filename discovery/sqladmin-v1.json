@@ -785,6 +785,38 @@
     },
     "instances": {
       "methods": {
+        "ListEntraIdCertificates": {
+          "description": "Lists all versions of EntraID certificates for the specified instance. There can be up to three sets of certificates listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out.",
+          "flatPath": "v1/projects/{project}/instances/{instance}/listEntraIdCertificates",
+          "httpMethod": "GET",
+          "id": "sql.instances.ListEntraIdCertificates",
+          "parameterOrder": [
+            "project",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID of the project that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/projects/{project}/instances/{instance}/listEntraIdCertificates",
+          "response": {
+            "$ref": "InstancesListEntraIdCertificatesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
         "ListServerCertificates": {
           "description": "Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out. For instances not using Certificate Authority Service (CAS) server CA, use ListServerCas instead.",
           "flatPath": "v1/projects/{project}/instances/{instance}/listServerCertificates",
@@ -811,6 +843,41 @@
           "path": "v1/projects/{project}/instances/{instance}/listServerCertificates",
           "response": {
             "$ref": "InstancesListServerCertificatesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "RotateEntraIdCertificate": {
+          "description": "Rotates the server certificate version to one previously added with the addEntraIdCertificate method.",
+          "flatPath": "v1/projects/{project}/instances/{instance}/rotateEntraIdCertificate",
+          "httpMethod": "POST",
+          "id": "sql.instances.RotateEntraIdCertificate",
+          "parameterOrder": [
+            "project",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID of the project that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/projects/{project}/instances/{instance}/rotateEntraIdCertificate",
+          "request": {
+            "$ref": "InstancesRotateEntraIdCertificateRequest"
+          },
+          "response": {
+            "$ref": "Operation"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -2647,6 +2714,12 @@
             "instance"
           ],
           "parameters": {
+            "databaseRoles": {
+              "description": "Optional. List of database roles to grant to the user. body.database_roles will be ignored for update request.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
             "host": {
               "description": "Optional. Host of the user in the instance.",
               "location": "query",
@@ -2685,7 +2758,7 @@
       }
     }
   },
-  "revision": "20251019",
+  "revision": "20251107",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -4562,7 +4635,7 @@
             ],
             "enumDescriptions": [
               "This is an unknown suspension reason.",
-              "The instance is suspended due to billing issues (for example:, GCP account issue)",
+              "The instance is suspended due to billing issues (for example:, account issue)",
               "The instance is suspended due to illegal content (for example:, child pornography, copyrighted material, etc.).",
               "The instance is causing operational issues (for example:, causing the database to crash).",
               "The KMS key used by the instance is either revoked or denied access to"
@@ -5472,7 +5545,7 @@
               "type": "object"
             },
             "noRecovery": {
-              "description": "Whether or not the backup importing will restore database with NORECOVERY option Applies only to Cloud SQL for SQL Server.",
+              "description": "Whether or not the backup importing will restore database with NORECOVERY option. Applies only to Cloud SQL for SQL Server.",
               "type": "boolean"
             },
             "recoveryOnly": {
@@ -5741,6 +5814,28 @@
       },
       "type": "object"
     },
+    "InstancesListEntraIdCertificatesResponse": {
+      "description": "Instances ListEntraIdCertificates response.",
+      "id": "InstancesListEntraIdCertificatesResponse",
+      "properties": {
+        "activeVersion": {
+          "description": "The `sha1_fingerprint` of the active certificate from `certs`.",
+          "type": "string"
+        },
+        "certs": {
+          "description": "List of Entra ID certificates for the instance.",
+          "items": {
+            "$ref": "SslCert"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "This is always `sql#instancesListEntraIdCertificates`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InstancesListResponse": {
       "description": "Database instances list response.",
       "id": "InstancesListResponse",
@@ -5872,6 +5967,17 @@
       },
       "type": "object"
     },
+    "InstancesRotateEntraIdCertificateRequest": {
+      "description": "Rotate Entra ID certificate request.",
+      "id": "InstancesRotateEntraIdCertificateRequest",
+      "properties": {
+        "rotateEntraIdCertificateContext": {
+          "$ref": "RotateEntraIdCertificateContext",
+          "description": "Optional. Contains details about the rotate server certificate operation."
+        }
+      },
+      "type": "object"
+    },
     "InstancesRotateServerCaRequest": {
       "description": "Rotate server CA request.",
       "id": "InstancesRotateServerCaRequest",
@@ -5982,6 +6088,20 @@
         },
         "serverCaPool": {
           "description": "Optional. The resource name of the server CA pool for an instance with `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`. Format: projects/{PROJECT}/locations/{REGION}/caPools/{CA_POOL_ID}",
+          "type": "string"
+        },
+        "serverCertificateRotationMode": {
+          "description": "Optional. Controls the automatic server certificate rotation feature. This feature is disabled by default. When enabled, the server certificate will be automatically rotated during Cloud SQL scheduled maintenance or self-service maintenance updates up to six months before it expires. This setting can only be set if server_ca_mode is either GOOGLE_MANAGED_CAS_CA or CUSTOMER_MANAGED_CAS_CA.",
+          "enum": [
+            "SERVER_CERTIFICATE_ROTATION_MODE_UNSPECIFIED",
+            "NO_AUTOMATIC_ROTATION",
+            "AUTOMATIC_ROTATION_DURING_MAINTENANCE"
+          ],
+          "enumDescriptions": [
+            "Unspecified: no automatic server certificate rotation.",
+            "No automatic server certificate rotation. The user must [manage server certificate rotation](/sql/docs/mysql/manage-ssl-instance#rotate-server-certificate-cas) on their side.",
+            "Automatic server certificate rotation during Cloud SQL scheduled maintenance or self-service maintenance updates. Requires `server_ca_mode` to be `GOOGLE_MANAGED_CAS_CA` or `CUSTOMER_MANAGED_CAS_CA`."
+          ],
           "type": "string"
         },
         "sslMode": {
@@ -6725,7 +6845,7 @@
       "type": "object"
     },
     "PointInTimeRestoreContext": {
-      "description": "The context to perform a point-in-time recovery of an instance managed by Google Cloud Backup and Disaster Recovery.",
+      "description": "The context to perform a point-in-time recovery of an instance managed by Backup and Disaster Recovery (DR) Service.",
       "id": "PointInTimeRestoreContext",
       "properties": {
         "allocatedIpRange": {
@@ -6733,7 +6853,7 @@
           "type": "string"
         },
         "datasource": {
-          "description": "The Google Cloud Backup and Disaster Recovery Datasource URI. Format: projects/{project}/locations/{region}/backupVaults/{backupvault}/dataSources/{datasource}.",
+          "description": "The Backup and Disaster Recovery (DR) Service Datasource URI. Format: projects/{project}/locations/{region}/backupVaults/{backupvault}/dataSources/{datasource}.",
           "type": "string"
         },
         "pointInTime": {
@@ -7275,6 +7395,21 @@
       },
       "type": "object"
     },
+    "RotateEntraIdCertificateContext": {
+      "description": "Instance rotate Entra ID certificate context.",
+      "id": "RotateEntraIdCertificateContext",
+      "properties": {
+        "kind": {
+          "description": "Optional. This is always `sql#rotateEntraIdCertificateContext`.",
+          "type": "string"
+        },
+        "nextVersion": {
+          "description": "Optional. The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server certificate version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RotateServerCaContext": {
       "description": "Instance rotate server CA context.",
       "id": "RotateServerCaContext",
@@ -7422,7 +7557,7 @@
           "type": "boolean"
         },
         "dataApiAccess": {
-          "description": "This parameter controls whether to allow using Data API to connect to the instance. Not allowed by default.",
+          "description": "This parameter controls whether to allow using ExecuteSql API to connect to the instance. Not allowed by default.",
           "enum": [
             "DATA_API_ACCESS_UNSPECIFIED",
             "DISALLOW_DATA_API",
@@ -7430,8 +7565,8 @@
           ],
           "enumDescriptions": [
             "Unspecified, effectively the same as `DISALLOW_DATA_API`.",
-            "Disallow using Data API to connect to the instance.",
-            "Allow using Data API to connect to the instance. For private IP instances, this will allow authorized users to access the instance from the public internet."
+            "Disallow using ExecuteSql API to connect to the instance.",
+            "Allow using ExecuteSql API to connect to the instance. For private IP instances, this allows authorized users to access the instance from the public internet using ExecuteSql API."
           ],
           "type": "string"
         },
@@ -7522,6 +7657,10 @@
         "enableGoogleMlIntegration": {
           "description": "Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for MySQL and Cloud SQL for PostgreSQL instances.",
           "type": "boolean"
+        },
+        "entraidConfig": {
+          "$ref": "SqlServerEntraIdConfig",
+          "description": "Optional. The Microsoft Entra ID configuration for the SQL Server instance."
         },
         "finalBackupConfig": {
           "$ref": "FinalBackupConfig",
@@ -8181,6 +8320,26 @@
       },
       "type": "object"
     },
+    "SqlServerEntraIdConfig": {
+      "description": "SQL Server Entra ID configuration.",
+      "id": "SqlServerEntraIdConfig",
+      "properties": {
+        "applicationId": {
+          "description": "Optional. The application ID for the Entra ID configuration.",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Output only. This is always sql#sqlServerEntraIdConfig",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "Optional. The tenant ID for the Entra ID configuration.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SqlServerUserDetails": {
       "description": "Represents a Sql Server user on the Cloud SQL instance.",
       "id": "SqlServerUserDetails",
@@ -8478,6 +8637,13 @@
       "description": "A Cloud SQL user resource.",
       "id": "User",
       "properties": {
+        "databaseRoles": {
+          "description": "Optional. Role memberships of the user",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "dualPasswordType": {
           "description": "Dual password status for the user.",
           "enum": [
@@ -8555,7 +8721,8 @@
             "CLOUD_IAM_SERVICE_ACCOUNT",
             "CLOUD_IAM_GROUP",
             "CLOUD_IAM_GROUP_USER",
-            "CLOUD_IAM_GROUP_SERVICE_ACCOUNT"
+            "CLOUD_IAM_GROUP_SERVICE_ACCOUNT",
+            "ENTRAID_USER"
           ],
           "enumDescriptions": [
             "The database's built-in user type.",
@@ -8563,7 +8730,8 @@
             "Cloud IAM service account.",
             "Cloud IAM group. Not used for login.",
             "Read-only. Login for a user that belongs to the Cloud IAM group.",
-            "Read-only. Login for a service account that belongs to the Cloud IAM group."
+            "Read-only. Login for a service account that belongs to the Cloud IAM group.",
+            "Microsoft Entra ID user."
           ],
           "type": "string"
         }
