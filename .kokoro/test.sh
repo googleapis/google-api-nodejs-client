@@ -18,6 +18,8 @@ set -eo pipefail
 
 export NPM_CONFIG_PREFIX=${HOME}/.npm-global
 
+export NODE_OPTIONS="--max-old-space-size=8192"
+
 cd $(dirname $0)/..
 
 npm install
