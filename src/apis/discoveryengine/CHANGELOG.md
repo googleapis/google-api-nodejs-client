@@ -1,5 +1,13 @@
 # Changelog
 
+## [27.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v27.0.0...discoveryengine-v27.1.0) (2025-11-26)
+
+
+### Features
+
+* **discoveryengine:** update the API ([8a91a6d](https://github.com/googleapis/google-api-nodejs-client/commit/8a91a6d83112179a58227ae158737c4d23c37d6f))
+* regenerate index files ([55171de](https://github.com/googleapis/google-api-nodejs-client/commit/55171de7cd500021ca8df008337dacc3ca9da23b))
+
 ## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v26.1.0...discoveryengine-v27.0.0) (2025-11-04)
 
 

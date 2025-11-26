@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v3.0.0...datamanager-v3.1.0) (2025-11-26)
+
+
+### Features
+
+* regenerate index files ([55171de](https://github.com/googleapis/google-api-nodejs-client/commit/55171de7cd500021ca8df008337dacc3ca9da23b))
+
+
+### Bug Fixes
+
+* **datamanager:** update the API ([eda5333](https://github.com/googleapis/google-api-nodejs-client/commit/eda53337925f34a6f187259860d9cd72dd7ce1f9))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v2.0.0...datamanager-v3.0.0) (2025-11-11)
 
 
