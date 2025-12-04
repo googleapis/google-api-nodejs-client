@@ -23,6 +23,8 @@ node.owlbot_main(templates_excludes=[
   '.kokoro/publish.sh',
   '.kokoro/release/publish.cfg',
   '.kokoro/test.sh',
+  '.kokoro/samples-test.sh',
+  '.kokoro/system-test.sh',
   '.github/workflows/ci.yaml',
   '.github/workflows/issues-no-repro.yaml'
 ])

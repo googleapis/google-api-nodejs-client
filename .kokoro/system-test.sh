@@ -33,18 +33,6 @@ fi
 
 npm install
 
-# If tests are running against main branch, configure flakybot
-# to open issues on failures:
-if [[ $KOKORO_BUILD_ARTIFACTS_SUBDIR = *"continuous"* ]] || [[ $KOKORO_BUILD_ARTIFACTS_SUBDIR = *"nightly"* ]]; then
-  export MOCHA_REPORTER_OUTPUT=test_output_sponge_log.xml
-  export MOCHA_REPORTER=xunit
-  cleanup() {
-    chmod +x $KOKORO_GFILE_DIR/linux_amd64/flakybot
-    $KOKORO_GFILE_DIR/linux_amd64/flakybot
-  }
-  trap cleanup EXIT HUP
-fi
-
 npm run system-test
 
 # codecov combines coverage across integration and unit tests. Include
