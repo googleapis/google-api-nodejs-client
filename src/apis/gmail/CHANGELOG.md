@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v16.0.0...gmail-v16.1.0) (2025-11-26)
+
+
+### Features
+
+* **gmail:** update the API ([5010318](https://github.com/googleapis/google-api-nodejs-client/commit/501031881d93ea70ec470f4d265d20eb4ad4e4f7))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v15.0.0...gmail-v16.0.0) (2025-10-15)
 
 

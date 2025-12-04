@@ -1,5 +1,13 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v12.0.0...spanner-v12.1.0) (2025-11-26)
+
+
+### Features
+
+* regenerate index files ([55171de](https://github.com/googleapis/google-api-nodejs-client/commit/55171de7cd500021ca8df008337dacc3ca9da23b))
+* **spanner:** update the API ([8188170](https://github.com/googleapis/google-api-nodejs-client/commit/8188170024417d4ead9a7e28861aa3aaf1e98309))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v11.0.0...spanner-v12.0.0) (2025-10-15)
 
 
