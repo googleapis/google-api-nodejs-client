@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/admin",
-  "version": "30.1.0",
+  "version": "30.1.1",
   "description": "admin",
   "main": "build/index.js",
   "types": "build/index.d.ts",

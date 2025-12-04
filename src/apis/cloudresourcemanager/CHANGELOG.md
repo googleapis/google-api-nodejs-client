@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v5.0.0...cloudresourcemanager-v6.0.0) (2025-11-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudresourcemanager:** This release has breaking changes.
+
+### Features
+
+* **cloudresourcemanager:** update the API ([19e13f8](https://github.com/googleapis/google-api-nodejs-client/commit/19e13f8dc27970157af1c67319cc6107788a7340))
+* regenerate index files ([55171de](https://github.com/googleapis/google-api-nodejs-client/commit/55171de7cd500021ca8df008337dacc3ca9da23b))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v4.0.0...cloudresourcemanager-v5.0.0) (2025-10-15)
 
 

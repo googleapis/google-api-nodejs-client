@@ -1,5 +1,12 @@
 # Changelog
 
+## [30.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v30.1.0...admin-v30.1.1) (2025-11-26)
+
+
+### Bug Fixes
+
+* **admin:** update the API ([3c5f18d](https://github.com/googleapis/google-api-nodejs-client/commit/3c5f18df69afc8a3f15abbcf10747bdd98e3c76a))
+
 ## [30.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v30.0.0...admin-v30.1.0) (2025-11-04)
 
 

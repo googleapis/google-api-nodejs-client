@@ -1,5 +1,17 @@
 # Changelog
 
+## [44.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v44.2.0...chat-v44.3.0) (2025-11-26)
+
+
+### Features
+
+* regenerate index files ([55171de](https://github.com/googleapis/google-api-nodejs-client/commit/55171de7cd500021ca8df008337dacc3ca9da23b))
+
+
+### Bug Fixes
+
+* **chat:** update the API ([2e4aa03](https://github.com/googleapis/google-api-nodejs-client/commit/2e4aa036ddb672c8d44b3724cd9ebb0666ac8c98))
+
 ## [44.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v44.1.0...chat-v44.2.0) (2025-11-04)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v13.0.0...appengine-v13.1.0) (2025-11-26)
+
+
+### Features
+
+* **appengine:** update the API ([372faa7](https://github.com/googleapis/google-api-nodejs-client/commit/372faa72b6d5226eef11fd85faa2c8cfffcd0b12))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v12.0.0...appengine-v13.0.0) (2025-11-11)
 
 
