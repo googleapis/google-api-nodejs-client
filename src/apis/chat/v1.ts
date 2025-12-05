@@ -3592,15 +3592,13 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Customemojis$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customemojis$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$CustomEmoji;
   }
-  export interface Params$Resource$Customemojis$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Customemojis$Delete extends StandardParameters {
     /**
      * Required. Resource name of the custom emoji to delete. Format: `customEmojis/{customEmoji\}` You can use the emoji name as an alias for `{customEmoji\}`. For example, `customEmojis/:example-emoji:` where `:example-emoji:` is the emoji name for a custom emoji.
      */
@@ -3612,8 +3610,7 @@ export namespace chat_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Customemojis$List
-    extends StandardParameters {
+  export interface Params$Resource$Customemojis$List extends StandardParameters {
     /**
      * Optional. A query filter. Supports filtering by creator. To filter by creator, you must specify a valid value. Currently only `creator("users/me")` and `NOT creator("users/me")` are accepted to filter custom emojis by whether they were created by the calling user or not. For example, the following query returns custom emojis created by the caller: ``` creator("users/me") ``` Invalid queries are rejected with an `INVALID_ARGUMENT` error.
      */
@@ -4955,7 +4952,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.patch({
      *     // Identifier. Resource name of the space. Format: `spaces/{space\}` Where `{space\}` represents the system-assigned ID for the space. You can obtain the space ID by calling the [`spaces.list()`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/list) method or from the space URL. For example, if the space URL is `https://mail.google.com/mail/u/0/#chat/space/AAAAAAAAA`, the space ID is `AAAAAAAAA`.
      *     name: 'spaces/my-space',
-     *     // Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description. Supports up to 150 characters. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. `permissionSettings` is not supported with `useAdminAccess`. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
+     *     // Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. `permissionSettings` is not supported with `useAdminAccess`. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
      *     updateMask: 'placeholder-value',
      *     // Optional. When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Some `FieldMask` values are not supported using admin access. For details, see the description of `update_mask`.
      *     useAdminAccess: 'placeholder-value',
@@ -5419,8 +5416,7 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Spaces$Completeimport
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Completeimport extends StandardParameters {
     /**
      * Required. Resource name of the import mode space. Format: `spaces/{space\}`
      */
@@ -5452,8 +5448,7 @@ export namespace chat_v1 {
      */
     useAdminAccess?: boolean;
   }
-  export interface Params$Resource$Spaces$Finddirectmessage
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Finddirectmessage extends StandardParameters {
     /**
      * Required. Resource name of the user to find direct message with. Format: `users/{user\}`, where `{user\}` is either the `id` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, if the People API profile ID is `123456789`, you can find a direct message with that person by using `users/123456789` as the `name`. When [authenticated as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), you can use the email as an alias for `{user\}`. For example, `users/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.
      */
@@ -5489,7 +5484,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description. Supports up to 150 characters. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. `permissionSettings` is not supported with `useAdminAccess`. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
+     * Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. `permissionSettings` is not supported with `useAdminAccess`. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
      */
     updateMask?: string;
     /**
@@ -6323,8 +6318,7 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Spaces$Members$Create
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Members$Create extends StandardParameters {
     /**
      * Required. The resource name of the space for which to create the membership. Format: spaces/{space\}
      */
@@ -6339,8 +6333,7 @@ export namespace chat_v1 {
      */
     requestBody?: Schema$Membership;
   }
-  export interface Params$Resource$Spaces$Members$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Members$Delete extends StandardParameters {
     /**
      * Required. Resource name of the membership to delete. Chat apps can delete human users' or their own memberships. Chat apps can't delete other apps' memberships. When deleting a human membership, requires the `chat.memberships` scope with [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) or the `chat.memberships.app` scope with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) and the `spaces/{space\}/members/{member\}` format. You can use the email as an alias for `{member\}`. For example, `spaces/{space\}/members/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user. When deleting an app membership, requires the `chat.memberships.app` scope and `spaces/{space\}/members/app` format. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app`.
      */
@@ -6350,8 +6343,7 @@ export namespace chat_v1 {
      */
     useAdminAccess?: boolean;
   }
-  export interface Params$Resource$Spaces$Members$Get
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Members$Get extends StandardParameters {
     /**
      * Required. Resource name of the membership to retrieve. To get the app's own membership [by using user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), you can optionally use `spaces/{space\}/members/app`. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app` You can use the user's email as an alias for `{member\}`. For example, `spaces/{space\}/members/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.
      */
@@ -6361,8 +6353,7 @@ export namespace chat_v1 {
      */
     useAdminAccess?: boolean;
   }
-  export interface Params$Resource$Spaces$Members$List
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Members$List extends StandardParameters {
     /**
      * Optional. A query filter. You can filter memberships by a member's role ([`role`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.members#membershiprole)) and type ([`member.type`](https://developers.google.com/workspace/chat/api/reference/rest/v1/User#type)). To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`. To filter by type, set `member.type` to `HUMAN` or `BOT`. You can also filter for `member.type` using the `!=` operator. To filter by both role and type, use the `AND` operator. To filter by either role or type, use the `OR` operator. Either `member.type = "HUMAN"` or `member.type != "BOT"` is required when `use_admin_access` is set to true. Other member type filters will be rejected. For example, the following queries are valid: ``` role = "ROLE_MANAGER" OR role = "ROLE_MEMBER" member.type = "HUMAN" AND role = "ROLE_MANAGER" member.type != "BOT" ``` The following queries are invalid: ``` member.type = "HUMAN" AND member.type = "BOT" role = "ROLE_MANAGER" AND role = "ROLE_MEMBER" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
      */
@@ -6392,8 +6383,7 @@ export namespace chat_v1 {
      */
     useAdminAccess?: boolean;
   }
-  export interface Params$Resource$Spaces$Members$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Members$Patch extends StandardParameters {
     /**
      * Identifier. Resource name of the membership, assigned by the server. Format: `spaces/{space\}/members/{member\}`
      */
@@ -7489,8 +7479,7 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Spaces$Messages$Create
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Create extends StandardParameters {
     /**
      * Optional. A custom ID for a message. Lets Chat apps get, update, or delete a message without needing to store the system-assigned ID in the message's resource name (represented in the message `name` field). The value for this field must meet the following requirements: * Begins with `client-`. For example, `client-custom-name` is a valid custom ID, but `custom-name` is not. * Contains up to 63 characters and only lowercase letters, numbers, and hyphens. * Is unique within a space. A Chat app can't use the same custom ID for different messages. For details, see [Name a message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      */
@@ -7517,8 +7506,7 @@ export namespace chat_v1 {
      */
     requestBody?: Schema$Message;
   }
-  export interface Params$Resource$Spaces$Messages$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Delete extends StandardParameters {
     /**
      * Optional. When `true`, deleting a message also deletes its threaded replies. When `false`, if a message has threaded replies, deletion fails. Only applies when [authenticating as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user). Has no effect when [authenticating as a Chat app] (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      */
@@ -7528,15 +7516,13 @@ export namespace chat_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Spaces$Messages$Get
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Get extends StandardParameters {
     /**
      * Required. Resource name of the message. Format: `spaces/{space\}/messages/{message\}` If you've set a custom ID for your message, you can use the value from the `clientAssignedMessageId` field for `{message\}`. For details, see [Name a message] (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      */
     name?: string;
   }
-  export interface Params$Resource$Spaces$Messages$List
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Messages$List extends StandardParameters {
     /**
      * Optional. A query filter. You can filter messages by date (`create_time`) and thread (`thread.name`). To filter messages by the date they were created, specify the `create_time` with a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and double quotation marks. For example, `"2023-04-21T11:30:00-04:00"`. You can use the greater than operator `\>` to list messages that were created after a timestamp, or the less than operator `<` to list messages that were created before a timestamp. To filter messages within a time interval, use the `AND` operator between two timestamps. To filter by thread, specify the `thread.name`, formatted as `spaces/{space\}/threads/{thread\}`. You can only specify one `thread.name` per query. To filter by both thread and date, use the `AND` operator in your query. For example, the following queries are valid: ``` create_time \> "2012-04-21T11:30:00-04:00" create_time \> "2012-04-21T11:30:00-04:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 create_time \> "2012-04-21T11:30:00+00:00" AND create_time < "2013-01-01T00:00:00+00:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 thread.name = spaces/AAAAAAAAAAA/threads/123 ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
      */
@@ -7562,8 +7548,7 @@ export namespace chat_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Spaces$Messages$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Patch extends StandardParameters {
     /**
      * Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/workspace/chat/create-messages#name_a_created_message) or the request fails.
      */
@@ -7582,8 +7567,7 @@ export namespace chat_v1 {
      */
     requestBody?: Schema$Message;
   }
-  export interface Params$Resource$Spaces$Messages$Update
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Update extends StandardParameters {
     /**
      * Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/workspace/chat/create-messages#name_a_created_message) or the request fails.
      */
@@ -7751,8 +7735,7 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Spaces$Messages$Attachments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Attachments$Get extends StandardParameters {
     /**
      * Required. Resource name of the attachment, in the form `spaces/{space\}/messages/{message\}/attachments/{attachment\}`.
      */
@@ -8207,8 +8190,7 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Spaces$Messages$Reactions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Reactions$Create extends StandardParameters {
     /**
      * Required. The message where the reaction is created. Format: `spaces/{space\}/messages/{message\}`
      */
@@ -8219,15 +8201,13 @@ export namespace chat_v1 {
      */
     requestBody?: Schema$Reaction;
   }
-  export interface Params$Resource$Spaces$Messages$Reactions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Reactions$Delete extends StandardParameters {
     /**
      * Required. Name of the reaction to delete. Format: `spaces/{space\}/messages/{message\}/reactions/{reaction\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Spaces$Messages$Reactions$List
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Reactions$List extends StandardParameters {
     /**
      * Optional. A query filter. You can filter reactions by [emoji](https://developers.google.com/workspace/chat/api/reference/rest/v1/Emoji) (either `emoji.unicode` or `emoji.custom_emoji.uid`) and [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User) (`user.name`). To filter reactions for multiple emojis or users, join similar fields with the `OR` operator, such as `emoji.unicode = "🙂" OR emoji.unicode = "👍"` and `user.name = "users/AAAAAA" OR user.name = "users/BBBBBB"`. To filter reactions by emoji and user, use the `AND` operator, such as `emoji.unicode = "🙂" AND user.name = "users/AAAAAA"`. If your query uses both `AND` and `OR`, group them with parentheses. For example, the following queries are valid: ``` user.name = "users/{user\}" emoji.unicode = "🙂" emoji.custom_emoji.uid = "{uid\}" emoji.unicode = "🙂" OR emoji.unicode = "👍" emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid\}" emoji.unicode = "🙂" AND user.name = "users/{user\}" (emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid\}") AND user.name = "users/{user\}" ``` The following queries are invalid: ``` emoji.unicode = "🙂" AND emoji.unicode = "👍" emoji.unicode = "🙂" AND emoji.custom_emoji.uid = "{uid\}" emoji.unicode = "🙂" OR user.name = "users/{user\}" emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid\}" OR user.name = "users/{user\}" emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid\}" AND user.name = "users/{user\}" ``` Invalid queries are rejected with an `INVALID_ARGUMENT` error.
      */
@@ -8577,15 +8557,13 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Spaces$Spaceevents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Spaceevents$Get extends StandardParameters {
     /**
      * Required. The resource name of the space event. Format: `spaces/{space\}/spaceEvents/{spaceEvent\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Spaces$Spaceevents$List
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Spaceevents$List extends StandardParameters {
     /**
      * Required. A query filter. You must specify at least one event type (`event_type`) using the has `:` operator. To filter by multiple event types, use the `OR` operator. Omit batch event types in your filter. The request automatically returns any related batch events. For example, if you filter by new reactions (`google.workspace.chat.reaction.v1.created`), the server also returns batch new reactions events (`google.workspace.chat.reaction.v1.batchCreated`). For a list of supported event types, see the [`SpaceEvents` reference documentation](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.spaceEvents#SpaceEvent.FIELDS.event_type). Optionally, you can also filter by start time (`start_time`) and end time (`end_time`): * `start_time`: Exclusive timestamp from which to start listing space events. You can list events that occurred up to 28 days ago. If unspecified, lists space events from the past 28 days. * `end_time`: Inclusive timestamp until which space events are listed. If unspecified, lists events up to the time of the request. To specify a start or end time, use the equals `=` operator and format in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339). To filter by both `start_time` and `end_time`, use the `AND` operator. For example, the following queries are valid: ``` start_time="2023-08-23T19:20:33+00:00" AND end_time="2023-08-23T19:21:54+00:00" ``` ``` start_time="2023-08-23T19:20:33+00:00" AND (event_types:"google.workspace.chat.space.v1.updated" OR event_types:"google.workspace.chat.message.v1.created") ``` The following queries are invalid: ``` start_time="2023-08-23T19:20:33+00:00" OR end_time="2023-08-23T19:21:54+00:00" ``` ``` event_types:"google.workspace.chat.space.v1.updated" AND event_types:"google.workspace.chat.message.v1.created" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
      */
@@ -8913,15 +8891,13 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Spaces$Getspacereadstate
-    extends StandardParameters {
+  export interface Params$Resource$Users$Spaces$Getspacereadstate extends StandardParameters {
     /**
      * Required. Resource name of the space read state to retrieve. Only supports getting read state for the calling user. To refer to the calling user, set one of the following: - The `me` alias. For example, `users/me/spaces/{space\}/spaceReadState`. - Their Workspace email address. For example, `users/user@example.com/spaces/{space\}/spaceReadState`. - Their user id. For example, `users/123456789/spaces/{space\}/spaceReadState`. Format: users/{user\}/spaces/{space\}/spaceReadState
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Spaces$Updatespacereadstate
-    extends StandardParameters {
+  export interface Params$Resource$Users$Spaces$Updatespacereadstate extends StandardParameters {
     /**
      * Resource name of the space read state. Format: `users/{user\}/spaces/{space\}/spaceReadState`
      */
@@ -9236,15 +9212,13 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Spaces$Spacenotificationsetting$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Spaces$Spacenotificationsetting$Get extends StandardParameters {
     /**
      * Required. Format: users/{user\}/spaces/{space\}/spaceNotificationSetting - `users/me/spaces/{space\}/spaceNotificationSetting`, OR - `users/user@example.com/spaces/{space\}/spaceNotificationSetting`, OR - `users/123456789/spaces/{space\}/spaceNotificationSetting`. Note: Only the caller's user id or email is allowed in the path.
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Spaces$Spacenotificationsetting$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Users$Spaces$Spacenotificationsetting$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the space notification setting. Format: `users/{user\}/spaces/{space\}/spaceNotificationSetting`.
      */
@@ -9407,8 +9381,7 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Spaces$Threads$Getthreadreadstate
-    extends StandardParameters {
+  export interface Params$Resource$Users$Spaces$Threads$Getthreadreadstate extends StandardParameters {
     /**
      * Required. Resource name of the thread read state to retrieve. Only supports getting read state for the calling user. To refer to the calling user, set one of the following: - The `me` alias. For example, `users/me/spaces/{space\}/threads/{thread\}/threadReadState`. - Their Workspace email address. For example, `users/user@example.com/spaces/{space\}/threads/{thread\}/threadReadState`. - Their user id. For example, `users/123456789/spaces/{space\}/threads/{thread\}/threadReadState`. Format: users/{user\}/spaces/{space\}/threads/{thread\}/threadReadState
      */
