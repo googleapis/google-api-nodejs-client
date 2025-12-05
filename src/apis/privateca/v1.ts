@@ -1790,15 +1790,13 @@ export namespace privateca_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -3168,8 +3166,7 @@ export namespace privateca_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Capools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Create extends StandardParameters {
     /**
      * Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`
      */
@@ -3188,8 +3185,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$CaPool;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Delete extends StandardParameters {
     /**
      * Optional. This field allows this pool to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resources since the pool will no longer be able to issue certificates.
      */
@@ -3203,8 +3199,7 @@ export namespace privateca_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Fetchcacerts
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Fetchcacerts extends StandardParameters {
     /**
      * Required. The resource name for the CaPool in the format `projects/x/locations/x/caPools/x`.
      */
@@ -3215,15 +3210,13 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$FetchCaCertsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Get extends StandardParameters {
     /**
      * Required. The name of the CaPool to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3233,8 +3226,7 @@ export namespace privateca_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter in the response.
      */
@@ -3256,8 +3248,7 @@ export namespace privateca_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Patch extends StandardParameters {
     /**
      * Identifier. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
      */
@@ -3276,8 +3267,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$CaPool;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3288,8 +3278,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4872,8 +4861,7 @@ export namespace privateca_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Activate extends StandardParameters {
     /**
      * Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      */
@@ -4884,8 +4872,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$ActivateCertificateAuthorityRequest;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Create extends StandardParameters {
     /**
      * Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`
      */
@@ -4904,8 +4891,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$CertificateAuthority;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Delete extends StandardParameters {
     /**
      * Optional. This field allows the CA to be deleted even if the CA has active certs. Active certs include both unrevoked and unexpired certs.
      */
@@ -4927,8 +4913,7 @@ export namespace privateca_v1 {
      */
     skipGracePeriod?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Disable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Disable extends StandardParameters {
     /**
      * Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      */
@@ -4939,8 +4924,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$DisableCertificateAuthorityRequest;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Enable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Enable extends StandardParameters {
     /**
      * Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      */
@@ -4951,22 +4935,19 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$EnableCertificateAuthorityRequest;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Fetch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Fetch extends StandardParameters {
     /**
      * Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Get extends StandardParameters {
     /**
      * Required. The name of the CertificateAuthority to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter in the response.
      */
@@ -4988,8 +4969,7 @@ export namespace privateca_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Patch extends StandardParameters {
     /**
      * Identifier. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      */
@@ -5008,8 +4988,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$CertificateAuthority;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Undelete extends StandardParameters {
     /**
      * Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      */
@@ -5957,15 +5936,13 @@ export namespace privateca_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Get extends StandardParameters {
     /**
      * Required. The name of the CertificateRevocationList to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5975,8 +5952,7 @@ export namespace privateca_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter in the response.
      */
@@ -5998,8 +5974,7 @@ export namespace privateca_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Patch extends StandardParameters {
     /**
      * Identifier. The resource name for this CertificateRevocationList in the format `projects/x/locations/x/caPools/xcertificateAuthorities/x/ certificateRevocationLists/x`.
      */
@@ -6018,8 +5993,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$CertificateRevocationList;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6030,8 +6004,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6858,8 +6831,7 @@ export namespace privateca_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Capools$Certificates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificates$Create extends StandardParameters {
     /**
      * Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`. This field is required when using a CertificateAuthority in the Enterprise CertificateAuthority.tier, but is optional and its value is ignored otherwise.
      */
@@ -6886,15 +6858,13 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$Certificate;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificates$Get extends StandardParameters {
     /**
      * Required. The name of the Certificate to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificates$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificates$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter in the response. For details on supported filters and syntax, see [Certificates Filtering documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#filtering_support).
      */
@@ -6916,8 +6886,7 @@ export namespace privateca_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificates$Patch extends StandardParameters {
     /**
      * Identifier. The resource name for this Certificate in the format `projects/x/locations/x/caPools/x/certificates/x`.
      */
@@ -6936,8 +6905,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$Certificate;
   }
-  export interface Params$Resource$Projects$Locations$Capools$Certificates$Revoke
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capools$Certificates$Revoke extends StandardParameters {
     /**
      * Required. The resource name for this Certificate in the format `projects/x/locations/x/caPools/x/certificates/x`.
      */
@@ -8168,8 +8136,7 @@ export namespace privateca_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Certificatetemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatetemplates$Create extends StandardParameters {
     /**
      * Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`
      */
@@ -8188,8 +8155,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$CertificateTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Certificatetemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatetemplates$Delete extends StandardParameters {
     /**
      * Required. The resource name for this CertificateTemplate in the format `projects/x/locations/x/certificateTemplates/x`.
      */
@@ -8199,15 +8165,13 @@ export namespace privateca_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificatetemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatetemplates$Get extends StandardParameters {
     /**
      * Required. The name of the CertificateTemplate to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -8217,8 +8181,7 @@ export namespace privateca_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificatetemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatetemplates$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter in the response.
      */
@@ -8240,8 +8203,7 @@ export namespace privateca_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificatetemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatetemplates$Patch extends StandardParameters {
     /**
      * Identifier. The resource name for this CertificateTemplate in the format `projects/x/locations/x/certificateTemplates/x`.
      */
@@ -8260,8 +8222,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$CertificateTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8272,8 +8233,7 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8849,8 +8809,7 @@ export namespace privateca_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -8861,22 +8820,19 @@ export namespace privateca_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
