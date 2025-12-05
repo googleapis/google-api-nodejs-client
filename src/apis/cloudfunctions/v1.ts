@@ -1222,8 +1222,7 @@ export namespace cloudfunctions_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2983,8 +2982,7 @@ export namespace cloudfunctions_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Functions$Call
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Call extends StandardParameters {
     /**
      * Required. The name of the function to be called.
      */
@@ -2995,8 +2993,7 @@ export namespace cloudfunctions_v1 {
      */
     requestBody?: Schema$CallFunctionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Create extends StandardParameters {
     /**
      * Required. The project and location in which the function should be created, specified in the format `projects/x/locations/x`
      */
@@ -3007,15 +3004,13 @@ export namespace cloudfunctions_v1 {
      */
     requestBody?: Schema$CloudFunction;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Delete extends StandardParameters {
     /**
      * Required. The name of the function which should be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl extends StandardParameters {
     /**
      * The name of function for which source code Google Cloud Storage signed URL should be generated.
      */
@@ -3026,8 +3021,7 @@ export namespace cloudfunctions_v1 {
      */
     requestBody?: Schema$GenerateDownloadUrlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl extends StandardParameters {
     /**
      * The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x`.
      */
@@ -3038,8 +3032,7 @@ export namespace cloudfunctions_v1 {
      */
     requestBody?: Schema$GenerateUploadUrlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Get extends StandardParameters {
     /**
      * Required. The name of the function which details should be obtained.
      */
@@ -3049,8 +3042,7 @@ export namespace cloudfunctions_v1 {
      */
     versionId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3060,8 +3052,7 @@ export namespace cloudfunctions_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$List extends StandardParameters {
     /**
      * Maximum number of functions to return per call.
      */
@@ -3075,8 +3066,7 @@ export namespace cloudfunctions_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Patch extends StandardParameters {
     /**
      * A user-defined name of the function. Function names must be unique globally and match pattern `projects/x/locations/x/functions/x`
      */
@@ -3091,8 +3081,7 @@ export namespace cloudfunctions_v1 {
      */
     requestBody?: Schema$CloudFunction;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3103,8 +3092,7 @@ export namespace cloudfunctions_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
