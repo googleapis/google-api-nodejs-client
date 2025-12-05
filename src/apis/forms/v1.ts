@@ -1713,8 +1713,7 @@ export namespace forms_v1 {
     }
   }
 
-  export interface Params$Resource$Forms$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Forms$Batchupdate extends StandardParameters {
     /**
      * Required. The form ID.
      */
@@ -1742,8 +1741,7 @@ export namespace forms_v1 {
      */
     formId?: string;
   }
-  export interface Params$Resource$Forms$Setpublishsettings
-    extends StandardParameters {
+  export interface Params$Resource$Forms$Setpublishsettings extends StandardParameters {
     /**
      * Required. The ID of the form. You can get the id from Form.form_id field.
      */
@@ -2062,8 +2060,7 @@ export namespace forms_v1 {
     }
   }
 
-  export interface Params$Resource$Forms$Responses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Forms$Responses$Get extends StandardParameters {
     /**
      * Required. The form ID.
      */
@@ -2073,8 +2070,7 @@ export namespace forms_v1 {
      */
     responseId?: string;
   }
-  export interface Params$Resource$Forms$Responses$List
-    extends StandardParameters {
+  export interface Params$Resource$Forms$Responses$List extends StandardParameters {
     /**
      * Which form responses to return. Currently, the only supported filters are: * timestamp \> *N* which means to get all form responses submitted after (but not at) timestamp *N*. * timestamp \>= *N* which means to get all form responses submitted at and after timestamp *N*. For both supported filters, timestamp must be formatted in RFC3339 UTC "Zulu" format. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".
      */
@@ -2704,8 +2700,7 @@ export namespace forms_v1 {
     }
   }
 
-  export interface Params$Resource$Forms$Watches$Create
-    extends StandardParameters {
+  export interface Params$Resource$Forms$Watches$Create extends StandardParameters {
     /**
      * Required. ID of the Form to watch.
      */
@@ -2716,8 +2711,7 @@ export namespace forms_v1 {
      */
     requestBody?: Schema$CreateWatchRequest;
   }
-  export interface Params$Resource$Forms$Watches$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Forms$Watches$Delete extends StandardParameters {
     /**
      * Required. The ID of the Form.
      */
@@ -2727,15 +2721,13 @@ export namespace forms_v1 {
      */
     watchId?: string;
   }
-  export interface Params$Resource$Forms$Watches$List
-    extends StandardParameters {
+  export interface Params$Resource$Forms$Watches$List extends StandardParameters {
     /**
      * Required. ID of the Form whose watches to list.
      */
     formId?: string;
   }
-  export interface Params$Resource$Forms$Watches$Renew
-    extends StandardParameters {
+  export interface Params$Resource$Forms$Watches$Renew extends StandardParameters {
     /**
      * Required. The ID of the Form.
      */
