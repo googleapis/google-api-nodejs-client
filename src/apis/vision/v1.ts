@@ -4521,7 +4521,7 @@ export namespace vision_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -5491,8 +5491,7 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$BatchAnnotateFilesRequest;
   }
-  export interface Params$Resource$Files$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Files$Asyncbatchannotate extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -5814,8 +5813,7 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$BatchAnnotateImagesRequest;
   }
-  export interface Params$Resource$Images$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Images$Asyncbatchannotate extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -5979,8 +5977,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -6451,7 +6448,7 @@ export namespace vision_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6558,8 +6555,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -6570,8 +6566,7 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
@@ -6601,7 +6596,7 @@ export namespace vision_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -6936,8 +6931,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Files$Annotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Files$Annotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -6948,8 +6942,7 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$BatchAnnotateFilesRequest;
   }
-  export interface Params$Resource$Projects$Files$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Files$Asyncbatchannotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -7277,8 +7270,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Images$Annotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Images$Annotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -7289,8 +7281,7 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$BatchAnnotateImagesRequest;
   }
-  export interface Params$Resource$Projects$Images$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Images$Asyncbatchannotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -7639,8 +7630,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Files$Annotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Files$Annotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -7651,8 +7641,7 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$BatchAnnotateFilesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Files$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Files$Asyncbatchannotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -7981,8 +7970,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Images$Annotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Images$Annotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -7993,8 +7981,7 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$BatchAnnotateImagesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Images$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Images$Asyncbatchannotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -8154,8 +8141,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -9062,8 +9048,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Products$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Create extends StandardParameters {
     /**
      * Required. The project in which the Product should be created. Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
@@ -9078,22 +9063,19 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$Product;
   }
-  export interface Params$Resource$Projects$Locations$Products$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Delete extends StandardParameters {
     /**
      * Required. Resource name of product to delete. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Products$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Get extends StandardParameters {
     /**
      * Required. Resource name of the Product to get. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Products$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$List extends StandardParameters {
     /**
      * The maximum number of items to return. Default 10, maximum 100.
      */
@@ -9107,8 +9089,7 @@ export namespace vision_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Products$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Patch extends StandardParameters {
     /**
      * The resource name of the product. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. This field is ignored when creating a product.
      */
@@ -9123,8 +9104,7 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$Product;
   }
-  export interface Params$Resource$Projects$Locations$Products$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Purge extends StandardParameters {
     /**
      * Required. The project and location in which the Products should be deleted. Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
@@ -9725,8 +9705,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Products$Referenceimages$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Referenceimages$Create extends StandardParameters {
     /**
      * Required. Resource name of the product in which to create the reference image. Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      */
@@ -9741,22 +9720,19 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$ReferenceImage;
   }
-  export interface Params$Resource$Projects$Locations$Products$Referenceimages$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Referenceimages$Delete extends StandardParameters {
     /**
      * Required. The resource name of the reference image to delete. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Products$Referenceimages$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Referenceimages$Get extends StandardParameters {
     /**
      * Required. The resource name of the ReferenceImage to get. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Products$Referenceimages$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Referenceimages$List extends StandardParameters {
     /**
      * The maximum number of items to return. Default 10, maximum 100.
      */
@@ -10959,8 +10935,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Productsets$Addproduct
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Addproduct extends StandardParameters {
     /**
      * Required. The resource name for the ProductSet to modify. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
@@ -10971,8 +10946,7 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$AddProductToProductSetRequest;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Create extends StandardParameters {
     /**
      * Required. The project in which the ProductSet should be created. Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
@@ -10987,22 +10961,19 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$ProductSet;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Delete extends StandardParameters {
     /**
      * Required. Resource name of the ProductSet to delete. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Get extends StandardParameters {
     /**
      * Required. Resource name of the ProductSet to get. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Import extends StandardParameters {
     /**
      * Required. The project in which the ProductSets should be imported. Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
@@ -11013,8 +10984,7 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$ImportProductSetsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$List extends StandardParameters {
     /**
      * The maximum number of items to return. Default 10, maximum 100.
      */
@@ -11028,8 +10998,7 @@ export namespace vision_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Patch extends StandardParameters {
     /**
      * The resource name of the ProductSet. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`. This field is ignored when creating a ProductSet.
      */
@@ -11044,8 +11013,7 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$ProductSet;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$Removeproduct
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Removeproduct extends StandardParameters {
     /**
      * Required. The resource name for the ProductSet to modify. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
@@ -11220,8 +11188,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Productsets$Products$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Products$List extends StandardParameters {
     /**
      * Required. The ProductSet resource for which to retrieve Products. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
@@ -11384,8 +11351,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
