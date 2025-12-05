@@ -1108,8 +1108,7 @@ export namespace webrisk_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -1120,22 +1119,19 @@ export namespace webrisk_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -1316,8 +1312,7 @@ export namespace webrisk_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Submissions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Submissions$Create extends StandardParameters {
     /**
      * Required. The name of the project that is making the submission. This string is in the format "projects/{project_number\}".
      */
@@ -1496,8 +1491,7 @@ export namespace webrisk_v1 {
     }
   }
 
-  export interface Params$Resource$Threatlists$Computediff
-    extends StandardParameters {
+  export interface Params$Resource$Threatlists$Computediff extends StandardParameters {
     /**
      * Sets the maximum number of entries that the client is willing to have in the local database. This should be a power of 2 between 2**10 and 2**20. If zero, no database size limit is set.
      */
