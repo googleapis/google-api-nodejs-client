@@ -4725,29 +4725,25 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getregionalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getregionalsettings extends StandardParameters {
     /**
      * Required. The resource name of the Regional Settings.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getruntimeconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getruntimeconfig extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/runtimeConfig`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
@@ -4769,8 +4765,7 @@ export namespace connectors_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Updateregionalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Updateregionalsettings extends StandardParameters {
     /**
      * Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/regionalSettings
      */
@@ -6682,8 +6677,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Create extends StandardParameters {
     /**
      * Required. Identifier to assign to the Connection. Must be unique within scope of the parent resource.
      */
@@ -6698,8 +6692,7 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Delete extends StandardParameters {
     /**
      * Optional. If set to true, any child EndUserAuthentication/EventSubscription resources will also be deleted. Otherwise, the request will fail if the connection has any children. Followed the best practice from https://aip.dev/135#cascading-delete
      */
@@ -6709,8 +6702,7 @@ export namespace connectors_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/connections/x`
      */
@@ -6720,15 +6712,13 @@ export namespace connectors_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Getconnectionschemametadata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Getconnectionschemametadata extends StandardParameters {
     /**
      * Required. Connection name Format: projects/{project\}/locations/{location\}/connections/{connection\}/connectionSchemaMetadata
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -6738,8 +6728,7 @@ export namespace connectors_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$List extends StandardParameters {
     /**
      * Filter.
      */
@@ -6765,8 +6754,7 @@ export namespace connectors_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Listenevent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Listenevent extends StandardParameters {
     /**
      * Required. Resource path for request.
      */
@@ -6777,8 +6765,7 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$ListenEventRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      */
@@ -6793,8 +6780,7 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Repaireventing
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Repaireventing extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/connections/x`
      */
@@ -6805,8 +6791,7 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$RepairEventingRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Search extends StandardParameters {
     /**
      * Required. Parent resource of the Connection, of the form: `projects/x/locations/x/connections`
      */
@@ -6824,8 +6809,7 @@ export namespace connectors_v1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6836,8 +6820,7 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7607,8 +7590,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getaction
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getaction extends StandardParameters {
     /**
      * Required. Id of the action.
      */
@@ -7618,8 +7600,7 @@ export namespace connectors_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getentitytype
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getentitytype extends StandardParameters {
     /**
      * Required. Id of the entity type.
      */
@@ -7629,8 +7610,7 @@ export namespace connectors_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listactions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listactions extends StandardParameters {
     /**
      * Required. Filter Wildcards are not supported in the filter currently.
      */
@@ -7652,8 +7632,7 @@ export namespace connectors_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listentitytypes
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listentitytypes extends StandardParameters {
     /**
      * Required. Filter Wildcards are not supported in the filter currently.
      */
@@ -7675,8 +7654,7 @@ export namespace connectors_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh extends StandardParameters {
     /**
      * Required. Resource name. Format: projects/{project\}/locations/{location\}/connections/{connection\}/connectionSchemaMetadata
      */
@@ -8477,8 +8455,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create extends StandardParameters {
     /**
      * Required. Identifier to assign to the EndUserAuthentication. Must be unique within scope of the parent resource.
      */
@@ -8493,15 +8470,13 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$EndUserAuthentication;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/connections/x/endUserAuthentication/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/connections/x/EndUserAuthentications/x`
      */
@@ -8511,8 +8486,7 @@ export namespace connectors_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$List extends StandardParameters {
     /**
      * Filter.
      */
@@ -8534,8 +8508,7 @@ export namespace connectors_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch extends StandardParameters {
     /**
      * Required. Identifier. Resource name of the EndUserAuthentication. Format: projects/{project\}/locations/{location\}/connections/{connection\}/endUserAuthentications/{end_user_authentication\}
      */
@@ -9467,8 +9440,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create extends StandardParameters {
     /**
      * Required. Identifier to assign to the Event Subscription. Must be unique within scope of the parent resource.
      */
@@ -9483,22 +9455,19 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$EventSubscription;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/connections/x/eventsubscriptions/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/connections/x/eventSubscriptions/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List extends StandardParameters {
     /**
      * Filter.
      */
@@ -9520,8 +9489,7 @@ export namespace connectors_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch extends StandardParameters {
     /**
      * Required. Identifier. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
      */
@@ -9536,8 +9504,7 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$EventSubscription;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/connections/x/eventSubscriptions/x`
      */
@@ -9715,8 +9682,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Runtimeactionschemas$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Runtimeactionschemas$List extends StandardParameters {
     /**
      * Required. Filter Format: action="{actionId\}" Only action field is supported with literal equality operator. Accepted filter example: action="CancelOrder" Wildcards are not supported in the filter currently.
      */
@@ -9903,8 +9869,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Runtimeentityschemas$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Runtimeentityschemas$List extends StandardParameters {
     /**
      * Required. Filter Format: entity="{entityId\}" Only entity field is supported with literal equality operator. Accepted filter example: entity="Order" Wildcards are not supported in the filter currently.
      */
@@ -10096,8 +10061,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec extends StandardParameters {
     /**
      * Required. Location at which the custom connector is being created.
      */
@@ -10713,15 +10677,13 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Delete extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}`
      */
@@ -10732,8 +10694,7 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$DeprecateCustomConnectorVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}`
      */
@@ -10744,8 +10705,7 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$PublishCustomConnectorVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}`
      */
@@ -11521,8 +11481,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Endpointattachments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpointattachments$Create extends StandardParameters {
     /**
      * Required. Identifier to assign to the EndpointAttachment. Must be unique within scope of the parent resource. The regex is: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
      */
@@ -11537,15 +11496,13 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$EndpointAttachment;
   }
-  export interface Params$Resource$Projects$Locations$Endpointattachments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpointattachments$Delete extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/endpointAttachments/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Endpointattachments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpointattachments$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/endpointAttachments/x`
      */
@@ -11555,8 +11512,7 @@ export namespace connectors_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Endpointattachments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpointattachments$List extends StandardParameters {
     /**
      * Filter.
      */
@@ -11582,8 +11538,7 @@ export namespace connectors_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Endpointattachments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpointattachments$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the Endpoint Attachment. Format: projects/{project\}/locations/{location\}/endpointAttachments/{endpoint_attachment\}
      */
@@ -11901,15 +11856,13 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Getsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Getsettings extends StandardParameters {
     /**
      * Required. The resource name of the Settings.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Updatesettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Updatesettings extends StandardParameters {
     /**
      * Output only. Resource name of the Connection. Format: projects/{project\}/locations/global/settings\}
      */
@@ -12703,8 +12656,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Create extends StandardParameters {
     /**
      * Required. Identifier to assign to the CreateCustomConnector. Must be unique within scope of the parent resource.
      */
@@ -12719,8 +12671,7 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$CustomConnector;
   }
-  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Delete extends StandardParameters {
     /**
      * Optional. If set to true, any customConnectorVersion which is a child resource will also be deleted. https://aip.dev/135#cascading-delete
      */
@@ -12730,15 +12681,13 @@ export namespace connectors_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/customConnectors/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Customconnectors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Customconnectors$List extends StandardParameters {
     /**
      * Filter string.
      */
@@ -12756,8 +12705,7 @@ export namespace connectors_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Patch extends StandardParameters {
     /**
      * Identifier. Resource name of the CustomConnector. Format: projects/{project\}/locations/{location\}/customConnectors/{connector\}
      */
@@ -13266,8 +13214,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Create extends StandardParameters {
     /**
      * Required. Identifier to assign to the CreateCustomConnectorVersion. Must be unique within scope of the parent resource.
      */
@@ -13282,15 +13229,13 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$CustomConnectorVersion;
   }
-  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/{location\}/customConnectors/x/customConnectorVersions/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$List extends StandardParameters {
     /**
      * Page size.
      */
@@ -14060,8 +14005,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Managedzones$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Managedzones$Create extends StandardParameters {
     /**
      * Required. Identifier to assign to the ManagedZone. Must be unique within scope of the parent resource.
      */
@@ -14076,22 +14020,19 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Projects$Locations$Global$Managedzones$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Managedzones$Delete extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/global/managedZones/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Managedzones$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Managedzones$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/global/managedZones/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Managedzones$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Managedzones$List extends StandardParameters {
     /**
      * Filter.
      */
@@ -14117,8 +14058,7 @@ export namespace connectors_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Global$Managedzones$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Managedzones$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the Managed Zone. Format: projects/{project\}/locations/global/managedZones/{managed_zone\}
      */
@@ -14698,8 +14638,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -14710,22 +14649,19 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -15490,15 +15426,13 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Providers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/providers/x` Only global location is supported for Provider resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Providers$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -15508,8 +15442,7 @@ export namespace connectors_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Providers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$List extends StandardParameters {
     /**
      * Page size.
      */
@@ -15523,8 +15456,7 @@ export namespace connectors_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Providers$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -15535,8 +15467,7 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Providers$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -15857,15 +15788,13 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Providers$Connectors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x` Only global location is supported for Connector resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Providers$Connectors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$List extends StandardParameters {
     /**
      * Filter string.
      */
@@ -16360,8 +16289,7 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema extends StandardParameters {
     /**
      * Required. Parent resource of the Connector Version, of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x`
      */
@@ -16371,8 +16299,7 @@ export namespace connectors_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x` Only global location is supported for ConnectorVersion resource.
      */
@@ -16382,8 +16309,7 @@ export namespace connectors_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$List extends StandardParameters {
     /**
      * Page size.
      */
@@ -16703,15 +16629,13 @@ export namespace connectors_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x/eventtypes/x` Only global location is supported for EventType resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List extends StandardParameters {
     /**
      * Page size.
      */
