@@ -851,8 +851,7 @@ export namespace cloudprofiler_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Profiles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Profiles$Create extends StandardParameters {
     /**
      * Parent project to create the profile in.
      */
@@ -863,8 +862,7 @@ export namespace cloudprofiler_v2 {
      */
     requestBody?: Schema$CreateProfileRequest;
   }
-  export interface Params$Resource$Projects$Profiles$Createoffline
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Profiles$Createoffline extends StandardParameters {
     /**
      * Parent project to create the profile in.
      */
@@ -875,8 +873,7 @@ export namespace cloudprofiler_v2 {
      */
     requestBody?: Schema$Profile;
   }
-  export interface Params$Resource$Projects$Profiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Profiles$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. Default page_size is 1000. Max limit is 1000.
      */
@@ -890,8 +887,7 @@ export namespace cloudprofiler_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Profiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Profiles$Patch extends StandardParameters {
     /**
      * Output only. Opaque, server-assigned, unique ID for this profile.
      */
