@@ -8971,10 +8971,8 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Authinfo
-    extends StandardParameters {}
-  export interface Params$Resource$Accounts$Claimwebsite
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Authinfo extends StandardParameters {}
+  export interface Params$Resource$Accounts$Claimwebsite extends StandardParameters {
     /**
      * The ID of the account whose website is claimed.
      */
@@ -8988,8 +8986,7 @@ export namespace content_v2_1 {
      */
     overwrite?: boolean;
   }
-  export interface Params$Resource$Accounts$Custombatch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Custombatch extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -9075,8 +9072,7 @@ export namespace content_v2_1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Accounts$Listlinks
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Listlinks extends StandardParameters {
     /**
      * The ID of the account for which to list links.
      */
@@ -9094,8 +9090,7 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Requestphoneverification
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Requestphoneverification extends StandardParameters {
     /**
      * Required. The ID of the account.
      */
@@ -9125,8 +9120,7 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$Account;
   }
-  export interface Params$Resource$Accounts$Updatelabels
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Updatelabels extends StandardParameters {
     /**
      * The ID of the account whose labels are updated.
      */
@@ -9141,8 +9135,7 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$AccountsUpdateLabelsRequest;
   }
-  export interface Params$Resource$Accounts$Verifyphonenumber
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Verifyphonenumber extends StandardParameters {
     /**
      * Required. The ID of the account.
      */
@@ -9314,8 +9307,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Credentials$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Credentials$Create extends StandardParameters {
     /**
      * Required. The merchant id of the account these credentials belong to.
      */
@@ -9920,8 +9912,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Labels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Labels$Create extends StandardParameters {
     /**
      * Required. The id of the account this label belongs to.
      */
@@ -9932,8 +9923,7 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$AccountLabel;
   }
-  export interface Params$Resource$Accounts$Labels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Labels$Delete extends StandardParameters {
     /**
      * Required. The id of the account that owns the label.
      */
@@ -9943,8 +9933,7 @@ export namespace content_v2_1 {
      */
     labelId?: string;
   }
-  export interface Params$Resource$Accounts$Labels$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Labels$List extends StandardParameters {
     /**
      * Required. The account id for whose labels are to be listed.
      */
@@ -9958,8 +9947,7 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Labels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Labels$Patch extends StandardParameters {
     /**
      * Required. The id of the account this label belongs to.
      */
@@ -10571,8 +10559,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Returncarrier$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Returncarrier$Create extends StandardParameters {
     /**
      * Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
      */
@@ -10583,8 +10570,7 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$AccountReturnCarrier;
   }
-  export interface Params$Resource$Accounts$Returncarrier$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Returncarrier$Delete extends StandardParameters {
     /**
      * Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
      */
@@ -10594,15 +10580,13 @@ export namespace content_v2_1 {
      */
     carrierAccountId?: string;
   }
-  export interface Params$Resource$Accounts$Returncarrier$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Returncarrier$List extends StandardParameters {
     /**
      * Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
      */
     accountId?: string;
   }
-  export interface Params$Resource$Accounts$Returncarrier$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Returncarrier$Patch extends StandardParameters {
     /**
      * Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
      */
@@ -11076,15 +11060,13 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Accountstatuses$Custombatch
-    extends StandardParameters {
+  export interface Params$Resource$Accountstatuses$Custombatch extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AccountstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Accountstatuses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accountstatuses$Get extends StandardParameters {
     /**
      * The ID of the account.
      */
@@ -11098,8 +11080,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Accountstatuses$List
-    extends StandardParameters {
+  export interface Params$Resource$Accountstatuses$List extends StandardParameters {
     /**
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
@@ -11715,8 +11696,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Accounttax$Custombatch
-    extends StandardParameters {
+  export interface Params$Resource$Accounttax$Custombatch extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -11746,8 +11726,7 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounttax$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounttax$Update extends StandardParameters {
     /**
      * The ID of the account for which to get/update account tax settings.
      */
@@ -12366,8 +12345,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Collections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Collections$Create extends StandardParameters {
     /**
      * Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
      */
@@ -12378,8 +12356,7 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$Collection;
   }
-  export interface Params$Resource$Collections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Collections$Delete extends StandardParameters {
     /**
      * Required. The collectionId of the collection. CollectionId is the same as the REST ID of the collection.
      */
@@ -12713,8 +12690,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Collectionstatuses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Collectionstatuses$Get extends StandardParameters {
     /**
      * Required. The collectionId of the collection. CollectionId is the same as the REST ID of the collection.
      */
@@ -12724,8 +12700,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Collectionstatuses$List
-    extends StandardParameters {
+  export interface Params$Resource$Collectionstatuses$List extends StandardParameters {
     /**
      * Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
      */
@@ -13624,8 +13599,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Conversionsources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Conversionsources$Create extends StandardParameters {
     /**
      * Required. The ID of the account that owns the new conversion source.
      */
@@ -13636,8 +13610,7 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$ConversionSource;
   }
-  export interface Params$Resource$Conversionsources$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Conversionsources$Delete extends StandardParameters {
     /**
      * Required. The ID of the conversion source to be deleted.
      */
@@ -13647,8 +13620,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Conversionsources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Conversionsources$Get extends StandardParameters {
     /**
      * Required. The REST ID of the collection.
      */
@@ -13658,8 +13630,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Conversionsources$List
-    extends StandardParameters {
+  export interface Params$Resource$Conversionsources$List extends StandardParameters {
     /**
      * Required. The ID of the account that owns the new conversion source.
      */
@@ -13677,8 +13648,7 @@ export namespace content_v2_1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Conversionsources$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Conversionsources$Patch extends StandardParameters {
     /**
      * Required. The ID of the conversion source to be updated.
      */
@@ -13697,8 +13667,7 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$ConversionSource;
   }
-  export interface Params$Resource$Conversionsources$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Conversionsources$Undelete extends StandardParameters {
     /**
      * Required. The ID of the conversion source to be undeleted.
      */
@@ -14183,8 +14152,7 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Csses$Updatelabels
-    extends StandardParameters {
+  export interface Params$Resource$Csses$Updatelabels extends StandardParameters {
     /**
      * Required. The ID of the updated CSS domain.
      */
@@ -15246,8 +15214,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Datafeeds$Custombatch
-    extends StandardParameters {
+  export interface Params$Resource$Datafeeds$Custombatch extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -15263,8 +15230,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeeds$Fetchnow
-    extends StandardParameters {
+  export interface Params$Resource$Datafeeds$Fetchnow extends StandardParameters {
     /**
      * The ID of the datafeed to be fetched.
      */
@@ -15791,15 +15757,13 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Datafeedstatuses$Custombatch
-    extends StandardParameters {
+  export interface Params$Resource$Datafeedstatuses$Custombatch extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$DatafeedstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Datafeedstatuses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Datafeedstatuses$Get extends StandardParameters {
     /**
      * Deprecated. Use `feedLabel` instead. The country to get the datafeed status for. If this parameter is provided then `language` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
      */
@@ -15821,8 +15785,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeedstatuses$List
-    extends StandardParameters {
+  export interface Params$Resource$Datafeedstatuses$List extends StandardParameters {
     /**
      * The maximum number of products to return in the response, used for paging.
      */
@@ -16127,15 +16090,13 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Freelistingsprogram$Get
-    extends StandardParameters {
+  export interface Params$Resource$Freelistingsprogram$Get extends StandardParameters {
     /**
      * Required. The ID of the account.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Freelistingsprogram$Requestreview
-    extends StandardParameters {
+  export interface Params$Resource$Freelistingsprogram$Requestreview extends StandardParameters {
     /**
      * Required. The ID of the account.
      */
@@ -16583,22 +16544,19 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Delete extends StandardParameters {
     /**
      * Required. The ID of the account.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Get extends StandardParameters {
     /**
      * Required. The ID of the account.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Insert extends StandardParameters {
     /**
      * Required. The ID of the account.
      */
@@ -18278,8 +18236,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Liasettings$Custombatch
-    extends StandardParameters {
+  export interface Params$Resource$Liasettings$Custombatch extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -18295,8 +18252,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts
-    extends StandardParameters {
+  export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts extends StandardParameters {
     /**
      * The ID of the account for which to retrieve accessible Business Profiles.
      */
@@ -18320,10 +18276,8 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Liasettings$Listposdataproviders
-    extends StandardParameters {}
-  export interface Params$Resource$Liasettings$Requestgmbaccess
-    extends StandardParameters {
+  export interface Params$Resource$Liasettings$Listposdataproviders extends StandardParameters {}
+  export interface Params$Resource$Liasettings$Requestgmbaccess extends StandardParameters {
     /**
      * The ID of the account for which Business Profile access is requested.
      */
@@ -18337,8 +18291,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Requestinventoryverification
-    extends StandardParameters {
+  export interface Params$Resource$Liasettings$Requestinventoryverification extends StandardParameters {
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -18352,8 +18305,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Setinventoryverificationcontact
-    extends StandardParameters {
+  export interface Params$Resource$Liasettings$Setinventoryverificationcontact extends StandardParameters {
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -18379,8 +18331,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Setomnichannelexperience
-    extends StandardParameters {
+  export interface Params$Resource$Liasettings$Setomnichannelexperience extends StandardParameters {
     /**
      * The ID of the account for which to retrieve accessible Business Profiles.
      */
@@ -18402,8 +18353,7 @@ export namespace content_v2_1 {
      */
     pickupTypes?: string[];
   }
-  export interface Params$Resource$Liasettings$Setposdataprovider
-    extends StandardParameters {
+  export interface Params$Resource$Liasettings$Setposdataprovider extends StandardParameters {
     /**
      * The ID of the account for which to retrieve accessible Business Profiles.
      */
@@ -18425,8 +18375,7 @@ export namespace content_v2_1 {
      */
     posExternalAccountId?: string;
   }
-  export interface Params$Resource$Liasettings$Update
-    extends StandardParameters {
+  export interface Params$Resource$Liasettings$Update extends StandardParameters {
     /**
      * The ID of the account for which to get or update LIA settings.
      */
@@ -18771,15 +18720,13 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Localinventory$Custombatch
-    extends StandardParameters {
+  export interface Params$Resource$Localinventory$Custombatch extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$LocalinventoryCustomBatchRequest;
   }
-  export interface Params$Resource$Localinventory$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Localinventory$Insert extends StandardParameters {
     /**
      * The ID of the account that contains the product. This account cannot be a multi-client account.
      */
@@ -19269,8 +19216,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Merchantsupport$Renderaccountissues
-    extends StandardParameters {
+  export interface Params$Resource$Merchantsupport$Renderaccountissues extends StandardParameters {
     /**
      * Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize support content. If not set, the result will be in default language `en-US`.
      */
@@ -19289,8 +19235,7 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$RenderAccountIssuesRequestPayload;
   }
-  export interface Params$Resource$Merchantsupport$Renderproductissues
-    extends StandardParameters {
+  export interface Params$Resource$Merchantsupport$Renderproductissues extends StandardParameters {
     /**
      * Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize support content. If not set, the result will be in default language `en-US`.
      */
@@ -19313,8 +19258,7 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$RenderProductIssuesRequestPayload;
   }
-  export interface Params$Resource$Merchantsupport$Triggeraction
-    extends StandardParameters {
+  export interface Params$Resource$Merchantsupport$Triggeraction extends StandardParameters {
     /**
      * Optional. Language code [IETF BCP 47 syntax](https://tools.ietf.org/html/bcp47) used to localize the response. If not set, the result will be in default language `en-US`.
      */
@@ -19500,8 +19444,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Ordertrackingsignals$Create
-    extends StandardParameters {
+  export interface Params$Resource$Ordertrackingsignals$Create extends StandardParameters {
     /**
      * The ID of the merchant for which the order signal is created.
      */
@@ -21107,8 +21050,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Productdeliverytime$Create
-    extends StandardParameters {
+  export interface Params$Resource$Productdeliverytime$Create extends StandardParameters {
     /**
      * The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
      */
@@ -21119,8 +21061,7 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$ProductDeliveryTime;
   }
-  export interface Params$Resource$Productdeliverytime$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Productdeliverytime$Delete extends StandardParameters {
     /**
      * Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
      */
@@ -21130,8 +21071,7 @@ export namespace content_v2_1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Productdeliverytime$Get
-    extends StandardParameters {
+  export interface Params$Resource$Productdeliverytime$Get extends StandardParameters {
     /**
      * Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
      */
@@ -22523,8 +22463,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Products$Custombatch
-    extends StandardParameters {
+  export interface Params$Resource$Products$Custombatch extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -23062,15 +23001,13 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Productstatuses$Custombatch
-    extends StandardParameters {
+  export interface Params$Resource$Productstatuses$Custombatch extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ProductstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Productstatuses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Productstatuses$Get extends StandardParameters {
     /**
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
@@ -23084,8 +23021,7 @@ export namespace content_v2_1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Productstatuses$List
-    extends StandardParameters {
+  export interface Params$Resource$Productstatuses$List extends StandardParameters {
     /**
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
@@ -23672,8 +23608,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Promotions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Promotions$Create extends StandardParameters {
     /**
      * Required. The ID of the account that contains the collection.
      */
@@ -24020,15 +23955,13 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Pubsubnotificationsettings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Pubsubnotificationsettings$Get extends StandardParameters {
     /**
      * The ID of the account for which to get pubsub notification settings.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Pubsubnotificationsettings$Update
-    extends StandardParameters {
+  export interface Params$Resource$Pubsubnotificationsettings$Update extends StandardParameters {
     /**
      * The ID of the account.
      */
@@ -24503,8 +24436,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Recommendations$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Recommendations$Generate extends StandardParameters {
     /**
      * Optional. List of allowed tags. Tags are a set of predefined strings that describe the category that individual recommendation types belong to. User can specify zero or more tags in this field to indicate what categories of recommendations they want to receive. Current list of supported tags: - TREND
      */
@@ -24518,8 +24450,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Recommendations$Reportinteraction
-    extends StandardParameters {
+  export interface Params$Resource$Recommendations$Reportinteraction extends StandardParameters {
     /**
      * Required. The ID of the account that wants to report an interaction.
      */
@@ -24852,15 +24783,13 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Regionalinventory$Custombatch
-    extends StandardParameters {
+  export interface Params$Resource$Regionalinventory$Custombatch extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$RegionalinventoryCustomBatchRequest;
   }
-  export interface Params$Resource$Regionalinventory$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Regionalinventory$Insert extends StandardParameters {
     /**
      * The ID of the account that contains the product. This account cannot be a multi-client account.
      */
@@ -26615,8 +26544,7 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Returnpolicyonline$Create
-    extends StandardParameters {
+  export interface Params$Resource$Returnpolicyonline$Create extends StandardParameters {
     /**
      * Required. The id of the merchant for which to retrieve the return policy online object.
      */
@@ -26627,8 +26555,7 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$ReturnPolicyOnline;
   }
-  export interface Params$Resource$Returnpolicyonline$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Returnpolicyonline$Delete extends StandardParameters {
     /**
      * Required. The id of the merchant for which to retrieve the return policy online object.
      */
@@ -26638,8 +26565,7 @@ export namespace content_v2_1 {
      */
     returnPolicyId?: string;
   }
-  export interface Params$Resource$Returnpolicyonline$Get
-    extends StandardParameters {
+  export interface Params$Resource$Returnpolicyonline$Get extends StandardParameters {
     /**
      * Required. The id of the merchant for which to retrieve the return policy online object.
      */
@@ -26649,15 +26575,13 @@ export namespace content_v2_1 {
      */
     returnPolicyId?: string;
   }
-  export interface Params$Resource$Returnpolicyonline$List
-    extends StandardParameters {
+  export interface Params$Resource$Returnpolicyonline$List extends StandardParameters {
     /**
      * Required. The id of the merchant for which to retrieve the return policy online object.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Returnpolicyonline$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Returnpolicyonline$Patch extends StandardParameters {
     /**
      * Required. The id of the merchant for which to retrieve the return policy online object.
      */
@@ -27725,15 +27649,13 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Shippingsettings$Custombatch
-    extends StandardParameters {
+  export interface Params$Resource$Shippingsettings$Custombatch extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ShippingsettingsCustomBatchRequest;
   }
-  export interface Params$Resource$Shippingsettings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Shippingsettings$Get extends StandardParameters {
     /**
      * The ID of the account for which to get/update shipping settings.
      */
@@ -27743,29 +27665,25 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$Getsupportedcarriers
-    extends StandardParameters {
+  export interface Params$Resource$Shippingsettings$Getsupportedcarriers extends StandardParameters {
     /**
      * The ID of the account for which to retrieve the supported carriers.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$Getsupportedholidays
-    extends StandardParameters {
+  export interface Params$Resource$Shippingsettings$Getsupportedholidays extends StandardParameters {
     /**
      * The ID of the account for which to retrieve the supported holidays.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$Getsupportedpickupservices
-    extends StandardParameters {
+  export interface Params$Resource$Shippingsettings$Getsupportedpickupservices extends StandardParameters {
     /**
      * The ID of the account for which to retrieve the supported pickup services.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$List
-    extends StandardParameters {
+  export interface Params$Resource$Shippingsettings$List extends StandardParameters {
     /**
      * The maximum number of shipping settings to return in the response, used for paging.
      */
@@ -27779,8 +27697,7 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Shippingsettings$Update
-    extends StandardParameters {
+  export interface Params$Resource$Shippingsettings$Update extends StandardParameters {
     /**
      * The ID of the account for which to get/update shipping settings.
      */
@@ -28082,15 +27999,13 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Shoppingadsprogram$Get
-    extends StandardParameters {
+  export interface Params$Resource$Shoppingadsprogram$Get extends StandardParameters {
     /**
      * Required. The ID of the account.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shoppingadsprogram$Requestreview
-    extends StandardParameters {
+  export interface Params$Resource$Shoppingadsprogram$Requestreview extends StandardParameters {
     /**
      * Required. The ID of the account.
      */
