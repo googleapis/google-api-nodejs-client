@@ -366,6 +366,12 @@ export namespace deploymentmanager_v2 {
      */
     title?: string | null;
   }
+  export interface Schema$FirewallPolicyRuleOperationMetadata {
+    /**
+     * The priority allocated for the firewall policy rule if query parameters specified minPriority/maxPriority.
+     */
+    allocatedPriority?: number | null;
+  }
   export interface Schema$GlobalSetPolicyRequest {
     /**
      * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify bindings.
@@ -531,6 +537,7 @@ export namespace deploymentmanager_v2 {
         message?: string;
       }>;
     } | null;
+    firewallPolicyRuleOperationMetadata?: Schema$FirewallPolicyRuleOperationMetadata;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      */
@@ -549,7 +556,7 @@ export namespace deploymentmanager_v2 {
     insertTime?: string | null;
     instancesBulkInsertOperationMetadata?: Schema$InstancesBulkInsertOperationMetadata;
     /**
-     * [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
+     * Output only. [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      */
     kind?: string | null;
     /**
@@ -557,7 +564,7 @@ export namespace deploymentmanager_v2 {
      */
     name?: string | null;
     /**
-     * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
+     * Output only. [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
      */
     operationGroupId?: string | null;
     /**
@@ -577,7 +584,7 @@ export namespace deploymentmanager_v2 {
      */
     selfLink?: string | null;
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      */
     selfLinkWithId?: string | null;
     /**
@@ -585,7 +592,7 @@ export namespace deploymentmanager_v2 {
      */
     setAutoscalerLinkOperationMetadata?: Schema$SetAutoscalerLinkOperationMetadata;
     /**
-     * [Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state.
+     * Output only. [Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state.
      */
     setCommonInstanceMetadataOperationMetadata?: Schema$SetCommonInstanceMetadataOperationMetadata;
     /**
@@ -985,6 +992,7 @@ export namespace deploymentmanager_v2 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -1160,6 +1168,7 @@ export namespace deploymentmanager_v2 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -1662,6 +1671,7 @@ export namespace deploymentmanager_v2 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2014,6 +2024,7 @@ export namespace deploymentmanager_v2 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2351,6 +2362,7 @@ export namespace deploymentmanager_v2 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2705,6 +2717,7 @@ export namespace deploymentmanager_v2 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2828,8 +2841,7 @@ export namespace deploymentmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Deployments$Cancelpreview
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Cancelpreview extends StandardParameters {
     /**
      * The name of the deployment for this request.
      */
@@ -2844,8 +2856,7 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$DeploymentsCancelPreviewRequest;
   }
-  export interface Params$Resource$Deployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Delete extends StandardParameters {
     /**
      * Sets the policy to use for deleting resources.
      */
@@ -2877,8 +2888,7 @@ export namespace deploymentmanager_v2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Getiampolicy extends StandardParameters {
     /**
      *
      */
@@ -2896,8 +2906,7 @@ export namespace deploymentmanager_v2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Deployments$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Insert extends StandardParameters {
     /**
      * Sets the policy to use for creating new resources.
      */
@@ -2942,8 +2951,7 @@ export namespace deploymentmanager_v2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Patch extends StandardParameters {
     /**
      * Sets the policy to use for creating new resources.
      */
@@ -2974,8 +2982,7 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$Deployment;
   }
-  export interface Params$Resource$Deployments$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Setiampolicy extends StandardParameters {
     /**
      * Project ID for this request.
      */
@@ -3005,8 +3012,7 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$DeploymentsStopRequest;
   }
-  export interface Params$Resource$Deployments$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Testiampermissions extends StandardParameters {
     /**
      *
      */
@@ -3025,8 +3031,7 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Deployments$Update
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Update extends StandardParameters {
     /**
      * Sets the policy to use for creating new resources.
      */
@@ -3482,6 +3487,7 @@ export namespace deploymentmanager_v2 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
