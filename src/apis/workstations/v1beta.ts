@@ -1806,8 +1806,7 @@ export namespace workstations_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -1818,22 +1817,19 @@ export namespace workstations_v1beta {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2667,8 +2663,7 @@ export namespace workstations_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Create extends StandardParameters {
     /**
      * Required. Parent resource name.
      */
@@ -2687,8 +2682,7 @@ export namespace workstations_v1beta {
      */
     requestBody?: Schema$WorkstationCluster;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Delete extends StandardParameters {
     /**
      * Optional. If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this ETag.
      */
@@ -2706,15 +2700,13 @@ export namespace workstations_v1beta {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Get extends StandardParameters {
     /**
      * Required. Name of the requested resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$List extends StandardParameters {
     /**
      * Optional. Filter the WorkstationClusters to be listed. Possible filters are described in https://google.aip.dev/160.
      */
@@ -2732,8 +2724,7 @@ export namespace workstations_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Patch extends StandardParameters {
     /**
      * Optional. If set, and the workstation cluster is not found, a new workstation cluster will be created. In this situation, update_mask is ignored.
      */
@@ -4221,8 +4212,7 @@ export namespace workstations_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Create extends StandardParameters {
     /**
      * Required. Parent resource name.
      */
@@ -4241,8 +4231,7 @@ export namespace workstations_v1beta {
      */
     requestBody?: Schema$WorkstationConfig;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Delete extends StandardParameters {
     /**
      * Optional. If set, the request is rejected if the latest version of the workstation configuration on the server does not have this ETag.
      */
@@ -4260,15 +4249,13 @@ export namespace workstations_v1beta {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the requested resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4278,8 +4265,7 @@ export namespace workstations_v1beta {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$List extends StandardParameters {
     /**
      * Optional. Filter the WorkstationConfigs to be listed. Possible filters are described in https://google.aip.dev/160.
      */
@@ -4297,8 +4283,7 @@ export namespace workstations_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Listusable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Listusable extends StandardParameters {
     /**
      * Optional. Maximum number of items to return.
      */
@@ -4312,8 +4297,7 @@ export namespace workstations_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Patch extends StandardParameters {
     /**
      * Optional. If set and the workstation configuration is not found, a new workstation configuration will be created. In this situation, update_mask is ignored.
      */
@@ -4336,8 +4320,7 @@ export namespace workstations_v1beta {
      */
     requestBody?: Schema$WorkstationConfig;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4348,8 +4331,7 @@ export namespace workstations_v1beta {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6254,8 +6236,7 @@ export namespace workstations_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Create extends StandardParameters {
     /**
      * Required. Parent resource name.
      */
@@ -6274,8 +6255,7 @@ export namespace workstations_v1beta {
      */
     requestBody?: Schema$Workstation;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Delete extends StandardParameters {
     /**
      * Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.
      */
@@ -6289,8 +6269,7 @@ export namespace workstations_v1beta {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Generateaccesstoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Generateaccesstoken extends StandardParameters {
     /**
      * Required. Name of the workstation for which the access token should be generated.
      */
@@ -6301,15 +6280,13 @@ export namespace workstations_v1beta {
      */
     requestBody?: Schema$GenerateAccessTokenRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Get extends StandardParameters {
     /**
      * Required. Name of the requested resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -6319,8 +6296,7 @@ export namespace workstations_v1beta {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$List extends StandardParameters {
     /**
      * Optional. Filter the Workstations to be listed. Possible filters are described in https://google.aip.dev/160.
      */
@@ -6338,8 +6314,7 @@ export namespace workstations_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Listusable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Listusable extends StandardParameters {
     /**
      * Optional. Maximum number of items to return.
      */
@@ -6353,8 +6328,7 @@ export namespace workstations_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Patch extends StandardParameters {
     /**
      * Optional. If set and the workstation configuration is not found, a new workstation configuration is created. In this situation, update_mask is ignored.
      */
@@ -6377,8 +6351,7 @@ export namespace workstations_v1beta {
      */
     requestBody?: Schema$Workstation;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6389,8 +6362,7 @@ export namespace workstations_v1beta {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Start
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Start extends StandardParameters {
     /**
      * Required. Name of the workstation to start.
      */
@@ -6401,8 +6373,7 @@ export namespace workstations_v1beta {
      */
     requestBody?: Schema$StartWorkstationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Stop
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Stop extends StandardParameters {
     /**
      * Required. Name of the workstation to stop.
      */
@@ -6413,8 +6384,7 @@ export namespace workstations_v1beta {
      */
     requestBody?: Schema$StopWorkstationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
