@@ -2515,8 +2515,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Anywherecaches$Disable
-    extends StandardParameters {
+  export interface Params$Resource$Anywherecaches$Disable extends StandardParameters {
     /**
      * The ID of requested Anywhere Cache instance.
      */
@@ -2526,8 +2525,7 @@ export namespace storage_v1 {
      */
     bucket?: string;
   }
-  export interface Params$Resource$Anywherecaches$Get
-    extends StandardParameters {
+  export interface Params$Resource$Anywherecaches$Get extends StandardParameters {
     /**
      * The ID of requested Anywhere Cache instance.
      */
@@ -2537,8 +2535,7 @@ export namespace storage_v1 {
      */
     bucket?: string;
   }
-  export interface Params$Resource$Anywherecaches$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Anywherecaches$Insert extends StandardParameters {
     /**
      * Name of the parent bucket.
      */
@@ -2549,8 +2546,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$AnywhereCache;
   }
-  export interface Params$Resource$Anywherecaches$List
-    extends StandardParameters {
+  export interface Params$Resource$Anywherecaches$List extends StandardParameters {
     /**
      * Name of the parent bucket.
      */
@@ -2564,8 +2560,7 @@ export namespace storage_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Anywherecaches$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Anywherecaches$Pause extends StandardParameters {
     /**
      * The ID of requested Anywhere Cache instance.
      */
@@ -2575,8 +2570,7 @@ export namespace storage_v1 {
      */
     bucket?: string;
   }
-  export interface Params$Resource$Anywherecaches$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Anywherecaches$Resume extends StandardParameters {
     /**
      * The ID of requested Anywhere Cache instance.
      */
@@ -2586,8 +2580,7 @@ export namespace storage_v1 {
      */
     bucket?: string;
   }
-  export interface Params$Resource$Anywherecaches$Update
-    extends StandardParameters {
+  export interface Params$Resource$Anywherecaches$Update extends StandardParameters {
     /**
      * The ID of requested Anywhere Cache instance.
      */
@@ -3560,8 +3553,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Bucketaccesscontrols$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$Delete extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -3575,8 +3567,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Get
-    extends StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$Get extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -3590,8 +3581,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$Insert extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -3606,8 +3596,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$BucketAccessControl;
   }
-  export interface Params$Resource$Bucketaccesscontrols$List
-    extends StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$List extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -3617,8 +3606,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$Patch extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -3637,8 +3625,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$BucketAccessControl;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Update
-    extends StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$Update extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -6027,8 +6014,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Buckets$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Buckets$Getiampolicy extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -6042,8 +6028,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Buckets$Getstoragelayout
-    extends StandardParameters {
+  export interface Params$Resource$Buckets$Getstoragelayout extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -6118,8 +6103,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Buckets$Lockretentionpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Buckets$Lockretentionpolicy extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -6197,8 +6181,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Buckets$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Buckets$Setiampolicy extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -6213,8 +6196,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Policy;
   }
-  export interface Params$Resource$Buckets$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Buckets$Testiampermissions extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -7398,8 +7380,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Defaultobjectaccesscontrols$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Delete extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -7413,8 +7394,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Get
-    extends StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Get extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -7428,8 +7408,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Insert extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -7444,8 +7423,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$List
-    extends StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$List extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -7463,8 +7441,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Patch extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -7483,8 +7460,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Update
-    extends StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Update extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -9474,8 +9450,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Managedfolders$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Managedfolders$Delete extends StandardParameters {
     /**
      * Allows the deletion of a managed folder even if it is not empty. A managed folder is empty if there are no objects or managed folders that it applies to. Callers must have storage.managedFolders.setIamPolicy permission.
      */
@@ -9497,8 +9472,7 @@ export namespace storage_v1 {
      */
     managedFolder?: string;
   }
-  export interface Params$Resource$Managedfolders$Get
-    extends StandardParameters {
+  export interface Params$Resource$Managedfolders$Get extends StandardParameters {
     /**
      * Name of the bucket containing the managed folder.
      */
@@ -9516,8 +9490,7 @@ export namespace storage_v1 {
      */
     managedFolder?: string;
   }
-  export interface Params$Resource$Managedfolders$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Managedfolders$Getiampolicy extends StandardParameters {
     /**
      * Name of the bucket containing the managed folder.
      */
@@ -9535,8 +9508,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Managedfolders$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Managedfolders$Insert extends StandardParameters {
     /**
      * Name of the bucket containing the managed folder.
      */
@@ -9547,8 +9519,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$ManagedFolder;
   }
-  export interface Params$Resource$Managedfolders$List
-    extends StandardParameters {
+  export interface Params$Resource$Managedfolders$List extends StandardParameters {
     /**
      * Name of the bucket containing the managed folder.
      */
@@ -9566,8 +9537,7 @@ export namespace storage_v1 {
      */
     prefix?: string;
   }
-  export interface Params$Resource$Managedfolders$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Managedfolders$Setiampolicy extends StandardParameters {
     /**
      * Name of the bucket containing the managed folder.
      */
@@ -9586,8 +9556,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Policy;
   }
-  export interface Params$Resource$Managedfolders$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Managedfolders$Testiampermissions extends StandardParameters {
     /**
      * Name of the bucket containing the managed folder.
      */
@@ -10217,8 +10186,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Notifications$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Notifications$Delete extends StandardParameters {
     /**
      * The parent bucket of the notification.
      */
@@ -10232,8 +10200,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Notifications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Notifications$Get extends StandardParameters {
     /**
      * The parent bucket of the notification.
      */
@@ -10247,8 +10214,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Notifications$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Notifications$Insert extends StandardParameters {
     /**
      * The parent bucket of the notification.
      */
@@ -10263,8 +10229,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Notification;
   }
-  export interface Params$Resource$Notifications$List
-    extends StandardParameters {
+  export interface Params$Resource$Notifications$List extends StandardParameters {
     /**
      * Name of a Google Cloud Storage bucket.
      */
@@ -11266,8 +11231,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Objectaccesscontrols$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$Delete extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -11289,8 +11253,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Objectaccesscontrols$Get
-    extends StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$Get extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -11312,8 +11275,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Objectaccesscontrols$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$Insert extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -11336,8 +11298,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Objectaccesscontrols$List
-    extends StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$List extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -11355,8 +11316,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Objectaccesscontrols$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$Patch extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -11383,8 +11343,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Objectaccesscontrols$Update
-    extends StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$Update extends StandardParameters {
     /**
      * Name of a bucket.
      */
@@ -14589,8 +14548,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Objects$Bulkrestore
-    extends StandardParameters {
+  export interface Params$Resource$Objects$Bulkrestore extends StandardParameters {
     /**
      * Name of the bucket in which the object resides.
      */
@@ -14791,8 +14749,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Objects$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Objects$Getiampolicy extends StandardParameters {
     /**
      * Name of the bucket in which the object resides.
      */
@@ -15172,8 +15129,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Object;
   }
-  export interface Params$Resource$Objects$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Objects$Setiampolicy extends StandardParameters {
     /**
      * Name of the bucket in which the object resides.
      */
@@ -15196,8 +15152,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Policy;
   }
-  export interface Params$Resource$Objects$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Objects$Testiampermissions extends StandardParameters {
     /**
      * Name of the bucket in which the object resides.
      */
@@ -15922,8 +15877,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Advancerelocatebucket
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Advancerelocatebucket extends StandardParameters {
     /**
      * Name of the bucket to advance the relocate for.
      */
@@ -15938,8 +15892,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$AdvanceRelocateBucketOperationRequest;
   }
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The parent bucket of the operation resource.
      */
@@ -16754,8 +16707,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Hmackeys$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Hmackeys$Create extends StandardParameters {
     /**
      * Project ID owning the service account.
      */
@@ -16769,8 +16721,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Projects$Hmackeys$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Hmackeys$Delete extends StandardParameters {
     /**
      * Name of the HMAC key to be deleted.
      */
@@ -16784,8 +16735,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Projects$Hmackeys$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Hmackeys$Get extends StandardParameters {
     /**
      * Name of the HMAC key.
      */
@@ -16799,8 +16749,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Projects$Hmackeys$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Hmackeys$List extends StandardParameters {
     /**
      * Maximum number of items to return in a single page of responses. The service uses this parameter or 250 items, whichever is smaller. The max number of items per page will also be limited by the number of distinct service accounts in the response. If the number of service accounts in a single response is too high, the page will truncated and a next page token will be returned.
      */
@@ -16826,8 +16775,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Projects$Hmackeys$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Hmackeys$Update extends StandardParameters {
     /**
      * Name of the HMAC key being updated.
      */
@@ -16999,8 +16947,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Serviceaccount$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccount$Get extends StandardParameters {
     /**
      * Project ID
      */
