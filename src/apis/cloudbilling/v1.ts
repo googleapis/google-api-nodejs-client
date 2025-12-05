@@ -1771,8 +1771,7 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Create extends StandardParameters {
     /**
      * Optional. The parent to create a billing account from. Format: - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
@@ -1783,15 +1782,13 @@ export namespace cloudbilling_v1 {
      */
     requestBody?: Schema$BillingAccount;
   }
-  export interface Params$Resource$Billingaccounts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Get extends StandardParameters {
     /**
      * Required. The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -1801,8 +1798,7 @@ export namespace cloudbilling_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Billingaccounts$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$List extends StandardParameters {
     /**
      * Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (for example, `master_billing_account=billingAccounts/012345-678901-ABCDEF`). Boolean algebra and other fields are not currently supported.
      */
@@ -1820,8 +1816,7 @@ export namespace cloudbilling_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Move
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Move extends StandardParameters {
     /**
      * Required. The resource name of the billing account to move. Must be of the form `billingAccounts/{billing_account_id\}`. The specified billing account cannot be a subaccount, since a subaccount always belongs to the same organization as its parent account.
      */
@@ -1832,8 +1827,7 @@ export namespace cloudbilling_v1 {
      */
     requestBody?: Schema$MoveBillingAccountRequest;
   }
-  export interface Params$Resource$Billingaccounts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Patch extends StandardParameters {
     /**
      * Required. The name of the billing account resource to be updated.
      */
@@ -1848,8 +1842,7 @@ export namespace cloudbilling_v1 {
      */
     requestBody?: Schema$BillingAccount;
   }
-  export interface Params$Resource$Billingaccounts$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1860,8 +1853,7 @@ export namespace cloudbilling_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Billingaccounts$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2032,8 +2024,7 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Projects$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Projects$List extends StandardParameters {
     /**
      * Required. The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
@@ -2365,8 +2356,7 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Subaccounts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Subaccounts$Create extends StandardParameters {
     /**
      * Optional. The parent to create a billing account from. Format: - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
@@ -2377,8 +2367,7 @@ export namespace cloudbilling_v1 {
      */
     requestBody?: Schema$BillingAccount;
   }
-  export interface Params$Resource$Billingaccounts$Subaccounts$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Subaccounts$List extends StandardParameters {
     /**
      * Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (for example, `master_billing_account=billingAccounts/012345-678901-ABCDEF`). Boolean algebra and other fields are not currently supported.
      */
@@ -2872,8 +2861,7 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Billingaccounts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Billingaccounts$Create extends StandardParameters {
     /**
      * Optional. The parent to create a billing account from. Format: - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
@@ -2884,8 +2872,7 @@ export namespace cloudbilling_v1 {
      */
     requestBody?: Schema$BillingAccount;
   }
-  export interface Params$Resource$Organizations$Billingaccounts$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Billingaccounts$List extends StandardParameters {
     /**
      * Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (for example, `master_billing_account=billingAccounts/012345-678901-ABCDEF`). Boolean algebra and other fields are not currently supported.
      */
@@ -2903,8 +2890,7 @@ export namespace cloudbilling_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Billingaccounts$Move
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Billingaccounts$Move extends StandardParameters {
     /**
      * Required. The resource name of the Organization to move the billing account under. Must be of the form `organizations/{organization_id\}`.
      */
@@ -3224,15 +3210,13 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getbillinginfo
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getbillinginfo extends StandardParameters {
     /**
      * Required. The resource name of the project for which billing information is retrieved. For example, `projects/tokyo-rain-123`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updatebillinginfo
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updatebillinginfo extends StandardParameters {
     /**
      * Required. The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
      */
@@ -3562,8 +3546,7 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Skus$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Skus$List extends StandardParameters {
     /**
      * The ISO 4217 currency code for the pricing info in the response proto. Will use the conversion rate as of start_time. Optional. If not specified USD will be used.
      */
