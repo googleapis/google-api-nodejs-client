@@ -1294,8 +1294,7 @@ export namespace iam_v2 {
     }
   }
 
-  export interface Params$Resource$Policies$Createpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Policies$Createpolicy extends StandardParameters {
     /**
      * Required. The resource that the policy is attached to, along with the kind of policy to create. Format: `policies/{attachment_point\}/denypolicies` The attachment point is identified by its URL-encoded full resource name, which means that the forward-slash character, `/`, must be written as `%2F`. For example, `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies`. For organizations and folders, use the numeric ID in the full resource name. For projects, you can use the alphanumeric or the numeric ID.
      */
@@ -1326,8 +1325,7 @@ export namespace iam_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Policies$Listpolicies
-    extends StandardParameters {
+  export interface Params$Resource$Policies$Listpolicies extends StandardParameters {
     /**
      * The maximum number of policies to return. IAM ignores this value and uses the value 1000.
      */
@@ -1502,8 +1500,7 @@ export namespace iam_v2 {
     }
   }
 
-  export interface Params$Resource$Policies$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Policies$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
