@@ -610,15 +610,13 @@ export namespace parametermanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1399,8 +1397,7 @@ export namespace parametermanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Parameters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Parameters$Create extends StandardParameters {
     /**
      * Required. Id of the Parameter resource
      */
@@ -1419,8 +1416,7 @@ export namespace parametermanager_v1 {
      */
     requestBody?: Schema$Parameter;
   }
-  export interface Params$Resource$Projects$Locations$Parameters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Parameters$Delete extends StandardParameters {
     /**
      * Required. Name of the resource in the format `projects/x/locations/x/parameters/x`.
      */
@@ -1430,15 +1426,13 @@ export namespace parametermanager_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Parameters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Parameters$Get extends StandardParameters {
     /**
      * Required. Name of the resource in the format `projects/x/locations/x/parameters/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Parameters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Parameters$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -1460,8 +1454,7 @@ export namespace parametermanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Parameters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Parameters$Patch extends StandardParameters {
     /**
      * Identifier. [Output only] The resource name of the Parameter in the format `projects/x/locations/x/parameters/x`.
      */
@@ -2394,8 +2387,7 @@ export namespace parametermanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Parameters$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Parameters$Versions$Create extends StandardParameters {
     /**
      * Required. Id of the ParameterVersion resource
      */
@@ -2414,8 +2406,7 @@ export namespace parametermanager_v1 {
      */
     requestBody?: Schema$ParameterVersion;
   }
-  export interface Params$Resource$Projects$Locations$Parameters$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Parameters$Versions$Delete extends StandardParameters {
     /**
      * Required. Name of the resource in the format `projects/x/locations/x/parameters/x/versions/x`.
      */
@@ -2425,8 +2416,7 @@ export namespace parametermanager_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Parameters$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Parameters$Versions$Get extends StandardParameters {
     /**
      * Required. Name of the resource in the format `projects/x/locations/x/parameters/x/versions/x`.
      */
@@ -2436,8 +2426,7 @@ export namespace parametermanager_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Parameters$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Parameters$Versions$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -2459,8 +2448,7 @@ export namespace parametermanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Parameters$Versions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Parameters$Versions$Patch extends StandardParameters {
     /**
      * Identifier. [Output only] The resource name of the ParameterVersion in the format `projects/x/locations/x/parameters/x/versions/x`.
      */
@@ -2479,8 +2467,7 @@ export namespace parametermanager_v1 {
      */
     requestBody?: Schema$ParameterVersion;
   }
-  export interface Params$Resource$Projects$Locations$Parameters$Versions$Render
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Parameters$Versions$Render extends StandardParameters {
     /**
      * Required. Name of the resource
      */
