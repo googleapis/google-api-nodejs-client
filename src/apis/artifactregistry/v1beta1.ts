@@ -820,15 +820,13 @@ export namespace artifactregistry_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1000,8 +998,7 @@ export namespace artifactregistry_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -2238,8 +2235,7 @@ export namespace artifactregistry_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Create extends StandardParameters {
     /**
      * Required. The name of the parent resource where the repository will be created.
      */
@@ -2254,22 +2250,19 @@ export namespace artifactregistry_v1beta1 {
      */
     requestBody?: Schema$Repository;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Delete extends StandardParameters {
     /**
      * Required. The name of the repository to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Get extends StandardParameters {
     /**
      * Required. The name of the repository to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2279,8 +2272,7 @@ export namespace artifactregistry_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$List extends StandardParameters {
     /**
      * Optional. The field to order the results by.
      */
@@ -2298,8 +2290,7 @@ export namespace artifactregistry_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Patch extends StandardParameters {
     /**
      * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.
      */
@@ -2314,8 +2305,7 @@ export namespace artifactregistry_v1beta1 {
      */
     requestBody?: Schema$Repository;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2326,8 +2316,7 @@ export namespace artifactregistry_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2642,15 +2631,13 @@ export namespace artifactregistry_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Files$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Files$Get extends StandardParameters {
     /**
      * Required. The name of the file to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Files$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Files$List extends StandardParameters {
     /**
      * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `owner` * `annotations` Examples of using a filter: To filter the results of your request to files with the name `my_file.txt` in project `my-project` in the `us-central` region, in repository `my-repo`, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-file.txt"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/xfile.txt"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/xfile*"` To filter the results of your request to files owned by the version `1.0` in package `pkg1`, append the following filter expression to your request: * `owner="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"` To filter the results of your request to files with the annotation key-value pair [`external_link`: `external_link_value`], append the following filter expression to your request: * `"annotations.external_link:external_link_value"` To filter just for a specific annotation key `external_link`, append the following filter expression to your request: * `"annotations.external_link"` If the annotation key or value contains special characters, you can escape them by surrounding the value with backticks. For example, to filter the results of your request to files with the annotation key-value pair [`external.link`:`https://example.com/my-file`], append the following filter expression to your request: * `` "annotations.`external.link`:`https://example.com/my-file`" `` You can also filter with annotations with a wildcard to match any number of characters before or after the value: * `` "annotations.*_link:`*example.com*`" ``
      */
@@ -3122,22 +3109,19 @@ export namespace artifactregistry_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Packages$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Delete extends StandardParameters {
     /**
      * Required. The name of the package to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Packages$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Get extends StandardParameters {
     /**
      * Required. The name of the package to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Packages$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$List extends StandardParameters {
     /**
      * Optional. The field to order the results by.
      */
@@ -3896,8 +3880,7 @@ export namespace artifactregistry_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create extends StandardParameters {
     /**
      * The name of the parent resource where the tag will be created.
      */
@@ -3912,22 +3895,19 @@ export namespace artifactregistry_v1beta1 {
      */
     requestBody?: Schema$Tag;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete extends StandardParameters {
     /**
      * The name of the tag to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get extends StandardParameters {
     /**
      * The name of the tag to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$List extends StandardParameters {
     /**
      * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `version` Examples of using a filter: To filter the results of your request to tags with the name `my-tag` in package `my-package` in repository `my-repo` in project "`y-project` in the us-central region, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my-tag"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/xtag"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/xtag*"` To filter the results of your request to tags applied to the version `1.0` in package `my-package`, append the following filter expression to your request: * `version="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"`
      */
@@ -3945,8 +3925,7 @@ export namespace artifactregistry_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch extends StandardParameters {
     /**
      * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package part contains slashes, the slashes are escaped. The tag part can only have characters in [a-zA-Z0-9\-._~:@], anything else must be URL encoded.
      */
@@ -4419,8 +4398,7 @@ export namespace artifactregistry_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete extends StandardParameters {
     /**
      * By default, a version that is tagged may not be deleted. If force=true, the version and any tags pointing to the version are deleted.
      */
@@ -4430,8 +4408,7 @@ export namespace artifactregistry_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get extends StandardParameters {
     /**
      * The name of the version to retrieve.
      */
@@ -4441,8 +4418,7 @@ export namespace artifactregistry_v1beta1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$List extends StandardParameters {
     /**
      * Optional. The field to order the results by.
      */
