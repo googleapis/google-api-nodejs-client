@@ -2476,7 +2476,7 @@ export namespace cloudchannel_v1 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -3641,8 +3641,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Checkcloudidentityaccountsexist
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Checkcloudidentityaccountsexist extends StandardParameters {
     /**
      * Required. The reseller account's resource name. Parent uses the format: accounts/{account_id\}
      */
@@ -3653,8 +3652,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1CheckCloudIdentityAccountsExistRequest;
   }
-  export interface Params$Resource$Accounts$Listsubscribers
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Listsubscribers extends StandardParameters {
     /**
      * Optional. Resource name of the account. Required if integrator is not provided. Otherwise, leave this field empty/unset.
      */
@@ -3672,8 +3670,7 @@ export namespace cloudchannel_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Listtransferableoffers
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Listtransferableoffers extends StandardParameters {
     /**
      * Required. The resource name of the reseller's account.
      */
@@ -3684,8 +3681,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ListTransferableOffersRequest;
   }
-  export interface Params$Resource$Accounts$Listtransferableskus
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Listtransferableskus extends StandardParameters {
     /**
      * Required. The reseller account's resource name. Parent uses the format: accounts/{account_id\}
      */
@@ -3696,8 +3692,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ListTransferableSkusRequest;
   }
-  export interface Params$Resource$Accounts$Register
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Register extends StandardParameters {
     /**
      * Optional. Resource name of the account. Required if integrator is not provided. Otherwise, leave this field empty/unset.
      */
@@ -3708,8 +3703,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1RegisterSubscriberRequest;
   }
-  export interface Params$Resource$Accounts$Unregister
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Unregister extends StandardParameters {
     /**
      * Optional. Resource name of the account. Required if integrator is not provided. Otherwise, leave this field empty/unset.
      */
@@ -4373,8 +4367,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Create extends StandardParameters {
     /**
      * Required. Create a channel partner link for the provided reseller account's resource name. Parent uses the format: accounts/{account_id\}
      */
@@ -4385,8 +4378,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ChannelPartnerLink;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Get extends StandardParameters {
     /**
      * Required. The resource name of the channel partner link to retrieve. Name uses the format: accounts/{account_id\}/channelPartnerLinks/{id\} where {id\} is the Cloud Identity ID of the partner.
      */
@@ -4396,8 +4388,7 @@ export namespace cloudchannel_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$List extends StandardParameters {
     /**
      * Optional. Requested page size. Server might return fewer results than requested. If unspecified, server will pick a default size (25). The maximum value is 200; the server will coerce values above 200.
      */
@@ -4415,8 +4406,7 @@ export namespace cloudchannel_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Patch extends StandardParameters {
     /**
      * Required. The resource name of the channel partner link to cancel. Name uses the format: accounts/{account_id\}/channelPartnerLinks/{id\} where {id\} is the Cloud Identity ID of the partner.
      */
@@ -5200,8 +5190,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Create extends StandardParameters {
     /**
      * Required. The resource name of the ChannelPartner that will receive the repricing config. Parent uses the format: accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}
      */
@@ -5212,22 +5201,19 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ChannelPartnerRepricingConfig;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Delete extends StandardParameters {
     /**
      * Required. The resource name of the channel partner repricing config rule to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Get extends StandardParameters {
     /**
      * Required. The resource name of the ChannelPartnerRepricingConfig Format: accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}/channelPartnerRepricingConfigs/{id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$List extends StandardParameters {
     /**
      * Optional. A filter for [CloudChannelService.ListChannelPartnerRepricingConfigs] results (channel_partner_link only). You can use this filter when you support a BatchGet-like query. To use the filter, you must set `parent=accounts/{account_id\}/channelPartnerLinks/-`. Example: `channel_partner_link = accounts/account_id/channelPartnerLinks/c1` OR `channel_partner_link = accounts/account_id/channelPartnerLinks/c2`.
      */
@@ -5245,8 +5231,7 @@ export namespace cloudchannel_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the ChannelPartnerRepricingConfig. Format: accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}/channelPartnerRepricingConfigs/{id\}.
      */
@@ -6233,8 +6218,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$Create extends StandardParameters {
     /**
      * Required. The resource name of reseller account in which to create the customer. Parent uses the format: accounts/{account_id\}
      */
@@ -6245,22 +6229,19 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1Customer;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$Delete extends StandardParameters {
     /**
      * Required. The resource name of the customer to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$Get extends StandardParameters {
     /**
      * Required. The resource name of the customer to retrieve. Name uses the format: accounts/{account_id\}/customers/{customer_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$Import
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$Import extends StandardParameters {
     /**
      * Required. The resource name of the reseller's account. Parent takes the format: accounts/{account_id\} or accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}
      */
@@ -6271,8 +6252,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ImportCustomerRequest;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$List extends StandardParameters {
     /**
      * Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers for more information.
      */
@@ -6290,8 +6270,7 @@ export namespace cloudchannel_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the customer. Format: accounts/{account_id\}/customers/{customer_id\}
      */
@@ -8223,8 +8202,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Customers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Create extends StandardParameters {
     /**
      * Required. The resource name of reseller account in which to create the customer. Parent uses the format: accounts/{account_id\}
      */
@@ -8235,22 +8213,19 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1Customer;
   }
-  export interface Params$Resource$Accounts$Customers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Delete extends StandardParameters {
     /**
      * Required. The resource name of the customer to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Get extends StandardParameters {
     /**
      * Required. The resource name of the customer to retrieve. Name uses the format: accounts/{account_id\}/customers/{customer_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Import
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Import extends StandardParameters {
     /**
      * Required. The resource name of the reseller's account. Parent takes the format: accounts/{account_id\} or accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}
      */
@@ -8261,8 +8236,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ImportCustomerRequest;
   }
-  export interface Params$Resource$Accounts$Customers$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$List extends StandardParameters {
     /**
      * Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers for more information.
      */
@@ -8280,8 +8254,7 @@ export namespace cloudchannel_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Listpurchasableoffers
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Listpurchasableoffers extends StandardParameters {
     /**
      * Optional. Resource name of the new target Billing Account. Provide this Billing Account when setting up billing for a trial subscription. Format: accounts/{account_id\}/billingAccounts/{billing_account_id\}. This field is only relevant for multi-currency accounts. It should be left empty for single currency accounts.
      */
@@ -8319,8 +8292,7 @@ export namespace cloudchannel_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Listpurchasableskus
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Listpurchasableskus extends StandardParameters {
     /**
      * Required. Change Type for the entitlement.
      */
@@ -8350,8 +8322,7 @@ export namespace cloudchannel_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the customer. Format: accounts/{account_id\}/customers/{customer_id\}
      */
@@ -8366,8 +8337,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1Customer;
   }
-  export interface Params$Resource$Accounts$Customers$Provisioncloudidentity
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Provisioncloudidentity extends StandardParameters {
     /**
      * Required. Resource name of the customer. Format: accounts/{account_id\}/customers/{customer_id\}
      */
@@ -8378,8 +8348,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ProvisionCloudIdentityRequest;
   }
-  export interface Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts extends StandardParameters {
     /**
      * Required. The resource name of the customer to list eligible billing accounts for. Format: accounts/{account_id\}/customers/{customer_id\}.
      */
@@ -8389,8 +8358,7 @@ export namespace cloudchannel_v1 {
      */
     skus?: string[];
   }
-  export interface Params$Resource$Accounts$Customers$Transferentitlements
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Transferentitlements extends StandardParameters {
     /**
      * Required. The resource name of the reseller's customer account that will receive transferred entitlements. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}
      */
@@ -8401,8 +8369,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1TransferEntitlementsRequest;
   }
-  export interface Params$Resource$Accounts$Customers$Transferentitlementstogoogle
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Transferentitlementstogoogle extends StandardParameters {
     /**
      * Required. The resource name of the reseller's customer account where the entitlements transfer from. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}
      */
@@ -9178,8 +9145,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Customers$Customerrepricingconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Customerrepricingconfigs$Create extends StandardParameters {
     /**
      * Required. The resource name of the customer that will receive this repricing config. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}
      */
@@ -9190,22 +9156,19 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1CustomerRepricingConfig;
   }
-  export interface Params$Resource$Accounts$Customers$Customerrepricingconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Customerrepricingconfigs$Delete extends StandardParameters {
     /**
      * Required. The resource name of the customer repricing config rule to delete. Format: accounts/{account_id\}/customers/{customer_id\}/customerRepricingConfigs/{id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Customerrepricingconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Customerrepricingconfigs$Get extends StandardParameters {
     /**
      * Required. The resource name of the CustomerRepricingConfig. Format: accounts/{account_id\}/customers/{customer_id\}/customerRepricingConfigs/{id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Customerrepricingconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Customerrepricingconfigs$List extends StandardParameters {
     /**
      * Optional. A filter for [CloudChannelService.ListCustomerRepricingConfigs] results (customer only). You can use this filter when you support a BatchGet-like query. To use the filter, you must set `parent=accounts/{account_id\}/customers/-`. Example: customer = accounts/account_id/customers/c1 OR customer = accounts/account_id/customers/c2.
      */
@@ -9223,8 +9186,7 @@ export namespace cloudchannel_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Customerrepricingconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Customerrepricingconfigs$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the CustomerRepricingConfig. Format: accounts/{account_id\}/customers/{customer_id\}/customerRepricingConfigs/{id\}.
      */
@@ -11094,8 +11056,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Customers$Entitlements$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$Activate extends StandardParameters {
     /**
      * Required. The resource name of the entitlement to activate. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      */
@@ -11106,8 +11067,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ActivateEntitlementRequest;
   }
-  export interface Params$Resource$Accounts$Customers$Entitlements$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$Cancel extends StandardParameters {
     /**
      * Required. The resource name of the entitlement to cancel. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      */
@@ -11118,8 +11078,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1CancelEntitlementRequest;
   }
-  export interface Params$Resource$Accounts$Customers$Entitlements$Changeoffer
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$Changeoffer extends StandardParameters {
     /**
      * Required. The resource name of the entitlement to update. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      */
@@ -11130,8 +11089,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ChangeOfferRequest;
   }
-  export interface Params$Resource$Accounts$Customers$Entitlements$Changeparameters
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$Changeparameters extends StandardParameters {
     /**
      * Required. The name of the entitlement to update. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      */
@@ -11142,8 +11100,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ChangeParametersRequest;
   }
-  export interface Params$Resource$Accounts$Customers$Entitlements$Changerenewalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$Changerenewalsettings extends StandardParameters {
     /**
      * Required. The name of the entitlement to update. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      */
@@ -11154,8 +11111,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ChangeRenewalSettingsRequest;
   }
-  export interface Params$Resource$Accounts$Customers$Entitlements$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$Create extends StandardParameters {
     /**
      * Required. The resource name of the reseller's customer account in which to create the entitlement. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}
      */
@@ -11166,15 +11122,13 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1CreateEntitlementRequest;
   }
-  export interface Params$Resource$Accounts$Customers$Entitlements$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$Get extends StandardParameters {
     /**
      * Required. The resource name of the entitlement to retrieve. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Entitlements$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$List extends StandardParameters {
     /**
      * Optional. Requested page size. Server might return fewer results than requested. If unspecified, return at most 50 entitlements. The maximum value is 100; the server will coerce values above 100.
      */
@@ -11188,8 +11142,7 @@ export namespace cloudchannel_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges extends StandardParameters {
     /**
      * Optional. Filters applied to the list results.
      */
@@ -11207,15 +11160,13 @@ export namespace cloudchannel_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Entitlements$Lookupoffer
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$Lookupoffer extends StandardParameters {
     /**
      * Required. The resource name of the entitlement to retrieve the Offer. Entitlement uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      */
     entitlement?: string;
   }
-  export interface Params$Resource$Accounts$Customers$Entitlements$Startpaidservice
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$Startpaidservice extends StandardParameters {
     /**
      * Required. The name of the entitlement to start a paid service for. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      */
@@ -11226,8 +11177,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1StartPaidServiceRequest;
   }
-  export interface Params$Resource$Accounts$Customers$Entitlements$Suspend
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customers$Entitlements$Suspend extends StandardParameters {
     /**
      * Required. The resource name of the entitlement to suspend. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      */
@@ -11404,8 +11354,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Offers$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Offers$List extends StandardParameters {
     /**
      * Optional. The expression to filter results by name (name of the Offer), sku.name (name of the SKU), or sku.product.name (name of the Product). Example 1: sku.product.name=products/p1 AND sku.name!=products/p1/skus/s1 Example 2: name=accounts/a1/offers/o1
      */
@@ -11598,8 +11547,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Reportjobs$Fetchreportresults
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Reportjobs$Fetchreportresults extends StandardParameters {
     /**
      * Required. The report job created by CloudChannelReportsService.RunReportJob. Report_job uses the format: accounts/{account_id\}/reportJobs/{report_job_id\}
      */
@@ -11924,8 +11872,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Reports$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Reports$List extends StandardParameters {
     /**
      * Optional. The BCP-47 language code, such as "en-US". If specified, the response is localized to the corresponding language code if the original data sources support it. Default is "en-US".
      */
@@ -11943,8 +11890,7 @@ export namespace cloudchannel_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Reports$Run
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Reports$Run extends StandardParameters {
     /**
      * Required. The report's resource name. Specifies the account and report used to generate report data. The report_id identifier is a UID (for example, `613bf59q`). Name uses the format: accounts/{account_id\}/reports/{report_id\}
      */
@@ -12119,8 +12065,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Skugroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Skugroups$List extends StandardParameters {
     /**
      * Optional. The maximum number of SKU groups to return. The service may return fewer than this value. If unspecified, returns a maximum of 1000 SKU groups. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -12294,8 +12239,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Skugroups$Billableskus$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Skugroups$Billableskus$List extends StandardParameters {
     /**
      * Optional. The maximum number of SKUs to return. The service may return fewer than this value. If unspecified, returns a maximum of 100000 SKUs. The maximum value is 100000; values above 100000 will be coerced to 100000.
      */
@@ -12786,8 +12730,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Integrators$Listsubscribers
-    extends StandardParameters {
+  export interface Params$Resource$Integrators$Listsubscribers extends StandardParameters {
     /**
      * Optional. Resource name of the account. Required if integrator is not provided. Otherwise, leave this field empty/unset.
      */
@@ -12805,8 +12748,7 @@ export namespace cloudchannel_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Integrators$Registersubscriber
-    extends StandardParameters {
+  export interface Params$Resource$Integrators$Registersubscriber extends StandardParameters {
     /**
      * Optional. Resource name of the integrator. Required if account is not provided. Otherwise, leave this field empty/unset.
      */
@@ -12817,8 +12759,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1RegisterSubscriberRequest;
   }
-  export interface Params$Resource$Integrators$Unregistersubscriber
-    extends StandardParameters {
+  export interface Params$Resource$Integrators$Unregistersubscriber extends StandardParameters {
     /**
      * Optional. Resource name of the integrator. Required if account is not provided. Otherwise, leave this field empty/unset.
      */
@@ -13286,7 +13227,7 @@ export namespace cloudchannel_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -13401,8 +13342,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -13413,8 +13353,7 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
@@ -13444,7 +13383,7 @@ export namespace cloudchannel_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -13787,8 +13726,7 @@ export namespace cloudchannel_v1 {
     }
   }
 
-  export interface Params$Resource$Products$Skus$List
-    extends StandardParameters {
+  export interface Params$Resource$Products$Skus$List extends StandardParameters {
     /**
      * Required. Resource name of the reseller. Format: accounts/{account_id\}.
      */
