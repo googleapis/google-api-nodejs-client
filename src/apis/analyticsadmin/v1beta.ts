@@ -2564,8 +2564,7 @@ export namespace analyticsadmin_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Getdatasharingsettings
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Getdatasharingsettings extends StandardParameters {
     /**
      * Required. The name of the settings to lookup. Format: accounts/{account\}/dataSharingSettings Example: `accounts/1000/dataSharingSettings`
      */
@@ -2600,15 +2599,13 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaAccount;
   }
-  export interface Params$Resource$Accounts$Provisionaccountticket
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Provisionaccountticket extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaProvisionAccountTicketRequest;
   }
-  export interface Params$Resource$Accounts$Runaccessreport
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Runaccessreport extends StandardParameters {
     /**
      * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your Google Analytics property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your Google Analytics Account ID.
      */
@@ -2619,8 +2616,7 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaRunAccessReportRequest;
   }
-  export interface Params$Resource$Accounts$Searchchangehistoryevents
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Searchchangehistoryevents extends StandardParameters {
     /**
      * Required. The account resource for which to return change history resources. Format: accounts/{account\} Example: `accounts/100`
      */
@@ -2793,8 +2789,7 @@ export namespace analyticsadmin_v1beta {
     }
   }
 
-  export interface Params$Resource$Accountsummaries$List
-    extends StandardParameters {
+  export interface Params$Resource$Accountsummaries$List extends StandardParameters {
     /**
      * The maximum number of AccountSummary resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
      */
@@ -4293,8 +4288,7 @@ export namespace analyticsadmin_v1beta {
     }
   }
 
-  export interface Params$Resource$Properties$Acknowledgeuserdatacollection
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Acknowledgeuserdatacollection extends StandardParameters {
     /**
      * Required. The property for which to acknowledge user data collection.
      */
@@ -4305,15 +4299,13 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionRequest;
   }
-  export interface Params$Resource$Properties$Create
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaProperty;
   }
-  export interface Params$Resource$Properties$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Delete extends StandardParameters {
     /**
      * Required. The name of the Property to soft-delete. Format: properties/{property_id\} Example: "properties/1000"
      */
@@ -4325,8 +4317,7 @@ export namespace analyticsadmin_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Getdataretentionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Getdataretentionsettings extends StandardParameters {
     /**
      * Required. The name of the settings to lookup. Format: properties/{property\}/dataRetentionSettings Example: "properties/1000/dataRetentionSettings"
      */
@@ -4365,8 +4356,7 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaProperty;
   }
-  export interface Params$Resource$Properties$Runaccessreport
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Runaccessreport extends StandardParameters {
     /**
      * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your Google Analytics property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your Google Analytics Account ID.
      */
@@ -4377,8 +4367,7 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaRunAccessReportRequest;
   }
-  export interface Params$Resource$Properties$Updatedataretentionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Updatedataretentionsettings extends StandardParameters {
     /**
      * Output only. Resource name for this DataRetentionSetting resource. Format: properties/{property\}/dataRetentionSettings
      */
@@ -5179,8 +5168,7 @@ export namespace analyticsadmin_v1beta {
     }
   }
 
-  export interface Params$Resource$Properties$Conversionevents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Conversionevents$Create extends StandardParameters {
     /**
      * Required. The resource name of the parent property where this conversion event will be created. Format: properties/123
      */
@@ -5191,22 +5179,19 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaConversionEvent;
   }
-  export interface Params$Resource$Properties$Conversionevents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Conversionevents$Delete extends StandardParameters {
     /**
      * Required. The resource name of the conversion event to delete. Format: properties/{property\}/conversionEvents/{conversion_event\} Example: "properties/123/conversionEvents/456"
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Conversionevents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Conversionevents$Get extends StandardParameters {
     /**
      * Required. The resource name of the conversion event to retrieve. Format: properties/{property\}/conversionEvents/{conversion_event\} Example: "properties/123/conversionEvents/456"
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Conversionevents$List
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Conversionevents$List extends StandardParameters {
     /**
      * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
      */
@@ -5220,8 +5205,7 @@ export namespace analyticsadmin_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Properties$Conversionevents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Conversionevents$Patch extends StandardParameters {
     /**
      * Output only. Resource name of this conversion event. Format: properties/{property\}/conversionEvents/{conversion_event\}
      */
@@ -6026,8 +6010,7 @@ export namespace analyticsadmin_v1beta {
     }
   }
 
-  export interface Params$Resource$Properties$Customdimensions$Archive
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Customdimensions$Archive extends StandardParameters {
     /**
      * Required. The name of the CustomDimension to archive. Example format: properties/1234/customDimensions/5678
      */
@@ -6038,8 +6021,7 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaArchiveCustomDimensionRequest;
   }
-  export interface Params$Resource$Properties$Customdimensions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Customdimensions$Create extends StandardParameters {
     /**
      * Required. Example format: properties/1234
      */
@@ -6050,15 +6032,13 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaCustomDimension;
   }
-  export interface Params$Resource$Properties$Customdimensions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Customdimensions$Get extends StandardParameters {
     /**
      * Required. The name of the CustomDimension to get. Example format: properties/1234/customDimensions/5678
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Customdimensions$List
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Customdimensions$List extends StandardParameters {
     /**
      * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
      */
@@ -6072,8 +6052,7 @@ export namespace analyticsadmin_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Properties$Customdimensions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Customdimensions$Patch extends StandardParameters {
     /**
      * Output only. Resource name for this CustomDimension resource. Format: properties/{property\}/customDimensions/{customDimension\}
      */
@@ -6883,8 +6862,7 @@ export namespace analyticsadmin_v1beta {
     }
   }
 
-  export interface Params$Resource$Properties$Custommetrics$Archive
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Custommetrics$Archive extends StandardParameters {
     /**
      * Required. The name of the CustomMetric to archive. Example format: properties/1234/customMetrics/5678
      */
@@ -6895,8 +6873,7 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaArchiveCustomMetricRequest;
   }
-  export interface Params$Resource$Properties$Custommetrics$Create
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Custommetrics$Create extends StandardParameters {
     /**
      * Required. Example format: properties/1234
      */
@@ -6907,15 +6884,13 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaCustomMetric;
   }
-  export interface Params$Resource$Properties$Custommetrics$Get
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Custommetrics$Get extends StandardParameters {
     /**
      * Required. The name of the CustomMetric to get. Example format: properties/1234/customMetrics/5678
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Custommetrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Custommetrics$List extends StandardParameters {
     /**
      * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
      */
@@ -6929,8 +6904,7 @@ export namespace analyticsadmin_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Properties$Custommetrics$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Custommetrics$Patch extends StandardParameters {
     /**
      * Output only. Resource name for this CustomMetric resource. Format: properties/{property\}/customMetrics/{customMetric\}
      */
@@ -7741,8 +7715,7 @@ export namespace analyticsadmin_v1beta {
     }
   }
 
-  export interface Params$Resource$Properties$Datastreams$Create
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Datastreams$Create extends StandardParameters {
     /**
      * Required. Example format: properties/1234
      */
@@ -7753,22 +7726,19 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaDataStream;
   }
-  export interface Params$Resource$Properties$Datastreams$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Datastreams$Delete extends StandardParameters {
     /**
      * Required. The name of the DataStream to delete. Example format: properties/1234/dataStreams/5678
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Datastreams$Get
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Datastreams$Get extends StandardParameters {
     /**
      * Required. The name of the DataStream to get. Example format: properties/1234/dataStreams/5678
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Datastreams$List
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Datastreams$List extends StandardParameters {
     /**
      * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
      */
@@ -7782,8 +7752,7 @@ export namespace analyticsadmin_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Properties$Datastreams$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Datastreams$Patch extends StandardParameters {
     /**
      * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/dataStreams/{stream_id\} Example: "properties/1000/dataStreams/2000"
      */
@@ -8580,8 +8549,7 @@ export namespace analyticsadmin_v1beta {
     }
   }
 
-  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create extends StandardParameters {
     /**
      * Required. The parent resource where this secret will be created. Format: properties/{property\}/dataStreams/{dataStream\}
      */
@@ -8592,22 +8560,19 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret;
   }
-  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete extends StandardParameters {
     /**
      * Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get extends StandardParameters {
     /**
      * Required. The name of the measurement protocol secret to lookup. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List extends StandardParameters {
     /**
      * The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.
      */
@@ -8621,8 +8586,7 @@ export namespace analyticsadmin_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch extends StandardParameters {
     /**
      * Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
      */
@@ -9094,8 +9058,7 @@ export namespace analyticsadmin_v1beta {
     }
   }
 
-  export interface Params$Resource$Properties$Firebaselinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Firebaselinks$Create extends StandardParameters {
     /**
      * Required. Format: properties/{property_id\} Example: `properties/1234`
      */
@@ -9106,15 +9069,13 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaFirebaseLink;
   }
-  export interface Params$Resource$Properties$Firebaselinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Firebaselinks$Delete extends StandardParameters {
     /**
      * Required. Format: properties/{property_id\}/firebaseLinks/{firebase_link_id\} Example: `properties/1234/firebaseLinks/5678`
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Firebaselinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Firebaselinks$List extends StandardParameters {
     /**
      * The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
      */
@@ -9760,8 +9721,7 @@ export namespace analyticsadmin_v1beta {
     }
   }
 
-  export interface Params$Resource$Properties$Googleadslinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Googleadslinks$Create extends StandardParameters {
     /**
      * Required. Example format: properties/1234
      */
@@ -9772,15 +9732,13 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaGoogleAdsLink;
   }
-  export interface Params$Resource$Properties$Googleadslinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Googleadslinks$Delete extends StandardParameters {
     /**
      * Required. Example format: properties/1234/googleAdsLinks/5678
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Googleadslinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Googleadslinks$List extends StandardParameters {
     /**
      * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
      */
@@ -9794,8 +9752,7 @@ export namespace analyticsadmin_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Properties$Googleadslinks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Googleadslinks$Patch extends StandardParameters {
     /**
      * Output only. Format: properties/{propertyId\}/googleAdsLinks/{googleAdsLinkId\} Note: googleAdsLinkId is not the Google Ads customer ID.
      */
@@ -10596,8 +10553,7 @@ export namespace analyticsadmin_v1beta {
     }
   }
 
-  export interface Params$Resource$Properties$Keyevents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Keyevents$Create extends StandardParameters {
     /**
      * Required. The resource name of the parent property where this Key Event will be created. Format: properties/123
      */
@@ -10608,22 +10564,19 @@ export namespace analyticsadmin_v1beta {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaKeyEvent;
   }
-  export interface Params$Resource$Properties$Keyevents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Keyevents$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Key Event to delete. Format: properties/{property\}/keyEvents/{key_event\} Example: "properties/123/keyEvents/456"
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Keyevents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Keyevents$Get extends StandardParameters {
     /**
      * Required. The resource name of the Key Event to retrieve. Format: properties/{property\}/keyEvents/{key_event\} Example: "properties/123/keyEvents/456"
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Keyevents$List
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Keyevents$List extends StandardParameters {
     /**
      * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
      */
@@ -10637,8 +10590,7 @@ export namespace analyticsadmin_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Properties$Keyevents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Keyevents$Patch extends StandardParameters {
     /**
      * Output only. Resource name of this key event. Format: properties/{property\}/keyEvents/{key_event\}
      */
