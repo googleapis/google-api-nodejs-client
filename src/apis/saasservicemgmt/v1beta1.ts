@@ -1525,15 +1525,13 @@ export namespace saasservicemgmt_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2348,8 +2346,7 @@ export namespace saasservicemgmt_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Releases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Releases$Create extends StandardParameters {
     /**
      * Required. The parent of the release.
      */
@@ -2372,8 +2369,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     requestBody?: Schema$Release;
   }
-  export interface Params$Resource$Projects$Locations$Releases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Releases$Delete extends StandardParameters {
     /**
      * The etag known to the client for the expected state of the release. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the release. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
      */
@@ -2391,15 +2387,13 @@ export namespace saasservicemgmt_v1beta1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Releases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Releases$Get extends StandardParameters {
     /**
      * Required. The resource name of the resource within a service.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Releases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Releases$List extends StandardParameters {
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      */
@@ -2421,8 +2415,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Releases$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Releases$Patch extends StandardParameters {
     /**
      * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/releases/{release\}"
      */
@@ -3254,8 +3247,7 @@ export namespace saasservicemgmt_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Replicationsinternal$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Replicationsinternal$Create extends StandardParameters {
     /**
      * Required. The parent of the replication internal.
      */
@@ -3278,8 +3270,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     requestBody?: Schema$ReplicationInternal;
   }
-  export interface Params$Resource$Projects$Locations$Replicationsinternal$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Replicationsinternal$Delete extends StandardParameters {
     /**
      * The etag known to the client for the expected state of the replication internal. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the replication internal. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
      */
@@ -3297,15 +3288,13 @@ export namespace saasservicemgmt_v1beta1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Replicationsinternal$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Replicationsinternal$Get extends StandardParameters {
     /**
      * Required. The resource name of the resource within a service.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Replicationsinternal$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Replicationsinternal$List extends StandardParameters {
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      */
@@ -3327,8 +3316,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Replicationsinternal$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Replicationsinternal$Patch extends StandardParameters {
     /**
      * The etag known to the client for the expected state of the replication internal. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the replication internal. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
      */
@@ -4143,8 +4131,7 @@ export namespace saasservicemgmt_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Rolloutkinds$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rolloutkinds$Create extends StandardParameters {
     /**
      * Required. The parent of the rollout kind.
      */
@@ -4167,8 +4154,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     requestBody?: Schema$RolloutKind;
   }
-  export interface Params$Resource$Projects$Locations$Rolloutkinds$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rolloutkinds$Delete extends StandardParameters {
     /**
      * The etag known to the client for the expected state of the rollout kind. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the rollout kind. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
      */
@@ -4186,15 +4172,13 @@ export namespace saasservicemgmt_v1beta1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Rolloutkinds$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rolloutkinds$Get extends StandardParameters {
     /**
      * Required. The resource name of the resource within a service.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Rolloutkinds$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rolloutkinds$List extends StandardParameters {
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      */
@@ -4216,8 +4200,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Rolloutkinds$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rolloutkinds$Patch extends StandardParameters {
     /**
      * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/rolloutKinds/{rollout_kind_id\}"
      */
@@ -5073,8 +5056,7 @@ export namespace saasservicemgmt_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Rollouts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rollouts$Create extends StandardParameters {
     /**
      * Required. The parent of the rollout.
      */
@@ -5097,8 +5079,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     requestBody?: Schema$Rollout;
   }
-  export interface Params$Resource$Projects$Locations$Rollouts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rollouts$Delete extends StandardParameters {
     /**
      * The etag known to the client for the expected state of the rollout. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the rollout. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
      */
@@ -5116,15 +5097,13 @@ export namespace saasservicemgmt_v1beta1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Rollouts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rollouts$Get extends StandardParameters {
     /**
      * Required. The resource name of the resource within a service.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Rollouts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rollouts$List extends StandardParameters {
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      */
@@ -5146,8 +5125,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Rollouts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rollouts$Patch extends StandardParameters {
     /**
      * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/rollout/{rollout_id\}"
      */
@@ -5936,8 +5914,7 @@ export namespace saasservicemgmt_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Saas$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Saas$Create extends StandardParameters {
     /**
      * Required. The parent of the saas.
      */
@@ -5960,8 +5937,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     requestBody?: Schema$Saas;
   }
-  export interface Params$Resource$Projects$Locations$Saas$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Saas$Delete extends StandardParameters {
     /**
      * The etag known to the client for the expected state of the saas. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the saas. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
      */
@@ -5979,15 +5955,13 @@ export namespace saasservicemgmt_v1beta1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Saas$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Saas$Get extends StandardParameters {
     /**
      * Required. The resource name of the resource within a service.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Saas$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Saas$List extends StandardParameters {
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      */
@@ -6009,8 +5983,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Saas$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Saas$Patch extends StandardParameters {
     /**
      * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/saas/{saas\}"
      */
@@ -6804,8 +6777,7 @@ export namespace saasservicemgmt_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tenants$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tenants$Create extends StandardParameters {
     /**
      * Required. The parent of the tenant.
      */
@@ -6828,8 +6800,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     requestBody?: Schema$Tenant;
   }
-  export interface Params$Resource$Projects$Locations$Tenants$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tenants$Delete extends StandardParameters {
     /**
      * The etag known to the client for the expected state of the tenant. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the tenant. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
      */
@@ -6847,15 +6818,13 @@ export namespace saasservicemgmt_v1beta1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Tenants$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tenants$Get extends StandardParameters {
     /**
      * Required. The resource name of the resource within a service.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tenants$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tenants$List extends StandardParameters {
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      */
@@ -6877,8 +6846,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tenants$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tenants$Patch extends StandardParameters {
     /**
      * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/tenants/{tenant\}"
      */
@@ -7689,8 +7657,7 @@ export namespace saasservicemgmt_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Unitkinds$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Unitkinds$Create extends StandardParameters {
     /**
      * Required. The parent of the unit kind.
      */
@@ -7713,8 +7680,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     requestBody?: Schema$UnitKind;
   }
-  export interface Params$Resource$Projects$Locations$Unitkinds$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Unitkinds$Delete extends StandardParameters {
     /**
      * The etag known to the client for the expected state of the unit kind. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the unit kind. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
      */
@@ -7732,15 +7698,13 @@ export namespace saasservicemgmt_v1beta1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Unitkinds$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Unitkinds$Get extends StandardParameters {
     /**
      * Required. The resource name of the resource within a service.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Unitkinds$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Unitkinds$List extends StandardParameters {
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      */
@@ -7762,8 +7726,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Unitkinds$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Unitkinds$Patch extends StandardParameters {
     /**
      * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/unitKinds/{unitKind\}"
      */
@@ -8611,8 +8574,7 @@ export namespace saasservicemgmt_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Unitoperations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Unitoperations$Create extends StandardParameters {
     /**
      * Required. The parent of the unit operation.
      */
@@ -8635,8 +8597,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     requestBody?: Schema$UnitOperation;
   }
-  export interface Params$Resource$Projects$Locations$Unitoperations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Unitoperations$Delete extends StandardParameters {
     /**
      * The etag known to the client for the expected state of the unit operation. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the unit operation. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
      */
@@ -8654,15 +8615,13 @@ export namespace saasservicemgmt_v1beta1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Unitoperations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Unitoperations$Get extends StandardParameters {
     /**
      * Required. The resource name of the resource within a service.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Unitoperations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Unitoperations$List extends StandardParameters {
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      */
@@ -8684,8 +8643,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Unitoperations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Unitoperations$Patch extends StandardParameters {
     /**
      * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/unitOperations/{unitOperation\}"
      */
@@ -9549,8 +9507,7 @@ export namespace saasservicemgmt_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Units$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Units$Create extends StandardParameters {
     /**
      * Required. The parent of the unit.
      */
@@ -9573,8 +9530,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     requestBody?: Schema$Unit;
   }
-  export interface Params$Resource$Projects$Locations$Units$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Units$Delete extends StandardParameters {
     /**
      * The etag known to the client for the expected state of the unit. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the unit. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
      */
@@ -9592,15 +9548,13 @@ export namespace saasservicemgmt_v1beta1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Units$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Units$Get extends StandardParameters {
     /**
      * Required. The resource name of the resource within a service.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Units$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Units$List extends StandardParameters {
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      */
@@ -9622,8 +9576,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Units$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Units$Patch extends StandardParameters {
     /**
      * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/units/{unit\}"
      */
