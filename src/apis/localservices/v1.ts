@@ -556,8 +556,7 @@ export namespace localservices_v1 {
     }
   }
 
-  export interface Params$Resource$Accountreports$Search
-    extends StandardParameters {
+  export interface Params$Resource$Accountreports$Search extends StandardParameters {
     /**
      * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
@@ -768,8 +767,7 @@ export namespace localservices_v1 {
     }
   }
 
-  export interface Params$Resource$Detailedleadreports$Search
-    extends StandardParameters {
+  export interface Params$Resource$Detailedleadreports$Search extends StandardParameters {
     /**
      * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
