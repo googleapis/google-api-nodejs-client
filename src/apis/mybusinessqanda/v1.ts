@@ -871,8 +871,7 @@ export namespace mybusinessqanda_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Questions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Questions$Create extends StandardParameters {
     /**
      * Required. The name of the location to write a question for.
      */
@@ -883,15 +882,13 @@ export namespace mybusinessqanda_v1 {
      */
     requestBody?: Schema$Question;
   }
-  export interface Params$Resource$Locations$Questions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Questions$Delete extends StandardParameters {
     /**
      * Required. The name of the question to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Questions$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Questions$List extends StandardParameters {
     /**
      * Optional. How many answers to fetch per question. The default and maximum `answers_per_question` values are 10.
      */
@@ -917,8 +914,7 @@ export namespace mybusinessqanda_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Locations$Questions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Questions$Patch extends StandardParameters {
     /**
      * Immutable. The unique name for the question. locations/x/questions/x This field will be ignored if set during question creation.
      */
@@ -1374,15 +1370,13 @@ export namespace mybusinessqanda_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Questions$Answers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Questions$Answers$Delete extends StandardParameters {
     /**
      * Required. The name of the question to delete an answer for.
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Questions$Answers$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Questions$Answers$List extends StandardParameters {
     /**
      * Optional. The order to return the answers. Valid options include 'update_time desc' and 'upvote_count desc', which will return the answers sorted descendingly by the requested field. The default sort order is 'update_time desc'.
      */
@@ -1400,8 +1394,7 @@ export namespace mybusinessqanda_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Locations$Questions$Answers$Upsert
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Questions$Answers$Upsert extends StandardParameters {
     /**
      * Required. The name of the question to write an answer for.
      */
