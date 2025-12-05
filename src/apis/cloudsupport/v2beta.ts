@@ -193,6 +193,10 @@ export namespace cloudsupport_v2beta {
     /**
      * # gdata.* are outside protos with mising documentation
      */
+    downloadExternalReadToken?: string | null;
+    /**
+     * # gdata.* are outside protos with mising documentation
+     */
     downloadReadHandle?: string | null;
     /**
      * # gdata.* are outside protos with mising documentation
@@ -971,8 +975,7 @@ export namespace cloudsupport_v2beta {
     }
   }
 
-  export interface Params$Resource$Caseclassifications$Search
-    extends StandardParameters {
+  export interface Params$Resource$Caseclassifications$Search extends StandardParameters {
     /**
      * The maximum number of classifications fetched with each request.
      */
@@ -2647,15 +2650,13 @@ export namespace cloudsupport_v2beta {
     }
   }
 
-  export interface Params$Resource$Cases$Attachments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Cases$Attachments$Get extends StandardParameters {
     /**
      * Required. The name of the attachment to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Cases$Attachments$List
-    extends StandardParameters {
+  export interface Params$Resource$Cases$Attachments$List extends StandardParameters {
     /**
      * The maximum number of attachments fetched with each request. If not provided, the default is 10. The maximum page size that will be returned is 100. The size of each page can be smaller than the requested page size and can include zero. For example, you could request 100 attachments on one page, receive 0, and then on the next page, receive 90.
      */
@@ -3112,8 +3113,7 @@ export namespace cloudsupport_v2beta {
     }
   }
 
-  export interface Params$Resource$Cases$Comments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Cases$Comments$Create extends StandardParameters {
     /**
      * Required. The name of the case to which the comment should be added.
      */
@@ -3124,15 +3124,13 @@ export namespace cloudsupport_v2beta {
      */
     requestBody?: Schema$Comment;
   }
-  export interface Params$Resource$Cases$Comments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Cases$Comments$Get extends StandardParameters {
     /**
      * Required. The name of the comment to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Cases$Comments$List
-    extends StandardParameters {
+  export interface Params$Resource$Cases$Comments$List extends StandardParameters {
     /**
      * The maximum number of comments to fetch. Defaults to 10.
      */
