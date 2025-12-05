@@ -431,7 +431,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id}/locations/global` - For organization-level resources: `organizations/{organization_id}/locations/global`",
+                      "description": "Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id}/locations/global` - For organization-level resources: `organizations/{organization_id}/locations/global`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1094,7 +1094,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id}/locations/global` - For organization-level resources: `organizations/{organization_id}/locations/global`",
+                      "description": "Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id}/locations/global` - For organization-level resources: `organizations/{organization_id}/locations/global`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20251022",
+  "revision": "20251105",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1904,7 +1904,8 @@
             "L2_INTERCONNECT_UNSUPPORTED_PORT",
             "L2_INTERCONNECT_DESTINATION_IP_MISMATCH",
             "NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED",
-            "HYBRID_SUBNET_REGION_MISMATCH"
+            "HYBRID_SUBNET_REGION_MISMATCH",
+            "HYBRID_SUBNET_NO_ROUTE"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -2005,7 +2006,8 @@
             "Packet is dropped due to using an unsupported port (any other than 6081) for L2 Interconnect.",
             "Packet is dropped due to destination IP not matching the appliance mapping IPs configured on the L2 Interconnect attachment.",
             "Packet could be dropped because it matches a route associated with an NCC spoke in the hybrid subnet context, but such a configuration is not supported.",
-            "Packet is dropped because the region of the hybrid subnet is different from the region of the next hop of the route matched within this hybrid subnet."
+            "Packet is dropped because the region of the hybrid subnet is different from the region of the next hop of the route matched within this hybrid subnet.",
+            "Packet is dropped because no matching route was found in the hybrid subnet."
           ],
           "type": "string"
         },
@@ -2415,6 +2417,8 @@
             "SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE",
             "NETWORK_FIREWALL_POLICY_RULE",
             "NETWORK_REGIONAL_FIREWALL_POLICY_RULE",
+            "SYSTEM_NETWORK_FIREWALL_POLICY_RULE",
+            "SYSTEM_REGIONAL_NETWORK_FIREWALL_POLICY_RULE",
             "UNSUPPORTED_FIREWALL_POLICY_RULE",
             "TRACKING_STATE",
             "ANALYSIS_SKIPPED"
@@ -2425,8 +2429,10 @@
             "VPC firewall rule. For details, see [VPC firewall rules overview](https://cloud.google.com/vpc/docs/firewalls).",
             "Implied VPC firewall rule. For details, see [Implied rules](https://cloud.google.com/vpc/docs/firewalls#default_firewall_rules).",
             "Implicit firewall rules that are managed by serverless VPC access to allow ingress access. They are not visible in the Google Cloud console. For details, see [VPC connector's implicit rules](https://cloud.google.com/functions/docs/networking/connecting-vpc#restrict-access).",
-            "Global network firewall policy rule. For details, see [Network firewall policies](https://cloud.google.com/vpc/docs/network-firewall-policies).",
-            "Regional network firewall policy rule. For details, see [Regional network firewall policies](https://cloud.google.com/firewall/docs/regional-firewall-policies).",
+            "User-defined global network firewall policy rule. For details, see [Network firewall policies](https://cloud.google.com/vpc/docs/network-firewall-policies).",
+            "User-defined regional network firewall policy rule. For details, see [Regional network firewall policies](https://cloud.google.com/firewall/docs/regional-firewall-policies).",
+            "System-defined global network firewall policy rule.",
+            "System-defined regional network firewall policy rule.",
             "Firewall policy rule containing attributes not yet supported in Connectivity tests. Firewall analysis is skipped if such a rule can potentially be matched. Please see the [list of unsupported configurations](https://cloud.google.com/network-intelligence-center/docs/connectivity-tests/concepts/overview#unsupported-configs).",
             "Tracking state for response traffic created when request traffic goes through allow firewall rule. For details, see [firewall rules specifications](https://cloud.google.com/firewall/docs/firewalls#specifications)",
             "Firewall analysis was skipped due to executing Connectivity Test in the BypassFirewallChecks mode"

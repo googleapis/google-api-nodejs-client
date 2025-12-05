@@ -2355,15 +2355,13 @@ export namespace networkmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2960,8 +2958,7 @@ export namespace networkmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2972,22 +2969,19 @@ export namespace networkmanagement_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -3520,7 +3514,7 @@ export namespace networkmanagement_v1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. Page token from an earlier query, as returned in `next_page_token`.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
+     *       // Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      *       parent: 'organizations/my-organization/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -3804,8 +3798,7 @@ export namespace networkmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create extends StandardParameters {
     /**
      * Required. The parent resource of the VpcFlowLogsConfig to create, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      */
@@ -3820,22 +3813,19 @@ export namespace networkmanagement_v1 {
      */
     requestBody?: Schema$VpcFlowLogsConfig;
   }
-  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete extends StandardParameters {
     /**
      * Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For a project-level resource: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For an organization-level resource: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get extends StandardParameters {
     /**
      * Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level resources: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$List extends StandardParameters {
     /**
      * Optional. Lists the `VpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
      */
@@ -3853,12 +3843,11 @@ export namespace networkmanagement_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
+     * Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch extends StandardParameters {
     /**
      * Identifier. Unique name of the configuration. The name can have one of the following forms: - For project-level configurations: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level configurations: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
@@ -4183,15 +4172,13 @@ export namespace networkmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -5621,8 +5608,7 @@ export namespace networkmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Create extends StandardParameters {
     /**
      * Required. The parent resource of the Connectivity Test to create: `projects/{project_id\}/locations/global`
      */
@@ -5637,22 +5623,19 @@ export namespace networkmanagement_v1 {
      */
     requestBody?: Schema$ConnectivityTest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Delete extends StandardParameters {
     /**
      * Required. Connectivity Test resource name using the form: `projects/{project_id\}/locations/global/connectivityTests/{test_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Get extends StandardParameters {
     /**
      * Required. `ConnectivityTest` resource name using the form: `projects/{project_id\}/locations/global/connectivityTests/{test_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5662,8 +5645,7 @@ export namespace networkmanagement_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$List extends StandardParameters {
     /**
      * Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form ` ` where operators: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/proj-1/locations/global/connectivityTests/test-1 - Filter by labels: - Resources that have a key called `foo` labels.foo:* - Resources that have a key called `foo` whose value is `bar` labels.foo = bar
      */
@@ -5685,8 +5667,7 @@ export namespace networkmanagement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Patch extends StandardParameters {
     /**
      * Identifier. Unique name of the resource using the form: `projects/{project_id\}/locations/global/connectivityTests/{test_id\}`
      */
@@ -5701,8 +5682,7 @@ export namespace networkmanagement_v1 {
      */
     requestBody?: Schema$ConnectivityTest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Rerun
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Rerun extends StandardParameters {
     /**
      * Required. Connectivity Test resource name using the form: `projects/{project_id\}/locations/global/connectivityTests/{test_id\}`
      */
@@ -5713,8 +5693,7 @@ export namespace networkmanagement_v1 {
      */
     requestBody?: Schema$RerunConnectivityTestRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5725,8 +5704,7 @@ export namespace networkmanagement_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6313,8 +6291,7 @@ export namespace networkmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -6325,22 +6302,19 @@ export namespace networkmanagement_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -6874,7 +6848,7 @@ export namespace networkmanagement_v1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. Page token from an earlier query, as returned in `next_page_token`.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
+     *       // Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      *       parent: 'projects/my-project/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -7480,8 +7454,7 @@ export namespace networkmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Create extends StandardParameters {
     /**
      * Required. The parent resource of the VpcFlowLogsConfig to create, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      */
@@ -7496,22 +7469,19 @@ export namespace networkmanagement_v1 {
      */
     requestBody?: Schema$VpcFlowLogsConfig;
   }
-  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Delete extends StandardParameters {
     /**
      * Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For a project-level resource: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For an organization-level resource: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Get extends StandardParameters {
     /**
      * Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level resources: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$List extends StandardParameters {
     /**
      * Optional. Lists the `VpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
      */
@@ -7529,12 +7499,11 @@ export namespace networkmanagement_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
+     * Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Patch extends StandardParameters {
     /**
      * Identifier. Unique name of the configuration. The name can have one of the following forms: - For project-level configurations: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level configurations: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
@@ -7549,8 +7518,7 @@ export namespace networkmanagement_v1 {
      */
     requestBody?: Schema$VpcFlowLogsConfig;
   }
-  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Queryorgvpcflowlogsconfigs
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Queryorgvpcflowlogsconfigs extends StandardParameters {
     /**
      * Optional. Lists the `VpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
      */
@@ -7568,8 +7536,7 @@ export namespace networkmanagement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs extends StandardParameters {
     /**
      * Optional. Lists the `EffectiveVpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
      */
