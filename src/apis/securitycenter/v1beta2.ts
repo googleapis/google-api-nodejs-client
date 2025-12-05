@@ -260,6 +260,10 @@ export namespace securitycenter_v1beta2 {
      * The publisher of the model, for example, “google” or “nvidia”.
      */
     publisher?: string | null;
+    /**
+     * The purpose of the model, for example, "Inteference" or "Training".
+     */
+    usageCategory?: string | null;
   }
   /**
    * Allowed IP rule.
@@ -1961,6 +1965,10 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1Resource {
     /**
+     * The App Hub application this resource belongs to.
+     */
+    application?: Schema$GoogleCloudSecuritycenterV1ResourceApplication;
+    /**
      * The AWS metadata associated with the finding.
      */
     awsMetadata?: Schema$AwsMetadata;
@@ -2022,6 +2030,71 @@ export namespace securitycenter_v1beta2 {
     service?: string | null;
     /**
      * The full resource type of the resource.
+     */
+    type?: string | null;
+  }
+  /**
+   * The App Hub Application associated with the finding's resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplication {
+    /**
+     * Consumer provided attributes for the application
+     */
+    attributes?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributes;
+    /**
+     * The resource name of an Application. Format: `projects/{host-project-id\}/locations/{location\}/applications/{application-id\}`
+     */
+    name?: string | null;
+  }
+  /**
+   * Consumer provided attributes for the application
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributes {
+    /**
+     * Business team that ensures user needs are met and value is delivered
+     */
+    businessOwners?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined criticality information.
+     */
+    criticality?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality;
+    /**
+     * Developer team that owns development and coding.
+     */
+    developerOwners?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined environment information.
+     */
+    environment?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment;
+    /**
+     * Operator team that ensures runtime and operations.
+     */
+    operatorOwners?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo[];
+  }
+  /**
+   * Contact information of stakeholders.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo {
+    /**
+     * Email address of the contacts.
+     */
+    email?: string | null;
+  }
+  /**
+   * Criticality of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality {
+    /**
+     * Criticality Type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Environment of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment {
+    /**
+     * Environment Type.
      */
     type?: string | null;
   }
@@ -2278,6 +2351,10 @@ export namespace securitycenter_v1beta2 {
      * The publisher of the model, for example, “google” or “nvidia”.
      */
     publisher?: string | null;
+    /**
+     * The purpose of the model, for example, "Inteference" or "Training".
+     */
+    usageCategory?: string | null;
   }
   /**
    * Allowed IP rule.
@@ -4496,6 +4573,10 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2Resource {
     /**
+     * The App Hub application this resource belongs to.
+     */
+    application?: Schema$GoogleCloudSecuritycenterV2ResourceApplication;
+    /**
      * The AWS metadata associated with the finding.
      */
     awsMetadata?: Schema$GoogleCloudSecuritycenterV2AwsMetadata;
@@ -4537,6 +4618,71 @@ export namespace securitycenter_v1beta2 {
     service?: string | null;
     /**
      * The full resource type of the resource.
+     */
+    type?: string | null;
+  }
+  /**
+   * The App Hub Application associated with the finding's resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplication {
+    /**
+     * Consumer provided attributes for the application
+     */
+    attributes?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributes;
+    /**
+     * The resource name of an Application. Format: `projects/{host-project-id\}/locations/{location\}/applications/{application-id\}`
+     */
+    name?: string | null;
+  }
+  /**
+   * Consumer provided attributes for the application
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributes {
+    /**
+     * Business team that ensures user needs are met and value is delivered
+     */
+    businessOwners?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined criticality information.
+     */
+    criticality?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality;
+    /**
+     * Developer team that owns development and coding.
+     */
+    developerOwners?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined environment information.
+     */
+    environment?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment;
+    /**
+     * Operator team that ensures runtime and operations.
+     */
+    operatorOwners?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo[];
+  }
+  /**
+   * Contact information of stakeholders.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo {
+    /**
+     * Email address of the contacts.
+     */
+    email?: string | null;
+  }
+  /**
+   * Criticality of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality {
+    /**
+     * Criticality Type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Environment of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment {
+    /**
+     * Environment Type.
      */
     type?: string | null;
   }
@@ -7905,57 +8051,49 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Folders$Getcontainerthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getcontainerthreatdetectionsettings extends StandardParameters {
     /**
      * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Geteventthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Geteventthreatdetectionsettings extends StandardParameters {
     /**
      * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings extends StandardParameters {
     /**
      * Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getsecuritycentersettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getsecuritycentersettings extends StandardParameters {
     /**
      * Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getsecurityhealthanalyticssettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getsecurityhealthanalyticssettings extends StandardParameters {
     /**
      * Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings extends StandardParameters {
     /**
      * Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getwebsecurityscannersettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getwebsecurityscannersettings extends StandardParameters {
     /**
      * Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Updatecontainerthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Updatecontainerthreatdetectionsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
@@ -7970,8 +8108,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$ContainerThreatDetectionSettings;
   }
-  export interface Params$Resource$Folders$Updateeventthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Updateeventthreatdetectionsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
@@ -7986,8 +8123,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$EventThreatDetectionSettings;
   }
-  export interface Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings extends StandardParameters {
     /**
      * The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
@@ -8002,8 +8138,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$RapidVulnerabilityDetectionSettings;
   }
-  export interface Params$Resource$Folders$Updatesecurityhealthanalyticssettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Updatesecurityhealthanalyticssettings extends StandardParameters {
     /**
      * Identifier. The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
@@ -8018,8 +8153,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$SecurityHealthAnalyticsSettings;
   }
-  export interface Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
@@ -8034,8 +8168,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$VirtualMachineThreatDetectionSettings;
   }
-  export interface Params$Resource$Folders$Updatewebsecurityscannersettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Updatewebsecurityscannersettings extends StandardParameters {
     /**
      * Identifier. The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
@@ -8214,8 +8347,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Folders$Containerthreatdetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Containerthreatdetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
@@ -8384,8 +8516,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
@@ -8556,8 +8687,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
@@ -8723,8 +8853,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
@@ -8900,8 +9029,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
@@ -9069,8 +9197,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Folders$Websecurityscannersettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Websecurityscannersettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
@@ -11258,64 +11385,55 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Getcontainerthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getcontainerthreatdetectionsettings extends StandardParameters {
     /**
      * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Geteventthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Geteventthreatdetectionsettings extends StandardParameters {
     /**
      * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings extends StandardParameters {
     /**
      * Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Getsecuritycentersettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getsecuritycentersettings extends StandardParameters {
     /**
      * Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Getsecurityhealthanalyticssettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getsecurityhealthanalyticssettings extends StandardParameters {
     /**
      * Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Getsubscription
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getsubscription extends StandardParameters {
     /**
      * Required. The name of the subscription to retrieve. Format: organizations/{organization\}/subscription
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings extends StandardParameters {
     /**
      * Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Getwebsecurityscannersettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getwebsecurityscannersettings extends StandardParameters {
     /**
      * Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Updatecontainerthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updatecontainerthreatdetectionsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
@@ -11330,8 +11448,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$ContainerThreatDetectionSettings;
   }
-  export interface Params$Resource$Organizations$Updateeventthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updateeventthreatdetectionsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
@@ -11346,8 +11463,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$EventThreatDetectionSettings;
   }
-  export interface Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings extends StandardParameters {
     /**
      * The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
@@ -11362,8 +11478,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$RapidVulnerabilityDetectionSettings;
   }
-  export interface Params$Resource$Organizations$Updatesecurityhealthanalyticssettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updatesecurityhealthanalyticssettings extends StandardParameters {
     /**
      * Identifier. The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
@@ -11378,8 +11493,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$SecurityHealthAnalyticsSettings;
   }
-  export interface Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
@@ -11394,8 +11508,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$VirtualMachineThreatDetectionSettings;
   }
-  export interface Params$Resource$Organizations$Updatewebsecurityscannersettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updatewebsecurityscannersettings extends StandardParameters {
     /**
      * Identifier. The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
@@ -11576,8 +11689,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Containerthreatdetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Containerthreatdetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
@@ -11746,8 +11858,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
@@ -11920,8 +12031,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
@@ -12089,8 +12199,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
@@ -12266,8 +12375,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
@@ -12434,8 +12542,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Websecurityscannersettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Websecurityscannersettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
@@ -14471,57 +14578,49 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Getcontainerthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getcontainerthreatdetectionsettings extends StandardParameters {
     /**
      * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Geteventthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Geteventthreatdetectionsettings extends StandardParameters {
     /**
      * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings extends StandardParameters {
     /**
      * Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getsecuritycentersettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getsecuritycentersettings extends StandardParameters {
     /**
      * Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getsecurityhealthanalyticssettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getsecurityhealthanalyticssettings extends StandardParameters {
     /**
      * Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings extends StandardParameters {
     /**
      * Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getwebsecurityscannersettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getwebsecurityscannersettings extends StandardParameters {
     /**
      * Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updatecontainerthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updatecontainerthreatdetectionsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
@@ -14536,8 +14635,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$ContainerThreatDetectionSettings;
   }
-  export interface Params$Resource$Projects$Updateeventthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updateeventthreatdetectionsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
@@ -14552,8 +14650,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$EventThreatDetectionSettings;
   }
-  export interface Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings extends StandardParameters {
     /**
      * The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
@@ -14568,8 +14665,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$RapidVulnerabilityDetectionSettings;
   }
-  export interface Params$Resource$Projects$Updatesecurityhealthanalyticssettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updatesecurityhealthanalyticssettings extends StandardParameters {
     /**
      * Identifier. The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
@@ -14584,8 +14680,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$SecurityHealthAnalyticsSettings;
   }
-  export interface Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
@@ -14600,8 +14695,7 @@ export namespace securitycenter_v1beta2 {
      */
     requestBody?: Schema$VirtualMachineThreatDetectionSettings;
   }
-  export interface Params$Resource$Projects$Updatewebsecurityscannersettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updatewebsecurityscannersettings extends StandardParameters {
     /**
      * Identifier. The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
@@ -14780,8 +14874,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Containerthreatdetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Containerthreatdetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
@@ -14950,8 +15043,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
@@ -15303,15 +15395,13 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Getcontainerthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Getcontainerthreatdetectionsettings extends StandardParameters {
     /**
      * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Updatecontainerthreatdetectionsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Updatecontainerthreatdetectionsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
@@ -15492,8 +15582,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
@@ -15666,8 +15755,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
@@ -15833,8 +15921,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
@@ -16010,8 +16097,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
@@ -16178,8 +16264,7 @@ export namespace securitycenter_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Websecurityscannersettings$Calculate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Websecurityscannersettings$Calculate extends StandardParameters {
     /**
      * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
