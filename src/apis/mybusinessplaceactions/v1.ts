@@ -972,8 +972,7 @@ export namespace mybusinessplaceactions_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Placeactionlinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Placeactionlinks$Create extends StandardParameters {
     /**
      * Required. The resource name of the location where to create this place action link. `locations/{location_id\}`.
      */
@@ -984,22 +983,19 @@ export namespace mybusinessplaceactions_v1 {
      */
     requestBody?: Schema$PlaceActionLink;
   }
-  export interface Params$Resource$Locations$Placeactionlinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Placeactionlinks$Delete extends StandardParameters {
     /**
      * Required. The resource name of the place action link to remove from the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Placeactionlinks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Placeactionlinks$Get extends StandardParameters {
     /**
      * Required. The name of the place action link to fetch.
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Placeactionlinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Placeactionlinks$List extends StandardParameters {
     /**
      * Optional. A filter constraining the place action links to return. The response includes entries that match the filter. We support only the following filter: 1. place_action_type=XYZ where XYZ is a valid PlaceActionType.
      */
@@ -1017,8 +1013,7 @@ export namespace mybusinessplaceactions_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Locations$Placeactionlinks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Placeactionlinks$Patch extends StandardParameters {
     /**
      * Optional. The resource name, in the format `locations/{location_id\}/placeActionLinks/{place_action_link_id\}`. The name field will only be considered in UpdatePlaceActionLink and DeletePlaceActionLink requests for updating and deleting links respectively. However, it will be ignored in CreatePlaceActionLink request, where `place_action_link_id` will be assigned by the server on successful creation of a new link and returned as part of the response.
      */
@@ -1196,8 +1191,7 @@ export namespace mybusinessplaceactions_v1 {
     }
   }
 
-  export interface Params$Resource$Placeactiontypemetadata$List
-    extends StandardParameters {
+  export interface Params$Resource$Placeactiontypemetadata$List extends StandardParameters {
     /**
      * Optional. A filter constraining the place action types to return metadata for. The response includes entries that match the filter. We support only the following filters: 1. location=XYZ where XYZ is a string indicating the resource name of a location, in the format `locations/{location_id\}`. 2. region_code=XYZ where XYZ is a Unicode CLDR region code to find available action types. If no filter is provided, all place action types are returned.
      */
