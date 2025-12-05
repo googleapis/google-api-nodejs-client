@@ -1130,6 +1130,15 @@ export namespace admin_directory_v1 {
      */
     commandId?: string | null;
   }
+  /**
+   * Directory users guest creation request message.
+   */
+  export interface Schema$DirectoryUsersCreateGuestRequest {
+    /**
+     * Immutable. External email of the guest user being created.
+     */
+    primaryGuestEmail?: string | null;
+  }
   export interface Schema$DomainAlias {
     /**
      * The creation time of the domain alias. (Read-only).
@@ -1388,6 +1397,15 @@ export namespace admin_directory_v1 {
      * Token used to access next page of this result.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Account info specific to Guest users.
+   */
+  export interface Schema$GuestAccountInfo {
+    /**
+     * Immutable. The guest's external email.
+     */
+    primaryGuestEmail?: string | null;
   }
   /**
    * Response for listing allowed printer models.
@@ -2249,6 +2267,10 @@ export namespace admin_directory_v1 {
      */
     gender?: any | null;
     /**
+     * Immutable. Additional guest-related metadata fields
+     */
+    guestAccountInfo?: Schema$GuestAccountInfo;
+    /**
      * Stores the hash format of the `password` property. The following `hashFunction` values are allowed: * `MD5` - Accepts simple hex-encoded values. * `SHA-1` - Accepts simple hex-encoded values. * `crypt` - Compliant with the [C crypt library](https://en.wikipedia.org/wiki/Crypt_%28C%29). Supports the DES, MD5 (hash prefix `$1$`), SHA-256 (hash prefix `$5$`), and SHA-512 (hash prefix `$6$`) hash algorithms. If rounds are specified as part of the prefix, they must be 10,000 or fewer.
      */
     hashFunction?: string | null;
@@ -2284,6 +2306,10 @@ export namespace admin_directory_v1 {
      * Output only. Is enrolled in 2-step verification (Read-only)
      */
     isEnrolledIn2Sv?: boolean | null;
+    /**
+     * Immutable. Indicates if the inserted user is a guest.
+     */
+    isGuestUser?: boolean | null;
     /**
      * Output only. Indicates if the user's Google mailbox is created. This property is only applicable if the user has been assigned a Gmail license.
      */
@@ -4697,8 +4723,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Chromeosdevices$Action
-    extends StandardParameters {
+  export interface Params$Resource$Chromeosdevices$Action extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
      */
@@ -4713,8 +4738,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$ChromeOsDeviceAction;
   }
-  export interface Params$Resource$Chromeosdevices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Chromeosdevices$Get extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
      */
@@ -4728,8 +4752,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
   }
-  export interface Params$Resource$Chromeosdevices$List
-    extends StandardParameters {
+  export interface Params$Resource$Chromeosdevices$List extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
      */
@@ -4767,8 +4790,7 @@ export namespace admin_directory_v1 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Chromeosdevices$Movedevicestoou
-    extends StandardParameters {
+  export interface Params$Resource$Chromeosdevices$Movedevicestoou extends StandardParameters {
     /**
      * Immutable. ID of the Google Workspace account
      */
@@ -4783,8 +4805,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$ChromeOsMoveDevicesToOu;
   }
-  export interface Params$Resource$Chromeosdevices$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Chromeosdevices$Patch extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
      */
@@ -4803,8 +4824,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$ChromeOsDevice;
   }
-  export interface Params$Resource$Chromeosdevices$Update
-    extends StandardParameters {
+  export interface Params$Resource$Chromeosdevices$Update extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
      */
@@ -5169,8 +5189,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Customer$Devices$Chromeos$Batchchangestatus
-    extends StandardParameters {
+  export interface Params$Resource$Customer$Devices$Chromeos$Batchchangestatus extends StandardParameters {
     /**
      * Required. Immutable ID of the Google Workspace account.
      */
@@ -5181,8 +5200,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$BatchChangeChromeOsDeviceStatusRequest;
   }
-  export interface Params$Resource$Customer$Devices$Chromeos$Issuecommand
-    extends StandardParameters {
+  export interface Params$Resource$Customer$Devices$Chromeos$Issuecommand extends StandardParameters {
     /**
      * Immutable. ID of the Google Workspace account.
      */
@@ -5361,8 +5379,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Customer$Devices$Chromeos$Commands$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customer$Devices$Chromeos$Commands$Get extends StandardParameters {
     /**
      * Immutable. ID of Chrome OS Device Command.
      */
@@ -7118,8 +7135,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Chrome$Printers$Batchcreateprinters
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printers$Batchcreateprinters extends StandardParameters {
     /**
      * Required. The name of the customer. Format: customers/{customer_id\}
      */
@@ -7130,8 +7146,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$BatchCreatePrintersRequest;
   }
-  export interface Params$Resource$Customers$Chrome$Printers$Batchdeleteprinters
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printers$Batchdeleteprinters extends StandardParameters {
     /**
      * Required. The name of the customer. Format: customers/{customer_id\}
      */
@@ -7142,8 +7157,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$BatchDeletePrintersRequest;
   }
-  export interface Params$Resource$Customers$Chrome$Printers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printers$Create extends StandardParameters {
     /**
      * Required. The name of the customer. Format: customers/{customer_id\}
      */
@@ -7154,22 +7168,19 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$Printer;
   }
-  export interface Params$Resource$Customers$Chrome$Printers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printers$Delete extends StandardParameters {
     /**
      * Required. The name of the printer to be updated. Format: customers/{customer_id\}/chrome/printers/{printer_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Chrome$Printers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printers$Get extends StandardParameters {
     /**
      * Required. The name of the printer to retrieve. Format: customers/{customer_id\}/chrome/printers/{printer_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Chrome$Printers$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printers$List extends StandardParameters {
     /**
      * Search query. Search syntax is shared between this api and Admin Console printers pages.
      */
@@ -7195,8 +7206,7 @@ export namespace admin_directory_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Chrome$Printers$Listprintermodels
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printers$Listprintermodels extends StandardParameters {
     /**
      * Filer to list only models by a given manufacturer in format: "manufacturer:Brother". Search syntax is shared between this api and Admin Console printers pages.
      */
@@ -7214,8 +7224,7 @@ export namespace admin_directory_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Chrome$Printers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printers$Patch extends StandardParameters {
     /**
      * The list of fields to be cleared. Note, some of the fields are read only and cannot be updated. Values for not specified fields will be patched.
      */
@@ -8300,8 +8309,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Chrome$Printservers$Batchcreateprintservers
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printservers$Batchcreateprintservers extends StandardParameters {
     /**
      * Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      */
@@ -8312,8 +8320,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$BatchCreatePrintServersRequest;
   }
-  export interface Params$Resource$Customers$Chrome$Printservers$Batchdeleteprintservers
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printservers$Batchdeleteprintservers extends StandardParameters {
     /**
      * Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{customer.id\}`
      */
@@ -8324,8 +8331,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$BatchDeletePrintServersRequest;
   }
-  export interface Params$Resource$Customers$Chrome$Printservers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printservers$Create extends StandardParameters {
     /**
      * Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      */
@@ -8336,22 +8342,19 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$PrintServer;
   }
-  export interface Params$Resource$Customers$Chrome$Printservers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printservers$Delete extends StandardParameters {
     /**
      * Required. The name of the print server to be deleted. Format: `customers/{customer.id\}/chrome/printServers/{print_server.id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Chrome$Printservers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printservers$Get extends StandardParameters {
     /**
      * Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Chrome$Printservers$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printservers$List extends StandardParameters {
     /**
      * Search query in [Common Expression Language syntax](https://github.com/google/cel-spec). Supported filters are `display_name`, `description`, and `uri`. Example: `printServer.displayName=='marketing-queue'`.
      */
@@ -8377,8 +8380,7 @@ export namespace admin_directory_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Chrome$Printservers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Chrome$Printservers$Patch extends StandardParameters {
     /**
      * Identifier. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id\}/printServers/{print_server.id\}`
      */
@@ -8977,8 +8979,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Domainaliases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Domainaliases$Delete extends StandardParameters {
     /**
      * Immutable ID of the Google Workspace account.
      */
@@ -8988,8 +8989,7 @@ export namespace admin_directory_v1 {
      */
     domainAliasName?: string;
   }
-  export interface Params$Resource$Domainaliases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Domainaliases$Get extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
@@ -8999,8 +8999,7 @@ export namespace admin_directory_v1 {
      */
     domainAliasName?: string;
   }
-  export interface Params$Resource$Domainaliases$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Domainaliases$Insert extends StandardParameters {
     /**
      * Immutable ID of the Google Workspace account.
      */
@@ -9011,8 +9010,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$DomainAlias;
   }
-  export interface Params$Resource$Domainaliases$List
-    extends StandardParameters {
+  export interface Params$Resource$Domainaliases$List extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
@@ -11072,8 +11070,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Groups$Aliases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Aliases$Delete extends StandardParameters {
     /**
      * The alias to be removed
      */
@@ -11083,8 +11080,7 @@ export namespace admin_directory_v1 {
      */
     groupKey?: string;
   }
-  export interface Params$Resource$Groups$Aliases$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Aliases$Insert extends StandardParameters {
     /**
      * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
@@ -11095,8 +11091,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$Alias;
   }
-  export interface Params$Resource$Groups$Aliases$List
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Aliases$List extends StandardParameters {
     /**
      * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
@@ -12195,8 +12190,7 @@ export namespace admin_directory_v1 {
      */
     memberKey?: string;
   }
-  export interface Params$Resource$Members$Hasmember
-    extends StandardParameters {
+  export interface Params$Resource$Members$Hasmember extends StandardParameters {
     /**
      * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
@@ -12892,8 +12886,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Mobiledevices$Action
-    extends StandardParameters {
+  export interface Params$Resource$Mobiledevices$Action extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
      */
@@ -12908,8 +12901,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$MobileDeviceAction;
   }
-  export interface Params$Resource$Mobiledevices$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Mobiledevices$Delete extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
      */
@@ -12919,8 +12911,7 @@ export namespace admin_directory_v1 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Mobiledevices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Mobiledevices$Get extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
      */
@@ -12934,8 +12925,7 @@ export namespace admin_directory_v1 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Mobiledevices$List
-    extends StandardParameters {
+  export interface Params$Resource$Mobiledevices$List extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
      */
@@ -15054,8 +15044,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Resources$Buildings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Buildings$Delete extends StandardParameters {
     /**
      * The id of the building to delete.
      */
@@ -15065,8 +15054,7 @@ export namespace admin_directory_v1 {
      */
     customer?: string;
   }
-  export interface Params$Resource$Resources$Buildings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Buildings$Get extends StandardParameters {
     /**
      * The unique ID of the building to retrieve.
      */
@@ -15076,8 +15064,7 @@ export namespace admin_directory_v1 {
      */
     customer?: string;
   }
-  export interface Params$Resource$Resources$Buildings$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Buildings$Insert extends StandardParameters {
     /**
      * Source from which Building.coordinates are derived.
      */
@@ -15092,8 +15079,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$Building;
   }
-  export interface Params$Resource$Resources$Buildings$List
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Buildings$List extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
@@ -15107,8 +15093,7 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Resources$Buildings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Buildings$Patch extends StandardParameters {
     /**
      * The id of the building to update.
      */
@@ -15127,8 +15112,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$Building;
   }
-  export interface Params$Resource$Resources$Buildings$Update
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Buildings$Update extends StandardParameters {
     /**
      * The id of the building to update.
      */
@@ -16125,8 +16109,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Resources$Calendars$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Calendars$Delete extends StandardParameters {
     /**
      * The unique ID of the calendar resource to delete.
      */
@@ -16136,8 +16119,7 @@ export namespace admin_directory_v1 {
      */
     customer?: string;
   }
-  export interface Params$Resource$Resources$Calendars$Get
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Calendars$Get extends StandardParameters {
     /**
      * The unique ID of the calendar resource to retrieve.
      */
@@ -16147,8 +16129,7 @@ export namespace admin_directory_v1 {
      */
     customer?: string;
   }
-  export interface Params$Resource$Resources$Calendars$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Calendars$Insert extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
@@ -16159,8 +16140,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$CalendarResource;
   }
-  export interface Params$Resource$Resources$Calendars$List
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Calendars$List extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
@@ -16182,8 +16162,7 @@ export namespace admin_directory_v1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Resources$Calendars$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Calendars$Patch extends StandardParameters {
     /**
      * The unique ID of the calendar resource to update.
      */
@@ -16198,8 +16177,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$CalendarResource;
   }
-  export interface Params$Resource$Resources$Calendars$Update
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Calendars$Update extends StandardParameters {
     /**
      * The unique ID of the calendar resource to update.
      */
@@ -17246,8 +17224,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Resources$Features$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Features$Delete extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
@@ -17257,8 +17234,7 @@ export namespace admin_directory_v1 {
      */
     featureKey?: string;
   }
-  export interface Params$Resource$Resources$Features$Get
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Features$Get extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
@@ -17268,8 +17244,7 @@ export namespace admin_directory_v1 {
      */
     featureKey?: string;
   }
-  export interface Params$Resource$Resources$Features$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Features$Insert extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
@@ -17280,8 +17255,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$Feature;
   }
-  export interface Params$Resource$Resources$Features$List
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Features$List extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
@@ -17295,8 +17269,7 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Resources$Features$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Features$Patch extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
@@ -17311,8 +17284,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$Feature;
   }
-  export interface Params$Resource$Resources$Features$Rename
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Features$Rename extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
@@ -17327,8 +17299,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$FeatureRename;
   }
-  export interface Params$Resource$Resources$Features$Update
-    extends StandardParameters {
+  export interface Params$Resource$Resources$Features$Update extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
@@ -17947,8 +17918,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Roleassignments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Roleassignments$Delete extends StandardParameters {
     /**
      * Immutable ID of the Google Workspace account.
      */
@@ -17958,8 +17928,7 @@ export namespace admin_directory_v1 {
      */
     roleAssignmentId?: string;
   }
-  export interface Params$Resource$Roleassignments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Roleassignments$Get extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
@@ -17969,8 +17938,7 @@ export namespace admin_directory_v1 {
      */
     roleAssignmentId?: string;
   }
-  export interface Params$Resource$Roleassignments$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Roleassignments$Insert extends StandardParameters {
     /**
      * Immutable ID of the Google Workspace account.
      */
@@ -17981,8 +17949,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$RoleAssignment;
   }
-  export interface Params$Resource$Roleassignments$List
-    extends StandardParameters {
+  export interface Params$Resource$Roleassignments$List extends StandardParameters {
     /**
      * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
@@ -20528,8 +20495,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Twostepverification$Turnoff
-    extends StandardParameters {
+  export interface Params$Resource$Twostepverification$Turnoff extends StandardParameters {
     /**
      * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
@@ -20544,6 +20510,195 @@ export namespace admin_directory_v1 {
       this.context = context;
       this.aliases = new Resource$Users$Aliases(this.context);
       this.photos = new Resource$Users$Photos(this.context);
+    }
+
+    /**
+     * Create a guest user with access to a [subset of Workspace capabilities](https://support.google.com/a/answer/16558545?hl=en). This feature is currently in Alpha. Please reach out to support if you are interested in trying this feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await directory.users.createGuest({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "primaryGuestEmail": "my_primaryGuestEmail"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addresses": {},
+     *   //   "agreedToTerms": false,
+     *   //   "aliases": [],
+     *   //   "archived": false,
+     *   //   "changePasswordAtNextLogin": false,
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customSchemas": {},
+     *   //   "customerId": "my_customerId",
+     *   //   "deletionTime": "my_deletionTime",
+     *   //   "emails": {},
+     *   //   "etag": "my_etag",
+     *   //   "externalIds": {},
+     *   //   "gender": {},
+     *   //   "guestAccountInfo": {},
+     *   //   "hashFunction": "my_hashFunction",
+     *   //   "id": "my_id",
+     *   //   "ims": {},
+     *   //   "includeInGlobalAddressList": false,
+     *   //   "ipWhitelisted": false,
+     *   //   "isAdmin": false,
+     *   //   "isDelegatedAdmin": false,
+     *   //   "isEnforcedIn2Sv": false,
+     *   //   "isEnrolledIn2Sv": false,
+     *   //   "isGuestUser": false,
+     *   //   "isMailboxSetup": false,
+     *   //   "keywords": {},
+     *   //   "kind": "my_kind",
+     *   //   "languages": {},
+     *   //   "lastLoginTime": "my_lastLoginTime",
+     *   //   "locations": {},
+     *   //   "name": {},
+     *   //   "nonEditableAliases": [],
+     *   //   "notes": {},
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "organizations": {},
+     *   //   "password": "my_password",
+     *   //   "phones": {},
+     *   //   "posixAccounts": {},
+     *   //   "primaryEmail": "my_primaryEmail",
+     *   //   "recoveryEmail": "my_recoveryEmail",
+     *   //   "recoveryPhone": "my_recoveryPhone",
+     *   //   "relations": {},
+     *   //   "sshPublicKeys": {},
+     *   //   "suspended": false,
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
+     *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
+     *   //   "websites": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createGuest(
+      params: Params$Resource$Users$Createguest,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    createGuest(
+      params?: Params$Resource$Users$Createguest,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
+    createGuest(
+      params: Params$Resource$Users$Createguest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createGuest(
+      params: Params$Resource$Users$Createguest,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    createGuest(
+      params: Params$Resource$Users$Createguest,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    createGuest(callback: BodyResponseCallback<Schema$User>): void;
+    createGuest(
+      paramsOrCallback?:
+        | Params$Resource$Users$Createguest
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Createguest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Createguest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/admin/directory/v1/users:createGuest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
     }
 
     /**
@@ -20735,6 +20890,7 @@ export namespace admin_directory_v1 {
      *   //   "etag": "my_etag",
      *   //   "externalIds": {},
      *   //   "gender": {},
+     *   //   "guestAccountInfo": {},
      *   //   "hashFunction": "my_hashFunction",
      *   //   "id": "my_id",
      *   //   "ims": {},
@@ -20744,6 +20900,7 @@ export namespace admin_directory_v1 {
      *   //   "isDelegatedAdmin": false,
      *   //   "isEnforcedIn2Sv": false,
      *   //   "isEnrolledIn2Sv": false,
+     *   //   "isGuestUser": false,
      *   //   "isMailboxSetup": false,
      *   //   "keywords": {},
      *   //   "kind": "my_kind",
@@ -20916,6 +21073,7 @@ export namespace admin_directory_v1 {
      *       //   "etag": "my_etag",
      *       //   "externalIds": {},
      *       //   "gender": {},
+     *       //   "guestAccountInfo": {},
      *       //   "hashFunction": "my_hashFunction",
      *       //   "id": "my_id",
      *       //   "ims": {},
@@ -20925,6 +21083,7 @@ export namespace admin_directory_v1 {
      *       //   "isDelegatedAdmin": false,
      *       //   "isEnforcedIn2Sv": false,
      *       //   "isEnrolledIn2Sv": false,
+     *       //   "isGuestUser": false,
      *       //   "isMailboxSetup": false,
      *       //   "keywords": {},
      *       //   "kind": "my_kind",
@@ -20969,6 +21128,7 @@ export namespace admin_directory_v1 {
      *   //   "etag": "my_etag",
      *   //   "externalIds": {},
      *   //   "gender": {},
+     *   //   "guestAccountInfo": {},
      *   //   "hashFunction": "my_hashFunction",
      *   //   "id": "my_id",
      *   //   "ims": {},
@@ -20978,6 +21138,7 @@ export namespace admin_directory_v1 {
      *   //   "isDelegatedAdmin": false,
      *   //   "isEnforcedIn2Sv": false,
      *   //   "isEnrolledIn2Sv": false,
+     *   //   "isGuestUser": false,
      *   //   "isMailboxSetup": false,
      *   //   "keywords": {},
      *   //   "kind": "my_kind",
@@ -21452,6 +21613,7 @@ export namespace admin_directory_v1 {
      *       //   "etag": "my_etag",
      *       //   "externalIds": {},
      *       //   "gender": {},
+     *       //   "guestAccountInfo": {},
      *       //   "hashFunction": "my_hashFunction",
      *       //   "id": "my_id",
      *       //   "ims": {},
@@ -21461,6 +21623,7 @@ export namespace admin_directory_v1 {
      *       //   "isDelegatedAdmin": false,
      *       //   "isEnforcedIn2Sv": false,
      *       //   "isEnrolledIn2Sv": false,
+     *       //   "isGuestUser": false,
      *       //   "isMailboxSetup": false,
      *       //   "keywords": {},
      *       //   "kind": "my_kind",
@@ -21505,6 +21668,7 @@ export namespace admin_directory_v1 {
      *   //   "etag": "my_etag",
      *   //   "externalIds": {},
      *   //   "gender": {},
+     *   //   "guestAccountInfo": {},
      *   //   "hashFunction": "my_hashFunction",
      *   //   "id": "my_id",
      *   //   "ims": {},
@@ -21514,6 +21678,7 @@ export namespace admin_directory_v1 {
      *   //   "isDelegatedAdmin": false,
      *   //   "isEnforcedIn2Sv": false,
      *   //   "isEnrolledIn2Sv": false,
+     *   //   "isGuestUser": false,
      *   //   "isMailboxSetup": false,
      *   //   "keywords": {},
      *   //   "kind": "my_kind",
@@ -21950,6 +22115,7 @@ export namespace admin_directory_v1 {
      *       //   "etag": "my_etag",
      *       //   "externalIds": {},
      *       //   "gender": {},
+     *       //   "guestAccountInfo": {},
      *       //   "hashFunction": "my_hashFunction",
      *       //   "id": "my_id",
      *       //   "ims": {},
@@ -21959,6 +22125,7 @@ export namespace admin_directory_v1 {
      *       //   "isDelegatedAdmin": false,
      *       //   "isEnforcedIn2Sv": false,
      *       //   "isEnrolledIn2Sv": false,
+     *       //   "isGuestUser": false,
      *       //   "isMailboxSetup": false,
      *       //   "keywords": {},
      *       //   "kind": "my_kind",
@@ -22003,6 +22170,7 @@ export namespace admin_directory_v1 {
      *   //   "etag": "my_etag",
      *   //   "externalIds": {},
      *   //   "gender": {},
+     *   //   "guestAccountInfo": {},
      *   //   "hashFunction": "my_hashFunction",
      *   //   "id": "my_id",
      *   //   "ims": {},
@@ -22012,6 +22180,7 @@ export namespace admin_directory_v1 {
      *   //   "isDelegatedAdmin": false,
      *   //   "isEnforcedIn2Sv": false,
      *   //   "isEnrolledIn2Sv": false,
+     *   //   "isGuestUser": false,
      *   //   "isMailboxSetup": false,
      *   //   "keywords": {},
      *   //   "kind": "my_kind",
@@ -22322,6 +22491,12 @@ export namespace admin_directory_v1 {
     }
   }
 
+  export interface Params$Resource$Users$Createguest extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DirectoryUsersCreateGuestRequest;
+  }
   export interface Params$Resource$Users$Delete extends StandardParameters {
     /**
      * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
@@ -23123,8 +23298,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Aliases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Aliases$Delete extends StandardParameters {
     /**
      * The alias to be removed.
      */
@@ -23134,8 +23308,7 @@ export namespace admin_directory_v1 {
      */
     userKey?: string;
   }
-  export interface Params$Resource$Users$Aliases$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Users$Aliases$Insert extends StandardParameters {
     /**
      * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
@@ -23146,8 +23319,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$Alias;
   }
-  export interface Params$Resource$Users$Aliases$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Aliases$List extends StandardParameters {
     /**
      * Events to watch for.
      */
@@ -23157,8 +23329,7 @@ export namespace admin_directory_v1 {
      */
     userKey?: string;
   }
-  export interface Params$Resource$Users$Aliases$Watch
-    extends StandardParameters {
+  export interface Params$Resource$Users$Aliases$Watch extends StandardParameters {
     /**
      * Events to watch for.
      */
@@ -23771,8 +23942,7 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Photos$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Photos$Delete extends StandardParameters {
     /**
      * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
@@ -23784,8 +23954,7 @@ export namespace admin_directory_v1 {
      */
     userKey?: string;
   }
-  export interface Params$Resource$Users$Photos$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Users$Photos$Patch extends StandardParameters {
     /**
      * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
@@ -23796,8 +23965,7 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$UserPhoto;
   }
-  export interface Params$Resource$Users$Photos$Update
-    extends StandardParameters {
+  export interface Params$Resource$Users$Photos$Update extends StandardParameters {
     /**
      * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
@@ -24214,22 +24382,19 @@ export namespace admin_directory_v1 {
     }
   }
 
-  export interface Params$Resource$Verificationcodes$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Verificationcodes$Generate extends StandardParameters {
     /**
      * Email or immutable ID of the user
      */
     userKey?: string;
   }
-  export interface Params$Resource$Verificationcodes$Invalidate
-    extends StandardParameters {
+  export interface Params$Resource$Verificationcodes$Invalidate extends StandardParameters {
     /**
      * Email or immutable ID of the user
      */
     userKey?: string;
   }
-  export interface Params$Resource$Verificationcodes$List
-    extends StandardParameters {
+  export interface Params$Resource$Verificationcodes$List extends StandardParameters {
     /**
      * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
