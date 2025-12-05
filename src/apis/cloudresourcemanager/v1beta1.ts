@@ -1519,8 +1519,7 @@ export namespace cloudresourcemanager_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Get extends StandardParameters {
     /**
      * The resource name of the Organization to fetch. This is the organization's relative path in the API, formatted as "organizations/[organizationId]". For example, "organizations/1234".
      */
@@ -1530,8 +1529,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     organizationId?: string;
   }
-  export interface Params$Resource$Organizations$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1542,8 +1540,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$List extends StandardParameters {
     /**
      * An optional query string used to filter the Organizations to return in the response. Filter rules are case-insensitive. Organizations may be filtered by `owner.directoryCustomerId` or by `domain`, where the domain is a verified G Suite domain, for example: * Filter `owner.directorycustomerid:123456789` returns Organization resources with `owner.directory_customer_id` equal to `123456789`. * Filter `domain:google.com` returns Organization resources corresponding to the domain `google.com`. This field is optional.
      */
@@ -1557,8 +1554,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Organizations$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1569,8 +1565,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1581,8 +1576,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Organizations$Update
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Update extends StandardParameters {
     /**
      * Output only. The resource name of the organization. This is the organization's relative path in the API. Its format is "organizations/[organization_id]". For example, "organizations/1234".
      */
@@ -3107,8 +3101,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Getancestry
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getancestry extends StandardParameters {
     /**
      * Required. The Project ID (for example, `my-project-123`).
      */
@@ -3119,8 +3112,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$GetAncestryRequest;
   }
-  export interface Params$Resource$Projects$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3145,8 +3137,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3157,8 +3148,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3169,8 +3159,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Undelete extends StandardParameters {
     /**
      * Required. The project ID (for example, `foo-bar-123`).
      */

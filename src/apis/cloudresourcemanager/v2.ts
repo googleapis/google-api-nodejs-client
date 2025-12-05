@@ -2265,8 +2265,7 @@ export namespace cloudresourcemanager_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2327,8 +2326,7 @@ export namespace cloudresourcemanager_v2 {
      */
     requestBody?: Schema$SearchFoldersRequest;
   }
-  export interface Params$Resource$Folders$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2339,8 +2337,7 @@ export namespace cloudresourcemanager_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Folders$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
