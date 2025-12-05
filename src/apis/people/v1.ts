@@ -2517,8 +2517,7 @@ export namespace people_v1 {
     }
   }
 
-  export interface Params$Resource$Contactgroups$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Contactgroups$Batchget extends StandardParameters {
     /**
      * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
      */
@@ -2532,15 +2531,13 @@ export namespace people_v1 {
      */
     resourceNames?: string[];
   }
-  export interface Params$Resource$Contactgroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Contactgroups$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$CreateContactGroupRequest;
   }
-  export interface Params$Resource$Contactgroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Contactgroups$Delete extends StandardParameters {
     /**
      * Optional. Set to true to also delete the contacts in the specified group.
      */
@@ -2550,8 +2547,7 @@ export namespace people_v1 {
      */
     resourceName?: string;
   }
-  export interface Params$Resource$Contactgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Contactgroups$Get extends StandardParameters {
     /**
      * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
      */
@@ -2565,8 +2561,7 @@ export namespace people_v1 {
      */
     resourceName?: string;
   }
-  export interface Params$Resource$Contactgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Contactgroups$List extends StandardParameters {
     /**
      * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
      */
@@ -2584,8 +2579,7 @@ export namespace people_v1 {
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Contactgroups$Update
-    extends StandardParameters {
+  export interface Params$Resource$Contactgroups$Update extends StandardParameters {
     /**
      * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/{contact_group_id\}`.
      */
@@ -2761,8 +2755,7 @@ export namespace people_v1 {
     }
   }
 
-  export interface Params$Resource$Contactgroups$Members$Modify
-    extends StandardParameters {
+  export interface Params$Resource$Contactgroups$Members$Modify extends StandardParameters {
     /**
      * Required. The resource name of the contact group to modify.
      */
@@ -3262,8 +3255,7 @@ export namespace people_v1 {
     }
   }
 
-  export interface Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup
-    extends StandardParameters {
+  export interface Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup extends StandardParameters {
     /**
      * Required. The resource name of the "Other contact" to copy.
      */
@@ -3274,8 +3266,7 @@ export namespace people_v1 {
      */
     requestBody?: Schema$CopyOtherContactToMyContactsGroupRequest;
   }
-  export interface Params$Resource$Othercontacts$List
-    extends StandardParameters {
+  export interface Params$Resource$Othercontacts$List extends StandardParameters {
     /**
      * Optional. The number of "Other contacts" to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
      */
@@ -3301,8 +3292,7 @@ export namespace people_v1 {
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Othercontacts$Search
-    extends StandardParameters {
+  export interface Params$Resource$Othercontacts$Search extends StandardParameters {
     /**
      * Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.
      */
@@ -5444,29 +5434,25 @@ export namespace people_v1 {
     }
   }
 
-  export interface Params$Resource$People$Batchcreatecontacts
-    extends StandardParameters {
+  export interface Params$Resource$People$Batchcreatecontacts extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$BatchCreateContactsRequest;
   }
-  export interface Params$Resource$People$Batchdeletecontacts
-    extends StandardParameters {
+  export interface Params$Resource$People$Batchdeletecontacts extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$BatchDeleteContactsRequest;
   }
-  export interface Params$Resource$People$Batchupdatecontacts
-    extends StandardParameters {
+  export interface Params$Resource$People$Batchupdatecontacts extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$BatchUpdateContactsRequest;
   }
-  export interface Params$Resource$People$Createcontact
-    extends StandardParameters {
+  export interface Params$Resource$People$Createcontact extends StandardParameters {
     /**
      * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
      */
@@ -5481,15 +5467,13 @@ export namespace people_v1 {
      */
     requestBody?: Schema$Person;
   }
-  export interface Params$Resource$People$Deletecontact
-    extends StandardParameters {
+  export interface Params$Resource$People$Deletecontact extends StandardParameters {
     /**
      * Required. The resource name of the contact to delete.
      */
     resourceName?: string;
   }
-  export interface Params$Resource$People$Deletecontactphoto
-    extends StandardParameters {
+  export interface Params$Resource$People$Deletecontactphoto extends StandardParameters {
     /**
      * Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
      */
@@ -5521,8 +5505,7 @@ export namespace people_v1 {
      */
     sources?: string[];
   }
-  export interface Params$Resource$People$Getbatchget
-    extends StandardParameters {
+  export interface Params$Resource$People$Getbatchget extends StandardParameters {
     /**
      * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
      */
@@ -5540,8 +5523,7 @@ export namespace people_v1 {
      */
     sources?: string[];
   }
-  export interface Params$Resource$People$Listdirectorypeople
-    extends StandardParameters {
+  export interface Params$Resource$People$Listdirectorypeople extends StandardParameters {
     /**
      * Optional. Additional data to merge into the directory sources if they are connected through verified join keys such as email addresses or phone numbers.
      */
@@ -5571,8 +5553,7 @@ export namespace people_v1 {
      */
     syncToken?: string;
   }
-  export interface Params$Resource$People$Searchcontacts
-    extends StandardParameters {
+  export interface Params$Resource$People$Searchcontacts extends StandardParameters {
     /**
      * Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.
      */
@@ -5590,8 +5571,7 @@ export namespace people_v1 {
      */
     sources?: string[];
   }
-  export interface Params$Resource$People$Searchdirectorypeople
-    extends StandardParameters {
+  export interface Params$Resource$People$Searchdirectorypeople extends StandardParameters {
     /**
      * Optional. Additional data to merge into the directory sources if they are connected through verified join keys such as email addresses or phone numbers.
      */
@@ -5617,8 +5597,7 @@ export namespace people_v1 {
      */
     sources?: string[];
   }
-  export interface Params$Resource$People$Updatecontact
-    extends StandardParameters {
+  export interface Params$Resource$People$Updatecontact extends StandardParameters {
     /**
      * Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
      */
@@ -5641,8 +5620,7 @@ export namespace people_v1 {
      */
     requestBody?: Schema$Person;
   }
-  export interface Params$Resource$People$Updatecontactphoto
-    extends StandardParameters {
+  export interface Params$Resource$People$Updatecontactphoto extends StandardParameters {
     /**
      * Required. Person resource name
      */
@@ -5823,8 +5801,7 @@ export namespace people_v1 {
     }
   }
 
-  export interface Params$Resource$People$Connections$List
-    extends StandardParameters {
+  export interface Params$Resource$People$Connections$List extends StandardParameters {
     /**
      * Optional. The number of connections to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
      */
