@@ -4000,8 +4000,7 @@ export namespace run_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Exportimage
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exportimage extends StandardParameters {
     /**
      * Required. The name of the resource of which image metadata should be exported. Format: `projects/{project_id_or_number\}/locations/{location\}/services/{service\}/revisions/{revision\}` for Revision `projects/{project_id_or_number\}/locations/{location\}/jobs/{job\}/executions/{execution\}` for Execution
      */
@@ -4012,22 +4011,19 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleCloudRunV2ExportImageRequest;
   }
-  export interface Params$Resource$Projects$Locations$Exportimagemetadata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exportimagemetadata extends StandardParameters {
     /**
      * Required. The name of the resource of which image metadata should be exported. Format: `projects/{project_id_or_number\}/locations/{location\}/services/{service\}/revisions/{revision\}` for Revision `projects/{project_id_or_number\}/locations/{location\}/jobs/{job\}/executions/{execution\}` for Execution
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Exportmetadata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exportmetadata extends StandardParameters {
     /**
      * Required. The name of the resource of which metadata should be exported. Format: `projects/{project_id_or_number\}/locations/{location\}/services/{service\}` for Service `projects/{project_id_or_number\}/locations/{location\}/services/{service\}/revisions/{revision\}` for Revision `projects/{project_id_or_number\}/locations/{location\}/jobs/{job\}/executions/{execution\}` for Execution {project_id_or_number\} may contains domain-scoped project IDs
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Exportprojectmetadata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exportprojectmetadata extends StandardParameters {
     /**
      * Required. The name of the project of which metadata should be exported. Format: `projects/{project_id_or_number\}/locations/{location\}` for Project in a given location.
      */
@@ -4207,8 +4203,7 @@ export namespace run_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Builds$Submit
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Builds$Submit extends StandardParameters {
     /**
      * Required. The project and location to build in. Location must be a region, e.g., 'us-central1' or 'global' if the global builder is to be used. Format: `projects/{project\}/locations/{location\}`
      */
@@ -5648,8 +5643,7 @@ export namespace run_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Create extends StandardParameters {
     /**
      * Required. The unique identifier for the Job. The name of the job becomes {parent\}/jobs/{job_id\}.
      */
@@ -5668,8 +5662,7 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleCloudRunV2Job;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Delete extends StandardParameters {
     /**
      * A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      */
@@ -5683,15 +5676,13 @@ export namespace run_v2 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Get extends StandardParameters {
     /**
      * Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}, where {project\} can be project id or number.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5701,8 +5692,7 @@ export namespace run_v2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$List extends StandardParameters {
     /**
      * Maximum number of Jobs to return in this call.
      */
@@ -5720,8 +5710,7 @@ export namespace run_v2 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and if the Job does not exist, it will create a new one. Caller must have both create and update permissions for this call if this is set to true.
      */
@@ -5740,8 +5729,7 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleCloudRunV2Job;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Run extends StandardParameters {
     /**
      * Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}, where {project\} can be project id or number.
      */
@@ -5752,8 +5740,7 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleCloudRunV2RunJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5764,8 +5751,7 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6556,8 +6542,7 @@ export namespace run_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Executions$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Executions$Cancel extends StandardParameters {
     /**
      * Required. The name of the Execution to cancel. Format: `projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}`, where `{project\}` can be project id or number.
      */
@@ -6568,8 +6553,7 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleCloudRunV2CancelExecutionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Executions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Executions$Delete extends StandardParameters {
     /**
      * A system-generated fingerprint for this version of the resource. This may be used to detect modification conflict during updates.
      */
@@ -6583,8 +6567,7 @@ export namespace run_v2 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Executions$Exportstatus
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Executions$Exportstatus extends StandardParameters {
     /**
      * Required. The name of the resource of which image export operation status has to be fetched. Format: `projects/{project_id_or_number\}/locations/{location\}/services/{service\}/revisions/{revision\}` for Revision `projects/{project_id_or_number\}/locations/{location\}/jobs/{job\}/executions/{execution\}` for Execution
      */
@@ -6594,15 +6577,13 @@ export namespace run_v2 {
      */
     operationId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Executions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Executions$Get extends StandardParameters {
     /**
      * Required. The full name of the Execution. Format: `projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}`, where `{project\}` can be project id or number.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Executions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Executions$List extends StandardParameters {
     /**
      * Maximum number of Executions to return in this call.
      */
@@ -6953,15 +6934,13 @@ export namespace run_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Executions$Tasks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Executions$Tasks$Get extends StandardParameters {
     /**
      * Required. The full name of the Task. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}/tasks/{task\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Executions$Tasks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Executions$Tasks$List extends StandardParameters {
     /**
      * Maximum number of Tasks to return in this call.
      */
@@ -7568,22 +7547,19 @@ export namespace run_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * Optional. A filter for matching the completed or in-progress operations. The supported formats of *filter* are: To query for only completed operations: done:true To query for only ongoing operations: done:false Must be empty to query for all of the latest operations for the given parent project.
      */
@@ -7605,8 +7581,7 @@ export namespace run_v2 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Wait
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Wait extends StandardParameters {
     /**
      * The name of the operation resource to wait on.
      */
@@ -8940,8 +8915,7 @@ export namespace run_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Create extends StandardParameters {
     /**
      * Required. The location and project in which this service should be created. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number. Only lowercase characters, digits, and hyphens.
      */
@@ -8960,8 +8934,7 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleCloudRunV2Service;
   }
-  export interface Params$Resource$Projects$Locations$Services$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Delete extends StandardParameters {
     /**
      * A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      */
@@ -8975,15 +8948,13 @@ export namespace run_v2 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Services$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Get extends StandardParameters {
     /**
      * Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}, where {project\} can be project id or number.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -8993,8 +8964,7 @@ export namespace run_v2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$List extends StandardParameters {
     /**
      * Maximum number of Services to return in this call.
      */
@@ -9012,8 +8982,7 @@ export namespace run_v2 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Services$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and if the Service does not exist, it will create a new one. The caller must have 'run.services.create' permissions if this is set to true and the Service does not exist.
      */
@@ -9036,8 +9005,7 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleCloudRunV2Service;
   }
-  export interface Params$Resource$Projects$Locations$Services$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9048,8 +9016,7 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9692,8 +9659,7 @@ export namespace run_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Revisions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Revisions$Delete extends StandardParameters {
     /**
      * A system-generated fingerprint for this version of the resource. This may be used to detect modification conflict during updates.
      */
@@ -9707,8 +9673,7 @@ export namespace run_v2 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Services$Revisions$Exportstatus
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Revisions$Exportstatus extends StandardParameters {
     /**
      * Required. The name of the resource of which image export operation status has to be fetched. Format: `projects/{project_id_or_number\}/locations/{location\}/services/{service\}/revisions/{revision\}` for Revision `projects/{project_id_or_number\}/locations/{location\}/jobs/{job\}/executions/{execution\}` for Execution
      */
@@ -9718,15 +9683,13 @@ export namespace run_v2 {
      */
     operationId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Revisions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Revisions$Get extends StandardParameters {
     /**
      * Required. The full name of the Revision. Format: projects/{project\}/locations/{location\}/services/{service\}/revisions/{revision\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Revisions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Revisions$List extends StandardParameters {
     /**
      * Maximum number of revisions to return in this call.
      */
@@ -11049,8 +11012,7 @@ export namespace run_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workerpools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Create extends StandardParameters {
     /**
      * Required. The location and project in which this worker pool should be created. Format: `projects/{project\}/locations/{location\}`, where `{project\}` can be project id or number. Only lowercase characters, digits, and hyphens.
      */
@@ -11069,8 +11031,7 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleCloudRunV2WorkerPool;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Delete extends StandardParameters {
     /**
      * A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      */
@@ -11084,15 +11045,13 @@ export namespace run_v2 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Get extends StandardParameters {
     /**
      * Required. The full name of the WorkerPool. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`, where `{project\}` can be project id or number.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -11102,8 +11061,7 @@ export namespace run_v2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$List extends StandardParameters {
     /**
      * Maximum number of WorkerPools to return in this call.
      */
@@ -11121,8 +11079,7 @@ export namespace run_v2 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and if the WorkerPool does not exist, it will create a new one. The caller must have 'run.workerpools.create' permissions if this is set to true and the WorkerPool does not exist.
      */
@@ -11149,8 +11106,7 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleCloudRunV2WorkerPool;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11161,8 +11117,7 @@ export namespace run_v2 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11654,8 +11609,7 @@ export namespace run_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workerpools$Revisions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Revisions$Delete extends StandardParameters {
     /**
      * A system-generated fingerprint for this version of the resource. This may be used to detect modification conflict during updates.
      */
@@ -11669,15 +11623,13 @@ export namespace run_v2 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Revisions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Revisions$Get extends StandardParameters {
     /**
      * Required. The full name of the Revision. Format: projects/{project\}/locations/{location\}/services/{service\}/revisions/{revision\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Revisions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Revisions$List extends StandardParameters {
     /**
      * Maximum number of revisions to return in this call.
      */
