@@ -1578,15 +1578,13 @@ export namespace managedidentities_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
@@ -4840,8 +4838,7 @@ export namespace managedidentities_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Domains$Attachtrust
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Attachtrust extends StandardParameters {
     /**
      * Required. The resource domain name, project name and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
@@ -4852,8 +4849,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$AttachTrustRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission extends StandardParameters {
     /**
      * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
@@ -4864,8 +4860,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$CheckMigrationPermissionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Create extends StandardParameters {
     /**
      * Required. The fully qualified domain name. e.g. mydomain.myorganization.com, with the following restrictions: * Must contain only lowercase letters, numbers, periods and hyphens. * Must start with a letter. * Must contain between 2-64 characters. * Must end with a number or a letter. * Must not start with period. * First segment length (mydomain for example above) shouldn't exceed 15 chars. * The last segment cannot be fully numeric. * Must be unique within the customer project.
      */
@@ -4880,15 +4875,13 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$Domain;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Delete extends StandardParameters {
     /**
      * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Detachtrust
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Detachtrust extends StandardParameters {
     /**
      * Required. The resource domain name, project name, and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
@@ -4899,8 +4892,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$DetachTrustRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Disablemigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Disablemigration extends StandardParameters {
     /**
      * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
@@ -4911,8 +4903,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$DisableMigrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine extends StandardParameters {
     /**
      * Required. The domain resource name using the form: projects/{project_id\}/locations/global/domains/{domain_name\}
      */
@@ -4923,8 +4914,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$DomainJoinMachineRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Enablemigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Enablemigration extends StandardParameters {
     /**
      * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
@@ -4935,8 +4925,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$EnableMigrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Extendschema
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Extendschema extends StandardParameters {
     /**
      * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
@@ -4947,15 +4936,13 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$ExtendSchemaRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Get extends StandardParameters {
     /**
      * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4965,15 +4952,13 @@ export namespace managedidentities_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Getldapssettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Getldapssettings extends StandardParameters {
     /**
      * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$List extends StandardParameters {
     /**
      * Optional. A filter specifying constraints of a list operation. For example, `Domain.fqdn="mydomain.myorginization"`.
      */
@@ -4995,8 +4980,7 @@ export namespace managedidentities_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Patch extends StandardParameters {
     /**
      * Required. The unique name of the domain using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`.
      */
@@ -5011,8 +4995,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$Domain;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust extends StandardParameters {
     /**
      * Required. The resource domain name, project name and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
@@ -5023,8 +5006,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$ReconfigureTrustRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword extends StandardParameters {
     /**
      * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
@@ -5035,8 +5017,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$ResetAdminPasswordRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Restore extends StandardParameters {
     /**
      * Required. Resource name for the domain to which the backup belongs
      */
@@ -5047,8 +5028,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$RestoreDomainRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5059,8 +5039,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5071,8 +5050,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings extends StandardParameters {
     /**
      * The resource name of the LDAPS settings. Uses the form: `projects/{project\}/locations/{location\}/domains/{domain\}`.
      */
@@ -5087,8 +5065,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$LDAPSSettings;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Validatetrust
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Validatetrust extends StandardParameters {
     /**
      * Required. The resource domain name, project name, and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
@@ -6313,8 +6290,7 @@ export namespace managedidentities_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Create extends StandardParameters {
     /**
      * Required. Backup Id, unique name to identify the backups with the following restrictions: * Must be lowercase letters, numbers, and hyphens * Must start with a letter. * Must contain between 1-63 characters. * Must end with a number or a letter. * Must be unique within the domain.
      */
@@ -6329,22 +6305,19 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$Backup;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Delete extends StandardParameters {
     /**
      * Required. The backup resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}/backups/{backup_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Get extends StandardParameters {
     /**
      * Required. The backup resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}/backups/{backup_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -6354,8 +6327,7 @@ export namespace managedidentities_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$List extends StandardParameters {
     /**
      * Optional. Filter specifying constraints of a list operation.
      */
@@ -6377,8 +6349,7 @@ export namespace managedidentities_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Patch extends StandardParameters {
     /**
      * Output only. The unique name of the Backup in the form of `projects/{project_id\}/locations/global/domains/{domain_name\}/backups/{name\}`
      */
@@ -6393,8 +6364,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$Backup;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6405,8 +6375,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Backups$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6724,15 +6693,13 @@ export namespace managedidentities_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get extends StandardParameters {
     /**
      * Required. SQLIntegration resource name using the form: `projects/{project_id\}/locations/global/domains/{domain\}/sqlIntegrations/{name\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List extends StandardParameters {
     /**
      * Optional. Filter specifying constraints of a list operation. For example, `SqlIntegration.name="sql"`.
      */
@@ -7324,8 +7291,7 @@ export namespace managedidentities_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -7336,22 +7302,19 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -8577,8 +8540,7 @@ export namespace managedidentities_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Peerings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Peerings$Create extends StandardParameters {
     /**
      * Required. Resource project name and location using the form: `projects/{project_id\}/locations/global`
      */
@@ -8593,22 +8555,19 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$Peering;
   }
-  export interface Params$Resource$Projects$Locations$Global$Peerings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Peerings$Delete extends StandardParameters {
     /**
      * Required. Peering resource name using the form: `projects/{project_id\}/locations/global/peerings/{peering_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Peerings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Peerings$Get extends StandardParameters {
     /**
      * Required. Peering resource name using the form: `projects/{project_id\}/locations/global/peerings/{peering_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Peerings$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Peerings$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -8618,8 +8577,7 @@ export namespace managedidentities_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Peerings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Peerings$List extends StandardParameters {
     /**
      * Optional. Filter specifying constraints of a list operation. For example, `peering.authorized_network="projects/myprojectid/global/networks/mynetwork"`.
      */
@@ -8641,8 +8599,7 @@ export namespace managedidentities_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Peerings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Peerings$Patch extends StandardParameters {
     /**
      * Output only. Unique name of the peering in this scope including projects and location using the form: `projects/{project_id\}/locations/global/peerings/{peering_id\}`.
      */
@@ -8657,8 +8614,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$Peering;
   }
-  export interface Params$Resource$Projects$Locations$Global$Peerings$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Peerings$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8669,8 +8625,7 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Peerings$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Peerings$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
