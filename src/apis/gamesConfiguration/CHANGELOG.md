@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v6.0.0...gamesconfiguration-v6.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **gamesConfiguration:** update the API ([bb8f456](https://github.com/googleapis/google-api-nodejs-client/commit/bb8f456b8b56aedb08947cd271801f34b2fbb813))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v5.0.0...gamesconfiguration-v6.0.0) (2025-10-15)
 
 

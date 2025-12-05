@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessplaceactions-v5.0.0...mybusinessplaceactions-v5.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **mybusinessplaceactions:** update the API ([bb2ca47](https://github.com/googleapis/google-api-nodejs-client/commit/bb2ca47ff49eca2cb443b6bd2b23cb304116a01c))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessplaceactions-v4.0.0...mybusinessplaceactions-v5.0.0) (2025-10-15)
 
 
