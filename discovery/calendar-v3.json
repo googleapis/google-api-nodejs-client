@@ -1890,7 +1890,7 @@
       }
     }
   },
-  "revision": "20251028",
+  "revision": "20251123",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -1980,6 +1980,10 @@
     "Calendar": {
       "id": "Calendar",
       "properties": {
+        "autoAcceptInvitations": {
+          "description": "Whether this calendar automatically accepts invitations. Only valid for resource calendars.",
+          "type": "boolean"
+        },
         "conferenceProperties": {
           "$ref": "ConferenceProperties",
           "description": "Conferencing properties for this calendar, for example what types of conferences are allowed."
