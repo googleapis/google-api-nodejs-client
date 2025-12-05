@@ -3941,8 +3941,7 @@ export namespace serviceusage_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Services$Batchenable
-    extends StandardParameters {
+  export interface Params$Resource$Services$Batchenable extends StandardParameters {
     /**
      * Parent to enable services on. An example name would be: `projects/123` where `123` is the project number (not project ID). The `BatchEnableServices` method currently only supports projects.
      */
@@ -3975,8 +3974,7 @@ export namespace serviceusage_v1beta1 {
      */
     requestBody?: Schema$EnableServiceRequest;
   }
-  export interface Params$Resource$Services$Generateserviceidentity
-    extends StandardParameters {
+  export interface Params$Resource$Services$Generateserviceidentity extends StandardParameters {
     /**
      * Name of the consumer and service to generate an identity for. The `GenerateServiceIdentity` methods currently support projects, folders, organizations. Example parents would be: `projects/123/services/example.googleapis.com` `folders/123/services/example.googleapis.com` `organizations/123/services/example.googleapis.com`
      */
@@ -4635,8 +4633,7 @@ export namespace serviceusage_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Services$Consumerquotametrics$Get
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Get extends StandardParameters {
     /**
      * The resource name of the quota. An example name would be: `projects/123/services/serviceusage.googleapis.com/consumerQuotaMetrics/serviceusage.googleapis.com%2Fmutate_requests`
      */
@@ -4646,8 +4643,7 @@ export namespace serviceusage_v1beta1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Importadminoverrides
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Importadminoverrides extends StandardParameters {
     /**
      * The resource name of the consumer. An example name would be: `projects/123/services/compute.googleapis.com`
      */
@@ -4658,8 +4654,7 @@ export namespace serviceusage_v1beta1 {
      */
     requestBody?: Schema$ImportAdminOverridesRequest;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides extends StandardParameters {
     /**
      * The resource name of the consumer. An example name would be: `projects/123/services/compute.googleapis.com`
      */
@@ -4670,8 +4665,7 @@ export namespace serviceusage_v1beta1 {
      */
     requestBody?: Schema$ImportConsumerOverridesRequest;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$List extends StandardParameters {
     /**
      * Requested size of the next page of data.
      */
@@ -4852,8 +4846,7 @@ export namespace serviceusage_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Get
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Get extends StandardParameters {
     /**
      * The resource name of the quota limit. Use the quota limit resource name returned by previous ListConsumerQuotaMetrics and GetConsumerQuotaMetric API calls.
      */
@@ -5504,8 +5497,7 @@ export namespace serviceusage_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Create
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Create extends StandardParameters {
     /**
      * Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
      */
@@ -5524,8 +5516,7 @@ export namespace serviceusage_v1beta1 {
      */
     requestBody?: Schema$QuotaOverride;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Delete extends StandardParameters {
     /**
      * Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
      */
@@ -5539,8 +5530,7 @@ export namespace serviceusage_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$List extends StandardParameters {
     /**
      * Requested size of the next page of data.
      */
@@ -5554,8 +5544,7 @@ export namespace serviceusage_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Patch extends StandardParameters {
     /**
      * Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
      */
@@ -6221,8 +6210,7 @@ export namespace serviceusage_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Create
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Create extends StandardParameters {
     /**
      * Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
      */
@@ -6241,8 +6229,7 @@ export namespace serviceusage_v1beta1 {
      */
     requestBody?: Schema$QuotaOverride;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Delete extends StandardParameters {
     /**
      * Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
      */
@@ -6256,8 +6243,7 @@ export namespace serviceusage_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$List extends StandardParameters {
     /**
      * Requested size of the next page of data.
      */
@@ -6271,8 +6257,7 @@ export namespace serviceusage_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Patch extends StandardParameters {
     /**
      * Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
      */
