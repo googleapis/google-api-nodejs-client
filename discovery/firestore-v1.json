@@ -2416,7 +2416,7 @@
       }
     }
   },
-  "revision": "20251026",
+  "revision": "20251111",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3783,7 +3783,7 @@
       "id": "GoogleFirestoreAdminV1ExportDocumentsRequest",
       "properties": {
         "collectionIds": {
-          "description": "Which collection IDs to export. Unspecified means all collections. Each collection ID in this list must be unique.",
+          "description": "IDs of the collection groups to export. Unspecified means all collection groups. Each collection group in this list must be unique.",
           "items": {
             "type": "string"
           },
@@ -3986,7 +3986,7 @@
       "id": "GoogleFirestoreAdminV1ImportDocumentsRequest",
       "properties": {
         "collectionIds": {
-          "description": "Which collection IDs to import. Unspecified means all collections included in the import. Each collection ID in this list must be unique.",
+          "description": "IDs of the collection groups to import. Unspecified means all collection groups that were included in the export. Each collection group in this list must be unique.",
           "items": {
             "type": "string"
           },
