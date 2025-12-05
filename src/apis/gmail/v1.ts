@@ -2425,8 +2425,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Drafts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Users$Drafts$Create extends StandardParameters {
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
@@ -2452,8 +2451,7 @@ export namespace gmail_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Drafts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Drafts$Delete extends StandardParameters {
     /**
      * The ID of the draft to delete.
      */
@@ -2477,8 +2475,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Drafts$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Drafts$List extends StandardParameters {
     /**
      * Include drafts from `SPAM` and `TRASH` in the results.
      */
@@ -2500,8 +2497,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Drafts$Send
-    extends StandardParameters {
+  export interface Params$Resource$Users$Drafts$Send extends StandardParameters {
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
@@ -2527,8 +2523,7 @@ export namespace gmail_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Drafts$Update
-    extends StandardParameters {
+  export interface Params$Resource$Users$Drafts$Update extends StandardParameters {
     /**
      * The ID of the draft to update.
      */
@@ -2720,8 +2715,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$History$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$History$List extends StandardParameters {
     /**
      * History types to be returned by the function
      */
@@ -3692,8 +3686,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Labels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Users$Labels$Create extends StandardParameters {
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
@@ -3704,8 +3697,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$Label;
   }
-  export interface Params$Resource$Users$Labels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Labels$Delete extends StandardParameters {
     /**
      * The ID of the label to delete.
      */
@@ -3725,15 +3717,13 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Labels$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Labels$List extends StandardParameters {
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Labels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Users$Labels$Patch extends StandardParameters {
     /**
      * The ID of the label to update.
      */
@@ -3748,8 +3738,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$Label;
   }
-  export interface Params$Resource$Users$Labels$Update
-    extends StandardParameters {
+  export interface Params$Resource$Users$Labels$Update extends StandardParameters {
     /**
      * The ID of the label to update.
      */
@@ -4345,7 +4334,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. This method doesn't perform SPF checks, so it might not work for some spam messages, such as those attempting to perform domain spoofing. This method does not send a message.
+     * Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. This method doesn't perform SPF checks, so it might not work for some spam messages, such as those attempting to perform domain spoofing. This method does not send a message. Note that the maximum size of the message is 150MB.
      * @example
      * ```js
      * // Before running the sample:
@@ -5496,8 +5485,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Messages$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$Batchdelete extends StandardParameters {
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
@@ -5508,8 +5496,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$BatchDeleteMessagesRequest;
   }
-  export interface Params$Resource$Users$Messages$Batchmodify
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$Batchmodify extends StandardParameters {
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
@@ -5520,8 +5507,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$BatchModifyMessagesRequest;
   }
-  export interface Params$Resource$Users$Messages$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$Delete extends StandardParameters {
     /**
      * The ID of the message to delete.
      */
@@ -5531,8 +5517,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$Get extends StandardParameters {
     /**
      * The format to return the message in.
      */
@@ -5550,8 +5535,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Import
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$Import extends StandardParameters {
     /**
      * Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts.
      */
@@ -5593,8 +5577,7 @@ export namespace gmail_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Messages$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$Insert extends StandardParameters {
     /**
      * Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts.
      */
@@ -5628,8 +5611,7 @@ export namespace gmail_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Messages$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$List extends StandardParameters {
     /**
      * Include messages from `SPAM` and `TRASH` in the results.
      */
@@ -5655,8 +5637,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Modify
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$Modify extends StandardParameters {
     /**
      * The ID of the message to modify.
      */
@@ -5671,8 +5652,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$ModifyMessageRequest;
   }
-  export interface Params$Resource$Users$Messages$Send
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$Send extends StandardParameters {
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
@@ -5698,8 +5678,7 @@ export namespace gmail_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Messages$Trash
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$Trash extends StandardParameters {
     /**
      * The ID of the message to Trash.
      */
@@ -5709,8 +5688,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Untrash
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$Untrash extends StandardParameters {
     /**
      * The ID of the message to remove from Trash.
      */
@@ -5877,8 +5855,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Messages$Attachments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Messages$Attachments$Get extends StandardParameters {
     /**
      * The ID of the attachment.
      */
@@ -7387,43 +7364,37 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Settings$Getautoforwarding
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Getautoforwarding extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Getimap
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Getimap extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Getlanguage
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Getlanguage extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Getpop
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Getpop extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Getvacation
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Getvacation extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Updateautoforwarding
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Updateautoforwarding extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -7434,8 +7405,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$AutoForwarding;
   }
-  export interface Params$Resource$Users$Settings$Updateimap
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Updateimap extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -7446,8 +7416,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$ImapSettings;
   }
-  export interface Params$Resource$Users$Settings$Updatelanguage
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Updatelanguage extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -7458,8 +7427,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$LanguageSettings;
   }
-  export interface Params$Resource$Users$Settings$Updatepop
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Updatepop extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -7470,8 +7438,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$PopSettings;
   }
-  export interface Params$Resource$Users$Settings$Updatevacation
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Updatevacation extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -8241,8 +8208,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Settings$Cse$Identities$Create
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Cse$Identities$Create extends StandardParameters {
     /**
      * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
      */
@@ -8253,8 +8219,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$CseIdentity;
   }
-  export interface Params$Resource$Users$Settings$Cse$Identities$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Cse$Identities$Delete extends StandardParameters {
     /**
      * The primary email address associated with the client-side encryption identity configuration that's removed.
      */
@@ -8264,8 +8229,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Cse$Identities$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Cse$Identities$Get extends StandardParameters {
     /**
      * The primary email address associated with the client-side encryption identity configuration that's retrieved.
      */
@@ -8275,8 +8239,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Cse$Identities$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Cse$Identities$List extends StandardParameters {
     /**
      * The number of identities to return. If not provided, the page size will default to 20 entries.
      */
@@ -8290,8 +8253,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Cse$Identities$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Cse$Identities$Patch extends StandardParameters {
     /**
      * The email address of the client-side encryption identity to update.
      */
@@ -9222,8 +9184,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Settings$Cse$Keypairs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$Create extends StandardParameters {
     /**
      * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
      */
@@ -9234,8 +9195,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$CseKeyPair;
   }
-  export interface Params$Resource$Users$Settings$Cse$Keypairs$Disable
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$Disable extends StandardParameters {
     /**
      * The identifier of the key pair to turn off.
      */
@@ -9250,8 +9210,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$DisableCseKeyPairRequest;
   }
-  export interface Params$Resource$Users$Settings$Cse$Keypairs$Enable
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$Enable extends StandardParameters {
     /**
      * The identifier of the key pair to turn on.
      */
@@ -9266,8 +9225,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$EnableCseKeyPairRequest;
   }
-  export interface Params$Resource$Users$Settings$Cse$Keypairs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$Get extends StandardParameters {
     /**
      * The identifier of the key pair to retrieve.
      */
@@ -9277,8 +9235,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Cse$Keypairs$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$List extends StandardParameters {
     /**
      * The number of key pairs to return. If not provided, the page size will default to 20 entries.
      */
@@ -9292,8 +9249,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Cse$Keypairs$Obliterate
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$Obliterate extends StandardParameters {
     /**
      * The identifier of the key pair to obliterate.
      */
@@ -9882,8 +9838,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Settings$Delegates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Delegates$Create extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -9894,8 +9849,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$Delegate;
   }
-  export interface Params$Resource$Users$Settings$Delegates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Delegates$Delete extends StandardParameters {
     /**
      * The email address of the user to be removed as a delegate.
      */
@@ -9905,8 +9859,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Delegates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Delegates$Get extends StandardParameters {
     /**
      * The email address of the user whose delegate relationship is to be retrieved.
      */
@@ -9916,8 +9869,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Delegates$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Delegates$List extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -10496,8 +10448,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Settings$Filters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Filters$Create extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -10508,8 +10459,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$Filter;
   }
-  export interface Params$Resource$Users$Settings$Filters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Filters$Delete extends StandardParameters {
     /**
      * The ID of the filter to be deleted.
      */
@@ -10519,8 +10469,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Filters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Filters$Get extends StandardParameters {
     /**
      * The ID of the filter to be fetched.
      */
@@ -10530,8 +10479,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Filters$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Filters$List extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -11117,8 +11065,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Settings$Forwardingaddresses$Create
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Forwardingaddresses$Create extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -11129,8 +11076,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$ForwardingAddress;
   }
-  export interface Params$Resource$Users$Settings$Forwardingaddresses$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Forwardingaddresses$Delete extends StandardParameters {
     /**
      * The forwarding address to be deleted.
      */
@@ -11140,8 +11086,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Forwardingaddresses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Forwardingaddresses$Get extends StandardParameters {
     /**
      * The forwarding address to be retrieved.
      */
@@ -11151,8 +11096,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Forwardingaddresses$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Forwardingaddresses$List extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -12217,8 +12161,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Settings$Sendas$Create
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Create extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -12229,8 +12172,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$SendAs;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Delete extends StandardParameters {
     /**
      * The send-as alias to be deleted.
      */
@@ -12240,8 +12182,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Get extends StandardParameters {
     /**
      * The send-as alias to be retrieved.
      */
@@ -12251,15 +12192,13 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$List extends StandardParameters {
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Patch extends StandardParameters {
     /**
      * The send-as alias to be updated.
      */
@@ -12274,8 +12213,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$SendAs;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Update
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Update extends StandardParameters {
     /**
      * The send-as alias to be updated.
      */
@@ -12290,8 +12228,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$SendAs;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Verify
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Verify extends StandardParameters {
     /**
      * The send-as alias to be verified.
      */
@@ -13046,8 +12983,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete extends StandardParameters {
     /**
      * The immutable ID for the SmimeInfo.
      */
@@ -13061,8 +12997,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Get extends StandardParameters {
     /**
      * The immutable ID for the SmimeInfo.
      */
@@ -13076,8 +13011,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert extends StandardParameters {
     /**
      * The email address that appears in the "From:" header for mail sent using this alias.
      */
@@ -13092,8 +13026,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$SmimeInfo;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$List extends StandardParameters {
     /**
      * The email address that appears in the "From:" header for mail sent using this alias.
      */
@@ -13103,8 +13036,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault
-    extends StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault extends StandardParameters {
     /**
      * The immutable ID for the SmimeInfo.
      */
@@ -14007,8 +13939,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Threads$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Threads$Delete extends StandardParameters {
     /**
      * ID of the Thread to delete.
      */
@@ -14018,8 +13949,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Threads$Get extends StandardParameters {
     /**
      * The format to return the messages in.
      */
@@ -14037,8 +13967,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Threads$List extends StandardParameters {
     /**
      * Include threads from `SPAM` and `TRASH` in the results.
      */
@@ -14064,8 +13993,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$Modify
-    extends StandardParameters {
+  export interface Params$Resource$Users$Threads$Modify extends StandardParameters {
     /**
      * The ID of the thread to modify.
      */
@@ -14080,8 +14008,7 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$ModifyThreadRequest;
   }
-  export interface Params$Resource$Users$Threads$Trash
-    extends StandardParameters {
+  export interface Params$Resource$Users$Threads$Trash extends StandardParameters {
     /**
      * The ID of the thread to Trash.
      */
@@ -14091,8 +14018,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$Untrash
-    extends StandardParameters {
+  export interface Params$Resource$Users$Threads$Untrash extends StandardParameters {
     /**
      * The ID of the thread to remove from Trash.
      */
