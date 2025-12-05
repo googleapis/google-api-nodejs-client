@@ -1587,8 +1587,7 @@ export namespace runtimeconfig_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Configs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Create extends StandardParameters {
     /**
      * The [project ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848) for this request, in the format `projects/[PROJECT_ID]`.
      */
@@ -1603,22 +1602,19 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$RuntimeConfig;
   }
-  export interface Params$Resource$Projects$Configs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Delete extends StandardParameters {
     /**
      * The RuntimeConfig resource to delete, in the format: `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Get extends StandardParameters {
     /**
      * The name of the RuntimeConfig resource to retrieve, in the format: `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -1628,8 +1624,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Configs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$List extends StandardParameters {
     /**
      * Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
      */
@@ -1643,8 +1638,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Configs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1655,8 +1649,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Configs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1667,8 +1660,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Configs$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Update extends StandardParameters {
     /**
      * The name of the RuntimeConfig resource to update, in the format: `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
@@ -1984,15 +1976,13 @@ export namespace runtimeconfig_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Configs$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Operations$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Operations$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3065,8 +3055,7 @@ export namespace runtimeconfig_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Configs$Variables$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Variables$Create extends StandardParameters {
     /**
      * The path to the RutimeConfig resource that this variable should belong to. The configuration must exist beforehand; the path must be in the format: `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
@@ -3081,8 +3070,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$Variable;
   }
-  export interface Params$Resource$Projects$Configs$Variables$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Variables$Delete extends StandardParameters {
     /**
      * The name of the variable to delete, in the format: `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
      */
@@ -3092,15 +3080,13 @@ export namespace runtimeconfig_v1beta1 {
      */
     recursive?: boolean;
   }
-  export interface Params$Resource$Projects$Configs$Variables$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Variables$Get extends StandardParameters {
     /**
      * The name of the variable to return, in the format: `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIBLE_NAME]`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Variables$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Variables$List extends StandardParameters {
     /**
      * Filters variables by matching the specified filter. For example: `projects/example-project/config/[CONFIG_NAME]/variables/example-variable`.
      */
@@ -3122,8 +3108,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     returnValues?: boolean;
   }
-  export interface Params$Resource$Projects$Configs$Variables$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Variables$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3134,8 +3119,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Configs$Variables$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Variables$Update extends StandardParameters {
     /**
      * The name of the variable to update, in the format: `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
      */
@@ -3146,8 +3130,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$Variable;
   }
-  export interface Params$Resource$Projects$Configs$Variables$Watch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Variables$Watch extends StandardParameters {
     /**
      * The name of the variable to watch, in the format: `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
@@ -3907,8 +3890,7 @@ export namespace runtimeconfig_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Configs$Waiters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Waiters$Create extends StandardParameters {
     /**
      * The path to the configuration that will own the waiter. The configuration must exist beforehand; the path must be in the format: `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`.
      */
@@ -3923,22 +3905,19 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$Waiter;
   }
-  export interface Params$Resource$Projects$Configs$Waiters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Waiters$Delete extends StandardParameters {
     /**
      * The Waiter resource to delete, in the format: `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Waiters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Waiters$Get extends StandardParameters {
     /**
      * The fully-qualified name of the Waiter resource object to retrieve, in the format: `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Waiters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Waiters$List extends StandardParameters {
     /**
      * Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
      */
@@ -3952,8 +3931,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Configs$Waiters$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Configs$Waiters$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
