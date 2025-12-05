@@ -1395,6 +1395,10 @@ export namespace dataform_v1 {
      */
     clusterExpressions?: string[] | null;
     /**
+     * Optional. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection can have the form `{project\}.{location\}.{connection_id\}` or `projects/{project\}/locations/{location\}/connections/{connection_id\}", or be set to DEFAULT.
+     */
+    connection?: string | null;
+    /**
      * A list of actions that this action depends on.
      */
     dependencyTargets?: Schema$Target[];
@@ -1402,6 +1406,10 @@ export namespace dataform_v1 {
      * Whether this action is disabled (i.e. should not be run).
      */
     disabled?: boolean | null;
+    /**
+     * Optional. The file format for the BigQuery table.
+     */
+    fileFormat?: string | null;
     /**
      * Configures `INCREMENTAL_TABLE` settings for this relation. Only set if `relation_type` is `INCREMENTAL_TABLE`.
      */
@@ -1438,6 +1446,14 @@ export namespace dataform_v1 {
      * The SELECT query which returns rows which this relation should contain.
      */
     selectQuery?: string | null;
+    /**
+     * Optional. The fully qualified location prefix of the external folder where table data is stored. The URI should be in the format `gs://bucket/path_to_table/`.
+     */
+    storageUri?: string | null;
+    /**
+     * Optional. The table format for the BigQuery table.
+     */
+    tableFormat?: string | null;
     /**
      * Arbitrary, user-defined tags on this action.
      */
@@ -2569,22 +2585,19 @@ export namespace dataform_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getconfig extends StandardParameters {
     /**
      * Required. The config name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2606,8 +2619,7 @@ export namespace dataform_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Updateconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Updateconfig extends StandardParameters {
     /**
      * Identifier. The config name.
      */
@@ -3077,8 +3089,7 @@ export namespace dataform_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Folders$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Folders$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3088,8 +3099,7 @@ export namespace dataform_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Folders$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Folders$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3100,8 +3110,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Folders$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Folders$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3689,8 +3698,7 @@ export namespace dataform_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3701,22 +3709,19 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -5914,8 +5919,7 @@ export namespace dataform_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Commit
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Commit extends StandardParameters {
     /**
      * Required. The repository's name.
      */
@@ -5926,15 +5930,13 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$CommitRepositoryChangesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus extends StandardParameters {
     /**
      * Required. The repository's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Create extends StandardParameters {
     /**
      * Required. The location in which to create the repository. Must be in the format `projects/x/locations/x`.
      */
@@ -5949,8 +5951,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$Repository;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Delete extends StandardParameters {
     /**
      * Optional. If set to true, child resources of this repository (compilation results and workflow invocations) will also be deleted. Otherwise, the request will only succeed if the repository has no child resources. **Note:** *This flag doesn't support deletion of workspaces, release configs or workflow configs. If any of such resources exists in the repository, the request will fail.*.
      */
@@ -5960,8 +5961,7 @@ export namespace dataform_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Fetchhistory
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Fetchhistory extends StandardParameters {
     /**
      * Required. The repository's name.
      */
@@ -5975,22 +5975,19 @@ export namespace dataform_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Fetchremotebranches
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Fetchremotebranches extends StandardParameters {
     /**
      * Required. The repository's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Get extends StandardParameters {
     /**
      * Required. The repository's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -6000,8 +5997,7 @@ export namespace dataform_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$List extends StandardParameters {
     /**
      * Optional. Filter for the returned list.
      */
@@ -6023,8 +6019,7 @@ export namespace dataform_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Patch extends StandardParameters {
     /**
      * Identifier. The repository's name.
      */
@@ -6039,8 +6034,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$Repository;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Querydirectorycontents
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Querydirectorycontents extends StandardParameters {
     /**
      * Optional. The Commit SHA for the commit to query from. If unset, the directory will be queried from HEAD.
      */
@@ -6062,8 +6056,7 @@ export namespace dataform_v1 {
      */
     path?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Readfile
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Readfile extends StandardParameters {
     /**
      * Optional. The commit SHA for the commit to read from. If unset, the file will be read from HEAD.
      */
@@ -6077,8 +6070,7 @@ export namespace dataform_v1 {
      */
     path?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6089,8 +6081,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6744,8 +6735,7 @@ export namespace dataform_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$Create extends StandardParameters {
     /**
      * Required. The repository in which to create the compilation result. Must be in the format `projects/x/locations/x/repositories/x`.
      */
@@ -6756,15 +6746,13 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$CompilationResult;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$Get extends StandardParameters {
     /**
      * Required. The compilation result's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$List extends StandardParameters {
     /**
      * Optional. Filter for the returned list.
      */
@@ -6786,8 +6774,7 @@ export namespace dataform_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$Query
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$Query extends StandardParameters {
     /**
      * Optional. Optional filter for the returned list. Filtering is only currently supported on the `file_path` field.
      */
@@ -7585,8 +7572,7 @@ export namespace dataform_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Create extends StandardParameters {
     /**
      * Required. The repository in which to create the release config. Must be in the format `projects/x/locations/x/repositories/x`.
      */
@@ -7601,22 +7587,19 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$ReleaseConfig;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Delete extends StandardParameters {
     /**
      * Required. The release config's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Get extends StandardParameters {
     /**
      * Required. The release config's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$List extends StandardParameters {
     /**
      * Optional. Maximum number of release configs to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
      */
@@ -7630,8 +7613,7 @@ export namespace dataform_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Patch extends StandardParameters {
     /**
      * Identifier. The release config's name.
      */
@@ -8430,8 +8412,7 @@ export namespace dataform_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create extends StandardParameters {
     /**
      * Required. The repository in which to create the workflow config. Must be in the format `projects/x/locations/x/repositories/x`.
      */
@@ -8446,22 +8427,19 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$WorkflowConfig;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete extends StandardParameters {
     /**
      * Required. The workflow config's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get extends StandardParameters {
     /**
      * Required. The workflow config's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List extends StandardParameters {
     /**
      * Optional. Maximum number of workflow configs to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
      */
@@ -8475,8 +8453,7 @@ export namespace dataform_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch extends StandardParameters {
     /**
      * Identifier. The workflow config's name.
      */
@@ -9416,8 +9393,7 @@ export namespace dataform_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Cancel extends StandardParameters {
     /**
      * Required. The workflow invocation resource's name.
      */
@@ -9428,8 +9404,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$CancelWorkflowInvocationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Create extends StandardParameters {
     /**
      * Required. The repository in which to create the workflow invocation. Must be in the format `projects/x/locations/x/repositories/x`.
      */
@@ -9440,22 +9415,19 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$WorkflowInvocation;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Delete extends StandardParameters {
     /**
      * Required. The workflow invocation resource's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Get extends StandardParameters {
     /**
      * Required. The workflow invocation resource's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$List extends StandardParameters {
     /**
      * Optional. Filter for the returned list.
      */
@@ -9477,8 +9449,7 @@ export namespace dataform_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Query
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Query extends StandardParameters {
     /**
      * Required. The workflow invocation's name.
      */
@@ -13111,8 +13082,7 @@ export namespace dataform_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Commit
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Commit extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13123,8 +13093,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$CommitWorkspaceChangesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Create extends StandardParameters {
     /**
      * Required. The repository in which to create the workspace. Must be in the format `projects/x/locations/x/repositories/x`.
      */
@@ -13139,15 +13108,13 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$Workspace;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Delete extends StandardParameters {
     /**
      * Required. The workspace resource's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchfilediff
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchfilediff extends StandardParameters {
     /**
      * Required. The file's full path including filename, relative to the workspace root.
      */
@@ -13157,15 +13124,13 @@ export namespace dataform_v1 {
      */
     workspace?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchfilegitstatuses
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchfilegitstatuses extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchgitaheadbehind
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchgitaheadbehind extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13175,15 +13140,13 @@ export namespace dataform_v1 {
      */
     remoteBranch?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Get extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -13193,8 +13156,7 @@ export namespace dataform_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Installnpmpackages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Installnpmpackages extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13205,8 +13167,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$InstallNpmPackagesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$List extends StandardParameters {
     /**
      * Optional. Filter for the returned list.
      */
@@ -13228,8 +13189,7 @@ export namespace dataform_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Makedirectory
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Makedirectory extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13240,8 +13200,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$MakeDirectoryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Movedirectory
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Movedirectory extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13252,8 +13211,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$MoveDirectoryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Movefile
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Movefile extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13264,8 +13222,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$MoveFileRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Pull
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Pull extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13276,8 +13233,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$PullGitCommitsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Push
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Push extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13288,8 +13244,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$PushGitCommitsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Querydirectorycontents
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Querydirectorycontents extends StandardParameters {
     /**
      * Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
      */
@@ -13307,8 +13262,7 @@ export namespace dataform_v1 {
      */
     workspace?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Readfile
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Readfile extends StandardParameters {
     /**
      * Required. The file's full path including filename, relative to the workspace root.
      */
@@ -13322,8 +13276,7 @@ export namespace dataform_v1 {
      */
     workspace?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Removedirectory
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Removedirectory extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13334,8 +13287,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$RemoveDirectoryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Removefile
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Removefile extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13346,8 +13298,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$RemoveFileRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Reset
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Reset extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13358,8 +13309,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$ResetWorkspaceChangesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles extends StandardParameters {
     /**
      * Optional. Optional filter for the returned list in filtering format. Filtering is only currently supported on the `path` field. See https://google.aip.dev/160 for details.
      */
@@ -13377,8 +13327,7 @@ export namespace dataform_v1 {
      */
     workspace?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13389,8 +13338,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13401,8 +13349,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Writefile
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Writefile extends StandardParameters {
     /**
      * Required. The workspace's name.
      */
@@ -13873,8 +13820,7 @@ export namespace dataform_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Teamfolders$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Teamfolders$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -13884,8 +13830,7 @@ export namespace dataform_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Teamfolders$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Teamfolders$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13896,8 +13841,7 @@ export namespace dataform_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Teamfolders$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Teamfolders$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
