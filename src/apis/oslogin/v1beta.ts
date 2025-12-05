@@ -503,8 +503,7 @@ export namespace oslogin_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Signsshpublickey
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Signsshpublickey extends StandardParameters {
     /**
      * Required. The parent for the signing request. Format: projects/{project\}/locations/{location\}
      */
@@ -840,8 +839,7 @@ export namespace oslogin_v1beta {
     }
   }
 
-  export interface Params$Resource$Users$Getloginprofile
-    extends StandardParameters {
+  export interface Params$Resource$Users$Getloginprofile extends StandardParameters {
     /**
      * Required. The unique ID for the user in format `users/{user\}`.
      */
@@ -859,8 +857,7 @@ export namespace oslogin_v1beta {
      */
     view?: string;
   }
-  export interface Params$Resource$Users$Importsshpublickey
-    extends StandardParameters {
+  export interface Params$Resource$Users$Importsshpublickey extends StandardParameters {
     /**
      * The unique ID for the user in format `users/{user\}`.
      */
@@ -1187,15 +1184,13 @@ export namespace oslogin_v1beta {
     }
   }
 
-  export interface Params$Resource$Users$Projects$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Projects$Delete extends StandardParameters {
     /**
      * Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user\}/projects/{project\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Projects$Provisionposixaccount
-    extends StandardParameters {
+  export interface Params$Resource$Users$Projects$Provisionposixaccount extends StandardParameters {
     /**
      * Required. The unique ID for the user in format `users/{user\}/projects/{project\}`.
      */
@@ -1367,8 +1362,7 @@ export namespace oslogin_v1beta {
     }
   }
 
-  export interface Params$Resource$Users$Projects$Locations$Signsshpublickey
-    extends StandardParameters {
+  export interface Params$Resource$Users$Projects$Locations$Signsshpublickey extends StandardParameters {
     /**
      * Required. The parent project and region for the signing request.
      */
@@ -1539,8 +1533,7 @@ export namespace oslogin_v1beta {
     }
   }
 
-  export interface Params$Resource$Users$Projects$Zones$Signsshpublickey
-    extends StandardParameters {
+  export interface Params$Resource$Users$Projects$Zones$Signsshpublickey extends StandardParameters {
     /**
      * Required. The parent project and region for the signing request.
      */
@@ -2141,8 +2134,7 @@ export namespace oslogin_v1beta {
     }
   }
 
-  export interface Params$Resource$Users$Sshpublickeys$Create
-    extends StandardParameters {
+  export interface Params$Resource$Users$Sshpublickeys$Create extends StandardParameters {
     /**
      * Required. The unique ID for the user in format `users/{user\}`.
      */
@@ -2153,22 +2145,19 @@ export namespace oslogin_v1beta {
      */
     requestBody?: Schema$SshPublicKey;
   }
-  export interface Params$Resource$Users$Sshpublickeys$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Sshpublickeys$Delete extends StandardParameters {
     /**
      * Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user\}/sshPublicKeys/{fingerprint\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Sshpublickeys$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Sshpublickeys$Get extends StandardParameters {
     /**
      * Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user\}/sshPublicKeys/{fingerprint\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Sshpublickeys$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Users$Sshpublickeys$Patch extends StandardParameters {
     /**
      * Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user\}/sshPublicKeys/{fingerprint\}`.
      */
