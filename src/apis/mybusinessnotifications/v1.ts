@@ -439,15 +439,13 @@ export namespace mybusinessnotifications_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Getnotificationsetting
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Getnotificationsetting extends StandardParameters {
     /**
      * Required. The resource name of the notification setting we are trying to fetch.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Updatenotificationsetting
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Updatenotificationsetting extends StandardParameters {
     /**
      * Required. The resource name this setting is for. This is of the form `accounts/{account_id\}/notificationSetting`.
      */
