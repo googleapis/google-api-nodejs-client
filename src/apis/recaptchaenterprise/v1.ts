@@ -176,7 +176,7 @@ export namespace recaptchaenterprise_v1 {
      */
     allowAllPackageNames?: boolean | null;
     /**
-     * Optional. Android package names of apps allowed to use the key. Example: 'com.companyname.appname'
+     * Optional. Android package names of apps allowed to use the key. Example: 'com.companyname.appname' Each key supports a maximum of 250 package names. To use a key on more apps, set `allow_all_package_names` to true. When this is set, you are responsible for validating the package name by checking the `token_properties.android_package_name` field in each assessment response against your list of allowed package names.
      */
     allowedPackageNames?: string[] | null;
     /**
@@ -192,6 +192,9 @@ export namespace recaptchaenterprise_v1 {
      * Optional. A stable account identifier to apply to the assessment. This is an alternative to setting `account_id` in `CreateAssessment`, for example when a stable account identifier is not yet known in the initial request.
      */
     accountId?: string | null;
+    /**
+     * Optional. The annotation that is assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent.
+     */
     annotation?: string | null;
     /**
      * Optional. A stable hashed account identifier to apply to the assessment. This is an alternative to setting `hashed_account_id` in `CreateAssessment`, for example when a stable account identifier is not yet known in the initial request.
@@ -201,6 +204,9 @@ export namespace recaptchaenterprise_v1 {
      * Optional. If using an external multi-factor authentication provider, provide phone authentication details for fraud detection purposes.
      */
     phoneAuthenticationEvent?: Schema$GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent;
+    /**
+     * Optional. Reasons for the annotation that are assigned to the event.
+     */
     reasons?: string[] | null;
     /**
      * Optional. If the assessment is part of a payment transaction, provide details on payment lifecycle events that occur in the transaction.
@@ -632,7 +638,7 @@ export namespace recaptchaenterprise_v1 {
      */
     allowAllBundleIds?: boolean | null;
     /**
-     * Optional. iOS bundle ids of apps allowed to use the key. Example: 'com.companyname.productname.appname'
+     * Optional. iOS bundle IDs of apps allowed to use the key. Example: 'com.companyname.productname.appname' Each key supports a maximum of 250 bundle IDs. To use a key on more apps, set `allow_all_bundle_ids` to true. When this is set, you are responsible for validating the bundle id by checking the `token_properties.ios_bundle_id` field in each assessment response against your list of allowed bundle IDs.
      */
     allowedBundleIds?: string[] | null;
     /**
@@ -789,7 +795,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest {
     /**
-     * Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha/docs/billing-information.
+     * Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://docs.cloud.google.com/recaptcha/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha/docs/billing-information.
      */
     skipBillingCheck?: boolean | null;
   }
@@ -1277,7 +1283,7 @@ export namespace recaptchaenterprise_v1 {
      */
     allowAmpTraffic?: boolean | null;
     /**
-     * Optional. Domains or subdomains of websites allowed to use the key. All subdomains of an allowed domain are automatically allowed. A valid domain requires a host and must not include any path, port, query or fragment. Examples: 'example.com' or 'subdomain.example.com'
+     * Optional. Domains or subdomains of websites allowed to use the key. All subdomains of an allowed domain are automatically allowed. A valid domain requires a host and must not include any path, port, query or fragment. Examples: 'example.com' or 'subdomain.example.com' Each key supports a maximum of 250 domains. To use a key on more domains, set `allow_all_domains` to true. When this is set, you are responsible for validating the hostname by checking the `token_properties.hostname` field in each assessment response against your list of allowed domains.
      */
     allowedDomains?: string[] | null;
     /**
@@ -1707,8 +1713,7 @@ export namespace recaptchaenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Assessments$Annotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Assessments$Annotate extends StandardParameters {
     /**
      * Required. The resource name of the Assessment, in the format `projects/{project\}/assessments/{assessment\}`.
      */
@@ -1719,8 +1724,7 @@ export namespace recaptchaenterprise_v1 {
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest;
   }
-  export interface Params$Resource$Projects$Assessments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Assessments$Create extends StandardParameters {
     /**
      * Required. The name of the project in which the assessment is created, in the format `projects/{project\}`.
      */
@@ -2655,8 +2659,7 @@ export namespace recaptchaenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Firewallpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Firewallpolicies$Create extends StandardParameters {
     /**
      * Required. The name of the project this policy applies to, in the format `projects/{project\}`.
      */
@@ -2667,22 +2670,19 @@ export namespace recaptchaenterprise_v1 {
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy;
   }
-  export interface Params$Resource$Projects$Firewallpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Firewallpolicies$Delete extends StandardParameters {
     /**
      * Required. The name of the policy to be deleted, in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Firewallpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Firewallpolicies$Get extends StandardParameters {
     /**
      * Required. The name of the requested policy, in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Firewallpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Firewallpolicies$List extends StandardParameters {
     /**
      * Optional. The maximum number of policies to return. Default is 10. Max limit is 1000.
      */
@@ -2696,8 +2696,7 @@ export namespace recaptchaenterprise_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Firewallpolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Firewallpolicies$Patch extends StandardParameters {
     /**
      * Identifier. The resource name for the FirewallPolicy in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
      */
@@ -2712,8 +2711,7 @@ export namespace recaptchaenterprise_v1 {
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy;
   }
-  export interface Params$Resource$Projects$Firewallpolicies$Reorder
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Firewallpolicies$Reorder extends StandardParameters {
     /**
      * Required. The name of the project to list the policies for, in the format `projects/{project\}`.
      */
@@ -4435,8 +4433,7 @@ export namespace recaptchaenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Keys$Addipoverride
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Keys$Addipoverride extends StandardParameters {
     /**
      * Required. The name of the key to which the IP override is added, in the format `projects/{project\}/keys/{key\}`.
      */
@@ -4447,8 +4444,7 @@ export namespace recaptchaenterprise_v1 {
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest;
   }
-  export interface Params$Resource$Projects$Keys$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Keys$Create extends StandardParameters {
     /**
      * Required. The name of the project in which the key is created, in the format `projects/{project\}`.
      */
@@ -4459,29 +4455,25 @@ export namespace recaptchaenterprise_v1 {
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1Key;
   }
-  export interface Params$Resource$Projects$Keys$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Keys$Delete extends StandardParameters {
     /**
      * Required. The name of the key to be deleted, in the format `projects/{project\}/keys/{key\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Keys$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Keys$Get extends StandardParameters {
     /**
      * Required. The name of the requested key, in the format `projects/{project\}/keys/{key\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Keys$Getmetrics
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Keys$Getmetrics extends StandardParameters {
     /**
      * Required. The name of the requested metrics, in the format `projects/{project\}/keys/{key\}/metrics`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Keys$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Keys$List extends StandardParameters {
     /**
      * Optional. The maximum number of keys to return. Default is 10. Max limit is 1000.
      */
@@ -4495,8 +4487,7 @@ export namespace recaptchaenterprise_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Keys$Listipoverrides
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Keys$Listipoverrides extends StandardParameters {
     /**
      * Optional. The maximum number of overrides to return. Default is 10. Max limit is 100. If the number of overrides is less than the page_size, all overrides are returned. If the page size is more than 100, it is coerced to 100.
      */
@@ -4510,8 +4501,7 @@ export namespace recaptchaenterprise_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Keys$Migrate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Keys$Migrate extends StandardParameters {
     /**
      * Required. The name of the key to be migrated, in the format `projects/{project\}/keys/{key\}`.
      */
@@ -4522,8 +4512,7 @@ export namespace recaptchaenterprise_v1 {
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest;
   }
-  export interface Params$Resource$Projects$Keys$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Keys$Patch extends StandardParameters {
     /**
      * Identifier. The resource name for the Key in the format `projects/{project\}/keys/{key\}`.
      */
@@ -4538,8 +4527,7 @@ export namespace recaptchaenterprise_v1 {
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1Key;
   }
-  export interface Params$Resource$Projects$Keys$Removeipoverride
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Keys$Removeipoverride extends StandardParameters {
     /**
      * Required. The name of the key from which the IP override is removed, in the format `projects/{project\}/keys/{key\}`.
      */
@@ -4550,8 +4538,7 @@ export namespace recaptchaenterprise_v1 {
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest;
   }
-  export interface Params$Resource$Projects$Keys$Retrievelegacysecretkey
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Keys$Retrievelegacysecretkey extends StandardParameters {
     /**
      * Required. The public key name linked to the requested secret key in the format `projects/{project\}/keys/{key\}`.
      */
@@ -4726,8 +4713,7 @@ export namespace recaptchaenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Relatedaccountgroupmemberships$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Relatedaccountgroupmemberships$Search extends StandardParameters {
     /**
      * Required. The name of the project to search related account group memberships from. Specify the project name in the following format: `projects/{project\}`.
      */
@@ -4903,8 +4889,7 @@ export namespace recaptchaenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Relatedaccountgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Relatedaccountgroups$List extends StandardParameters {
     /**
      * Optional. The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 50 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
@@ -5081,8 +5066,7 @@ export namespace recaptchaenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Relatedaccountgroups$Memberships$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Relatedaccountgroups$Memberships$List extends StandardParameters {
     /**
      * Optional. The maximum number of accounts to return. The service might return fewer than this value. If unspecified, at most 50 accounts are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */

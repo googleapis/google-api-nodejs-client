@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20251026",
+  "revision": "20251201",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -896,7 +896,7 @@
           "type": "boolean"
         },
         "allowedPackageNames": {
-          "description": "Optional. Android package names of apps allowed to use the key. Example: 'com.companyname.appname'",
+          "description": "Optional. Android package names of apps allowed to use the key. Example: 'com.companyname.appname' Each key supports a maximum of 250 package names. To use a key on more apps, set `allow_all_package_names` to true. When this is set, you are responsible for validating the package name by checking the `token_properties.android_package_name` field in each assessment response against your list of allowed package names.",
           "items": {
             "type": "string"
           },
@@ -918,6 +918,7 @@
           "type": "string"
         },
         "annotation": {
+          "description": "Optional. The annotation that is assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent.",
           "enum": [
             "ANNOTATION_UNSPECIFIED",
             "LEGITIMATE",
@@ -951,6 +952,7 @@
           "description": "Optional. If using an external multi-factor authentication provider, provide phone authentication details for fraud detection purposes."
         },
         "reasons": {
+          "description": "Optional. Reasons for the annotation that are assigned to the event.",
           "items": {
             "enum": [
               "REASON_UNSPECIFIED",
@@ -1575,7 +1577,7 @@
           "type": "boolean"
         },
         "allowedBundleIds": {
-          "description": "Optional. iOS bundle ids of apps allowed to use the key. Example: 'com.companyname.productname.appname'",
+          "description": "Optional. iOS bundle IDs of apps allowed to use the key. Example: 'com.companyname.productname.appname' Each key supports a maximum of 250 bundle IDs. To use a key on more apps, set `allow_all_bundle_ids` to true. When this is set, you are responsible for validating the bundle id by checking the `token_properties.ios_bundle_id` field in each assessment response against your list of allowed bundle IDs.",
           "items": {
             "type": "string"
           },
@@ -1789,7 +1791,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest",
       "properties": {
         "skipBillingCheck": {
-          "description": "Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha/docs/billing-information.",
+          "description": "Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://docs.cloud.google.com/recaptcha/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha/docs/billing-information.",
           "type": "boolean"
         }
       },
@@ -2557,7 +2559,7 @@
           "type": "boolean"
         },
         "allowedDomains": {
-          "description": "Optional. Domains or subdomains of websites allowed to use the key. All subdomains of an allowed domain are automatically allowed. A valid domain requires a host and must not include any path, port, query or fragment. Examples: 'example.com' or 'subdomain.example.com'",
+          "description": "Optional. Domains or subdomains of websites allowed to use the key. All subdomains of an allowed domain are automatically allowed. A valid domain requires a host and must not include any path, port, query or fragment. Examples: 'example.com' or 'subdomain.example.com' Each key supports a maximum of 250 domains. To use a key on more domains, set `allow_all_domains` to true. When this is set, you are responsible for validating the hostname by checking the `token_properties.hostname` field in each assessment response against your list of allowed domains.",
           "items": {
             "type": "string"
           },
