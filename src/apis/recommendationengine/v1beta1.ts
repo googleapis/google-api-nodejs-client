@@ -959,7 +959,7 @@ export namespace recommendationengine_v1beta1 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1361,8 +1361,7 @@ export namespace recommendationengine_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$List extends StandardParameters {
     /**
      * Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      */
@@ -1376,8 +1375,7 @@ export namespace recommendationengine_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Patch extends StandardParameters {
     /**
      * The fully qualified resource name of the catalog.
      */
@@ -2353,8 +2351,7 @@ export namespace recommendationengine_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Create extends StandardParameters {
     /**
      * Required. The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
      */
@@ -2365,22 +2362,19 @@ export namespace recommendationengine_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudRecommendationengineV1beta1CatalogItem;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Delete extends StandardParameters {
     /**
      * Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Get extends StandardParameters {
     /**
      * Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Import extends StandardParameters {
     /**
      * Required. `projects/1234/locations/global/catalogs/default_catalog` If no updateMask is specified, requires catalogItems.create permission. If updateMask is specified, requires catalogItems.update permission.
      */
@@ -2391,8 +2385,7 @@ export namespace recommendationengine_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudRecommendationengineV1beta1ImportCatalogItemsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$List extends StandardParameters {
     /**
      * Optional. Use of this field is not supported by version v1beta1.
      */
@@ -2410,8 +2403,7 @@ export namespace recommendationengine_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Patch extends StandardParameters {
     /**
      * Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
      */
@@ -2648,7 +2640,7 @@ export namespace recommendationengine_v1beta1 {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -2770,15 +2762,13 @@ export namespace recommendationengine_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2796,7 +2786,7 @@ export namespace recommendationengine_v1beta1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -2978,8 +2968,7 @@ export namespace recommendationengine_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict extends StandardParameters {
     /**
      *
      */
@@ -3452,8 +3441,7 @@ export namespace recommendationengine_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create extends StandardParameters {
     /**
      * Required. The parent resource path. `projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      */
@@ -3464,15 +3452,13 @@ export namespace recommendationengine_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudRecommendationengineV1beta1CreatePredictionApiKeyRegistrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Delete extends StandardParameters {
     /**
      * Required. The API key to unregister including full resource path. `projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List extends StandardParameters {
     /**
      * Optional. Maximum number of results to return per page. If unset, the service will choose a reasonable default.
      */
@@ -4456,8 +4442,7 @@ export namespace recommendationengine_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Collect
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Collect extends StandardParameters {
     /**
      * Optional. The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
      */
@@ -4475,8 +4460,7 @@ export namespace recommendationengine_v1beta1 {
      */
     userEvent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Import extends StandardParameters {
     /**
      * Required. `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      */
@@ -4487,8 +4471,7 @@ export namespace recommendationengine_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudRecommendationengineV1beta1ImportUserEventsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List extends StandardParameters {
     /**
      * Optional. Filtering expression to specify restrictions over returned events. This is a sequence of terms, where each term applies some kind of a restriction to the returned user events. Use this expression to restrict results to a specific time range, or filter events by eventType. eg: eventTime \> "2012-04-23T18:25:43.511Z" eventsMissingCatalogItems eventTime<"2012-04-23T18:25:43.511Z" eventType=search We expect only 3 types of fields: * eventTime: this can be specified a maximum of 2 times, once with a less than operator and once with a greater than operator. The eventTime restrict should result in one contiguous valid eventTime range. * eventType: only 1 eventType restriction can be specified. * eventsMissingCatalogItems: specififying this will restrict results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: eventTime \> "2012-04-23T18:25:43.511Z" eventTime < "2012-04-23T18:30:43.511Z" * Example 2: eventTime \> "2012-04-23T18:25:43.511Z" eventType = detail-page-view * Example 3: eventsMissingCatalogItems eventType = search eventTime < "2018-04-23T18:30:43.511Z" * Example 4: eventTime \> "2012-04-23T18:25:43.511Z" * Example 5: eventType = search * Example 6: eventsMissingCatalogItems
      */
@@ -4506,8 +4489,7 @@ export namespace recommendationengine_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Purge extends StandardParameters {
     /**
      * Required. The resource name of the event_store under which the events are created. The format is `projects/${projectId\}/locations/global/catalogs/${catalogId\}/eventStores/${eventStoreId\}`
      */
@@ -4518,8 +4500,7 @@ export namespace recommendationengine_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudRecommendationengineV1beta1PurgeUserEventsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Rejoin
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Rejoin extends StandardParameters {
     /**
      * Required. Full resource name of user event, such as `projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store`.
      */
@@ -4530,8 +4511,7 @@ export namespace recommendationengine_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Write
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Write extends StandardParameters {
     /**
      * Required. The parent eventStore resource name, such as "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
      */
@@ -4734,7 +4714,7 @@ export namespace recommendationengine_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // The standard list page token.
      *       pageToken: 'placeholder-value',
-     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *       returnPartialSuccess: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -4855,15 +4835,13 @@ export namespace recommendationengine_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -4881,7 +4859,7 @@ export namespace recommendationengine_v1beta1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
