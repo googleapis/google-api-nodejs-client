@@ -2711,7 +2711,7 @@
       }
     }
   },
-  "revision": "20250909",
+  "revision": "20251202",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -3024,6 +3024,11 @@
         },
         "blobId": {
           "description": "The blob id, e.g., /blobstore/prod/playground/scotty",
+          "type": "string"
+        },
+        "downloadExternalReadToken": {
+          "description": "A serialized External Read Token passed from Bigstore -> Scotty for a GCS download. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads.",
+          "format": "byte",
           "type": "string"
         },
         "downloadReadHandle": {
