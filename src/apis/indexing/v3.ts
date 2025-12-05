@@ -468,15 +468,13 @@ export namespace indexing_v3 {
     }
   }
 
-  export interface Params$Resource$Urlnotifications$Getmetadata
-    extends StandardParameters {
+  export interface Params$Resource$Urlnotifications$Getmetadata extends StandardParameters {
     /**
      * URL that is being queried.
      */
     url?: string;
   }
-  export interface Params$Resource$Urlnotifications$Publish
-    extends StandardParameters {
+  export interface Params$Resource$Urlnotifications$Publish extends StandardParameters {
     /**
      * Request body metadata
      */
