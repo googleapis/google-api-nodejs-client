@@ -1033,15 +1033,13 @@ export namespace firebasedataconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1632,8 +1630,7 @@ export namespace firebasedataconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -1644,22 +1641,19 @@ export namespace firebasedataconnect_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2928,8 +2922,7 @@ export namespace firebasedataconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Create extends StandardParameters {
     /**
      * Required. Value of parent.
      */
@@ -2952,8 +2945,7 @@ export namespace firebasedataconnect_v1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Projects$Locations$Services$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Delete extends StandardParameters {
     /**
      * Optional. If true and the Service is not found, the request will succeed but no action will be taken on the server.
      */
@@ -2979,8 +2971,7 @@ export namespace firebasedataconnect_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Services$Executegraphql
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Executegraphql extends StandardParameters {
     /**
      * Required. The relative resource name of Firebase Data Connect service, in the format: ``` projects/{project\}/locations/{location\}/services/{service\} ```
      */
@@ -2991,8 +2982,7 @@ export namespace firebasedataconnect_v1 {
      */
     requestBody?: Schema$GraphqlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Executegraphqlread
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Executegraphqlread extends StandardParameters {
     /**
      * Required. The relative resource name of Firebase Data Connect service, in the format: ``` projects/{project\}/locations/{location\}/services/{service\} ```
      */
@@ -3003,15 +2993,13 @@ export namespace firebasedataconnect_v1 {
      */
     requestBody?: Schema$GraphqlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Get extends StandardParameters {
     /**
      * Required. The name of the service to retrieve, in the format: ``` projects/{project\}/locations/{location\}/services/{service\} ```
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Introspectgraphql
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Introspectgraphql extends StandardParameters {
     /**
      * Required. The relative resource name of Firebase Data Connect service, in the format: ``` projects/{project\}/locations/{location\}/services/{service\} ```
      */
@@ -3022,8 +3010,7 @@ export namespace firebasedataconnect_v1 {
      */
     requestBody?: Schema$GraphqlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -3045,8 +3032,7 @@ export namespace firebasedataconnect_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Patch extends StandardParameters {
     /**
      * Optional. If true and the Service is not found, a new Service will be created. In this case, `update_mask` is ignored.
      */
@@ -4485,8 +4471,7 @@ export namespace firebasedataconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Connectors$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Connectors$Create extends StandardParameters {
     /**
      * Required. The ID to use for the connector, which will become the final component of the connector's resource name.
      */
@@ -4509,8 +4494,7 @@ export namespace firebasedataconnect_v1 {
      */
     requestBody?: Schema$Connector;
   }
-  export interface Params$Resource$Projects$Locations$Services$Connectors$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Connectors$Delete extends StandardParameters {
     /**
      * Optional. If true and the Connector is not found, the request will succeed but no action will be taken on the server.
      */
@@ -4536,8 +4520,7 @@ export namespace firebasedataconnect_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Services$Connectors$Executemutation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Connectors$Executemutation extends StandardParameters {
     /**
      * Required. The resource name of the connector to find the predefined mutation, in the format: ``` projects/{project\}/locations/{location\}/services/{service\}/connectors/{connector\} ```
      */
@@ -4548,8 +4531,7 @@ export namespace firebasedataconnect_v1 {
      */
     requestBody?: Schema$ExecuteMutationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Connectors$Executequery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Connectors$Executequery extends StandardParameters {
     /**
      * Required. The resource name of the connector to find the predefined query, in the format: ``` projects/{project\}/locations/{location\}/services/{service\}/connectors/{connector\} ```
      */
@@ -4560,15 +4542,13 @@ export namespace firebasedataconnect_v1 {
      */
     requestBody?: Schema$ExecuteQueryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Connectors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Connectors$Get extends StandardParameters {
     /**
      * Required. The name of the connector to retrieve, in the format: ``` projects/{project\}/locations/{location\}/services/{service\}/connectors/{connector\} ```
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Connectors$Impersonatemutation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Connectors$Impersonatemutation extends StandardParameters {
     /**
      * Required. The resource name of the connector to find the predefined query/mutation, in the format: ``` projects/{project\}/locations/{location\}/services/{service\}/connectors/{connector\} ```
      */
@@ -4579,8 +4559,7 @@ export namespace firebasedataconnect_v1 {
      */
     requestBody?: Schema$ImpersonateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Connectors$Impersonatequery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Connectors$Impersonatequery extends StandardParameters {
     /**
      * Required. The resource name of the connector to find the predefined query/mutation, in the format: ``` projects/{project\}/locations/{location\}/services/{service\}/connectors/{connector\} ```
      */
@@ -4591,8 +4570,7 @@ export namespace firebasedataconnect_v1 {
      */
     requestBody?: Schema$ImpersonateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Connectors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Connectors$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -4614,8 +4592,7 @@ export namespace firebasedataconnect_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Connectors$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Connectors$Patch extends StandardParameters {
     /**
      * Optional. If true and the Connector is not found, a new Connector will be created. In this case, `update_mask` is ignored.
      */
@@ -5432,8 +5409,7 @@ export namespace firebasedataconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Schemas$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Schemas$Create extends StandardParameters {
     /**
      * Required. Value for parent.
      */
@@ -5456,8 +5432,7 @@ export namespace firebasedataconnect_v1 {
      */
     requestBody?: Schema$Schema;
   }
-  export interface Params$Resource$Projects$Locations$Services$Schemas$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Schemas$Delete extends StandardParameters {
     /**
      * Optional. If true and the Schema is not found, the request will succeed but no action will be taken on the server.
      */
@@ -5483,15 +5458,13 @@ export namespace firebasedataconnect_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Services$Schemas$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Schemas$Get extends StandardParameters {
     /**
      * Required. The name of the schema to retrieve, in the format: ``` projects/{project\}/locations/{location\}/services/{service\}/schemas/{schema\} ```
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Schemas$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Schemas$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -5513,8 +5486,7 @@ export namespace firebasedataconnect_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Schemas$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Schemas$Patch extends StandardParameters {
     /**
      * Optional. If true and the Schema is not found, a new Schema will be created. In this case, `update_mask` is ignored.
      */
