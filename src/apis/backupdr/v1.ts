@@ -1702,6 +1702,15 @@ export namespace backupdr_v1 {
     kmsKeyName?: string | null;
   }
   /**
+   * Request message for ending a trial.
+   */
+  export interface Schema$EndTrialRequest {
+    /**
+     * Required. The reason for ending the trial.
+     */
+    endReason?: string | null;
+  }
+  /**
    * A key/value pair to be used for storing metadata.
    */
   export interface Schema$Entry {
@@ -2179,7 +2188,7 @@ export namespace backupdr_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -3393,22 +3402,19 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gettrial
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gettrial extends StandardParameters {
     /**
      * Required. The project for which trial details need to be retrieved. Format: projects/{project\}/locations/{location\} Supported Locations are - us, eu and asia.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -4526,8 +4532,7 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupplanassociations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplanassociations$Create extends StandardParameters {
     /**
      * Required. The name of the backup plan association to create. The name must be unique for the specified project and location.
      */
@@ -4546,8 +4551,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$BackupPlanAssociation;
   }
-  export interface Params$Resource$Projects$Locations$Backupplanassociations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplanassociations$Delete extends StandardParameters {
     /**
      * Required. Name of the backup plan association resource, in the format `projects/{project\}/locations/{location\}/backupPlanAssociations/{backupPlanAssociationId\}`
      */
@@ -4557,8 +4561,7 @@ export namespace backupdr_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplanassociations$Fetchforresourcetype
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplanassociations$Fetchforresourcetype extends StandardParameters {
     /**
      * Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields: * resource * backup_plan * state * data_source * cloud_sql_instance_backup_plan_association_properties.instance_create_time
      */
@@ -4584,15 +4587,13 @@ export namespace backupdr_v1 {
      */
     resourceType?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplanassociations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplanassociations$Get extends StandardParameters {
     /**
      * Required. Name of the backup plan association resource, in the format `projects/{project\}/locations/{location\}/backupPlanAssociations/{backupPlanAssociationId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplanassociations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplanassociations$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -4610,8 +4611,7 @@ export namespace backupdr_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplanassociations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplanassociations$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of BackupPlanAssociation in below format Format : projects/{project\}/locations/{location\}/backupPlanAssociations/{backupPlanAssociationId\}
      */
@@ -4630,8 +4630,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$BackupPlanAssociation;
   }
-  export interface Params$Resource$Projects$Locations$Backupplanassociations$Triggerbackup
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplanassociations$Triggerbackup extends StandardParameters {
     /**
      * Required. Name of the backup plan association resource, in the format `projects/{project\}/locations/{location\}/backupPlanAssociations/{backupPlanAssociationId\}`
      */
@@ -5425,8 +5424,7 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupplans$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Create extends StandardParameters {
     /**
      * Required. The name of the `BackupPlan` to create. The name must be unique for the specified project and location.The name must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens. Pattern, /a-z{,62\}/.
      */
@@ -5445,8 +5443,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$BackupPlan;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Delete extends StandardParameters {
     /**
      * Required. The resource name of the `BackupPlan` to delete. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}`
      */
@@ -5456,15 +5453,13 @@ export namespace backupdr_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Get extends StandardParameters {
     /**
      * Required. The resource name of the `BackupPlan` to retrieve. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
      */
@@ -5486,8 +5481,7 @@ export namespace backupdr_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of the `BackupPlan`. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}`
      */
@@ -5804,15 +5798,13 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupplans$Revisions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Revisions$Get extends StandardParameters {
     /**
      * Required. The resource name of the `BackupPlanRevision` to retrieve. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}/revisions/{revision\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Revisions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Revisions$List extends StandardParameters {
     /**
      * Optional. The maximum number of `BackupPlans` to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      */
@@ -6943,8 +6935,7 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupvaults$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Create extends StandardParameters {
     /**
      * Required. ID of the requesting object If auto-generating ID server-side, remove this field and backup_vault_id from the method_signature of Create RPC
      */
@@ -6967,8 +6958,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$BackupVault;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Delete extends StandardParameters {
     /**
      * Optional. If true and the BackupVault is not found, the request will succeed but no action will be taken.
      */
@@ -6998,8 +6988,7 @@ export namespace backupdr_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Fetchusable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Fetchusable extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -7021,8 +7010,7 @@ export namespace backupdr_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Get extends StandardParameters {
     /**
      * Required. Name of the backupvault store resource name, in the format 'projects/{project_id\}/locations/{location\}/backupVaults/{resource_name\}'
      */
@@ -7032,8 +7020,7 @@ export namespace backupdr_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -7059,8 +7046,7 @@ export namespace backupdr_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Patch extends StandardParameters {
     /**
      * Optional. If set to true, will not check plan duration against backup vault enforcement duration.
      */
@@ -7091,8 +7077,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$BackupVault;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8505,8 +8490,7 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup extends StandardParameters {
     /**
      * Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
      */
@@ -8517,8 +8501,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$AbandonBackupRequest;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken extends StandardParameters {
     /**
      * Required. The resource name for the location for which static IPs should be returned. Must be in the format 'projects/x/locations/x/backupVaults/x/dataSources'.
      */
@@ -8529,8 +8512,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$FetchAccessTokenRequest;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup extends StandardParameters {
     /**
      * Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
      */
@@ -8541,15 +8523,13 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$FinalizeBackupRequest;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Get extends StandardParameters {
     /**
      * Required. Name of the data source resource name, in the format 'projects/{project_id\}/locations/{location\}/backupVaults/{resource_name\}/dataSource/{resource_name\}'
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup extends StandardParameters {
     /**
      * Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
      */
@@ -8560,8 +8540,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$InitiateBackupRequest;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -8583,8 +8562,7 @@ export namespace backupdr_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Patch extends StandardParameters {
     /**
      * Optional. Enable upsert.
      */
@@ -8607,8 +8585,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$DataSource;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -8619,8 +8596,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$RemoveDataSourceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus extends StandardParameters {
     /**
      * Required. The resource name of the instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/'.
      */
@@ -8813,9 +8789,9 @@ export namespace backupdr_v1 {
      *   const res =
      *     await backupdr.projects.locations.backupVaults.dataSources.backups.fetchForResourceType(
      *       {
-     *         // Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields:
+     *         // Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields: * name * state * backup_type * create_time * expire_time * enforced_retention_end_time * gcp_backup_plan_info.backup_plan * cloud_sql_instance_backup_properties.instance_tier * cloud_sql_instance_backup_properties.database_installed_version
      *         filter: 'placeholder-value',
-     *         // Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending.
+     *         // Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * name
      *         orderBy: 'placeholder-value',
      *         // Optional. The maximum number of Backups to return. The service may return fewer than this value. If unspecified, at most 50 Backups will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      *         pageSize: 'placeholder-value',
@@ -9592,8 +9568,7 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Delete extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -9603,14 +9578,13 @@ export namespace backupdr_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Fetchforresourcetype
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Fetchforresourcetype extends StandardParameters {
     /**
-     * Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields:
+     * Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields: * name * state * backup_type * create_time * expire_time * enforced_retention_end_time * gcp_backup_plan_info.backup_plan * cloud_sql_instance_backup_properties.instance_tier * cloud_sql_instance_backup_properties.database_installed_version
      */
     filter?: string;
     /**
-     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending.
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * name
      */
     orderBy?: string;
     /**
@@ -9634,8 +9608,7 @@ export namespace backupdr_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Get extends StandardParameters {
     /**
      * Required. Name of the data source resource name, in the format 'projects/{project_id\}/locations/{location\}/backupVaults/{backupVault\}/dataSources/{datasource\}/backups/{backup\}'
      */
@@ -9645,8 +9618,7 @@ export namespace backupdr_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -9672,8 +9644,7 @@ export namespace backupdr_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Patch extends StandardParameters {
     /**
      * Output only. Identifier. Name of the backup to create. It must have the format`"projects//locations//backupVaults//dataSources/{datasource\}/backups/{backup\}"`. `{backup\}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the datasource.
      */
@@ -9692,8 +9663,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$Backup;
   }
-  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Restore extends StandardParameters {
     /**
      * Required. The resource name of the Backup instance, in the format 'projects/x/locations/x/backupVaults/x/dataSources/x/backups/'.
      */
@@ -10174,8 +10144,7 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype extends StandardParameters {
     /**
      * Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields: * data_source * data_source_gcp_resource_info.gcp_resourcename * data_source_backup_config_state * data_source_backup_count * data_source_backup_config_info.last_backup_state * data_source_gcp_resource_info.gcp_resourcename * data_source_gcp_resource_info.type * data_source_gcp_resource_info.location * data_source_gcp_resource_info.cloud_sql_instance_properties.instance_create_time
      */
@@ -10201,15 +10170,13 @@ export namespace backupdr_v1 {
      */
     resourceType?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasourcereferences$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasourcereferences$Get extends StandardParameters {
     /**
      * Required. The name of the DataSourceReference to retrieve. Format: projects/{project\}/locations/{location\}/dataSourceReferences/{data_source_reference\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasourcereferences$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasourcereferences$List extends StandardParameters {
     /**
      * Optional. A filter expression that filters the results listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The following field and operator combinations are supported: * data_source_gcp_resource_info.gcp_resourcename with `=`, `!=` * data_source_gcp_resource_info.type with `=`, `!=`
      */
@@ -11456,8 +11423,7 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Managementservers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Managementservers$Create extends StandardParameters {
     /**
      * Required. The name of the management server to create. The name must be unique for the specified project and location.
      */
@@ -11476,8 +11442,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$ManagementServer;
   }
-  export interface Params$Resource$Projects$Locations$Managementservers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Managementservers$Delete extends StandardParameters {
     /**
      * Required. Name of the resource
      */
@@ -11487,15 +11452,13 @@ export namespace backupdr_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Managementservers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Managementservers$Get extends StandardParameters {
     /**
      * Required. Name of the management server resource name, in the format 'projects/{project_id\}/locations/{location\}/managementServers/{resource_name\}'
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Managementservers$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Managementservers$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -11505,8 +11468,7 @@ export namespace backupdr_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Managementservers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Managementservers$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -11528,8 +11490,7 @@ export namespace backupdr_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata extends StandardParameters {
     /**
      * Required. The project and location to be used to check CSS metadata for target project information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**.
      */
@@ -11540,8 +11501,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$FetchMsComplianceMetadataRequest;
   }
-  export interface Params$Resource$Projects$Locations$Managementservers$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Managementservers$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11552,8 +11512,7 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Managementservers$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Managementservers$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12018,7 +11977,7 @@ export namespace backupdr_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12129,8 +12088,7 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -12141,22 +12099,19 @@ export namespace backupdr_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -12174,7 +12129,7 @@ export namespace backupdr_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -12343,8 +12298,7 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Resourcebackupconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Resourcebackupconfigs$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -12526,8 +12480,7 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Serviceconfig$Initialize
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Serviceconfig$Initialize extends StandardParameters {
     /**
      * Required. The resource name of the serviceConfig used to initialize the service. Format: `projects/{project_id\}/locations/{location\}/serviceConfig`.
      */
@@ -12543,6 +12496,155 @@ export namespace backupdr_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Ends the trial for a project
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await backupdr.projects.locations.trial.end({
+     *     // Required. The parent resource where the trial has been created. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "endReason": "my_endReason"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endReason": "my_endReason",
+     *   //   "endTime": "my_endTime",
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    end(
+      params: Params$Resource$Projects$Locations$Trial$End,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    end(
+      params?: Params$Resource$Projects$Locations$Trial$End,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Trial>>;
+    end(
+      params: Params$Resource$Projects$Locations$Trial$End,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    end(
+      params: Params$Resource$Projects$Locations$Trial$End,
+      options: MethodOptions | BodyResponseCallback<Schema$Trial>,
+      callback: BodyResponseCallback<Schema$Trial>
+    ): void;
+    end(
+      params: Params$Resource$Projects$Locations$Trial$End,
+      callback: BodyResponseCallback<Schema$Trial>
+    ): void;
+    end(callback: BodyResponseCallback<Schema$Trial>): void;
+    end(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Trial$End
+        | BodyResponseCallback<Schema$Trial>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Trial>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Trial>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Trial>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Trial$End;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Trial$End;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/trial:end').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Trial>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Trial>(parameters);
+      }
     }
 
     /**
@@ -12693,8 +12795,18 @@ export namespace backupdr_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Trial$Subscribe
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Trial$End extends StandardParameters {
+    /**
+     * Required. The parent resource where the trial has been created. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EndTrialRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Trial$Subscribe extends StandardParameters {
     /**
      * Required. The project where this trial will be created. Format: projects/{project\}/locations/{location\} Supported Locations are - us, eu and asia.
      */
