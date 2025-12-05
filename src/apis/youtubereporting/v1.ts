@@ -147,6 +147,10 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
+    downloadExternalReadToken?: string | null;
+    /**
+     * gdata
+     */
     downloadReadHandle?: string | null;
     /**
      * gdata
@@ -1550,8 +1554,7 @@ export namespace youtubereporting_v1 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Jobs$Reports$List
-    extends StandardParameters {
+  export interface Params$Resource$Jobs$Reports$List extends StandardParameters {
     /**
      * If set, only reports created after the specified date/time are returned.
      */
