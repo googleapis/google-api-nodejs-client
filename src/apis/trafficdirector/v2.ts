@@ -835,8 +835,7 @@ export namespace trafficdirector_v2 {
     }
   }
 
-  export interface Params$Resource$Discovery$Client_status
-    extends StandardParameters {
+  export interface Params$Resource$Discovery$Client_status extends StandardParameters {
     /**
      * Request body metadata
      */
