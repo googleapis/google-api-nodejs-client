@@ -1597,7 +1597,7 @@ export namespace displayvideo_v3 {
      */
     fixedBid?: Schema$FixedBidStrategy;
     /**
-     * A strategy that automatically adjusts the bid to optimize to your performance goal while spending the full budget. At insertion order level, the markup_type of line items cannot be set to `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`. In addition, when performance_goal_type is one of: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` , the line_item_type of the insertion order line items must be either: * `LINE_ITEM_TYPE_DISPLAY_DEFAULT` * `LINE_ITEM_TYPE_VIDEO_DEFAULT` , and when performance_goal_type is either: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` the line_item_type of the insertion order line items must be `LINE_ITEM_TYPE_VIDEO_DEFAULT`.
+     * * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` only allow for `LINE_ITEM_TYPE_DISPLAY_DEFAULT` or `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` only allow for `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_REACH` only allows for `LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP` line items.
      */
     maximizeSpendAutoBid?: Schema$MaximizeSpendBidStrategy;
     /**
@@ -8124,8 +8124,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Audit
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Audit extends StandardParameters {
     /**
      * Required. The ID of the advertiser to audit.
      */
@@ -8135,22 +8134,19 @@ export namespace displayvideo_v3 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Advertisers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$Advertiser;
   }
-  export interface Params$Resource$Advertisers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Delete extends StandardParameters {
     /**
      * The ID of the advertiser we need to delete.
      */
     advertiserId?: string;
   }
-  export interface Params$Resource$Advertisers$Editassignedtargetingoptions
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Editassignedtargetingoptions extends StandardParameters {
     /**
      * Required. The ID of the advertiser.
      */
@@ -8189,8 +8185,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Advertisers$Listassignedtargetingoptions
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Listassignedtargetingoptions extends StandardParameters {
     /**
      * Required. The ID of the advertiser the line item belongs to.
      */
@@ -8212,8 +8207,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Patch extends StandardParameters {
     /**
      * Output only. The unique ID of the advertiser. Assigned by the system.
      */
@@ -8537,8 +8531,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Adgroupads$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Adgroupads$Get extends StandardParameters {
     /**
      * Required. The ID of the ad group ad to fetch.
      */
@@ -8548,8 +8541,7 @@ export namespace displayvideo_v3 {
      */
     advertiserId?: string;
   }
-  export interface Params$Resource$Advertisers$Adgroupads$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Adgroupads$List extends StandardParameters {
     /**
      * Required. The ID of the advertiser the ad groups belongs to.
      */
@@ -9040,8 +9032,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Adgroups$Bulklistadgroupassignedtargetingoptions
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Adgroups$Bulklistadgroupassignedtargetingoptions extends StandardParameters {
     /**
      * Required. The IDs of the ad groups to list assigned targeting options for.
      */
@@ -9067,8 +9058,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Adgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Adgroups$Get extends StandardParameters {
     /**
      * Required. The ID of the ad group to fetch.
      */
@@ -9078,8 +9068,7 @@ export namespace displayvideo_v3 {
      */
     advertiserId?: string;
   }
-  export interface Params$Resource$Advertisers$Adgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Adgroups$List extends StandardParameters {
     /**
      * Required. The ID of the advertiser the ad groups belongs to.
      */
@@ -9497,8 +9486,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get extends StandardParameters {
     /**
      * Required. The ID of the ad group the assigned targeting option belongs to.
      */
@@ -9516,8 +9504,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List extends StandardParameters {
     /**
      * Required. The ID of the ad group to list assigned targeting options for.
      */
@@ -9707,8 +9694,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Assets$Upload
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Assets$Upload extends StandardParameters {
     /**
      * Required. The ID of the advertiser this asset belongs to.
      */
@@ -10682,8 +10668,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Campaigns$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Campaigns$Create extends StandardParameters {
     /**
      * Output only. The unique ID of the advertiser the campaign belongs to.
      */
@@ -10694,8 +10679,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$Campaign;
   }
-  export interface Params$Resource$Advertisers$Campaigns$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Campaigns$Delete extends StandardParameters {
     /**
      * The ID of the advertiser this campaign belongs to.
      */
@@ -10705,8 +10689,7 @@ export namespace displayvideo_v3 {
      */
     campaignId?: string;
   }
-  export interface Params$Resource$Advertisers$Campaigns$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Campaigns$Get extends StandardParameters {
     /**
      * Required. The ID of the advertiser this campaign belongs to.
      */
@@ -10716,8 +10699,7 @@ export namespace displayvideo_v3 {
      */
     campaignId?: string;
   }
-  export interface Params$Resource$Advertisers$Campaigns$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Campaigns$List extends StandardParameters {
     /**
      * The ID of the advertiser to list campaigns for.
      */
@@ -10739,8 +10721,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Campaigns$Listassignedtargetingoptions
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Campaigns$Listassignedtargetingoptions extends StandardParameters {
     /**
      * Required. The ID of the advertiser the campaign belongs to.
      */
@@ -10766,8 +10747,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Campaigns$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Campaigns$Patch extends StandardParameters {
     /**
      * Output only. The unique ID of the advertiser the campaign belongs to.
      */
@@ -11182,8 +11162,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get extends StandardParameters {
     /**
      * Required. The ID of the advertiser the campaign belongs to.
      */
@@ -11201,8 +11180,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List extends StandardParameters {
     /**
      * Required. The ID of the advertiser the campaign belongs to.
      */
@@ -11859,8 +11837,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Channels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Channels$Create extends StandardParameters {
     /**
      * The ID of the advertiser that owns the created channel.
      */
@@ -11875,8 +11852,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$Channel;
   }
-  export interface Params$Resource$Advertisers$Channels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Channels$Get extends StandardParameters {
     /**
      * The ID of the advertiser that owns the fetched channel.
      */
@@ -11890,8 +11866,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Advertisers$Channels$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Channels$List extends StandardParameters {
     /**
      * The ID of the advertiser that owns the channels.
      */
@@ -11917,8 +11892,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Advertisers$Channels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Channels$Patch extends StandardParameters {
     /**
      * The ID of the advertiser that owns the created channel.
      */
@@ -12696,8 +12670,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Channels$Sites$Bulkedit
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Channels$Sites$Bulkedit extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent channel.
      */
@@ -12712,8 +12685,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$BulkEditSitesRequest;
   }
-  export interface Params$Resource$Advertisers$Channels$Sites$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Channels$Sites$Create extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent channel.
      */
@@ -12732,8 +12704,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$Site;
   }
-  export interface Params$Resource$Advertisers$Channels$Sites$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Channels$Sites$Delete extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent channel.
      */
@@ -12751,8 +12722,7 @@ export namespace displayvideo_v3 {
      */
     urlOrAppId?: string;
   }
-  export interface Params$Resource$Advertisers$Channels$Sites$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Channels$Sites$List extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent channel.
      */
@@ -12782,8 +12752,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Advertisers$Channels$Sites$Replace
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Channels$Sites$Replace extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent channel.
      */
@@ -13752,8 +13721,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Creatives$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Creatives$Create extends StandardParameters {
     /**
      * Output only. The unique ID of the advertiser the creative belongs to.
      */
@@ -13764,8 +13732,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$Creative;
   }
-  export interface Params$Resource$Advertisers$Creatives$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Creatives$Delete extends StandardParameters {
     /**
      * The ID of the advertiser this creative belongs to.
      */
@@ -13775,8 +13742,7 @@ export namespace displayvideo_v3 {
      */
     creativeId?: string;
   }
-  export interface Params$Resource$Advertisers$Creatives$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Creatives$Get extends StandardParameters {
     /**
      * Required. The ID of the advertiser this creative belongs to.
      */
@@ -13786,8 +13752,7 @@ export namespace displayvideo_v3 {
      */
     creativeId?: string;
   }
-  export interface Params$Resource$Advertisers$Creatives$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Creatives$List extends StandardParameters {
     /**
      * Required. The ID of the advertiser to list creatives for.
      */
@@ -13809,8 +13774,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Creatives$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Creatives$Patch extends StandardParameters {
     /**
      * Output only. The unique ID of the advertiser the creative belongs to.
      */
@@ -14800,8 +14764,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Insertionorders$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Insertionorders$Create extends StandardParameters {
     /**
      * Output only. The unique ID of the advertiser the insertion order belongs to.
      */
@@ -14812,8 +14775,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$InsertionOrder;
   }
-  export interface Params$Resource$Advertisers$Insertionorders$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Insertionorders$Delete extends StandardParameters {
     /**
      * The ID of the advertiser this insertion order belongs to.
      */
@@ -14823,8 +14785,7 @@ export namespace displayvideo_v3 {
      */
     insertionOrderId?: string;
   }
-  export interface Params$Resource$Advertisers$Insertionorders$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Insertionorders$Get extends StandardParameters {
     /**
      * Required. The ID of the advertiser this insertion order belongs to.
      */
@@ -14834,8 +14795,7 @@ export namespace displayvideo_v3 {
      */
     insertionOrderId?: string;
   }
-  export interface Params$Resource$Advertisers$Insertionorders$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Insertionorders$List extends StandardParameters {
     /**
      * Required. The ID of the advertiser to list insertion orders for.
      */
@@ -14857,8 +14817,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Insertionorders$Listassignedtargetingoptions
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Insertionorders$Listassignedtargetingoptions extends StandardParameters {
     /**
      * Required. The ID of the advertiser the insertion order belongs to.
      */
@@ -14884,8 +14843,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Insertionorders$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Insertionorders$Patch extends StandardParameters {
     /**
      * Output only. The unique ID of the advertiser the insertion order belongs to.
      */
@@ -15718,8 +15676,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Create extends StandardParameters {
     /**
      * Required. The ID of the advertiser the insertion order belongs to.
      */
@@ -15738,8 +15695,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$AssignedTargetingOption;
   }
-  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Delete extends StandardParameters {
     /**
      * Required. The ID of the advertiser the insertion order belongs to.
      */
@@ -15757,8 +15713,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get extends StandardParameters {
     /**
      * Required. The ID of the advertiser the insertion order belongs to.
      */
@@ -15776,8 +15731,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List extends StandardParameters {
     /**
      * Required. The ID of the advertiser the insertion order belongs to.
      */
@@ -16115,8 +16069,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Invoices$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Invoices$List extends StandardParameters {
     /**
      * Required. The ID of the advertiser to list invoices for.
      */
@@ -16138,8 +16091,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency extends StandardParameters {
     /**
      * Required. The ID of the advertiser to lookup currency for.
      */
@@ -17802,8 +17754,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions extends StandardParameters {
     /**
      * Required. The ID of the advertiser the line items belong to.
      */
@@ -17814,8 +17765,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$BulkEditAssignedTargetingOptionsRequest;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions extends StandardParameters {
     /**
      * Required. The ID of the advertiser the line items belongs to.
      */
@@ -17841,8 +17791,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Bulkupdate
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Bulkupdate extends StandardParameters {
     /**
      * Required. The ID of the advertiser this line item belongs to.
      */
@@ -17853,8 +17802,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$BulkUpdateLineItemsRequest;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Create extends StandardParameters {
     /**
      * Output only. The unique ID of the advertiser the line item belongs to.
      */
@@ -17865,8 +17813,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$LineItem;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Delete extends StandardParameters {
     /**
      * The ID of the advertiser this line item belongs to.
      */
@@ -17876,8 +17823,7 @@ export namespace displayvideo_v3 {
      */
     lineItemId?: string;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Duplicate
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Duplicate extends StandardParameters {
     /**
      * Required. The ID of the advertiser this line item belongs to.
      */
@@ -17892,8 +17838,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$DuplicateLineItemRequest;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Generatedefault
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Generatedefault extends StandardParameters {
     /**
      * Required. The ID of the advertiser this line item belongs to.
      */
@@ -17904,8 +17849,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$GenerateDefaultLineItemRequest;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Get extends StandardParameters {
     /**
      * Required. The ID of the advertiser this line item belongs to.
      */
@@ -17915,8 +17859,7 @@ export namespace displayvideo_v3 {
      */
     lineItemId?: string;
   }
-  export interface Params$Resource$Advertisers$Lineitems$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$List extends StandardParameters {
     /**
      * Required. The ID of the advertiser to list line items for.
      */
@@ -17938,8 +17881,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Patch extends StandardParameters {
     /**
      * Output only. The unique ID of the advertiser the line item belongs to.
      */
@@ -18772,8 +18714,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create extends StandardParameters {
     /**
      * Required. The ID of the advertiser the line item belongs to.
      */
@@ -18792,8 +18733,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$AssignedTargetingOption;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete extends StandardParameters {
     /**
      * Required. The ID of the advertiser the line item belongs to.
      */
@@ -18811,8 +18751,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get extends StandardParameters {
     /**
      * Required. The ID of the advertiser the line item belongs to.
      */
@@ -18830,8 +18769,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List extends StandardParameters {
     /**
      * Required. The ID of the advertiser the line item belongs to.
      */
@@ -19473,8 +19411,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Locationlists$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Locationlists$Create extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the location list belongs.
      */
@@ -19485,8 +19422,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$LocationList;
   }
-  export interface Params$Resource$Advertisers$Locationlists$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Locationlists$Get extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the fetched location list belongs.
      */
@@ -19496,8 +19432,7 @@ export namespace displayvideo_v3 {
      */
     locationListId?: string;
   }
-  export interface Params$Resource$Advertisers$Locationlists$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Locationlists$List extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the fetched location lists belong.
      */
@@ -19519,8 +19454,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Locationlists$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Locationlists$Patch extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the location lists belongs.
      */
@@ -20161,8 +20095,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the location list belongs.
      */
@@ -20177,8 +20110,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$BulkEditAssignedLocationsRequest;
   }
-  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$Create extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the location list belongs.
      */
@@ -20193,8 +20125,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$AssignedLocation;
   }
-  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the location list belongs.
      */
@@ -20208,8 +20139,7 @@ export namespace displayvideo_v3 {
      */
     locationListId?: string;
   }
-  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$List extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the location list belongs.
      */
@@ -20988,8 +20918,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Negativekeywordlists$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Create extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the negative keyword list will belong.
      */
@@ -21000,8 +20929,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$NegativeKeywordList;
   }
-  export interface Params$Resource$Advertisers$Negativekeywordlists$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Delete extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
      */
@@ -21011,8 +20939,7 @@ export namespace displayvideo_v3 {
      */
     negativeKeywordListId?: string;
   }
-  export interface Params$Resource$Advertisers$Negativekeywordlists$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Get extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the fetched negative keyword list belongs.
      */
@@ -21022,8 +20949,7 @@ export namespace displayvideo_v3 {
      */
     negativeKeywordListId?: string;
   }
-  export interface Params$Resource$Advertisers$Negativekeywordlists$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Negativekeywordlists$List extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the fetched negative keyword lists belong.
      */
@@ -21037,8 +20963,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Negativekeywordlists$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Patch extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
      */
@@ -21840,8 +21765,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
      */
@@ -21856,8 +21780,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$BulkEditNegativeKeywordsRequest;
   }
-  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
      */
@@ -21872,8 +21795,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$NegativeKeyword;
   }
-  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
      */
@@ -21887,8 +21809,7 @@ export namespace displayvideo_v3 {
      */
     negativeKeywordListId?: string;
   }
-  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
      */
@@ -21914,8 +21835,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace extends StandardParameters {
     /**
      * Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
      */
@@ -22730,8 +22650,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create extends StandardParameters {
     /**
      * Required. The ID of the advertiser.
      */
@@ -22746,8 +22665,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$AssignedTargetingOption;
   }
-  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete extends StandardParameters {
     /**
      * Required. The ID of the advertiser.
      */
@@ -22761,8 +22679,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get extends StandardParameters {
     /**
      * Required. The ID of the advertiser.
      */
@@ -22776,8 +22693,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List extends StandardParameters {
     /**
      * Required. The ID of the advertiser.
      */
@@ -23107,8 +23023,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Combinedaudiences$Get
-    extends StandardParameters {
+  export interface Params$Resource$Combinedaudiences$Get extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the fetched combined audience.
      */
@@ -23122,8 +23037,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Combinedaudiences$List
-    extends StandardParameters {
+  export interface Params$Resource$Combinedaudiences$List extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the fetched combined audiences.
      */
@@ -24087,15 +24001,13 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Custombiddingalgorithms$Create
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$CustomBiddingAlgorithm;
   }
-  export interface Params$Resource$Custombiddingalgorithms$Get
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$Get extends StandardParameters {
     /**
      * The ID of the DV360 partner that has access to the custom bidding algorithm.
      */
@@ -24109,8 +24021,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Custombiddingalgorithms$List
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$List extends StandardParameters {
     /**
      * The ID of the DV360 advertiser that has access to the custom bidding algorithm.
      */
@@ -24136,8 +24047,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Custombiddingalgorithms$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$Patch extends StandardParameters {
     /**
      * Output only. The unique ID of the custom bidding algorithm. Assigned by the system.
      */
@@ -24152,8 +24062,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$CustomBiddingAlgorithm;
   }
-  export interface Params$Resource$Custombiddingalgorithms$Uploadrules
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$Uploadrules extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent custom bidding algorithm.
      */
@@ -24167,8 +24076,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Custombiddingalgorithms$Uploadscript
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$Uploadscript extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent custom bidding algorithm.
      */
@@ -24675,8 +24583,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Custombiddingalgorithms$Rules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$Rules$Create extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent custom bidding algorithm.
      */
@@ -24695,8 +24602,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$CustomBiddingAlgorithmRules;
   }
-  export interface Params$Resource$Custombiddingalgorithms$Rules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$Rules$Get extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent custom bidding algorithm.
      */
@@ -24714,8 +24620,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Custombiddingalgorithms$Rules$List
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$Rules$List extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent custom bidding algorithm.
      */
@@ -25220,8 +25125,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Custombiddingalgorithms$Scripts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$Scripts$Create extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent custom bidding algorithm.
      */
@@ -25240,8 +25144,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$CustomBiddingScript;
   }
-  export interface Params$Resource$Custombiddingalgorithms$Scripts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$Scripts$Get extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent custom bidding algorithm.
      */
@@ -25259,8 +25162,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Custombiddingalgorithms$Scripts$List
-    extends StandardParameters {
+  export interface Params$Resource$Custombiddingalgorithms$Scripts$List extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent custom bidding algorithm.
      */
@@ -26469,8 +26371,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Firstandthirdpartyaudiences$Create
-    extends StandardParameters {
+  export interface Params$Resource$Firstandthirdpartyaudiences$Create extends StandardParameters {
     /**
      * Required. The ID of the advertiser under whom the FirstAndThirdPartyAudience will be created.
      */
@@ -26481,8 +26382,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$FirstAndThirdPartyAudience;
   }
-  export interface Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers
-    extends StandardParameters {
+  export interface Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers extends StandardParameters {
     /**
      * Required. The ID of the Customer Match FirstAndThirdPartyAudience whose members will be edited.
      */
@@ -26493,8 +26393,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$EditCustomerMatchMembersRequest;
   }
-  export interface Params$Resource$Firstandthirdpartyaudiences$Get
-    extends StandardParameters {
+  export interface Params$Resource$Firstandthirdpartyaudiences$Get extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the fetched first and third party audience.
      */
@@ -26508,8 +26407,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Firstandthirdpartyaudiences$List
-    extends StandardParameters {
+  export interface Params$Resource$Firstandthirdpartyaudiences$List extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the fetched first and third party audiences.
      */
@@ -26535,8 +26433,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Firstandthirdpartyaudiences$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Firstandthirdpartyaudiences$Patch extends StandardParameters {
     /**
      * Required. The ID of the owner advertiser of the updated FirstAndThirdPartyAudience.
      */
@@ -26871,8 +26768,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Floodlightgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightgroups$Get extends StandardParameters {
     /**
      * Required. The ID of the Floodlight group to fetch.
      */
@@ -26882,8 +26778,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Floodlightgroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightgroups$Patch extends StandardParameters {
     /**
      * Output only. The unique ID of the Floodlight group. Assigned by the system.
      */
@@ -27093,7 +26988,7 @@ export namespace displayvideo_v3 {
      *     floodlightGroupId: '[^/]+',
      *     // Optional. Field by which to sort the list. Acceptable values are: * `displayName` (default) * `floodlightActivityId` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Optional. Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Optional. Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListFloodlightActivities` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -27216,8 +27111,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Floodlightgroups$Floodlightactivities$Get
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightgroups$Floodlightactivities$Get extends StandardParameters {
     /**
      * Required. The ID of the Floodlight activity to fetch.
      */
@@ -27231,8 +27125,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Floodlightgroups$Floodlightactivities$List
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightgroups$Floodlightactivities$List extends StandardParameters {
     /**
      * Required. The ID of the parent Floodlight group to which the requested Floodlight activities belong.
      */
@@ -27242,7 +27135,7 @@ export namespace displayvideo_v3 {
      */
     orderBy?: string;
     /**
-     * Optional. Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Optional. Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -27558,8 +27451,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Googleaudiences$Get
-    extends StandardParameters {
+  export interface Params$Resource$Googleaudiences$Get extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the fetched Google audience.
      */
@@ -27573,8 +27465,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Googleaudiences$List
-    extends StandardParameters {
+  export interface Params$Resource$Googleaudiences$List extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the fetched Google audiences.
      */
@@ -28425,8 +28316,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Guaranteedorders$Create
-    extends StandardParameters {
+  export interface Params$Resource$Guaranteedorders$Create extends StandardParameters {
     /**
      * The ID of the advertiser that the request is being made within.
      */
@@ -28441,8 +28331,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$GuaranteedOrder;
   }
-  export interface Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors
-    extends StandardParameters {
+  export interface Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors extends StandardParameters {
     /**
      * Required. The ID of the guaranteed order to edit. The ID is of the format `{exchange\}-{legacy_guaranteed_order_id\}`
      */
@@ -28453,8 +28342,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$EditGuaranteedOrderReadAccessorsRequest;
   }
-  export interface Params$Resource$Guaranteedorders$Get
-    extends StandardParameters {
+  export interface Params$Resource$Guaranteedorders$Get extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the guaranteed order.
      */
@@ -28468,8 +28356,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Guaranteedorders$List
-    extends StandardParameters {
+  export interface Params$Resource$Guaranteedorders$List extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the guaranteed order.
      */
@@ -28495,8 +28382,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Guaranteedorders$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Guaranteedorders$Patch extends StandardParameters {
     /**
      * The ID of the advertiser that the request is being made within.
      */
@@ -29281,8 +29167,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Inventorysourcegroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysourcegroups$Create extends StandardParameters {
     /**
      * The ID of the advertiser that owns the inventory source group. The parent partner will not have access to this group.
      */
@@ -29297,8 +29182,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$InventorySourceGroup;
   }
-  export interface Params$Resource$Inventorysourcegroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysourcegroups$Delete extends StandardParameters {
     /**
      * The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
      */
@@ -29312,8 +29196,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Inventorysourcegroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysourcegroups$Get extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
      */
@@ -29327,8 +29210,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Inventorysourcegroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysourcegroups$List extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
      */
@@ -29354,8 +29236,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Inventorysourcegroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysourcegroups$Patch extends StandardParameters {
     /**
      * The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
      */
@@ -30010,8 +29891,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit extends StandardParameters {
     /**
      * Required. The ID of the inventory source group to which the assignments are assigned.
      */
@@ -30022,8 +29902,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$BulkEditAssignedInventorySourcesRequest;
   }
-  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent inventory source group. The parent partner will not have access to this assigned inventory source.
      */
@@ -30042,8 +29921,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$AssignedInventorySource;
   }
-  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent inventory source group. The parent partner does not have access to this assigned inventory source.
      */
@@ -30061,8 +29939,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$List
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$List extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the assignment. If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
      */
@@ -30935,8 +30812,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Inventorysources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysources$Create extends StandardParameters {
     /**
      * The ID of the advertiser that the request is being made within.
      */
@@ -30951,8 +30827,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$InventorySource;
   }
-  export interface Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors extends StandardParameters {
     /**
      * Required. The ID of inventory source to update.
      */
@@ -30963,8 +30838,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$EditInventorySourceReadWriteAccessorsRequest;
   }
-  export interface Params$Resource$Inventorysources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysources$Get extends StandardParameters {
     /**
      * Optional. The ID of the DV360 advertiser to which the fetched inventory source is permissioned. If the user only has access to the advertiser and not the parent partner, use this field to specify the relevant advertiser.
      */
@@ -30978,8 +30852,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Inventorysources$List
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysources$List extends StandardParameters {
     /**
      * The ID of the advertiser that has access to the inventory source.
      */
@@ -31005,8 +30878,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Inventorysources$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Inventorysources$Patch extends StandardParameters {
     /**
      * The ID of the advertiser that the request is being made within.
      */
@@ -31823,8 +31695,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Partners$Editassignedtargetingoptions
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Editassignedtargetingoptions extends StandardParameters {
     /**
      * Required. The ID of the partner.
      */
@@ -32486,8 +32357,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Partners$Channels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Channels$Create extends StandardParameters {
     /**
      * The ID of the advertiser that owns the created channel.
      */
@@ -32502,8 +32372,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$Channel;
   }
-  export interface Params$Resource$Partners$Channels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Channels$Get extends StandardParameters {
     /**
      * The ID of the advertiser that owns the fetched channel.
      */
@@ -32517,8 +32386,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Partners$Channels$List
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Channels$List extends StandardParameters {
     /**
      * The ID of the advertiser that owns the channels.
      */
@@ -32544,8 +32412,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Partners$Channels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Channels$Patch extends StandardParameters {
     /**
      * The ID of the advertiser that owns the created channel.
      */
@@ -33321,8 +33188,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Partners$Channels$Sites$Bulkedit
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Channels$Sites$Bulkedit extends StandardParameters {
     /**
      * Required. The ID of the parent channel to which the sites belong.
      */
@@ -33337,8 +33203,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$BulkEditSitesRequest;
   }
-  export interface Params$Resource$Partners$Channels$Sites$Create
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Channels$Sites$Create extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent channel.
      */
@@ -33357,8 +33222,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$Site;
   }
-  export interface Params$Resource$Partners$Channels$Sites$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Channels$Sites$Delete extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent channel.
      */
@@ -33376,8 +33240,7 @@ export namespace displayvideo_v3 {
      */
     urlOrAppId?: string;
   }
-  export interface Params$Resource$Partners$Channels$Sites$List
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Channels$Sites$List extends StandardParameters {
     /**
      * The ID of the advertiser that owns the parent channel.
      */
@@ -33407,8 +33270,7 @@ export namespace displayvideo_v3 {
      */
     partnerId?: string;
   }
-  export interface Params$Resource$Partners$Channels$Sites$Replace
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Channels$Sites$Replace extends StandardParameters {
     /**
      * Required. The ID of the parent channel whose sites will be replaced.
      */
@@ -34209,8 +34071,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create extends StandardParameters {
     /**
      * Required. The ID of the partner.
      */
@@ -34225,8 +34086,7 @@ export namespace displayvideo_v3 {
      */
     requestBody?: Schema$AssignedTargetingOption;
   }
-  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete extends StandardParameters {
     /**
      * Required. The ID of the assigned targeting option to delete.
      */
@@ -34240,8 +34100,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get extends StandardParameters {
     /**
      * Required. An identifier unique to the targeting type in this partner that identifies the assigned targeting option being requested.
      */
@@ -34255,8 +34114,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List extends StandardParameters {
     /**
      * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` Examples: * `AssignedTargetingOption` resource with ID 123456: `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
@@ -34443,8 +34301,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Sdfdownloadtasks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Sdfdownloadtasks$Create extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -34599,8 +34456,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Sdfdownloadtasks$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Sdfdownloadtasks$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -35112,8 +34968,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Targetingtypes$Targetingoptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Targetingtypes$Targetingoptions$Get extends StandardParameters {
     /**
      * Required. The Advertiser this request is being made in the context of.
      */
@@ -35127,8 +34982,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Targetingtypes$Targetingoptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Targetingtypes$Targetingoptions$List extends StandardParameters {
     /**
      * Required. The Advertiser this request is being made in the context of.
      */
@@ -35154,8 +35008,7 @@ export namespace displayvideo_v3 {
      */
     targetingType?: string;
   }
-  export interface Params$Resource$Targetingtypes$Targetingoptions$Search
-    extends StandardParameters {
+  export interface Params$Resource$Targetingtypes$Targetingoptions$Search extends StandardParameters {
     /**
      * Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_BUSINESS_CHAIN`
      */
@@ -36048,8 +35901,7 @@ export namespace displayvideo_v3 {
     }
   }
 
-  export interface Params$Resource$Users$Bulkeditassigneduserroles
-    extends StandardParameters {
+  export interface Params$Resource$Users$Bulkeditassigneduserroles extends StandardParameters {
     /**
      * Required. The ID of the user to which the assigned user roles belong.
      */
