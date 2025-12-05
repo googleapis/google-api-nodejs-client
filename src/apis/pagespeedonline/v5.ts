@@ -995,8 +995,7 @@ export namespace pagespeedonline_v5 {
     }
   }
 
-  export interface Params$Resource$Pagespeedapi$Runpagespeed
-    extends StandardParameters {
+  export interface Params$Resource$Pagespeedapi$Runpagespeed extends StandardParameters {
     /**
      * The captcha token passed when filling out a captcha.
      */
