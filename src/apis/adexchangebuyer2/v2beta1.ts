@@ -2827,8 +2827,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Clients$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Clients$Create extends StandardParameters {
     /**
      * Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
      */
@@ -2839,8 +2838,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$Client;
   }
-  export interface Params$Resource$Accounts$Clients$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Clients$Get extends StandardParameters {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -2850,8 +2848,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     clientAccountId?: string;
   }
-  export interface Params$Resource$Accounts$Clients$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Clients$List extends StandardParameters {
     /**
      * Unique numerical account ID of the sponsor buyer to list the clients for.
      */
@@ -2869,8 +2866,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     partnerClientId?: string;
   }
-  export interface Params$Resource$Accounts$Clients$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Clients$Update extends StandardParameters {
     /**
      * Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to update a client for. (required)
      */
@@ -3348,8 +3344,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Clients$Invitations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Clients$Invitations$Create extends StandardParameters {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -3364,8 +3359,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$ClientUserInvitation;
   }
-  export interface Params$Resource$Accounts$Clients$Invitations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Clients$Invitations$Get extends StandardParameters {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -3379,8 +3373,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     invitationId?: string;
   }
-  export interface Params$Resource$Accounts$Clients$Invitations$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Clients$Invitations$List extends StandardParameters {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -3854,8 +3847,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Clients$Users$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Clients$Users$Get extends StandardParameters {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -3869,8 +3861,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Accounts$Clients$Users$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Clients$Users$List extends StandardParameters {
     /**
      * Numerical account ID of the sponsor buyer of the client to list users for. (required)
      */
@@ -3888,8 +3879,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Clients$Users$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Clients$Users$Update extends StandardParameters {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -4916,8 +4906,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Creatives$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Creatives$Create extends StandardParameters {
     /**
      * The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      */
@@ -4932,8 +4921,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$Creative;
   }
-  export interface Params$Resource$Accounts$Creatives$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Creatives$Get extends StandardParameters {
     /**
      * The account the creative belongs to.
      */
@@ -4943,8 +4931,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     creativeId?: string;
   }
-  export interface Params$Resource$Accounts$Creatives$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Creatives$List extends StandardParameters {
     /**
      * The account to list the creatives from. Specify "-" to list all creatives the current user has access to.
      */
@@ -4962,8 +4949,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Accounts$Creatives$Stopwatching
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Creatives$Stopwatching extends StandardParameters {
     /**
      * The account of the creative to stop notifications for.
      */
@@ -4978,8 +4964,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$StopWatchingCreativeRequest;
   }
-  export interface Params$Resource$Accounts$Creatives$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Creatives$Update extends StandardParameters {
     /**
      * The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      */
@@ -4994,8 +4979,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$Creative;
   }
-  export interface Params$Resource$Accounts$Creatives$Watch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Creatives$Watch extends StandardParameters {
     /**
      * The account of the creative to watch.
      */
@@ -5466,8 +5450,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Creatives$Dealassociations$Add
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Creatives$Dealassociations$Add extends StandardParameters {
     /**
      * The account the creative belongs to.
      */
@@ -5482,8 +5465,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$AddDealAssociationRequest;
   }
-  export interface Params$Resource$Accounts$Creatives$Dealassociations$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Creatives$Dealassociations$List extends StandardParameters {
     /**
      * The account to list the associations from. Specify "-" to list all creatives the current user has access to.
      */
@@ -5505,8 +5487,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Accounts$Creatives$Dealassociations$Remove
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Creatives$Dealassociations$Remove extends StandardParameters {
     /**
      * The account the creative belongs to.
      */
@@ -6010,8 +5991,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Finalizedproposals$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Finalizedproposals$List extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -6033,8 +6013,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Finalizedproposals$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Finalizedproposals$Pause extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -6049,8 +6028,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$PauseProposalDealsRequest;
   }
-  export interface Params$Resource$Accounts$Finalizedproposals$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Finalizedproposals$Resume extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -6373,8 +6351,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Products$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Products$Get extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -6384,8 +6361,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Accounts$Products$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Products$List extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8058,8 +8034,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Proposals$Accept
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Proposals$Accept extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8074,8 +8049,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$AcceptProposalRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Addnote
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Proposals$Addnote extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8090,8 +8064,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$AddNoteRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Cancelnegotiation
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Proposals$Cancelnegotiation extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8106,8 +8079,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$CancelNegotiationRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Completesetup
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Proposals$Completesetup extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8122,8 +8094,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$CompleteSetupRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Proposals$Create extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8134,8 +8105,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$Proposal;
   }
-  export interface Params$Resource$Accounts$Proposals$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Proposals$Get extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8145,8 +8115,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     proposalId?: string;
   }
-  export interface Params$Resource$Accounts$Proposals$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Proposals$List extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8168,8 +8137,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Proposals$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Proposals$Pause extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8184,8 +8152,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$PauseProposalRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Proposals$Resume extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8200,8 +8167,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$ResumeProposalRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Proposals$Update extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8528,8 +8494,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Publisherprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Publisherprofiles$Get extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -8539,8 +8504,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     publisherProfileId?: string;
   }
-  export interface Params$Resource$Accounts$Publisherprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Publisherprofiles$List extends StandardParameters {
     /**
      * Account ID of the buyer.
      */
@@ -9219,8 +9183,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Create extends StandardParameters {
     /**
      * Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      */
@@ -9235,22 +9198,19 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$FilterSet;
   }
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Delete extends StandardParameters {
     /**
      * Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Get extends StandardParameters {
     /**
      * Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Accounts$Filtersets$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$List extends StandardParameters {
     /**
      * Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      */
@@ -9420,8 +9380,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -9594,8 +9553,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -9774,8 +9732,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -9950,8 +9907,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -10131,8 +10087,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -10314,8 +10269,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List extends StandardParameters {
     /**
      * The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      */
@@ -10502,8 +10456,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List extends StandardParameters {
     /**
      * The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
      */
@@ -10680,8 +10633,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -10851,8 +10803,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -11031,8 +10982,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -11681,8 +11631,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Create extends StandardParameters {
     /**
      * Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      */
@@ -11697,22 +11646,19 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$FilterSet;
   }
-  export interface Params$Resource$Bidders$Filtersets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Delete extends StandardParameters {
     /**
      * Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Filtersets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Get extends StandardParameters {
     /**
      * Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Filtersets$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$List extends StandardParameters {
     /**
      * Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      */
@@ -11879,8 +11825,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Bidmetrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Bidmetrics$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -12051,8 +11996,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Bidresponseerrors$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Bidresponseerrors$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -12228,8 +12172,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -12401,8 +12344,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Filteredbidrequests$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Filteredbidrequests$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -12577,8 +12519,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Filteredbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Filteredbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -12757,8 +12698,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List extends StandardParameters {
     /**
      * The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      */
@@ -12942,8 +12882,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Filteredbids$Details$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Filteredbids$Details$List extends StandardParameters {
     /**
      * The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
      */
@@ -13118,8 +13057,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Impressionmetrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Impressionmetrics$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -13286,8 +13224,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Losingbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Losingbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -13463,8 +13400,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -14120,8 +14056,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Filtersets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Create extends StandardParameters {
     /**
      * Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      */
@@ -14136,22 +14071,19 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$FilterSet;
   }
-  export interface Params$Resource$Buyers$Filtersets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Delete extends StandardParameters {
     /**
      * Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Filtersets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Get extends StandardParameters {
     /**
      * Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Filtersets$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$List extends StandardParameters {
     /**
      * Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      */
@@ -14318,8 +14250,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Filtersets$Bidmetrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Bidmetrics$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -14489,8 +14420,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Filtersets$Bidresponseerrors$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Bidresponseerrors$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -14666,8 +14596,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -14840,8 +14769,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Filtersets$Filteredbidrequests$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Filteredbidrequests$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -15016,8 +14944,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Filtersets$Filteredbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Filteredbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -15196,8 +15123,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List extends StandardParameters {
     /**
      * The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      */
@@ -15381,8 +15307,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Filtersets$Filteredbids$Details$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Filteredbids$Details$List extends StandardParameters {
     /**
      * The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
      */
@@ -15556,8 +15481,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Filtersets$Impressionmetrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Impressionmetrics$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -15724,8 +15648,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Filtersets$Losingbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Losingbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -15901,8 +15824,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
