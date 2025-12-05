@@ -1086,8 +1086,7 @@ export namespace iap_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Brands$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Brands$Create extends StandardParameters {
     /**
      * Required. GCP Project number/id under which the brand is to be created. In the following format: projects/{project_number/id\}.
      */
@@ -1098,15 +1097,13 @@ export namespace iap_v1 {
      */
     requestBody?: Schema$Brand;
   }
-  export interface Params$Resource$Projects$Brands$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Brands$Get extends StandardParameters {
     /**
      * Required. Name of the brand to be fetched. In the following format: projects/{project_number/id\}/brands/{brand\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Brands$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Brands$List extends StandardParameters {
     /**
      * Required. GCP Project number/id. In the following format: projects/{project_number/id\}.
      */
@@ -1849,8 +1846,7 @@ export namespace iap_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Create extends StandardParameters {
     /**
      * Required. Path to create the client in. In the following format: projects/{project_number/id\}/brands/{brand\}. The project must belong to a G Suite account.
      */
@@ -1861,22 +1857,19 @@ export namespace iap_v1 {
      */
     requestBody?: Schema$IdentityAwareProxyClient;
   }
-  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Delete extends StandardParameters {
     /**
      * Required. Name of the Identity Aware Proxy client to be deleted. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Get extends StandardParameters {
     /**
      * Required. Name of the Identity Aware Proxy client to be fetched. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$List extends StandardParameters {
     /**
      * The maximum number of clients to return. The service may return fewer than this value. If unspecified, at most 100 clients will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -1890,8 +1883,7 @@ export namespace iap_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret extends StandardParameters {
     /**
      * Required. Name of the Identity Aware Proxy client to that will have its secret reset. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
      */
@@ -2650,8 +2642,7 @@ export namespace iap_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create extends StandardParameters {
     /**
      * Required. Google Cloud Project ID and location. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}`.
      */
@@ -2666,22 +2657,19 @@ export namespace iap_v1 {
      */
     requestBody?: Schema$TunnelDestGroup;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete extends StandardParameters {
     /**
      * Required. Name of the TunnelDestGroup to delete. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get extends StandardParameters {
     /**
      * Required. Name of the TunnelDestGroup to be fetched. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List extends StandardParameters {
     /**
      * The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 100 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
@@ -2695,8 +2683,7 @@ export namespace iap_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch extends StandardParameters {
     /**
      * Identifier. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
      */
@@ -3608,8 +3595,7 @@ export namespace iap_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$V1$Getiapsettings
-    extends StandardParameters {
+  export interface Params$Resource$V1$Getiapsettings extends StandardParameters {
     /**
      * Required. The resource name for which to retrieve the settings. Authorization: Requires the `getSettings` permission for the associated resource.
      */
@@ -3626,8 +3612,7 @@ export namespace iap_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$V1$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$V1$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3638,8 +3623,7 @@ export namespace iap_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$V1$Updateiapsettings
-    extends StandardParameters {
+  export interface Params$Resource$V1$Updateiapsettings extends StandardParameters {
     /**
      * Required. The resource name of the IAP protected resource.
      */
@@ -3654,8 +3638,7 @@ export namespace iap_v1 {
      */
     requestBody?: Schema$IapSettings;
   }
-  export interface Params$Resource$V1$Validateattributeexpression
-    extends StandardParameters {
+  export interface Params$Resource$V1$Validateattributeexpression extends StandardParameters {
     /**
      * Required. User input string expression. Should be of the form `attributes.saml_attributes.filter(attribute, attribute.name in ['{attribute_name\}', '{attribute_name\}'])`
      */
