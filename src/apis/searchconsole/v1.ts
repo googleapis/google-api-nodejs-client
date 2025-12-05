@@ -811,8 +811,7 @@ export namespace searchconsole_v1 {
     }
   }
 
-  export interface Params$Resource$Searchanalytics$Query
-    extends StandardParameters {
+  export interface Params$Resource$Searchanalytics$Query extends StandardParameters {
     /**
      * The site's URL, including protocol. For example: `http://www.example.com/`.
      */
@@ -2160,8 +2159,7 @@ export namespace searchconsole_v1 {
     }
   }
 
-  export interface Params$Resource$Urlinspection$Index$Inspect
-    extends StandardParameters {
+  export interface Params$Resource$Urlinspection$Index$Inspect extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2339,8 +2337,7 @@ export namespace searchconsole_v1 {
     }
   }
 
-  export interface Params$Resource$Urltestingtools$Mobilefriendlytest$Run
-    extends StandardParameters {
+  export interface Params$Resource$Urltestingtools$Mobilefriendlytest$Run extends StandardParameters {
     /**
      * Request body metadata
      */
