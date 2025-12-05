@@ -162,6 +162,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getBoundary": {
+              "description": "Gets a Boundary.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/boundary",
+              "httpMethod": "GET",
+              "id": "apphub.projects.locations.getBoundary",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the boundary to retrieve. Format: projects/{project}/locations/{location}/boundary",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/boundary$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Boundary"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v1/projects/{projectsId}/locations",
@@ -229,6 +254,45 @@
               "path": "v1/{+name}:lookupServiceProjectAttachment",
               "response": {
                 "$ref": "LookupServiceProjectAttachmentResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "updateBoundary": {
+              "description": "Updates a Boundary.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/boundary",
+              "httpMethod": "PATCH",
+              "id": "apphub.projects.locations.updateBoundary",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The resource name of the boundary. Format: \"projects/{project}/locations/{location}/boundary\"",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/boundary$",
+                  "required": true,
+                  "type": "string"
+                },
+                "requestId": {
+                  "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. Field mask is used to specify the fields to be overwritten in the Boundary resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "Boundary"
+              },
+              "response": {
+                "$ref": "Operation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1194,7 +1258,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1357,7 +1421,7 @@
       }
     }
   },
-  "revision": "20251028",
+  "revision": "20251114",
   "rootUrl": "https://apphub.googleapis.com/",
   "schemas": {
     "Application": {
@@ -1527,6 +1591,50 @@
       },
       "type": "object"
     },
+    "Boundary": {
+      "description": "Application management boundary.",
+      "id": "Boundary",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "crmNode": {
+          "description": "Optional. The resource name of the CRM node being attached to the boundary. Format: `projects/{project-number}` or `projects/{project-id}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the boundary. Format: \"projects/{project}/locations/{location}/boundary\"",
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. Boundary type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL",
+            "MANAGED_AUTOMATIC"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "The Boundary automatically includes all descendants of the CRM node.",
+            "The list of projects within the Boundary is managed by the user.",
+            "The Boundary automatically includes all descendants of the CRM node, which is set via App Management folder capability."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -1681,6 +1789,22 @@
       },
       "type": "object"
     },
+    "ExtendedMetadata": {
+      "description": "Additional metadata for a Service or Workload.",
+      "id": "ExtendedMetadata",
+      "properties": {
+        "metadataStruct": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. The metadata contents.",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "FunctionalType": {
       "description": "The functional type of a service or workload.",
       "id": "FunctionalType",
@@ -1697,6 +1821,18 @@
             "Agent type.",
             "MCP Server type."
           ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Identity": {
+      "description": "The identity associated with a service or workload.",
+      "id": "Identity",
+      "properties": {
+        "principal": {
+          "description": "Output only. Principal of the identity. Supported formats: * `sa://my-sa@xxxx.iam.gserviceaccount.com` for GCP Service Account * `principal://POOL_ID.global.PROJECT_NUMBER.workload.id.goog/ns/NAMESPACE_ID/sa/MANAGED_IDENTITY_ID` for Managed Workload Identity",
           "readOnly": true,
           "type": "string"
         }
@@ -1812,7 +1948,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -2104,6 +2240,28 @@
       },
       "type": "object"
     },
+    "RegistrationType": {
+      "description": "The registration type of a service.",
+      "id": "RegistrationType",
+      "properties": {
+        "type": {
+          "description": "Output only. The registration type of a service.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "EXCLUSIVE",
+            "SHARED"
+          ],
+          "enumDescriptions": [
+            "Unspecified registration type. Defaults to EXCLUSIVE.",
+            "The service can only be registered to one application.",
+            "The service can be registered to multiple applications."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Scope": {
       "description": "Scope of an application.",
       "id": "Scope",
@@ -2245,6 +2403,14 @@
       "description": "Properties of an underlying cloud resource that can comprise a Service.",
       "id": "ServiceProperties",
       "properties": {
+        "extendedMetadata": {
+          "additionalProperties": {
+            "$ref": "ExtendedMetadata"
+          },
+          "description": "Output only. Additional metadata specific to the resource type. The key is a string that identifies the type of metadata and the value is the metadata contents specific to that type. Key format: `apphub.googleapis.com/{metadataType}`",
+          "readOnly": true,
+          "type": "object"
+        },
         "functionalType": {
           "$ref": "FunctionalType",
           "description": "Output only. The type of the service.",
@@ -2255,10 +2421,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "identity": {
+          "$ref": "Identity",
+          "description": "Output only. The identity associated with the service.",
+          "readOnly": true
+        },
         "location": {
           "description": "Output only. The location that the underlying resource resides in, for example, us-west1.",
           "readOnly": true,
           "type": "string"
+        },
+        "registrationType": {
+          "$ref": "RegistrationType",
+          "description": "Output only. The registration type of the service.",
+          "readOnly": true
         },
         "zone": {
           "description": "Output only. The location that the underlying resource resides in if it is zonal, for example, us-west1-a).",
@@ -2428,6 +2604,14 @@
       "description": "Properties of an underlying compute resource represented by the Workload.",
       "id": "WorkloadProperties",
       "properties": {
+        "extendedMetadata": {
+          "additionalProperties": {
+            "$ref": "ExtendedMetadata"
+          },
+          "description": "Output only. Additional metadata specific to the resource type. The key is a string that identifies the type of metadata and the value is the metadata contents specific to that type. Key format: `apphub.googleapis.com/{metadataType}`",
+          "readOnly": true,
+          "type": "object"
+        },
         "functionalType": {
           "$ref": "FunctionalType",
           "description": "Output only. The type of the workload.",
@@ -2437,6 +2621,11 @@
           "description": "Output only. The service project identifier that the underlying cloud resource resides in. Empty for non-cloud resources.",
           "readOnly": true,
           "type": "string"
+        },
+        "identity": {
+          "$ref": "Identity",
+          "description": "Output only. The identity associated with the workload.",
+          "readOnly": true
         },
         "location": {
           "description": "Output only. The location that the underlying compute resource resides in (for example, us-west1).",

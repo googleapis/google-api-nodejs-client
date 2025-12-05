@@ -234,6 +234,31 @@ export namespace apphub_v1alpha {
     role?: string | null;
   }
   /**
+   * Application management boundary.
+   */
+  export interface Schema$Boundary {
+    /**
+     * Output only. Create time.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The resource name of the CRM node being attached to the boundary. Format: `projects/{project-number\}` or `projects/{project-id\}`
+     */
+    crmNode?: string | null;
+    /**
+     * Identifier. The resource name of the boundary. Format: "projects/{project\}/locations/{location\}/boundary"
+     */
+    name?: string | null;
+    /**
+     * Output only. Boundary type.
+     */
+    type?: string | null;
+    /**
+     * Output only. Update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -361,6 +386,15 @@ export namespace apphub_v1alpha {
     title?: string | null;
   }
   /**
+   * Additional metadata for a Service or Workload.
+   */
+  export interface Schema$ExtendedMetadata {
+    /**
+     * Output only. The metadata contents.
+     */
+    metadataStruct?: {[key: string]: any} | null;
+  }
+  /**
    * Response for FindUnregisteredServices.
    */
   export interface Schema$FindUnregisteredServicesResponse {
@@ -402,6 +436,15 @@ export namespace apphub_v1alpha {
      * Output only. The functional type of a service or workload.
      */
     type?: string | null;
+  }
+  /**
+   * The identity associated with a service or workload.
+   */
+  export interface Schema$Identity {
+    /**
+     * Output only. Principal of the identity. Supported formats: * `sa://my-sa@xxxx.iam.gserviceaccount.com` for GCP Service Account * `principal://POOL_ID.global.PROJECT_NUMBER.workload.id.goog/ns/NAMESPACE_ID/sa/MANAGED_IDENTITY_ID` for Managed Workload Identity
+     */
+    principal?: string | null;
   }
   /**
    * Response for ListApplications.
@@ -480,7 +523,7 @@ export namespace apphub_v1alpha {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -667,6 +710,15 @@ export namespace apphub_v1alpha {
     version?: number | null;
   }
   /**
+   * The registration type of a service.
+   */
+  export interface Schema$RegistrationType {
+    /**
+     * Output only. The registration type of a service.
+     */
+    type?: string | null;
+  }
+  /**
    * Scope of an application.
    */
   export interface Schema$Scope {
@@ -754,6 +806,10 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$ServiceProperties {
     /**
+     * Output only. Additional metadata specific to the resource type. The key is a string that identifies the type of metadata and the value is the metadata contents specific to that type. Key format: `apphub.googleapis.com/{metadataType\}`
+     */
+    extendedMetadata?: {[key: string]: Schema$ExtendedMetadata} | null;
+    /**
      * Output only. The type of the service.
      */
     functionalType?: Schema$FunctionalType;
@@ -762,9 +818,17 @@ export namespace apphub_v1alpha {
      */
     gcpProject?: string | null;
     /**
+     * Output only. The identity associated with the service.
+     */
+    identity?: Schema$Identity;
+    /**
      * Output only. The location that the underlying resource resides in, for example, us-west1.
      */
     location?: string | null;
+    /**
+     * Output only. The registration type of the service.
+     */
+    registrationType?: Schema$RegistrationType;
     /**
      * Output only. The location that the underlying resource resides in if it is zonal, for example, us-west1-a).
      */
@@ -885,6 +949,10 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$WorkloadProperties {
     /**
+     * Output only. Additional metadata specific to the resource type. The key is a string that identifies the type of metadata and the value is the metadata contents specific to that type. Key format: `apphub.googleapis.com/{metadataType\}`
+     */
+    extendedMetadata?: {[key: string]: Schema$ExtendedMetadata} | null;
+    /**
      * Output only. The type of the workload.
      */
     functionalType?: Schema$FunctionalType;
@@ -892,6 +960,10 @@ export namespace apphub_v1alpha {
      * Output only. The service project identifier that the underlying cloud resource resides in. Empty for non-cloud resources.
      */
     gcpProject?: string | null;
+    /**
+     * Output only. The identity associated with the workload.
+     */
+    identity?: Schema$Identity;
     /**
      * Output only. The location that the underlying compute resource resides in (for example, us-west1).
      */
@@ -1233,6 +1305,144 @@ export namespace apphub_v1alpha {
     }
 
     /**
+     * Gets a Boundary.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apphub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apphub = google.apphub('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apphub.projects.locations.getBoundary({
+     *     // Required. The name of the boundary to retrieve. Format: projects/{project\}/locations/{location\}/boundary
+     *     name: 'projects/my-project/locations/my-location/boundary',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "crmNode": "my_crmNode",
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getBoundary(
+      params: Params$Resource$Projects$Locations$Getboundary,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getBoundary(
+      params?: Params$Resource$Projects$Locations$Getboundary,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Boundary>>;
+    getBoundary(
+      params: Params$Resource$Projects$Locations$Getboundary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getBoundary(
+      params: Params$Resource$Projects$Locations$Getboundary,
+      options: MethodOptions | BodyResponseCallback<Schema$Boundary>,
+      callback: BodyResponseCallback<Schema$Boundary>
+    ): void;
+    getBoundary(
+      params: Params$Resource$Projects$Locations$Getboundary,
+      callback: BodyResponseCallback<Schema$Boundary>
+    ): void;
+    getBoundary(callback: BodyResponseCallback<Schema$Boundary>): void;
+    getBoundary(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getboundary
+        | BodyResponseCallback<Schema$Boundary>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Boundary>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Boundary>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Boundary>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getboundary;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getboundary;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Boundary>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Boundary>(parameters);
+      }
+    }
+
+    /**
      * Lists information about the supported locations for this service.
      * @example
      * ```js
@@ -1526,10 +1736,163 @@ export namespace apphub_v1alpha {
         );
       }
     }
+
+    /**
+     * Updates a Boundary.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apphub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apphub = google.apphub('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apphub.projects.locations.updateBoundary({
+     *     // Identifier. The resource name of the boundary. Format: "projects/{project\}/locations/{location\}/boundary"
+     *     name: 'projects/my-project/locations/my-location/boundary',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Field mask is used to specify the fields to be overwritten in the Boundary resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "crmNode": "my_crmNode",
+     *       //   "name": "my_name",
+     *       //   "type": "my_type",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateBoundary(
+      params: Params$Resource$Projects$Locations$Updateboundary,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateBoundary(
+      params?: Params$Resource$Projects$Locations$Updateboundary,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    updateBoundary(
+      params: Params$Resource$Projects$Locations$Updateboundary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateBoundary(
+      params: Params$Resource$Projects$Locations$Updateboundary,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBoundary(
+      params: Params$Resource$Projects$Locations$Updateboundary,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBoundary(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateBoundary(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updateboundary
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updateboundary;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Updateboundary;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
-  export interface Params$Resource$Projects$Locations$Detachserviceprojectattachment
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Detachserviceprojectattachment extends StandardParameters {
     /**
      * Required. Service project id and location to detach from a host project. Only global location is supported. Expected format: `projects/{project\}/locations/{location\}`.
      */
@@ -1540,15 +1903,19 @@ export namespace apphub_v1alpha {
      */
     requestBody?: Schema$DetachServiceProjectAttachmentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getboundary extends StandardParameters {
+    /**
+     * Required. The name of the boundary to retrieve. Format: projects/{project\}/locations/{location\}/boundary
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1570,12 +1937,30 @@ export namespace apphub_v1alpha {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lookupserviceprojectattachment
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lookupserviceprojectattachment extends StandardParameters {
     /**
      * Required. Service project ID and location to lookup service project attachment for. Only global location is supported. Expected format: `projects/{project\}/locations/{location\}`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Updateboundary extends StandardParameters {
+    /**
+     * Identifier. The resource name of the boundary. Format: "projects/{project\}/locations/{location\}/boundary"
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the Boundary resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Boundary;
   }
 
   export class Resource$Projects$Locations$Applications {
@@ -2789,8 +3174,7 @@ export namespace apphub_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Applications$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Create extends StandardParameters {
     /**
      * Required. The Application identifier. Must contain only lowercase letters, numbers or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum.
      */
@@ -2809,8 +3193,7 @@ export namespace apphub_v1alpha {
      */
     requestBody?: Schema$Application;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Delete extends StandardParameters {
     /**
      * Required. Fully qualified name of the Application to delete. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}`.
      */
@@ -2820,15 +3203,13 @@ export namespace apphub_v1alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Get extends StandardParameters {
     /**
      * Required. Fully qualified name of the Application to fetch. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2838,8 +3219,7 @@ export namespace apphub_v1alpha {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Applications$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -2861,8 +3241,7 @@ export namespace apphub_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of an Application. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}"`
      */
@@ -2881,8 +3260,7 @@ export namespace apphub_v1alpha {
      */
     requestBody?: Schema$Application;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2893,8 +3271,7 @@ export namespace apphub_v1alpha {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3676,8 +4053,7 @@ export namespace apphub_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Applications$Services$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Services$Create extends StandardParameters {
     /**
      * Required. Fully qualified name of the parent Application to create the Service in. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}`.
      */
@@ -3696,8 +4072,7 @@ export namespace apphub_v1alpha {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Services$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Services$Delete extends StandardParameters {
     /**
      * Required. Fully qualified name of the Service to delete from an Application. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}/services/{service\}`.
      */
@@ -3707,15 +4082,13 @@ export namespace apphub_v1alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Services$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Services$Get extends StandardParameters {
     /**
      * Required. Fully qualified name of the Service to fetch. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}/services/{service\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Services$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Services$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -3737,8 +4110,7 @@ export namespace apphub_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Services$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Services$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of a Service. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/services/{service-id\}"`
      */
@@ -4528,8 +4900,7 @@ export namespace apphub_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Applications$Workloads$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Workloads$Create extends StandardParameters {
     /**
      * Required. Fully qualified name of the Application to create Workload in. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}`.
      */
@@ -4548,8 +4919,7 @@ export namespace apphub_v1alpha {
      */
     requestBody?: Schema$Workload;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Workloads$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Workloads$Delete extends StandardParameters {
     /**
      * Required. Fully qualified name of the Workload to delete from an Application. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}/workloads/{workload\}`.
      */
@@ -4559,15 +4929,13 @@ export namespace apphub_v1alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Workloads$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Workloads$Get extends StandardParameters {
     /**
      * Required. Fully qualified name of the Workload to fetch. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}/workloads/{workload\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Workloads$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Workloads$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -4589,8 +4957,7 @@ export namespace apphub_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Applications$Workloads$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Applications$Workloads$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the Workload. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/workloads/{workload-id\}"`
      */
@@ -5211,8 +5578,7 @@ export namespace apphub_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Discoveredservices$Findunregistered
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredservices$Findunregistered extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -5234,15 +5600,13 @@ export namespace apphub_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveredservices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredservices$Get extends StandardParameters {
     /**
      * Required. Fully qualified name of the Discovered Service to fetch. Expected format: `projects/{project\}/locations/{location\}/discoveredServices/{discoveredService\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveredservices$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredservices$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -5264,8 +5628,7 @@ export namespace apphub_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveredservices$Lookup
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredservices$Lookup extends StandardParameters {
     /**
      * Required. Host project ID and location to lookup Discovered Service in. Expected format: `projects/{project\}/locations/{location\}`.
      */
@@ -5882,8 +6245,7 @@ export namespace apphub_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Discoveredworkloads$Findunregistered
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredworkloads$Findunregistered extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -5905,15 +6267,13 @@ export namespace apphub_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveredworkloads$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredworkloads$Get extends StandardParameters {
     /**
      * Required. Fully qualified name of the Discovered Workload to fetch. Expected format: `projects/{project\}/locations/{location\}/discoveredWorkloads/{discoveredWorkload\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveredworkloads$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredworkloads$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -5935,8 +6295,7 @@ export namespace apphub_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveredworkloads$Lookup
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredworkloads$Lookup extends StandardParameters {
     /**
      * Required. Host project ID and location to lookup Discovered Workload in. Expected format: `projects/{project\}/locations/{location\}`.
      */
@@ -6403,7 +6762,7 @@ export namespace apphub_v1alpha {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6514,8 +6873,7 @@ export namespace apphub_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -6526,22 +6884,19 @@ export namespace apphub_v1alpha {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -6559,7 +6914,7 @@ export namespace apphub_v1alpha {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -7167,8 +7522,7 @@ export namespace apphub_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Create extends StandardParameters {
     /**
      * Required. Host project ID and location to which service project is being attached. Only global location is supported. Expected format: `projects/{project\}/locations/{location\}`.
      */
@@ -7187,8 +7541,7 @@ export namespace apphub_v1alpha {
      */
     requestBody?: Schema$ServiceProjectAttachment;
   }
-  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Delete extends StandardParameters {
     /**
      * Required. Fully qualified name of the service project attachment to delete. Expected format: `projects/{project\}/locations/{location\}/serviceProjectAttachments/{serviceProjectAttachment\}`.
      */
@@ -7198,15 +7551,13 @@ export namespace apphub_v1alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Get extends StandardParameters {
     /**
      * Required. Fully qualified name of the service project attachment to retrieve. Expected format: `projects/{project\}/locations/{location\}/serviceProjectAttachments/{serviceProjectAttachment\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
