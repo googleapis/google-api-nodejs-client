@@ -904,7 +904,7 @@ export namespace developerconnect_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1488,15 +1488,13 @@ export namespace developerconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2306,8 +2304,7 @@ export namespace developerconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Accountconnectors$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Create extends StandardParameters {
     /**
      * Required. The ID to use for the AccountConnector, which will become the final component of the AccountConnector's resource name. Its format should adhere to https://google.aip.dev/122#resource-id-segments Names must be unique per-project per-location.
      */
@@ -2330,8 +2327,7 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$AccountConnector;
   }
-  export interface Params$Resource$Projects$Locations$Accountconnectors$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Delete extends StandardParameters {
     /**
      * Optional. The current etag of the AccountConnectorn. If an etag is provided and does not match the current etag of the AccountConnector, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -2353,15 +2349,13 @@ export namespace developerconnect_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Accountconnectors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Get extends StandardParameters {
     /**
      * Required. Name of the resource
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Accountconnectors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Accountconnectors$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -2383,8 +2377,7 @@ export namespace developerconnect_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Accountconnectors$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the accountConnector is not found a new accountConnector will be created. In this situation `update_mask` is ignored. The creation will succeed only if the input accountConnector has all the necessary
      */
@@ -3163,8 +3156,7 @@ export namespace developerconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Delete extends StandardParameters {
     /**
      * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
@@ -3182,15 +3174,13 @@ export namespace developerconnect_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself extends StandardParameters {
     /**
      * Required. Name of the AccountConnector resource
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken extends StandardParameters {
     /**
      * Required. The resource name of the AccountConnector in the format `projects/x/locations/x/accountConnectors/x`.
      */
@@ -3201,15 +3191,13 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$FetchAccessTokenRequest;
   }
-  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself extends StandardParameters {
     /**
      * Required. Name of the AccountConnector resource
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -4498,8 +4486,7 @@ export namespace developerconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Create extends StandardParameters {
     /**
      * Required. Id of the requesting object If auto-generating Id server-side, remove this field and connection_id from the method_signature of Create RPC
      */
@@ -4522,8 +4509,7 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Delete extends StandardParameters {
     /**
      * Optional. The current etag of the Connection. If an etag is provided and does not match the current etag of the Connection, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -4541,15 +4527,13 @@ export namespace developerconnect_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Fetchgithubinstallations
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Fetchgithubinstallations extends StandardParameters {
     /**
      * Required. The resource name of the connection in the format `projects/x/locations/x/connections/x`.
      */
     connection?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Fetchlinkablegitrepositories
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Fetchlinkablegitrepositories extends StandardParameters {
     /**
      * Required. The name of the Connection. Format: `projects/x/locations/x/connections/x`.
      */
@@ -4563,15 +4547,13 @@ export namespace developerconnect_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Get extends StandardParameters {
     /**
      * Required. Name of the resource
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -4593,8 +4575,7 @@ export namespace developerconnect_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the connection is not found a new connection will be created. In this situation `update_mask` is ignored. The creation will succeed only if the input connection has all the necessary information (e.g a github_config with both user_oauth_token and installation_id properties).
      */
@@ -4621,8 +4602,7 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook extends StandardParameters {
     /**
      * Required. Project and location where the webhook will be received. Format: `projects/x/locations/x`.
      */
@@ -6330,8 +6310,7 @@ export namespace developerconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Create extends StandardParameters {
     /**
      * Required. The ID to use for the repository, which will become the final component of the repository's resource name. This ID should be unique in the connection. Allows alphanumeric characters and any of -._~%!$&'()*+,;=@.
      */
@@ -6354,8 +6333,7 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$GitRepositoryLink;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Delete extends StandardParameters {
     /**
      * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
@@ -6373,8 +6351,7 @@ export namespace developerconnect_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchgitrefs
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchgitrefs extends StandardParameters {
     /**
      * Required. The resource name of GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
      */
@@ -6392,8 +6369,7 @@ export namespace developerconnect_v1 {
      */
     refType?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadtoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadtoken extends StandardParameters {
     /**
      * Required. The resource name of the gitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
      */
@@ -6404,8 +6380,7 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$FetchReadTokenRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadwritetoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadwritetoken extends StandardParameters {
     /**
      * Required. The resource name of the gitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
      */
@@ -6416,15 +6391,13 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$FetchReadWriteTokenRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Get extends StandardParameters {
     /**
      * Required. Name of the resource
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -6446,8 +6419,7 @@ export namespace developerconnect_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook extends StandardParameters {
     /**
      * Required. The GitRepositoryLink where the webhook will be received. Format: `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
      */
@@ -6458,8 +6430,7 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$ProcessBitbucketCloudWebhookRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook extends StandardParameters {
     /**
      * Required. The GitRepositoryLink where the webhook will be received. Format: `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
      */
@@ -6470,8 +6441,7 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$ProcessBitbucketDataCenterWebhookRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook extends StandardParameters {
     /**
      * Required. The GitRepositoryLink resource where the webhook will be received. Format: `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
      */
@@ -6482,8 +6452,7 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$ProcessGitLabEnterpriseWebhookRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook extends StandardParameters {
     /**
      * Required. The GitRepositoryLink resource where the webhook will be received. Format: `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
      */
@@ -7273,8 +7242,7 @@ export namespace developerconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Insightsconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insightsconfigs$Create extends StandardParameters {
     /**
      * Required. ID of the requesting InsightsConfig.
      */
@@ -7293,8 +7261,7 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$InsightsConfig;
   }
-  export interface Params$Resource$Projects$Locations$Insightsconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insightsconfigs$Delete extends StandardParameters {
     /**
      * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
@@ -7312,15 +7279,13 @@ export namespace developerconnect_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Insightsconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insightsconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Insightsconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insightsconfigs$List extends StandardParameters {
     /**
      * Optional. Filtering results. See https://google.aip.dev/160 for more details. Filter string, adhering to the rules in https://google.aip.dev/160. List only InsightsConfigs matching the filter. If filter is empty, all InsightsConfigs are listed.
      */
@@ -7342,8 +7307,7 @@ export namespace developerconnect_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Insightsconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insightsconfigs$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the insightsConfig is not found a new insightsConfig will be created. In this situation `update_mask` is ignored. The creation will succeed only if the input insightsConfig has all the necessary information (e.g a github_config with both user_oauth_token and installation_id properties).
      */
@@ -7823,7 +7787,7 @@ export namespace developerconnect_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7935,8 +7899,7 @@ export namespace developerconnect_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -7947,22 +7910,19 @@ export namespace developerconnect_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -7980,7 +7940,7 @@ export namespace developerconnect_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
