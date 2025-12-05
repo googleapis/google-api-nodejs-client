@@ -480,8 +480,7 @@ export namespace fcmdata_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Androidapps$Deliverydata$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Androidapps$Deliverydata$List extends StandardParameters {
     /**
      * The maximum number of entries to return. The service may return fewer than this value. If unspecified, at most 1,000 entries will be returned. The maximum value is 10,000; values above 10,000 will be capped to 10,000. This default may change over time.
      */
