@@ -439,6 +439,35 @@ export namespace docs_v1 {
     offsetTopSuggested?: boolean | null;
   }
   /**
+   * Properties of a DateElement.
+   */
+  export interface Schema$DateElementProperties {
+    /**
+     * Determines how the date part of the DateElement will be displayed in the document. If unset, the default value is DATE_FORMAT_MONTH_DAY_YEAR_ABBREVIATED, indicating the DateElement will be formatted as `MMM d, y` in `en_US`, or locale specific equivalent.
+     */
+    dateFormat?: string | null;
+    /**
+     * Output only. Indicates how the DateElement is displayed in the document.
+     */
+    displayText?: string | null;
+    /**
+     * The locale of the document, as defined by the Unicode Common Locale Data Repository (CLDR) project. For example, `en_US`. If unset, the default locale is `en_US`.
+     */
+    locale?: string | null;
+    /**
+     * Determines how the time part of the DateElement will be displayed in the document. If unset, the default value is TIME_FORMAT_DISABLED, indicating no time should be shown.
+     */
+    timeFormat?: string | null;
+    /**
+     * The point in time to represent, in seconds and nanoseconds since Unix epoch: January 1, 1970 at midnight UTC. Timestamp is expected to be in UTC. If time_zone_id is set, the timestamp is adjusted according to the time zone. For example, a timestamp of `18000` with a date format of `DATE_FORMAT_ISO8601` and time format of `TIME_FORMAT_HOUR_MINUTE` would be displayed as `1970-01-01 5:00 AM`. A timestamp of `18000` with date format of `DATE_FORMAT_8SO8601`, time format of `TIME_FORMAT_HOUR_MINUTE`, and time zone set to `America/New_York` will instead be `1970-01-01 12:00 AM`.
+     */
+    timestamp?: string | null;
+    /**
+     * The time zone of the DateElement, as defined by the Unicode Common Locale Data Repository (CLDR) project. For example, `America/New York`. If unset, the default time zone is `etc/UTC`.
+     */
+    timeZoneId?: string | null;
+  }
+  /**
    * Deletes content from the document.
    */
   export interface Schema$DeleteContentRangeRequest {
@@ -1269,6 +1298,23 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields in embedded_object have been changed in this suggestion.
      */
     embeddedObjectSuggestionState?: Schema$EmbeddedObjectSuggestionState;
+  }
+  /**
+   * Inserts a date at the specified location.
+   */
+  export interface Schema$InsertDateRequest {
+    /**
+     * The properties of the date to insert.
+     */
+    dateElementProperties?: Schema$DateElementProperties;
+    /**
+     * Inserts the date at the end of the given header, footer or document body.
+     */
+    endOfSegmentLocation?: Schema$EndOfSegmentLocation;
+    /**
+     * Inserts the date at a specific index in the document. The date must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table's start index (i.e. between an existing table and its preceding paragraph).
+     */
+    location?: Schema$Location;
   }
   /**
    * Inserts an InlineObject containing an image at the given location.
@@ -2314,6 +2360,10 @@ export namespace docs_v1 {
      */
     deleteTableRow?: Schema$DeleteTableRowRequest;
     /**
+     * Inserts a date.
+     */
+    insertDate?: Schema$InsertDateRequest;
+    /**
      * Inserts an inline image at the specified location.
      */
     insertInlineImage?: Schema$InsertInlineImageRequest;
@@ -2484,15 +2534,15 @@ export namespace docs_v1 {
    */
   export interface Schema$RichLinkProperties {
     /**
-     * Output only. The [MIME type](https://developers.google.com/drive/api/v3/mime-types) of the RichLink, if there's one (for example, when it's a file in Drive).
+     * The [MIME type](https://developers.google.com/drive/api/v3/mime-types) of the RichLink, if there's one (for example, when it's a file in Drive).
      */
     mimeType?: string | null;
     /**
-     * Output only. The title of the RichLink as displayed in the link. This title matches the title of the linked resource at the time of the insertion or last update of the link. This field is always present.
+     * The title of the RichLink as displayed in the link. This title matches the title of the linked resource at the time of the insertion or last update of the link. This field is always present.
      */
     title?: string | null;
     /**
-     * Output only. The URI to the RichLink. This is always present.
+     * The URI to the RichLink. This is always present.
      */
     uri?: string | null;
   }
@@ -4033,8 +4083,7 @@ export namespace docs_v1 {
     }
   }
 
-  export interface Params$Resource$Documents$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Batchupdate extends StandardParameters {
     /**
      * The ID of the document to update.
      */
