@@ -1132,8 +1132,7 @@ export namespace chromepolicy_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Policies$Resolve
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policies$Resolve extends StandardParameters {
     /**
      * ID of the G Suite account or literal "my_customer" for the customer associated to the request.
      */
@@ -1755,8 +1754,7 @@ export namespace chromepolicy_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Policies$Groups$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policies$Groups$Batchdelete extends StandardParameters {
     /**
      * ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
      */
@@ -1767,8 +1765,7 @@ export namespace chromepolicy_v1 {
      */
     requestBody?: Schema$GoogleChromePolicyVersionsV1BatchDeleteGroupPoliciesRequest;
   }
-  export interface Params$Resource$Customers$Policies$Groups$Batchmodify
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policies$Groups$Batchmodify extends StandardParameters {
     /**
      * ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
      */
@@ -1779,8 +1776,7 @@ export namespace chromepolicy_v1 {
      */
     requestBody?: Schema$GoogleChromePolicyVersionsV1BatchModifyGroupPoliciesRequest;
   }
-  export interface Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering extends StandardParameters {
     /**
      * Required. ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
      */
@@ -1791,8 +1787,7 @@ export namespace chromepolicy_v1 {
      */
     requestBody?: Schema$GoogleChromePolicyVersionsV1ListGroupPriorityOrderingRequest;
   }
-  export interface Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering extends StandardParameters {
     /**
      * Required. ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
      */
@@ -2438,8 +2433,7 @@ export namespace chromepolicy_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Policies$Networks$Definecertificate
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policies$Networks$Definecertificate extends StandardParameters {
     /**
      * Required. The customer for which the certificate will apply.
      */
@@ -2450,8 +2444,7 @@ export namespace chromepolicy_v1 {
      */
     requestBody?: Schema$GoogleChromePolicyVersionsV1DefineCertificateRequest;
   }
-  export interface Params$Resource$Customers$Policies$Networks$Definenetwork
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policies$Networks$Definenetwork extends StandardParameters {
     /**
      * Required. The customer who will own this new network.
      */
@@ -2462,8 +2455,7 @@ export namespace chromepolicy_v1 {
      */
     requestBody?: Schema$GoogleChromePolicyVersionsV1DefineNetworkRequest;
   }
-  export interface Params$Resource$Customers$Policies$Networks$Removecertificate
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policies$Networks$Removecertificate extends StandardParameters {
     /**
      * Required. The customer whose certificate will be removed.
      */
@@ -2474,8 +2466,7 @@ export namespace chromepolicy_v1 {
      */
     requestBody?: Schema$GoogleChromePolicyVersionsV1RemoveCertificateRequest;
   }
-  export interface Params$Resource$Customers$Policies$Networks$Removenetwork
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policies$Networks$Removenetwork extends StandardParameters {
     /**
      * Required. The customer whose network will be removed.
      */
@@ -2782,8 +2773,7 @@ export namespace chromepolicy_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Policies$Orgunits$Batchinherit
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policies$Orgunits$Batchinherit extends StandardParameters {
     /**
      * ID of the G Suite account or literal "my_customer" for the customer associated to the request.
      */
@@ -2794,8 +2784,7 @@ export namespace chromepolicy_v1 {
      */
     requestBody?: Schema$GoogleChromePolicyVersionsV1BatchInheritOrgUnitPoliciesRequest;
   }
-  export interface Params$Resource$Customers$Policies$Orgunits$Batchmodify
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policies$Orgunits$Batchmodify extends StandardParameters {
     /**
      * ID of the G Suite account or literal "my_customer" for the customer associated to the request.
      */
@@ -3130,15 +3119,13 @@ export namespace chromepolicy_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Policyschemas$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policyschemas$Get extends StandardParameters {
     /**
      * Required. The policy schema resource name to query.
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Policyschemas$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Policyschemas$List extends StandardParameters {
     /**
      * The schema filter used to find a particular schema based on fields like its resource name, description and `additionalTargetKeyNames`.
      */
