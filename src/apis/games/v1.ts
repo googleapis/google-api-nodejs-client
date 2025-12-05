@@ -2085,8 +2085,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Accesstokens$Generateplaygroupingapitoken
-    extends StandardParameters {
+  export interface Params$Resource$Accesstokens$Generateplaygroupingapitoken extends StandardParameters {
     /**
      * Required. App package name to generate the token for (e.g. com.example.mygame).
      */
@@ -2096,8 +2095,7 @@ export namespace games_v1 {
      */
     persona?: string;
   }
-  export interface Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken
-    extends StandardParameters {
+  export interface Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken extends StandardParameters {
     /**
      * Required. App package name to generate the token for (e.g. com.example.mygame).
      */
@@ -2272,8 +2270,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Achievementdefinitions$List
-    extends StandardParameters {
+  export interface Params$Resource$Achievementdefinitions$List extends StandardParameters {
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -3181,8 +3178,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Achievements$Increment
-    extends StandardParameters {
+  export interface Params$Resource$Achievements$Increment extends StandardParameters {
     /**
      * The ID of the achievement used by this method.
      */
@@ -3196,8 +3192,7 @@ export namespace games_v1 {
      */
     stepsToIncrement?: number;
   }
-  export interface Params$Resource$Achievements$List
-    extends StandardParameters {
+  export interface Params$Resource$Achievements$List extends StandardParameters {
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -3219,15 +3214,13 @@ export namespace games_v1 {
      */
     state?: string;
   }
-  export interface Params$Resource$Achievements$Reveal
-    extends StandardParameters {
+  export interface Params$Resource$Achievements$Reveal extends StandardParameters {
     /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Setstepsatleast
-    extends StandardParameters {
+  export interface Params$Resource$Achievements$Setstepsatleast extends StandardParameters {
     /**
      * The ID of the achievement used by this method.
      */
@@ -3237,15 +3230,13 @@ export namespace games_v1 {
      */
     steps?: number;
   }
-  export interface Params$Resource$Achievements$Unlock
-    extends StandardParameters {
+  export interface Params$Resource$Achievements$Unlock extends StandardParameters {
     /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Updatemultiple
-    extends StandardParameters {
+  export interface Params$Resource$Achievements$Updatemultiple extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -3833,8 +3824,7 @@ export namespace games_v1 {
      */
     platformType?: string;
   }
-  export interface Params$Resource$Applications$Getendpoint
-    extends StandardParameters {
+  export interface Params$Resource$Applications$Getendpoint extends StandardParameters {
     /**
      * The application ID from the Google Play developer console.
      */
@@ -3844,10 +3834,8 @@ export namespace games_v1 {
      */
     endPointType?: string;
   }
-  export interface Params$Resource$Applications$Played
-    extends StandardParameters {}
-  export interface Params$Resource$Applications$Verify
-    extends StandardParameters {
+  export interface Params$Resource$Applications$Played extends StandardParameters {}
+  export interface Params$Resource$Applications$Verify extends StandardParameters {
     /**
      * The application ID from the Google Play developer console.
      */
@@ -4299,8 +4287,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Events$Listbyplayer
-    extends StandardParameters {
+  export interface Params$Resource$Events$Listbyplayer extends StandardParameters {
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -4314,8 +4301,7 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Events$Listdefinitions
-    extends StandardParameters {
+  export interface Params$Resource$Events$Listdefinitions extends StandardParameters {
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -4646,8 +4632,7 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Leaderboards$List
-    extends StandardParameters {
+  export interface Params$Resource$Leaderboards$List extends StandardParameters {
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -4957,10 +4942,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Metagame$Getmetagameconfig
-    extends StandardParameters {}
-  export interface Params$Resource$Metagame$Listcategoriesbyplayer
-    extends StandardParameters {
+  export interface Params$Resource$Metagame$Getmetagameconfig extends StandardParameters {}
+  export interface Params$Resource$Metagame$Listcategoriesbyplayer extends StandardParameters {
     /**
      * The collection of categories for which data will be returned.
      */
@@ -5582,15 +5565,13 @@ export namespace games_v1 {
      */
     playerIdConsistencyToken?: string;
   }
-  export interface Params$Resource$Players$Getmultipleapplicationplayerids
-    extends StandardParameters {
+  export interface Params$Resource$Players$Getmultipleapplicationplayerids extends StandardParameters {
     /**
      * Required. The application IDs from the Google Play developer console for the games to return scoped ids for.
      */
     applicationIds?: string[];
   }
-  export interface Params$Resource$Players$Getscopedplayerids
-    extends StandardParameters {}
+  export interface Params$Resource$Players$Getscopedplayerids extends StandardParameters {}
   export interface Params$Resource$Players$List extends StandardParameters {
     /**
      * Collection of players being retrieved
@@ -6499,8 +6480,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Recall$Gamesplayertokens
-    extends StandardParameters {
+  export interface Params$Resource$Recall$Gamesplayertokens extends StandardParameters {
     /**
      * Required. The application IDs from the Google Play developer console for the games to return scoped ids for.
      */
@@ -6510,36 +6490,31 @@ export namespace games_v1 {
      */
     sessionId?: string;
   }
-  export interface Params$Resource$Recall$Lasttokenfromalldevelopergames
-    extends StandardParameters {
+  export interface Params$Resource$Recall$Lasttokenfromalldevelopergames extends StandardParameters {
     /**
      * Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.
      */
     sessionId?: string;
   }
-  export interface Params$Resource$Recall$Linkpersona
-    extends StandardParameters {
+  export interface Params$Resource$Recall$Linkpersona extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$LinkPersonaRequest;
   }
-  export interface Params$Resource$Recall$Resetpersona
-    extends StandardParameters {
+  export interface Params$Resource$Recall$Resetpersona extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ResetPersonaRequest;
   }
-  export interface Params$Resource$Recall$Retrievetokens
-    extends StandardParameters {
+  export interface Params$Resource$Recall$Retrievetokens extends StandardParameters {
     /**
      * Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.
      */
     sessionId?: string;
   }
-  export interface Params$Resource$Recall$Unlinkpersona
-    extends StandardParameters {
+  export interface Params$Resource$Recall$Unlinkpersona extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -7528,8 +7503,7 @@ export namespace games_v1 {
      */
     timeSpan?: string;
   }
-  export interface Params$Resource$Scores$Listwindow
-    extends StandardParameters {
+  export interface Params$Resource$Scores$Listwindow extends StandardParameters {
     /**
      * The collection of scores you're requesting.
      */
@@ -7581,8 +7555,7 @@ export namespace games_v1 {
      */
     scoreTag?: string;
   }
-  export interface Params$Resource$Scores$Submitmultiple
-    extends StandardParameters {
+  export interface Params$Resource$Scores$Submitmultiple extends StandardParameters {
     /**
      * The preferred language to use for strings returned by this method.
      */
