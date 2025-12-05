@@ -270,91 +270,6 @@
         }
       }
     },
-    "media": {
-      "methods": {
-        "download": {
-          "description": "Downloads a file from the session.",
-          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}:downloadFile",
-          "httpMethod": "GET",
-          "id": "discoveryengine.media.download",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "fileId": {
-              "description": "Required. The ID of the file to be downloaded.",
-              "location": "query",
-              "type": "string"
-            },
-            "name": {
-              "description": "Required. The resource name of the Session. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}`",
-              "location": "path",
-              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "viewId": {
-              "description": "Optional. The ID of the view to be downloaded.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "v1alpha/{+name}:downloadFile",
-          "response": {
-            "$ref": "GdataMedia"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
-            "https://www.googleapis.com/auth/discoveryengine.readwrite"
-          ],
-          "supportsMediaDownload": true,
-          "useMediaDownloadService": true
-        },
-        "upload": {
-          "description": "Uploads a file for the assistant to use as a source of information within the session.",
-          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}:uploadFile",
-          "httpMethod": "POST",
-          "id": "discoveryengine.media.upload",
-          "mediaUpload": {
-            "accept": [
-              "*/*"
-            ],
-            "protocols": {
-              "simple": {
-                "multipart": true,
-                "path": "/upload/v1alpha/{+name}:uploadFile"
-              }
-            }
-          },
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The resource name of the Session. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}`",
-              "location": "path",
-              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1alpha/{+name}:uploadFile",
-          "request": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest"
-          },
-          "response": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
-            "https://www.googleapis.com/auth/discoveryengine.readwrite"
-          ],
-          "supportsMediaUpload": true
-        }
-      }
-    },
     "projects": {
       "methods": {
         "get": {
@@ -561,15 +476,51 @@
                 "https://www.googleapis.com/auth/discoveryengine.readwrite"
               ]
             },
-            "getConfigurablePricingUsageStats": {
-              "description": "Gets configurable pricing usage stats.",
-              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/configurablePricingUsageStats",
-              "httpMethod": "GET",
-              "id": "discoveryengine.projects.locations.getConfigurablePricingUsageStats",
+            "obtainCrawlRate": {
+              "description": "Obtains the time series data of organic or dedicated crawl rate for monitoring. When dedicated crawl rate is not set, it will return vertex AI's organic crawl rate time series. Organic crawl means Google automatically crawl the internet at its own convenience. When dedicated crawl rate is set, it will return vertex AI's dedicated crawl rate time series.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}:obtainCrawlRate",
+              "httpMethod": "POST",
+              "id": "discoveryengine.projects.locations.obtainCrawlRate",
               "parameterOrder": [
-                "name"
+                "location"
               ],
               "parameters": {
+                "location": {
+                  "description": "Required. The location resource where crawl rate management will be performed. Format: `projects/{project}/locations/{location}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+location}:obtainCrawlRate",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaObtainCrawlRateRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaObtainCrawlRateResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+              ]
+            },
+            "queryConfigurablePricingUsageStats": {
+              "description": "Queries configurable pricing usage stats for a project.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{location}:queryConfigurablePricingUsageStats",
+              "httpMethod": "GET",
+              "id": "discoveryengine.projects.locations.queryConfigurablePricingUsageStats",
+              "parameterOrder": [
+                "project",
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. The location to query usage stats for.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
                 "metricTypes": {
                   "description": "Optional. The metric types to return usage for.",
                   "enum": [
@@ -592,10 +543,10 @@
                   "repeated": true,
                   "type": "string"
                 },
-                "name": {
-                  "description": "Required. The name of the ConfigurablePricingUsageStats to retrieve. Format: projects/{project}/locations/{location}/configurablePricingUsageStats",
+                "project": {
+                  "description": "Required. The project to query usage stats for. Format: projects/{project}",
                   "location": "path",
-                  "pattern": "^projects/[^/]+/locations/[^/]+/configurablePricingUsageStats$",
+                  "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
@@ -636,38 +587,9 @@
                   "type": "integer"
                 }
               },
-              "path": "v1alpha/{+name}",
+              "path": "v1alpha/{+project}/locations/{location}:queryConfigurablePricingUsageStats",
               "response": {
-                "$ref": "GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/discoveryengine.readwrite"
-              ]
-            },
-            "obtainCrawlRate": {
-              "description": "Obtains the time series data of organic or dedicated crawl rate for monitoring. When dedicated crawl rate is not set, it will return vertex AI's organic crawl rate time series. Organic crawl means Google automatically crawl the internet at its own convenience. When dedicated crawl rate is set, it will return vertex AI's dedicated crawl rate time series.",
-              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}:obtainCrawlRate",
-              "httpMethod": "POST",
-              "id": "discoveryengine.projects.locations.obtainCrawlRate",
-              "parameterOrder": [
-                "location"
-              ],
-              "parameters": {
-                "location": {
-                  "description": "Required. The location resource where crawl rate management will be performed. Format: `projects/{project}/locations/{location}`",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/locations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+location}:obtainCrawlRate",
-              "request": {
-                "$ref": "GoogleCloudDiscoveryengineV1alphaObtainCrawlRateRequest"
-              },
-              "response": {
-                "$ref": "GoogleCloudDiscoveryengineV1alphaObtainCrawlRateResponse"
+                "$ref": "GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -1563,7 +1485,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -1681,6 +1603,7 @@
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                         "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
@@ -1707,6 +1630,7 @@
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                         "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
@@ -1733,6 +1657,7 @@
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                         "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
@@ -2502,7 +2427,7 @@
                                   "type": "string"
                                 },
                                 "returnPartialSuccess": {
-                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                                   "location": "query",
                                   "type": "boolean"
                                 }
@@ -3075,7 +3000,7 @@
                                   "type": "string"
                                 },
                                 "returnPartialSuccess": {
-                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                                   "location": "query",
                                   "type": "boolean"
                                 }
@@ -3154,7 +3079,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -3392,7 +3317,7 @@
                                   "type": "string"
                                 },
                                 "returnPartialSuccess": {
-                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                                   "location": "query",
                                   "type": "boolean"
                                 }
@@ -3438,6 +3363,7 @@
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
@@ -3654,6 +3580,7 @@
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
@@ -4141,7 +4068,7 @@
                                   "type": "string"
                                 },
                                 "returnPartialSuccess": {
-                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                                   "location": "query",
                                   "type": "boolean"
                                 }
@@ -4489,7 +4416,7 @@
                                       "type": "string"
                                     },
                                     "returnPartialSuccess": {
-                                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                                       "location": "query",
                                       "type": "boolean"
                                     }
@@ -5109,6 +5036,68 @@
                     },
                     "assistants": {
                       "methods": {
+                        "create": {
+                          "description": "Creates an Assistant.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.assistants.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "assistantId": {
+                              "description": "Required. The ID to use for the Assistant, which will become the final component of the Assistant's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with a length limit of 63 characters.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/assistants",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistant"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistant"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes an Assistant.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.collections.engines.assistants.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Resource name of Assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}` If the caller does not have permission to delete the Assistant, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Assistant to delete does not exist, a NOT_FOUND error is returned.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
                         "get": {
                           "description": "Gets an Assistant.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}",
@@ -5136,6 +5125,44 @@
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
+                        "list": {
+                          "description": "Lists all Assistants under an Engine.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.assistants.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Maximum number of Assistants to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token ListAssistantsResponse.next_page_token, received from a previous AssistantService.ListAssistants call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAssistants must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/assistants",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaListAssistantsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
                         "listAvailableAgentViews": {
                           "description": "Lists the data for displaying the Agents under an Assistant which are available to the caller.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}:listAvailableAgentViews",
@@ -5145,6 +5172,11 @@
                             "parent"
                           ],
                           "parameters": {
+                            "adminView": {
+                              "description": "Optional. Indicates whether to consider if the caller is an admin. If set, and the caller is an admin, the response will consider admin-only permissions. Otherwise, a caller with admin permissions will get a response as an unprivileged user.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
                             "agentOrigin": {
                               "description": "Optional. The origin of the Agent.",
                               "enum": [
@@ -5429,6 +5461,11 @@
                                 "name"
                               ],
                               "parameters": {
+                                "adminView": {
+                                  "description": "Optional. Indicates whether to consider if the caller is an admin. If set, and the caller is an admin, the response will consider admin-only permissions. Otherwise, a caller with admin permissions will get a response as an unprivileged user.",
+                                  "location": "query",
+                                  "type": "boolean"
+                                },
                                 "languageCode": {
                                   "description": "Optional. The UI language currently shown to the user. Specifying this field request that the texts in the AgentView in the response should be translated to this language.",
                                   "location": "query",
@@ -5663,6 +5700,36 @@
                                   "scopes": [
                                     "https://www.googleapis.com/auth/cloud-platform",
                                     "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                                  ]
+                                }
+                              }
+                            },
+                            "operations": {
+                              "methods": {
+                                "get": {
+                                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/operations/{operationsId}",
+                                  "httpMethod": "GET",
+                                  "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.operations.get",
+                                  "parameterOrder": [
+                                    "name"
+                                  ],
+                                  "parameters": {
+                                    "name": {
+                                      "description": "The name of the operation resource.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+/operations/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1alpha/{+name}",
+                                  "response": {
+                                    "$ref": "GoogleLongrunningOperation"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform",
                                     "https://www.googleapis.com/auth/discoveryengine.readwrite"
                                   ]
                                 }
@@ -6333,7 +6400,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -6377,6 +6444,7 @@
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
@@ -6593,6 +6661,7 @@
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         }
@@ -6775,6 +6844,40 @@
                         }
                       },
                       "resources": {
+                        "alphaEvolveExperiments": {
+                          "resources": {
+                            "operations": {
+                              "methods": {
+                                "get": {
+                                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments/{alphaEvolveExperimentsId}/operations/{operationsId}",
+                                  "httpMethod": "GET",
+                                  "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.operations.get",
+                                  "parameterOrder": [
+                                    "name"
+                                  ],
+                                  "parameters": {
+                                    "name": {
+                                      "description": "The name of the operation resource.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/alphaEvolveExperiments/[^/]+/operations/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1alpha/{+name}",
+                                  "response": {
+                                    "$ref": "GoogleLongrunningOperation"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform",
+                                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        },
                         "answers": {
                           "methods": {
                             "get": {
@@ -6852,6 +6955,36 @@
                               "scopes": [
                                 "https://www.googleapis.com/auth/cloud-platform",
                                 "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                              ]
+                            }
+                          }
+                        },
+                        "operations": {
+                          "methods": {
+                            "get": {
+                              "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/operations/{operationsId}",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.sessions.operations.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "The name of the operation resource.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/operations/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
                                 "https://www.googleapis.com/auth/discoveryengine.readwrite"
                               ]
                             }
@@ -6999,7 +7132,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -7117,6 +7250,7 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                     "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
@@ -7143,6 +7277,7 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                     "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
@@ -7169,6 +7304,7 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                     "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
@@ -7909,7 +8045,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -8452,7 +8588,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -8531,7 +8667,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -8736,6 +8872,7 @@
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                         "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
@@ -8952,6 +9089,7 @@
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                         "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     }
@@ -9843,6 +9981,7 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                     "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
@@ -10306,7 +10445,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -10664,6 +10803,7 @@
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
                         "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
@@ -10716,42 +10856,6 @@
                       "path": "v1alpha/{+name}",
                       "response": {
                         "$ref": "GoogleCloudNotebooklmV1alphaSource"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
-                      ]
-                    },
-                    "uploadFile": {
-                      "description": "Uploads a file for Notebook LM to use. Creates a Source.",
-                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources/{sourceId}:uploadFile",
-                      "httpMethod": "POST",
-                      "id": "discoveryengine.projects.locations.notebooks.sources.uploadFile",
-                      "parameterOrder": [
-                        "parent",
-                        "sourceId"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The parent resource where the sources will be created. Format: projects/{project}/locations/{location}/notebooks/{notebook}",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "sourceId": {
-                          "description": "The source id of the associated file. If not set, a source id will be generated and a new tentative source will be created.",
-                          "location": "path",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+parent}/sources/{sourceId}:uploadFile",
-                      "request": {
-                        "$ref": "GoogleCloudNotebooklmV1alphaUploadSourceFileRequest"
-                      },
-                      "response": {
-                        "$ref": "GoogleCloudNotebooklmV1alphaUploadSourceFileResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -10823,7 +10927,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -11681,7 +11785,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -11708,8 +11812,8 @@
                         "parent"
                       ],
                       "parameters": {
-                        "filter": {
-                          "description": "Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.",
+                        "orderBy": {
+                          "description": "Optional. The order in which the UserLicenses are listed. The value must be a comma-separated list of fields. Default sorting order is ascending. To specify descending order for a field, append a \" desc\" suffix. Redundant space characters in the syntax are insignificant. Supported fields: * `license_assignment_state` * `user_principal` * `user_profile` * `last_login_date` * `update_time` If not set, the default ordering is by `user_principal`. Examples: * `user_principal desc` to order by `user_principal` in descending order. * `license_assignment_state` to order by `license_assignment_state` in ascending order. * `last_login_date desc` to order by `last_login_date` in descending order. * `update_time desc` to order by `update_time` in descending order. * `last_login_date desc, user_principal` to order by `last_login_date` in descending order and then by `user_principal` in ascending order.",
                           "location": "query",
                           "type": "string"
                         },
@@ -11808,7 +11912,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -11827,606 +11931,9 @@
       }
     }
   },
-  "revision": "20251109",
+  "revision": "20251203",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
-    "ApiservingMediaRequestInfo": {
-      "description": "Extra information added to operations that support Scotty media requests.",
-      "id": "ApiservingMediaRequestInfo",
-      "properties": {
-        "currentBytes": {
-          "description": "The number of current bytes uploaded or downloaded.",
-          "format": "int64",
-          "type": "string"
-        },
-        "customData": {
-          "description": "Data to be copied to backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications.",
-          "type": "string"
-        },
-        "diffObjectVersion": {
-          "description": "Set if the http request info is diff encoded. The value of this field is the version number of the base revision. This is corresponding to Apiary's mediaDiffObjectVersion (//depot/google3/java/com/google/api/server/media/variable/DiffObjectVersionVariable.java). See go/esf-scotty-diff-upload for more information.",
-          "type": "string"
-        },
-        "finalStatus": {
-          "description": "The existence of the final_status field indicates that this is the last call to the agent for this request_id. http://google3/uploader/agent/scotty_agent.proto?l=737&rcl=347601929",
-          "format": "int32",
-          "type": "integer"
-        },
-        "notificationType": {
-          "description": "The type of notification received from Scotty.",
-          "enum": [
-            "START",
-            "PROGRESS",
-            "END",
-            "RESPONSE_SENT",
-            "ERROR"
-          ],
-          "enumDescriptions": [
-            "Such requests signals the start of a request containing media upload. Only the media field(s) in the inserted/updated resource are set. The response should either return an error or succeed. On success, responses don't need to contain anything.",
-            "Such requests signals that the upload has progressed and that the backend might want to access the media file specified in relevant fields in the resource. Only the media field(s) in the inserted/updated resource are set. The response should either return an error or succeed. On success, responses don't need to contain anything.",
-            "Such requests signals the end of a request containing media upload. END should be handled just like normal Insert/Upload requests, that is, they should process the request and return a complete resource in the response. Pointers to media data (a GFS path usually) appear in the relevant fields in the inserted/updated resource. See gdata.Media in data.proto.",
-            "Such requests occur after an END and signal that the response has been sent back to the client. RESPONSE_SENT is only sent to the backend if it is configured to receive them. The response does not need to contain anything.",
-            "Such requests indicate that an error occurred while processing the request. ERROR is only sent to the backend if it is configured to receive them. It is not guaranteed that all errors will result in this notification to the backend, even if the backend requests them. Since these requests are just for informational purposes, the response does not need to contain anything."
-          ],
-          "type": "string"
-        },
-        "physicalHeaders": {
-          "description": "The physical headers provided by RequestReceivedParameters in Scotty request. type is uploader_service.KeyValuePairs.",
-          "format": "byte",
-          "type": "string"
-        },
-        "requestId": {
-          "description": "The Scotty request ID.",
-          "type": "string"
-        },
-        "requestReceivedParamsServingInfo": {
-          "description": "The partition of the Scotty server handling this request. type is uploader_service.RequestReceivedParamsServingInfo LINT.IfChange(request_received_params_serving_info_annotations) LINT.ThenChange()",
-          "format": "byte",
-          "type": "string"
-        },
-        "totalBytes": {
-          "description": "The total size of the file.",
-          "format": "int64",
-          "type": "string"
-        },
-        "totalBytesIsEstimated": {
-          "description": "Whether the total bytes field contains an estimated data.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "ApiservingMediaResponseInfo": {
-      "description": "This message is for backends to pass their scotty media specific fields to ESF. Backend will include this in their response message to ESF. Example: ExportFile is an rpc defined for upload using scotty from ESF. rpc ExportFile(ExportFileRequest) returns (ExportFileResponse) Message ExportFileResponse will include apiserving.MediaResponseInfo to tell ESF about data like dynamic_dropzone it needs to pass to Scotty. message ExportFileResponse { optional gdata.Media blob = 1; optional apiserving.MediaResponseInfo media_response_info = 2 }",
-      "id": "ApiservingMediaResponseInfo",
-      "properties": {
-        "customData": {
-          "description": "Data to copy from backend response to the next backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications.",
-          "type": "string"
-        },
-        "dataStorageTransform": {
-          "description": "Specifies any transformation to be applied to data before persisting it or retrieving from storage. E.g., encryption options for blobstore2. This should be of the form uploader_service.DataStorageTransform.",
-          "format": "byte",
-          "type": "string"
-        },
-        "destinationBlobMintIndex": {
-          "description": "For the first notification of a |diff_encoded| HttpRequestInfo, this is the index of the blob mint that Scotty should use when writing the resulting blob. This field is optional. It's not required ever, even if `original_object_blob_mint_index` is set. In situations like that, we will use the destination blob's mint for the destination blob and regular blob ACL checks for the original object. Note: This field is only for use by Drive API for diff uploads.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "dynamicDropTarget": {
-          "description": "Specifies the Scotty Drop Target to use for uploads. If present in a media response, Scotty does not upload to a standard drop zone. Instead, Scotty saves the upload directly to the location specified in this drop target. Unlike drop zones, the drop target is the final storage location for an upload. So, the agent does not need to clone the blob at the end of the upload. The agent is responsible for garbage collecting any orphaned blobs that may occur due to aborted uploads. For more information, see the drop target design doc here: http://goto/ScottyDropTarget This field will be preferred to dynamicDropzone. If provided, the identified field in the response must be of the type uploader.agent.DropTarget.",
-          "format": "byte",
-          "type": "string"
-        },
-        "dynamicDropzone": {
-          "description": "Specifies the Scotty dropzone to use for uploads.",
-          "type": "string"
-        },
-        "mediaForDiff": {
-          "$ref": "GdataMedia",
-          "description": "Diff Updates must respond to a START notification with this Media proto to tell Scotty to decode the diff encoded payload and apply the diff against this field. If the request was diff encoded, but this field is not set, Scotty will treat the encoding as identity. This is corresponding to Apiary's DiffUploadResponse.original_object (//depot/google3/gdata/rosy/proto/data.proto?l=413). See go/esf-scotty-diff-upload for more information."
-        },
-        "originalObjectBlobMintIndex": {
-          "description": "For the first notification of a |diff_encoded| HttpRequestInfo, this is the index of the blob mint that Scotty should use when reading the original blob. This field is optional. It's not required ever, even if `destination_blob_mint_index` is set. In situations like that, we will use the destination blob's mint for the destination blob and regular blob ACL checks for the original object. Note: This field is only for use by Drive API for diff uploads.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "requestClass": {
-          "description": "Request class to use for all Blobstore operations for this request.",
-          "enum": [
-            "UNKNOWN_REQUEST_CLASS",
-            "LATENCY_SENSITIVE",
-            "PRODUCTION_BATCH",
-            "BEST_EFFORT"
-          ],
-          "enumDescriptions": [
-            "Unpopulated request_class in log files will be taken as 0 in dremel query. GoogleSQL will try to cast it to enum by default. An unused 0 value is added to avoid GoogleSQL casting error. Please refer to b/69677280.",
-            "A latency-sensitive request.",
-            "A request generated by a batch process.",
-            "A best-effort request."
-          ],
-          "type": "string"
-        },
-        "scottyAgentUserId": {
-          "description": "Requester ID passed along to be recorded in the Scotty logs",
-          "format": "int64",
-          "type": "string"
-        },
-        "scottyCustomerLog": {
-          "description": "Customer-specific data to be recorded in the Scotty logs type is logs_proto_scotty.CustomerLog",
-          "format": "byte",
-          "type": "string"
-        },
-        "trafficClassField": {
-          "description": "Specifies the TrafficClass that Scotty should use for any RPCs to fetch the response bytes. Will override the traffic class GTOS of the incoming http request. This is a temporary field to facilitate whitelisting and experimentation by the bigstore agent only. For instance, this does not apply to RTMP reads. WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.",
-          "enum": [
-            "BE1",
-            "AF1",
-            "AF2",
-            "AF3",
-            "AF4",
-            "NC1",
-            "NC0",
-            "BE0",
-            "LLQ",
-            "LLQ1",
-            "LLQ2",
-            "LLQ3"
-          ],
-          "enumDescriptions": [
-            "Application-selectable traffic classes Best effort",
-            "Assured forwarding priority 1",
-            "Assured forwarding priority 2",
-            "Assured forwarding priority 3",
-            "Assured forwarding priority 4",
-            "Network control",
-            "Network control",
-            "Best effort at high packet loss",
-            "Low-latency queue (LLQ) best effort (go/llq)",
-            "LLQ assured forwarding priority 1 (go/llq2)",
-            "LLQ assured forwarding priority 2 (go/llq2)",
-            "LLQ assured forwarding priority 3 (go/llq3)"
-          ],
-          "type": "string"
-        },
-        "verifyHashFromHeader": {
-          "description": "Tells Scotty to verify hashes on the agent's behalf by parsing out the X-Goog-Hash header.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GdataBlobstore2Info": {
-      "description": "Information to read/write to blobstore2.",
-      "id": "GdataBlobstore2Info",
-      "properties": {
-        "blobGeneration": {
-          "description": "The blob generation id.",
-          "format": "int64",
-          "type": "string"
-        },
-        "blobId": {
-          "description": "The blob id, e.g., /blobstore/prod/playground/scotty",
-          "type": "string"
-        },
-        "downloadReadHandle": {
-          "description": "Read handle passed from Bigstore -> Scotty for a GCS download. This is a signed, serialized blobstore2.ReadHandle proto which must never be set outside of Bigstore, and is not applicable to non-GCS media downloads.",
-          "format": "byte",
-          "type": "string"
-        },
-        "readToken": {
-          "description": "The blob read token. Needed to read blobs that have not been replicated. Might not be available until the final call.",
-          "type": "string"
-        },
-        "uploadMetadataContainer": {
-          "description": "Metadata passed from Blobstore -> Scotty for a new GCS upload. This is a signed, serialized blobstore2.BlobMetadataContainer proto which must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads.",
-          "format": "byte",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GdataCompositeMedia": {
-      "description": "A sequence of media data references representing composite data. Introduced to support Bigstore composite objects. For details, visit http://go/bigstore-composites.",
-      "id": "GdataCompositeMedia",
-      "properties": {
-        "blobRef": {
-          "deprecated": true,
-          "description": "Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef.",
-          "format": "byte",
-          "type": "string"
-        },
-        "blobstore2Info": {
-          "$ref": "GdataBlobstore2Info",
-          "description": "Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob."
-        },
-        "cosmoBinaryReference": {
-          "description": "A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field.",
-          "format": "byte",
-          "type": "string"
-        },
-        "crc32cHash": {
-          "description": "crc32.c hash for the payload.",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "inline": {
-          "description": "Media data, set if reference_type is INLINE",
-          "format": "byte",
-          "type": "string"
-        },
-        "length": {
-          "description": "Size of the data, in bytes",
-          "format": "int64",
-          "type": "string"
-        },
-        "md5Hash": {
-          "description": "MD5 hash for the payload.",
-          "format": "byte",
-          "type": "string"
-        },
-        "objectId": {
-          "$ref": "GdataObjectId",
-          "description": "Reference to a TI Blob, set if reference_type is BIGSTORE_REF."
-        },
-        "path": {
-          "description": "Path to the data, set if reference_type is PATH",
-          "type": "string"
-        },
-        "referenceType": {
-          "description": "Describes what the field reference contains.",
-          "enum": [
-            "PATH",
-            "BLOB_REF",
-            "INLINE",
-            "BIGSTORE_REF",
-            "COSMO_BINARY_REFERENCE"
-          ],
-          "enumDescriptions": [
-            "Reference contains a GFS path or a local path.",
-            "Reference points to a blobstore object. This could be either a v1 blob_ref or a v2 blobstore2_info. Clients should check blobstore2_info first, since v1 is being deprecated.",
-            "Data is included into this proto buffer",
-            "Reference points to a bigstore object",
-            "Indicates the data is stored in cosmo_binary_reference."
-          ],
-          "type": "string"
-        },
-        "sha1Hash": {
-          "description": "SHA-1 hash for the payload.",
-          "format": "byte",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GdataContentTypeInfo": {
-      "description": "Detailed Content-Type information from Scotty. The Content-Type of the media will typically be filled in by the header or Scotty's best_guess, but this extended information provides the backend with more information so that it can make a better decision if needed. This is only used on media upload requests from Scotty.",
-      "id": "GdataContentTypeInfo",
-      "properties": {
-        "bestGuess": {
-          "description": "Scotty's best guess of what the content type of the file is.",
-          "type": "string"
-        },
-        "fromBytes": {
-          "description": "The content type of the file derived by looking at specific bytes (i.e. \"magic bytes\") of the actual file.",
-          "type": "string"
-        },
-        "fromFileName": {
-          "description": "The content type of the file derived from the file extension of the original file name used by the client.",
-          "type": "string"
-        },
-        "fromHeader": {
-          "description": "The content type of the file as specified in the request headers, multipart headers, or RUPIO start request.",
-          "type": "string"
-        },
-        "fromUrlPath": {
-          "description": "The content type of the file derived from the file extension of the URL path. The URL path is assumed to represent a file name (which is typically only true for agents that are providing a REST API).",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GdataDiffChecksumsResponse": {
-      "description": "Backend response for a Diff get checksums response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.",
-      "id": "GdataDiffChecksumsResponse",
-      "properties": {
-        "checksumsLocation": {
-          "$ref": "GdataCompositeMedia",
-          "description": "Exactly one of these fields must be populated. If checksums_location is filled, the server will return the corresponding contents to the user. If object_location is filled, the server will calculate the checksums based on the content there and return that to the user. For details on the format of the checksums, see http://go/scotty-diff-protocol."
-        },
-        "chunkSizeBytes": {
-          "description": "The chunk size of checksums. Must be a multiple of 256KB.",
-          "format": "int64",
-          "type": "string"
-        },
-        "objectLocation": {
-          "$ref": "GdataCompositeMedia",
-          "description": "If set, calculate the checksums based on the contents and return them to the caller."
-        },
-        "objectSizeBytes": {
-          "description": "The total size of the server object.",
-          "format": "int64",
-          "type": "string"
-        },
-        "objectVersion": {
-          "description": "The object version of the object the checksums are being returned for.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GdataDiffDownloadResponse": {
-      "description": "Backend response for a Diff download response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.",
-      "id": "GdataDiffDownloadResponse",
-      "properties": {
-        "objectLocation": {
-          "$ref": "GdataCompositeMedia",
-          "description": "The original object location."
-        }
-      },
-      "type": "object"
-    },
-    "GdataDiffUploadRequest": {
-      "description": "A Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.",
-      "id": "GdataDiffUploadRequest",
-      "properties": {
-        "checksumsInfo": {
-          "$ref": "GdataCompositeMedia",
-          "description": "The location of the checksums for the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received. For details on the format of the checksums, see http://go/scotty-diff-protocol."
-        },
-        "objectInfo": {
-          "$ref": "GdataCompositeMedia",
-          "description": "The location of the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received."
-        },
-        "objectVersion": {
-          "description": "The object version of the object that is the base version the incoming diff script will be applied to. This field will always be filled in.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GdataDiffUploadResponse": {
-      "description": "Backend response for a Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.",
-      "id": "GdataDiffUploadResponse",
-      "properties": {
-        "objectVersion": {
-          "description": "The object version of the object at the server. Must be included in the end notification response. The version in the end notification response must correspond to the new version of the object that is now stored at the server, after the upload.",
-          "type": "string"
-        },
-        "originalObject": {
-          "$ref": "GdataCompositeMedia",
-          "description": "The location of the original file for a diff upload request. Must be filled in if responding to an upload start notification."
-        }
-      },
-      "type": "object"
-    },
-    "GdataDiffVersionResponse": {
-      "description": "Backend response for a Diff get version response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.",
-      "id": "GdataDiffVersionResponse",
-      "properties": {
-        "objectSizeBytes": {
-          "description": "The total size of the server object.",
-          "format": "int64",
-          "type": "string"
-        },
-        "objectVersion": {
-          "description": "The version of the object stored at the server.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GdataDownloadParameters": {
-      "description": "Parameters specific to media downloads.",
-      "id": "GdataDownloadParameters",
-      "properties": {
-        "allowGzipCompression": {
-          "description": "A boolean to be returned in the response to Scotty. Allows/disallows gzip encoding of the payload content when the server thinks it's advantageous (hence, does not guarantee compression) which allows Scotty to GZip the response to the client.",
-          "type": "boolean"
-        },
-        "ignoreRange": {
-          "description": "Determining whether or not Apiary should skip the inclusion of any Content-Range header on its response to Scotty.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GdataMedia": {
-      "description": "A reference to data stored on the filesystem, on GFS or in blobstore.",
-      "id": "GdataMedia",
-      "properties": {
-        "algorithm": {
-          "deprecated": true,
-          "description": "Deprecated, use one of explicit hash type fields instead. Algorithm used for calculating the hash. As of 2011/01/21, \"MD5\" is the only possible value for this field. New values may be added at any time.",
-          "type": "string"
-        },
-        "bigstoreObjectRef": {
-          "deprecated": true,
-          "description": "Use object_id instead.",
-          "format": "byte",
-          "type": "string"
-        },
-        "blobRef": {
-          "deprecated": true,
-          "description": "Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef.",
-          "format": "byte",
-          "type": "string"
-        },
-        "blobstore2Info": {
-          "$ref": "GdataBlobstore2Info",
-          "description": "Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob."
-        },
-        "compositeMedia": {
-          "description": "A composite media composed of one or more media objects, set if reference_type is COMPOSITE_MEDIA. The media length field must be set to the sum of the lengths of all composite media objects. Note: All composite media must have length specified.",
-          "items": {
-            "$ref": "GdataCompositeMedia"
-          },
-          "type": "array"
-        },
-        "contentType": {
-          "description": "MIME type of the data",
-          "type": "string"
-        },
-        "contentTypeInfo": {
-          "$ref": "GdataContentTypeInfo",
-          "description": "Extended content type information provided for Scotty uploads."
-        },
-        "cosmoBinaryReference": {
-          "description": "A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field.",
-          "format": "byte",
-          "type": "string"
-        },
-        "crc32cHash": {
-          "description": "For Scotty Uploads: Scotty-provided hashes for uploads For Scotty Downloads: (WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.) A Hash provided by the agent to be used to verify the data being downloaded. Currently only supported for inline payloads. Further, only crc32c_hash is currently supported.",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "diffChecksumsResponse": {
-          "$ref": "GdataDiffChecksumsResponse",
-          "description": "Set if reference_type is DIFF_CHECKSUMS_RESPONSE."
-        },
-        "diffDownloadResponse": {
-          "$ref": "GdataDiffDownloadResponse",
-          "description": "Set if reference_type is DIFF_DOWNLOAD_RESPONSE."
-        },
-        "diffUploadRequest": {
-          "$ref": "GdataDiffUploadRequest",
-          "description": "Set if reference_type is DIFF_UPLOAD_REQUEST."
-        },
-        "diffUploadResponse": {
-          "$ref": "GdataDiffUploadResponse",
-          "description": "Set if reference_type is DIFF_UPLOAD_RESPONSE."
-        },
-        "diffVersionResponse": {
-          "$ref": "GdataDiffVersionResponse",
-          "description": "Set if reference_type is DIFF_VERSION_RESPONSE."
-        },
-        "downloadParameters": {
-          "$ref": "GdataDownloadParameters",
-          "description": "Parameters for a media download."
-        },
-        "filename": {
-          "description": "Original file name",
-          "type": "string"
-        },
-        "hash": {
-          "deprecated": true,
-          "description": "Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/blobstore2/api/scotty/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media.",
-          "type": "string"
-        },
-        "hashVerified": {
-          "description": "For Scotty uploads only. If a user sends a hash code and the backend has requested that Scotty verify the upload against the client hash, Scotty will perform the check on behalf of the backend and will reject it if the hashes don't match. This is set to true if Scotty performed this verification.",
-          "type": "boolean"
-        },
-        "inline": {
-          "description": "Media data, set if reference_type is INLINE",
-          "format": "byte",
-          "type": "string"
-        },
-        "isPotentialRetry": {
-          "description": "|is_potential_retry| is set false only when Scotty is certain that it has not sent the request before. When a client resumes an upload, this field must be set true in agent calls, because Scotty cannot be certain that it has never sent the request before due to potential failure in the session state persistence.",
-          "type": "boolean"
-        },
-        "length": {
-          "description": "Size of the data, in bytes",
-          "format": "int64",
-          "type": "string"
-        },
-        "md5Hash": {
-          "description": "Scotty-provided MD5 hash for an upload.",
-          "format": "byte",
-          "type": "string"
-        },
-        "mediaId": {
-          "description": "Media id to forward to the operation GetMedia. Can be set if reference_type is GET_MEDIA.",
-          "format": "byte",
-          "type": "string"
-        },
-        "objectId": {
-          "$ref": "GdataObjectId",
-          "description": "Reference to a TI Blob, set if reference_type is BIGSTORE_REF."
-        },
-        "path": {
-          "description": "Path to the data, set if reference_type is PATH",
-          "type": "string"
-        },
-        "referenceType": {
-          "description": "Describes what the field reference contains.",
-          "enum": [
-            "PATH",
-            "BLOB_REF",
-            "INLINE",
-            "GET_MEDIA",
-            "COMPOSITE_MEDIA",
-            "BIGSTORE_REF",
-            "DIFF_VERSION_RESPONSE",
-            "DIFF_CHECKSUMS_RESPONSE",
-            "DIFF_DOWNLOAD_RESPONSE",
-            "DIFF_UPLOAD_REQUEST",
-            "DIFF_UPLOAD_RESPONSE",
-            "COSMO_BINARY_REFERENCE",
-            "ARBITRARY_BYTES"
-          ],
-          "enumDescriptions": [
-            "Reference contains a GFS path or a local path.",
-            "Reference points to a blobstore object. This could be either a v1 blob_ref or a v2 blobstore2_info. Clients should check blobstore2_info first, since v1 is being deprecated.",
-            "Data is included into this proto buffer",
-            "Data should be accessed from the current service using the operation GetMedia.",
-            "The content for this media object is stored across multiple partial media objects under the composite_media field.",
-            "Reference points to a bigstore object",
-            "Indicates the data is stored in diff_version_response.",
-            "Indicates the data is stored in diff_checksums_response.",
-            "Indicates the data is stored in diff_download_response.",
-            "Indicates the data is stored in diff_upload_request.",
-            "Indicates the data is stored in diff_upload_response.",
-            "Indicates the data is stored in cosmo_binary_reference.",
-            "Informs Scotty to generate a response payload with the size specified in the length field. The contents of the payload are generated by Scotty and are undefined. This is useful for testing download speeds between the user and Scotty without involving a real payload source. Note: range is not supported when using arbitrary_bytes."
-          ],
-          "type": "string"
-        },
-        "sha1Hash": {
-          "description": "Scotty-provided SHA1 hash for an upload.",
-          "format": "byte",
-          "type": "string"
-        },
-        "sha256Hash": {
-          "description": "Scotty-provided SHA256 hash for an upload.",
-          "format": "byte",
-          "type": "string"
-        },
-        "timestamp": {
-          "description": "Time at which the media data was last updated, in milliseconds since UNIX epoch",
-          "format": "uint64",
-          "type": "string"
-        },
-        "token": {
-          "description": "A unique fingerprint/version id for the media data",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GdataObjectId": {
-      "description": "This is a copy of the tech.blob.ObjectId proto, which could not be used directly here due to transitive closure issues with JavaScript support; see http://b/8801763.",
-      "id": "GdataObjectId",
-      "properties": {
-        "bucketName": {
-          "description": "The name of the bucket to which this object belongs.",
-          "type": "string"
-        },
-        "generation": {
-          "description": "Generation of the object. Generations are monotonically increasing across writes, allowing them to be be compared to determine which generation is newer. If this is omitted in a request, then you are requesting the live object. See http://go/bigstore-versions",
-          "format": "int64",
-          "type": "string"
-        },
-        "objectName": {
-          "description": "The name of the object.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleApiDistribution": {
       "description": "`Distribution` contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets. The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths. Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the `mean` and `sum_of_squared_deviation` fields meaningless.",
       "id": "GoogleApiDistribution",
@@ -13007,6 +12514,14 @@
           "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicy",
           "description": "Optional. Customer policy for the assistant."
         },
+        "description": {
+          "description": "Optional. Description for additional information. Expected to be shown on the configuration UI, not to the users of the assistant.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The assistant display name. It must be a UTF-8 encoded string with a length limit of 128 characters.",
+          "type": "string"
+        },
         "enabledTools": {
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1AssistantToolList"
@@ -13121,8 +12636,19 @@
       "description": "Configuration for the generation of the assistant response.",
       "id": "GoogleCloudDiscoveryengineV1AssistantGenerationConfig",
       "properties": {
+        "allowedModelIds": {
+          "description": "Optional. The list of models that are allowed to be used for assistant.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "defaultLanguage": {
           "description": "The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.",
+          "type": "string"
+        },
+        "defaultModelId": {
+          "description": "Optional. The default model to use for assistant.",
           "type": "string"
         },
         "systemInstruction": {
@@ -15136,6 +14662,40 @@
       "description": "Configurations for a Search Engine.",
       "id": "GoogleCloudDiscoveryengineV1EngineSearchEngineConfig",
       "properties": {
+        "requiredSubscriptionTier": {
+          "description": "Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.",
+          "enum": [
+            "SUBSCRIPTION_TIER_UNSPECIFIED",
+            "SUBSCRIPTION_TIER_SEARCH",
+            "SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT",
+            "SUBSCRIPTION_TIER_NOTEBOOK_LM",
+            "SUBSCRIPTION_TIER_FRONTLINE_WORKER",
+            "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
+            "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
+            "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_EDU",
+            "SUBSCRIPTION_TIER_EDU_PRO",
+            "SUBSCRIPTION_TIER_EDU_EMERGING",
+            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
+            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
+            "Frontline worker tier.",
+            "Agentspace Starter tier.",
+            "Agentspace Business tier.",
+            "Enterprise tier.",
+            "EDU tier.",
+            "EDU Pro tier.",
+            "EDU emerging market tier.",
+            "EDU Pro emerging market tier.",
+            "Frontline starter tier."
+          ],
+          "type": "string"
+        },
         "searchAddOns": {
           "description": "The add-on that this search engine enables.",
           "items": {
@@ -15554,7 +15114,8 @@
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
-            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING"
+            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -15568,7 +15129,8 @@
             "EDU tier.",
             "EDU Pro tier.",
             "EDU emerging market tier.",
-            "EDU Pro emerging market tier."
+            "EDU Pro emerging market tier.",
+            "Frontline starter tier."
           ],
           "type": "string"
         }
@@ -19072,6 +18634,18 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy",
           "description": "Optional. Customer policy for the assistant."
         },
+        "description": {
+          "description": "Optional. Description for additional information. Expected to be shown on the configuration UI, not to the users of the assistant.",
+          "type": "string"
+        },
+        "disableLocationContext": {
+          "description": "Optional. Indicates whether to disable user location context. By default, user location context is enabled.",
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "Required. The assistant display name. It must be a UTF-8 encoded string with a length limit of 128 characters.",
+          "type": "string"
+        },
         "enabledTools": {
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantToolList"
@@ -19290,8 +18864,19 @@
       "description": "Configuration for the generation of the assistant response.",
       "id": "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig",
       "properties": {
+        "allowedModelIds": {
+          "description": "Optional. The list of models that are allowed to be used for assistant.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "defaultLanguage": {
           "description": "The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.",
+          "type": "string"
+        },
+        "defaultModelId": {
+          "description": "Optional. The default model to use for assistant.",
           "type": "string"
         },
         "systemInstruction": {
@@ -20053,7 +19638,8 @@
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
-            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING"
+            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -20067,7 +19653,8 @@
             "EDU tier.",
             "EDU Pro tier.",
             "EDU emerging market tier.",
-            "EDU Pro emerging market tier."
+            "EDU Pro emerging market tier.",
+            "Frontline starter tier."
           ],
           "type": "string"
         }
@@ -20945,82 +20532,6 @@
           "description": "Start of time range. Range is inclusive.",
           "format": "google-datetime",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats": {
-      "description": "Response for [EstimateBillingService.GetConfigurablePricingUsageStats] method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats",
-      "properties": {
-        "metricUsages": {
-          "description": "A list of metric usages, one for each requested resource type that has data in the requested time range.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsMetricUsage"
-          },
-          "type": "array"
-        },
-        "name": {
-          "description": "Identifier. The name of the ConfigurablePricingUsageStats. Format: projects/{project}/locations/{location}/configurablePricingUsageStats",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsDatedUsage": {
-      "description": "A list of usages for a specific day.",
-      "id": "GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsDatedUsage",
-      "properties": {
-        "date": {
-          "$ref": "GoogleTypeDate",
-          "description": "The date of the usage."
-        },
-        "usage": {
-          "description": "The usage value on the date.",
-          "format": "double",
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsMetricUsage": {
-      "description": "The usage of a metric over a list of days.",
-      "id": "GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsMetricUsage",
-      "properties": {
-        "datedUsages": {
-          "description": "The list of usages for this resource type, chronologically sorted by date. This is populated for metrics with daily aggregation like DAILY_MDN_QPM.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsDatedUsage"
-          },
-          "type": "array"
-        },
-        "metricType": {
-          "description": "The metric type.",
-          "enum": [
-            "BILLING_METRIC_TYPE_UNSPECIFIED",
-            "DAILY_MDN_QPM",
-            "DAILY_MIN_QPM",
-            "DAILY_MAX_QPM",
-            "DAILY_SEARCH_REQUEST",
-            "TOTAL_STORAGE"
-          ],
-          "enumDescriptions": [
-            "Default value.",
-            "Daily median search request QPM.",
-            "Daily min search request QPM.",
-            "Daily max search request QPM.",
-            "Daily search request total.",
-            "Total storage bytes for indexing core."
-          ],
-          "type": "string"
-        },
-        "totalUsages": {
-          "description": "The list of total usages for this resource type",
-          "items": {
-            "format": "double",
-            "type": "number"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -23650,6 +23161,40 @@
       "description": "Configurations for a Search Engine.",
       "id": "GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig",
       "properties": {
+        "requiredSubscriptionTier": {
+          "description": "Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.",
+          "enum": [
+            "SUBSCRIPTION_TIER_UNSPECIFIED",
+            "SUBSCRIPTION_TIER_SEARCH",
+            "SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT",
+            "SUBSCRIPTION_TIER_NOTEBOOK_LM",
+            "SUBSCRIPTION_TIER_FRONTLINE_WORKER",
+            "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
+            "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
+            "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_EDU",
+            "SUBSCRIPTION_TIER_EDU_PRO",
+            "SUBSCRIPTION_TIER_EDU_EMERGING",
+            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
+            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
+            "Frontline worker tier.",
+            "Agentspace Starter tier.",
+            "Agentspace Business tier.",
+            "Enterprise tier.",
+            "EDU tier.",
+            "EDU Pro tier.",
+            "EDU emerging market tier.",
+            "EDU Pro emerging market tier.",
+            "Frontline starter tier."
+          ],
+          "type": "string"
+        },
         "searchAddOns": {
           "description": "The add-on that this search engine enables.",
           "items": {
@@ -24514,6 +24059,10 @@
           "description": "Required. Identity outside the customer identity provider. The length limit of external identity will be of 100 characters.",
           "type": "string"
         },
+        "externalIdentityName": {
+          "description": "Optional. The name of the external identity.",
+          "type": "string"
+        },
         "groupId": {
           "description": "Group identifier. For Google Workspace user account, group_id should be the google workspace group email. For non-google identity provider, group_id is the mapped group identifier configured during the workforcepool config.",
           "type": "string"
@@ -25357,7 +24906,8 @@
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
-            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING"
+            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -25371,7 +24921,8 @@
             "EDU tier.",
             "EDU Pro tier.",
             "EDU emerging market tier.",
-            "EDU Pro emerging market tier."
+            "EDU Pro emerging market tier.",
+            "Frontline starter tier."
           ],
           "type": "string"
         }
@@ -25407,6 +24958,24 @@
         },
         "nextPageToken": {
           "description": "A token that can be sent as ListAgentsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaListAssistantsResponse": {
+      "description": "Response message for the AssistantService.ListAssistants method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListAssistantsResponse",
+      "properties": {
+        "assistants": {
+          "description": "All the customer's Assistants.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistant"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as ListAssistantsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -26682,6 +26251,75 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponse": {
+      "description": "Response for [ProjectService.QueryConfigurablePricingUsageStats] method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponse",
+      "properties": {
+        "metricUsages": {
+          "description": "A list of metric usages, one for each requested resource type that has data in the requested time range.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponseMetricUsage"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponseDatedUsage": {
+      "description": "A list of usages for a specific day.",
+      "id": "GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponseDatedUsage",
+      "properties": {
+        "date": {
+          "$ref": "GoogleTypeDate",
+          "description": "The date of the usage."
+        },
+        "usage": {
+          "description": "The usage value on the date.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponseMetricUsage": {
+      "description": "The usage of a metric over a list of days.",
+      "id": "GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponseMetricUsage",
+      "properties": {
+        "datedUsages": {
+          "description": "The list of usages for this resource type, chronologically sorted by date. This is populated for metrics with daily aggregation like DAILY_MDN_QPM.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponseDatedUsage"
+          },
+          "type": "array"
+        },
+        "metricType": {
+          "description": "The metric type.",
+          "enum": [
+            "BILLING_METRIC_TYPE_UNSPECIFIED",
+            "DAILY_MDN_QPM",
+            "DAILY_MIN_QPM",
+            "DAILY_MAX_QPM",
+            "DAILY_SEARCH_REQUEST",
+            "TOTAL_STORAGE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Daily median search request QPM.",
+            "Daily min search request QPM.",
+            "Daily max search request QPM.",
+            "Daily search request total.",
+            "Total storage bytes for indexing core."
+          ],
+          "type": "string"
+        },
+        "totalUsage": {
+          "description": "The total usage for this resource type. This is populated for metrics like TOTAL_STORAGE.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaRankRequest": {
       "description": "Request message for RankService.Rank method.",
       "id": "GoogleCloudDiscoveryengineV1alphaRankRequest",
@@ -27630,6 +27268,13 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec",
           "description": "A specification for configuring the behavior of content search."
         },
+        "crowdingSpecs": {
+          "description": "Optional. Crowding specifications for improving result diversity. If multiple CrowdingSpecs are specified, crowding will be evaluated on each unique combination of the `field` values, and max_count will be the maximum value of `max_count` across all CrowdingSpecs. For example, if the first CrowdingSpec has `field` = \"color\" and `max_count` = 3, and the second CrowdingSpec has `field` = \"size\" and `max_count` = 2, then after 3 documents that share the same color AND size have been returned, subsequent ones should be removed or demoted.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestCrowdingSpec"
+          },
+          "type": "array"
+        },
         "customFineTuningSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec",
           "description": "Custom fine tuning configs. If set, it has higher priority than the configs set in ServingConfig.custom_fine_tuning_spec."
@@ -27685,6 +27330,13 @@
         "orderBy": {
           "description": "The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering the website search results, see [Order web search results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results). For more information on ordering the healthcare search results, see [Order healthcare search results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results). If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.",
           "type": "string"
+        },
+        "pageCategories": {
+          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "pageSize": {
           "description": "Maximum number of Documents to return. The maximum allowed value depends on the data type. Values above the maximum value are coerced to the maximum value. * Websites with basic indexing: Default `10`, Maximum `25`. * Websites with advanced indexing: Default `25`, Maximum `50`. * Other: Default `50`, Maximum `100`. If this field is negative, an `INVALID_ARGUMENT` is returned.",
@@ -28117,6 +27769,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaSearchRequestCrowdingSpec": {
+      "description": "Specification for crowding. Crowding improves the diversity of search results by limiting the number of results that share the same field value. For example, crowding on the color field with a max_count of 3 and mode DROP_CROWDED_RESULTS will return at most 3 results with the same color across all pages.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestCrowdingSpec",
+      "properties": {
+        "field": {
+          "description": "The field to use for crowding. Documents can be crowded by a field in the Document object. Crowding field is case sensitive.",
+          "type": "string"
+        },
+        "maxCount": {
+          "description": "The maximum number of documents to keep per value of the field. Once there are at least max_count previous results which contain the same value for the given field (according to the order specified in `order_by`), later results with the same value are \"crowded away\". If not specified, the default value is 1.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "mode": {
+          "description": "Mode to use for documents that are crowded away.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DROP_CROWDED_RESULTS",
+            "DEMOTE_CROWDED_RESULTS_TO_END"
+          ],
+          "enumDescriptions": [
+            "Unspecified crowding mode. In this case, server behavior defaults to Mode.DROP_CROWDED_RESULTS.",
+            "Drop crowded results.",
+            "Demote crowded results to the later pages."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec": {
       "description": "A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec",
@@ -28536,6 +28218,21 @@
             "$ref": "GoogleCloudDiscoveryengineV1alphaSearchLinkPromotion"
           },
           "type": "array"
+        },
+        "semanticState": {
+          "description": "Output only. Indicates the semantic state of the search response.",
+          "enum": [
+            "SEMANTIC_STATE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used.",
+            "Semantic search was disabled for this search response.",
+            "Semantic search was enabled for this search response."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "sessionInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSessionInfo",
@@ -29937,6 +29634,13 @@
           "description": "A global unique ID that identifies the current pair of request and stream of responses. Used for feedback and support.",
           "type": "string"
         },
+        "invocationTools": {
+          "description": "The tool names of the tools that were invoked.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "sessionInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaStreamAssistResponseSessionInfo",
           "description": "Session information. Only included in the final StreamAssistResponse of the response stream."
@@ -30355,66 +30059,6 @@
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
           "format": "google-datetime",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaUploadAgentFileRequest": {
-      "description": "Request message for the AgentService.UploadAgentFile method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaUploadAgentFileRequest",
-      "properties": {
-        "blob": {
-          "$ref": "GdataMedia",
-          "description": "Information about the file being uploaded."
-        },
-        "mediaRequestInfo": {
-          "$ref": "ApiservingMediaRequestInfo",
-          "description": "Media upload request metadata."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaUploadAgentFileResponse": {
-      "description": "Response message for the AgentService.UploadAgentFile method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaUploadAgentFileResponse",
-      "properties": {
-        "agentFile": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaAgentFile",
-          "description": "The uploaded AgentFile."
-        },
-        "mediaResponseInfo": {
-          "$ref": "ApiservingMediaResponseInfo",
-          "description": "Media upload response metadata."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest": {
-      "description": "Request for the AssistantService.UploadSessionFile method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest",
-      "properties": {
-        "blob": {
-          "$ref": "GdataMedia",
-          "description": "Information about the file being uploaded."
-        },
-        "mediaRequestInfo": {
-          "$ref": "ApiservingMediaRequestInfo",
-          "description": "Media upload request metadata."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse": {
-      "description": "Response for the AssistantService.UploadSessionFile method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse",
-      "properties": {
-        "fileId": {
-          "description": "The ID of the uploaded file.",
-          "type": "string"
-        },
-        "mediaResponseInfo": {
-          "$ref": "ApiservingMediaResponseInfo",
-          "description": "Media upload response metadata."
         }
       },
       "type": "object"
@@ -32984,6 +32628,40 @@
       "description": "Configurations for a Search Engine.",
       "id": "GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig",
       "properties": {
+        "requiredSubscriptionTier": {
+          "description": "Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.",
+          "enum": [
+            "SUBSCRIPTION_TIER_UNSPECIFIED",
+            "SUBSCRIPTION_TIER_SEARCH",
+            "SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT",
+            "SUBSCRIPTION_TIER_NOTEBOOK_LM",
+            "SUBSCRIPTION_TIER_FRONTLINE_WORKER",
+            "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
+            "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
+            "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_EDU",
+            "SUBSCRIPTION_TIER_EDU_PRO",
+            "SUBSCRIPTION_TIER_EDU_EMERGING",
+            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
+            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
+            "Frontline worker tier.",
+            "Agentspace Starter tier.",
+            "Agentspace Business tier.",
+            "Enterprise tier.",
+            "EDU tier.",
+            "EDU Pro tier.",
+            "EDU emerging market tier.",
+            "EDU Pro emerging market tier.",
+            "Frontline starter tier."
+          ],
+          "type": "string"
+        },
         "searchAddOns": {
           "description": "The add-on that this search engine enables.",
           "items": {
@@ -33579,7 +33257,8 @@
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
-            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING"
+            "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -33593,7 +33272,8 @@
             "EDU tier.",
             "EDU Pro tier.",
             "EDU emerging market tier.",
-            "EDU Pro emerging market tier."
+            "EDU Pro emerging market tier.",
+            "Frontline starter tier."
           ],
           "type": "string"
         }
@@ -34079,6 +33759,13 @@
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec",
           "description": "A specification for configuring the behavior of content search."
         },
+        "crowdingSpecs": {
+          "description": "Optional. Crowding specifications for improving result diversity. If multiple CrowdingSpecs are specified, crowding will be evaluated on each unique combination of the `field` values, and max_count will be the maximum value of `max_count` across all CrowdingSpecs. For example, if the first CrowdingSpec has `field` = \"color\" and `max_count` = 3, and the second CrowdingSpec has `field` = \"size\" and `max_count` = 2, then after 3 documents that share the same color AND size have been returned, subsequent ones should be removed or demoted.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestCrowdingSpec"
+          },
+          "type": "array"
+        },
         "dataStoreSpecs": {
           "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
           "items": {
@@ -34130,6 +33817,13 @@
         "orderBy": {
           "description": "The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering the website search results, see [Order web search results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results). For more information on ordering the healthcare search results, see [Order healthcare search results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results). If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.",
           "type": "string"
+        },
+        "pageCategories": {
+          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "pageSize": {
           "description": "Maximum number of Documents to return. The maximum allowed value depends on the data type. Values above the maximum value are coerced to the maximum value. * Websites with basic indexing: Default `10`, Maximum `25`. * Websites with advanced indexing: Default `25`, Maximum `50`. * Other: Default `50`, Maximum `100`. If this field is negative, an `INVALID_ARGUMENT` is returned.",
@@ -34552,6 +34246,36 @@
             "Behavior when service determines the pick from all available sources.",
             "Includes image from corpus in the answer.",
             "Triggers figure generation in the answer."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestCrowdingSpec": {
+      "description": "Specification for crowding. Crowding improves the diversity of search results by limiting the number of results that share the same field value. For example, crowding on the color field with a max_count of 3 and mode DROP_CROWDED_RESULTS will return at most 3 results with the same color across all pages.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestCrowdingSpec",
+      "properties": {
+        "field": {
+          "description": "The field to use for crowding. Documents can be crowded by a field in the Document object. Crowding field is case sensitive.",
+          "type": "string"
+        },
+        "maxCount": {
+          "description": "The maximum number of documents to keep per value of the field. Once there are at least max_count previous results which contain the same value for the given field (according to the order specified in `order_by`), later results with the same value are \"crowded away\". If not specified, the default value is 1.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "mode": {
+          "description": "Mode to use for documents that are crowded away.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DROP_CROWDED_RESULTS",
+            "DEMOTE_CROWDED_RESULTS_TO_END"
+          ],
+          "enumDescriptions": [
+            "Unspecified crowding mode. In this case, server behavior defaults to Mode.DROP_CROWDED_RESULTS.",
+            "Drop crowded results.",
+            "Demote crowded results to the later pages."
           ],
           "type": "string"
         }
@@ -36018,40 +35742,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudNotebooklmV1alphaUploadSourceFileRequest": {
-      "description": "Request for the SourceService.UploadSourceFile method.",
-      "id": "GoogleCloudNotebooklmV1alphaUploadSourceFileRequest",
-      "properties": {
-        "blob": {
-          "$ref": "GdataMedia",
-          "description": "Information about the file being uploaded."
-        },
-        "mediaRequestInfo": {
-          "$ref": "ApiservingMediaRequestInfo",
-          "description": "Media upload request metadata."
-        },
-        "sourceId": {
-          "description": "The source id of the associated file. If not set, a source id will be generated and a new tentative source will be created.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaUploadSourceFileResponse": {
-      "description": "Response for the SourceService.UploadSourceFile method.",
-      "id": "GoogleCloudNotebooklmV1alphaUploadSourceFileResponse",
-      "properties": {
-        "mediaResponseInfo": {
-          "$ref": "ApiservingMediaResponseInfo",
-          "description": "Media upload response metadata."
-        },
-        "sourceId": {
-          "$ref": "GoogleCloudNotebooklmV1alphaSourceId",
-          "description": "The source id of the uploaded source."
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudNotebooklmV1alphaUserContent": {
       "description": "The \"Content\" messages refer to data the user wants to upload.",
       "id": "GoogleCloudNotebooklmV1alphaUserContent",
@@ -36254,7 +35944,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
