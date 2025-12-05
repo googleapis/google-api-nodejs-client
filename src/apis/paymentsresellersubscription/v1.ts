@@ -627,7 +627,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     cycleOptions?: Schema$CycleOptions;
     /**
-     * Optional. The mode to resume the subscription.
+     * Required. The mode to resume the subscription.
      */
     resumeMode?: string | null;
   }
@@ -1105,8 +1105,7 @@ export namespace paymentsresellersubscription_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Products$List
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Products$List extends StandardParameters {
     /**
      * Optional. Specifies the filters for the product results. The syntax is defined in https://google.aip.dev/160 with the following caveats: 1. Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) 2. Only the following fields are supported: - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` 3. Unless explicitly mentioned above, other features are not supported. Example: `regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      */
@@ -1437,8 +1436,7 @@ export namespace paymentsresellersubscription_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Promotions$Findeligible
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Promotions$Findeligible extends StandardParameters {
     /**
      * Required. The parent, the partner that can resell. Format: partners/{partner\}
      */
@@ -1449,8 +1447,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     requestBody?: Schema$FindEligiblePromotionsRequest;
   }
-  export interface Params$Resource$Partners$Promotions$List
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Promotions$List extends StandardParameters {
     /**
      * Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: 1. Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) 2. Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` 3. Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      */
@@ -2919,8 +2916,7 @@ export namespace paymentsresellersubscription_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Subscriptions$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Subscriptions$Cancel extends StandardParameters {
     /**
      * Required. The name of the subscription resource to be cancelled. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
      */
@@ -2931,8 +2927,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     requestBody?: Schema$CancelSubscriptionRequest;
   }
-  export interface Params$Resource$Partners$Subscriptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Subscriptions$Create extends StandardParameters {
     /**
      * Required. The parent resource name, which is the identifier of the partner. It will have the format of "partners/{partner_id\}".
      */
@@ -2947,8 +2942,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Partners$Subscriptions$Entitle
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Subscriptions$Entitle extends StandardParameters {
     /**
      * Required. The name of the subscription resource that is entitled to the current end user. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
      */
@@ -2959,8 +2953,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     requestBody?: Schema$EntitleSubscriptionRequest;
   }
-  export interface Params$Resource$Partners$Subscriptions$Extend
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Subscriptions$Extend extends StandardParameters {
     /**
      * Required. The name of the subscription resource to be extended. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}".
      */
@@ -2971,15 +2964,13 @@ export namespace paymentsresellersubscription_v1 {
      */
     requestBody?: Schema$ExtendSubscriptionRequest;
   }
-  export interface Params$Resource$Partners$Subscriptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Subscriptions$Get extends StandardParameters {
     /**
      * Required. The name of the subscription resource to retrieve. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Partners$Subscriptions$Provision
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Subscriptions$Provision extends StandardParameters {
     /**
      * number of duration units to be included.
      */
@@ -3002,8 +2993,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Partners$Subscriptions$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Subscriptions$Resume extends StandardParameters {
     /**
      * Required. The name of the subscription resource to be resumed. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
      */
@@ -3014,8 +3004,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     requestBody?: Schema$ResumeSubscriptionRequest;
   }
-  export interface Params$Resource$Partners$Subscriptions$Suspend
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Subscriptions$Suspend extends StandardParameters {
     /**
      * Required. The name of the subscription resource to be suspended. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
      */
@@ -3026,8 +3015,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     requestBody?: Schema$SuspendSubscriptionRequest;
   }
-  export interface Params$Resource$Partners$Subscriptions$Undocancel
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Subscriptions$Undocancel extends StandardParameters {
     /**
      * Required. The name of the subscription resource whose pending cancellation needs to be undone. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
      */
@@ -3219,8 +3207,7 @@ export namespace paymentsresellersubscription_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Subscriptions$Lineitems$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Subscriptions$Lineitems$Patch extends StandardParameters {
     /**
      * Identifier. Resource name of the line item. Format: partners/{partner\}/subscriptions/{subscription\}/lineItems/{lineItem\}
      */
@@ -3396,8 +3383,7 @@ export namespace paymentsresellersubscription_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Usersessions$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Usersessions$Generate extends StandardParameters {
     /**
      * Required. The parent, the partner that can resell. Format: partners/{partner\}
      */
