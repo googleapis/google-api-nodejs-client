@@ -1448,15 +1448,13 @@ export namespace file_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
@@ -2249,8 +2247,7 @@ export namespace file_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backups$Create extends StandardParameters {
     /**
      * Required. The ID to use for the backup. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen. Values that do not match this pattern will trigger an INVALID_ARGUMENT error.
      */
@@ -2265,22 +2262,19 @@ export namespace file_v1 {
      */
     requestBody?: Schema$Backup;
   }
-  export interface Params$Resource$Projects$Locations$Backups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backups$Delete extends StandardParameters {
     /**
      * Required. The backup resource name, in the format `projects/{project_number\}/locations/{location\}/backups/{backup_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backups$Get extends StandardParameters {
     /**
      * Required. The backup resource name, in the format `projects/{project_number\}/locations/{location\}/backups/{backup_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backups$List extends StandardParameters {
     /**
      * List filter.
      */
@@ -2302,8 +2296,7 @@ export namespace file_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backups$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the backup, in the format `projects/{project_number\}/locations/{location_id\}/backups/{backup_id\}`.
      */
@@ -3573,8 +3566,7 @@ export namespace file_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Create extends StandardParameters {
     /**
      * Required. The name of the instance to create. The name must be unique for the specified project and location.
      */
@@ -3589,8 +3581,7 @@ export namespace file_v1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Delete extends StandardParameters {
     /**
      * If set to true, all snapshots of the instance will also be deleted. (Otherwise, the request will only work if the instance has no snapshots.)
      */
@@ -3600,15 +3591,13 @@ export namespace file_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Get extends StandardParameters {
     /**
      * Required. The instance resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$List extends StandardParameters {
     /**
      * List filter.
      */
@@ -3630,8 +3619,7 @@ export namespace file_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the instance, in the format `projects/{project\}/locations/{location\}/instances/{instance\}`.
      */
@@ -3646,8 +3634,7 @@ export namespace file_v1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Promotereplica
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Promotereplica extends StandardParameters {
     /**
      * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
      */
@@ -3658,8 +3645,7 @@ export namespace file_v1 {
      */
     requestBody?: Schema$PromoteReplicaRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Restore extends StandardParameters {
     /**
      * Required. The resource name of the instance, in the format `projects/{project_number\}/locations/{location_id\}/instances/{instance_id\}`.
      */
@@ -3670,8 +3656,7 @@ export namespace file_v1 {
      */
     requestBody?: Schema$RestoreInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Revert
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Revert extends StandardParameters {
     /**
      * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
      */
@@ -4435,8 +4420,7 @@ export namespace file_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Create extends StandardParameters {
     /**
      * Required. The Filestore Instance to create the snapshots of, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4451,22 +4435,19 @@ export namespace file_v1 {
      */
     requestBody?: Schema$Snapshot;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Delete extends StandardParameters {
     /**
      * Required. The snapshot resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Get extends StandardParameters {
     /**
      * Required. The snapshot resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Snapshots$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Snapshots$List extends StandardParameters {
     /**
      * List filter.
      */
@@ -4492,8 +4473,7 @@ export namespace file_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the snapshot, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}`.
      */
@@ -5073,8 +5053,7 @@ export namespace file_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -5085,22 +5064,19 @@ export namespace file_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
