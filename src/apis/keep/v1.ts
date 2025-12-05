@@ -1411,8 +1411,7 @@ export namespace keep_v1 {
     }
   }
 
-  export interface Params$Resource$Notes$Permissions$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Notes$Permissions$Batchcreate extends StandardParameters {
     /**
      * The parent resource shared by all Permissions being created. Format: `notes/{note\}` If this is set, the parent field in the CreatePermission messages must either be empty or match this field.
      */
@@ -1423,8 +1422,7 @@ export namespace keep_v1 {
      */
     requestBody?: Schema$BatchCreatePermissionsRequest;
   }
-  export interface Params$Resource$Notes$Permissions$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Notes$Permissions$Batchdelete extends StandardParameters {
     /**
      * The parent resource shared by all permissions being deleted. Format: `notes/{note\}` If this is set, the parent of all of the permissions specified in the DeletePermissionRequest messages must match this field.
      */
