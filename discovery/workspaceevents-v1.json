@@ -701,301 +701,11 @@
           }
         }
       }
-    },
-    "v1": {
-      "methods": {
-        "getCard": {
-          "description": "GetAgentCard returns the agent card for the agent.",
-          "flatPath": "v1/card",
-          "httpMethod": "GET",
-          "id": "workspaceevents.getCard",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1/card",
-          "response": {
-            "$ref": "AgentCard"
-          }
-        }
-      }
     }
   },
-  "revision": "20251102",
+  "revision": "20251118",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
-    "APIKeySecurityScheme": {
-      "id": "APIKeySecurityScheme",
-      "properties": {
-        "description": {
-          "description": "Description of this security scheme.",
-          "type": "string"
-        },
-        "location": {
-          "description": "Location of the API key, valid values are \"query\", \"header\", or \"cookie\"",
-          "type": "string"
-        },
-        "name": {
-          "description": "Name of the header, query or cookie parameter to be used.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AgentCapabilities": {
-      "description": "Defines the A2A feature set supported by the agent",
-      "id": "AgentCapabilities",
-      "properties": {
-        "extensions": {
-          "description": "Extensions supported by this agent.",
-          "items": {
-            "$ref": "AgentExtension"
-          },
-          "type": "array"
-        },
-        "pushNotifications": {
-          "description": "If the agent can send push notifications to the clients webhook",
-          "type": "boolean"
-        },
-        "streaming": {
-          "description": "If the agent will support streaming responses",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "AgentCard": {
-      "description": "AgentCard conveys key information: - Overall details (version, name, description, uses) - Skills; a set of actions/solutions the agent can perform - Default modalities/content types supported by the agent. - Authentication requirements Next ID: 19",
-      "id": "AgentCard",
-      "properties": {
-        "additionalInterfaces": {
-          "description": "Announcement of additional supported transports. Client can use any of the supported transports.",
-          "items": {
-            "$ref": "AgentInterface"
-          },
-          "type": "array"
-        },
-        "capabilities": {
-          "$ref": "AgentCapabilities",
-          "description": "A2A Capability set supported by the agent."
-        },
-        "defaultInputModes": {
-          "description": "protolint:enable REPEATED_FIELD_NAMES_PLURALIZED The set of interaction modes that the agent supports across all skills. This can be overridden per skill. Defined as mime types.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "defaultOutputModes": {
-          "description": "The mime types supported as outputs from this agent.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "description": {
-          "description": "A description of the agent's domain of action/solution space. Example: \"Agent that helps users with recipes and cooking.\"",
-          "type": "string"
-        },
-        "documentationUrl": {
-          "description": "A url to provide additional documentation about the agent.",
-          "type": "string"
-        },
-        "iconUrl": {
-          "description": "An optional URL to an icon for the agent.",
-          "type": "string"
-        },
-        "name": {
-          "description": "A human readable name for the agent. Example: \"Recipe Agent\"",
-          "type": "string"
-        },
-        "preferredTransport": {
-          "description": "The transport of the preferred endpoint. If empty, defaults to JSONRPC.",
-          "type": "string"
-        },
-        "protocolVersion": {
-          "description": "The version of the A2A protocol this agent supports.",
-          "type": "string"
-        },
-        "provider": {
-          "$ref": "AgentProvider",
-          "description": "The service provider of the agent."
-        },
-        "security": {
-          "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security requirements for contacting the agent. This list can be seen as an OR of ANDs. Each object in the list describes one possible set of security requirements that must be present on a request. This allows specifying, for example, \"callers must either use OAuth OR an API Key AND mTLS.\" Example: security { schemes { key: \"oauth\" value { list: [\"read\"] } } } security { schemes { key: \"api-key\" } schemes { key: \"mtls\" } }",
-          "items": {
-            "$ref": "Security"
-          },
-          "type": "array"
-        },
-        "securitySchemes": {
-          "additionalProperties": {
-            "$ref": "SecurityScheme"
-          },
-          "description": "The security scheme details used for authenticating with this agent.",
-          "type": "object"
-        },
-        "signatures": {
-          "description": "JSON Web Signatures computed for this AgentCard.",
-          "items": {
-            "$ref": "AgentCardSignature"
-          },
-          "type": "array"
-        },
-        "skills": {
-          "description": "Skills represent a unit of ability an agent can perform. This may somewhat abstract but represents a more focused set of actions that the agent is highly likely to succeed at.",
-          "items": {
-            "$ref": "AgentSkill"
-          },
-          "type": "array"
-        },
-        "supportsAuthenticatedExtendedCard": {
-          "description": "Whether the agent supports providing an extended agent card when the user is authenticated, i.e. is the card from .well-known different than the card from GetAgentCard.",
-          "type": "boolean"
-        },
-        "url": {
-          "description": "A URL to the address the agent is hosted at. This represents the preferred endpoint as declared by the agent.",
-          "type": "string"
-        },
-        "version": {
-          "description": "The version of the agent. Example: \"1.0.0\"",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AgentCardSignature": {
-      "description": "AgentCardSignature represents a JWS signature of an AgentCard. This follows the JSON format of an RFC 7515 JSON Web Signature (JWS).",
-      "id": "AgentCardSignature",
-      "properties": {
-        "header": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "description": "The unprotected JWS header values.",
-          "type": "object"
-        },
-        "protected": {
-          "description": "Required. The protected JWS header for the signature. This is always a base64url-encoded JSON object. Required.",
-          "type": "string"
-        },
-        "signature": {
-          "description": "Required. The computed signature, base64url-encoded. Required.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AgentExtension": {
-      "description": "A declaration of an extension supported by an Agent.",
-      "id": "AgentExtension",
-      "properties": {
-        "description": {
-          "description": "A description of how this agent uses this extension. Example: \"Google OAuth 2.0 authentication\"",
-          "type": "string"
-        },
-        "params": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "description": "Optional configuration for the extension.",
-          "type": "object"
-        },
-        "required": {
-          "description": "Whether the client must follow specific requirements of the extension. Example: false",
-          "type": "boolean"
-        },
-        "uri": {
-          "description": "The URI of the extension. Example: \"https://developers.google.com/identity/protocols/oauth2\"",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AgentInterface": {
-      "description": "Defines additional transport information for the agent.",
-      "id": "AgentInterface",
-      "properties": {
-        "transport": {
-          "description": "The transport supported this url. This is an open form string, to be easily extended for many transport protocols. The core ones officially supported are JSONRPC, GRPC and HTTP+JSON.",
-          "type": "string"
-        },
-        "url": {
-          "description": "The url this interface is found at.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AgentProvider": {
-      "description": "Represents information about the service provider of an agent.",
-      "id": "AgentProvider",
-      "properties": {
-        "organization": {
-          "description": "The providers organization name Example: \"Google\"",
-          "type": "string"
-        },
-        "url": {
-          "description": "The providers reference url Example: \"https://ai.google.dev\"",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AgentSkill": {
-      "description": "AgentSkill represents a unit of action/solution that the agent can perform. One can think of this as a type of highly reliable solution that an agent can be tasked to provide. Agents have the autonomy to choose how and when to use specific skills, but clients should have confidence that if the skill is defined that unit of action can be reliably performed.",
-      "id": "AgentSkill",
-      "properties": {
-        "description": {
-          "description": "A human (or llm) readable description of the skill details and behaviors.",
-          "type": "string"
-        },
-        "examples": {
-          "description": "A set of example queries that this skill is designed to address. These examples should help the caller to understand how to craft requests to the agent to achieve specific goals. Example: [\"I need a recipe for bread\"]",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "id": {
-          "description": "Unique identifier of the skill within this agent.",
-          "type": "string"
-        },
-        "inputModes": {
-          "description": "Possible input modalities supported.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "name": {
-          "description": "A human readable name for the skill.",
-          "type": "string"
-        },
-        "outputModes": {
-          "description": "Possible output modalities produced",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "security": {
-          "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security schemes necessary for the agent to leverage this skill. As in the overall AgentCard.security, this list represents a logical OR of security requirement objects. Each object is a set of security schemes that must be used together (a logical AND). protolint:enable REPEATED_FIELD_NAMES_PLURALIZED",
-          "items": {
-            "$ref": "Security"
-          },
-          "type": "array"
-        },
-        "tags": {
-          "description": "A set of tags for the skill to enhance categorization/utilization. Example: [\"cooking\", \"customer support\", \"billing\"]",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "Artifact": {
       "description": "Artifacts are the container for task completed results. These are similar to Messages but are intended to be the product of a task, as opposed to point-to-point communication.",
       "id": "Artifact",
@@ -1055,55 +765,9 @@
       },
       "type": "object"
     },
-    "AuthorizationCodeOAuthFlow": {
-      "id": "AuthorizationCodeOAuthFlow",
-      "properties": {
-        "authorizationUrl": {
-          "description": "The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS",
-          "type": "string"
-        },
-        "refreshUrl": {
-          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
-          "type": "string"
-        },
-        "scopes": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
-          "type": "object"
-        },
-        "tokenUrl": {
-          "description": "The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "CancelTaskRequest": {
       "id": "CancelTaskRequest",
       "properties": {},
-      "type": "object"
-    },
-    "ClientCredentialsOAuthFlow": {
-      "id": "ClientCredentialsOAuthFlow",
-      "properties": {
-        "refreshUrl": {
-          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
-          "type": "string"
-        },
-        "scopes": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
-          "type": "object"
-        },
-        "tokenUrl": {
-          "description": "The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
-          "type": "string"
-        }
-      },
       "type": "object"
     },
     "DataPart": {
@@ -1142,45 +806,6 @@
         },
         "name": {
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "HTTPAuthSecurityScheme": {
-      "id": "HTTPAuthSecurityScheme",
-      "properties": {
-        "bearerFormat": {
-          "description": "A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes.",
-          "type": "string"
-        },
-        "description": {
-          "description": "Description of this security scheme.",
-          "type": "string"
-        },
-        "scheme": {
-          "description": "The name of the HTTP Authentication scheme to be used in the Authorization header as defined in RFC7235. The values used SHOULD be registered in the IANA Authentication Scheme registry. The value is case-insensitive, as defined in RFC7235.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ImplicitOAuthFlow": {
-      "id": "ImplicitOAuthFlow",
-      "properties": {
-        "authorizationUrl": {
-          "description": "The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS",
-          "type": "string"
-        },
-        "refreshUrl": {
-          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
-          "type": "string"
-        },
-        "scopes": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
-          "type": "object"
         }
       },
       "type": "object"
@@ -1275,72 +900,12 @@
       },
       "type": "object"
     },
-    "MutualTlsSecurityScheme": {
-      "id": "MutualTlsSecurityScheme",
-      "properties": {
-        "description": {
-          "description": "Description of this security scheme.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "NotificationEndpoint": {
       "description": "The endpoint where the subscription delivers events.",
       "id": "NotificationEndpoint",
       "properties": {
         "pubsubTopic": {
           "description": "Immutable. The Pub/Sub topic that receives events for the subscription. Format: `projects/{project}/topics/{topic}` You must create the topic in the same Google Cloud project where you create this subscription. Note: The Google Workspace Events API uses [ordering keys](https://cloud.google.com/pubsub/docs/ordering) for the benefit of sequential events. If the Cloud Pub/Sub topic has a [message storage policy](https://cloud.google.com/pubsub/docs/resource-location-restriction#exceptions) configured to exclude the nearest Google Cloud region, publishing events with ordering keys will fail. When the topic receives events, the events are encoded as Pub/Sub messages. For details, see the [Google Cloud Pub/Sub Protocol Binding for CloudEvents](https://github.com/googleapis/google-cloudevents/blob/main/docs/spec/pubsub.md).",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "OAuth2SecurityScheme": {
-      "id": "OAuth2SecurityScheme",
-      "properties": {
-        "description": {
-          "description": "Description of this security scheme.",
-          "type": "string"
-        },
-        "flows": {
-          "$ref": "OAuthFlows",
-          "description": "An object containing configuration information for the flow types supported"
-        },
-        "oauth2MetadataUrl": {
-          "description": "URL to the oauth2 authorization server metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414). TLS is required.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "OAuthFlows": {
-      "id": "OAuthFlows",
-      "properties": {
-        "authorizationCode": {
-          "$ref": "AuthorizationCodeOAuthFlow"
-        },
-        "clientCredentials": {
-          "$ref": "ClientCredentialsOAuthFlow"
-        },
-        "implicit": {
-          "$ref": "ImplicitOAuthFlow"
-        },
-        "password": {
-          "$ref": "PasswordOAuthFlow"
-        }
-      },
-      "type": "object"
-    },
-    "OpenIdConnectSecurityScheme": {
-      "id": "OpenIdConnectSecurityScheme",
-      "properties": {
-        "description": {
-          "description": "Description of this security scheme.",
-          "type": "string"
-        },
-        "openIdConnectUrl": {
-          "description": "Well-known URL to discover the [[OpenID-Connect-Discovery]] provider metadata.",
           "type": "string"
         }
       },
@@ -1405,27 +970,6 @@
       },
       "type": "object"
     },
-    "PasswordOAuthFlow": {
-      "id": "PasswordOAuthFlow",
-      "properties": {
-        "refreshUrl": {
-          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
-          "type": "string"
-        },
-        "scopes": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
-          "type": "object"
-        },
-        "tokenUrl": {
-          "description": "The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "PayloadOptions": {
       "description": "Options about what data to include in the event payload. Only supported for Google Chat and Google Drive events.",
       "id": "PayloadOptions",
@@ -1469,39 +1013,6 @@
       "description": "The request message for SubscriptionsService.ReactivateSubscription.",
       "id": "ReactivateSubscriptionRequest",
       "properties": {},
-      "type": "object"
-    },
-    "Security": {
-      "id": "Security",
-      "properties": {
-        "schemes": {
-          "additionalProperties": {
-            "$ref": "StringList"
-          },
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "SecurityScheme": {
-      "id": "SecurityScheme",
-      "properties": {
-        "apiKeySecurityScheme": {
-          "$ref": "APIKeySecurityScheme"
-        },
-        "httpAuthSecurityScheme": {
-          "$ref": "HTTPAuthSecurityScheme"
-        },
-        "mtlsSecurityScheme": {
-          "$ref": "MutualTlsSecurityScheme"
-        },
-        "oauth2SecurityScheme": {
-          "$ref": "OAuth2SecurityScheme"
-        },
-        "openIdConnectSecurityScheme": {
-          "$ref": "OpenIdConnectSecurityScheme"
-        }
-      },
       "type": "object"
     },
     "SendMessageConfiguration": {
@@ -1596,19 +1107,6 @@
         },
         "task": {
           "$ref": "Task"
-        }
-      },
-      "type": "object"
-    },
-    "StringList": {
-      "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED",
-      "id": "StringList",
-      "properties": {
-        "list": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
