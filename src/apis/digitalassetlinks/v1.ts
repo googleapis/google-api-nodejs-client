@@ -603,8 +603,7 @@ export namespace digitalassetlinks_v1 {
     }
   }
 
-  export interface Params$Resource$Assetlinks$Bulkcheck
-    extends StandardParameters {
+  export interface Params$Resource$Assetlinks$Bulkcheck extends StandardParameters {
     /**
      * Request body metadata
      */
