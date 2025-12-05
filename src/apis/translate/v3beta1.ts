@@ -1188,8 +1188,7 @@ export namespace translate_v3beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Detectlanguage
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Detectlanguage extends StandardParameters {
     /**
      * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}` or `projects/{project-number-or-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -1200,8 +1199,7 @@ export namespace translate_v3beta1 {
      */
     requestBody?: Schema$DetectLanguageRequest;
   }
-  export interface Params$Resource$Projects$Getsupportedlanguages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getsupportedlanguages extends StandardParameters {
     /**
      * Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
      */
@@ -1215,8 +1213,7 @@ export namespace translate_v3beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Translatetext
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Translatetext extends StandardParameters {
     /**
      * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}` or `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -2481,8 +2478,7 @@ export namespace translate_v3beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Batchtranslatedocument
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batchtranslatedocument extends StandardParameters {
     /**
      * Required. Location to make a regional call. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -2493,8 +2489,7 @@ export namespace translate_v3beta1 {
      */
     requestBody?: Schema$BatchTranslateDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Batchtranslatetext
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batchtranslatetext extends StandardParameters {
     /**
      * Required. Location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -2505,8 +2500,7 @@ export namespace translate_v3beta1 {
      */
     requestBody?: Schema$BatchTranslateTextRequest;
   }
-  export interface Params$Resource$Projects$Locations$Detectlanguage
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Detectlanguage extends StandardParameters {
     /**
      * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}` or `projects/{project-number-or-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -2517,15 +2511,13 @@ export namespace translate_v3beta1 {
      */
     requestBody?: Schema$DetectLanguageRequest;
   }
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getsupportedlanguages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getsupportedlanguages extends StandardParameters {
     /**
      * Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
      */
@@ -2539,8 +2531,7 @@ export namespace translate_v3beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
      */
@@ -2562,8 +2553,7 @@ export namespace translate_v3beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Translatedocument
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Translatedocument extends StandardParameters {
     /**
      * Required. Location to make a regional call. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have the same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -2574,8 +2564,7 @@ export namespace translate_v3beta1 {
      */
     requestBody?: Schema$TranslateDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Translatetext
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Translatetext extends StandardParameters {
     /**
      * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}` or `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -3185,8 +3174,7 @@ export namespace translate_v3beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Glossaries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Create extends StandardParameters {
     /**
      * Required. The project name.
      */
@@ -3197,22 +3185,19 @@ export namespace translate_v3beta1 {
      */
     requestBody?: Schema$Glossary;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Delete extends StandardParameters {
     /**
      * Required. The name of the glossary to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Get extends StandardParameters {
     /**
      * Required. The name of the glossary to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$List extends StandardParameters {
     /**
      * Optional. Filter specifying constraints of a list operation. Specify the constraint by the format of "key=value", where key must be "src" or "tgt", and the value must be a valid language code. For multiple restrictions, concatenate them by "AND" (uppercase only), such as: "src=en-US AND tgt=zh-CN". Notice that the exact match is used here, which means using 'en-US' and 'en' can lead to different results, which depends on the language code you used when you create the glossary. For the unidirectional glossaries, the "src" and "tgt" add restrictions on the source and target language code separately. For the equivalent term set glossaries, the "src" and/or "tgt" add restrictions on the term set. For example: "src=en-US AND tgt=zh-CN" will only pick the unidirectional glossaries which exactly match the source language code as "en-US" and the target language code "zh-CN", but all equivalent term set glossaries which contain "en-US" and "zh-CN" in their language set will be picked. If missing, no filtering is performed.
      */
@@ -3959,8 +3944,7 @@ export namespace translate_v3beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3971,22 +3955,19 @@ export namespace translate_v3beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -4004,8 +3985,7 @@ export namespace translate_v3beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Wait
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Wait extends StandardParameters {
     /**
      * The name of the operation resource to wait on.
      */
