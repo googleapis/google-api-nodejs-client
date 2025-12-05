@@ -2081,22 +2081,19 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Getautokeyconfig
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getautokeyconfig extends StandardParameters {
     /**
      * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getkajpolicyconfig
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getkajpolicyconfig extends StandardParameters {
     /**
      * Required. The name of the KeyAccessJustificationsPolicyConfig to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Updateautokeyconfig
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Updateautokeyconfig extends StandardParameters {
     /**
      * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      */
@@ -2111,8 +2108,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$AutokeyConfig;
   }
-  export interface Params$Resource$Folders$Updatekajpolicyconfig
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Updatekajpolicyconfig extends StandardParameters {
     /**
      * Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of "{organizations|folders|projects\}/x/kajPolicyConfig".
      */
@@ -2442,15 +2438,13 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Getkajpolicyconfig
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getkajpolicyconfig extends StandardParameters {
     /**
      * Required. The name of the KeyAccessJustificationsPolicyConfig to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Updatekajpolicyconfig
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updatekajpolicyconfig extends StandardParameters {
     /**
      * Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of "{organizations|folders|projects\}/x/kajPolicyConfig".
      */
@@ -3240,36 +3234,31 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getkajpolicyconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getkajpolicyconfig extends StandardParameters {
     /**
      * Required. The name of the KeyAccessJustificationsPolicyConfig to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Showeffectiveautokeyconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Showeffectiveautokeyconfig extends StandardParameters {
     /**
      * Required. Name of the resource project to the show effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Showeffectivekeyaccessjustificationsenrollmentconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Showeffectivekeyaccessjustificationsenrollmentconfig extends StandardParameters {
     /**
      * Required. The number or id of the project to get the effective KeyAccessJustificationsEnrollmentConfig for.
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Showeffectivekeyaccessjustificationspolicyconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Showeffectivekeyaccessjustificationspolicyconfig extends StandardParameters {
     /**
      * Required. The number or id of the project to get the effective KeyAccessJustificationsPolicyConfig. In the format of "projects/{|\}"
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Updatekajpolicyconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updatekajpolicyconfig extends StandardParameters {
     /**
      * Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of "{organizations|folders|projects\}/x/kajPolicyConfig".
      */
@@ -4041,8 +4030,7 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Generaterandombytes
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Generaterandombytes extends StandardParameters {
     /**
      * The project-specific location in which to generate random bytes. For example, "projects/my-project/locations/us-central1".
      */
@@ -4053,22 +4041,19 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$GenerateRandomBytesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getekmconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getekmconfig extends StandardParameters {
     /**
      * Required. The name of the EkmConfig to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -4090,8 +4075,7 @@ export namespace cloudkms_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Updateekmconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Updateekmconfig extends StandardParameters {
     /**
      * Output only. The resource name for the EkmConfig in the format `projects/x/locations/x/ekmConfig`.
      */
@@ -4566,8 +4550,7 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4577,8 +4560,7 @@ export namespace cloudkms_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4589,8 +4571,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5822,8 +5803,7 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Ekmconnections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ekmconnections$Create extends StandardParameters {
     /**
      * Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`.
      */
@@ -5838,15 +5818,13 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$EkmConnection;
   }
-  export interface Params$Resource$Projects$Locations$Ekmconnections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ekmconnections$Get extends StandardParameters {
     /**
      * Required. The name of the EkmConnection to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Ekmconnections$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ekmconnections$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5856,8 +5834,7 @@ export namespace cloudkms_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Ekmconnections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ekmconnections$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
@@ -5879,8 +5856,7 @@ export namespace cloudkms_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Ekmconnections$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ekmconnections$Patch extends StandardParameters {
     /**
      * Output only. The resource name for the EkmConnection in the format `projects/x/locations/x/ekmConnections/x`.
      */
@@ -5895,8 +5871,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$EkmConnection;
   }
-  export interface Params$Resource$Projects$Locations$Ekmconnections$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ekmconnections$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5907,8 +5882,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Ekmconnections$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ekmconnections$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5919,8 +5893,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity extends StandardParameters {
     /**
      * Required. The name of the EkmConnection to verify.
      */
@@ -6378,8 +6351,7 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Keyhandles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyhandles$Create extends StandardParameters {
     /**
      * Optional. Id of the KeyHandle. Must be unique to the resource project and location. If not provided by the caller, a new UUID is used.
      */
@@ -6394,15 +6366,13 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$KeyHandle;
   }
-  export interface Params$Resource$Projects$Locations$Keyhandles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyhandles$Get extends StandardParameters {
     /**
      * Required. Name of the KeyHandle resource, e.g. `projects/{PROJECT_ID\}/locations/{LOCATION\}/keyHandles/{KEY_HANDLE_ID\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyhandles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyhandles$List extends StandardParameters {
     /**
      * Optional. Filter to apply when listing KeyHandles, e.g. `resource_type_selector="{SERVICE\}.googleapis.com/{TYPE\}"`.
      */
@@ -7328,8 +7298,7 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Keyrings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Create extends StandardParameters {
     /**
      * Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`
      */
@@ -7344,15 +7313,13 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$KeyRing;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Get extends StandardParameters {
     /**
      * Required. The name of the KeyRing to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -7362,8 +7329,7 @@ export namespace cloudkms_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
@@ -7385,8 +7351,7 @@ export namespace cloudkms_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7397,8 +7362,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9004,8 +8968,7 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create extends StandardParameters {
     /**
      * Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63\}`
      */
@@ -9024,8 +8987,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$CryptoKey;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKey to use for decryption. The server will choose the appropriate version.
      */
@@ -9036,8 +8998,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$DecryptRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption. If a CryptoKey is specified, the server will use its primary version.
      */
@@ -9048,15 +9009,13 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$EncryptRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get extends StandardParameters {
     /**
      * Required. The name of the CryptoKey to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -9066,8 +9025,7 @@ export namespace cloudkms_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
@@ -9093,8 +9051,7 @@ export namespace cloudkms_v1 {
      */
     versionView?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch extends StandardParameters {
     /**
      * Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
@@ -9109,8 +9066,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$CryptoKey;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9121,8 +9077,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9133,8 +9088,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKey to update.
      */
@@ -11619,8 +11573,7 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKeyVersion to use for decryption.
      */
@@ -11631,8 +11584,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$AsymmetricDecryptRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKeyVersion to use for signing.
      */
@@ -11643,8 +11595,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$AsymmetricSignRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create extends StandardParameters {
     /**
      * Required. The name of the CryptoKey associated with the CryptoKeyVersions.
      */
@@ -11655,8 +11606,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$CryptoKeyVersion;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Decapsulate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Decapsulate extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKeyVersion to use for decapsulation.
      */
@@ -11667,8 +11617,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$DecapsulateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKeyVersion to destroy.
      */
@@ -11679,15 +11628,13 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$DestroyCryptoKeyVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get extends StandardParameters {
     /**
      * Required. The name of the CryptoKeyVersion to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey extends StandardParameters {
     /**
      * Required. The name of the CryptoKeyVersion public key to get.
      */
@@ -11697,8 +11644,7 @@ export namespace cloudkms_v1 {
      */
     publicKeyFormat?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import extends StandardParameters {
     /**
      * Required. The name of the CryptoKey to be imported into. The create permission is only required on this key when creating a new CryptoKeyVersion.
      */
@@ -11709,8 +11655,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$ImportCryptoKeyVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
@@ -11736,8 +11681,7 @@ export namespace cloudkms_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macsign
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macsign extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKeyVersion to use for signing.
      */
@@ -11748,8 +11692,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$MacSignRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macverify
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macverify extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKeyVersion to use for verification.
      */
@@ -11760,8 +11703,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$MacVerifyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch extends StandardParameters {
     /**
      * Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
      */
@@ -11776,8 +11718,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$CryptoKeyVersion;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawdecrypt
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawdecrypt extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKeyVersion to use for decryption.
      */
@@ -11788,8 +11729,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$RawDecryptRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawencrypt
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawencrypt extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKeyVersion to use for encryption.
      */
@@ -11800,8 +11740,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$RawEncryptRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKeyVersion to restore.
      */
@@ -12747,8 +12686,7 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Create extends StandardParameters {
     /**
      * Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63\}`
      */
@@ -12763,15 +12701,13 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$ImportJob;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Get extends StandardParameters {
     /**
      * Required. The name of the ImportJob to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -12781,8 +12717,7 @@ export namespace cloudkms_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
@@ -12804,8 +12739,7 @@ export namespace cloudkms_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12816,8 +12750,7 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12977,8 +12910,7 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
