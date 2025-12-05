@@ -333,8 +333,7 @@ export namespace playcustomapp_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Customapps$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Customapps$Create extends StandardParameters {
     /**
      * Developer account ID.
      */
