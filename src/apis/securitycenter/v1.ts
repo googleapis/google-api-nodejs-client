@@ -260,6 +260,10 @@ export namespace securitycenter_v1 {
      * The publisher of the model, for example, “google” or “nvidia”.
      */
     publisher?: string | null;
+    /**
+     * The purpose of the model, for example, "Inteference" or "Training".
+     */
+    usageCategory?: string | null;
   }
   /**
    * Allowed IP rule.
@@ -2244,6 +2248,10 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1Resource {
     /**
+     * The App Hub application this resource belongs to.
+     */
+    application?: Schema$GoogleCloudSecuritycenterV1ResourceApplication;
+    /**
      * The AWS metadata associated with the finding.
      */
     awsMetadata?: Schema$AwsMetadata;
@@ -2305,6 +2313,71 @@ export namespace securitycenter_v1 {
     service?: string | null;
     /**
      * The full resource type of the resource.
+     */
+    type?: string | null;
+  }
+  /**
+   * The App Hub Application associated with the finding's resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplication {
+    /**
+     * Consumer provided attributes for the application
+     */
+    attributes?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributes;
+    /**
+     * The resource name of an Application. Format: `projects/{host-project-id\}/locations/{location\}/applications/{application-id\}`
+     */
+    name?: string | null;
+  }
+  /**
+   * Consumer provided attributes for the application
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributes {
+    /**
+     * Business team that ensures user needs are met and value is delivered
+     */
+    businessOwners?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined criticality information.
+     */
+    criticality?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality;
+    /**
+     * Developer team that owns development and coding.
+     */
+    developerOwners?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined environment information.
+     */
+    environment?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment;
+    /**
+     * Operator team that ensures runtime and operations.
+     */
+    operatorOwners?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo[];
+  }
+  /**
+   * Contact information of stakeholders.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo {
+    /**
+     * Email address of the contacts.
+     */
+    email?: string | null;
+  }
+  /**
+   * Criticality of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality {
+    /**
+     * Criticality Type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Environment of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment {
+    /**
+     * Environment Type.
      */
     type?: string | null;
   }
@@ -2561,6 +2634,10 @@ export namespace securitycenter_v1 {
      * The publisher of the model, for example, “google” or “nvidia”.
      */
     publisher?: string | null;
+    /**
+     * The purpose of the model, for example, "Inteference" or "Training".
+     */
+    usageCategory?: string | null;
   }
   /**
    * Allowed IP rule.
@@ -4779,6 +4856,10 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2Resource {
     /**
+     * The App Hub application this resource belongs to.
+     */
+    application?: Schema$GoogleCloudSecuritycenterV2ResourceApplication;
+    /**
      * The AWS metadata associated with the finding.
      */
     awsMetadata?: Schema$GoogleCloudSecuritycenterV2AwsMetadata;
@@ -4820,6 +4901,71 @@ export namespace securitycenter_v1 {
     service?: string | null;
     /**
      * The full resource type of the resource.
+     */
+    type?: string | null;
+  }
+  /**
+   * The App Hub Application associated with the finding's resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplication {
+    /**
+     * Consumer provided attributes for the application
+     */
+    attributes?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributes;
+    /**
+     * The resource name of an Application. Format: `projects/{host-project-id\}/locations/{location\}/applications/{application-id\}`
+     */
+    name?: string | null;
+  }
+  /**
+   * Consumer provided attributes for the application
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributes {
+    /**
+     * Business team that ensures user needs are met and value is delivered
+     */
+    businessOwners?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined criticality information.
+     */
+    criticality?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality;
+    /**
+     * Developer team that owns development and coding.
+     */
+    developerOwners?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined environment information.
+     */
+    environment?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment;
+    /**
+     * Operator team that ensures runtime and operations.
+     */
+    operatorOwners?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo[];
+  }
+  /**
+   * Contact information of stakeholders.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo {
+    /**
+     * Email address of the contacts.
+     */
+    email?: string | null;
+  }
+  /**
+   * Criticality of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality {
+    /**
+     * Criticality Type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Environment of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment {
+    /**
+     * Environment Type.
      */
     type?: string | null;
   }
@@ -5707,7 +5853,7 @@ export namespace securitycenter_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -6229,6 +6375,10 @@ export namespace securitycenter_v1 {
    * Information related to the Google Cloud resource that is associated with this finding.
    */
   export interface Schema$Resource {
+    /**
+     * The App Hub application this resource belongs to.
+     */
+    application?: Schema$GoogleCloudSecuritycenterV1ResourceApplication;
     /**
      * The AWS metadata associated with the finding.
      */
@@ -7389,8 +7539,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Assets$Group
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Assets$Group extends StandardParameters {
     /**
      * Required. The name of the parent to group the assets by. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
@@ -7401,8 +7550,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GroupAssetsRequest;
   }
-  export interface Params$Resource$Folders$Assets$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Assets$List extends StandardParameters {
     /**
      * When compare_duration is set, the ListAssetsResult's "state_change" attribute is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the asset is removed and re-created again. Possible "state_change" values when compare_duration is specified: * "ADDED": indicates that the asset was not present at the start of compare_duration, but present at read_time. * "REMOVED": indicates that the asset was present at the start of compare_duration, but not present at read_time. * "ACTIVE": indicates that the asset was present at both the start and the end of the time period defined by compare_duration and read_time. If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all assets present at read_time.
      */
@@ -7436,8 +7584,7 @@ export namespace securitycenter_v1 {
      */
     readTime?: string;
   }
-  export interface Params$Resource$Folders$Assets$Updatesecuritymarks
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Assets$Updatesecuritymarks extends StandardParameters {
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
@@ -8237,8 +8384,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Bigqueryexports$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Bigqueryexports$Create extends StandardParameters {
     /**
      * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
@@ -8253,22 +8399,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
   }
-  export interface Params$Resource$Folders$Bigqueryexports$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Bigqueryexports$Delete extends StandardParameters {
     /**
      * Required. The name of the BigQuery export to delete. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Bigqueryexports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Bigqueryexports$Get extends StandardParameters {
     /**
      * Required. Name of the BigQuery export to retrieve. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Bigqueryexports$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Bigqueryexports$List extends StandardParameters {
     /**
      * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -8282,8 +8425,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Bigqueryexports$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Bigqueryexports$Patch extends StandardParameters {
     /**
      * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: "organizations/{organization_id\}/bigQueryExports/{export_id\}" Example format: "folders/{folder_id\}/bigQueryExports/{export_id\}" Example format: "projects/{project_id\}/bigQueryExports/{export_id\}" This field is provided in responses, and is ignored when provided in create requests.
      */
@@ -8477,8 +8619,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule extends StandardParameters {
     /**
      * Required. Resource name of the parent to validate the Custom Module under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
@@ -9460,8 +9601,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create extends StandardParameters {
     /**
      * Required. The new custom module's parent. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
@@ -9472,22 +9612,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$EventThreatDetectionCustomModule;
   }
-  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete extends StandardParameters {
     /**
      * Required. Name of the custom module to delete. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get extends StandardParameters {
     /**
      * Required. Name of the custom module to get. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$List extends StandardParameters {
     /**
      * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -9501,8 +9638,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Listdescendant
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Listdescendant extends StandardParameters {
     /**
      * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -9516,8 +9652,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
@@ -9852,15 +9987,13 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get extends StandardParameters {
     /**
      * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$List extends StandardParameters {
     /**
      * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -10034,8 +10167,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Findings$Bulkmute
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Findings$Bulkmute extends StandardParameters {
     /**
      * Required. The parent, at which bulk action needs to be applied. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
@@ -10522,22 +10654,19 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Muteconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Muteconfigs$Delete extends StandardParameters {
     /**
      * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Muteconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Muteconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Muteconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Muteconfigs$Patch extends StandardParameters {
     /**
      * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
@@ -11336,8 +11465,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Muteconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Muteconfigs$Create extends StandardParameters {
     /**
      * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
@@ -11352,22 +11480,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
   }
-  export interface Params$Resource$Folders$Muteconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Muteconfigs$Delete extends StandardParameters {
     /**
      * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Muteconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Muteconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Muteconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Muteconfigs$List extends StandardParameters {
     /**
      * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -11381,8 +11506,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Muteconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Muteconfigs$Patch extends StandardParameters {
     /**
      * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
@@ -12135,8 +12259,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Notificationconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Notificationconfigs$Create extends StandardParameters {
     /**
      * Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters and contain alphanumeric characters, underscores, or hyphens only.
      */
@@ -12151,22 +12274,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$NotificationConfig;
   }
-  export interface Params$Resource$Folders$Notificationconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Notificationconfigs$Delete extends StandardParameters {
     /**
      * Required. Name of the notification config to delete. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Notificationconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Notificationconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the notification config to get. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Notificationconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Notificationconfigs$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -12180,8 +12300,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Notificationconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Notificationconfigs$Patch extends StandardParameters {
     /**
      * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket", "folders/{folder_id\}/notificationConfigs/notify_public_bucket", or "projects/{project_id\}/notificationConfigs/notify_public_bucket".
      */
@@ -13335,8 +13454,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Create extends StandardParameters {
     /**
      * Required. Resource name of the new custom module's parent. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
@@ -13347,22 +13465,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule;
   }
-  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Delete extends StandardParameters {
     /**
      * Required. Name of the custom module to delete. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Get extends StandardParameters {
     /**
      * Required. Name of the custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -13376,8 +13491,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Listdescendant
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Listdescendant extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -13391,8 +13505,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the custom module. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}" The id {customModule\} is server-generated and is not user settable. It will be a numeric id containing 1-20 digits.
      */
@@ -13407,8 +13520,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule;
   }
-  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Simulate
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Simulate extends StandardParameters {
     /**
      * Required. The relative resource name of the organization, project, or folder. For more information about relative resource names, see [Relative Resource Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) Example: `organizations/{organization_id\}`
      */
@@ -13737,15 +13849,13 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Effectivecustommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Effectivecustommodules$Get extends StandardParameters {
     /**
      * Required. Name of the effective custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Effectivecustommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Securityhealthanalyticssettings$Effectivecustommodules$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -13912,8 +14022,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Sources$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sources$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -15089,8 +15198,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Sources$Findings$Group
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sources$Findings$Group extends StandardParameters {
     /**
      * Required. Name of the source to groupBy. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To groupBy across all sources provide a source_id of `-`. For example: `organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/-`, or `projects/{project_id\}/sources/-`
      */
@@ -15101,8 +15209,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GroupFindingsRequest;
   }
-  export interface Params$Resource$Folders$Sources$Findings$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sources$Findings$List extends StandardParameters {
     /**
      * When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again. Possible "state_change" values when compare_duration is specified: * "CHANGED": indicates that the finding was present and matched the given filter at the start of compare_duration, but changed its state at read_time. * "UNCHANGED": indicates that the finding was present and matched the given filter at the start of compare_duration and did not change state at read_time. * "ADDED": indicates that the finding did not match the given filter or was not present at the start of compare_duration, but was present at read_time. * "REMOVED": indicates that the finding was present and matched the filter at the start of compare_duration, but did not match the filter at read_time. If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
      */
@@ -15136,8 +15243,7 @@ export namespace securitycenter_v1 {
      */
     readTime?: string;
   }
-  export interface Params$Resource$Folders$Sources$Findings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sources$Findings$Patch extends StandardParameters {
     /**
      * The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      */
@@ -15152,8 +15258,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Finding;
   }
-  export interface Params$Resource$Folders$Sources$Findings$Setmute
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sources$Findings$Setmute extends StandardParameters {
     /**
      * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
@@ -15164,8 +15269,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$SetMuteRequest;
   }
-  export interface Params$Resource$Folders$Sources$Findings$Setstate
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sources$Findings$Setstate extends StandardParameters {
     /**
      * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
@@ -15176,8 +15280,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$SetFindingStateRequest;
   }
-  export interface Params$Resource$Folders$Sources$Findings$Updatesecuritymarks
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sources$Findings$Updatesecuritymarks extends StandardParameters {
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
@@ -15381,8 +15484,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Sources$Findings$Externalsystems$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sources$Findings$Externalsystems$Patch extends StandardParameters {
     /**
      * Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      */
@@ -15738,15 +15840,13 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Getorganizationsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getorganizationsettings extends StandardParameters {
     /**
      * Required. Name of the organization to get organization settings for. Its format is `organizations/[organization_id]/organizationSettings`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Updateorganizationsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updateorganizationsettings extends StandardParameters {
     /**
      * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/organizationSettings".
      */
@@ -16379,8 +16479,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Assets$Group
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Assets$Group extends StandardParameters {
     /**
      * Required. The name of the parent to group the assets by. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
@@ -16391,8 +16490,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GroupAssetsRequest;
   }
-  export interface Params$Resource$Organizations$Assets$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Assets$List extends StandardParameters {
     /**
      * When compare_duration is set, the ListAssetsResult's "state_change" attribute is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the asset is removed and re-created again. Possible "state_change" values when compare_duration is specified: * "ADDED": indicates that the asset was not present at the start of compare_duration, but present at read_time. * "REMOVED": indicates that the asset was present at the start of compare_duration, but not present at read_time. * "ACTIVE": indicates that the asset was present at both the start and the end of the time period defined by compare_duration and read_time. If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all assets present at read_time.
      */
@@ -16426,8 +16524,7 @@ export namespace securitycenter_v1 {
      */
     readTime?: string;
   }
-  export interface Params$Resource$Organizations$Assets$Rundiscovery
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Assets$Rundiscovery extends StandardParameters {
     /**
      * Required. Name of the organization to run asset discovery for. Its format is `organizations/[organization_id]`.
      */
@@ -16438,8 +16535,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$RunAssetDiscoveryRequest;
   }
-  export interface Params$Resource$Organizations$Assets$Updatesecuritymarks
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Assets$Updatesecuritymarks extends StandardParameters {
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
@@ -16613,8 +16709,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Attackpaths$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Attackpaths$List extends StandardParameters {
     /**
      * The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =
      */
@@ -17413,8 +17508,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Bigqueryexports$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Bigqueryexports$Create extends StandardParameters {
     /**
      * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
@@ -17429,22 +17523,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
   }
-  export interface Params$Resource$Organizations$Bigqueryexports$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Bigqueryexports$Delete extends StandardParameters {
     /**
      * Required. The name of the BigQuery export to delete. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Bigqueryexports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Bigqueryexports$Get extends StandardParameters {
     /**
      * Required. Name of the BigQuery export to retrieve. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Bigqueryexports$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Bigqueryexports$List extends StandardParameters {
     /**
      * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -17458,8 +17549,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Bigqueryexports$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Bigqueryexports$Patch extends StandardParameters {
     /**
      * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: "organizations/{organization_id\}/bigQueryExports/{export_id\}" Example format: "folders/{folder_id\}/bigQueryExports/{export_id\}" Example format: "projects/{project_id\}/bigQueryExports/{export_id\}" This field is provided in responses, and is ignored when provided in create requests.
      */
@@ -17653,8 +17743,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule extends StandardParameters {
     /**
      * Required. Resource name of the parent to validate the Custom Module under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
@@ -18636,8 +18725,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create extends StandardParameters {
     /**
      * Required. The new custom module's parent. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
@@ -18648,22 +18736,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$EventThreatDetectionCustomModule;
   }
-  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete extends StandardParameters {
     /**
      * Required. Name of the custom module to delete. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get extends StandardParameters {
     /**
      * Required. Name of the custom module to get. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$List extends StandardParameters {
     /**
      * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -18677,8 +18762,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Listdescendant
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Listdescendant extends StandardParameters {
     /**
      * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -18692,8 +18776,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
@@ -19028,15 +19111,13 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get extends StandardParameters {
     /**
      * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$List extends StandardParameters {
     /**
      * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -19210,8 +19291,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Findings$Bulkmute
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Findings$Bulkmute extends StandardParameters {
     /**
      * Required. The parent, at which bulk action needs to be applied. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
@@ -19700,22 +19780,19 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Muteconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Muteconfigs$Delete extends StandardParameters {
     /**
      * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Muteconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Muteconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Muteconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Muteconfigs$Patch extends StandardParameters {
     /**
      * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
@@ -20514,8 +20591,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Muteconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Muteconfigs$Create extends StandardParameters {
     /**
      * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
@@ -20530,22 +20606,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
   }
-  export interface Params$Resource$Organizations$Muteconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Muteconfigs$Delete extends StandardParameters {
     /**
      * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Muteconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Muteconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Muteconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Muteconfigs$List extends StandardParameters {
     /**
      * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -20559,8 +20632,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Muteconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Muteconfigs$Patch extends StandardParameters {
     /**
      * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
@@ -21313,8 +21385,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Notificationconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Notificationconfigs$Create extends StandardParameters {
     /**
      * Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters and contain alphanumeric characters, underscores, or hyphens only.
      */
@@ -21329,22 +21400,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$NotificationConfig;
   }
-  export interface Params$Resource$Organizations$Notificationconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Notificationconfigs$Delete extends StandardParameters {
     /**
      * Required. Name of the notification config to delete. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Notificationconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Notificationconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the notification config to get. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Notificationconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Notificationconfigs$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -21358,8 +21426,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Notificationconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Notificationconfigs$Patch extends StandardParameters {
     /**
      * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket", "folders/{folder_id\}/notificationConfigs/notify_public_bucket", or "projects/{project_id\}/notificationConfigs/notify_public_bucket".
      */
@@ -21825,7 +21892,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -21934,29 +22001,25 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -21974,7 +22037,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -22760,8 +22823,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Resourcevalueconfigs$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Resourcevalueconfigs$Batchcreate extends StandardParameters {
     /**
      * Required. Resource name of the new ResourceValueConfig's parent. The parent field in the CreateResourceValueConfigRequest messages must either be empty or match this field.
      */
@@ -22772,22 +22834,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$BatchCreateResourceValueConfigsRequest;
   }
-  export interface Params$Resource$Organizations$Resourcevalueconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Resourcevalueconfigs$Delete extends StandardParameters {
     /**
      * Required. Name of the ResourceValueConfig to delete
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Resourcevalueconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Resourcevalueconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the resource value config to retrieve. Its format is `organizations/{organization\}/resourceValueConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Resourcevalueconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Resourcevalueconfigs$List extends StandardParameters {
     /**
      * The number of results to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -22801,8 +22860,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Resourcevalueconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Resourcevalueconfigs$Patch extends StandardParameters {
     /**
      * Name for the resource value configuration
      */
@@ -23956,8 +24014,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Create extends StandardParameters {
     /**
      * Required. Resource name of the new custom module's parent. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
@@ -23968,22 +24025,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule;
   }
-  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Delete extends StandardParameters {
     /**
      * Required. Name of the custom module to delete. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Get extends StandardParameters {
     /**
      * Required. Name of the custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -23997,8 +24051,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Listdescendant
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Listdescendant extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -24012,8 +24065,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the custom module. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}" The id {customModule\} is server-generated and is not user settable. It will be a numeric id containing 1-20 digits.
      */
@@ -24028,8 +24080,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule;
   }
-  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Simulate
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Simulate extends StandardParameters {
     /**
      * Required. The relative resource name of the organization, project, or folder. For more information about relative resource names, see [Relative Resource Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) Example: `organizations/{organization_id\}`
      */
@@ -24358,15 +24409,13 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Effectivecustommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Effectivecustommodules$Get extends StandardParameters {
     /**
      * Required. Name of the effective custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Effectivecustommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Effectivecustommodules$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -24538,8 +24587,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Simulations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Simulations$Get extends StandardParameters {
     /**
      * Required. The organization name or simulation name of this simulation Valid format: `organizations/{organization\}/simulations/latest` `organizations/{organization\}/simulations/{simulation\}`
      */
@@ -24722,8 +24770,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Simulations$Attackexposureresults$Attackpaths$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Simulations$Attackexposureresults$Attackpaths$List extends StandardParameters {
     /**
      * The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =
      */
@@ -24906,8 +24953,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Simulations$Attackexposureresults$Valuedresources$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Simulations$Attackexposureresults$Valuedresources$List extends StandardParameters {
     /**
      * The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =
      */
@@ -25085,8 +25131,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Simulations$Attackpaths$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Simulations$Attackpaths$List extends StandardParameters {
     /**
      * The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =
      */
@@ -25414,15 +25459,13 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Simulations$Valuedresources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Simulations$Valuedresources$Get extends StandardParameters {
     /**
      * Required. The name of this valued resource Valid format: `organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Simulations$Valuedresources$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Simulations$Valuedresources$List extends StandardParameters {
     /**
      * The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =
      */
@@ -25604,8 +25647,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Simulations$Valuedresources$Attackpaths$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Simulations$Valuedresources$Attackpaths$List extends StandardParameters {
     /**
      * The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =
      */
@@ -26666,8 +26708,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Sources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Create extends StandardParameters {
     /**
      * Required. Resource name of the new source's parent. Its format should be `organizations/[organization_id]`.
      */
@@ -26678,15 +26719,13 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Source;
   }
-  export interface Params$Resource$Organizations$Sources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Get extends StandardParameters {
     /**
      * Required. Relative resource name of the source. Its format is `organizations/[organization_id]/source/[source_id]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Sources$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -26697,8 +26736,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Sources$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -26712,8 +26750,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Sources$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Patch extends StandardParameters {
     /**
      * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}"
      */
@@ -26728,8 +26765,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Source;
   }
-  export interface Params$Resource$Organizations$Sources$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -26740,8 +26776,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Sources$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -28185,8 +28220,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Sources$Findings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Create extends StandardParameters {
     /**
      * Required. Unique identifier provided by the client within the parent scope. It must be alphanumeric and less than or equal to 32 characters and greater than 0 characters in length.
      */
@@ -28201,8 +28235,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Finding;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$Group
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Group extends StandardParameters {
     /**
      * Required. Name of the source to groupBy. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To groupBy across all sources provide a source_id of `-`. For example: `organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/-`, or `projects/{project_id\}/sources/-`
      */
@@ -28213,8 +28246,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GroupFindingsRequest;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$List extends StandardParameters {
     /**
      * When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again. Possible "state_change" values when compare_duration is specified: * "CHANGED": indicates that the finding was present and matched the given filter at the start of compare_duration, but changed its state at read_time. * "UNCHANGED": indicates that the finding was present and matched the given filter at the start of compare_duration and did not change state at read_time. * "ADDED": indicates that the finding did not match the given filter or was not present at the start of compare_duration, but was present at read_time. * "REMOVED": indicates that the finding was present and matched the filter at the start of compare_duration, but did not match the filter at read_time. If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
      */
@@ -28248,8 +28280,7 @@ export namespace securitycenter_v1 {
      */
     readTime?: string;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Patch extends StandardParameters {
     /**
      * The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      */
@@ -28264,8 +28295,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Finding;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$Setmute
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Setmute extends StandardParameters {
     /**
      * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
@@ -28276,8 +28306,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$SetMuteRequest;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$Setstate
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Setstate extends StandardParameters {
     /**
      * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
@@ -28288,8 +28317,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$SetFindingStateRequest;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks extends StandardParameters {
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
@@ -28493,8 +28521,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch extends StandardParameters {
     /**
      * Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      */
@@ -28669,8 +28696,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Valuedresources$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Valuedresources$List extends StandardParameters {
     /**
      * The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =
      */
@@ -29193,8 +29219,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Assets$Group
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Assets$Group extends StandardParameters {
     /**
      * Required. The name of the parent to group the assets by. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
@@ -29205,8 +29230,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GroupAssetsRequest;
   }
-  export interface Params$Resource$Projects$Assets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Assets$List extends StandardParameters {
     /**
      * When compare_duration is set, the ListAssetsResult's "state_change" attribute is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the asset is removed and re-created again. Possible "state_change" values when compare_duration is specified: * "ADDED": indicates that the asset was not present at the start of compare_duration, but present at read_time. * "REMOVED": indicates that the asset was present at the start of compare_duration, but not present at read_time. * "ACTIVE": indicates that the asset was present at both the start and the end of the time period defined by compare_duration and read_time. If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all assets present at read_time.
      */
@@ -29240,8 +29264,7 @@ export namespace securitycenter_v1 {
      */
     readTime?: string;
   }
-  export interface Params$Resource$Projects$Assets$Updatesecuritymarks
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Assets$Updatesecuritymarks extends StandardParameters {
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
@@ -30041,8 +30064,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Bigqueryexports$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Bigqueryexports$Create extends StandardParameters {
     /**
      * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
@@ -30057,22 +30079,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
   }
-  export interface Params$Resource$Projects$Bigqueryexports$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Bigqueryexports$Delete extends StandardParameters {
     /**
      * Required. The name of the BigQuery export to delete. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Bigqueryexports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Bigqueryexports$Get extends StandardParameters {
     /**
      * Required. Name of the BigQuery export to retrieve. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Bigqueryexports$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Bigqueryexports$List extends StandardParameters {
     /**
      * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -30086,8 +30105,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Bigqueryexports$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Bigqueryexports$Patch extends StandardParameters {
     /**
      * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: "organizations/{organization_id\}/bigQueryExports/{export_id\}" Example format: "folders/{folder_id\}/bigQueryExports/{export_id\}" Example format: "projects/{project_id\}/bigQueryExports/{export_id\}" This field is provided in responses, and is ignored when provided in create requests.
      */
@@ -30281,8 +30299,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule extends StandardParameters {
     /**
      * Required. Resource name of the parent to validate the Custom Module under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
@@ -31264,8 +31281,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create extends StandardParameters {
     /**
      * Required. The new custom module's parent. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
@@ -31276,22 +31292,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$EventThreatDetectionCustomModule;
   }
-  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete extends StandardParameters {
     /**
      * Required. Name of the custom module to delete. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get extends StandardParameters {
     /**
      * Required. Name of the custom module to get. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$List extends StandardParameters {
     /**
      * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -31305,8 +31318,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Listdescendant
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Listdescendant extends StandardParameters {
     /**
      * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -31320,8 +31332,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
@@ -31656,15 +31667,13 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get extends StandardParameters {
     /**
      * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$List extends StandardParameters {
     /**
      * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -31838,8 +31847,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Findings$Bulkmute
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Findings$Bulkmute extends StandardParameters {
     /**
      * Required. The parent, at which bulk action needs to be applied. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
@@ -32326,22 +32334,19 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Muteconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Muteconfigs$Delete extends StandardParameters {
     /**
      * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Muteconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Muteconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Muteconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Muteconfigs$Patch extends StandardParameters {
     /**
      * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
@@ -33140,8 +33145,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Muteconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Muteconfigs$Create extends StandardParameters {
     /**
      * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
@@ -33156,22 +33160,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
   }
-  export interface Params$Resource$Projects$Muteconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Muteconfigs$Delete extends StandardParameters {
     /**
      * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Muteconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Muteconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Muteconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Muteconfigs$List extends StandardParameters {
     /**
      * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -33185,8 +33186,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Muteconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Muteconfigs$Patch extends StandardParameters {
     /**
      * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
@@ -33939,8 +33939,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Notificationconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationconfigs$Create extends StandardParameters {
     /**
      * Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters and contain alphanumeric characters, underscores, or hyphens only.
      */
@@ -33955,22 +33954,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$NotificationConfig;
   }
-  export interface Params$Resource$Projects$Notificationconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationconfigs$Delete extends StandardParameters {
     /**
      * Required. Name of the notification config to delete. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the notification config to get. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationconfigs$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -33984,8 +33980,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Notificationconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationconfigs$Patch extends StandardParameters {
     /**
      * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket", "folders/{folder_id\}/notificationConfigs/notify_public_bucket", or "projects/{project_id\}/notificationConfigs/notify_public_bucket".
      */
@@ -35139,8 +35134,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Create extends StandardParameters {
     /**
      * Required. Resource name of the new custom module's parent. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
@@ -35151,22 +35145,19 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule;
   }
-  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Delete extends StandardParameters {
     /**
      * Required. Name of the custom module to delete. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Get extends StandardParameters {
     /**
      * Required. Name of the custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -35180,8 +35171,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Listdescendant
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Listdescendant extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -35195,8 +35185,7 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the custom module. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}" The id {customModule\} is server-generated and is not user settable. It will be a numeric id containing 1-20 digits.
      */
@@ -35211,8 +35200,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule;
   }
-  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Simulate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Simulate extends StandardParameters {
     /**
      * Required. The relative resource name of the organization, project, or folder. For more information about relative resource names, see [Relative Resource Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) Example: `organizations/{organization_id\}`
      */
@@ -35541,15 +35529,13 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Effectivecustommodules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Effectivecustommodules$Get extends StandardParameters {
     /**
      * Required. Name of the effective custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Effectivecustommodules$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Securityhealthanalyticssettings$Effectivecustommodules$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -35716,8 +35702,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sources$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sources$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -36892,8 +36877,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sources$Findings$Group
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sources$Findings$Group extends StandardParameters {
     /**
      * Required. Name of the source to groupBy. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To groupBy across all sources provide a source_id of `-`. For example: `organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/-`, or `projects/{project_id\}/sources/-`
      */
@@ -36904,8 +36888,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GroupFindingsRequest;
   }
-  export interface Params$Resource$Projects$Sources$Findings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sources$Findings$List extends StandardParameters {
     /**
      * When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again. Possible "state_change" values when compare_duration is specified: * "CHANGED": indicates that the finding was present and matched the given filter at the start of compare_duration, but changed its state at read_time. * "UNCHANGED": indicates that the finding was present and matched the given filter at the start of compare_duration and did not change state at read_time. * "ADDED": indicates that the finding did not match the given filter or was not present at the start of compare_duration, but was present at read_time. * "REMOVED": indicates that the finding was present and matched the filter at the start of compare_duration, but did not match the filter at read_time. If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
      */
@@ -36939,8 +36922,7 @@ export namespace securitycenter_v1 {
      */
     readTime?: string;
   }
-  export interface Params$Resource$Projects$Sources$Findings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sources$Findings$Patch extends StandardParameters {
     /**
      * The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      */
@@ -36955,8 +36937,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Finding;
   }
-  export interface Params$Resource$Projects$Sources$Findings$Setmute
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sources$Findings$Setmute extends StandardParameters {
     /**
      * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
@@ -36967,8 +36948,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$SetMuteRequest;
   }
-  export interface Params$Resource$Projects$Sources$Findings$Setstate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sources$Findings$Setstate extends StandardParameters {
     /**
      * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
@@ -36979,8 +36959,7 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$SetFindingStateRequest;
   }
-  export interface Params$Resource$Projects$Sources$Findings$Updatesecuritymarks
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sources$Findings$Updatesecuritymarks extends StandardParameters {
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
@@ -37184,8 +37163,7 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sources$Findings$Externalsystems$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sources$Findings$Externalsystems$Patch extends StandardParameters {
     /**
      * Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      */

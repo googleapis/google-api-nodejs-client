@@ -463,7 +463,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -919,7 +919,7 @@
       }
     }
   },
-  "revision": "20251024",
+  "revision": "20251202",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -1079,6 +1079,10 @@
         },
         "publisher": {
           "description": "The publisher of the model, for example, “google” or “nvidia”.",
+          "type": "string"
+        },
+        "usageCategory": {
+          "description": "The purpose of the model, for example, \"Inteference\" or \"Training\".",
           "type": "string"
         }
       },
@@ -2934,14 +2938,16 @@
               "SECURITY_BENCHMARKS",
               "ASSURED_WORKLOADS",
               "DATA_SECURITY",
-              "GOOGLE_BEST_PRACTICES"
+              "GOOGLE_BEST_PRACTICES",
+              "CUSTOM_FRAMEWORK"
             ],
             "enumDescriptions": [
               "Default value. This value is unused.",
               "Security Benchmarks framework",
               "Assured Workloads framework",
               "Data Security framework",
-              "Google Best Practices framework"
+              "Google Best Practices framework",
+              "A user-created framework"
             ],
             "type": "string"
           },
@@ -3393,6 +3399,10 @@
       "description": "Information related to the Google Cloud resource.",
       "id": "GoogleCloudSecuritycenterV1Resource",
       "properties": {
+        "application": {
+          "$ref": "GoogleCloudSecuritycenterV1ResourceApplication",
+          "description": "The App Hub application this resource belongs to."
+        },
         "awsMetadata": {
           "$ref": "AwsMetadata",
           "description": "The AWS metadata associated with the finding."
@@ -3471,6 +3481,118 @@
         },
         "type": {
           "description": "The full resource type of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1ResourceApplication": {
+      "description": "The App Hub Application associated with the finding's resource.",
+      "id": "GoogleCloudSecuritycenterV1ResourceApplication",
+      "properties": {
+        "attributes": {
+          "$ref": "GoogleCloudSecuritycenterV1ResourceApplicationAttributes",
+          "description": "Consumer provided attributes for the application"
+        },
+        "name": {
+          "description": "The resource name of an Application. Format: `projects/{host-project-id}/locations/{location}/applications/{application-id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1ResourceApplicationAttributes": {
+      "description": "Consumer provided attributes for the application",
+      "id": "GoogleCloudSecuritycenterV1ResourceApplicationAttributes",
+      "properties": {
+        "businessOwners": {
+          "description": "Business team that ensures user needs are met and value is delivered",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo"
+          },
+          "type": "array"
+        },
+        "criticality": {
+          "$ref": "GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality",
+          "description": "User-defined criticality information."
+        },
+        "developerOwners": {
+          "description": "Developer team that owns development and coding.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo"
+          },
+          "type": "array"
+        },
+        "environment": {
+          "$ref": "GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment",
+          "description": "User-defined environment information."
+        },
+        "operatorOwners": {
+          "description": "Operator team that ensures runtime and operations.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo": {
+      "description": "Contact information of stakeholders.",
+      "id": "GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo",
+      "properties": {
+        "email": {
+          "description": "Email address of the contacts.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality": {
+      "description": "Criticality of the Application, Service, or Workload",
+      "id": "GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality",
+      "properties": {
+        "type": {
+          "description": "Criticality Type.",
+          "enum": [
+            "CRITICALITY_TYPE_UNSPECIFIED",
+            "MISSION_CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Mission critical service, application or workload.",
+            "High impact.",
+            "Medium impact.",
+            "Low impact."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment": {
+      "description": "Environment of the Application, Service, or Workload",
+      "id": "GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment",
+      "properties": {
+        "type": {
+          "description": "Environment Type.",
+          "enum": [
+            "ENVIRONMENT_TYPE_UNSPECIFIED",
+            "PRODUCTION",
+            "STAGING",
+            "TEST",
+            "DEVELOPMENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Production environment.",
+            "Staging environment.",
+            "Test environment.",
+            "Development environment."
+          ],
           "type": "string"
         }
       },
@@ -4185,6 +4307,10 @@
         },
         "publisher": {
           "description": "The publisher of the model, for example, “google” or “nvidia”.",
+          "type": "string"
+        },
+        "usageCategory": {
+          "description": "The purpose of the model, for example, \"Inteference\" or \"Training\".",
           "type": "string"
         }
       },
@@ -5987,14 +6113,16 @@
               "SECURITY_BENCHMARKS",
               "ASSURED_WORKLOADS",
               "DATA_SECURITY",
-              "GOOGLE_BEST_PRACTICES"
+              "GOOGLE_BEST_PRACTICES",
+              "CUSTOM_FRAMEWORK"
             ],
             "enumDescriptions": [
               "Default value. This value is unused.",
               "Security Benchmarks framework",
               "Assured Workloads framework",
               "Data Security framework",
-              "Google Best Practices framework"
+              "Google Best Practices framework",
+              "A user-created framework"
             ],
             "type": "string"
           },
@@ -8038,6 +8166,10 @@
       "description": "Information related to the Google Cloud resource.",
       "id": "GoogleCloudSecuritycenterV2Resource",
       "properties": {
+        "application": {
+          "$ref": "GoogleCloudSecuritycenterV2ResourceApplication",
+          "description": "The App Hub application this resource belongs to."
+        },
         "awsMetadata": {
           "$ref": "GoogleCloudSecuritycenterV2AwsMetadata",
           "description": "The AWS metadata associated with the finding."
@@ -8092,6 +8224,118 @@
         },
         "type": {
           "description": "The full resource type of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2ResourceApplication": {
+      "description": "The App Hub Application associated with the finding's resource.",
+      "id": "GoogleCloudSecuritycenterV2ResourceApplication",
+      "properties": {
+        "attributes": {
+          "$ref": "GoogleCloudSecuritycenterV2ResourceApplicationAttributes",
+          "description": "Consumer provided attributes for the application"
+        },
+        "name": {
+          "description": "The resource name of an Application. Format: `projects/{host-project-id}/locations/{location}/applications/{application-id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2ResourceApplicationAttributes": {
+      "description": "Consumer provided attributes for the application",
+      "id": "GoogleCloudSecuritycenterV2ResourceApplicationAttributes",
+      "properties": {
+        "businessOwners": {
+          "description": "Business team that ensures user needs are met and value is delivered",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo"
+          },
+          "type": "array"
+        },
+        "criticality": {
+          "$ref": "GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality",
+          "description": "User-defined criticality information."
+        },
+        "developerOwners": {
+          "description": "Developer team that owns development and coding.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo"
+          },
+          "type": "array"
+        },
+        "environment": {
+          "$ref": "GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment",
+          "description": "User-defined environment information."
+        },
+        "operatorOwners": {
+          "description": "Operator team that ensures runtime and operations.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo": {
+      "description": "Contact information of stakeholders.",
+      "id": "GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo",
+      "properties": {
+        "email": {
+          "description": "Email address of the contacts.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality": {
+      "description": "Criticality of the Application, Service, or Workload",
+      "id": "GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality",
+      "properties": {
+        "type": {
+          "description": "Criticality Type.",
+          "enum": [
+            "CRITICALITY_TYPE_UNSPECIFIED",
+            "MISSION_CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Mission critical service, application or workload.",
+            "High impact.",
+            "Medium impact.",
+            "Low impact."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment": {
+      "description": "Environment of the Application, Service, or Workload",
+      "id": "GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment",
+      "properties": {
+        "type": {
+          "description": "Environment Type.",
+          "enum": [
+            "ENVIRONMENT_TYPE_UNSPECIFIED",
+            "PRODUCTION",
+            "STAGING",
+            "TEST",
+            "DEVELOPMENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Production environment.",
+            "Staging environment.",
+            "Test environment.",
+            "Development environment."
+          ],
           "type": "string"
         }
       },
@@ -9195,7 +9439,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
