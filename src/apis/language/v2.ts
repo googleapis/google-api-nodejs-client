@@ -3241,36 +3241,31 @@ export namespace language_v2 {
     }
   }
 
-  export interface Params$Resource$Documents$Analyzeentities
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Analyzeentities extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeEntitiesRequest;
   }
-  export interface Params$Resource$Documents$Analyzesentiment
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Analyzesentiment extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeSentimentRequest;
   }
-  export interface Params$Resource$Documents$Annotatetext
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Annotatetext extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnnotateTextRequest;
   }
-  export interface Params$Resource$Documents$Classifytext
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Classifytext extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ClassifyTextRequest;
   }
-  export interface Params$Resource$Documents$Moderatetext
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Moderatetext extends StandardParameters {
     /**
      * Request body metadata
      */
