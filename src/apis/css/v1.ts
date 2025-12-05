@@ -1264,8 +1264,7 @@ export namespace css_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Listchildaccounts
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Listchildaccounts extends StandardParameters {
     /**
      * If set, only the MC accounts with the given name (case sensitive) will be returned.
      */
@@ -1287,8 +1286,7 @@ export namespace css_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Updatelabels
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Updatelabels extends StandardParameters {
     /**
      * Required. The label resource name. Format: accounts/{account\}
      */
@@ -1760,8 +1758,7 @@ export namespace css_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Cssproductinputs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Cssproductinputs$Delete extends StandardParameters {
     /**
      * Required. The name of the CSS product input resource to delete. Format: accounts/{account\}/cssProductInputs/{css_product_input\}, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123
      */
@@ -1771,8 +1768,7 @@ export namespace css_v1 {
      */
     supplementalFeedId?: string;
   }
-  export interface Params$Resource$Accounts$Cssproductinputs$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Cssproductinputs$Insert extends StandardParameters {
     /**
      * Optional. DEPRECATED. Feed id is not required for CSS Products. The primary or supplemental feed id. If CSS Product already exists and feed id provided is different, then the CSS Product will be moved to a new feed. Note: For now, CSSs do not need to provide feed ids as we create feeds on the fly. We do not have supplemental feed support for CSS Products yet.
      */
@@ -1787,8 +1783,7 @@ export namespace css_v1 {
      */
     requestBody?: Schema$CssProductInput;
   }
-  export interface Params$Resource$Accounts$Cssproductinputs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Cssproductinputs$Patch extends StandardParameters {
     /**
      * Identifier. The name of the CSS Product input. Format: `accounts/{account\}/cssProductInputs/{css_product_input\}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123
      */
@@ -2095,15 +2090,13 @@ export namespace css_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Cssproducts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Cssproducts$Get extends StandardParameters {
     /**
      * Required. The name of the CSS product to retrieve. Format: `accounts/{account\}/cssProducts/{css_product\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Cssproducts$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Cssproducts$List extends StandardParameters {
     /**
      * The maximum number of CSS Products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of CSS products will be returned.
      */
@@ -2710,8 +2703,7 @@ export namespace css_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Labels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Labels$Create extends StandardParameters {
     /**
      * Required. The parent account. Format: accounts/{account\}
      */
@@ -2722,15 +2714,13 @@ export namespace css_v1 {
      */
     requestBody?: Schema$AccountLabel;
   }
-  export interface Params$Resource$Accounts$Labels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Labels$Delete extends StandardParameters {
     /**
      * Required. The name of the label to delete. Format: accounts/{account\}/labels/{label\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Labels$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Labels$List extends StandardParameters {
     /**
      * The maximum number of labels to return. The service may return fewer than this value. If unspecified, at most 50 labels will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -2744,8 +2734,7 @@ export namespace css_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Labels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Labels$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the label. Format: accounts/{account\}/labels/{label\}
      */
@@ -2908,8 +2897,7 @@ export namespace css_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Quotas$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Quotas$List extends StandardParameters {
     /**
      * Optional. The maximum number of quotas to return in the response, used for paging. Defaults to 500; values above 1000 will be coerced to 1000.
      */
