@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/apps.alerts": {
-          "description": "See and delete your domain's G Suite alerts, and send alert feedback"
+          "description": "See and delete your domain's Google Workspace alerts, and send alert feedback"
         }
       }
     }
@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20250929",
+  "revision": "20251117",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -1659,6 +1659,10 @@
         },
         "documentId": {
           "description": "Drive file ID.",
+          "type": "string"
+        },
+        "messageId": {
+          "description": "RFC2822 message ID.",
           "type": "string"
         },
         "resourceTitle": {
