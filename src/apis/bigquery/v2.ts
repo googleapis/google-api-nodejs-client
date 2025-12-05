@@ -7109,8 +7109,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Dataset;
   }
-  export interface Params$Resource$Datasets$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Datasets$Undelete extends StandardParameters {
     /**
      * Required. Dataset ID of dataset being deleted
      */
@@ -8330,8 +8329,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Jobs$Getqueryresults
-    extends StandardParameters {
+  export interface Params$Resource$Jobs$Getqueryresults extends StandardParameters {
     /**
      * Optional. The API output format for a timestamp. This offers more explicit control over the timestamp output format as compared to the existing `use_int64_timestamp` option.
      */
@@ -9454,8 +9452,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Getserviceaccount
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getserviceaccount extends StandardParameters {
     /**
      * Required. ID of the project.
      */
@@ -10797,8 +10794,7 @@ export namespace bigquery_v2 {
      */
     routineId?: string;
   }
-  export interface Params$Resource$Routines$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Routines$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10850,8 +10846,7 @@ export namespace bigquery_v2 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Routines$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Routines$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10862,8 +10857,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Routines$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Routines$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12128,8 +12122,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Rowaccesspolicies$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Rowaccesspolicies$Batchdelete extends StandardParameters {
     /**
      * Required. Dataset ID of the table to delete the row access policies.
      */
@@ -12148,8 +12141,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$BatchDeleteRowAccessPoliciesRequest;
   }
-  export interface Params$Resource$Rowaccesspolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Rowaccesspolicies$Delete extends StandardParameters {
     /**
      * Required. Dataset ID of the table to delete the row access policy.
      */
@@ -12171,8 +12163,7 @@ export namespace bigquery_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Rowaccesspolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Rowaccesspolicies$Get extends StandardParameters {
     /**
      * Required. Dataset ID of the table to get the row access policy.
      */
@@ -12190,8 +12181,7 @@ export namespace bigquery_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Rowaccesspolicies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Rowaccesspolicies$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12202,8 +12192,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Rowaccesspolicies$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Rowaccesspolicies$Insert extends StandardParameters {
     /**
      * Required. Dataset ID of the table to get the row access policy.
      */
@@ -12222,8 +12211,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$RowAccessPolicy;
   }
-  export interface Params$Resource$Rowaccesspolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Rowaccesspolicies$List extends StandardParameters {
     /**
      * Required. Dataset ID of row access policies to list.
      */
@@ -12245,8 +12233,7 @@ export namespace bigquery_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Rowaccesspolicies$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Rowaccesspolicies$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12257,8 +12244,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Rowaccesspolicies$Update
-    extends StandardParameters {
+  export interface Params$Resource$Rowaccesspolicies$Update extends StandardParameters {
     /**
      * Required. Dataset ID of the table to get the row access policy.
      */
@@ -12612,8 +12598,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Tabledata$Insertall
-    extends StandardParameters {
+  export interface Params$Resource$Tabledata$Insertall extends StandardParameters {
     /**
      * Required. Dataset ID of the destination.
      */
@@ -14416,8 +14401,7 @@ export namespace bigquery_v2 {
      */
     view?: string;
   }
-  export interface Params$Resource$Tables$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Tables$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -14484,8 +14468,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Tables$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Tables$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -14496,8 +14479,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Tables$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Tables$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
