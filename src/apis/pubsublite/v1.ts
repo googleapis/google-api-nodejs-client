@@ -296,7 +296,7 @@ export namespace pubsublite_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1094,7 +1094,7 @@ export namespace pubsublite_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1205,8 +1205,7 @@ export namespace pubsublite_v1 {
     }
   }
 
-  export interface Params$Resource$Admin$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -1217,22 +1216,19 @@ export namespace pubsublite_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -1250,7 +1246,7 @@ export namespace pubsublite_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -1977,8 +1973,7 @@ export namespace pubsublite_v1 {
     }
   }
 
-  export interface Params$Resource$Admin$Projects$Locations$Reservations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$Create extends StandardParameters {
     /**
      * Required. The parent location in which to create the reservation. Structured like `projects/{project_number\}/locations/{location\}`.
      */
@@ -1993,22 +1988,19 @@ export namespace pubsublite_v1 {
      */
     requestBody?: Schema$Reservation;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Reservations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$Delete extends StandardParameters {
     /**
      * Required. The name of the reservation to delete. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Reservations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$Get extends StandardParameters {
     /**
      * Required. The name of the reservation whose configuration to return. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Reservations$List
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$List extends StandardParameters {
     /**
      * The maximum number of reservations to return. The service may return fewer than this value. If unset or zero, all reservations for the parent will be returned.
      */
@@ -2022,8 +2014,7 @@ export namespace pubsublite_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Reservations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$Patch extends StandardParameters {
     /**
      * The name of the reservation. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
      */
@@ -2196,8 +2187,7 @@ export namespace pubsublite_v1 {
     }
   }
 
-  export interface Params$Resource$Admin$Projects$Locations$Reservations$Topics$List
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$Topics$List extends StandardParameters {
     /**
      * Required. The name of the reservation whose topics to list. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
      */
@@ -3095,8 +3085,7 @@ export namespace pubsublite_v1 {
     }
   }
 
-  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Create extends StandardParameters {
     /**
      * Required. The parent location in which to create the subscription. Structured like `projects/{project_number\}/locations/{location\}`.
      */
@@ -3115,22 +3104,19 @@ export namespace pubsublite_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Delete extends StandardParameters {
     /**
      * Required. The name of the subscription to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Get extends StandardParameters {
     /**
      * Required. The name of the subscription whose configuration to return.
      */
     name?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$List extends StandardParameters {
     /**
      * The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the parent will be returned.
      */
@@ -3144,8 +3130,7 @@ export namespace pubsublite_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Patch extends StandardParameters {
     /**
      * The name of the subscription. Structured like: projects/{project_number\}/locations/{location\}/subscriptions/{subscription_id\}
      */
@@ -3160,8 +3145,7 @@ export namespace pubsublite_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Seek
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Seek extends StandardParameters {
     /**
      * Required. The name of the subscription to seek.
      */
@@ -4037,8 +4021,7 @@ export namespace pubsublite_v1 {
     }
   }
 
-  export interface Params$Resource$Admin$Projects$Locations$Topics$Create
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Topics$Create extends StandardParameters {
     /**
      * Required. The parent location in which to create the topic. Structured like `projects/{project_number\}/locations/{location\}`.
      */
@@ -4053,29 +4036,25 @@ export namespace pubsublite_v1 {
      */
     requestBody?: Schema$Topic;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Topics$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Topics$Delete extends StandardParameters {
     /**
      * Required. The name of the topic to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Topics$Get
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Topics$Get extends StandardParameters {
     /**
      * Required. The name of the topic whose configuration to return.
      */
     name?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Topics$Getpartitions
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Topics$Getpartitions extends StandardParameters {
     /**
      * Required. The topic whose partition information to return.
      */
     name?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Topics$List
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Topics$List extends StandardParameters {
     /**
      * The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the parent will be returned.
      */
@@ -4089,8 +4068,7 @@ export namespace pubsublite_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Admin$Projects$Locations$Topics$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Topics$Patch extends StandardParameters {
     /**
      * The name of the topic. Structured like: projects/{project_number\}/locations/{location\}/topics/{topic_id\}
      */
@@ -4263,8 +4241,7 @@ export namespace pubsublite_v1 {
     }
   }
 
-  export interface Params$Resource$Admin$Projects$Locations$Topics$Subscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Admin$Projects$Locations$Topics$Subscriptions$List extends StandardParameters {
     /**
      * Required. The name of the topic whose subscriptions to list.
      */
@@ -4471,8 +4448,7 @@ export namespace pubsublite_v1 {
     }
   }
 
-  export interface Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor
-    extends StandardParameters {
+  export interface Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor extends StandardParameters {
     /**
      * The subscription for which to update the cursor.
      */
@@ -4642,8 +4618,7 @@ export namespace pubsublite_v1 {
     }
   }
 
-  export interface Params$Resource$Cursor$Projects$Locations$Subscriptions$Cursors$List
-    extends StandardParameters {
+  export interface Params$Resource$Cursor$Projects$Locations$Subscriptions$Cursors$List extends StandardParameters {
     /**
      * The maximum number of cursors to return. The service may return fewer than this value. If unset or zero, all cursors for the parent will be returned.
      */
@@ -5150,8 +5125,7 @@ export namespace pubsublite_v1 {
     }
   }
 
-  export interface Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor
-    extends StandardParameters {
+  export interface Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor extends StandardParameters {
     /**
      * Required. The topic for which we should compute the head cursor.
      */
@@ -5162,8 +5136,7 @@ export namespace pubsublite_v1 {
      */
     requestBody?: Schema$ComputeHeadCursorRequest;
   }
-  export interface Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats
-    extends StandardParameters {
+  export interface Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats extends StandardParameters {
     /**
      * Required. The topic for which we should compute message stats.
      */
@@ -5174,8 +5147,7 @@ export namespace pubsublite_v1 {
      */
     requestBody?: Schema$ComputeMessageStatsRequest;
   }
-  export interface Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor
-    extends StandardParameters {
+  export interface Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor extends StandardParameters {
     /**
      * Required. The topic for which we should compute the cursor.
      */
