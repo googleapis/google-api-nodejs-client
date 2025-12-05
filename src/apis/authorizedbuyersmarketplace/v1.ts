@@ -207,6 +207,10 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     eligibleSeatIds?: string[] | null;
     /**
+     * Output only. The minimum price a buyer has to bid to compete in this auction package. If this is field is not populated, there is no floor price.
+     */
+    floorPriceCpm?: Schema$Money;
+    /**
      * Immutable. The unique identifier for the auction package. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}` The auction_package_id part of name is sent in the BidRequest to all RTB bidders and is returned as deal_id by the bidder in the BidResponse.
      */
     name?: string | null;
@@ -1452,8 +1456,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Auctionpackages$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Auctionpackages$List extends StandardParameters {
     /**
      * Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Only supported when parent is bidder. Supported columns for filtering are: * displayName * createTime * updateTime * eligibleSeatIds
      */
@@ -1786,8 +1789,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Finalizeddeals$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Finalizeddeals$List extends StandardParameters {
     /**
      * Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * deal.eligibleSeatIds * dealServingStatus
      */
@@ -1809,8 +1811,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Bidders$Finalizeddeals$Setreadytoserve
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Finalizeddeals$Setreadytoserve extends StandardParameters {
     /**
      * Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}` or `bidders/{accountId\}/finalizedDeals/{dealId\}`
      */
@@ -1891,6 +1892,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "eligibleSeatIds": [],
+     *   //   "floorPriceCpm": {},
      *   //   "name": "my_name",
      *   //   "subscribedBuyers": [],
      *   //   "subscribedClients": [],
@@ -2196,6 +2198,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "eligibleSeatIds": [],
+     *   //   "floorPriceCpm": {},
      *   //   "name": "my_name",
      *   //   "subscribedBuyers": [],
      *   //   "subscribedClients": [],
@@ -2354,6 +2357,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "eligibleSeatIds": [],
+     *   //   "floorPriceCpm": {},
      *   //   "name": "my_name",
      *   //   "subscribedBuyers": [],
      *   //   "subscribedClients": [],
@@ -2512,6 +2516,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "eligibleSeatIds": [],
+     *   //   "floorPriceCpm": {},
      *   //   "name": "my_name",
      *   //   "subscribedBuyers": [],
      *   //   "subscribedClients": [],
@@ -2672,6 +2677,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "eligibleSeatIds": [],
+     *   //   "floorPriceCpm": {},
      *   //   "name": "my_name",
      *   //   "subscribedBuyers": [],
      *   //   "subscribedClients": [],
@@ -2781,15 +2787,13 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Auctionpackages$Get
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Auctionpackages$Get extends StandardParameters {
     /**
      * Required. Name of auction package to get. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Auctionpackages$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Auctionpackages$List extends StandardParameters {
     /**
      * Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Only supported when parent is bidder. Supported columns for filtering are: * displayName * createTime * updateTime * eligibleSeatIds
      */
@@ -2811,8 +2815,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Buyers$Auctionpackages$Subscribe
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Auctionpackages$Subscribe extends StandardParameters {
     /**
      * Required. Name of the auction package. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}`
      */
@@ -2823,8 +2826,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$SubscribeAuctionPackageRequest;
   }
-  export interface Params$Resource$Buyers$Auctionpackages$Subscribeclients
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Auctionpackages$Subscribeclients extends StandardParameters {
     /**
      * Required. Name of the auction package. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}`
      */
@@ -2835,8 +2837,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$SubscribeClientsRequest;
   }
-  export interface Params$Resource$Buyers$Auctionpackages$Unsubscribe
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Auctionpackages$Unsubscribe extends StandardParameters {
     /**
      * Required. Name of the auction package. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}`
      */
@@ -2847,8 +2848,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$UnsubscribeAuctionPackageRequest;
   }
-  export interface Params$Resource$Buyers$Auctionpackages$Unsubscribeclients
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Auctionpackages$Unsubscribeclients extends StandardParameters {
     /**
      * Required. Name of the auction package. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}`
      */
@@ -3769,8 +3769,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Clients$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$Activate extends StandardParameters {
     /**
      * Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}`
      */
@@ -3781,8 +3780,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$ActivateClientRequest;
   }
-  export interface Params$Resource$Buyers$Clients$Create
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$Create extends StandardParameters {
     /**
      * Required. The name of the buyer. Format: `buyers/{accountId\}`
      */
@@ -3793,8 +3791,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$Client;
   }
-  export interface Params$Resource$Buyers$Clients$Deactivate
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$Deactivate extends StandardParameters {
     /**
      * Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}`
      */
@@ -3805,15 +3802,13 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$DeactivateClientRequest;
   }
-  export interface Params$Resource$Buyers$Clients$Get
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$Get extends StandardParameters {
     /**
      * Required. Format: `buyers/{accountId\}/clients/{clientAccountId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Clients$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$List extends StandardParameters {
     /**
      * Query string using the [Filtering Syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported fields for filtering are: * partnerClientId Use this field to filter the clients by the partnerClientId. For example, if the partnerClientId of the client is "1234", the value of this field should be `partnerClientId = "1234"`, in order to get only the client whose partnerClientId is "1234" in the response.
      */
@@ -3831,8 +3826,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Buyers$Clients$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the client. Format: `buyers/{accountId\}/clients/{clientAccountId\}`
      */
@@ -4720,8 +4714,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Clients$Users$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$Users$Activate extends StandardParameters {
     /**
      * Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}/clientUsers/{userId\}`
      */
@@ -4732,8 +4725,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$ActivateClientUserRequest;
   }
-  export interface Params$Resource$Buyers$Clients$Users$Create
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$Users$Create extends StandardParameters {
     /**
      * Required. The name of the client. Format: `buyers/{accountId\}/clients/{clientAccountId\}`
      */
@@ -4744,8 +4736,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$ClientUser;
   }
-  export interface Params$Resource$Buyers$Clients$Users$Deactivate
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$Users$Deactivate extends StandardParameters {
     /**
      * Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}/clientUsers/{userId\}`
      */
@@ -4756,22 +4747,19 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$DeactivateClientUserRequest;
   }
-  export interface Params$Resource$Buyers$Clients$Users$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$Users$Delete extends StandardParameters {
     /**
      * Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}/clientUsers/{userId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Clients$Users$Get
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$Users$Get extends StandardParameters {
     /**
      * Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}/clientUsers/{userId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Clients$Users$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Clients$Users$List extends StandardParameters {
     /**
      * Requested page size. If left blank, a default page size of 500 will be applied.
      */
@@ -5686,8 +5674,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Finalizeddeals$Addcreative
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Finalizeddeals$Addcreative extends StandardParameters {
     /**
      * Required. Name of the finalized deal in the format of: `buyers/{accountId\}/finalizedDeals/{dealId\}`
      */
@@ -5698,15 +5685,13 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$AddCreativeRequest;
   }
-  export interface Params$Resource$Buyers$Finalizeddeals$Get
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Finalizeddeals$Get extends StandardParameters {
     /**
      * Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Finalizeddeals$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Finalizeddeals$List extends StandardParameters {
     /**
      * Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * deal.eligibleSeatIds * dealServingStatus
      */
@@ -5728,8 +5713,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Buyers$Finalizeddeals$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Finalizeddeals$Pause extends StandardParameters {
     /**
      * Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}`
      */
@@ -5740,8 +5724,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$PauseFinalizedDealRequest;
   }
-  export interface Params$Resource$Buyers$Finalizeddeals$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Finalizeddeals$Resume extends StandardParameters {
     /**
      * Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}`
      */
@@ -5752,8 +5735,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$ResumeFinalizedDealRequest;
   }
-  export interface Params$Resource$Buyers$Finalizeddeals$Setreadytoserve
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Finalizeddeals$Setreadytoserve extends StandardParameters {
     /**
      * Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}` or `bidders/{accountId\}/finalizedDeals/{dealId\}`
      */
@@ -6925,8 +6907,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Proposals$Accept
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Proposals$Accept extends StandardParameters {
     /**
      * Name of the proposal. Format: `buyers/{accountId\}/proposals/{proposalId\}`
      */
@@ -6937,8 +6918,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$AcceptProposalRequest;
   }
-  export interface Params$Resource$Buyers$Proposals$Addnote
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Proposals$Addnote extends StandardParameters {
     /**
      * Name of the proposal. Format: `buyers/{accountId\}/proposals/{proposalId\}`
      */
@@ -6949,8 +6929,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$AddNoteRequest;
   }
-  export interface Params$Resource$Buyers$Proposals$Cancelnegotiation
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Proposals$Cancelnegotiation extends StandardParameters {
     /**
      * Name of the proposal. Format: `buyers/{accountId\}/proposals/{proposalId\}`
      */
@@ -6961,15 +6940,13 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$CancelNegotiationRequest;
   }
-  export interface Params$Resource$Buyers$Proposals$Get
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Proposals$Get extends StandardParameters {
     /**
      * Required. Name of the proposal. Format: `buyers/{accountId\}/proposals/{proposalId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Proposals$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Proposals$List extends StandardParameters {
     /**
      * Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * displayName * dealType * updateTime * state
      */
@@ -6987,8 +6964,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Buyers$Proposals$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Proposals$Patch extends StandardParameters {
     /**
      * Immutable. The name of the proposal serving as a unique identifier. Format: buyers/{accountId\}/proposals/{proposalId\}
      */
@@ -7003,8 +6979,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$Proposal;
   }
-  export interface Params$Resource$Buyers$Proposals$Sendrfp
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Proposals$Sendrfp extends StandardParameters {
     /**
      * Required. The current buyer who is sending the RFP in the format: `buyers/{accountId\}`.
      */
@@ -7670,8 +7645,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Proposals$Deals$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Proposals$Deals$Batchupdate extends StandardParameters {
     /**
      * Required. The name of the proposal containing the deals to batch update. Format: buyers/{accountId\}/proposals/{proposalId\}
      */
@@ -7682,15 +7656,13 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     requestBody?: Schema$BatchUpdateDealsRequest;
   }
-  export interface Params$Resource$Buyers$Proposals$Deals$Get
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Proposals$Deals$Get extends StandardParameters {
     /**
      * Required. Format: buyers/{accountId\}/proposals/{proposalId\}/deals/{dealId\}
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Proposals$Deals$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Proposals$Deals$List extends StandardParameters {
     /**
      * Requested page size. The server may return fewer results than requested. If requested more than 500, the server will return 500 results per page. If unspecified, the server will pick a default page size of 100.
      */
@@ -7704,8 +7676,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Buyers$Proposals$Deals$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Proposals$Deals$Patch extends StandardParameters {
     /**
      * Immutable. The unique identifier of the deal. Auto-generated by the server when a deal is created. Format: buyers/{accountId\}/proposals/{proposalId\}/deals/{dealId\}
      */
@@ -8030,15 +8001,13 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Publisherprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Publisherprofiles$Get extends StandardParameters {
     /**
      * Required. Name of the publisher profile. Format: `buyers/{buyerId\}/publisherProfiles/{publisherProfileId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Publisherprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Publisherprofiles$List extends StandardParameters {
     /**
      * Optional query string using the [Cloud API list filtering] (https://developers.google.com/authorized-buyers/apis/guides/list-filters) syntax.
      */

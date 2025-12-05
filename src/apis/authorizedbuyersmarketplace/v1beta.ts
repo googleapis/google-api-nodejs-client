@@ -1104,8 +1104,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
     }
   }
 
-  export interface Params$Resource$Curators$Datasegments$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Curators$Datasegments$Activate extends StandardParameters {
     /**
      * Required. Name of data segment to activate. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{accountId\}/dataSegments/{curatorDataSegmentId\}`
      */
@@ -1116,8 +1115,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      */
     requestBody?: Schema$ActivateDataSegmentRequest;
   }
-  export interface Params$Resource$Curators$Datasegments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Curators$Datasegments$Create extends StandardParameters {
     /**
      * Required. The parent resource where this data segment will be created. v1alpha format: `buyers/{accountId\}` v1beta format: `curators/{accountId\}`
      */
@@ -1128,8 +1126,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      */
     requestBody?: Schema$DataSegment;
   }
-  export interface Params$Resource$Curators$Datasegments$Deactivate
-    extends StandardParameters {
+  export interface Params$Resource$Curators$Datasegments$Deactivate extends StandardParameters {
     /**
      * Required. Name of data segment to deactivate. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{accountId\}/dataSegments/{curatorDataSegmentId\}`
      */
@@ -1140,15 +1137,13 @@ export namespace authorizedbuyersmarketplace_v1beta {
      */
     requestBody?: Schema$DeactivateDataSegmentRequest;
   }
-  export interface Params$Resource$Curators$Datasegments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Curators$Datasegments$Get extends StandardParameters {
     /**
      * Required. Name of data segment to get. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{accountId\}/dataSegments/{curatorDataSegmentId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Curators$Datasegments$List
-    extends StandardParameters {
+  export interface Params$Resource$Curators$Datasegments$List extends StandardParameters {
     /**
      * Optional. Requested page size. The server may return fewer results than requested. Max allowed page size is 500. If unspecified, the server will default to 500.
      */
@@ -1162,8 +1157,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Curators$Datasegments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Curators$Datasegments$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{curatorAccountId\}/dataSegments/{curatorDataSegmentId\}`
      */
