@@ -1437,8 +1437,7 @@ export namespace streetviewpublish_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Photo$Startupload
-    extends StandardParameters {
+  export interface Params$Resource$Photo$Startupload extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2049,8 +2048,7 @@ export namespace streetviewpublish_v1 {
     }
   }
 
-  export interface Params$Resource$Photos$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Photos$Batchdelete extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2070,8 +2068,7 @@ export namespace streetviewpublish_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Photos$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Photos$Batchupdate extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2691,8 +2688,7 @@ export namespace streetviewpublish_v1 {
     }
   }
 
-  export interface Params$Resource$Photosequence$Create
-    extends StandardParameters {
+  export interface Params$Resource$Photosequence$Create extends StandardParameters {
     /**
      * Required. The input form of PhotoSequence.
      */
@@ -2703,15 +2699,13 @@ export namespace streetviewpublish_v1 {
      */
     requestBody?: Schema$PhotoSequence;
   }
-  export interface Params$Resource$Photosequence$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Photosequence$Delete extends StandardParameters {
     /**
      * Required. ID of the PhotoSequence.
      */
     sequenceId?: string;
   }
-  export interface Params$Resource$Photosequence$Get
-    extends StandardParameters {
+  export interface Params$Resource$Photosequence$Get extends StandardParameters {
     /**
      * Optional. The filter expression. For example: `published_status=PUBLISHED`. The filters supported are: `published_status`. See https://google.aip.dev/160 for more information.
      */
@@ -2725,8 +2719,7 @@ export namespace streetviewpublish_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Photosequence$Startupload
-    extends StandardParameters {
+  export interface Params$Resource$Photosequence$Startupload extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2884,8 +2877,7 @@ export namespace streetviewpublish_v1 {
     }
   }
 
-  export interface Params$Resource$Photosequences$List
-    extends StandardParameters {
+  export interface Params$Resource$Photosequences$List extends StandardParameters {
     /**
      * Optional. The filter expression. For example: `imagery_type=SPHERICAL`. The filters supported are: `imagery_type`, `processing_state`, `min_latitude`, `max_latitude`, `min_longitude`, `max_longitude`, `filename_query`, `min_capture_time_seconds`, `max_capture_time_seconds. See https://google.aip.dev/160 for more information. Filename queries should sent as a Phrase in order to support multiple words and special characters by adding escaped quotes. Ex: filename_query="example of a phrase.mp4"
      */
