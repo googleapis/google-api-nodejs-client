@@ -1951,8 +1951,7 @@ export namespace firestore_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Exportdocuments
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Exportdocuments extends StandardParameters {
     /**
      * Database to export. Should be of the form: `projects/{project_id\}/databases/{database_id\}`.
      */
@@ -1963,8 +1962,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$GoogleFirestoreAdminV1beta1ExportDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Databases$Importdocuments
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Importdocuments extends StandardParameters {
     /**
      * Database to import into. Should be of the form: `projects/{project_id\}/databases/{database_id\}`.
      */
@@ -4609,8 +4607,7 @@ export namespace firestore_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Documents$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Batchget extends StandardParameters {
     /**
      * Required. The database name. In the format: `projects/{project_id\}/databases/{database_id\}`.
      */
@@ -4621,8 +4618,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$BatchGetDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Batchwrite
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Batchwrite extends StandardParameters {
     /**
      * Required. The database name. In the format: `projects/{project_id\}/databases/{database_id\}`.
      */
@@ -4633,8 +4629,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$BatchWriteRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Begintransaction
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Begintransaction extends StandardParameters {
     /**
      * Required. The database name. In the format: `projects/{project_id\}/databases/{database_id\}`.
      */
@@ -4645,8 +4640,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$BeginTransactionRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Commit
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Commit extends StandardParameters {
     /**
      * Required. The database name. In the format: `projects/{project_id\}/databases/{database_id\}`.
      */
@@ -4657,8 +4651,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$CommitRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Createdocument
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Createdocument extends StandardParameters {
     /**
      * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
      */
@@ -4681,8 +4674,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$Document;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Delete extends StandardParameters {
     /**
      * When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      */
@@ -4696,8 +4688,7 @@ export namespace firestore_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Get extends StandardParameters {
     /**
      * The list of field paths in the mask. See Document.fields for a field path syntax reference.
      */
@@ -4715,8 +4706,7 @@ export namespace firestore_v1beta1 {
      */
     transaction?: string;
   }
-  export interface Params$Resource$Projects$Databases$Documents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$List extends StandardParameters {
     /**
      * Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.
      */
@@ -4754,8 +4744,7 @@ export namespace firestore_v1beta1 {
      */
     transaction?: string;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Listcollectionids
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Listcollectionids extends StandardParameters {
     /**
      * Required. The parent document. In the format: `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
@@ -4766,8 +4755,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$ListCollectionIdsRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Listdocuments
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Listdocuments extends StandardParameters {
     /**
      * Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.
      */
@@ -4805,8 +4793,7 @@ export namespace firestore_v1beta1 {
      */
     transaction?: string;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Listen
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Listen extends StandardParameters {
     /**
      * Required. The database name. In the format: `projects/{project_id\}/databases/{database_id\}`.
      */
@@ -4817,8 +4804,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$ListenRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Partitionquery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Partitionquery extends StandardParameters {
     /**
      * Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents`. Document resource names are not supported; only database resource names can be specified.
      */
@@ -4829,8 +4815,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$PartitionQueryRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Patch extends StandardParameters {
     /**
      * When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      */
@@ -4857,8 +4842,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$Document;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Rollback
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Rollback extends StandardParameters {
     /**
      * Required. The database name. In the format: `projects/{project_id\}/databases/{database_id\}`.
      */
@@ -4869,8 +4853,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Runaggregationquery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Runaggregationquery extends StandardParameters {
     /**
      * Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
@@ -4881,8 +4864,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$RunAggregationQueryRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Runquery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Runquery extends StandardParameters {
     /**
      * Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
@@ -4893,8 +4875,7 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$RunQueryRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Write
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Documents$Write extends StandardParameters {
     /**
      * Required. The database name. In the format: `projects/{project_id\}/databases/{database_id\}`. This is only required in the first message.
      */
@@ -5513,8 +5494,7 @@ export namespace firestore_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Indexes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Indexes$Create extends StandardParameters {
     /**
      * The name of the database this index will apply to. For example: `projects/{project_id\}/databases/{database_id\}`
      */
@@ -5525,22 +5505,19 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$GoogleFirestoreAdminV1beta1Index;
   }
-  export interface Params$Resource$Projects$Databases$Indexes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Indexes$Delete extends StandardParameters {
     /**
      * The index name. For example: `projects/{project_id\}/databases/{database_id\}/indexes/{index_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Indexes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Indexes$Get extends StandardParameters {
     /**
      * The name of the index. For example: `projects/{project_id\}/databases/{database_id\}/indexes/{index_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Indexes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Indexes$List extends StandardParameters {
     /**
      *
      */
