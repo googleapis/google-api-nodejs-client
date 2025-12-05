@@ -5332,8 +5332,7 @@ export namespace vision_v1p1beta1 {
      */
     requestBody?: Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesRequest;
   }
-  export interface Params$Resource$Files$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Files$Asyncbatchannotate extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -5661,8 +5660,7 @@ export namespace vision_v1p1beta1 {
      */
     requestBody?: Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest;
   }
-  export interface Params$Resource$Images$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Images$Asyncbatchannotate extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -6002,8 +6000,7 @@ export namespace vision_v1p1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Files$Annotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Files$Annotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -6014,8 +6011,7 @@ export namespace vision_v1p1beta1 {
      */
     requestBody?: Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesRequest;
   }
-  export interface Params$Resource$Projects$Files$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Files$Asyncbatchannotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -6348,8 +6344,7 @@ export namespace vision_v1p1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Images$Annotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Images$Annotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -6360,8 +6355,7 @@ export namespace vision_v1p1beta1 {
      */
     requestBody?: Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest;
   }
-  export interface Params$Resource$Projects$Images$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Images$Asyncbatchannotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -6705,8 +6699,7 @@ export namespace vision_v1p1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Files$Annotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Files$Annotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -6717,8 +6710,7 @@ export namespace vision_v1p1beta1 {
      */
     requestBody?: Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Files$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Files$Asyncbatchannotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -7052,8 +7044,7 @@ export namespace vision_v1p1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Images$Annotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Images$Annotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -7064,8 +7055,7 @@ export namespace vision_v1p1beta1 {
      */
     requestBody?: Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Images$Asyncbatchannotate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Images$Asyncbatchannotate extends StandardParameters {
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
