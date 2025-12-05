@@ -962,8 +962,7 @@ export namespace marketingplatformadmin_v1alpha {
     }
   }
 
-  export interface Params$Resource$Organizations$Findsalespartnermanagedclients
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Findsalespartnermanagedclients extends StandardParameters {
     /**
      * Required. The name of the sales partner organization. Format: organizations/{org_id\}
      */
@@ -974,15 +973,13 @@ export namespace marketingplatformadmin_v1alpha {
      */
     requestBody?: Schema$FindSalesPartnerManagedClientsRequest;
   }
-  export interface Params$Resource$Organizations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Get extends StandardParameters {
     /**
      * Required. The name of the Organization to retrieve. Format: organizations/{org_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$List extends StandardParameters {
     /**
      * Optional. The maximum number of organizations to return in one call. The service may return fewer than this value. If unspecified, at most 50 organizations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -992,8 +989,7 @@ export namespace marketingplatformadmin_v1alpha {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Organizations$Reportpropertyusage
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Reportpropertyusage extends StandardParameters {
     /**
      * Required. Specifies the organization whose property usage will be listed. Format: organizations/{org_id\}
      */
@@ -1622,8 +1618,7 @@ export namespace marketingplatformadmin_v1alpha {
     }
   }
 
-  export interface Params$Resource$Organizations$Analyticsaccountlinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Analyticsaccountlinks$Create extends StandardParameters {
     /**
      * Required. The parent resource where this Analytics account link will be created. Format: organizations/{org_id\}
      */
@@ -1634,15 +1629,13 @@ export namespace marketingplatformadmin_v1alpha {
      */
     requestBody?: Schema$AnalyticsAccountLink;
   }
-  export interface Params$Resource$Organizations$Analyticsaccountlinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Analyticsaccountlinks$Delete extends StandardParameters {
     /**
      * Required. The name of the Analytics account link to delete. Format: organizations/{org_id\}/analyticsAccountLinks/{analytics_account_link_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Analyticsaccountlinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Analyticsaccountlinks$List extends StandardParameters {
     /**
      * Optional. The maximum number of Analytics account links to return in one call. The service may return fewer than this value. If unspecified, at most 50 Analytics account links will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -1656,8 +1649,7 @@ export namespace marketingplatformadmin_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Analyticsaccountlinks$Setpropertyservicelevel
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Analyticsaccountlinks$Setpropertyservicelevel extends StandardParameters {
     /**
      * Required. The parent AnalyticsAccountLink scope where this property is in. Format: organizations/{org_id\}/analyticsAccountLinks/{analytics_account_link_id\}
      */
