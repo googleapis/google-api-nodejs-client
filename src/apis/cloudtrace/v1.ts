@@ -356,8 +356,7 @@ export namespace cloudtrace_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Patchtraces
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchtraces extends StandardParameters {
     /**
      * Required. ID of the Cloud project where the trace data is stored.
      */
@@ -674,8 +673,7 @@ export namespace cloudtrace_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Traces$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Traces$Get extends StandardParameters {
     /**
      * Required. ID of the Cloud project where the trace data is stored.
      */
@@ -685,8 +683,7 @@ export namespace cloudtrace_v1 {
      */
     traceId?: string;
   }
-  export interface Params$Resource$Projects$Traces$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Traces$List extends StandardParameters {
     /**
      * End of the time interval (inclusive) during which the trace data was collected from the application.
      */
