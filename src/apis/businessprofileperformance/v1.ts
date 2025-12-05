@@ -628,8 +628,7 @@ export namespace businessprofileperformance_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Fetchmultidailymetricstimeseries
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Fetchmultidailymetricstimeseries extends StandardParameters {
     /**
      * Required. The metrics to retrieve time series for.
      */
@@ -663,8 +662,7 @@ export namespace businessprofileperformance_v1 {
      */
     location?: string;
   }
-  export interface Params$Resource$Locations$Getdailymetricstimeseries
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Getdailymetricstimeseries extends StandardParameters {
     /**
      * Required. The metric to retrieve time series.
      */
@@ -916,8 +914,7 @@ export namespace businessprofileperformance_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List extends StandardParameters {
     /**
      * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
