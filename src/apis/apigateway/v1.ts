@@ -915,15 +915,13 @@ export namespace apigateway_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2136,8 +2134,7 @@ export namespace apigateway_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Create extends StandardParameters {
     /**
      * Required. Identifier to assign to the API. Must be unique within scope of the parent resource.
      */
@@ -2152,22 +2149,19 @@ export namespace apigateway_v1 {
      */
     requestBody?: Schema$ApigatewayApi;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Delete extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/global/apis/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/global/apis/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2177,8 +2171,7 @@ export namespace apigateway_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$List extends StandardParameters {
     /**
      * Filter.
      */
@@ -2200,8 +2193,7 @@ export namespace apigateway_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the API. Format: projects/{project\}/locations/global/apis/{api\}
      */
@@ -2216,8 +2208,7 @@ export namespace apigateway_v1 {
      */
     requestBody?: Schema$ApigatewayApi;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2228,8 +2219,7 @@ export namespace apigateway_v1 {
      */
     requestBody?: Schema$ApigatewaySetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3461,8 +3451,7 @@ export namespace apigateway_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Configs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Configs$Create extends StandardParameters {
     /**
      * Required. Identifier to assign to the API Config. Must be unique within scope of the parent resource.
      */
@@ -3477,15 +3466,13 @@ export namespace apigateway_v1 {
      */
     requestBody?: Schema$ApigatewayApiConfig;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Configs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Configs$Delete extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/global/apis/x/configs/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Configs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Configs$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/global/apis/x/configs/x`
      */
@@ -3495,8 +3482,7 @@ export namespace apigateway_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Configs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Configs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3506,8 +3492,7 @@ export namespace apigateway_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Configs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Configs$List extends StandardParameters {
     /**
      * Filter.
      */
@@ -3529,8 +3514,7 @@ export namespace apigateway_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Configs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Configs$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the API Config. Format: projects/{project\}/locations/global/apis/{api\}/configs/{api_config\}
      */
@@ -3545,8 +3529,7 @@ export namespace apigateway_v1 {
      */
     requestBody?: Schema$ApigatewayApiConfig;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Configs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Configs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3557,8 +3540,7 @@ export namespace apigateway_v1 {
      */
     requestBody?: Schema$ApigatewaySetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Configs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Configs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4769,8 +4751,7 @@ export namespace apigateway_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Gateways$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Create extends StandardParameters {
     /**
      * Required. Identifier to assign to the Gateway. Must be unique within scope of the parent resource.
      */
@@ -4785,22 +4766,19 @@ export namespace apigateway_v1 {
      */
     requestBody?: Schema$ApigatewayGateway;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Delete extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/gateways/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/gateways/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4810,8 +4788,7 @@ export namespace apigateway_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$List extends StandardParameters {
     /**
      * Filter.
      */
@@ -4833,8 +4810,7 @@ export namespace apigateway_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the Gateway. Format: projects/{project\}/locations/{location\}/gateways/{gateway\}
      */
@@ -4849,8 +4825,7 @@ export namespace apigateway_v1 {
      */
     requestBody?: Schema$ApigatewayGateway;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4861,8 +4836,7 @@ export namespace apigateway_v1 {
      */
     requestBody?: Schema$ApigatewaySetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5446,8 +5420,7 @@ export namespace apigateway_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -5458,22 +5431,19 @@ export namespace apigateway_v1 {
      */
     requestBody?: Schema$ApigatewayCancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
