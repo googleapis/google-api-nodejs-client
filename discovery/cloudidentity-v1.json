@@ -2188,7 +2188,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The name of the policy to retrieve. Format: \"policies/{policy}\".",
+              "description": "Required. The name of the policy to retrieve. Format: `policies/{policy}`.",
               "location": "path",
               "pattern": "^policies/[^/]+$",
               "required": true,
@@ -2240,7 +2240,7 @@
       }
     }
   },
-  "revision": "20251021",
+  "revision": "20251118",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
