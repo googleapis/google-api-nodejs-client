@@ -2645,29 +2645,25 @@ export namespace ondemandscanning_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2689,8 +2685,7 @@ export namespace ondemandscanning_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Wait
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Wait extends StandardParameters {
     /**
      * The name of the operation resource to wait on.
      */
@@ -2863,8 +2858,7 @@ export namespace ondemandscanning_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Scans$Analyzepackages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scans$Analyzepackages extends StandardParameters {
     /**
      * Required. The parent of the resource for which analysis is requested. Format: projects/[project_name]/locations/[location]
      */
@@ -3034,8 +3028,7 @@ export namespace ondemandscanning_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Scans$Vulnerabilities$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scans$Vulnerabilities$List extends StandardParameters {
     /**
      * The number of vulnerabilities to retrieve.
      */
