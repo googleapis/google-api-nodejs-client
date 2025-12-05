@@ -195,6 +195,15 @@ export namespace datastream_v1 {
    */
   export interface Schema$BasicEncryption {}
   /**
+   * BigQuery clustering configuration.
+   */
+  export interface Schema$BigQueryClustering {
+    /**
+     * Required. Column names to set as clustering columns.
+     */
+    columns?: string[] | null;
+  }
+  /**
    * BigQuery destination configuration
    */
   export interface Schema$BigQueryDestinationConfig {
@@ -222,6 +231,27 @@ export namespace datastream_v1 {
      * Source hierarchy datasets.
      */
     sourceHierarchyDatasets?: Schema$SourceHierarchyDatasets;
+  }
+  /**
+   * BigQuery partitioning configuration.
+   */
+  export interface Schema$BigQueryPartitioning {
+    /**
+     * Ingestion time partitioning.
+     */
+    ingestionTimePartition?: Schema$IngestionTimePartition;
+    /**
+     * Integer range partitioning.
+     */
+    integerRangePartition?: Schema$IntegerRangePartition;
+    /**
+     * Optional. If true, queries over the table require a partition filter.
+     */
+    requirePartitionFilter?: boolean | null;
+    /**
+     * Time unit column partitioning.
+     */
+    timeUnitPartition?: Schema$TimeUnitPartition;
   }
   /**
    * BigQuery warehouse profile.
@@ -366,6 +396,19 @@ export namespace datastream_v1 {
      * Output only. The update time of the resource.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A customization rule to apply to a set of objects.
+   */
+  export interface Schema$CustomizationRule {
+    /**
+     * BigQuery clustering rule.
+     */
+    bigqueryClustering?: Schema$BigQueryClustering;
+    /**
+     * BigQuery partitioning rule.
+     */
+    bigqueryPartitioning?: Schema$BigQueryPartitioning;
   }
   /**
    * Dataset template used for dynamic dataset creation.
@@ -626,6 +669,36 @@ export namespace datastream_v1 {
      * Optional. Port for the connection.
      */
     port?: number | null;
+  }
+  /**
+   * Ingestion time partitioning. see https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time
+   */
+  export interface Schema$IngestionTimePartition {
+    /**
+     * Optional. Partition granularity
+     */
+    partitioningTimeGranularity?: string | null;
+  }
+  /**
+   * Integer range partitioning. see https://cloud.google.com/bigquery/docs/partitioned-tables#integer_range
+   */
+  export interface Schema$IntegerRangePartition {
+    /**
+     * Required. The partitioning column.
+     */
+    column?: string | null;
+    /**
+     * Required. The ending value for range partitioning (exclusive).
+     */
+    end?: string | null;
+    /**
+     * Required. The interval of each range within the partition.
+     */
+    interval?: string | null;
+    /**
+     * Required. The starting value for range partitioning (inclusive).
+     */
+    start?: string | null;
   }
   /**
    * JSON file format configuration.
@@ -1187,6 +1260,15 @@ export namespace datastream_v1 {
     secretManagerStoredClientSecret?: string | null;
   }
   /**
+   * Object filter to apply the rules to.
+   */
+  export interface Schema$ObjectFilter {
+    /**
+     * Specific source object identifier.
+     */
+    sourceObjectIdentifier?: Schema$SourceObjectIdentifier;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -1739,6 +1821,19 @@ export namespace datastream_v1 {
     updateTime?: string | null;
   }
   /**
+   * A set of rules to apply to a set of objects.
+   */
+  export interface Schema$RuleSet {
+    /**
+     * Required. List of customization rules to apply.
+     */
+    customizationRules?: Schema$CustomizationRule[];
+    /**
+     * Required. Object filter to apply the customization rules to.
+     */
+    objectFilter?: Schema$ObjectFilter;
+  }
+  /**
    * Request message for running a stream.
    */
   export interface Schema$RunStreamRequest {
@@ -2267,6 +2362,10 @@ export namespace datastream_v1 {
      */
     name?: string | null;
     /**
+     * Optional. Rule sets to apply to the stream.
+     */
+    ruleSets?: Schema$RuleSet[];
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -2304,6 +2403,10 @@ export namespace datastream_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. The customization rules for the object. These rules are derived from the parent Stream's `rule_sets` and represent the intended configuration for the object.
+     */
+    customizationRules?: Schema$CustomizationRule[];
+    /**
      * Required. Display name.
      */
     displayName?: string | null;
@@ -2323,6 +2426,19 @@ export namespace datastream_v1 {
      * Output only. The last update time of the object.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Time unit column partitioning. see https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables
+   */
+  export interface Schema$TimeUnitPartition {
+    /**
+     * Required. The partitioning column.
+     */
+    column?: string | null;
+    /**
+     * Optional. Partition granularity.
+     */
+    partitioningTimeGranularity?: string | null;
   }
   /**
    * Username-password credentials.
@@ -2874,8 +2990,7 @@ export namespace datastream_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Fetchstaticips
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Fetchstaticips extends StandardParameters {
     /**
      * Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/x/locations/x`.
      */
@@ -2889,15 +3004,13 @@ export namespace datastream_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -3890,8 +4003,7 @@ export namespace datastream_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Create extends StandardParameters {
     /**
      * Required. The connection profile identifier.
      */
@@ -3918,8 +4030,7 @@ export namespace datastream_v1 {
      */
     requestBody?: Schema$ConnectionProfile;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Delete extends StandardParameters {
     /**
      * Required. The name of the connection profile resource to delete.
      */
@@ -3929,8 +4040,7 @@ export namespace datastream_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Discover
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Discover extends StandardParameters {
     /**
      * Required. The parent resource of the connection profile type. Must be in the format `projects/x/locations/x`.
      */
@@ -3941,15 +4051,13 @@ export namespace datastream_v1 {
      */
     requestBody?: Schema$DiscoverConnectionProfileRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Get extends StandardParameters {
     /**
      * Required. The name of the connection profile resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$List extends StandardParameters {
     /**
      * Filter request.
      */
@@ -3971,8 +4079,7 @@ export namespace datastream_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Patch extends StandardParameters {
     /**
      * Optional. Update the connection profile without validating it.
      */
@@ -4564,8 +4671,7 @@ export namespace datastream_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -4576,22 +4682,19 @@ export namespace datastream_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -5235,8 +5338,7 @@ export namespace datastream_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateconnections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Create extends StandardParameters {
     /**
      * Optional. If set to true, will skip validations.
      */
@@ -5263,8 +5365,7 @@ export namespace datastream_v1 {
      */
     requestBody?: Schema$PrivateConnection;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Delete extends StandardParameters {
     /**
      * Optional. If set to true, any child routes that belong to this PrivateConnection will also be deleted.
      */
@@ -5278,15 +5379,13 @@ export namespace datastream_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Get extends StandardParameters {
     /**
      * Required. The name of the private connectivity configuration to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$List extends StandardParameters {
     /**
      * Filter request.
      */
@@ -5913,8 +6012,7 @@ export namespace datastream_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Create extends StandardParameters {
     /**
      * Required. The parent that owns the collection of Routes.
      */
@@ -5933,8 +6031,7 @@ export namespace datastream_v1 {
      */
     requestBody?: Schema$Route;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Delete extends StandardParameters {
     /**
      * Required. The name of the Route resource to delete.
      */
@@ -5944,15 +6041,13 @@ export namespace datastream_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Get extends StandardParameters {
     /**
      * Required. The name of the Route resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$List extends StandardParameters {
     /**
      * Filter request.
      */
@@ -6041,6 +6136,7 @@ export namespace datastream_v1 {
      *       //   "labels": {},
      *       //   "lastRecoveryTime": "my_lastRecoveryTime",
      *       //   "name": "my_name",
+     *       //   "ruleSets": [],
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "sourceConfig": {},
@@ -6344,6 +6440,7 @@ export namespace datastream_v1 {
      *   //   "labels": {},
      *   //   "lastRecoveryTime": "my_lastRecoveryTime",
      *   //   "name": "my_name",
+     *   //   "ruleSets": [],
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "sourceConfig": {},
@@ -6647,6 +6744,7 @@ export namespace datastream_v1 {
      *       //   "labels": {},
      *       //   "lastRecoveryTime": "my_lastRecoveryTime",
      *       //   "name": "my_name",
+     *       //   "ruleSets": [],
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "sourceConfig": {},
@@ -6907,8 +7005,7 @@ export namespace datastream_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Streams$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Create extends StandardParameters {
     /**
      * Optional. Create the stream without validating it.
      */
@@ -6935,8 +7032,7 @@ export namespace datastream_v1 {
      */
     requestBody?: Schema$Stream;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Delete extends StandardParameters {
     /**
      * Required. The name of the stream resource to delete.
      */
@@ -6946,15 +7042,13 @@ export namespace datastream_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Get extends StandardParameters {
     /**
      * Required. The name of the stream resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$List extends StandardParameters {
     /**
      * Filter request.
      */
@@ -6976,8 +7070,7 @@ export namespace datastream_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Patch extends StandardParameters {
     /**
      * Optional. Update the stream without validating it.
      */
@@ -7004,8 +7097,7 @@ export namespace datastream_v1 {
      */
     requestBody?: Schema$Stream;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Run extends StandardParameters {
     /**
      * Required. Name of the stream resource to start, in the format: projects/{project_id\}/locations/{location\}/streams/{stream_name\}
      */
@@ -7063,6 +7155,7 @@ export namespace datastream_v1 {
      *   // {
      *   //   "backfillJob": {},
      *   //   "createTime": "my_createTime",
+     *   //   "customizationRules": [],
      *   //   "displayName": "my_displayName",
      *   //   "errors": [],
      *   //   "name": "my_name",
@@ -7357,6 +7450,7 @@ export namespace datastream_v1 {
      *   // {
      *   //   "backfillJob": {},
      *   //   "createTime": "my_createTime",
+     *   //   "customizationRules": [],
      *   //   "displayName": "my_displayName",
      *   //   "errors": [],
      *   //   "name": "my_name",
@@ -7764,15 +7858,13 @@ export namespace datastream_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Streams$Objects$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Objects$Get extends StandardParameters {
     /**
      * Required. The name of the stream object resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Objects$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Objects$List extends StandardParameters {
     /**
      * Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -7786,8 +7878,7 @@ export namespace datastream_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Objects$Lookup
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Objects$Lookup extends StandardParameters {
     /**
      * Required. The parent stream that owns the collection of objects.
      */
@@ -7798,8 +7889,7 @@ export namespace datastream_v1 {
      */
     requestBody?: Schema$LookupStreamObjectRequest;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Objects$Startbackfilljob
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Objects$Startbackfilljob extends StandardParameters {
     /**
      * Required. The name of the stream object resource to start a backfill job for.
      */
@@ -7810,8 +7900,7 @@ export namespace datastream_v1 {
      */
     requestBody?: Schema$StartBackfillJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Objects$Stopbackfilljob
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Objects$Stopbackfilljob extends StandardParameters {
     /**
      * Required. The name of the stream object resource to stop the backfill job for.
      */

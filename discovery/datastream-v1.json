@@ -1266,7 +1266,7 @@
       }
     }
   },
-  "revision": "20251029",
+  "revision": "20251112",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -1390,6 +1390,20 @@
       "properties": {},
       "type": "object"
     },
+    "BigQueryClustering": {
+      "description": "BigQuery clustering configuration.",
+      "id": "BigQueryClustering",
+      "properties": {
+        "columns": {
+          "description": "Required. Column names to set as clustering columns.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BigQueryDestinationConfig": {
       "description": "BigQuery destination configuration",
       "id": "BigQueryDestinationConfig",
@@ -1418,6 +1432,29 @@
         "sourceHierarchyDatasets": {
           "$ref": "SourceHierarchyDatasets",
           "description": "Source hierarchy datasets."
+        }
+      },
+      "type": "object"
+    },
+    "BigQueryPartitioning": {
+      "description": "BigQuery partitioning configuration.",
+      "id": "BigQueryPartitioning",
+      "properties": {
+        "ingestionTimePartition": {
+          "$ref": "IngestionTimePartition",
+          "description": "Ingestion time partitioning."
+        },
+        "integerRangePartition": {
+          "$ref": "IntegerRangePartition",
+          "description": "Integer range partitioning."
+        },
+        "requirePartitionFilter": {
+          "description": "Optional. If true, queries over the table require a partition filter.",
+          "type": "boolean"
+        },
+        "timeUnitPartition": {
+          "$ref": "TimeUnitPartition",
+          "description": "Time unit column partitioning."
         }
       },
       "type": "object"
@@ -1602,6 +1639,21 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomizationRule": {
+      "description": "A customization rule to apply to a set of objects.",
+      "id": "CustomizationRule",
+      "properties": {
+        "bigqueryClustering": {
+          "$ref": "BigQueryClustering",
+          "description": "BigQuery clustering rule."
+        },
+        "bigqueryPartitioning": {
+          "$ref": "BigQueryPartitioning",
+          "description": "BigQuery partitioning rule."
         }
       },
       "type": "object"
@@ -1906,6 +1958,57 @@
           "description": "Optional. Port for the connection.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "IngestionTimePartition": {
+      "description": "Ingestion time partitioning. see https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time",
+      "id": "IngestionTimePartition",
+      "properties": {
+        "partitioningTimeGranularity": {
+          "description": "Optional. Partition granularity",
+          "enum": [
+            "PARTITIONING_TIME_GRANULARITY_UNSPECIFIED",
+            "PARTITIONING_TIME_GRANULARITY_HOUR",
+            "PARTITIONING_TIME_GRANULARITY_DAY",
+            "PARTITIONING_TIME_GRANULARITY_MONTH",
+            "PARTITIONING_TIME_GRANULARITY_YEAR"
+          ],
+          "enumDescriptions": [
+            "Unspecified partitioing interval.",
+            "Hourly partitioning.",
+            "Daily partitioning.",
+            "Monthly partitioning.",
+            "Yearly partitioning."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IntegerRangePartition": {
+      "description": "Integer range partitioning. see https://cloud.google.com/bigquery/docs/partitioned-tables#integer_range",
+      "id": "IntegerRangePartition",
+      "properties": {
+        "column": {
+          "description": "Required. The partitioning column.",
+          "type": "string"
+        },
+        "end": {
+          "description": "Required. The ending value for range partitioning (exclusive).",
+          "format": "int64",
+          "type": "string"
+        },
+        "interval": {
+          "description": "Required. The interval of each range within the partition.",
+          "format": "int64",
+          "type": "string"
+        },
+        "start": {
+          "description": "Required. The starting value for range partitioning (inclusive).",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2649,6 +2752,17 @@
       },
       "type": "object"
     },
+    "ObjectFilter": {
+      "description": "Object filter to apply the rules to.",
+      "id": "ObjectFilter",
+      "properties": {
+        "sourceObjectIdentifier": {
+          "$ref": "SourceObjectIdentifier",
+          "description": "Specific source object identifier."
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -3346,6 +3460,24 @@
       },
       "type": "object"
     },
+    "RuleSet": {
+      "description": "A set of rules to apply to a set of objects.",
+      "id": "RuleSet",
+      "properties": {
+        "customizationRules": {
+          "description": "Required. List of customization rules to apply.",
+          "items": {
+            "$ref": "CustomizationRule"
+          },
+          "type": "array"
+        },
+        "objectFilter": {
+          "$ref": "ObjectFilter",
+          "description": "Required. Object filter to apply the customization rules to."
+        }
+      },
+      "type": "object"
+    },
     "RunStreamRequest": {
       "description": "Request message for running a stream.",
       "id": "RunStreamRequest",
@@ -3983,6 +4115,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "ruleSets": {
+          "description": "Optional. Rule sets to apply to the stream.",
+          "items": {
+            "$ref": "RuleSet"
+          },
+          "type": "array"
+        },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -4052,6 +4191,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "customizationRules": {
+          "description": "Output only. The customization rules for the object. These rules are derived from the parent Stream's `rule_sets` and represent the intended configuration for the object.",
+          "items": {
+            "$ref": "CustomizationRule"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "displayName": {
           "description": "Required. Display name.",
           "type": "string"
@@ -4077,6 +4224,35 @@
           "description": "Output only. The last update time of the object.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimeUnitPartition": {
+      "description": "Time unit column partitioning. see https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables",
+      "id": "TimeUnitPartition",
+      "properties": {
+        "column": {
+          "description": "Required. The partitioning column.",
+          "type": "string"
+        },
+        "partitioningTimeGranularity": {
+          "description": "Optional. Partition granularity.",
+          "enum": [
+            "PARTITIONING_TIME_GRANULARITY_UNSPECIFIED",
+            "PARTITIONING_TIME_GRANULARITY_HOUR",
+            "PARTITIONING_TIME_GRANULARITY_DAY",
+            "PARTITIONING_TIME_GRANULARITY_MONTH",
+            "PARTITIONING_TIME_GRANULARITY_YEAR"
+          ],
+          "enumDescriptions": [
+            "Unspecified partitioing interval.",
+            "Hourly partitioning.",
+            "Daily partitioning.",
+            "Monthly partitioning.",
+            "Yearly partitioning."
+          ],
           "type": "string"
         }
       },
