@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudasset-v14.1.0...cloudasset-v14.1.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **cloudasset:** update the API ([1e0d5f0](https://github.com/googleapis/google-api-nodejs-client/commit/1e0d5f0869fcdce7b3393c8bef00e520fbcac9aa))
+
 ## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudasset-v14.0.0...cloudasset-v14.1.0) (2025-11-26)
 
 
