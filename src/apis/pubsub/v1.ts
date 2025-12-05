@@ -3150,8 +3150,7 @@ export namespace pubsub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Schemas$Commit
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Commit extends StandardParameters {
     /**
      * Required. The name of the schema we are revising. Format is `projects/{project\}/schemas/{schema\}`.
      */
@@ -3162,8 +3161,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$CommitSchemaRequest;
   }
-  export interface Params$Resource$Projects$Schemas$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Create extends StandardParameters {
     /**
      * Required. The name of the project in which to create the schema. Format is `projects/{project-id\}`.
      */
@@ -3178,15 +3176,13 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$Schema;
   }
-  export interface Params$Resource$Projects$Schemas$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Delete extends StandardParameters {
     /**
      * Required. Name of the schema to delete. Format is `projects/{project\}/schemas/{schema\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Schemas$Deleterevision
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Deleterevision extends StandardParameters {
     /**
      * Required. The name of the schema revision to be deleted, with a revision ID explicitly included. Example: `projects/123/schemas/my-schema@c7cfa2a8`
      */
@@ -3196,8 +3192,7 @@ export namespace pubsub_v1 {
      */
     revisionId?: string;
   }
-  export interface Params$Resource$Projects$Schemas$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Get extends StandardParameters {
     /**
      * Required. The name of the schema to get. Format is `projects/{project\}/schemas/{schema\}`.
      */
@@ -3207,8 +3202,7 @@ export namespace pubsub_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Schemas$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3218,8 +3212,7 @@ export namespace pubsub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Schemas$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$List extends StandardParameters {
     /**
      * Maximum number of schemas to return.
      */
@@ -3237,8 +3230,7 @@ export namespace pubsub_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Schemas$Listrevisions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Listrevisions extends StandardParameters {
     /**
      * Required. The name of the schema to list revisions for.
      */
@@ -3256,8 +3248,7 @@ export namespace pubsub_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Schemas$Rollback
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Rollback extends StandardParameters {
     /**
      * Required. The schema being rolled back with revision id.
      */
@@ -3268,8 +3259,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$RollbackSchemaRequest;
   }
-  export interface Params$Resource$Projects$Schemas$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3280,8 +3270,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Schemas$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3292,8 +3281,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Schemas$Validate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Validate extends StandardParameters {
     /**
      * Required. The name of the project in which to validate schemas. Format is `projects/{project-id\}`.
      */
@@ -3304,8 +3292,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$ValidateSchemaRequest;
   }
-  export interface Params$Resource$Projects$Schemas$Validatemessage
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Schemas$Validatemessage extends StandardParameters {
     /**
      * Required. The name of the project in which to validate schemas. Format is `projects/{project-id\}`.
      */
@@ -4491,8 +4478,7 @@ export namespace pubsub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Snapshots$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snapshots$Create extends StandardParameters {
     /**
      * Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project\}/snapshots/{snap\}`.
      */
@@ -4503,22 +4489,19 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$CreateSnapshotRequest;
   }
-  export interface Params$Resource$Projects$Snapshots$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snapshots$Delete extends StandardParameters {
     /**
      * Required. The name of the snapshot to delete. Format is `projects/{project\}/snapshots/{snap\}`.
      */
     snapshot?: string;
   }
-  export interface Params$Resource$Projects$Snapshots$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snapshots$Get extends StandardParameters {
     /**
      * Required. The name of the snapshot to get. Format is `projects/{project\}/snapshots/{snap\}`.
      */
     snapshot?: string;
   }
-  export interface Params$Resource$Projects$Snapshots$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snapshots$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4528,8 +4511,7 @@ export namespace pubsub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Snapshots$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snapshots$List extends StandardParameters {
     /**
      * Optional. Maximum number of snapshots to return.
      */
@@ -4543,8 +4525,7 @@ export namespace pubsub_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Snapshots$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snapshots$Patch extends StandardParameters {
     /**
      * Optional. The name of the snapshot.
      */
@@ -4555,8 +4536,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$UpdateSnapshotRequest;
   }
-  export interface Params$Resource$Projects$Snapshots$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snapshots$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4567,8 +4547,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Snapshots$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snapshots$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6709,8 +6688,7 @@ export namespace pubsub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Subscriptions$Acknowledge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Acknowledge extends StandardParameters {
     /**
      * Required. The subscription whose message is being acknowledged. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
@@ -6721,8 +6699,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$AcknowledgeRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Create extends StandardParameters {
     /**
      * Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
@@ -6733,29 +6710,25 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Projects$Subscriptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Delete extends StandardParameters {
     /**
      * Required. The subscription to delete. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$Detach
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Detach extends StandardParameters {
     /**
      * Required. The subscription to detach. Format is `projects/{project\}/subscriptions/{subscription\}`.
      */
     subscription?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Get extends StandardParameters {
     /**
      * Required. The name of the subscription to get. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -6765,8 +6738,7 @@ export namespace pubsub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$List extends StandardParameters {
     /**
      * Optional. Maximum number of subscriptions to return.
      */
@@ -6780,8 +6752,7 @@ export namespace pubsub_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$Modifyackdeadline
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Modifyackdeadline extends StandardParameters {
     /**
      * Required. The name of the subscription. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
@@ -6792,8 +6763,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$ModifyAckDeadlineRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Modifypushconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Modifypushconfig extends StandardParameters {
     /**
      * Required. The name of the subscription. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
@@ -6804,8 +6774,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$ModifyPushConfigRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Patch extends StandardParameters {
     /**
      * Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
@@ -6816,8 +6785,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$UpdateSubscriptionRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Pull
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Pull extends StandardParameters {
     /**
      * Required. The subscription from which messages should be pulled. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
@@ -6828,8 +6796,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$PullRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Seek
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Seek extends StandardParameters {
     /**
      * Required. The subscription to affect.
      */
@@ -6840,8 +6807,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$SeekRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6852,8 +6818,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8220,8 +8185,7 @@ export namespace pubsub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Topics$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Create extends StandardParameters {
     /**
      * Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
@@ -8232,22 +8196,19 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$Topic;
   }
-  export interface Params$Resource$Projects$Topics$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Delete extends StandardParameters {
     /**
      * Required. Name of the topic to delete. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
   }
-  export interface Params$Resource$Projects$Topics$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Get extends StandardParameters {
     /**
      * Required. The name of the topic to get. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
   }
-  export interface Params$Resource$Projects$Topics$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -8257,8 +8218,7 @@ export namespace pubsub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Topics$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$List extends StandardParameters {
     /**
      * Optional. Maximum number of topics to return.
      */
@@ -8272,8 +8232,7 @@ export namespace pubsub_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Topics$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Patch extends StandardParameters {
     /**
      * Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
@@ -8284,8 +8243,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$UpdateTopicRequest;
   }
-  export interface Params$Resource$Projects$Topics$Publish
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Publish extends StandardParameters {
     /**
      * Required. The messages in the request will be published on this topic. Format is `projects/{project\}/topics/{topic\}`.
      */
@@ -8296,8 +8254,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$PublishRequest;
   }
-  export interface Params$Resource$Projects$Topics$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8308,8 +8265,7 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Topics$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8477,8 +8433,7 @@ export namespace pubsub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Topics$Snapshots$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Snapshots$List extends StandardParameters {
     /**
      * Optional. Maximum number of snapshot names to return.
      */
@@ -8651,8 +8606,7 @@ export namespace pubsub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Topics$Subscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Subscriptions$List extends StandardParameters {
     /**
      * Optional. Maximum number of subscription names to return.
      */
