@@ -1294,15 +1294,13 @@ export namespace datafusion_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1324,8 +1322,7 @@ export namespace datafusion_v1beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Removeiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Removeiampolicy extends StandardParameters {
     /**
      * Required. The resource on which IAM policy to be removed is attached to.
      */
@@ -2925,8 +2922,7 @@ export namespace datafusion_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Create extends StandardParameters {
     /**
      * Required. The name of the instance to create. Instance name can only contain lowercase alphanumeric characters and hyphens. It must start with a letter and must not end with a hyphen. It can have a maximum of 30 characters.
      */
@@ -2941,8 +2937,7 @@ export namespace datafusion_v1beta1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Delete extends StandardParameters {
     /**
      * Optional. If set to true, any nested resources from this instance will also be deleted.
      */
@@ -2952,15 +2947,13 @@ export namespace datafusion_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Get extends StandardParameters {
     /**
      * Required. The instance resource name in the format projects/{project\}/locations/{location\}/instances/{instance\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2970,8 +2963,7 @@ export namespace datafusion_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$List extends StandardParameters {
     /**
      * List filter.
      */
@@ -2993,8 +2985,7 @@ export namespace datafusion_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Patch extends StandardParameters {
     /**
      * Output only. The name of this instance is in the form of projects/{project\}/locations/{location\}/instances/{instance\}.
      */
@@ -3009,8 +3000,7 @@ export namespace datafusion_v1beta1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Restart
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Restart extends StandardParameters {
     /**
      * Required. Name of the Data Fusion instance which need to be restarted in the form of projects/{project\}/locations/{location\}/instances/{instance\}
      */
@@ -3021,8 +3011,7 @@ export namespace datafusion_v1beta1 {
      */
     requestBody?: Schema$RestartInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3033,8 +3022,7 @@ export namespace datafusion_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3045,8 +3033,7 @@ export namespace datafusion_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Upgrade
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Upgrade extends StandardParameters {
     /**
      * Required. Name of the Data Fusion instance which need to be upgraded in the form of projects/{project\}/locations/{location\}/instances/{instance\} Instance will be upgraded with the latest stable version of the Data Fusion.
      */
@@ -3499,8 +3486,7 @@ export namespace datafusion_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Dnspeerings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Dnspeerings$Create extends StandardParameters {
     /**
      * Required. The name of the peering to create.
      */
@@ -3515,15 +3501,13 @@ export namespace datafusion_v1beta1 {
      */
     requestBody?: Schema$DnsPeering;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Dnspeerings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Dnspeerings$Delete extends StandardParameters {
     /**
      * Required. The name of the DNS peering zone to delete. Format: projects/{project\}/locations/{location\}/instances/{instance\}/dnsPeerings/{dns_peering\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Dnspeerings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Dnspeerings$List extends StandardParameters {
     /**
      * The maximum number of dns peerings to return. The service may return fewer than this value. If unspecified, at most 50 dns peerings will be returned. The maximum value is 200; values above 200 will be coerced to 200.
      */
@@ -4143,8 +4127,7 @@ export namespace datafusion_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Namespaces$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Namespaces$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4154,8 +4137,7 @@ export namespace datafusion_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Namespaces$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Namespaces$List extends StandardParameters {
     /**
      * The maximum number of items to return.
      */
@@ -4173,8 +4155,7 @@ export namespace datafusion_v1beta1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Namespaces$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Namespaces$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4185,8 +4166,7 @@ export namespace datafusion_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Namespaces$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Namespaces$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4765,8 +4745,7 @@ export namespace datafusion_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -4777,22 +4756,19 @@ export namespace datafusion_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -4973,8 +4949,7 @@ export namespace datafusion_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Versions$List extends StandardParameters {
     /**
      * Whether or not to return the latest patch of every available minor version. If true, only the latest patch will be returned. Ex. if allowed versions is [6.1.1, 6.1.2, 6.2.0] then response will be [6.1.2, 6.2.0]
      */
