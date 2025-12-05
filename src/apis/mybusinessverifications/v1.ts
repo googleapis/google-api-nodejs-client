@@ -935,8 +935,7 @@ export namespace mybusinessverifications_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Fetchverificationoptions
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Fetchverificationoptions extends StandardParameters {
     /**
      * Required. The location to verify.
      */
@@ -947,8 +946,7 @@ export namespace mybusinessverifications_v1 {
      */
     requestBody?: Schema$FetchVerificationOptionsRequest;
   }
-  export interface Params$Resource$Locations$Getvoiceofmerchantstate
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Getvoiceofmerchantstate extends StandardParameters {
     /**
      * Required. Resource name of the location.
      */
@@ -1272,8 +1270,7 @@ export namespace mybusinessverifications_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Verifications$Complete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Verifications$Complete extends StandardParameters {
     /**
      * Required. Resource name of the verification to complete.
      */
@@ -1284,8 +1281,7 @@ export namespace mybusinessverifications_v1 {
      */
     requestBody?: Schema$CompleteVerificationRequest;
   }
-  export interface Params$Resource$Locations$Verifications$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Verifications$List extends StandardParameters {
     /**
      * How many verification to include per page. Minimum is 1, and the default and maximum page size is 100.
      */
@@ -1462,8 +1458,7 @@ export namespace mybusinessverifications_v1 {
     }
   }
 
-  export interface Params$Resource$Verificationtokens$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Verificationtokens$Generate extends StandardParameters {
     /**
      * Request body metadata
      */
