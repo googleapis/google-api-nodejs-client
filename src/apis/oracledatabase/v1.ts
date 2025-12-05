@@ -2410,7 +2410,7 @@ export namespace oracledatabase_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -3266,15 +3266,13 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -3461,8 +3459,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Autonomousdatabasebackups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabasebackups$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. Only the **autonomous_database_id** field is supported in the following format: `autonomous_database_id="{autonomous_database_id\}"`. The accepted values must be a valid Autonomous Database ID, limited to the naming restrictions of the ID: ^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$). The ID must start with a letter, end with a letter or a number, and be a maximum of 63 characters.
      */
@@ -3646,8 +3643,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Autonomousdatabasecharactersets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabasecharactersets$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. Only the **character_set_type** field is supported in the following format: `character_set_type="{characterSetType\}"`. Accepted values include `DATABASE` and `NATIONAL`.
      */
@@ -5518,8 +5514,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Create extends StandardParameters {
     /**
      * Required. The ID of the Autonomous Database to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
      */
@@ -5538,8 +5533,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$AutonomousDatabase;
   }
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Delete extends StandardParameters {
     /**
      * Required. The name of the resource in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
      */
@@ -5549,8 +5543,7 @@ export namespace oracledatabase_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Failover
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Failover extends StandardParameters {
     /**
      * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
      */
@@ -5561,8 +5554,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$FailoverAutonomousDatabaseRequest;
   }
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Generatewallet
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Generatewallet extends StandardParameters {
     /**
      * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
      */
@@ -5573,15 +5565,13 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$GenerateAutonomousDatabaseWalletRequest;
   }
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Get extends StandardParameters {
     /**
      * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request.
      */
@@ -5603,8 +5593,7 @@ export namespace oracledatabase_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Patch extends StandardParameters {
     /**
      * Identifier. The name of the Autonomous Database resource in the following format: projects/{project\}/locations/{region\}/autonomousDatabases/{autonomous_database\}
      */
@@ -5623,8 +5612,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$AutonomousDatabase;
   }
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Restart
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Restart extends StandardParameters {
     /**
      * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
      */
@@ -5635,8 +5623,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$RestartAutonomousDatabaseRequest;
   }
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Restore extends StandardParameters {
     /**
      * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
      */
@@ -5647,8 +5634,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$RestoreAutonomousDatabaseRequest;
   }
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Start
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Start extends StandardParameters {
     /**
      * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
      */
@@ -5659,8 +5645,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$StartAutonomousDatabaseRequest;
   }
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Stop
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Stop extends StandardParameters {
     /**
      * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
      */
@@ -5671,8 +5656,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$StopAutonomousDatabaseRequest;
   }
-  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Switchover
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Switchover extends StandardParameters {
     /**
      * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
      */
@@ -5847,8 +5831,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Autonomousdbversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autonomousdbversions$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. If unspecified, at most 50 Autonomous DB Versions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -6486,8 +6469,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Create extends StandardParameters {
     /**
      * Required. The ID of the Exadata Infrastructure to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
      */
@@ -6506,8 +6488,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$CloudExadataInfrastructure;
   }
-  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Delete extends StandardParameters {
     /**
      * Optional. If set to true, all VM clusters for this Exadata Infrastructure will be deleted. An Exadata Infrastructure can only be deleted once all its VM clusters have been deleted.
      */
@@ -6521,15 +6502,13 @@ export namespace oracledatabase_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Get extends StandardParameters {
     /**
      * Required. The name of the Cloud Exadata Infrastructure in the following format: projects/{project\}/locations/{location\}/cloudExadataInfrastructures/{cloud_exadata_infrastructure\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request.
      */
@@ -6709,8 +6688,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Dbservers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Dbservers$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. If unspecified, a maximum of 50 db servers will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      */
@@ -7345,8 +7323,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Cloudvmclusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudvmclusters$Create extends StandardParameters {
     /**
      * Required. The ID of the VM Cluster to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
      */
@@ -7365,8 +7342,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$CloudVmCluster;
   }
-  export interface Params$Resource$Projects$Locations$Cloudvmclusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudvmclusters$Delete extends StandardParameters {
     /**
      * Optional. If set to true, all child resources for the VM Cluster will be deleted. A VM Cluster can only be deleted once all its child resources have been deleted.
      */
@@ -7380,15 +7356,13 @@ export namespace oracledatabase_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Cloudvmclusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudvmclusters$Get extends StandardParameters {
     /**
      * Required. The name of the Cloud VM Cluster in the following format: projects/{project\}/locations/{location\}/cloudVmClusters/{cloud_vm_cluster\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Cloudvmclusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudvmclusters$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request.
      */
@@ -7560,8 +7534,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Cloudvmclusters$Dbnodes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudvmclusters$Dbnodes$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. If unspecified, at most 50 db nodes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -7740,8 +7713,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Databasecharactersets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Databasecharactersets$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. Only the **character_set_type** field is supported in the following format: `character_set_type="{characterSetType\}"`. Accepted values include `DATABASE` and `NATIONAL`.
      */
@@ -8062,15 +8034,13 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Databases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Databases$Get extends StandardParameters {
     /**
      * Required. The name of the Database resource in the following format: projects/{project\}/locations/{region\}/databases/{database\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Databases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Databases$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. list for container databases is supported only with a valid dbSystem (full resource name) filter in this format: `dbSystem="projects/{project\}/locations/{location\}/dbSystems/{dbSystemId\}"`
      */
@@ -8250,8 +8220,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dbsysteminitialstoragesizes$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. If unspecified, a maximum of 50 DbSystemInitialStorageSizes will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      */
@@ -8870,8 +8839,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dbsystems$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dbsystems$Create extends StandardParameters {
     /**
      * Required. The ID of the DbSystem to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
      */
@@ -8890,8 +8858,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$DbSystem;
   }
-  export interface Params$Resource$Projects$Locations$Dbsystems$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dbsystems$Delete extends StandardParameters {
     /**
      * Required. The name of the DbSystem in the following format: projects/{project\}/locations/{location\}/dbSystems/{db_system\}.
      */
@@ -8901,15 +8868,13 @@ export namespace oracledatabase_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dbsystems$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dbsystems$Get extends StandardParameters {
     /**
      * Required. The name of the DbSystem in the following format: projects/{project\}/locations/{location\}/dbSystems/{db_system\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dbsystems$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dbsystems$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request.
      */
@@ -9088,8 +9053,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dbsystemshapes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dbsystemshapes$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. Only the gcp_oracle_zone_id field is supported in this format: `gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
      */
@@ -9262,8 +9226,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dbversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dbversions$List extends StandardParameters {
     /**
      * Optional. Filter expression that matches a subset of the DbVersions to show. The supported filter for dbSystem creation is `db_system_shape = {db_system_shape\} AND storage_management = {storage_management\}`. If no filter is provided, all DbVersions will be returned.
      */
@@ -9434,8 +9397,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Entitlements$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entitlements$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. If unspecified, a maximum of 50 entitlements will be returned. The maximum value is 1000.
      */
@@ -10379,8 +10341,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Create extends StandardParameters {
     /**
      * Required. The ID of the ExadbVmCluster to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
      */
@@ -10399,8 +10360,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$ExadbVmCluster;
   }
-  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Delete extends StandardParameters {
     /**
      * Required. The name of the ExadbVmCluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}.
      */
@@ -10410,15 +10370,13 @@ export namespace oracledatabase_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Get extends StandardParameters {
     /**
      * Required. The name of the ExadbVmCluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Exadbvmclusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request.
      */
@@ -10440,8 +10398,7 @@ export namespace oracledatabase_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Patch extends StandardParameters {
     /**
      * Identifier. The name of the ExadbVmCluster resource in the following format: projects/{project\}/locations/{region\}/exadbVmClusters/{exadb_vm_cluster\}
      */
@@ -10460,8 +10417,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$ExadbVmCluster;
   }
-  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Removevirtualmachine
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Removevirtualmachine extends StandardParameters {
     /**
      * Required. The name of the ExadbVmCluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}.
      */
@@ -10626,8 +10582,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Dbnodes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Dbnodes$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. If unspecified, at most 50 db nodes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -11258,8 +11213,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create extends StandardParameters {
     /**
      * Required. The ID of the ExascaleDbStorageVault to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
      */
@@ -11278,8 +11232,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$ExascaleDbStorageVault;
   }
-  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$Delete extends StandardParameters {
     /**
      * Required. The name of the ExascaleDbStorageVault in the following format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}.
      */
@@ -11289,15 +11242,13 @@ export namespace oracledatabase_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get extends StandardParameters {
     /**
      * Required. The name of the ExascaleDbStorageVault in the following format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. Filter the list as specified in https://google.aip.dev/160.
      */
@@ -11477,8 +11428,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Giversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Giversions$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. Only the shape, gcp_oracle_zone and gi_version fields are supported in this format: `shape="{shape\}"`.
      */
@@ -11656,8 +11606,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Giversions$Minorversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Giversions$Minorversions$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. Only shapeFamily and gcp_oracle_zone_id are supported in this format: `shape_family="{shapeFamily\}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
      */
@@ -12279,8 +12228,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Odbnetworks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Create extends StandardParameters {
     /**
      * Required. The ID of the OdbNetwork to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
      */
@@ -12299,8 +12247,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$OdbNetwork;
   }
-  export interface Params$Resource$Projects$Locations$Odbnetworks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Delete extends StandardParameters {
     /**
      * Required. The name of the resource in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}.
      */
@@ -12310,15 +12257,13 @@ export namespace oracledatabase_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Odbnetworks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Get extends StandardParameters {
     /**
      * Required. The name of the OdbNetwork in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Odbnetworks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Odbnetworks$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request.
      */
@@ -12948,8 +12893,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Create extends StandardParameters {
     /**
      * Required. The ID of the OdbSubnet to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
      */
@@ -12968,8 +12912,7 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$OdbSubnet;
   }
-  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Delete extends StandardParameters {
     /**
      * Required. The name of the resource in the following format: projects/{project\}/locations/{region\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}.
      */
@@ -12979,15 +12922,13 @@ export namespace oracledatabase_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Get extends StandardParameters {
     /**
      * Required. The name of the OdbSubnet in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request.
      */
@@ -13466,7 +13407,7 @@ export namespace oracledatabase_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -13578,8 +13519,7 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -13590,22 +13530,19 @@ export namespace oracledatabase_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -13623,7 +13560,7 @@ export namespace oracledatabase_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -13926,15 +13863,13 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Pluggabledatabases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pluggabledatabases$Get extends StandardParameters {
     /**
      * Required. The name of the PluggableDatabase resource in the following format: projects/{project\}/locations/{region\}/pluggableDatabases/{pluggable_database\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Pluggabledatabases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pluggabledatabases$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. List for pluggable databases is supported only with a valid container database (full resource name) filter in this format: `database="projects/{project\}/locations/{location\}/databases/{database\}"`
      */
