@@ -1047,26 +1047,21 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Achievements$Reset
-    extends StandardParameters {
+  export interface Params$Resource$Achievements$Reset extends StandardParameters {
     /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Resetall
-    extends StandardParameters {}
-  export interface Params$Resource$Achievements$Resetallforallplayers
-    extends StandardParameters {}
-  export interface Params$Resource$Achievements$Resetforallplayers
-    extends StandardParameters {
+  export interface Params$Resource$Achievements$Resetall extends StandardParameters {}
+  export interface Params$Resource$Achievements$Resetallforallplayers extends StandardParameters {}
+  export interface Params$Resource$Achievements$Resetforallplayers extends StandardParameters {
     /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Resetmultipleforallplayers
-    extends StandardParameters {
+  export interface Params$Resource$Achievements$Resetmultipleforallplayers extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -1224,8 +1219,7 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Applications$Listhidden
-    extends StandardParameters {
+  export interface Params$Resource$Applications$Listhidden extends StandardParameters {
     /**
      * The application ID from the Google Play developer console.
      */
@@ -1904,17 +1898,14 @@ export namespace gamesManagement_v1management {
     eventId?: string;
   }
   export interface Params$Resource$Events$Resetall extends StandardParameters {}
-  export interface Params$Resource$Events$Resetallforallplayers
-    extends StandardParameters {}
-  export interface Params$Resource$Events$Resetforallplayers
-    extends StandardParameters {
+  export interface Params$Resource$Events$Resetallforallplayers extends StandardParameters {}
+  export interface Params$Resource$Events$Resetforallplayers extends StandardParameters {
     /**
      * The ID of the event.
      */
     eventId?: string;
   }
-  export interface Params$Resource$Events$Resetmultipleforallplayers
-    extends StandardParameters {
+  export interface Params$Resource$Events$Resetmultipleforallplayers extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2903,17 +2894,14 @@ export namespace gamesManagement_v1management {
     leaderboardId?: string;
   }
   export interface Params$Resource$Scores$Resetall extends StandardParameters {}
-  export interface Params$Resource$Scores$Resetallforallplayers
-    extends StandardParameters {}
-  export interface Params$Resource$Scores$Resetforallplayers
-    extends StandardParameters {
+  export interface Params$Resource$Scores$Resetallforallplayers extends StandardParameters {}
+  export interface Params$Resource$Scores$Resetforallplayers extends StandardParameters {
     /**
      * The ID of the leaderboard.
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Scores$Resetmultipleforallplayers
-    extends StandardParameters {
+  export interface Params$Resource$Scores$Resetmultipleforallplayers extends StandardParameters {
     /**
      * Request body metadata
      */
