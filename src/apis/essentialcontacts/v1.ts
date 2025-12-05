@@ -1286,8 +1286,7 @@ export namespace essentialcontacts_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Contacts$Compute
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Contacts$Compute extends StandardParameters {
     /**
      * The categories of notifications to compute contacts for. If ALL is included in this list, contacts subscribed to any notification category will be returned.
      */
@@ -1305,8 +1304,7 @@ export namespace essentialcontacts_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Contacts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Contacts$Create extends StandardParameters {
     /**
      * Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
      */
@@ -1317,22 +1315,19 @@ export namespace essentialcontacts_v1 {
      */
     requestBody?: Schema$GoogleCloudEssentialcontactsV1Contact;
   }
-  export interface Params$Resource$Folders$Contacts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Contacts$Delete extends StandardParameters {
     /**
      * Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Contacts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Contacts$Get extends StandardParameters {
     /**
      * Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Contacts$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Contacts$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.
      */
@@ -1346,8 +1341,7 @@ export namespace essentialcontacts_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Contacts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Contacts$Patch extends StandardParameters {
     /**
      * Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
      */
@@ -1362,8 +1356,7 @@ export namespace essentialcontacts_v1 {
      */
     requestBody?: Schema$GoogleCloudEssentialcontactsV1Contact;
   }
-  export interface Params$Resource$Folders$Contacts$Sendtestmessage
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Contacts$Sendtestmessage extends StandardParameters {
     /**
      * Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
      */
@@ -2460,8 +2453,7 @@ export namespace essentialcontacts_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Contacts$Compute
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Contacts$Compute extends StandardParameters {
     /**
      * The categories of notifications to compute contacts for. If ALL is included in this list, contacts subscribed to any notification category will be returned.
      */
@@ -2479,8 +2471,7 @@ export namespace essentialcontacts_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Contacts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Contacts$Create extends StandardParameters {
     /**
      * Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
      */
@@ -2491,22 +2482,19 @@ export namespace essentialcontacts_v1 {
      */
     requestBody?: Schema$GoogleCloudEssentialcontactsV1Contact;
   }
-  export interface Params$Resource$Organizations$Contacts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Contacts$Delete extends StandardParameters {
     /**
      * Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Contacts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Contacts$Get extends StandardParameters {
     /**
      * Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Contacts$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Contacts$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.
      */
@@ -2520,8 +2508,7 @@ export namespace essentialcontacts_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Contacts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Contacts$Patch extends StandardParameters {
     /**
      * Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
      */
@@ -2536,8 +2523,7 @@ export namespace essentialcontacts_v1 {
      */
     requestBody?: Schema$GoogleCloudEssentialcontactsV1Contact;
   }
-  export interface Params$Resource$Organizations$Contacts$Sendtestmessage
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Contacts$Sendtestmessage extends StandardParameters {
     /**
      * Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
      */
@@ -3634,8 +3620,7 @@ export namespace essentialcontacts_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Contacts$Compute
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Contacts$Compute extends StandardParameters {
     /**
      * The categories of notifications to compute contacts for. If ALL is included in this list, contacts subscribed to any notification category will be returned.
      */
@@ -3653,8 +3638,7 @@ export namespace essentialcontacts_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Contacts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Contacts$Create extends StandardParameters {
     /**
      * Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
      */
@@ -3665,22 +3649,19 @@ export namespace essentialcontacts_v1 {
      */
     requestBody?: Schema$GoogleCloudEssentialcontactsV1Contact;
   }
-  export interface Params$Resource$Projects$Contacts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Contacts$Delete extends StandardParameters {
     /**
      * Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Contacts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Contacts$Get extends StandardParameters {
     /**
      * Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Contacts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Contacts$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.
      */
@@ -3694,8 +3675,7 @@ export namespace essentialcontacts_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Contacts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Contacts$Patch extends StandardParameters {
     /**
      * Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
      */
@@ -3710,8 +3690,7 @@ export namespace essentialcontacts_v1 {
      */
     requestBody?: Schema$GoogleCloudEssentialcontactsV1Contact;
   }
-  export interface Params$Resource$Projects$Contacts$Sendtestmessage
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Contacts$Sendtestmessage extends StandardParameters {
     /**
      * Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
      */
