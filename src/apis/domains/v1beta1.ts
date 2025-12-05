@@ -1466,15 +1466,13 @@ export namespace domains_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
@@ -1788,15 +1786,13 @@ export namespace domains_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -5436,8 +5432,7 @@ export namespace domains_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Registrations$Configurecontactsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Configurecontactsettings extends StandardParameters {
     /**
      * Required. The name of the `Registration` whose contact settings are being updated, in the format `projects/x/locations/x/registrations/x`.
      */
@@ -5448,8 +5443,7 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$ConfigureContactSettingsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Configurednssettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Configurednssettings extends StandardParameters {
     /**
      * Required. The name of the `Registration` whose DNS settings are being updated, in the format `projects/x/locations/x/registrations/x`.
      */
@@ -5460,8 +5454,7 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$ConfigureDnsSettingsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Configuremanagementsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Configuremanagementsettings extends StandardParameters {
     /**
      * Required. The name of the `Registration` whose management settings are being updated, in the format `projects/x/locations/x/registrations/x`.
      */
@@ -5472,15 +5465,13 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$ConfigureManagementSettingsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Delete extends StandardParameters {
     /**
      * Required. The name of the `Registration` to delete, in the format `projects/x/locations/x/registrations/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Export extends StandardParameters {
     /**
      * Required. The name of the `Registration` to export, in the format `projects/x/locations/x/registrations/x`.
      */
@@ -5491,15 +5482,13 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$ExportRegistrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Get extends StandardParameters {
     /**
      * Required. The name of the `Registration` to get, in the format `projects/x/locations/x/registrations/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5509,8 +5498,7 @@ export namespace domains_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Import extends StandardParameters {
     /**
      * Required. The parent resource of the Registration. Must be in the format `projects/x/locations/x`.
      */
@@ -5521,8 +5509,7 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$ImportDomainRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer extends StandardParameters {
     /**
      * Required. The name of the `Registration` for which the push transfer is initiated, in the format `projects/x/locations/x/registrations/x`.
      */
@@ -5533,8 +5520,7 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$InitiatePushTransferRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$List extends StandardParameters {
     /**
      * Filter expression to restrict the `Registration`s returned. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, a boolean, or an enum value. The comparison operator should be one of =, !=, \>, <, \>=, <=, or : for prefix or wildcard matches. For example, to filter to a specific domain name, use an expression like `domainName="example.com"`. You can also check for the existence of a field; for example, to find domains using custom DNS settings, use an expression like `dnsSettings.customDns:*`. You can also create compound filters by combining expressions with the `AND` and `OR` operators. For example, to find domains that are suspended or have specific issues flagged, use an expression like `(state=SUSPENDED) OR (issue:*)`.
      */
@@ -5552,8 +5538,7 @@ export namespace domains_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Patch extends StandardParameters {
     /**
      * Output only. Name of the `Registration` resource, in the format `projects/x/locations/x/registrations/`.
      */
@@ -5568,8 +5553,7 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$Registration;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Register
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Register extends StandardParameters {
     /**
      * Required. The parent resource of the `Registration`. Must be in the format `projects/x/locations/x`.
      */
@@ -5580,8 +5564,7 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$RegisterDomainRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Renewdomain
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Renewdomain extends StandardParameters {
     /**
      * Required. The name of the `Registration` whish is being renewed, in the format `projects/x/locations/x/registrations/x`.
      */
@@ -5592,8 +5575,7 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$RenewDomainRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Resetauthorizationcode
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Resetauthorizationcode extends StandardParameters {
     /**
      * Required. The name of the `Registration` whose authorization code is being reset, in the format `projects/x/locations/x/registrations/x`.
      */
@@ -5604,15 +5586,13 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$ResetAuthorizationCodeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Retrieveauthorizationcode
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Retrieveauthorizationcode extends StandardParameters {
     /**
      * Required. The name of the `Registration` whose authorization code is being retrieved, in the format `projects/x/locations/x/registrations/x`.
      */
     registration?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsdnsrecords
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsdnsrecords extends StandardParameters {
     /**
      * Optional. Maximum number of results to return.
      */
@@ -5626,15 +5606,13 @@ export namespace domains_v1beta1 {
      */
     registration?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig extends StandardParameters {
     /**
      * Required. The name of the `Registration` whose Google Domains forwarding configuration details are being retrieved, in the format `projects/x/locations/x/registrations/x`.
      */
     registration?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains extends StandardParameters {
     /**
      * Required. The location. Must be in the format `projects/x/locations/x`.
      */
@@ -5648,8 +5626,7 @@ export namespace domains_v1beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Retrieveregisterparameters
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Retrieveregisterparameters extends StandardParameters {
     /**
      * Required. The domain name. Unicode domain names must be expressed in Punycode format.
      */
@@ -5659,8 +5636,7 @@ export namespace domains_v1beta1 {
      */
     location?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters extends StandardParameters {
     /**
      * Required. The domain name. Unicode domain names must be expressed in Punycode format.
      */
@@ -5670,8 +5646,7 @@ export namespace domains_v1beta1 {
      */
     location?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Searchdomains
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Searchdomains extends StandardParameters {
     /**
      * Required. The location. Must be in the format `projects/x/locations/x`.
      */
@@ -5681,8 +5656,7 @@ export namespace domains_v1beta1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5693,8 +5667,7 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5705,8 +5678,7 @@ export namespace domains_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registrations$Transfer
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Registrations$Transfer extends StandardParameters {
     /**
      * Required. The parent resource of the `Registration`. Must be in the format `projects/x/locations/x`.
      */
