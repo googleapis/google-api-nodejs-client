@@ -716,6 +716,23 @@ export namespace gkebackup_v1 {
     signedUrl?: string | null;
   }
   /**
+   * Response message for GetTags.
+   */
+  export interface Schema$GetTagsResponse {
+    /**
+     * A checksum based on the current bindings. This field is always set in server responses.
+     */
+    etag?: string | null;
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string | null;
+    /**
+     * Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$GoogleLongrunningCancelOperationRequest {}
@@ -732,7 +749,7 @@ export namespace gkebackup_v1 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1509,6 +1526,40 @@ export namespace gkebackup_v1 {
     updateMask?: string | null;
   }
   /**
+   * Request message for SetTags.
+   */
+  export interface Schema$SetTagsRequest {
+    /**
+     * Optional. A checksum based on the current bindings which can be passed to prevent race conditions. If not passed, etag check would be skipped.
+     */
+    etag?: string | null;
+    /**
+     * Optional. A unique identifier for this request. Must be a valid UUID. This request is only idempotent if a `request_id` is provided.
+     */
+    requestId?: string | null;
+    /**
+     * Required. These bindings will override any bindings previously set and will be effective immediately. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  /**
+   * Response message for SetTags.
+   */
+  export interface Schema$SetTagsResponse {
+    /**
+     * A checksum based on the current bindings. This field is always set in server responses.
+     */
+    etag?: string | null;
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string | null;
+    /**
+     * Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  /**
    * A transformation rule to be applied against Kubernetes resources as they are selected for restoration from a Backup. A rule contains both filtering logic (which resources are subject to substitution) and substitution logic.
    */
   export interface Schema$SubstitutionRule {
@@ -2090,15 +2141,13 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2895,8 +2944,7 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupchannels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupchannels$Create extends StandardParameters {
     /**
      * Optional. The client-provided short name for the BackupChannel resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of BackupChannels in this location If the user does not provide a name, a uuid will be used as the name.
      */
@@ -2911,8 +2959,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$BackupChannel;
   }
-  export interface Params$Resource$Projects$Locations$Backupchannels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupchannels$Delete extends StandardParameters {
     /**
      * Optional. If provided, this value must match the current value of the target BackupChannel's etag field or the request is rejected.
      */
@@ -2926,15 +2973,13 @@ export namespace gkebackup_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupchannels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupchannels$Get extends StandardParameters {
     /**
      * Required. Fully qualified BackupChannel name. Format: `projects/x/locations/x/backupChannels/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupchannels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupchannels$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
      */
@@ -2956,8 +3001,7 @@ export namespace gkebackup_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupchannels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupchannels$Patch extends StandardParameters {
     /**
      * Identifier. The fully qualified name of the BackupChannel. `projects/x/locations/x/backupChannels/x`
      */
@@ -3279,15 +3323,13 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get extends StandardParameters {
     /**
      * Required. Fully qualified BackupPlanBinding name. Format: `projects/x/locations/x/backupChannels/x/backupPlanBindings/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
      */
@@ -3934,6 +3976,145 @@ export namespace gkebackup_v1 {
     }
 
     /**
+     * Returns tags directly bound to a GCP resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkebackup.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkebackup = google.gkebackup('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkebackup.projects.locations.backupPlans.getTags({
+     *     // Required. The full resource name of the service resource.
+     *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tags": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Gettags,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getTags(
+      params?: Params$Resource$Projects$Locations$Backupplans$Gettags,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetTagsResponse>>;
+    getTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Gettags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Gettags,
+      options: MethodOptions | BodyResponseCallback<Schema$GetTagsResponse>,
+      callback: BodyResponseCallback<Schema$GetTagsResponse>
+    ): void;
+    getTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Gettags,
+      callback: BodyResponseCallback<Schema$GetTagsResponse>
+    ): void;
+    getTags(callback: BodyResponseCallback<Schema$GetTagsResponse>): void;
+    getTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupplans$Gettags
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupplans$Gettags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backupplans$Gettags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:getTags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetTagsResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists BackupPlans in a given location.
      * @example
      * ```js
@@ -4404,6 +4585,155 @@ export namespace gkebackup_v1 {
     }
 
     /**
+     * Updates tags directly bound to a GCP resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkebackup.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkebackup = google.gkebackup('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkebackup.projects.locations.backupPlans.setTags({
+     *     // Required. The full resource name of the service resource.
+     *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "requestId": "my_requestId",
+     *       //   "tags": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tags": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Settags,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setTags(
+      params?: Params$Resource$Projects$Locations$Backupplans$Settags,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SetTagsResponse>>;
+    setTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Settags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Settags,
+      options: MethodOptions | BodyResponseCallback<Schema$SetTagsResponse>,
+      callback: BodyResponseCallback<Schema$SetTagsResponse>
+    ): void;
+    setTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Settags,
+      callback: BodyResponseCallback<Schema$SetTagsResponse>
+    ): void;
+    setTags(callback: BodyResponseCallback<Schema$SetTagsResponse>): void;
+    setTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupplans$Settags
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SetTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupplans$Settags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backupplans$Settags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:setTags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SetTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SetTagsResponse>(parameters);
+      }
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * ```js
@@ -4557,8 +4887,7 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupplans$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Create extends StandardParameters {
     /**
      * Required. The client-provided short name for the BackupPlan resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of BackupPlans in this location
      */
@@ -4573,8 +4902,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$BackupPlan;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Delete extends StandardParameters {
     /**
      * Optional. If provided, this value must match the current value of the target BackupPlan's etag field or the request is rejected.
      */
@@ -4584,15 +4912,13 @@ export namespace gkebackup_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Get extends StandardParameters {
     /**
      * Required. Fully qualified BackupPlan name. Format: `projects/x/locations/x/backupPlans/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4602,8 +4928,13 @@ export namespace gkebackup_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Gettags extends StandardParameters {
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backupplans$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
      */
@@ -4625,8 +4956,7 @@ export namespace gkebackup_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
      */
@@ -4641,8 +4971,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$BackupPlan;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4653,8 +4982,18 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Settags extends StandardParameters {
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetTagsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Backupplans$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6115,8 +6454,7 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Create extends StandardParameters {
     /**
      * Optional. The client-provided short name for the Backup resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of Backups in this BackupPlan
      */
@@ -6131,8 +6469,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$Backup;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Delete extends StandardParameters {
     /**
      * Optional. If provided, this value must match the current value of the target Backup's etag field or the request is rejected.
      */
@@ -6146,22 +6483,19 @@ export namespace gkebackup_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Get extends StandardParameters {
     /**
      * Required. Full name of the Backup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl extends StandardParameters {
     /**
      * Required. Full name of Backup resource. Format: projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}/backups/{backup\}
      */
     backup?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -6171,8 +6505,7 @@ export namespace gkebackup_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
      */
@@ -6198,8 +6531,7 @@ export namespace gkebackup_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The fully qualified name of the Backup. `projects/x/locations/x/backupPlans/x/backups/x`
      */
@@ -6214,8 +6546,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$Backup;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6226,8 +6557,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7004,15 +7334,13 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Get extends StandardParameters {
     /**
      * Required. Full name of the VolumeBackup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x/volumeBackups/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -7022,8 +7350,7 @@ export namespace gkebackup_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
      */
@@ -7045,8 +7372,7 @@ export namespace gkebackup_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7057,8 +7383,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7527,7 +7852,7 @@ export namespace gkebackup_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7646,8 +7971,7 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -7658,22 +7982,19 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -7691,7 +8012,7 @@ export namespace gkebackup_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -8470,8 +8791,7 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Restorechannels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restorechannels$Create extends StandardParameters {
     /**
      * Required. The location within which to create the RestoreChannel. Format: `projects/x/locations/x`
      */
@@ -8486,8 +8806,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$RestoreChannel;
   }
-  export interface Params$Resource$Projects$Locations$Restorechannels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restorechannels$Delete extends StandardParameters {
     /**
      * Optional. If provided, this value must match the current value of the target RestoreChannel's etag field or the request is rejected.
      */
@@ -8497,15 +8816,13 @@ export namespace gkebackup_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restorechannels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restorechannels$Get extends StandardParameters {
     /**
      * Required. Fully qualified RestoreChannel name. Format: `projects/x/locations/x/restoreChannels/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restorechannels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restorechannels$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
      */
@@ -8527,8 +8844,7 @@ export namespace gkebackup_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restorechannels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restorechannels$Patch extends StandardParameters {
     /**
      * Identifier. The fully qualified name of the RestoreChannel. `projects/x/locations/x/restoreChannels/x`
      */
@@ -8851,15 +9167,13 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get extends StandardParameters {
     /**
      * Required. Fully qualified RestorePlanBinding name. Format: `projects/x/locations/x/restoreChannels/x/restorePlanBindings/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
      */
@@ -9496,6 +9810,145 @@ export namespace gkebackup_v1 {
     }
 
     /**
+     * Returns tags directly bound to a GCP resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkebackup.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkebackup = google.gkebackup('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkebackup.projects.locations.restorePlans.getTags({
+     *     // Required. The full resource name of the service resource.
+     *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tags": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Gettags,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getTags(
+      params?: Params$Resource$Projects$Locations$Restoreplans$Gettags,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetTagsResponse>>;
+    getTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Gettags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Gettags,
+      options: MethodOptions | BodyResponseCallback<Schema$GetTagsResponse>,
+      callback: BodyResponseCallback<Schema$GetTagsResponse>
+    ): void;
+    getTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Gettags,
+      callback: BodyResponseCallback<Schema$GetTagsResponse>
+    ): void;
+    getTags(callback: BodyResponseCallback<Schema$GetTagsResponse>): void;
+    getTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Restoreplans$Gettags
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Restoreplans$Gettags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Restoreplans$Gettags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:getTags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetTagsResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists RestorePlans in a given location.
      * @example
      * ```js
@@ -9960,6 +10413,155 @@ export namespace gkebackup_v1 {
     }
 
     /**
+     * Updates tags directly bound to a GCP resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkebackup.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkebackup = google.gkebackup('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkebackup.projects.locations.restorePlans.setTags({
+     *     // Required. The full resource name of the service resource.
+     *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "requestId": "my_requestId",
+     *       //   "tags": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tags": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Settags,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setTags(
+      params?: Params$Resource$Projects$Locations$Restoreplans$Settags,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SetTagsResponse>>;
+    setTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Settags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Settags,
+      options: MethodOptions | BodyResponseCallback<Schema$SetTagsResponse>,
+      callback: BodyResponseCallback<Schema$SetTagsResponse>
+    ): void;
+    setTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Settags,
+      callback: BodyResponseCallback<Schema$SetTagsResponse>
+    ): void;
+    setTags(callback: BodyResponseCallback<Schema$SetTagsResponse>): void;
+    setTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Restoreplans$Settags
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SetTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Restoreplans$Settags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Restoreplans$Settags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:setTags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SetTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SetTagsResponse>(parameters);
+      }
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * ```js
@@ -10112,8 +10714,7 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Restoreplans$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Create extends StandardParameters {
     /**
      * Required. The location within which to create the RestorePlan. Format: `projects/x/locations/x`
      */
@@ -10128,8 +10729,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$RestorePlan;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Delete extends StandardParameters {
     /**
      * Optional. If provided, this value must match the current value of the target RestorePlan's etag field or the request is rejected.
      */
@@ -10143,15 +10743,13 @@ export namespace gkebackup_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Get extends StandardParameters {
     /**
      * Required. Fully qualified RestorePlan name. Format: `projects/x/locations/x/restorePlans/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -10161,8 +10759,13 @@ export namespace gkebackup_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Gettags extends StandardParameters {
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Restoreplans$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
      */
@@ -10184,8 +10787,7 @@ export namespace gkebackup_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The full name of the RestorePlan resource. Format: `projects/x/locations/x/restorePlans/x`.
      */
@@ -10200,8 +10802,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$RestorePlan;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10212,8 +10813,18 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Settags extends StandardParameters {
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetTagsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Restoreplans$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11488,8 +12099,7 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Create extends StandardParameters {
     /**
      * Required. The RestorePlan within which to create the Restore. Format: `projects/x/locations/x/restorePlans/x`
      */
@@ -11504,8 +12114,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$Restore;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Delete extends StandardParameters {
     /**
      * Optional. If provided, this value must match the current value of the target Restore's etag field or the request is rejected.
      */
@@ -11519,15 +12128,13 @@ export namespace gkebackup_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Get extends StandardParameters {
     /**
      * Required. Name of the restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -11537,8 +12144,7 @@ export namespace gkebackup_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
      */
@@ -11560,8 +12166,7 @@ export namespace gkebackup_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The full name of the Restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      */
@@ -11576,8 +12181,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$Restore;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11588,8 +12192,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12367,15 +12970,13 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Get extends StandardParameters {
     /**
      * Required. Full name of the VolumeRestore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x/volumeRestores/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -12385,8 +12986,7 @@ export namespace gkebackup_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
      */
@@ -12408,8 +13008,7 @@ export namespace gkebackup_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12420,8 +13019,7 @@ export namespace gkebackup_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
