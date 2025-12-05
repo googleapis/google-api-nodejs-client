@@ -259,6 +259,35 @@
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/compute"
               ]
+            },
+            "provisionPosixAccount": {
+              "description": "Adds a POSIX account and returns the profile information. Default POSIX account information is set when no username and UID exist as part of the login profile.",
+              "flatPath": "v1/users/{usersId}/projects/{projectsId}",
+              "httpMethod": "POST",
+              "id": "oslogin.users.projects.provisionPosixAccount",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The unique ID for the user in format `users/{user}/projects/{project}`.",
+                  "location": "path",
+                  "pattern": "^users/[^/]+/projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "ProvisionPosixAccountRequest"
+              },
+              "response": {
+                "$ref": "PosixAccount"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/compute"
+              ]
             }
           }
         },
@@ -385,7 +414,7 @@
       }
     }
   },
-  "revision": "20250921",
+  "revision": "20251202",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -495,6 +524,20 @@
         "username": {
           "description": "The username of the POSIX account.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProvisionPosixAccountRequest": {
+      "description": "A request message for creating a POSIX account entry.",
+      "id": "ProvisionPosixAccountRequest",
+      "properties": {
+        "regions": {
+          "description": "Optional. The regions to wait for a POSIX account to be written to before returning a response. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
