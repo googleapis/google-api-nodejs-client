@@ -164,6 +164,9 @@
         "https://www.googleapis.com/auth/dataportability.youtube.comments": {
           "description": "Move a copy of your YouTube comments"
         },
+        "https://www.googleapis.com/auth/dataportability.youtube.conversations": {
+          "description": "Move a copy of all your YouTube messages"
+        },
         "https://www.googleapis.com/auth/dataportability.youtube.live_chat": {
           "description": "Move a copy of your YouTube messages in live chat"
         },
@@ -371,6 +374,7 @@
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
             "https://www.googleapis.com/auth/dataportability.youtube.clips",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
+            "https://www.googleapis.com/auth/dataportability.youtube.conversations",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
             "https://www.googleapis.com/auth/dataportability.youtube.music",
             "https://www.googleapis.com/auth/dataportability.youtube.playable",
@@ -468,6 +472,7 @@
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
             "https://www.googleapis.com/auth/dataportability.youtube.clips",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
+            "https://www.googleapis.com/auth/dataportability.youtube.conversations",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
             "https://www.googleapis.com/auth/dataportability.youtube.music",
             "https://www.googleapis.com/auth/dataportability.youtube.playable",
@@ -558,6 +563,7 @@
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
             "https://www.googleapis.com/auth/dataportability.youtube.clips",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
+            "https://www.googleapis.com/auth/dataportability.youtube.conversations",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
             "https://www.googleapis.com/auth/dataportability.youtube.music",
             "https://www.googleapis.com/auth/dataportability.youtube.playable",
@@ -651,6 +657,7 @@
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
             "https://www.googleapis.com/auth/dataportability.youtube.clips",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
+            "https://www.googleapis.com/auth/dataportability.youtube.conversations",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
             "https://www.googleapis.com/auth/dataportability.youtube.music",
             "https://www.googleapis.com/auth/dataportability.youtube.playable",
@@ -738,6 +745,7 @@
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
             "https://www.googleapis.com/auth/dataportability.youtube.clips",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
+            "https://www.googleapis.com/auth/dataportability.youtube.conversations",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
             "https://www.googleapis.com/auth/dataportability.youtube.music",
             "https://www.googleapis.com/auth/dataportability.youtube.playable",
@@ -825,6 +833,7 @@
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
             "https://www.googleapis.com/auth/dataportability.youtube.clips",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
+            "https://www.googleapis.com/auth/dataportability.youtube.conversations",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
             "https://www.googleapis.com/auth/dataportability.youtube.music",
             "https://www.googleapis.com/auth/dataportability.youtube.playable",
@@ -842,7 +851,7 @@
       }
     }
   },
-  "revision": "20250715",
+  "revision": "20251123",
   "rootUrl": "https://dataportability.googleapis.com/",
   "schemas": {
     "CancelPortabilityArchiveRequest": {
