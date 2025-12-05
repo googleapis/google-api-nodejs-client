@@ -695,8 +695,7 @@ export namespace factchecktools_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Claims$Imagesearch
-    extends StandardParameters {
+  export interface Params$Resource$Claims$Imagesearch extends StandardParameters {
     /**
      * Required. The URI of the source image. This must be a publicly-accessible image HTTP/HTTPS URL. When fetching images from HTTP/HTTPS URLs, Google cannot guarantee that the request will be completed. Your request may fail if the specified host denies the request (e.g. due to request throttling or DOS prevention), or if Google throttles requests to the site for abuse prevention. You should not depend on externally-hosted images for production applications.
      */
