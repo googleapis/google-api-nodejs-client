@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v7.0.1...observability-v7.0.2) (2025-12-05)
+
+
+### Bug Fixes
+
+* **observability:** update the API ([4d56097](https://github.com/googleapis/google-api-nodejs-client/commit/4d56097327c5333156609105e2f1d4083fd4d7af))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v7.0.0...observability-v7.0.1) (2025-11-04)
 
 

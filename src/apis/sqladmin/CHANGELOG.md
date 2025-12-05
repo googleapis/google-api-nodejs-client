@@ -1,5 +1,12 @@
 # Changelog
 
+## [34.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v34.2.0...sqladmin-v34.2.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **sqladmin:** update the API ([2030732](https://github.com/googleapis/google-api-nodejs-client/commit/20307320a97b2211da4231bd97369a1456da11cc))
+
 ## [34.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v34.1.0...sqladmin-v34.2.0) (2025-11-26)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/videointelligence-v6.0.0...videointelligence-v6.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **videointelligence:** update the API ([0a2b786](https://github.com/googleapis/google-api-nodejs-client/commit/0a2b7862f09c9314cbb3327c572f5c208e887610))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/videointelligence-v5.0.0...videointelligence-v6.0.0) (2025-10-15)
 
 

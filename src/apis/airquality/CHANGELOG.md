@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/airquality-v4.0.0...airquality-v4.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **airquality:** update the API ([12756ff](https://github.com/googleapis/google-api-nodejs-client/commit/12756ff78a92ce2ab108758f5874db0902e61513))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/airquality-v3.0.0...airquality-v4.0.0) (2025-10-15)
 
 

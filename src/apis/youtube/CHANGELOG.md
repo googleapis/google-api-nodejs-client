@@ -1,5 +1,12 @@
 # Changelog
 
+## [30.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v30.0.0...youtube-v30.1.0) (2025-12-05)
+
+
+### Features
+
+* **youtube:** update the API ([477e849](https://github.com/googleapis/google-api-nodejs-client/commit/477e84986b1f56423b3284f2c21fa57fba6bbdac))
+
 ## [30.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v29.0.0...youtube-v30.0.0) (2025-10-15)
 
 

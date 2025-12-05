@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v16.1.0...cloudbuild-v16.2.0) (2025-12-05)
+
+
+### Features
+
+* **cloudbuild:** update the API ([3cd3883](https://github.com/googleapis/google-api-nodejs-client/commit/3cd38838a9a20f0fc6a665ddfc59eca53e61341c))
+
 ## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v16.0.1...cloudbuild-v16.1.0) (2025-11-26)
 
 

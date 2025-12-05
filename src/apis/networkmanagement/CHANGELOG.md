@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v17.0.1...networkmanagement-v17.0.2) (2025-12-05)
+
+
+### Bug Fixes
+
+* **networkmanagement:** update the API ([4f419f5](https://github.com/googleapis/google-api-nodejs-client/commit/4f419f59d02cad3dfc20c4822dd097858e090ec5))
+
 ## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v17.0.0...networkmanagement-v17.0.1) (2025-11-04)
 
 

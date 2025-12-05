@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v14.0.1...metastore-v14.0.2) (2025-12-05)
+
+
+### Bug Fixes
+
+* **metastore:** update the API ([b7cc25e](https://github.com/googleapis/google-api-nodejs-client/commit/b7cc25e0ebbd2100a70fc9e896a4c090c6e694f7))
+
 ## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v14.0.0...metastore-v14.0.1) (2025-11-04)
 
 

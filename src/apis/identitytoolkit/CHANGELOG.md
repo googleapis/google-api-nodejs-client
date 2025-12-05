@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v19.0.0...identitytoolkit-v19.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **identitytoolkit:** update the API ([73005d8](https://github.com/googleapis/google-api-nodejs-client/commit/73005d89380703cf5750cead1d66da95cdae18e7))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v18.0.0...identitytoolkit-v19.0.0) (2025-10-15)
 
 

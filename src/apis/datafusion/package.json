@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/datafusion",
-  "version": "16.1.0",
+  "version": "16.1.1",
   "description": "datafusion",
   "main": "build/index.js",
   "types": "build/index.d.ts",

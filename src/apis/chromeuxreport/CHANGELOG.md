@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v7.0.0...chromeuxreport-v7.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **chromeuxreport:** update the API ([b8214ab](https://github.com/googleapis/google-api-nodejs-client/commit/b8214ab9188149eb442066edca287f8d97eeab77))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v6.0.0...chromeuxreport-v7.0.0) (2025-10-15)
 
 

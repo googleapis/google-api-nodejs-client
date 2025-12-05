@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudshell-v8.0.0...cloudshell-v8.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **cloudshell:** update the API ([3597781](https://github.com/googleapis/google-api-nodejs-client/commit/359778171e765e1c64f3caeb777f69038fb77db2))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudshell-v7.0.0...cloudshell-v8.0.0) (2025-11-11)
 
 

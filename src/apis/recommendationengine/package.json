@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/recommendationengine",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "description": "recommendationengine",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/securesourcemanager-v3.0.0...securesourcemanager-v3.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **securesourcemanager:** update the API ([8f0236a](https://github.com/googleapis/google-api-nodejs-client/commit/8f0236a23644d8111ba335b92092d0625fdbde79))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securesourcemanager-v2.0.0...securesourcemanager-v3.0.0) (2025-10-15)
 
 

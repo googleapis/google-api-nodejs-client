@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseapphosting-v7.0.0...firebaseapphosting-v7.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **firebaseapphosting:** update the API ([2fc1dc7](https://github.com/googleapis/google-api-nodejs-client/commit/2fc1dc7b5510dfca63bb626ccae37315db64ce71))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseapphosting-v6.1.0...firebaseapphosting-v7.0.0) (2025-11-11)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v6.0.0...firebasedatabase-v6.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **firebasedatabase:** update the API ([7376d2d](https://github.com/googleapis/google-api-nodejs-client/commit/7376d2d342c8f09587232b6e9b8aa423a1d8fbf6))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v5.0.0...firebasedatabase-v6.0.0) (2025-10-15)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/pollen-v4.0.0...pollen-v4.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **pollen:** update the API ([49fdcc2](https://github.com/googleapis/google-api-nodejs-client/commit/49fdcc206a11fc8a13f148d4bc34eaffb5fd8ed0))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/pollen-v3.0.0...pollen-v4.0.0) (2025-10-15)
 
 

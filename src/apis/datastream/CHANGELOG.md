@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v13.0.0...datastream-v13.1.0) (2025-12-05)
+
+
+### Features
+
+* **datastream:** update the API ([d878d20](https://github.com/googleapis/google-api-nodejs-client/commit/d878d20a1f2703088983a5d015e34125215f25a0))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v12.1.0...datastream-v13.0.0) (2025-11-11)
 
 

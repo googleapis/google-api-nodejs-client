@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/bigquery",
-  "version": "20.1.0",
+  "version": "20.1.1",
   "description": "bigquery",
   "main": "build/index.js",
   "types": "build/index.d.ts",

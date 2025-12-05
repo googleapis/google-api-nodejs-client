@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/parallelstore-v6.0.1...parallelstore-v6.0.2) (2025-12-05)
+
+
+### Bug Fixes
+
+* **parallelstore:** update the API ([7357887](https://github.com/googleapis/google-api-nodejs-client/commit/735788760ff7527f7c88c07e9aff942115f9962c))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/parallelstore-v6.0.0...parallelstore-v6.0.1) (2025-11-04)
 
 

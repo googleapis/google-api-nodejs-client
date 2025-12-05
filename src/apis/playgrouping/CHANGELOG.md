@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/playgrouping-v4.0.0...playgrouping-v4.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **playgrouping:** update the API ([02202a4](https://github.com/googleapis/google-api-nodejs-client/commit/02202a4757213e9f6c42b5390594b59e025d9c97))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playgrouping-v3.0.0...playgrouping-v4.0.0) (2025-10-15)
 
 

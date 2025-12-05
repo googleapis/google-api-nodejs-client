@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v8.0.0...jobs-v8.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **jobs:** update the API ([17c5611](https://github.com/googleapis/google-api-nodejs-client/commit/17c561159613b992fa6a93386c91ae48f3e2566a))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v7.0.0...jobs-v8.0.0) (2025-10-15)
 
 

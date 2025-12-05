@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/dns",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "description": "dns",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v7.0.0...toolresults-v7.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **toolresults:** update the API ([5231b33](https://github.com/googleapis/google-api-nodejs-client/commit/5231b3370a4c6a707759f5727448ae21b21aebc8))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v6.0.0...toolresults-v7.0.0) (2025-10-15)
 
 

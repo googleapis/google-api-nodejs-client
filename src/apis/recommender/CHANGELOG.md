@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v10.0.1...recommender-v10.0.2) (2025-12-05)
+
+
+### Bug Fixes
+
+* **recommender:** update the API ([bc5c513](https://github.com/googleapis/google-api-nodejs-client/commit/bc5c513e05ca1ac5fa4f41e4e733b50df44d4416))
+
 ## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v10.0.0...recommender-v10.0.1) (2025-11-04)
 
 

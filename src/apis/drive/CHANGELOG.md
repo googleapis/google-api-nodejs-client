@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v19.2.0...drive-v19.2.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **drive:** update the API ([f6cabb0](https://github.com/googleapis/google-api-nodejs-client/commit/f6cabb0e35f4b1b05bc54b558e092402fec6a37a))
+
 ## [19.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v19.1.0...drive-v19.2.0) (2025-11-04)
 
 

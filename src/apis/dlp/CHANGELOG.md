@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v19.0.0...dlp-v19.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **dlp:** update the API ([e48cb49](https://github.com/googleapis/google-api-nodejs-client/commit/e48cb49fb31574455c7dd6e1b260dd6ff23cb86f))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v18.1.0...dlp-v19.0.0) (2025-11-04)
 
 

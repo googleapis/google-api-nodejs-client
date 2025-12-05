@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/sasportal",
-  "version": "22.0.0",
+  "version": "22.0.1",
   "description": "sasportal",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/speech-v6.0.0...speech-v6.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **speech:** update the API ([d86aa88](https://github.com/googleapis/google-api-nodejs-client/commit/d86aa88f1f175349eb633150a172aed4c49799b8))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/speech-v5.0.0...speech-v6.0.0) (2025-10-15)
 
 

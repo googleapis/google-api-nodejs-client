@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudcommerceprocurement-v2.0.0...cloudcommerceprocurement-v2.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **cloudcommerceprocurement:** update the API ([afdcb94](https://github.com/googleapis/google-api-nodejs-client/commit/afdcb94db04d60c4d5f2ad506cdff09c1c1d2eb6))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudcommerceprocurement-v1.0.0...cloudcommerceprocurement-v2.0.0) (2025-10-15)
 
 

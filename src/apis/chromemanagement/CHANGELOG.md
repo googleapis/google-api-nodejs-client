@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v25.0.0...chromemanagement-v25.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **chromemanagement:** update the API ([03ea707](https://github.com/googleapis/google-api-nodejs-client/commit/03ea707ed9555db466401868f5b0b7af23e73633))
+
 ## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v24.1.0...chromemanagement-v25.0.0) (2025-11-11)
 
 

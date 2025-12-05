@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudcontrolspartner-v4.0.0...cloudcontrolspartner-v4.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **cloudcontrolspartner:** update the API ([5b414e0](https://github.com/googleapis/google-api-nodejs-client/commit/5b414e09dc055f94d21106e7f06d2860c3b98a31))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudcontrolspartner-v3.0.0...cloudcontrolspartner-v4.0.0) (2025-10-15)
 
 

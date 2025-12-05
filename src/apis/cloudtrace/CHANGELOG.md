@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtrace-v5.0.0...cloudtrace-v5.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **cloudtrace:** update the API ([711ce5d](https://github.com/googleapis/google-api-nodejs-client/commit/711ce5dba48219f3a1eceb9d864702da4fd2af88))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtrace-v4.0.0...cloudtrace-v5.0.0) (2025-10-15)
 
 

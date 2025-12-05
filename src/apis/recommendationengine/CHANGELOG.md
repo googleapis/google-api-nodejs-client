@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/recommendationengine-v7.1.0...recommendationengine-v7.1.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **recommendationengine:** update the API ([4c36baf](https://github.com/googleapis/google-api-nodejs-client/commit/4c36baf909bd5ee607186bc3f7f4d6573c457b9c))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommendationengine-v7.0.0...recommendationengine-v7.1.0) (2025-10-20)
 
 

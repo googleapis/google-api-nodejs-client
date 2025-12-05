@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v22.0.0...sasportal-v22.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **sasportal:** update the API ([b938789](https://github.com/googleapis/google-api-nodejs-client/commit/b9387896b076c10a6175f74b6b86b3a081993d27))
+
 ## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v21.0.0...sasportal-v22.0.0) (2025-10-15)
 
 

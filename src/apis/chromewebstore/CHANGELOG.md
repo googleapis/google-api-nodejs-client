@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/chromewebstore-v2.0.1...chromewebstore-v2.0.2) (2025-12-05)
+
+
+### Bug Fixes
+
+* **chromewebstore:** update the API ([f822cb9](https://github.com/googleapis/google-api-nodejs-client/commit/f822cb9facf730530a6355c8a07820b5cd34ac8c))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromewebstore-v2.0.0...chromewebstore-v2.0.1) (2025-11-04)
 
 

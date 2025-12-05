@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/checks-v9.0.0...checks-v9.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **checks:** update the API ([db4562d](https://github.com/googleapis/google-api-nodejs-client/commit/db4562dace77842bcaee61ceaf785f5fcce0ae10))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/checks-v8.0.0...checks-v9.0.0) (2025-10-15)
 
 

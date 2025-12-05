@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v20.0.0...storage-v20.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **storage:** update the API ([090fdff](https://github.com/googleapis/google-api-nodejs-client/commit/090fdff00540a5a40f8e14edbb0063dcc1402747))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v19.0.0...storage-v20.0.0) (2025-10-15)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v17.0.0...workstations-v17.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **workstations:** update the API ([16563ff](https://github.com/googleapis/google-api-nodejs-client/commit/16563ff088ad2e4b35fadce6dd068390e2fc2e0c))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v16.0.0...workstations-v17.0.0) (2025-11-11)
 
 

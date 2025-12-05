@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/script-v11.0.0...script-v11.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **script:** update the API ([6f9a1e4](https://github.com/googleapis/google-api-nodejs-client/commit/6f9a1e4db823cc2942249864fa3164db5d07d37b))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/script-v10.0.0...script-v11.0.0) (2025-10-15)
 
 

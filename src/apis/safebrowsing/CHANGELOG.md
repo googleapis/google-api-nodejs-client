@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v14.0.0...safebrowsing-v14.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **safebrowsing:** update the API ([e35cd54](https://github.com/googleapis/google-api-nodejs-client/commit/e35cd548bab3a7d0353c8ec9da6b841f26bea83c))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v13.0.0...safebrowsing-v14.0.0) (2025-10-15)
 
 

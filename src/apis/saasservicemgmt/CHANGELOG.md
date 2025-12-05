@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/saasservicemgmt-v6.0.0...saasservicemgmt-v6.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **saasservicemgmt:** update the API ([37290b4](https://github.com/googleapis/google-api-nodejs-client/commit/37290b4f7861e88f59876ca5dd7fe72c214b29bc))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/saasservicemgmt-v5.0.0...saasservicemgmt-v6.0.0) (2025-11-11)
 
 

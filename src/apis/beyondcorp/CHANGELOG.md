@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v25.1.0...beyondcorp-v25.1.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **beyondcorp:** update the API ([b985052](https://github.com/googleapis/google-api-nodejs-client/commit/b98505215d5bbdb650288e874e0de4e8444a31fc))
+
 ## [25.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v25.0.1...beyondcorp-v25.1.0) (2025-11-26)
 
 

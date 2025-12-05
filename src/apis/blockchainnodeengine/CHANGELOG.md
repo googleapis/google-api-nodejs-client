@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v10.0.0...blockchainnodeengine-v10.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **blockchainnodeengine:** update the API ([a170dc5](https://github.com/googleapis/google-api-nodejs-client/commit/a170dc534718ac35eade549c85993ea1ac02008a))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v9.0.0...blockchainnodeengine-v10.0.0) (2025-10-15)
 
 

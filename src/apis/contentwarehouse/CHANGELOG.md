@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/contentwarehouse-v13.0.0...contentwarehouse-v13.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **contentwarehouse:** update the API ([694de75](https://github.com/googleapis/google-api-nodejs-client/commit/694de7577123ec63df5f86873039bc8e4ac9ff74))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contentwarehouse-v12.0.0...contentwarehouse-v13.0.0) (2025-10-15)
 
 

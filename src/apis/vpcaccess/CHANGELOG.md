@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/vpcaccess-v7.1.0...vpcaccess-v7.1.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **vpcaccess:** update the API ([d0b4f38](https://github.com/googleapis/google-api-nodejs-client/commit/d0b4f38bf871415974c17fb88c1c253fd988cef8))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/vpcaccess-v7.0.0...vpcaccess-v7.1.0) (2025-11-04)
 
 

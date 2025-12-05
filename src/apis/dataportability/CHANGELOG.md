@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataportability-v8.0.0...dataportability-v8.1.0) (2025-12-05)
+
+
+### Features
+
+* **dataportability:** update the API ([2eff20c](https://github.com/googleapis/google-api-nodejs-client/commit/2eff20cc7943848a01c3db2ca7130e679d7c29e5))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataportability-v7.0.0...dataportability-v8.0.0) (2025-10-15)
 
 

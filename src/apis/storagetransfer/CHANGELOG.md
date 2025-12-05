@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v11.2.0...storagetransfer-v11.2.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **storagetransfer:** update the API ([b884ef6](https://github.com/googleapis/google-api-nodejs-client/commit/b884ef62ca2415a1e2dabb9885452c2e8c7009af))
+
 ## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v11.1.0...storagetransfer-v11.2.0) (2025-11-26)
 
 

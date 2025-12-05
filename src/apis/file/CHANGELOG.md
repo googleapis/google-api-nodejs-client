@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/file-v16.1.0...file-v16.1.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **file:** update the API ([27a079b](https://github.com/googleapis/google-api-nodejs-client/commit/27a079bd273354957ebae7b301dc089506f574f7))
+
 ## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/file-v16.0.0...file-v16.1.0) (2025-11-04)
 
 

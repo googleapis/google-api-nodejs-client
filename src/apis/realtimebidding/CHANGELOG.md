@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/realtimebidding-v8.0.0...realtimebidding-v8.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **realtimebidding:** update the API ([8451a6a](https://github.com/googleapis/google-api-nodejs-client/commit/8451a6a7117f0a9b7fc13ca0c10c182b471b461e))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/realtimebidding-v7.0.0...realtimebidding-v8.0.0) (2025-10-15)
 
 
