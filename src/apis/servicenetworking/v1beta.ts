@@ -2771,8 +2771,7 @@ export namespace servicenetworking_v1beta {
     }
   }
 
-  export interface Params$Resource$Services$Addsubnetwork
-    extends StandardParameters {
+  export interface Params$Resource$Services$Addsubnetwork extends StandardParameters {
     /**
      * Required. A tenant project in the service producer organization, in the following format: services/{service\}/{collection-id\}/{resource-id\}. {collection-id\} is the cloud resource collection type that represents the tenant project. Only `projects` are supported. {resource-id\} is the tenant project numeric id, such as `123456`. {service\} the name of the peering service, such as `service-peering.example.com`. This service must already be enabled in the service consumer's project.
      */
@@ -2783,8 +2782,7 @@ export namespace servicenetworking_v1beta {
      */
     requestBody?: Schema$AddSubnetworkRequest;
   }
-  export interface Params$Resource$Services$Searchrange
-    extends StandardParameters {
+  export interface Params$Resource$Services$Searchrange extends StandardParameters {
     /**
      * Required. This is in a form services/{service\}. {service\} the name of the private access management service, for example 'service-peering.example.com'.
      */
@@ -2795,8 +2793,7 @@ export namespace servicenetworking_v1beta {
      */
     requestBody?: Schema$SearchRangeRequest;
   }
-  export interface Params$Resource$Services$Updateconnections
-    extends StandardParameters {
+  export interface Params$Resource$Services$Updateconnections extends StandardParameters {
     /**
      * If a previously defined allocated range is removed, force flag must be set to true.
      */
@@ -3124,8 +3121,7 @@ export namespace servicenetworking_v1beta {
     }
   }
 
-  export interface Params$Resource$Services$Connections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Services$Connections$Create extends StandardParameters {
     /**
      * The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      */
@@ -3136,8 +3132,7 @@ export namespace servicenetworking_v1beta {
      */
     requestBody?: Schema$GoogleCloudServicenetworkingV1betaConnection;
   }
-  export interface Params$Resource$Services$Connections$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Connections$List extends StandardParameters {
     /**
      * The name of service consumer's VPC network that's connected with service producer network through a private connection. The network name must be in the following format: `projects/{project\}/global/networks/{network\}`. {project\} is a project number, such as in `12345` that includes the VPC service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
      */
