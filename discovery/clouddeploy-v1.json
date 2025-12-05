@@ -2359,7 +2359,7 @@
       }
     }
   },
-  "revision": "20251022",
+  "revision": "20251105",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -5437,6 +5437,10 @@
           "readOnly": true,
           "type": "array"
         },
+        "toolVersions": {
+          "$ref": "ToolVersions",
+          "description": "Optional. The tool versions to use for this release and all subsequent operations involving this release. If unset, then it will freeze the tool versions at the time of release creation."
+        },
         "uid": {
           "description": "Output only. Unique identifier of the `Release`.",
           "readOnly": true,
@@ -5449,6 +5453,31 @@
       "description": "ReleaseCondition contains all conditions relevant to a Release.",
       "id": "ReleaseCondition",
       "properties": {
+        "dockerVersionSupportedCondition": {
+          "$ref": "ToolVersionSupportedCondition",
+          "description": "Output only. Details around the support state of the release's Docker version.",
+          "readOnly": true
+        },
+        "helmVersionSupportedCondition": {
+          "$ref": "ToolVersionSupportedCondition",
+          "description": "Output only. Details around the support state of the release's Helm version.",
+          "readOnly": true
+        },
+        "kptVersionSupportedCondition": {
+          "$ref": "ToolVersionSupportedCondition",
+          "description": "Output only. Details around the support state of the release's Kpt version.",
+          "readOnly": true
+        },
+        "kubectlVersionSupportedCondition": {
+          "$ref": "ToolVersionSupportedCondition",
+          "description": "Output only. Details around the support state of the release's Kubectl version.",
+          "readOnly": true
+        },
+        "kustomizeVersionSupportedCondition": {
+          "$ref": "ToolVersionSupportedCondition",
+          "description": "Output only. Details around the support state of the release's Kustomize version.",
+          "readOnly": true
+        },
         "releaseReadyCondition": {
           "$ref": "ReleaseReadyCondition",
           "description": "Details around the Releases's overall status."
@@ -5456,6 +5485,11 @@
         "skaffoldSupportedCondition": {
           "$ref": "SkaffoldSupportedCondition",
           "description": "Details around the support state of the release's Skaffold version."
+        },
+        "skaffoldVersionSupportedCondition": {
+          "$ref": "ToolVersionSupportedCondition",
+          "description": "Output only. Details around the support state of the release's Skaffold version.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -7232,6 +7266,78 @@
         },
         "timeZone": {
           "description": "Required. The time zone in IANA format [IANA Time Zone Database](https://www.iana.org/time-zones) (e.g. America/New_York).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ToolVersionSupportedCondition": {
+      "description": "ToolVersionSupportedCondition contains information about when support for the release's version of a Tool ends.",
+      "id": "ToolVersionSupportedCondition",
+      "properties": {
+        "maintenanceModeTime": {
+          "description": "Output only. The time at which this release's version of the Tool will enter maintenance mode.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. True if the version of Tool used by this release is supported.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "supportExpirationTime": {
+          "description": "Output only. The time at which this release's version of the Tool will no longer be supported.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "toolVersionSupportState": {
+          "description": "Output only. The Tool support state for this release's version of the Tool.",
+          "enum": [
+            "TOOL_VERSION_SUPPORT_STATE_UNSPECIFIED",
+            "TOOL_VERSION_SUPPORT_STATE_SUPPORTED",
+            "TOOL_VERSION_SUPPORT_STATE_MAINTENANCE_MODE",
+            "TOOL_VERSION_SUPPORT_STATE_UNSUPPORTED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "This Tool version is currently supported.",
+            "This Tool version is in maintenance mode.",
+            "This Tool version is no longer supported."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ToolVersions": {
+      "description": "Details of ToolVersions for the release.",
+      "id": "ToolVersions",
+      "properties": {
+        "docker": {
+          "description": "Optional. The docker version to use for Cloud Deploy operations.",
+          "type": "string"
+        },
+        "helm": {
+          "description": "Optional. The helm version to use for Cloud Deploy operations.",
+          "type": "string"
+        },
+        "kpt": {
+          "description": "Optional. The kpt version to use for Cloud Deploy operations.",
+          "type": "string"
+        },
+        "kubectl": {
+          "description": "Optional. The kubectl version to use for Cloud Deploy operations.",
+          "type": "string"
+        },
+        "kustomize": {
+          "description": "Optional. The kustomize version to use for Cloud Deploy operations.",
+          "type": "string"
+        },
+        "skaffold": {
+          "description": "Optional. The skaffold version to use for Cloud Deploy operations.",
           "type": "string"
         }
       },
