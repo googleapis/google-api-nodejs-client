@@ -1368,7 +1368,7 @@ export namespace gkehub_v2beta {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -2267,15 +2267,13 @@ export namespace gkehub_v2beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -3076,8 +3074,7 @@ export namespace gkehub_v2beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Memberships$Features$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Features$Create extends StandardParameters {
     /**
      * Required. The ID of the membership_feature to create.
      */
@@ -3096,8 +3093,7 @@ export namespace gkehub_v2beta {
      */
     requestBody?: Schema$MembershipFeature;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Features$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Features$Delete extends StandardParameters {
     /**
      * Required. The name of the membershipFeature to be deleted. Specified in the format `projects/x/locations/x/memberships/x/features/x`.
      */
@@ -3107,15 +3103,13 @@ export namespace gkehub_v2beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Features$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Features$Get extends StandardParameters {
     /**
      * Required. The MembershipFeature resource name in the format `projects/x/locations/x/memberships/x/features/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Features$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Features$List extends StandardParameters {
     /**
      * Lists MembershipFeatures that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Examples: - Feature with the name "helloworld" in project "foo-proj" and membership "member-bar": name = "projects/foo-proj/locations/global/memberships/member-bar/features/helloworld" - Features that have a label called `foo`: labels.foo:* - Features that have a label called `foo` whose value is `bar`: labels.foo = bar
      */
@@ -3137,8 +3131,7 @@ export namespace gkehub_v2beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Features$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Features$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the MembershipFeature is not found, a new MembershipFeature will be created. In this situation, `update_mask` is ignored.
      */
@@ -3486,7 +3479,7 @@ export namespace gkehub_v2beta {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3597,8 +3590,7 @@ export namespace gkehub_v2beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3609,15 +3601,13 @@ export namespace gkehub_v2beta {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -3635,7 +3625,7 @@ export namespace gkehub_v2beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
