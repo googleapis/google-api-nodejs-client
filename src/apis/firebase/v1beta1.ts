@@ -996,8 +996,7 @@ export namespace firebase_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Availableprojects$List
-    extends StandardParameters {
+  export interface Params$Resource$Availableprojects$List extends StandardParameters {
     /**
      * The maximum number of Projects to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit. This value cannot be negative.
      */
@@ -2531,8 +2530,7 @@ export namespace firebase_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Addfirebase
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Addfirebase extends StandardParameters {
     /**
      * The resource name of the Google Cloud `Project` in which Firebase resources will be added and Firebase services enabled, in the format: projects/ PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values. After calling `AddFirebase`, the unique Project identifiers ( [`projectNumber`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_number) and [`projectId`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id)) of the underlying Google Cloud `Project` are also the identifiers of the FirebaseProject.
      */
@@ -2543,8 +2541,7 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$AddFirebaseRequest;
   }
-  export interface Params$Resource$Projects$Addgoogleanalytics
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Addgoogleanalytics extends StandardParameters {
     /**
      * The resource name of the FirebaseProject to link to an existing Google Analytics account, in the format: projects/PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
@@ -2561,15 +2558,13 @@ export namespace firebase_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getadminsdkconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getadminsdkconfig extends StandardParameters {
     /**
      * The resource name of the FirebaseProject, in the format: projects/ PROJECT_IDENTIFIER/adminSdkConfig Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getanalyticsdetails
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getanalyticsdetails extends StandardParameters {
     /**
      * The resource name of the FirebaseProject, in the format: projects/ PROJECT_IDENTIFIER/analyticsDetails Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
@@ -2604,8 +2599,7 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$FirebaseProject;
   }
-  export interface Params$Resource$Projects$Removeanalytics
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Removeanalytics extends StandardParameters {
     /**
      * The resource name of the FirebaseProject to unlink from its Google Analytics account, in the format: projects/PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
@@ -2616,8 +2610,7 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$RemoveAnalyticsRequest;
   }
-  export interface Params$Resource$Projects$Searchapps
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Searchapps extends StandardParameters {
     /**
      * A query string compatible with Google's [AIP-160 standard](https://google.aip.dev/160). Use any of the following fields in a query: * [`app_id`](../projects/searchApps#FirebaseAppInfo.FIELDS.app_id) * [`namespace`](../projects/searchApps#FirebaseAppInfo.FIELDS.namespace) * [`platform`](../projects/searchApps#FirebaseAppInfo.FIELDS.platform) This query also supports the following "virtual" fields. These are fields which are not actually part of the returned resource object, but they can be queried as if they are pre-populated with specific values. * `sha1_hash` or `sha1_hashes`: This field is considered to be a _repeated_ `string` field, populated with the list of all SHA-1 certificate fingerprints registered with the AndroidApp. This list is empty if the App is not an `AndroidApp`. * `sha256_hash` or `sha256_hashes`: This field is considered to be a _repeated_ `string` field, populated with the list of all SHA-256 certificate fingerprints registered with the AndroidApp. This list is empty if the App is not an `AndroidApp`. * `app_store_id`: This field is considered to be a _singular_ `string` field, populated with the Apple App Store ID registered with the IosApp. This field is empty if the App is not an `IosApp`. * `team_id`: This field is considered to be a _singular_ `string` field, populated with the Apple team ID registered with the IosApp. This field is empty if the App is not an `IosApp`.
      */
@@ -3726,8 +3719,7 @@ export namespace firebase_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Androidapps$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Androidapps$Create extends StandardParameters {
     /**
      * The resource name of the parent FirebaseProject in which to create an AndroidApp, in the format: projects/PROJECT_IDENTIFIER/androidApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
@@ -3738,22 +3730,19 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$AndroidApp;
   }
-  export interface Params$Resource$Projects$Androidapps$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Androidapps$Get extends StandardParameters {
     /**
      * The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the `AndroidApp` [`name`](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Androidapps$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Androidapps$Getconfig extends StandardParameters {
     /**
      * The resource name of the AndroidApp configuration to download, in the format: projects/PROJECT_IDENTIFIER/androidApps/APP_ID/config Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the `AndroidApp` [`name`](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Androidapps$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Androidapps$List extends StandardParameters {
     /**
      * The maximum number of Apps to return in the response. The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit.
      */
@@ -3771,8 +3760,7 @@ export namespace firebase_v1beta1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Androidapps$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Androidapps$Patch extends StandardParameters {
     /**
      * The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.androidApps#AndroidApp.FIELDS.app_id)).
      */
@@ -3787,8 +3775,7 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$AndroidApp;
   }
-  export interface Params$Resource$Projects$Androidapps$Remove
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Androidapps$Remove extends StandardParameters {
     /**
      * Required. The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the AndroidApp [name](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
@@ -3799,8 +3786,7 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$RemoveAndroidAppRequest;
   }
-  export interface Params$Resource$Projects$Androidapps$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Androidapps$Undelete extends StandardParameters {
     /**
      * Required. The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the AndroidApp [name](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
@@ -4252,8 +4238,7 @@ export namespace firebase_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Androidapps$Sha$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Androidapps$Sha$Create extends StandardParameters {
     /**
      * The resource name of the parent AndroidApp to which to add a ShaCertificate, in the format: projects/PROJECT_IDENTIFIER/androidApps/ APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the `AndroidApp` [`name`](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
@@ -4264,15 +4249,13 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$ShaCertificate;
   }
-  export interface Params$Resource$Projects$Androidapps$Sha$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Androidapps$Sha$Delete extends StandardParameters {
     /**
      * The resource name of the ShaCertificate to remove from the parent AndroidApp, in the format: projects/PROJECT_IDENTIFIER/androidApps/APP_ID /sha/SHA_HASH Refer to the `ShaCertificate` [`name`](../projects.androidApps.sha#ShaCertificate.FIELDS.name) field for details about PROJECT_IDENTIFIER, APP_ID, and SHA_HASH values. You can obtain the full resource name of the `ShaCertificate` from the response of [`ListShaCertificates`](../projects.androidApps.sha/list) or the original [`CreateShaCertificate`](../projects.androidApps.sha/create).
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Androidapps$Sha$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Androidapps$Sha$List extends StandardParameters {
     /**
      * The resource name of the parent AndroidApp for which to list each associated ShaCertificate, in the format: projects/PROJECT_IDENTIFIER /androidApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the `AndroidApp` [`name`](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
@@ -4439,8 +4422,7 @@ export namespace firebase_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Availablelocations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Availablelocations$List extends StandardParameters {
     /**
      * The maximum number of locations to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. This value cannot be negative.
      */
@@ -4613,8 +4595,7 @@ export namespace firebase_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Defaultlocation$Finalize
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Defaultlocation$Finalize extends StandardParameters {
     /**
      * The resource name of the FirebaseProject for which the ["location for default Google Cloud resources"](https://firebase.google.com/docs/projects/locations#default-cloud-location) will be set, in the format: projects/PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
@@ -5708,8 +5689,7 @@ export namespace firebase_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iosapps$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iosapps$Create extends StandardParameters {
     /**
      * The resource name of the parent FirebaseProject in which to create an IosApp, in the format: projects/PROJECT_IDENTIFIER/iosApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
@@ -5720,22 +5700,19 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$IosApp;
   }
-  export interface Params$Resource$Projects$Iosapps$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iosapps$Get extends StandardParameters {
     /**
      * The resource name of the IosApp, in the format: projects/PROJECT_IDENTIFIER /iosApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/iosApps/APP_ID Refer to the `IosApp` [`name`](../projects.iosApps#IosApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Iosapps$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iosapps$Getconfig extends StandardParameters {
     /**
      * The resource name of the App configuration to download, in the format: projects/PROJECT_IDENTIFIER/iosApps/APP_ID/config Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/iosApps/APP_ID Refer to the `IosApp` [`name`](../projects.iosApps#IosApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Iosapps$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iosapps$List extends StandardParameters {
     /**
      * The maximum number of Apps to return in the response. The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
      */
@@ -5753,8 +5730,7 @@ export namespace firebase_v1beta1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Iosapps$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iosapps$Patch extends StandardParameters {
     /**
      * The resource name of the IosApp, in the format: projects/PROJECT_IDENTIFIER /iosApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.iosApps#IosApp.FIELDS.app_id)).
      */
@@ -5769,8 +5745,7 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$IosApp;
   }
-  export interface Params$Resource$Projects$Iosapps$Remove
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iosapps$Remove extends StandardParameters {
     /**
      * Required. The resource name of the IosApp, in the format: projects/ PROJECT_IDENTIFIER/iosApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/iosApps/APP_ID Refer to the IosApp [name](../projects.iosApps#IosApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
@@ -5781,8 +5756,7 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$RemoveIosAppRequest;
   }
-  export interface Params$Resource$Projects$Iosapps$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Iosapps$Undelete extends StandardParameters {
     /**
      * Required. The resource name of the IosApp, in the format: projects/ PROJECT_IDENTIFIER/iosApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/iosApps/APP_ID Refer to the IosApp [name](../projects.iosApps#IosApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
@@ -6882,8 +6856,7 @@ export namespace firebase_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Webapps$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Webapps$Create extends StandardParameters {
     /**
      * The resource name of the parent FirebaseProject in which to create a WebApp, in the format: projects/PROJECT_IDENTIFIER/webApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
@@ -6894,22 +6867,19 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$WebApp;
   }
-  export interface Params$Resource$Projects$Webapps$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Webapps$Get extends StandardParameters {
     /**
      * The resource name of the WebApp, in the format: projects/PROJECT_IDENTIFIER /webApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/webApps/APP_ID Refer to the `WebApp` [`name`](../projects.webApps#WebApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Webapps$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Webapps$Getconfig extends StandardParameters {
     /**
      * The resource name of the WebApp configuration to download, in the format: projects/PROJECT_IDENTIFIER/webApps/APP_ID/config Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/webApps/APP_ID Refer to the `WebApp` [`name`](../projects.webApps#WebApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Webapps$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Webapps$List extends StandardParameters {
     /**
      * The maximum number of Apps to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit.
      */
@@ -6927,8 +6897,7 @@ export namespace firebase_v1beta1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Webapps$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Webapps$Patch extends StandardParameters {
     /**
      * The resource name of the WebApp, in the format: projects/PROJECT_IDENTIFIER /webApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.webApps#WebApp.FIELDS.app_id)).
      */
@@ -6943,8 +6912,7 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$WebApp;
   }
-  export interface Params$Resource$Projects$Webapps$Remove
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Webapps$Remove extends StandardParameters {
     /**
      * Required. The resource name of the WebApp, in the format: projects/ PROJECT_IDENTIFIER/webApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/webApps/APP_ID Refer to the WebApp [name](../projects.webApps#WebApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
@@ -6955,8 +6923,7 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$RemoveWebAppRequest;
   }
-  export interface Params$Resource$Projects$Webapps$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Webapps$Undelete extends StandardParameters {
     /**
      * Required. The resource name of the WebApp, in the format: projects/ PROJECT_IDENTIFIER/webApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/webApps/APP_ID Refer to the WebApp [name](../projects.webApps#WebApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
      */
