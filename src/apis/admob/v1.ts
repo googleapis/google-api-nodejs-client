@@ -1056,8 +1056,7 @@ export namespace admob_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adunits$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$List extends StandardParameters {
     /**
      * The maximum number of ad units to return. If unspecified or 0, at most 10,000 ad units will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.
      */
@@ -1218,8 +1217,7 @@ export namespace admob_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Apps$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$List extends StandardParameters {
     /**
      * The maximum number of apps to return. If unspecified or 0, at most 10,000 apps will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.
      */
@@ -1397,8 +1395,7 @@ export namespace admob_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Mediationreport$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mediationreport$Generate extends StandardParameters {
     /**
      * Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654
      */
@@ -1573,8 +1570,7 @@ export namespace admob_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Networkreport$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Networkreport$Generate extends StandardParameters {
     /**
      * Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654
      */
