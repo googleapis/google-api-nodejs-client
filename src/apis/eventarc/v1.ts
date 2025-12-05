@@ -716,7 +716,7 @@ export namespace eventarc_v1 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1193,6 +1193,15 @@ export namespace eventarc_v1 {
     topic?: string | null;
   }
   /**
+   * The retry policy configuration for the Trigger. Can only be set with Cloud Run destinations.
+   */
+  export interface Schema$RetryPolicy {
+    /**
+     * Optional. The maximum number of delivery attempts for any message. The only valid value is 1.
+     */
+    maxAttempts?: number | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -1285,6 +1294,10 @@ export namespace eventarc_v1 {
      * Required. The resource name of the trigger. Must be unique within the location of the project and must be in `projects/{project\}/locations/{location\}/triggers/{trigger\}` format.
      */
     name?: string | null;
+    /**
+     * Optional. The retry policy to use in the Trigger. If unset, event delivery will be retried for up to 24 hours by default: https://cloud.google.com/eventarc/docs/retry-events
+     */
+    retryPolicy?: Schema$RetryPolicy;
     /**
      * Output only. Whether or not this Trigger satisfies the requirements of physical zone separation
      */
@@ -1933,22 +1946,19 @@ export namespace eventarc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getgooglechannelconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getgooglechannelconfig extends StandardParameters {
     /**
      * Required. The name of the config to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1970,8 +1980,7 @@ export namespace eventarc_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Updategooglechannelconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Updategooglechannelconfig extends StandardParameters {
     /**
      * Required. The resource name of the config. Must be in the format of, `projects/{project\}/locations/{location\}/googleChannelConfig`. In API responses, the config name always includes the projectID, regardless of whether the projectID or projectNumber was provided.
      */
@@ -3041,8 +3050,7 @@ export namespace eventarc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Channelconnections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channelconnections$Create extends StandardParameters {
     /**
      * Required. The user-provided ID to be assigned to the channel connection.
      */
@@ -3057,22 +3065,19 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$ChannelConnection;
   }
-  export interface Params$Resource$Projects$Locations$Channelconnections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channelconnections$Delete extends StandardParameters {
     /**
      * Required. The name of the channel connection to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Channelconnections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channelconnections$Get extends StandardParameters {
     /**
      * Required. The name of the channel connection to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Channelconnections$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channelconnections$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3082,8 +3087,7 @@ export namespace eventarc_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Channelconnections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channelconnections$List extends StandardParameters {
     /**
      * The maximum number of channel connections to return on each page. Note: The service may send fewer responses.
      */
@@ -3097,8 +3101,7 @@ export namespace eventarc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Channelconnections$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channelconnections$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3109,8 +3112,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Channelconnections$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channelconnections$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4336,8 +4338,7 @@ export namespace eventarc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Channels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channels$Create extends StandardParameters {
     /**
      * Required. The user-provided ID to be assigned to the channel.
      */
@@ -4356,8 +4357,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$Channel;
   }
-  export interface Params$Resource$Projects$Locations$Channels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channels$Delete extends StandardParameters {
     /**
      * Required. The name of the channel to be deleted.
      */
@@ -4367,15 +4367,13 @@ export namespace eventarc_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Channels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channels$Get extends StandardParameters {
     /**
      * Required. The name of the channel to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Channels$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channels$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4385,8 +4383,7 @@ export namespace eventarc_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Channels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channels$List extends StandardParameters {
     /**
      * The sorting order of the resources returned. Value should be a comma-separated list of fields. The default sorting order is ascending. To specify descending order for a field, append a `desc` suffix; for example: `name desc, channel_id`.
      */
@@ -4404,8 +4401,7 @@ export namespace eventarc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Channels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channels$Patch extends StandardParameters {
     /**
      * Required. The resource name of the channel. Must be unique within the location on the project and must be in `projects/{project\}/locations/{location\}/channels/{channel_id\}` format.
      */
@@ -4424,8 +4420,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$Channel;
   }
-  export interface Params$Resource$Projects$Locations$Channels$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channels$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4436,8 +4431,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Channels$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Channels$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5676,8 +5670,7 @@ export namespace eventarc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Enrollments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Enrollments$Create extends StandardParameters {
     /**
      * Required. The user-provided ID to be assigned to the Enrollment. It should match the format `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
      */
@@ -5696,8 +5689,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$Enrollment;
   }
-  export interface Params$Resource$Projects$Locations$Enrollments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Enrollments$Delete extends StandardParameters {
     /**
      * Optional. If set to true, and the Enrollment is not found, the request will succeed but no action will be taken on the server.
      */
@@ -5715,15 +5707,13 @@ export namespace eventarc_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Enrollments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Enrollments$Get extends StandardParameters {
     /**
      * Required. The name of the Enrollment to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Enrollments$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Enrollments$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5733,8 +5723,7 @@ export namespace eventarc_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Enrollments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Enrollments$List extends StandardParameters {
     /**
      * Optional. The filter field that the list request will filter on. Possible filtersare described in https://google.aip.dev/160.
      */
@@ -5756,8 +5745,7 @@ export namespace eventarc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Enrollments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Enrollments$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the Enrollment is not found, a new Enrollment will be created. In this situation, `update_mask` is ignored.
      */
@@ -5780,8 +5768,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$Enrollment;
   }
-  export interface Params$Resource$Projects$Locations$Enrollments$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Enrollments$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5792,8 +5779,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Enrollments$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Enrollments$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7046,8 +7032,7 @@ export namespace eventarc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Googleapisources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Googleapisources$Create extends StandardParameters {
     /**
      * Required. The user-provided ID to be assigned to the GoogleApiSource. It should match the format `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
      */
@@ -7066,8 +7051,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$GoogleApiSource;
   }
-  export interface Params$Resource$Projects$Locations$Googleapisources$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Googleapisources$Delete extends StandardParameters {
     /**
      * Optional. If set to true, and the MessageBus is not found, the request will succeed but no action will be taken on the server.
      */
@@ -7085,15 +7069,13 @@ export namespace eventarc_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Googleapisources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Googleapisources$Get extends StandardParameters {
     /**
      * Required. The name of the google api source to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Googleapisources$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Googleapisources$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -7103,8 +7085,7 @@ export namespace eventarc_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Googleapisources$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Googleapisources$List extends StandardParameters {
     /**
      * Optional. The filter field that the list request will filter on. Possible filtersare described in https://google.aip.dev/160.
      */
@@ -7126,8 +7107,7 @@ export namespace eventarc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Googleapisources$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Googleapisources$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the GoogleApiSource is not found, a new GoogleApiSource will be created. In this situation, `update_mask` is ignored.
      */
@@ -7150,8 +7130,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$GoogleApiSource;
   }
-  export interface Params$Resource$Projects$Locations$Googleapisources$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Googleapisources$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7162,8 +7141,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Googleapisources$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Googleapisources$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7630,8 +7608,7 @@ export namespace eventarc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Kafkasources$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Kafkasources$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -7641,8 +7618,7 @@ export namespace eventarc_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Kafkasources$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Kafkasources$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7653,8 +7629,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Kafkasources$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Kafkasources$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9047,8 +9022,7 @@ export namespace eventarc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Messagebuses$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Messagebuses$Create extends StandardParameters {
     /**
      * Required. The user-provided ID to be assigned to the MessageBus. It should match the format `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
      */
@@ -9067,8 +9041,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$MessageBus;
   }
-  export interface Params$Resource$Projects$Locations$Messagebuses$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Messagebuses$Delete extends StandardParameters {
     /**
      * Optional. If set to true, and the MessageBus is not found, the request will succeed but no action will be taken on the server.
      */
@@ -9086,15 +9059,13 @@ export namespace eventarc_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Messagebuses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Messagebuses$Get extends StandardParameters {
     /**
      * Required. The name of the message bus to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Messagebuses$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Messagebuses$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -9104,8 +9075,7 @@ export namespace eventarc_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Messagebuses$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Messagebuses$List extends StandardParameters {
     /**
      * Optional. The filter field that the list request will filter on. Possible filtersare described in https://google.aip.dev/160.
      */
@@ -9127,8 +9097,7 @@ export namespace eventarc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Messagebuses$Listenrollments
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Messagebuses$Listenrollments extends StandardParameters {
     /**
      * Optional. The maximum number of results to return on each page. Note: The service may send fewer.
      */
@@ -9142,8 +9111,7 @@ export namespace eventarc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Messagebuses$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Messagebuses$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the MessageBus is not found, a new MessageBus will be created. In this situation, `update_mask` is ignored.
      */
@@ -9166,8 +9134,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$MessageBus;
   }
-  export interface Params$Resource$Projects$Locations$Messagebuses$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Messagebuses$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9178,8 +9145,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Messagebuses$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Messagebuses$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9648,7 +9614,7 @@ export namespace eventarc_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9767,8 +9733,7 @@ export namespace eventarc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -9779,22 +9744,19 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -9812,7 +9774,7 @@ export namespace eventarc_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -11053,8 +11015,7 @@ export namespace eventarc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Pipelines$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Create extends StandardParameters {
     /**
      * Required. The parent collection in which to add this pipeline.
      */
@@ -11073,8 +11034,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$Pipeline;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Delete extends StandardParameters {
     /**
      * Optional. If set to true, and the Pipeline is not found, the request will succeed but no action will be taken on the server.
      */
@@ -11092,15 +11052,13 @@ export namespace eventarc_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Get extends StandardParameters {
     /**
      * Required. The name of the pipeline to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -11110,8 +11068,7 @@ export namespace eventarc_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$List extends StandardParameters {
     /**
      * Optional. The filter field that the list request will filter on. Possible filters are described in https://google.aip.dev/160.
      */
@@ -11133,8 +11090,7 @@ export namespace eventarc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the Pipeline is not found, a new Pipeline will be created. In this situation, `update_mask` is ignored.
      */
@@ -11157,8 +11113,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$Pipeline;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11169,8 +11124,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11474,15 +11428,13 @@ export namespace eventarc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Providers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$Get extends StandardParameters {
     /**
      * Required. The name of the provider to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Providers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Providers$List extends StandardParameters {
     /**
      * The filter field that the list request will filter on.
      */
@@ -11562,6 +11514,7 @@ export namespace eventarc_v1 {
      *       //   "eventFilters": [],
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "retryPolicy": {},
      *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "transport": {},
@@ -11876,6 +11829,7 @@ export namespace eventarc_v1 {
      *   //   "eventFilters": [],
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "retryPolicy": {},
      *   //   "satisfiesPzs": false,
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "transport": {},
@@ -12320,6 +12274,7 @@ export namespace eventarc_v1 {
      *       //   "eventFilters": [],
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "retryPolicy": {},
      *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "transport": {},
@@ -12736,8 +12691,7 @@ export namespace eventarc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Triggers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Create extends StandardParameters {
     /**
      * Required. The parent collection in which to add this trigger.
      */
@@ -12756,8 +12710,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$Trigger;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Delete extends StandardParameters {
     /**
      * If set to true, and the trigger is not found, the request will succeed but no action will be taken on the server.
      */
@@ -12775,15 +12728,13 @@ export namespace eventarc_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Get extends StandardParameters {
     /**
      * Required. The name of the trigger to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -12793,8 +12744,7 @@ export namespace eventarc_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$List extends StandardParameters {
     /**
      * Filter field. Used to filter the Triggers to be listed. Possible filters are described in https://google.aip.dev/160. For example, using "?filter=destination:gke" would list only Triggers with a gke destination.
      */
@@ -12816,8 +12766,7 @@ export namespace eventarc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Patch extends StandardParameters {
     /**
      * If set to true, and the trigger is not found, a new trigger will be created. In this situation, `update_mask` is ignored.
      */
@@ -12840,8 +12789,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$Trigger;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12852,8 +12800,7 @@ export namespace eventarc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
