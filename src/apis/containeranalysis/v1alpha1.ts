@@ -5402,8 +5402,7 @@ export namespace containeranalysis_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Notes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Create extends StandardParameters {
     /**
      * The name of the project. Should be of the form "providers/{provider_id\}". @Deprecated
      */
@@ -5422,22 +5421,19 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$Note;
   }
-  export interface Params$Resource$Projects$Notes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Delete extends StandardParameters {
     /**
      * The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Get extends StandardParameters {
     /**
      * The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5448,8 +5444,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Notes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$List extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -5471,8 +5466,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Notes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Patch extends StandardParameters {
     /**
      * The name of the note. Should be of the form "projects/{provider_id\}/notes/{note_id\}".
      */
@@ -5487,8 +5481,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$Note;
   }
-  export interface Params$Resource$Projects$Notes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5499,8 +5492,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Notes$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5668,8 +5660,7 @@ export namespace containeranalysis_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Notes$Occurrences$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Occurrences$List extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -7286,8 +7277,7 @@ export namespace containeranalysis_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Occurrences$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Create extends StandardParameters {
     /**
      * The name of the project. Should be of the form "projects/{project_id\}". @Deprecated
      */
@@ -7302,22 +7292,19 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$Occurrence;
   }
-  export interface Params$Resource$Projects$Occurrences$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Delete extends StandardParameters {
     /**
      * The name of the occurrence in the form of "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Get extends StandardParameters {
     /**
      * The name of the occurrence of the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7328,15 +7315,13 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Occurrences$Getnotes
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Getnotes extends StandardParameters {
     /**
      * The name of the occurrence in the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$Getvulnerabilitysummary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Getvulnerabilitysummary extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -7346,8 +7331,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$List extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -7373,8 +7357,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Patch extends StandardParameters {
     /**
      * The name of the occurrence. Should be of the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}".
      */
@@ -7389,8 +7372,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$Occurrence;
   }
-  export interface Params$Resource$Projects$Occurrences$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7401,8 +7383,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Occurrences$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7720,8 +7701,7 @@ export namespace containeranalysis_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Create extends StandardParameters {
     /**
      * The project Id that this operation should be created under.
      */
@@ -7732,8 +7712,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$CreateOperationRequest;
   }
-  export interface Params$Resource$Projects$Operations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Patch extends StandardParameters {
     /**
      * The name of the Operation. Should be of the form "projects/{provider_id\}/operations/{operation_id\}".
      */
@@ -8191,15 +8170,13 @@ export namespace containeranalysis_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Get extends StandardParameters {
     /**
      * The name of the ScanConfig in the form projects/{project_id\}/scanConfigs/{scan_config_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$List extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -8217,8 +8194,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Patch extends StandardParameters {
     /**
      * The scan config to update of the form projects/{project_id\}/scanConfigs/{scan_config_id\}.
      */
@@ -9528,8 +9504,7 @@ export namespace containeranalysis_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Providers$Notes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Notes$Create extends StandardParameters {
     /**
      * The name of the project. Should be of the form "providers/{provider_id\}". @Deprecated
      */
@@ -9548,22 +9523,19 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$Note;
   }
-  export interface Params$Resource$Providers$Notes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Notes$Delete extends StandardParameters {
     /**
      * The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Providers$Notes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Notes$Get extends StandardParameters {
     /**
      * The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Providers$Notes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Notes$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9574,8 +9546,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Providers$Notes$List
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Notes$List extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -9597,8 +9568,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Providers$Notes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Notes$Patch extends StandardParameters {
     /**
      * The name of the note. Should be of the form "projects/{provider_id\}/notes/{note_id\}".
      */
@@ -9613,8 +9583,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$Note;
   }
-  export interface Params$Resource$Providers$Notes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Notes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9625,8 +9594,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Providers$Notes$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Notes$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9794,8 +9762,7 @@ export namespace containeranalysis_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Providers$Notes$Occurrences$List
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Notes$Occurrences$List extends StandardParameters {
     /**
      * The filter expression.
      */
