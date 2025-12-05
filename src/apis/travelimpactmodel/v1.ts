@@ -874,22 +874,19 @@ export namespace travelimpactmodel_v1 {
     }
   }
 
-  export interface Params$Resource$Flights$Computeflightemissions
-    extends StandardParameters {
+  export interface Params$Resource$Flights$Computeflightemissions extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ComputeFlightEmissionsRequest;
   }
-  export interface Params$Resource$Flights$Computescope3flightemissions
-    extends StandardParameters {
+  export interface Params$Resource$Flights$Computescope3flightemissions extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ComputeScope3FlightEmissionsRequest;
   }
-  export interface Params$Resource$Flights$Computetypicalflightemissions
-    extends StandardParameters {
+  export interface Params$Resource$Flights$Computetypicalflightemissions extends StandardParameters {
     /**
      * Request body metadata
      */
