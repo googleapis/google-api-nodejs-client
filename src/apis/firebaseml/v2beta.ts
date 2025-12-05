@@ -551,6 +551,14 @@ export namespace firebaseml_v2beta {
      * Optional. The name of the function to call. Matches [FunctionDeclaration.name].
      */
     name?: string | null;
+    /**
+     * Optional. The partial argument value of the function call. If provided, represents the arguments/fields that are streamed incrementally.
+     */
+    partialArgs?: Schema$GoogleCloudAiplatformV1beta1PartialArg[];
+    /**
+     * Optional. Whether this is the last part of the FunctionCall. If true, another partial message for the current FunctionCall is expected to follow.
+     */
+    willContinue?: boolean | null;
   }
   /**
    * Function calling config.
@@ -564,6 +572,10 @@ export namespace firebaseml_v2beta {
      * Optional. Function calling mode.
      */
     mode?: string | null;
+    /**
+     * Optional. When set to true, arguments of a single function call will be streamed out in multiple parts/contents/responses. Partial parameter results will be returned in the [FunctionCall.partial_args] field.
+     */
+    streamFunctionCallArguments?: boolean | null;
   }
   /**
    * Structured representation of a function declaration as defined by the [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included in this declaration are the function name, description, parameters and response type. This FunctionDeclaration is a representation of a block of code that can be used as a `Tool` by the model and executed by the client.
@@ -574,7 +586,7 @@ export namespace firebaseml_v2beta {
      */
     description?: string | null;
     /**
-     * Required. The name of the function to call. Must start with a letter or an underscore. Must be a-z, A-Z, 0-9, or contain underscores, dots and dashes, with a maximum length of 64.
+     * Required. The name of the function to call. Must start with a letter or an underscore. Must be a-z, A-Z, 0-9, or contain underscores, dots, colons and dashes, with a maximum length of 64.
      */
     name?: string | null;
     /**
@@ -947,6 +959,10 @@ export namespace firebaseml_v2beta {
      * Optional. The token budget for the model's thinking process. The model will make a best effort to stay within this budget. This can be used to control the trade-off between response quality and latency.
      */
     thinkingBudget?: number | null;
+    /**
+     * Optional. The number of thoughts tokens that the model should generate.
+     */
+    thinkingLevel?: string | null;
   }
   /**
    * Tool to retrieve public maps data for grounding, powered by Google.
@@ -1156,6 +1172,10 @@ export namespace firebaseml_v2beta {
      */
     imageOutputOptions?: Schema$GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions;
     /**
+     * Optional. Specifies the size of generated images. Supported values are `1K`, `2K`, `4K`. If not specified, the model will use default value `1K`.
+     */
+    imageSize?: string | null;
+    /**
      * Optional. Controls whether the model can generate people.
      */
     personGeneration?: string | null;
@@ -1276,6 +1296,10 @@ export namespace firebaseml_v2beta {
      */
     inlineData?: Schema$GoogleCloudAiplatformV1beta1Blob;
     /**
+     * per part media resolution. Media resolution for the input media.
+     */
+    mediaResolution?: Schema$GoogleCloudAiplatformV1beta1PartMediaResolution;
+    /**
      * Optional. The text content of the part.
      */
     text?: string | null;
@@ -1291,6 +1315,44 @@ export namespace firebaseml_v2beta {
      * Optional. Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data.
      */
     videoMetadata?: Schema$GoogleCloudAiplatformV1beta1VideoMetadata;
+  }
+  /**
+   * Partial argument value of the function call.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PartialArg {
+    /**
+     * Optional. Represents a boolean value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Required. A JSON Path (RFC 9535) to the argument being streamed. https://datatracker.ietf.org/doc/html/rfc9535. e.g. "$.foo.bar[0].data".
+     */
+    jsonPath?: string | null;
+    /**
+     * Optional. Represents a null value.
+     */
+    nullValue?: string | null;
+    /**
+     * Optional. Represents a double value.
+     */
+    numberValue?: number | null;
+    /**
+     * Optional. Represents a string value.
+     */
+    stringValue?: string | null;
+    /**
+     * Optional. Whether this is not the last part of the same json_path. If true, another PartialArg message for the current json_path is expected to follow.
+     */
+    willContinue?: boolean | null;
+  }
+  /**
+   * per part media resolution. Media resolution for the input media.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PartMediaResolution {
+    /**
+     * The tokenization quality used for given media.
+     */
+    level?: string | null;
   }
   /**
    * Configuration for a prebuilt voice.
@@ -1404,6 +1466,19 @@ export namespace firebaseml_v2beta {
      * Optional. The model name of the rank service. Format: `semantic-ranker-512@latest`
      */
     modelName?: string | null;
+  }
+  /**
+   * The configuration for the replicated voice to use.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ReplicatedVoiceConfig {
+    /**
+     * Optional. The mimetype of the voice sample. The only currently supported value is `audio/wav`. This represents 16-bit signed little-endian wav data, with a 24kHz sampling rate. `mime_type` will default to `audio/wav` if not set.
+     */
+    mimeType?: string | null;
+    /**
+     * Optional. The sample of the custom voice.
+     */
+    voiceSampleAudio?: string | null;
   }
   /**
    * Defines a retrieval tool that model can call to access external knowledge.
@@ -1884,6 +1959,10 @@ export namespace firebaseml_v2beta {
      * The configuration for a prebuilt voice.
      */
     prebuiltVoiceConfig?: Schema$GoogleCloudAiplatformV1beta1PrebuiltVoiceConfig;
+    /**
+     * Optional. The configuration for a replicated voice. This enables users to replicate a voice from an audio sample.
+     */
+    replicatedVoiceConfig?: Schema$GoogleCloudAiplatformV1beta1ReplicatedVoiceConfig;
   }
   /**
    * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.
@@ -2457,8 +2536,7 @@ export namespace firebaseml_v2beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Publishers$Models$Counttokens
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Publishers$Models$Counttokens extends StandardParameters {
     /**
      * Required. The name of the Endpoint requested to perform token counting. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
      */
@@ -2469,8 +2547,7 @@ export namespace firebaseml_v2beta {
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1CountTokensRequest;
   }
-  export interface Params$Resource$Projects$Locations$Publishers$Models$Generatecontent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Publishers$Models$Generatecontent extends StandardParameters {
     /**
      * Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
      */
@@ -2481,8 +2558,7 @@ export namespace firebaseml_v2beta {
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1GenerateContentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent extends StandardParameters {
     /**
      * Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
      */

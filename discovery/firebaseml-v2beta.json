@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20251022",
+  "revision": "20251203",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -870,6 +870,17 @@
         "name": {
           "description": "Optional. The name of the function to call. Matches [FunctionDeclaration.name].",
           "type": "string"
+        },
+        "partialArgs": {
+          "description": "Optional. The partial argument value of the function call. If provided, represents the arguments/fields that are streamed incrementally.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1PartialArg"
+          },
+          "type": "array"
+        },
+        "willContinue": {
+          "description": "Optional. Whether this is the last part of the FunctionCall. If true, another partial message for the current FunctionCall is expected to follow.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -902,6 +913,10 @@
             "Model is constrained to predict either function calls or natural language response. If \"allowed_function_names\" are set, the predicted function calls will be limited to any one of \"allowed_function_names\", else the predicted function calls will be any one of the provided \"function_declarations\"."
           ],
           "type": "string"
+        },
+        "streamFunctionCallArguments": {
+          "description": "Optional. When set to true, arguments of a single function call will be streamed out in multiple parts/contents/responses. Partial parameter results will be returned in the [FunctionCall.partial_args] field.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -915,7 +930,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The name of the function to call. Must start with a letter or an underscore. Must be a-z, A-Z, 0-9, or contain underscores, dots and dashes, with a maximum length of 64.",
+          "description": "Required. The name of the function to call. Must start with a letter or an underscore. Must be a-z, A-Z, 0-9, or contain underscores, dots, colons and dashes, with a maximum length of 64.",
           "type": "string"
         },
         "parameters": {
@@ -1471,6 +1486,20 @@
           "description": "Optional. The token budget for the model's thinking process. The model will make a best effort to stay within this budget. This can be used to control the trade-off between response quality and latency.",
           "format": "int32",
           "type": "integer"
+        },
+        "thinkingLevel": {
+          "description": "Optional. The number of thoughts tokens that the model should generate.",
+          "enum": [
+            "THINKING_LEVEL_UNSPECIFIED",
+            "LOW",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unspecified thinking level.",
+            "Low thinking level.",
+            "High thinking level."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1734,6 +1763,10 @@
           "$ref": "GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions",
           "description": "Optional. The image output format for generated images."
         },
+        "imageSize": {
+          "description": "Optional. Specifies the size of generated images. Supported values are `1K`, `2K`, `4K`. If not specified, the model will use default value `1K`.",
+          "type": "string"
+        },
         "personGeneration": {
           "description": "Optional. Controls whether the model can generate people.",
           "enum": [
@@ -1914,6 +1947,10 @@
           "$ref": "GoogleCloudAiplatformV1beta1Blob",
           "description": "Optional. The inline data content of the part. This can be used to include images, audio, or video in a request."
         },
+        "mediaResolution": {
+          "$ref": "GoogleCloudAiplatformV1beta1PartMediaResolution",
+          "description": "per part media resolution. Media resolution for the input media."
+        },
         "text": {
           "description": "Optional. The text content of the part.",
           "type": "string"
@@ -1930,6 +1967,67 @@
         "videoMetadata": {
           "$ref": "GoogleCloudAiplatformV1beta1VideoMetadata",
           "description": "Optional. Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1PartMediaResolution": {
+      "description": "per part media resolution. Media resolution for the input media.",
+      "id": "GoogleCloudAiplatformV1beta1PartMediaResolution",
+      "properties": {
+        "level": {
+          "description": "The tokenization quality used for given media.",
+          "enum": [
+            "MEDIA_RESOLUTION_UNSPECIFIED",
+            "MEDIA_RESOLUTION_LOW",
+            "MEDIA_RESOLUTION_MEDIUM",
+            "MEDIA_RESOLUTION_HIGH"
+          ],
+          "enumDescriptions": [
+            "Media resolution has not been set.",
+            "Media resolution set to low.",
+            "Media resolution set to medium.",
+            "Media resolution set to high."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1PartialArg": {
+      "description": "Partial argument value of the function call.",
+      "id": "GoogleCloudAiplatformV1beta1PartialArg",
+      "properties": {
+        "boolValue": {
+          "description": "Optional. Represents a boolean value.",
+          "type": "boolean"
+        },
+        "jsonPath": {
+          "description": "Required. A JSON Path (RFC 9535) to the argument being streamed. https://datatracker.ietf.org/doc/html/rfc9535. e.g. \"$.foo.bar[0].data\".",
+          "type": "string"
+        },
+        "nullValue": {
+          "description": "Optional. Represents a null value.",
+          "enum": [
+            "NULL_VALUE"
+          ],
+          "enumDescriptions": [
+            "Null value."
+          ],
+          "type": "string"
+        },
+        "numberValue": {
+          "description": "Optional. Represents a double value.",
+          "format": "double",
+          "type": "number"
+        },
+        "stringValue": {
+          "description": "Optional. Represents a string value.",
+          "type": "string"
+        },
+        "willContinue": {
+          "description": "Optional. Whether this is not the last part of the same json_path. If true, another PartialArg message for the current json_path is expected to follow.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2066,6 +2164,22 @@
       "properties": {
         "modelName": {
           "description": "Optional. The model name of the rank service. Format: `semantic-ranker-512@latest`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ReplicatedVoiceConfig": {
+      "description": "The configuration for the replicated voice to use.",
+      "id": "GoogleCloudAiplatformV1beta1ReplicatedVoiceConfig",
+      "properties": {
+        "mimeType": {
+          "description": "Optional. The mimetype of the voice sample. The only currently supported value is `audio/wav`. This represents 16-bit signed little-endian wav data, with a 24kHz sampling rate. `mime_type` will default to `audio/wav` if not set.",
+          "type": "string"
+        },
+        "voiceSampleAudio": {
+          "description": "Optional. The sample of the custom voice.",
+          "format": "byte",
           "type": "string"
         }
       },
@@ -2877,6 +2991,10 @@
         "prebuiltVoiceConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1PrebuiltVoiceConfig",
           "description": "The configuration for a prebuilt voice."
+        },
+        "replicatedVoiceConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1ReplicatedVoiceConfig",
+          "description": "Optional. The configuration for a replicated voice. This enables users to replicate a voice from an audio sample."
         }
       },
       "type": "object"
