@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v3.1.0...datamanager-v3.1.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **datamanager:** update the API ([f2243aa](https://github.com/googleapis/google-api-nodejs-client/commit/f2243aa1bb1d34ab250a95e23555490d2140250d))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v3.0.0...datamanager-v3.1.0) (2025-11-26)
 
 
