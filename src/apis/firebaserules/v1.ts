@@ -1579,8 +1579,7 @@ export namespace firebaserules_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Releases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Releases$Create extends StandardParameters {
     /**
      * Required. Resource name for the project which owns this `Release`. Format: `projects/{project_id\}`
      */
@@ -1591,22 +1590,19 @@ export namespace firebaserules_v1 {
      */
     requestBody?: Schema$Release;
   }
-  export interface Params$Resource$Projects$Releases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Releases$Delete extends StandardParameters {
     /**
      * Required. Resource name for the `Release` to delete. Format: `projects/{project_id\}/releases/{release_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Releases$Get extends StandardParameters {
     /**
      * Required. Resource name of the `Release`. Format: `projects/{project_id\}/releases/{release_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$Getexecutable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Releases$Getexecutable extends StandardParameters {
     /**
      * Optional. The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1.
      */
@@ -1616,8 +1612,7 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Releases$List extends StandardParameters {
     /**
      * Optional. `Release` filter. The list method supports filters with restrictions on the `Release.name`, and `Release.ruleset_name`. Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod': Name -\> Ruleset Name: * projects/foo/releases/prod -\> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v1 -\> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v2 -\> projects/foo/rulesets/uuid8888 Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234': Name -\> Ruleset Name: * projects/foo/releases/prod -\> projects/foo/rulesets/1234 * projects/foo/releases/prod/v1 -\> projects/foo/rulesets/1234 In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used.
      */
@@ -1635,8 +1630,7 @@ export namespace firebaserules_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Releases$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Releases$Patch extends StandardParameters {
     /**
      * Required. Resource name for the project which owns this `Release`. Format: `projects/{project_id\}`
      */
@@ -2242,8 +2236,7 @@ export namespace firebaserules_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Rulesets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Rulesets$Create extends StandardParameters {
     /**
      * Required. Resource name for Project which owns this `Ruleset`. Format: `projects/{project_id\}`
      */
@@ -2254,22 +2247,19 @@ export namespace firebaserules_v1 {
      */
     requestBody?: Schema$Ruleset;
   }
-  export interface Params$Resource$Projects$Rulesets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Rulesets$Delete extends StandardParameters {
     /**
      * Required. Resource name for the ruleset to delete. Format: `projects/{project_id\}/rulesets/{ruleset_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Rulesets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Rulesets$Get extends StandardParameters {
     /**
      * Required. Resource name for the ruleset to get. Format: `projects/{project_id\}/rulesets/{ruleset_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Rulesets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Rulesets$List extends StandardParameters {
     /**
      * Optional. `Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`. Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications. Example: `create_time \> date("2017-01-01T00:00:00Z") AND name=UUID-*`
      */
