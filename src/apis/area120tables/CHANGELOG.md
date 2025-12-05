@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/area120tables-v5.0.0...area120tables-v5.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **area120tables:** update the API ([47bccd4](https://github.com/googleapis/google-api-nodejs-client/commit/47bccd4ea61a8c53bda01c1d15b086f303f63b6b))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/area120tables-v4.0.0...area120tables-v5.0.0) (2025-10-15)
 
 

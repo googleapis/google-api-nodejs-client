@@ -1,5 +1,12 @@
 # Changelog
 
+## [24.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v24.1.0...dialogflow-v24.1.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **dialogflow:** update the API ([1a53766](https://github.com/googleapis/google-api-nodejs-client/commit/1a53766be7a9268a6f3cbba393de1a00aab5d653))
+
 ## [24.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v24.0.0...dialogflow-v24.1.0) (2025-11-26)
 
 
