@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/contactcenteraiplatform",
-  "version": "13.0.1",
+  "version": "13.0.2",
   "description": "contactcenteraiplatform",
   "main": "build/index.js",
   "types": "build/index.d.ts",
