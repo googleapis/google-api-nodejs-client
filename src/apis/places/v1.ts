@@ -2515,8 +2515,7 @@ export namespace places_v1 {
     }
   }
 
-  export interface Params$Resource$Places$Autocomplete
-    extends StandardParameters {
+  export interface Params$Resource$Places$Autocomplete extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2540,15 +2539,13 @@ export namespace places_v1 {
      */
     sessionToken?: string;
   }
-  export interface Params$Resource$Places$Searchnearby
-    extends StandardParameters {
+  export interface Params$Resource$Places$Searchnearby extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleMapsPlacesV1SearchNearbyRequest;
   }
-  export interface Params$Resource$Places$Searchtext
-    extends StandardParameters {
+  export interface Params$Resource$Places$Searchtext extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2713,8 +2710,7 @@ export namespace places_v1 {
     }
   }
 
-  export interface Params$Resource$Places$Photos$Getmedia
-    extends StandardParameters {
+  export interface Params$Resource$Places$Photos$Getmedia extends StandardParameters {
     /**
      * Optional. Specifies the maximum desired height, in pixels, of the image. If the image is smaller than the values specified, the original image will be returned. If the image is larger in either dimension, it will be scaled to match the smaller of the two dimensions, restricted to its original aspect ratio. Both the max_height_px and max_width_px properties accept an integer between 1 and 4800, inclusively. If the value is not within the allowed range, an INVALID_ARGUMENT error will be returned. At least one of max_height_px or max_width_px needs to be specified. If neither max_height_px nor max_width_px is specified, an INVALID_ARGUMENT error will be returned.
      */
