@@ -1936,15 +1936,13 @@ export namespace osconfig_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instanceospoliciescompliances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instanceospoliciescompliances$Get extends StandardParameters {
     /**
      * Required. API resource name for instance OS policies compliance resource. Format: `projects/{project\}/locations/{location\}/instanceOSPoliciesCompliances/{instance\}` For `{project\}`, either Compute Engine project-number or project-id can be provided. For `{instance\}`, either Compute Engine VM instance-id or instance-name can be provided.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instanceospoliciescompliances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instanceospoliciescompliances$List extends StandardParameters {
     /**
      * If provided, this field specifies the criteria that must be met by a `InstanceOSPoliciesCompliance` API resource to be included in the response.
      */
@@ -2280,8 +2278,7 @@ export namespace osconfig_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Inventories$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Inventories$Get extends StandardParameters {
     /**
      * Required. API resource name for inventory resource. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/inventory` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, either Compute Engine `instance-id` or `instance-name` can be provided.
      */
@@ -2291,8 +2288,7 @@ export namespace osconfig_v1alpha {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Inventories$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Inventories$List extends StandardParameters {
     /**
      * If provided, this field specifies the criteria that must be met by a `Inventory` API resource to be included in the response.
      */
@@ -2638,15 +2634,13 @@ export namespace osconfig_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get extends StandardParameters {
     /**
      * Required. API resource name for OS policy assignment report. Format: `/projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/report` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance_id\}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id\}`, the OSPolicyAssignment id must be provided.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List extends StandardParameters {
     /**
      * If provided, this field specifies the criteria that must be met by the `OSPolicyAssignmentReport` API resource that is included in the response.
      */
@@ -2967,15 +2961,13 @@ export namespace osconfig_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get extends StandardParameters {
     /**
      * Required. API resource name for vulnerability resource. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/vulnerabilityReport` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, either Compute Engine `instance-id` or `instance-name` can be provided.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List extends StandardParameters {
     /**
      * This field supports filtering by the severity level for the vulnerability. For a list of severity levels, see [Severity levels for vulnerabilities](https://cloud.google.com/container-analysis/docs/container-scanning-overview#severity_levels_for_vulnerabilities). The filter field follows the rules described in the [AIP-160](https://google.aip.dev/160) guidelines as follows: + **Filter for a specific severity type**: you can list reports that contain vulnerabilities that are classified as medium by specifying `vulnerabilities.details.severity:MEDIUM`. + **Filter for a range of severities** : you can list reports that have vulnerabilities that are classified as critical or high by specifying `vulnerabilities.details.severity:HIGH OR vulnerabilities.details.severity:CRITICAL`
      */
@@ -3928,8 +3920,7 @@ export namespace osconfig_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Create extends StandardParameters {
     /**
      * Required. The logical name of the OS policy assignment in the project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
      */
@@ -3948,8 +3939,7 @@ export namespace osconfig_v1alpha {
      */
     requestBody?: Schema$OSPolicyAssignment;
   }
-  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Delete extends StandardParameters {
     /**
      * Required. The name of the OS policy assignment to be deleted
      */
@@ -3959,15 +3949,13 @@ export namespace osconfig_v1alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Get extends StandardParameters {
     /**
      * Required. The resource name of OS policy assignment. Format: `projects/{project\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment\}@{revisionId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Ospolicyassignments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$List extends StandardParameters {
     /**
      * The maximum number of assignments to return.
      */
@@ -3981,8 +3969,7 @@ export namespace osconfig_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions extends StandardParameters {
     /**
      * Required. The name of the OS policy assignment to list revisions for.
      */
@@ -3996,8 +3983,7 @@ export namespace osconfig_v1alpha {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the OS policy assignment is not found, a new OS policy assignment will be created. In this situation, `update_mask` is ignored.
      */
@@ -4311,8 +4297,7 @@ export namespace osconfig_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -4323,8 +4308,7 @@ export namespace osconfig_v1alpha {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
