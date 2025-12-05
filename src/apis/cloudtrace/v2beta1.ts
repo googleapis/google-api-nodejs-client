@@ -908,8 +908,7 @@ export namespace cloudtrace_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Tracesinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tracesinks$Create extends StandardParameters {
     /**
      * Required. The resource in which to create the sink (currently only project sinks are supported): "projects/[PROJECT_ID]" Examples: `"projects/my-trace-project"`, `"projects/123456789"`.
      */
@@ -920,22 +919,19 @@ export namespace cloudtrace_v2beta1 {
      */
     requestBody?: Schema$TraceSink;
   }
-  export interface Params$Resource$Projects$Tracesinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tracesinks$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Tracesinks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tracesinks$Get extends StandardParameters {
     /**
      * Required. The resource name of the sink: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Tracesinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tracesinks$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available.
      */
@@ -949,8 +945,7 @@ export namespace cloudtrace_v2beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Tracesinks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tracesinks$Patch extends StandardParameters {
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
      */
