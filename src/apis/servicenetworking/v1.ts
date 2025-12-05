@@ -1399,7 +1399,7 @@ export namespace servicenetworking_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -2944,7 +2944,7 @@ export namespace servicenetworking_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3052,8 +3052,7 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3064,8 +3063,7 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
@@ -3095,7 +3093,7 @@ export namespace servicenetworking_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -3914,8 +3912,7 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Addsubnetwork
-    extends StandardParameters {
+  export interface Params$Resource$Services$Addsubnetwork extends StandardParameters {
     /**
      * Required. A tenant project in the service producer organization, in the following format: services/{service\}/{collection-id\}/{resource-id\}. {collection-id\} is the cloud resource collection type that represents the tenant project. Only `projects` are supported. {resource-id\} is the tenant project numeric id, such as `123456`. {service\} the name of the peering service, such as `service-peering.example.com`. This service must already be enabled in the service consumer's project.
      */
@@ -3926,8 +3923,7 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$AddSubnetworkRequest;
   }
-  export interface Params$Resource$Services$Disablevpcservicecontrols
-    extends StandardParameters {
+  export interface Params$Resource$Services$Disablevpcservicecontrols extends StandardParameters {
     /**
      * Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      */
@@ -3938,8 +3934,7 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$DisableVpcServiceControlsRequest;
   }
-  export interface Params$Resource$Services$Enablevpcservicecontrols
-    extends StandardParameters {
+  export interface Params$Resource$Services$Enablevpcservicecontrols extends StandardParameters {
     /**
      * Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      */
@@ -3950,8 +3945,7 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$EnableVpcServiceControlsRequest;
   }
-  export interface Params$Resource$Services$Searchrange
-    extends StandardParameters {
+  export interface Params$Resource$Services$Searchrange extends StandardParameters {
     /**
      * Required. This is in a form services/{service\}. {service\} the name of the private access management service, for example 'service-peering.example.com'.
      */
@@ -3962,8 +3956,7 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$SearchRangeRequest;
   }
-  export interface Params$Resource$Services$Validate
-    extends StandardParameters {
+  export interface Params$Resource$Services$Validate extends StandardParameters {
     /**
      * Required. This is in a form services/{service\} where {service\} is the name of the private access management service. For example 'service-peering.example.com'.
      */
@@ -4590,8 +4583,7 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Connections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Services$Connections$Create extends StandardParameters {
     /**
      * Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      */
@@ -4602,8 +4594,7 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Services$Connections$Deleteconnection
-    extends StandardParameters {
+  export interface Params$Resource$Services$Connections$Deleteconnection extends StandardParameters {
     /**
      * Required. The private service connection that connects to a service producer organization. The name includes both the private service name and the VPC network peering name in the format of `services/{peering_service_name\}/connections/{vpc_peering_name\}`. For Google services that support this functionality, this is `services/servicenetworking.googleapis.com/connections/servicenetworking-googleapis-com`.
      */
@@ -4614,8 +4605,7 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$DeleteConnectionRequest;
   }
-  export interface Params$Resource$Services$Connections$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Connections$List extends StandardParameters {
     /**
      * Required. The name of service consumer's VPC network that's connected with service producer network through a private connection. The network name must be in the following format: `projects/{project\}/global/networks/{network\}`. {project\} is a project number, such as in `12345` that includes the VPC service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
      */
@@ -4625,8 +4615,7 @@ export namespace servicenetworking_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Services$Connections$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Services$Connections$Patch extends StandardParameters {
     /**
      * If a previously defined allocated range is removed, force flag must be set to true.
      */
@@ -5420,8 +5409,7 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Dnsrecordsets$Add
-    extends StandardParameters {
+  export interface Params$Resource$Services$Dnsrecordsets$Add extends StandardParameters {
     /**
      * Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      */
@@ -5432,8 +5420,7 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$AddDnsRecordSetRequest;
   }
-  export interface Params$Resource$Services$Dnsrecordsets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Services$Dnsrecordsets$Get extends StandardParameters {
     /**
      * Required. The consumer network containing the record set. Must be in the form of projects/{project\}/global/networks/{network\}
      */
@@ -5455,8 +5442,7 @@ export namespace servicenetworking_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Services$Dnsrecordsets$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Dnsrecordsets$List extends StandardParameters {
     /**
      * Required. The network that the consumer is using to connect with services. Must be in the form of projects/{project\}/global/networks/{network\} {project\} is the project number, as in '12345' {network\} is the network name.
      */
@@ -5470,8 +5456,7 @@ export namespace servicenetworking_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Services$Dnsrecordsets$Remove
-    extends StandardParameters {
+  export interface Params$Resource$Services$Dnsrecordsets$Remove extends StandardParameters {
     /**
      * Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      */
@@ -5482,8 +5467,7 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$RemoveDnsRecordSetRequest;
   }
-  export interface Params$Resource$Services$Dnsrecordsets$Update
-    extends StandardParameters {
+  export interface Params$Resource$Services$Dnsrecordsets$Update extends StandardParameters {
     /**
      * Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      */
@@ -5811,8 +5795,7 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Dnszones$Add
-    extends StandardParameters {
+  export interface Params$Resource$Services$Dnszones$Add extends StandardParameters {
     /**
      * Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      */
@@ -5823,8 +5806,7 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$AddDnsZoneRequest;
   }
-  export interface Params$Resource$Services$Dnszones$Remove
-    extends StandardParameters {
+  export interface Params$Resource$Services$Dnszones$Remove extends StandardParameters {
     /**
      * Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      */
@@ -6331,8 +6313,7 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Projects$Global$Networks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Services$Projects$Global$Networks$Get extends StandardParameters {
     /**
      * Optional. When true, include the used IP ranges as part of the GetConsumerConfig output. This includes routes created inside the service networking network, consumer network, peers of the consumer network, and reserved ranges inside the service networking network. By default, this is false
      */
@@ -6342,15 +6323,13 @@ export namespace servicenetworking_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Projects$Global$Networks$Getvpcservicecontrols
-    extends StandardParameters {
+  export interface Params$Resource$Services$Projects$Global$Networks$Getvpcservicecontrols extends StandardParameters {
     /**
      * Required. Name of the VPC Service Controls config to retrieve in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Projects$Global$Networks$Updateconsumerconfig
-    extends StandardParameters {
+  export interface Params$Resource$Services$Projects$Global$Networks$Updateconsumerconfig extends StandardParameters {
     /**
      * Required. Parent resource identifying the connection for which the consumer config is being updated in the format: `services/{service\}/projects/{project\}/global/networks/{network\}` {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network.
      */
@@ -6656,15 +6635,13 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Projects$Global$Networks$Dnszones$Get
-    extends StandardParameters {
+  export interface Params$Resource$Services$Projects$Global$Networks$Dnszones$Get extends StandardParameters {
     /**
      * Required. The network that the consumer is using to connect with services. Must be in the form of services/{service\}/projects/{project\}/global/networks/{network\}/dnsZones/{zoneName\} Where {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this {project\} is the project number, as in '12345' {network\} is the network name. {zoneName\} is the DNS zone name
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Projects$Global$Networks$Dnszones$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Projects$Global$Networks$Dnszones$List extends StandardParameters {
     /**
      * Required. Parent resource identifying the connection which owns this collection of DNS zones in the format services/{service\}/projects/{project\}/global/networks/{network\} Service: The service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. Projects: the consumer project containing the consumer network. Network: The consumer network accessible from the tenant project.
      */
@@ -7135,8 +7112,7 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$Create
-    extends StandardParameters {
+  export interface Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$Create extends StandardParameters {
     /**
      * Required. Parent resource identifying the connection for which the peered DNS domain will be created in the format: `services/{service\}/projects/{project\}/global/networks/{network\}` {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network.
      */
@@ -7147,15 +7123,13 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$PeeredDnsDomain;
   }
-  export interface Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$Delete extends StandardParameters {
     /**
      * Required. The name of the peered DNS domain to delete in the format: `services/{service\}/projects/{project\}/global/networks/{network\}/peeredDnsDomains/{name\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network. {name\} is the name of the peered DNS domain.
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$List extends StandardParameters {
     /**
      * Required. Parent resource identifying the connection which owns this collection of peered DNS domains in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
      */
@@ -7323,8 +7297,7 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Roles$Add
-    extends StandardParameters {
+  export interface Params$Resource$Services$Roles$Add extends StandardParameters {
     /**
      * Required. This is in a form services/{service\} where {service\} is the name of the private access management service. For example 'service-peering.example.com'.
      */
