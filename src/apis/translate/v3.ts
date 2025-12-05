@@ -1944,8 +1944,7 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Detectlanguage
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Detectlanguage extends StandardParameters {
     /**
      * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}` or `projects/{project-number-or-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -1956,8 +1955,7 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$DetectLanguageRequest;
   }
-  export interface Params$Resource$Projects$Getsupportedlanguages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getsupportedlanguages extends StandardParameters {
     /**
      * Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
      */
@@ -1971,8 +1969,7 @@ export namespace translate_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Romanizetext
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Romanizetext extends StandardParameters {
     /**
      * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}` or `projects/{project-number-or-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`.
      */
@@ -1983,8 +1980,7 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$RomanizeTextRequest;
   }
-  export interface Params$Resource$Projects$Translatetext
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Translatetext extends StandardParameters {
     /**
      * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}` or `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -3568,8 +3564,7 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Adaptivemttranslate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Adaptivemttranslate extends StandardParameters {
     /**
      * Required. Location to make a regional call. Format: `projects/{project-number-or-id\}/locations/{location-id\}`.
      */
@@ -3580,8 +3575,7 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$AdaptiveMtTranslateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Batchtranslatedocument
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batchtranslatedocument extends StandardParameters {
     /**
      * Required. Location to make a regional call. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -3592,8 +3586,7 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$BatchTranslateDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Batchtranslatetext
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batchtranslatetext extends StandardParameters {
     /**
      * Required. Location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -3604,8 +3597,7 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$BatchTranslateTextRequest;
   }
-  export interface Params$Resource$Projects$Locations$Detectlanguage
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Detectlanguage extends StandardParameters {
     /**
      * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}` or `projects/{project-number-or-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -3616,15 +3608,13 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$DetectLanguageRequest;
   }
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getsupportedlanguages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getsupportedlanguages extends StandardParameters {
     /**
      * Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
      */
@@ -3638,8 +3628,7 @@ export namespace translate_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
      */
@@ -3661,8 +3650,7 @@ export namespace translate_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Romanizetext
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Romanizetext extends StandardParameters {
     /**
      * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}` or `projects/{project-number-or-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`.
      */
@@ -3673,8 +3661,7 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$RomanizeTextRequest;
   }
-  export interface Params$Resource$Projects$Locations$Translatedocument
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Translatedocument extends StandardParameters {
     /**
      * Required. Location to make a regional call. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have the same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -3685,8 +3672,7 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$TranslateDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Translatetext
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Translatetext extends StandardParameters {
     /**
      * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}` or `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
@@ -4468,8 +4454,7 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Create extends StandardParameters {
     /**
      * Required. Name of the parent project. In form of `projects/{project-number-or-id\}/locations/{location-id\}`
      */
@@ -4480,22 +4465,19 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$AdaptiveMtDataset;
   }
-  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete extends StandardParameters {
     /**
      * Required. Name of the dataset. In the form of `projects/{project-number-or-id\}/locations/{location-id\}/adaptiveMtDatasets/{adaptive-mt-dataset-id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Get extends StandardParameters {
     /**
      * Required. Name of the dataset. In the form of `projects/{project-number-or-id\}/locations/{location-id\}/adaptiveMtDatasets/{adaptive-mt-dataset-id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile extends StandardParameters {
     /**
      * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}`
      */
@@ -4506,8 +4488,7 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$ImportAdaptiveMtFileRequest;
   }
-  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. Filter is not supported yet.
      */
@@ -4972,22 +4953,19 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete extends StandardParameters {
     /**
      * Required. The resource name of the file to delete, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get extends StandardParameters {
     /**
      * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List extends StandardParameters {
     /**
      * Optional.
      */
@@ -5164,8 +5142,7 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List extends StandardParameters {
     /**
      *
      */
@@ -5342,8 +5319,7 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List extends StandardParameters {
     /**
      *
      */
@@ -6268,8 +6244,7 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datasets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Create extends StandardParameters {
     /**
      * Required. The project name.
      */
@@ -6280,15 +6255,13 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$Dataset;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Delete extends StandardParameters {
     /**
      * Required. The name of the dataset to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Exportdata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Exportdata extends StandardParameters {
     /**
      * Required. Name of the dataset. In form of `projects/{project-number-or-id\}/locations/{location-id\}/datasets/{dataset-id\}`
      */
@@ -6299,15 +6272,13 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$ExportDataRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Get extends StandardParameters {
     /**
      * Required. The resource name of the dataset to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Importdata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Importdata extends StandardParameters {
     /**
      * Required. Name of the dataset. In form of `projects/{project-number-or-id\}/locations/{location-id\}/datasets/{dataset-id\}`
      */
@@ -6318,8 +6289,7 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$ImportDataRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$List extends StandardParameters {
     /**
      * Optional. Requested page size. The server can return fewer results than requested.
      */
@@ -6491,8 +6461,7 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datasets$Examples$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Examples$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the examples that will be returned. Example filter: * `usage=TRAIN`
      */
@@ -7274,8 +7243,7 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Glossaries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Create extends StandardParameters {
     /**
      * Required. The project name.
      */
@@ -7286,22 +7254,19 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$Glossary;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Delete extends StandardParameters {
     /**
      * Required. The name of the glossary to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Get extends StandardParameters {
     /**
      * Required. The name of the glossary to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$List extends StandardParameters {
     /**
      * Optional. Filter specifying constraints of a list operation. Specify the constraint by the format of "key=value", where key must be "src" or "tgt", and the value must be a valid language code. For multiple restrictions, concatenate them by "AND" (uppercase only), such as: "src=en-US AND tgt=zh-CN". Notice that the exact match is used here, which means using 'en-US' and 'en' can lead to different results, which depends on the language code you used when you create the glossary. For the unidirectional glossaries, the "src" and "tgt" add restrictions on the source and target language code separately. For the equivalent term set glossaries, the "src" and/or "tgt" add restrictions on the term set. For example: "src=en-US AND tgt=zh-CN" will only pick the unidirectional glossaries which exactly match the source language code as "en-US" and the target language code "zh-CN", but all equivalent term set glossaries which contain "en-US" and "zh-CN" in their language set will be picked. If missing, no filtering is performed.
      */
@@ -7319,8 +7284,7 @@ export namespace translate_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Patch extends StandardParameters {
     /**
      * Required. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id\}/locations/{location-id\}/glossaries/{glossary-id\}`.
      */
@@ -8085,8 +8049,7 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Create extends StandardParameters {
     /**
      * Required. The resource name of the glossary to create the entry under.
      */
@@ -8097,22 +8060,19 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$GlossaryEntry;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Delete extends StandardParameters {
     /**
      * Required. The resource name of the glossary entry to delete
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Get extends StandardParameters {
     /**
      * Required. The resource name of the glossary entry to get
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$List extends StandardParameters {
     /**
      * Optional. Requested page size. The server may return fewer glossary entries than requested. If unspecified, the server picks an appropriate default.
      */
@@ -8126,8 +8086,7 @@ export namespace translate_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the entry. Format: `projects/x/locations/x/glossaries/x/glossaryEntries/x`
      */
@@ -8741,8 +8700,7 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Models$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Models$Create extends StandardParameters {
     /**
      * Required. The project name, in form of `projects/{project\}/locations/{location\}`
      */
@@ -8753,22 +8711,19 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$Model;
   }
-  export interface Params$Resource$Projects$Locations$Models$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Models$Delete extends StandardParameters {
     /**
      * Required. The name of the model to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Models$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Models$Get extends StandardParameters {
     /**
      * Required. The resource name of the model to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Models$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Models$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the models that will be returned. Supported filter: `dataset_id=${dataset_id\}`
      */
@@ -9509,8 +9464,7 @@ export namespace translate_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -9521,22 +9475,19 @@ export namespace translate_v3 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -9554,8 +9505,7 @@ export namespace translate_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Wait
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Wait extends StandardParameters {
     /**
      * The name of the operation resource to wait on.
      */
