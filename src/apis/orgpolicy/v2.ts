@@ -631,8 +631,7 @@ export namespace orgpolicy_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Constraints$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Constraints$List extends StandardParameters {
     /**
      * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
      */
@@ -1548,8 +1547,7 @@ export namespace orgpolicy_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Policies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Policies$Create extends StandardParameters {
     /**
      * Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
      */
@@ -1560,8 +1558,7 @@ export namespace orgpolicy_v2 {
      */
     requestBody?: Schema$GoogleCloudOrgpolicyV2Policy;
   }
-  export interface Params$Resource$Folders$Policies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Policies$Delete extends StandardParameters {
     /**
      * Optional. The current etag of policy. If an etag is provided and does not match the current etag of the policy, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -1571,22 +1568,19 @@ export namespace orgpolicy_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Policies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Policies$Get extends StandardParameters {
     /**
      * Required. Resource name of the policy. See Policy for naming requirements.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Policies$Geteffectivepolicy
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Policies$Geteffectivepolicy extends StandardParameters {
     /**
      * Required. The effective policy to compute. See Policy for naming requirements.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Policies$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Policies$List extends StandardParameters {
     /**
      * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
      */
@@ -1600,8 +1594,7 @@ export namespace orgpolicy_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Policies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Policies$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
@@ -1791,8 +1784,7 @@ export namespace orgpolicy_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Constraints$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Constraints$List extends StandardParameters {
     /**
      * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
      */
@@ -2584,8 +2576,7 @@ export namespace orgpolicy_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Customconstraints$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Customconstraints$Create extends StandardParameters {
     /**
      * Required. Must be in the following form: * `organizations/{organization_id\}`
      */
@@ -2596,22 +2587,19 @@ export namespace orgpolicy_v2 {
      */
     requestBody?: Schema$GoogleCloudOrgpolicyV2CustomConstraint;
   }
-  export interface Params$Resource$Organizations$Customconstraints$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Customconstraints$Delete extends StandardParameters {
     /**
      * Required. Name of the custom constraint to delete. See the custom constraint entry for naming rules.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Customconstraints$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Customconstraints$Get extends StandardParameters {
     /**
      * Required. Resource name of the custom or managed constraint. See the custom constraint entry for naming requirements.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Customconstraints$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Customconstraints$List extends StandardParameters {
     /**
      * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
      */
@@ -2625,8 +2613,7 @@ export namespace orgpolicy_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Customconstraints$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Customconstraints$Patch extends StandardParameters {
     /**
      * Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 70 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id\}/customConstraints/` is not counted.
      */
@@ -3540,8 +3527,7 @@ export namespace orgpolicy_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Policies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Policies$Create extends StandardParameters {
     /**
      * Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
      */
@@ -3552,8 +3538,7 @@ export namespace orgpolicy_v2 {
      */
     requestBody?: Schema$GoogleCloudOrgpolicyV2Policy;
   }
-  export interface Params$Resource$Organizations$Policies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Policies$Delete extends StandardParameters {
     /**
      * Optional. The current etag of policy. If an etag is provided and does not match the current etag of the policy, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -3563,22 +3548,19 @@ export namespace orgpolicy_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Policies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Policies$Get extends StandardParameters {
     /**
      * Required. Resource name of the policy. See Policy for naming requirements.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Policies$Geteffectivepolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Policies$Geteffectivepolicy extends StandardParameters {
     /**
      * Required. The effective policy to compute. See Policy for naming requirements.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Policies$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Policies$List extends StandardParameters {
     /**
      * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
      */
@@ -3592,8 +3574,7 @@ export namespace orgpolicy_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Policies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Policies$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
@@ -3779,8 +3760,7 @@ export namespace orgpolicy_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Constraints$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Constraints$List extends StandardParameters {
     /**
      * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
      */
@@ -4696,8 +4676,7 @@ export namespace orgpolicy_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Policies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Policies$Create extends StandardParameters {
     /**
      * Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
      */
@@ -4708,8 +4687,7 @@ export namespace orgpolicy_v2 {
      */
     requestBody?: Schema$GoogleCloudOrgpolicyV2Policy;
   }
-  export interface Params$Resource$Projects$Policies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Policies$Delete extends StandardParameters {
     /**
      * Optional. The current etag of policy. If an etag is provided and does not match the current etag of the policy, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -4719,22 +4697,19 @@ export namespace orgpolicy_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Policies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Policies$Get extends StandardParameters {
     /**
      * Required. Resource name of the policy. See Policy for naming requirements.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Policies$Geteffectivepolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Policies$Geteffectivepolicy extends StandardParameters {
     /**
      * Required. The effective policy to compute. See Policy for naming requirements.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Policies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Policies$List extends StandardParameters {
     /**
      * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
      */
@@ -4748,8 +4723,7 @@ export namespace orgpolicy_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Policies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Policies$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
