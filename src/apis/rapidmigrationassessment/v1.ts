@@ -727,15 +727,13 @@ export namespace rapidmigrationassessment_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
      */
@@ -1063,8 +1061,7 @@ export namespace rapidmigrationassessment_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Annotations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Annotations$Create extends StandardParameters {
     /**
      * Required. Name of the parent (project+location).
      */
@@ -1079,8 +1076,7 @@ export namespace rapidmigrationassessment_v1 {
      */
     requestBody?: Schema$Annotation;
   }
-  export interface Params$Resource$Projects$Locations$Annotations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Annotations$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -2319,8 +2315,7 @@ export namespace rapidmigrationassessment_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collectors$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collectors$Create extends StandardParameters {
     /**
      * Required. Id of the requesting object.
      */
@@ -2339,8 +2334,7 @@ export namespace rapidmigrationassessment_v1 {
      */
     requestBody?: Schema$Collector;
   }
-  export interface Params$Resource$Projects$Locations$Collectors$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collectors$Delete extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -2350,15 +2344,13 @@ export namespace rapidmigrationassessment_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collectors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collectors$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collectors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collectors$List extends StandardParameters {
     /**
      * Filtering results.
      */
@@ -2380,8 +2372,7 @@ export namespace rapidmigrationassessment_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collectors$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collectors$Patch extends StandardParameters {
     /**
      * name of resource.
      */
@@ -2400,8 +2391,7 @@ export namespace rapidmigrationassessment_v1 {
      */
     requestBody?: Schema$Collector;
   }
-  export interface Params$Resource$Projects$Locations$Collectors$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collectors$Pause extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -2412,8 +2402,7 @@ export namespace rapidmigrationassessment_v1 {
      */
     requestBody?: Schema$PauseCollectorRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collectors$Register
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collectors$Register extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -2424,8 +2413,7 @@ export namespace rapidmigrationassessment_v1 {
      */
     requestBody?: Schema$RegisterCollectorRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collectors$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collectors$Resume extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -3006,8 +2994,7 @@ export namespace rapidmigrationassessment_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3018,22 +3005,19 @@ export namespace rapidmigrationassessment_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
