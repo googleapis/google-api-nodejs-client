@@ -3144,8 +3144,7 @@ export namespace slides_v1 {
     }
   }
 
-  export interface Params$Resource$Presentations$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Presentations$Batchupdate extends StandardParameters {
     /**
      * The presentation to apply the updates to.
      */
@@ -3156,15 +3155,13 @@ export namespace slides_v1 {
      */
     requestBody?: Schema$BatchUpdatePresentationRequest;
   }
-  export interface Params$Resource$Presentations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Presentations$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$Presentation;
   }
-  export interface Params$Resource$Presentations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Presentations$Get extends StandardParameters {
     /**
      * The ID of the presentation to retrieve.
      */
@@ -3482,8 +3479,7 @@ export namespace slides_v1 {
     }
   }
 
-  export interface Params$Resource$Presentations$Pages$Get
-    extends StandardParameters {
+  export interface Params$Resource$Presentations$Pages$Get extends StandardParameters {
     /**
      * The object ID of the page to retrieve.
      */
@@ -3493,8 +3489,7 @@ export namespace slides_v1 {
      */
     presentationId?: string;
   }
-  export interface Params$Resource$Presentations$Pages$Getthumbnail
-    extends StandardParameters {
+  export interface Params$Resource$Presentations$Pages$Getthumbnail extends StandardParameters {
     /**
      * The object ID of the page whose thumbnail to retrieve.
      */
