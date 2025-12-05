@@ -2088,7 +2088,7 @@ export namespace androidmanagement_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -4920,8 +4920,7 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Create
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Create extends StandardParameters {
     /**
      * Whether the enterprise admin has seen and agreed to the managed Google Play Agreement (https://www.android.com/enterprise/terms/). Do not set this field for any customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises). Set this to field to true for all EMM-managed enterprises (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).
      */
@@ -4944,15 +4943,13 @@ export namespace androidmanagement_v1 {
      */
     requestBody?: Schema$Enterprise;
   }
-  export interface Params$Resource$Enterprises$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Delete extends StandardParameters {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Generateenterpriseupgradeurl
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Generateenterpriseupgradeurl extends StandardParameters {
     /**
      * Required. The name of the enterprise to be upgraded in the form enterprises/{enterpriseId\}.
      */
@@ -4987,8 +4984,7 @@ export namespace androidmanagement_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Enterprises$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Patch extends StandardParameters {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId\}.
      */
@@ -5169,8 +5165,7 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Applications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Applications$Get extends StandardParameters {
     /**
      * The preferred language for localized application info, as a BCP47 tag (e.g. "en-US", "de"). If not specified the default language of the application will be used.
      */
@@ -6028,8 +6023,7 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Devices$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Devices$Delete extends StandardParameters {
     /**
      * The name of the device in the form enterprises/{enterpriseId\}/devices/{deviceId\}.
      */
@@ -6043,15 +6037,13 @@ export namespace androidmanagement_v1 {
      */
     wipeReasonMessage?: string;
   }
-  export interface Params$Resource$Enterprises$Devices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Devices$Get extends StandardParameters {
     /**
      * The name of the device in the form enterprises/{enterpriseId\}/devices/{deviceId\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Devices$Issuecommand
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Devices$Issuecommand extends StandardParameters {
     /**
      * The name of the device in the form enterprises/{enterpriseId\}/devices/{deviceId\}.
      */
@@ -6062,8 +6054,7 @@ export namespace androidmanagement_v1 {
      */
     requestBody?: Schema$Command;
   }
-  export interface Params$Resource$Enterprises$Devices$List
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Devices$List extends StandardParameters {
     /**
      * The requested page size. If unspecified, at most 10 devices will be returned. The maximum value is 100; values above 100 will be coerced to 100. The limits can change over time.
      */
@@ -6077,8 +6068,7 @@ export namespace androidmanagement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Enterprises$Devices$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Devices$Patch extends StandardParameters {
     /**
      * The name of the device in the form enterprises/{enterpriseId\}/devices/{deviceId\}.
      */
@@ -6411,7 +6401,7 @@ export namespace androidmanagement_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to "projects/example/locations/-".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6520,22 +6510,19 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Devices$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Devices$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Devices$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Devices$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Devices$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Devices$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -6553,7 +6540,7 @@ export namespace androidmanagement_v1 {
      */
     pageToken?: string;
     /**
-     * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to "projects/example/locations/-".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -7155,8 +7142,7 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Enrollmenttokens$Create
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Enrollmenttokens$Create extends StandardParameters {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId\}.
      */
@@ -7167,22 +7153,19 @@ export namespace androidmanagement_v1 {
      */
     requestBody?: Schema$EnrollmentToken;
   }
-  export interface Params$Resource$Enterprises$Enrollmenttokens$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Enrollmenttokens$Delete extends StandardParameters {
     /**
      * The name of the enrollment token in the form enterprises/{enterpriseId\}/enrollmentTokens/{enrollmentTokenId\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Enrollmenttokens$Get
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Enrollmenttokens$Get extends StandardParameters {
     /**
      * Required. The name of the enrollment token in the form enterprises/{enterpriseId\}/enrollmentTokens/{enrollmentTokenId\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Enrollmenttokens$List
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Enrollmenttokens$List extends StandardParameters {
     /**
      * The requested page size. The service may return fewer than this value. If unspecified, at most 10 items will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
@@ -7662,8 +7645,7 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Migrationtokens$Create
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Migrationtokens$Create extends StandardParameters {
     /**
      * Required. The enterprise in which this migration token is created. This must be the same enterprise which already manages the device in the Play EMM API. Format: enterprises/{enterprise\}
      */
@@ -7674,15 +7656,13 @@ export namespace androidmanagement_v1 {
      */
     requestBody?: Schema$MigrationToken;
   }
-  export interface Params$Resource$Enterprises$Migrationtokens$Get
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Migrationtokens$Get extends StandardParameters {
     /**
      * Required. The name of the migration token to retrieve. Format: enterprises/{enterprise\}/migrationTokens/{migration_token\}
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Migrationtokens$List
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Migrationtokens$List extends StandardParameters {
     /**
      * The maximum number of migration tokens to return. Fewer migration tokens may be returned. If unspecified, at most 100 migration tokens will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
@@ -8872,22 +8852,19 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Policies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Policies$Delete extends StandardParameters {
     /**
      * The name of the policy in the form enterprises/{enterpriseId\}/policies/{policyId\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Policies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Policies$Get extends StandardParameters {
     /**
      * The name of the policy in the form enterprises/{enterpriseId\}/policies/{policyId\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Policies$List
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Policies$List extends StandardParameters {
     /**
      * The requested page size. The actual page size may be fixed to a min or max value.
      */
@@ -8901,8 +8878,7 @@ export namespace androidmanagement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Enterprises$Policies$Modifypolicyapplications
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Policies$Modifypolicyapplications extends StandardParameters {
     /**
      * Required. The name of the Policy containing the ApplicationPolicy objects to be updated, in the form enterprises/{enterpriseId\}/policies/{policyId\}.
      */
@@ -8913,8 +8889,7 @@ export namespace androidmanagement_v1 {
      */
     requestBody?: Schema$ModifyPolicyApplicationsRequest;
   }
-  export interface Params$Resource$Enterprises$Policies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Policies$Patch extends StandardParameters {
     /**
      * The name of the policy in the form enterprises/{enterpriseId\}/policies/{policyId\}.
      */
@@ -8929,8 +8904,7 @@ export namespace androidmanagement_v1 {
      */
     requestBody?: Schema$Policy;
   }
-  export interface Params$Resource$Enterprises$Policies$Removepolicyapplications
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Policies$Removepolicyapplications extends StandardParameters {
     /**
      * Required. The name of the policy containing the ApplicationPolicy objects to be removed, in the form enterprises/{enterpriseId\}/policies/{policyId\}.
      */
@@ -9676,8 +9650,7 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Webapps$Create
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Webapps$Create extends StandardParameters {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId\}.
      */
@@ -9688,22 +9661,19 @@ export namespace androidmanagement_v1 {
      */
     requestBody?: Schema$WebApp;
   }
-  export interface Params$Resource$Enterprises$Webapps$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Webapps$Delete extends StandardParameters {
     /**
      * The name of the web app in the form enterprises/{enterpriseId\}/webApps/{packageName\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Webapps$Get
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Webapps$Get extends StandardParameters {
     /**
      * The name of the web app in the form enterprises/{enterpriseId\}/webApps/{packageName\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Webapps$List
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Webapps$List extends StandardParameters {
     /**
      * The requested page size. This is a hint and the actual page size in the response may be different.
      */
@@ -9717,8 +9687,7 @@ export namespace androidmanagement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Enterprises$Webapps$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Webapps$Patch extends StandardParameters {
     /**
      * The name of the web app in the form enterprises/{enterpriseId\}/webApps/{packageName\}.
      */
@@ -9895,8 +9864,7 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Webtokens$Create
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Webtokens$Create extends StandardParameters {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId\}.
      */
@@ -10060,8 +10028,7 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Provisioninginfo$Get
-    extends StandardParameters {
+  export interface Params$Resource$Provisioninginfo$Get extends StandardParameters {
     /**
      * Required. The identifier that Android Device Policy passes to the 3P sign-in page in the form of provisioningInfo/{provisioning_info\}.
      */
@@ -10217,8 +10184,7 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Signupurls$Create
-    extends StandardParameters {
+  export interface Params$Resource$Signupurls$Create extends StandardParameters {
     /**
      * Optional. Email address used to prefill the admin field of the enterprise signup form. This value is a hint only and can be altered by the user. If allowedDomains is non-empty then this must belong to one of the allowedDomains.
      */
