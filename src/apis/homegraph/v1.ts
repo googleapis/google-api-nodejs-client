@@ -554,8 +554,7 @@ export namespace homegraph_v1 {
     }
   }
 
-  export interface Params$Resource$Agentusers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Agentusers$Delete extends StandardParameters {
     /**
      * Required. Third-party user ID.
      */
@@ -1161,15 +1160,13 @@ export namespace homegraph_v1 {
      */
     requestBody?: Schema$QueryRequest;
   }
-  export interface Params$Resource$Devices$Reportstateandnotification
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Reportstateandnotification extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ReportStateAndNotificationRequest;
   }
-  export interface Params$Resource$Devices$Requestsync
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Requestsync extends StandardParameters {
     /**
      * Request body metadata
      */
