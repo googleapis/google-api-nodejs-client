@@ -861,15 +861,13 @@ export namespace meet_v2 {
     }
   }
 
-  export interface Params$Resource$Conferencerecords$Get
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$Get extends StandardParameters {
     /**
      * Required. Resource name of the conference.
      */
     name?: string;
   }
-  export interface Params$Resource$Conferencerecords$List
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$List extends StandardParameters {
     /**
      * Optional. User specified filtering condition in [EBNF format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form). The following are the filterable fields: * `space.meeting_code` * `space.name` * `start_time` * `end_time` For example, consider the following filters: * `space.name = "spaces/NAME"` * `space.meeting_code = "abc-mnop-xyz"` * `start_time\>="2024-01-01T00:00:00.000Z" AND start_time<="2024-01-02T00:00:00.000Z"` * `end_time IS NULL`
      */
@@ -1188,15 +1186,13 @@ export namespace meet_v2 {
     }
   }
 
-  export interface Params$Resource$Conferencerecords$Participants$Get
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$Participants$Get extends StandardParameters {
     /**
      * Required. Resource name of the participant.
      */
     name?: string;
   }
-  export interface Params$Resource$Conferencerecords$Participants$List
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$Participants$List extends StandardParameters {
     /**
      * Optional. User specified filtering condition in [EBNF format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form). The following are the filterable fields: * `earliest_start_time` * `latest_end_time` For example, `latest_end_time IS NULL` returns active participants in the conference.
      */
@@ -1520,15 +1516,13 @@ export namespace meet_v2 {
     }
   }
 
-  export interface Params$Resource$Conferencerecords$Participants$Participantsessions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$Participants$Participantsessions$Get extends StandardParameters {
     /**
      * Required. Resource name of the participant.
      */
     name?: string;
   }
-  export interface Params$Resource$Conferencerecords$Participants$Participantsessions$List
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$Participants$Participantsessions$List extends StandardParameters {
     /**
      * Optional. User specified filtering condition in [EBNF format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form). The following are the filterable fields: * `start_time` * `end_time` For example, `end_time IS NULL` returns active participant sessions in the conference record.
      */
@@ -1842,15 +1836,13 @@ export namespace meet_v2 {
     }
   }
 
-  export interface Params$Resource$Conferencerecords$Recordings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$Recordings$Get extends StandardParameters {
     /**
      * Required. Resource name of the recording.
      */
     name?: string;
   }
-  export interface Params$Resource$Conferencerecords$Recordings$List
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$Recordings$List extends StandardParameters {
     /**
      * Maximum number of recordings to return. The service might return fewer than this value. If unspecified, at most 10 recordings are returned. The maximum value is 100; values above 100 are coerced to 100. Maximum might change in the future.
      */
@@ -2164,15 +2156,13 @@ export namespace meet_v2 {
     }
   }
 
-  export interface Params$Resource$Conferencerecords$Transcripts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$Transcripts$Get extends StandardParameters {
     /**
      * Required. Resource name of the transcript.
      */
     name?: string;
   }
-  export interface Params$Resource$Conferencerecords$Transcripts$List
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$Transcripts$List extends StandardParameters {
     /**
      * Maximum number of transcripts to return. The service might return fewer than this value. If unspecified, at most 10 transcripts are returned. The maximum value is 100; values above 100 are coerced to 100. Maximum might change in the future.
      */
@@ -2489,15 +2479,13 @@ export namespace meet_v2 {
     }
   }
 
-  export interface Params$Resource$Conferencerecords$Transcripts$Entries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$Transcripts$Entries$Get extends StandardParameters {
     /**
      * Required. Resource name of the `TranscriptEntry`.
      */
     name?: string;
   }
-  export interface Params$Resource$Conferencerecords$Transcripts$Entries$List
-    extends StandardParameters {
+  export interface Params$Resource$Conferencerecords$Transcripts$Entries$List extends StandardParameters {
     /**
      * Maximum number of entries to return. The service might return fewer than this value. If unspecified, at most 10 entries are returned. The maximum value is 100; values above 100 are coerced to 100. Maximum might change in the future.
      */
@@ -3107,8 +3095,7 @@ export namespace meet_v2 {
      */
     requestBody?: Schema$Space;
   }
-  export interface Params$Resource$Spaces$Endactiveconference
-    extends StandardParameters {
+  export interface Params$Resource$Spaces$Endactiveconference extends StandardParameters {
     /**
      * Required. Resource name of the space. Format: `spaces/{space\}`. `{space\}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      */
