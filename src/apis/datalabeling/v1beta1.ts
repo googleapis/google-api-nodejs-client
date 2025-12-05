@@ -3843,8 +3843,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Annotationspecsets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Annotationspecsets$Create extends StandardParameters {
     /**
      * Required. AnnotationSpecSet resource parent, format: projects/{project_id\}
      */
@@ -3855,22 +3854,19 @@ export namespace datalabeling_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudDatalabelingV1beta1CreateAnnotationSpecSetRequest;
   }
-  export interface Params$Resource$Projects$Annotationspecsets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Annotationspecsets$Delete extends StandardParameters {
     /**
      * Required. AnnotationSpec resource name, format: `projects/{project_id\}/annotationSpecSets/{annotation_spec_set_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Annotationspecsets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Annotationspecsets$Get extends StandardParameters {
     /**
      * Required. AnnotationSpecSet resource name, format: projects/{project_id\}/annotationSpecSets/{annotation_spec_set_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Annotationspecsets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Annotationspecsets$List extends StandardParameters {
     /**
      * Optional. Filter is not supported at this moment.
      */
@@ -4821,8 +4817,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Create extends StandardParameters {
     /**
      * Required. Dataset resource parent, format: projects/{project_id\}
      */
@@ -4833,15 +4828,13 @@ export namespace datalabeling_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudDatalabelingV1beta1CreateDatasetRequest;
   }
-  export interface Params$Resource$Projects$Datasets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Delete extends StandardParameters {
     /**
      * Required. Dataset resource name, format: projects/{project_id\}/datasets/{dataset_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasets$Exportdata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Exportdata extends StandardParameters {
     /**
      * Required. Dataset resource name, format: projects/{project_id\}/datasets/{dataset_id\}
      */
@@ -4852,15 +4845,13 @@ export namespace datalabeling_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudDatalabelingV1beta1ExportDataRequest;
   }
-  export interface Params$Resource$Projects$Datasets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Get extends StandardParameters {
     /**
      * Required. Dataset resource name, format: projects/{project_id\}/datasets/{dataset_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasets$Importdata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Importdata extends StandardParameters {
     /**
      * Required. Dataset resource name, format: projects/{project_id\}/datasets/{dataset_id\}
      */
@@ -4871,8 +4862,7 @@ export namespace datalabeling_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudDatalabelingV1beta1ImportDataRequest;
   }
-  export interface Params$Resource$Projects$Datasets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$List extends StandardParameters {
     /**
      * Optional. Filter on dataset is not supported at this moment.
      */
@@ -5353,22 +5343,19 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Delete extends StandardParameters {
     /**
      * Required. Name of the annotated dataset to delete, format: projects/{project_id\}/datasets/{dataset_id\}/annotatedDatasets/ {annotated_dataset_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Get extends StandardParameters {
     /**
      * Required. Name of the annotated dataset to get, format: projects/{project_id\}/datasets/{dataset_id\}/annotatedDatasets/ {annotated_dataset_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$List extends StandardParameters {
     /**
      * Optional. Filter is not supported at this moment.
      */
@@ -5700,15 +5687,13 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$Get extends StandardParameters {
     /**
      * Required. The name of the data item to get, format: projects/{project_id\}/datasets/{dataset_id\}/dataItems/{data_item_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$List extends StandardParameters {
     /**
      * Optional. Filter is not supported at this moment.
      */
@@ -6043,8 +6028,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Examples$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Examples$Get extends StandardParameters {
     /**
      * Optional. An expression for filtering Examples. Filter by annotation_spec.display_name is supported. Format "annotation_spec.display_name = {display_name\}"
      */
@@ -6054,8 +6038,7 @@ export namespace datalabeling_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Examples$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Examples$List extends StandardParameters {
     /**
      * Optional. An expression for filtering Examples. For annotated datasets that have annotation spec set, filter by annotation_spec.display_name is supported. Format "annotation_spec.display_name = {display_name\}"
      */
@@ -6526,22 +6509,19 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Delete extends StandardParameters {
     /**
      * Required. Name of the FeedbackThread that is going to be deleted. Format: 'projects/{project_id\}/datasets/{dataset_id\}/annotatedDatasets/{annotated_dataset_id\}/feedbackThreads/{feedback_thread_id\}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Get extends StandardParameters {
     /**
      * Required. Name of the feedback. Format: 'projects/{project_id\}/datasets/{dataset_id\}/annotatedDatasets/{annotated_dataset_id\}/feedbackThreads/{feedback_thread_id\}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$List extends StandardParameters {
     /**
      * Optional. Requested page size. Server may return fewer results than requested. Default value is 100.
      */
@@ -7172,8 +7152,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Create extends StandardParameters {
     /**
      * Required. FeedbackMessage resource parent, format: projects/{project_id\}/datasets/{dataset_id\}/annotatedDatasets/{annotated_dataset_id\}/feedbackThreads/{feedback_thread_id\}.
      */
@@ -7184,22 +7163,19 @@ export namespace datalabeling_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage;
   }
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Delete extends StandardParameters {
     /**
      * Required. Name of the FeedbackMessage that is going to be deleted. Format: 'projects/{project_id\}/datasets/{dataset_id\}/annotatedDatasets/{annotated_dataset_id\}/feedbackThreads/{feedback_thread_id\}/feedbackMessages/{feedback_message_id\}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Get extends StandardParameters {
     /**
      * Required. Name of the feedback. Format: 'projects/{project_id\}/datasets/{dataset_id\}/annotatedDatasets/{annotated_dataset_id\}/feedbackThreads/{feedback_thread_id\}/feedbackMessages/{feedback_message_id\}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$List extends StandardParameters {
     /**
      * Optional. Requested page size. Server may return fewer results than requested. Default value is 100.
      */
@@ -7522,15 +7498,13 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Dataitems$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Dataitems$Get extends StandardParameters {
     /**
      * Required. The name of the data item to get, format: projects/{project_id\}/datasets/{dataset_id\}/dataItems/{data_item_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasets$Dataitems$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Dataitems$List extends StandardParameters {
     /**
      * Optional. Filter is not supported at this moment.
      */
@@ -7711,8 +7685,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Evaluations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Evaluations$Get extends StandardParameters {
     /**
      * Required. Name of the evaluation. Format: "projects/{project_id\}/datasets/ {dataset_id\}/evaluations/{evaluation_id\}'
      */
@@ -7885,8 +7858,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Evaluations$Examplecomparisons$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Evaluations$Examplecomparisons$Search extends StandardParameters {
     /**
      * Required. Name of the Evaluation resource to search for example comparisons from. Format: "projects/{project_id\}/datasets/{dataset_id\}/evaluations/ {evaluation_id\}"
      */
@@ -8063,8 +8035,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Image$Label
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Image$Label extends StandardParameters {
     /**
      * Required. Name of the dataset to request labeling task, format: projects/{project_id\}/datasets/{dataset_id\}
      */
@@ -8239,8 +8210,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Text$Label
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Text$Label extends StandardParameters {
     /**
      * Required. Name of the data set to request labeling task, format: projects/{project_id\}/datasets/{dataset_id\}
      */
@@ -8417,8 +8387,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasets$Video$Label
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasets$Video$Label extends StandardParameters {
     /**
      * Required. Name of the dataset to request labeling task, format: projects/{project_id\}/datasets/{dataset_id\}
      */
@@ -9494,8 +9463,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Evaluationjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Evaluationjobs$Create extends StandardParameters {
     /**
      * Required. Evaluation job resource parent. Format: "projects/{project_id\}"
      */
@@ -9506,22 +9474,19 @@ export namespace datalabeling_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudDatalabelingV1beta1CreateEvaluationJobRequest;
   }
-  export interface Params$Resource$Projects$Evaluationjobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Evaluationjobs$Delete extends StandardParameters {
     /**
      * Required. Name of the evaluation job that is going to be deleted. Format: "projects/{project_id\}/evaluationJobs/{evaluation_job_id\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Evaluationjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Evaluationjobs$Get extends StandardParameters {
     /**
      * Required. Name of the evaluation job. Format: "projects/{project_id\} /evaluationJobs/{evaluation_job_id\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Evaluationjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Evaluationjobs$List extends StandardParameters {
     /**
      * Optional. You can filter the jobs to list by model_id (also known as model_name, as described in EvaluationJob.modelVersion) or by evaluation job state (as described in EvaluationJob.state). To filter by both criteria, use the `AND` operator or the `OR` operator. For example, you can use the following string for your filter: "evaluation_job.model_id = {model_name\} AND evaluation_job.state = {evaluation_job_state\}"
      */
@@ -9539,8 +9504,7 @@ export namespace datalabeling_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Evaluationjobs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Evaluationjobs$Patch extends StandardParameters {
     /**
      * Output only. After you create a job, Data Labeling Service assigns a name to the job with the following format: "projects/{project_id\}/evaluationJobs/ {evaluation_job_id\}"
      */
@@ -9555,8 +9519,7 @@ export namespace datalabeling_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudDatalabelingV1beta1EvaluationJob;
   }
-  export interface Params$Resource$Projects$Evaluationjobs$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Evaluationjobs$Pause extends StandardParameters {
     /**
      * Required. Name of the evaluation job that is going to be paused. Format: "projects/{project_id\}/evaluationJobs/{evaluation_job_id\}"
      */
@@ -9567,8 +9530,7 @@ export namespace datalabeling_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudDatalabelingV1beta1PauseEvaluationJobRequest;
   }
-  export interface Params$Resource$Projects$Evaluationjobs$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Evaluationjobs$Resume extends StandardParameters {
     /**
      * Required. Name of the evaluation job that is going to be resumed. Format: "projects/{project_id\}/evaluationJobs/{evaluation_job_id\}"
      */
@@ -9741,8 +9703,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Evaluations$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Evaluations$Search extends StandardParameters {
     /**
      * Optional. To search evaluations, you can filter by the following: * evaluation_job.evaluation_job_id (the last part of EvaluationJob.name) * evaluation_job.model_id (the {model_name\} portion of EvaluationJob.modelVersion) * evaluation_job.evaluation_job_run_time_start (Minimum threshold for the evaluationJobRunTime that created the evaluation) * evaluation_job.evaluation_job_run_time_end (Maximum threshold for the evaluationJobRunTime that created the evaluation) * evaluation_job.job_state (EvaluationJob.state) * annotation_spec.display_name (the Evaluation contains a metric for the annotation spec with this displayName) To filter by multiple critiera, use the `AND` operator or the `OR` operator. The following examples shows a string that filters by several critiera: "evaluation_job.evaluation_job_id = {evaluation_job_id\} AND evaluation_job.model_id = {model_name\} AND evaluation_job.evaluation_job_run_time_start = {timestamp_1\} AND evaluation_job.evaluation_job_run_time_end = {timestamp_2\} AND annotation_spec.display_name = {display_name\}"
      */
@@ -10359,8 +10320,7 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instructions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instructions$Create extends StandardParameters {
     /**
      * Required. Instruction resource parent, format: projects/{project_id\}
      */
@@ -10371,22 +10331,19 @@ export namespace datalabeling_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudDatalabelingV1beta1CreateInstructionRequest;
   }
-  export interface Params$Resource$Projects$Instructions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instructions$Delete extends StandardParameters {
     /**
      * Required. Instruction resource name, format: projects/{project_id\}/instructions/{instruction_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instructions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instructions$Get extends StandardParameters {
     /**
      * Required. Instruction resource name, format: projects/{project_id\}/instructions/{instruction_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instructions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instructions$List extends StandardParameters {
     /**
      * Optional. Filter is not supported at this moment.
      */
@@ -10975,29 +10932,25 @@ export namespace datalabeling_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
