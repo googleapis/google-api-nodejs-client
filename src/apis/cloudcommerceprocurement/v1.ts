@@ -1152,8 +1152,7 @@ export namespace cloudcommerceprocurement_v1 {
     }
   }
 
-  export interface Params$Resource$Providers$Accounts$Approve
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Accounts$Approve extends StandardParameters {
     /**
      * Required. The resource name of the account, with the format `providers/{providerId\}/accounts/{accountId\}`.
      */
@@ -1164,8 +1163,7 @@ export namespace cloudcommerceprocurement_v1 {
      */
     requestBody?: Schema$ApproveAccountRequest;
   }
-  export interface Params$Resource$Providers$Accounts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Accounts$Get extends StandardParameters {
     /**
      * Required. The name of the account to retrieve.
      */
@@ -1175,8 +1173,7 @@ export namespace cloudcommerceprocurement_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Providers$Accounts$List
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Accounts$List extends StandardParameters {
     /**
      * The maximum number of entries that are requested. The default page size is 25 and the maximum page size is 200.
      */
@@ -1190,8 +1187,7 @@ export namespace cloudcommerceprocurement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Providers$Accounts$Reject
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Accounts$Reject extends StandardParameters {
     /**
      * Required. The resource name of the account.
      */
@@ -1202,8 +1198,7 @@ export namespace cloudcommerceprocurement_v1 {
      */
     requestBody?: Schema$RejectAccountRequest;
   }
-  export interface Params$Resource$Providers$Accounts$Reset
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Accounts$Reset extends StandardParameters {
     /**
      * Required. The resource name of the account.
      */
@@ -2445,8 +2440,7 @@ export namespace cloudcommerceprocurement_v1 {
     }
   }
 
-  export interface Params$Resource$Providers$Entitlements$Approve
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Entitlements$Approve extends StandardParameters {
     /**
      * Required. The resource name of the entitlement, with the format `providers/{providerId\}/entitlements/{entitlementId\}`.
      */
@@ -2457,8 +2451,7 @@ export namespace cloudcommerceprocurement_v1 {
      */
     requestBody?: Schema$ApproveEntitlementRequest;
   }
-  export interface Params$Resource$Providers$Entitlements$Approveplanchange
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Entitlements$Approveplanchange extends StandardParameters {
     /**
      * Required. The resource name of the entitlement.
      */
@@ -2469,15 +2462,13 @@ export namespace cloudcommerceprocurement_v1 {
      */
     requestBody?: Schema$ApproveEntitlementPlanChangeRequest;
   }
-  export interface Params$Resource$Providers$Entitlements$Get
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Entitlements$Get extends StandardParameters {
     /**
      * Required. The name of the entitlement to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Providers$Entitlements$List
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Entitlements$List extends StandardParameters {
     /**
      * The filter that can be used to limit the list request. The filter is a query string that can match a selected set of attributes with string values. For example `account=E-1234-5678-ABCD-EFGH`, `state=pending_cancellation`, and `plan!=foo-plan`. Supported query attributes are * `account` * `customer_billing_account` with value in the format of: `billingAccounts/{id\}` * `product_external_name` * `quote_external_name` * `offer` * `new_pending_offer` * `plan` * `newPendingPlan` or `new_pending_plan` * `state` * `services` * `consumers.project` * `change_history.new_offer` Note that the consumers and change_history.new_offer match works on repeated structures, so equality (`consumers.project=projects/123456789`) is not supported. Set membership can be expressed with the `:` operator. For example, `consumers.project:projects/123456789` finds entitlements with at least one consumer with project field equal to `projects/123456789`. `change_history.new_offer` retrieves all entitlements that were once associated or are currently active with the offer. Also note that the state name match is case-insensitive and query can omit the prefix "ENTITLEMENT_". For example, `state=active` is equivalent to `state=ENTITLEMENT_ACTIVE`. If the query contains some special characters other than letters, underscore, or digits, the phrase must be quoted with double quotes. For example, `product="providerId:productId"`, where the product name needs to be quoted because it contains special character colon. Queries can be combined with `AND`, `OR`, and `NOT` to form more complex queries. They can also be grouped to force a desired evaluation order. For example, `state=active AND (account=E-1234 OR account=5678) AND NOT (product=foo-product)`. Connective `AND` can be omitted between two predicates. For example `account=E-1234 state=active` is equivalent to `account=E-1234 AND state=active`.
      */
@@ -2495,8 +2486,7 @@ export namespace cloudcommerceprocurement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Providers$Entitlements$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Entitlements$Patch extends StandardParameters {
     /**
      * Required. The name of the entitlement to update.
      */
@@ -2511,8 +2501,7 @@ export namespace cloudcommerceprocurement_v1 {
      */
     requestBody?: Schema$Entitlement;
   }
-  export interface Params$Resource$Providers$Entitlements$Reject
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Entitlements$Reject extends StandardParameters {
     /**
      * Required. The resource name of the entitlement.
      */
@@ -2523,8 +2512,7 @@ export namespace cloudcommerceprocurement_v1 {
      */
     requestBody?: Schema$RejectEntitlementRequest;
   }
-  export interface Params$Resource$Providers$Entitlements$Rejectplanchange
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Entitlements$Rejectplanchange extends StandardParameters {
     /**
      * Required. The resource name of the entitlement.
      */
@@ -2535,8 +2523,7 @@ export namespace cloudcommerceprocurement_v1 {
      */
     requestBody?: Schema$RejectEntitlementPlanChangeRequest;
   }
-  export interface Params$Resource$Providers$Entitlements$Suspend
-    extends StandardParameters {
+  export interface Params$Resource$Providers$Entitlements$Suspend extends StandardParameters {
     /**
      * Required. The name of the entitlement to suspend.
      */
