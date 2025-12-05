@@ -152,7 +152,7 @@ export namespace policysimulator_v1 {
      */
     actionType?: string | null;
     /**
-     * A Common Expression Language (CEL) condition which is used in the evaluation of the constraint. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
+     * A Common Expression Language (CEL) condition which is used in the evaluation of the constraint. For example: `resource.instanceName.matches("(production|test)_(.+_)?[\d]+")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
      */
     condition?: string | null;
     /**
@@ -239,7 +239,7 @@ export namespace policysimulator_v1 {
      */
     allowAll?: boolean | null;
     /**
-     * A condition which determines whether this rule is used in the evaluation of the policy. When set, the `expression` field in the `Expr' must include from 1 to 10 subexpressions, joined by the "||" or "&&" operators. Each subexpression must be of the form "resource.matchTag('/tag_key_short_name, 'tag_value_short_name')". or "resource.matchTagId('tagKeys/key_id', 'tagValues/value_id')". where key_name and value_name are the resource names for Label Keys and Values. These names are available from the Tag Manager Service. An example expression is: "resource.matchTag('123456789/environment, 'prod')". or "resource.matchTagId('tagKeys/123', 'tagValues/456')".
+     * A condition that determines whether this rule is used to evaluate the policy. When set, the google.type.Expr.expression field must contain 1 to 10 subexpressions, joined by the `||` or `&&` operators. Each subexpression must use the `resource.matchTag()`, `resource.matchTagId()`, `resource.hasTagKey()`, or `resource.hasTagKeyId()` Common Expression Language (CEL) function. The `resource.matchTag()` function takes the following arguments: * `key_name`: the namespaced name of the tag key, with the organization ID and a slash (`/`) as a prefix; for example, `123456789012/environment` * `value_name`: the short name of the tag value For example: `resource.matchTag('123456789012/environment, 'prod')` The `resource.matchTagId()` function takes the following arguments: * `key_id`: the permanent ID of the tag key; for example, `tagKeys/123456789012` * `value_id`: the permanent ID of the tag value; for example, `tagValues/567890123456` For example: `resource.matchTagId('tagKeys/123456789012', 'tagValues/567890123456')` The `resource.hasTagKey()` function takes the following argument: * `key_name`: the namespaced name of the tag key, with the organization ID and a slash (`/`) as a prefix; for example, `123456789012/environment` For example: `resource.hasTagKey('123456789012/environment')` The `resource.hasTagKeyId()` function takes the following arguments: * `key_id`: the permanent ID of the tag key; for example, `tagKeys/123456789012` For example: `resource.hasTagKeyId('tagKeys/123456789012')`
      */
     condition?: Schema$GoogleTypeExpr;
     /**
@@ -914,7 +914,7 @@ export namespace policysimulator_v1 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1191,8 +1191,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Accesspolicysimulations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Accesspolicysimulations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -1365,8 +1364,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -1693,8 +1691,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Replays$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Replays$Create extends StandardParameters {
     /**
      * Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
      */
@@ -1705,8 +1702,7 @@ export namespace policysimulator_v1 {
      */
     requestBody?: Schema$GoogleCloudPolicysimulatorV1Replay;
   }
-  export interface Params$Resource$Folders$Locations$Replays$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Replays$Get extends StandardParameters {
     /**
      * Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
      */
@@ -1901,7 +1897,7 @@ export namespace policysimulator_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2019,15 +2015,13 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Replays$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Replays$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Replays$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Replays$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2045,7 +2039,7 @@ export namespace policysimulator_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -2210,8 +2204,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Replays$Results$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Replays$Results$List extends StandardParameters {
     /**
      * The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
      */
@@ -2413,7 +2406,7 @@ export namespace policysimulator_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2553,7 +2546,7 @@ export namespace policysimulator_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -2752,8 +2745,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Accesspolicysimulations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Accesspolicysimulations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -3253,8 +3245,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Create extends StandardParameters {
     /**
      * Optional. An optional user-specified ID for the OrgPolicyViolationsPreview. If not provided, a random ID will be generated.
      */
@@ -3269,15 +3260,13 @@ export namespace policysimulator_v1 {
      */
     requestBody?: Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview;
   }
-  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Get extends StandardParameters {
     /**
      * Required. The name of the OrgPolicyViolationsPreview to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 5 items will be returned. The maximum value is 10; values above 10 will be coerced to 10.
      */
@@ -3446,8 +3435,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -3619,8 +3607,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 1000 items will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -3955,8 +3942,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Replays$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Replays$Create extends StandardParameters {
     /**
      * Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
      */
@@ -3967,8 +3953,7 @@ export namespace policysimulator_v1 {
      */
     requestBody?: Schema$GoogleCloudPolicysimulatorV1Replay;
   }
-  export interface Params$Resource$Organizations$Locations$Replays$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Replays$Get extends StandardParameters {
     /**
      * Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
      */
@@ -4166,7 +4151,7 @@ export namespace policysimulator_v1 {
      *       pageSize: 'placeholder-value',
      *       // The standard list page token.
      *       pageToken: 'placeholder-value',
-     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *       returnPartialSuccess: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -4284,15 +4269,13 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Replays$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Replays$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Replays$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Replays$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -4310,7 +4293,7 @@ export namespace policysimulator_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -4478,8 +4461,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Replays$Results$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Replays$Results$List extends StandardParameters {
     /**
      * The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
      */
@@ -4686,8 +4668,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Accesspolicysimulations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Accesspolicysimulations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -4860,8 +4841,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -5188,8 +5168,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Replays$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Replays$Create extends StandardParameters {
     /**
      * Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
      */
@@ -5200,8 +5179,7 @@ export namespace policysimulator_v1 {
      */
     requestBody?: Schema$GoogleCloudPolicysimulatorV1Replay;
   }
-  export interface Params$Resource$Projects$Locations$Replays$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Replays$Get extends StandardParameters {
     /**
      * Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
      */
@@ -5397,7 +5375,7 @@ export namespace policysimulator_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5515,15 +5493,13 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Replays$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Replays$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Replays$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Replays$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -5541,7 +5517,7 @@ export namespace policysimulator_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -5706,8 +5682,7 @@ export namespace policysimulator_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Replays$Results$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Replays$Results$List extends StandardParameters {
     /**
      * The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
      */
