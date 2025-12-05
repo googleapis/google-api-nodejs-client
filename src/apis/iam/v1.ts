@@ -2160,15 +2160,13 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Iampolicies$Lintpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Iampolicies$Lintpolicy extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$LintPolicyRequest;
   }
-  export interface Params$Resource$Iampolicies$Queryauditableservices
-    extends StandardParameters {
+  export interface Params$Resource$Iampolicies$Queryauditableservices extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -3542,8 +3540,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Workforcepools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Create extends StandardParameters {
     /**
      * Optional. The location of the pool to create. Format: `locations/{location\}`.
      */
@@ -3558,22 +3555,19 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkforcePool;
   }
-  export interface Params$Resource$Locations$Workforcepools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Delete extends StandardParameters {
     /**
      * Required. The name of the pool to delete. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Workforcepools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Get extends StandardParameters {
     /**
      * Required. The name of the pool to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Workforcepools$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3584,8 +3578,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Locations$Workforcepools$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$List extends StandardParameters {
     /**
      * The location of the pool. Format: `locations/{location\}`.
      */
@@ -3607,8 +3600,7 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Locations$Workforcepools$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the pool. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}`
      */
@@ -3623,8 +3615,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkforcePool;
   }
-  export interface Params$Resource$Locations$Workforcepools$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3635,8 +3626,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Locations$Workforcepools$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3647,8 +3637,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Locations$Workforcepools$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Undelete extends StandardParameters {
     /**
      * Required. The name of the pool to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}`
      */
@@ -3805,8 +3794,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Workforcepools$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -4750,8 +4738,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Workforcepools$Providers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Create extends StandardParameters {
     /**
      * Required. The pool to create this provider in. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}`
      */
@@ -4766,22 +4753,19 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkforcePoolProvider;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Delete extends StandardParameters {
     /**
      * Required. The name of the provider to delete. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Get extends StandardParameters {
     /**
      * Required. The name of the provider to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$List extends StandardParameters {
     /**
      * The maximum number of providers to return. If unspecified, at most 50 providers are returned. The maximum value is 100; values above 100 are truncated to 100.
      */
@@ -4799,8 +4783,7 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the provider. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}`
      */
@@ -4815,8 +4798,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkforcePoolProvider;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Undelete extends StandardParameters {
     /**
      * Required. The name of the provider to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}`
      */
@@ -5575,8 +5557,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Create
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Create extends StandardParameters {
     /**
      * Required. The provider to create this key in.
      */
@@ -5591,22 +5572,19 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkforcePoolProviderKey;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Delete extends StandardParameters {
     /**
      * Required. The name of the key to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Get extends StandardParameters {
     /**
      * Required. The name of the key to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$List extends StandardParameters {
     /**
      * The maximum number of keys to return. If unspecified, all keys are returned. The maximum value is 10; values above 10 are truncated to 10.
      */
@@ -5624,8 +5602,7 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete extends StandardParameters {
     /**
      * Required. The name of the key to undelete.
      */
@@ -5783,8 +5760,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -5937,8 +5913,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Workforcepools$Providers$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -6904,8 +6879,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create extends StandardParameters {
     /**
      * Required. Agentspace only. The parent to create SCIM tenant. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
      */
@@ -6920,8 +6894,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkforcePoolProviderScimTenant;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete extends StandardParameters {
     /**
      * Optional. Deletes the SCIM tenant immediately. This operation cannot be undone.
      */
@@ -6931,15 +6904,13 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get extends StandardParameters {
     /**
      * Required. Agentspace only. The name of the SCIM tenant to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List extends StandardParameters {
     /**
      * Optional. Agentspace only. The maximum number of SCIM tenants to return. If unspecified, at most 1 scim tenant will be returned.
      */
@@ -6957,8 +6928,7 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch extends StandardParameters {
     /**
      * Identifier. Agentspace only. The resource name of the SCIM Tenant. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}`
      */
@@ -6973,8 +6943,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkforcePoolProviderScimTenant;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete extends StandardParameters {
     /**
      * Required. Agentspace only. The name of the SCIM tenant to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
      */
@@ -7914,8 +7883,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create extends StandardParameters {
     /**
      * Required. Agentspace only. The parent tenant to create SCIM token. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
      */
@@ -7930,22 +7898,19 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkforcePoolProviderScimToken;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete extends StandardParameters {
     /**
      * Required. Agentspace only. The name of the SCIM token to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get extends StandardParameters {
     /**
      * Required. Agentspace only. The name of the SCIM token to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List extends StandardParameters {
     /**
      * Optional. Agentspace only. The maximum number of scim tokens to return. If unspecified, at most 2 SCIM tokens will be returned.
      */
@@ -7963,8 +7928,7 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch extends StandardParameters {
     /**
      * Identifier. Agentspace only. The resource name of the SCIM Token. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      */
@@ -7979,8 +7943,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkforcePoolProviderScimToken;
   }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete extends StandardParameters {
     /**
      * Required. Agentspace only. The name of the SCIM token to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
      */
@@ -8288,15 +8251,13 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Workforcepools$Subjects$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Subjects$Delete extends StandardParameters {
     /**
      * Required. The resource name of the WorkforcePoolSubject. Special characters, like `/` and `:`, must be escaped, because all URLs need to conform to the "When to Escape and Unescape" section of [RFC3986](https://www.ietf.org/rfc/rfc2396.txt). Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/subjects/{subject_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Workforcepools$Subjects$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Subjects$Undelete extends StandardParameters {
     /**
      * Required. The resource name of the WorkforcePoolSubject. Special characters, like `/` and `:`, must be escaped, because all URLs need to conform to the "When to Escape and Unescape" section of [RFC3986](https://www.ietf.org/rfc/rfc2396.txt). Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/subjects/{subject_id\}`
      */
@@ -8454,8 +8415,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Workforcepools$Subjects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Subjects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -9365,8 +9325,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Roles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Roles$Create extends StandardParameters {
     /**
      * The `parent` parameter's value depends on the target resource for the request, namely [projects](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles) or [organizations](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles). Each resource type's `parent` value format is described below: * [projects.roles.create](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles/create): `projects/{PROJECT_ID\}`. This method creates project-level [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles). Example request URL: `https://iam.googleapis.com/v1/projects/{PROJECT_ID\}/roles` * [organizations.roles.create](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles/create): `organizations/{ORGANIZATION_ID\}`. This method creates organization-level [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles). Example request URL: `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID\}/roles` Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -9377,8 +9336,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateRoleRequest;
   }
-  export interface Params$Resource$Organizations$Roles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Roles$Delete extends StandardParameters {
     /**
      * Used to perform a consistent read-modify-write.
      */
@@ -9388,15 +9346,13 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Roles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Roles$Get extends StandardParameters {
     /**
      * The `name` parameter's value depends on the target resource for the request, namely [roles](https://cloud.google.com/iam/docs/reference/rest/v1/roles), [projects](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles), or [organizations](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below: * [roles.get](https://cloud.google.com/iam/docs/reference/rest/v1/roles/get): `roles/{ROLE_NAME\}`. This method returns results from all [predefined roles](https://cloud.google.com/iam/docs/understanding-roles#predefined_roles) in IAM. Example request URL: `https://iam.googleapis.com/v1/roles/{ROLE_NAME\}` * [projects.roles.get](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles/get): `projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method returns only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the project level. Example request URL: `https://iam.googleapis.com/v1/projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}` * [organizations.roles.get](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles/get): `organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method returns only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the organization level. Example request URL: `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}` Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Roles$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Roles$List extends StandardParameters {
     /**
      * Optional limit on the number of roles to include in the response. The default is 300, and the maximum is 1,000.
      */
@@ -9418,8 +9374,7 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Organizations$Roles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Roles$Patch extends StandardParameters {
     /**
      * The `name` parameter's value depends on the target resource for the request, namely [projects](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles) or [organizations](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below: * [projects.roles.patch](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles/patch): `projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method updates only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the project level. Example request URL: `https://iam.googleapis.com/v1/projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}` * [organizations.roles.patch](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles/patch): `organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method updates only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the organization level. Example request URL: `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}` Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -9434,8 +9389,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$Role;
   }
-  export interface Params$Resource$Organizations$Roles$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Roles$Undelete extends StandardParameters {
     /**
      * The `name` parameter's value depends on the target resource for the request, namely [projects](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles) or [organizations](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below: * [projects.roles.undelete](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles/undelete): `projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method undeletes only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the project level. Example request URL: `https://iam.googleapis.com/v1/projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}` * [organizations.roles.undelete](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles/undelete): `organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method undeletes only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the organization level. Example request URL: `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}` Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -9609,8 +9563,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Permissions$Querytestablepermissions
-    extends StandardParameters {
+  export interface Params$Resource$Permissions$Querytestablepermissions extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -10574,8 +10527,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Oauthclients$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Oauthclients$Create extends StandardParameters {
     /**
      * Required. The ID to use for the OauthClient, which becomes the final component of the resource name. This value should be a string of 6 to 63 lowercase letters, digits, or hyphens. It must start with a letter, and cannot have a trailing hyphen. The prefix `gcp-` is reserved for use by Google, and may not be specified.
      */
@@ -10590,22 +10542,19 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$OauthClient;
   }
-  export interface Params$Resource$Projects$Locations$Oauthclients$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Oauthclients$Delete extends StandardParameters {
     /**
      * Required. The name of the OauthClient to delete. Format: `projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Oauthclients$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Oauthclients$Get extends StandardParameters {
     /**
      * Required. The name of the OauthClient to retrieve. Format: `projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Oauthclients$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Oauthclients$List extends StandardParameters {
     /**
      * Optional. The maximum number of OauthClients to return. If unspecified, at most 50 OauthClients will be returned. The maximum value is 100; values above 100 are truncated to 100.
      */
@@ -10623,8 +10572,7 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Oauthclients$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Oauthclients$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The resource name of the OauthClient. Format:`projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}`.
      */
@@ -10639,8 +10587,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$OauthClient;
   }
-  export interface Params$Resource$Projects$Locations$Oauthclients$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Oauthclients$Undelete extends StandardParameters {
     /**
      * Required. The name of the OauthClient to undelete. Format: `projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}`.
      */
@@ -11391,8 +11338,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Oauthclients$Credentials$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Oauthclients$Credentials$Create extends StandardParameters {
     /**
      * Required. The ID to use for the OauthClientCredential, which becomes the final component of the resource name. This value should be 4-32 characters, and may contain the characters [a-z0-9-]. The prefix `gcp-` is reserved for use by Google, and may not be specified.
      */
@@ -11407,29 +11353,25 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$OauthClientCredential;
   }
-  export interface Params$Resource$Projects$Locations$Oauthclients$Credentials$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Oauthclients$Credentials$Delete extends StandardParameters {
     /**
      * Required. The name of the OauthClientCredential to delete. Format: `projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}/credentials/{credential\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Oauthclients$Credentials$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Oauthclients$Credentials$Get extends StandardParameters {
     /**
      * Required. The name of the OauthClientCredential to retrieve. Format: `projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}/credentials/{credential\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Oauthclients$Credentials$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Oauthclients$Credentials$List extends StandardParameters {
     /**
      * Required. The parent to list OauthClientCredentials for.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Oauthclients$Credentials$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Oauthclients$Credentials$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The resource name of the OauthClientCredential. Format: `projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}/credentials/{credential\}`
      */
@@ -12824,8 +12766,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Create extends StandardParameters {
     /**
      * Required. The parent resource to create the pool in. The only supported location is `global`.
      */
@@ -12840,22 +12781,19 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkloadIdentityPool;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Delete extends StandardParameters {
     /**
      * Required. The name of the pool to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Get extends StandardParameters {
     /**
      * Required. The name of the pool to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12866,8 +12804,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$List extends StandardParameters {
     /**
      * The maximum number of pools to return. If unspecified, at most 50 pools are returned. The maximum value is 1000; values above are 1000 truncated to 1000.
      */
@@ -12885,8 +12822,7 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the pool.
      */
@@ -12901,8 +12837,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkloadIdentityPool;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12913,8 +12848,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12925,8 +12859,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Undelete extends StandardParameters {
     /**
      * Required. The name of the pool to undelete.
      */
@@ -13863,8 +13796,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Create extends StandardParameters {
     /**
      * Required. The parent resource to create the namespace in. The only supported location is `global`.
      */
@@ -13879,22 +13811,19 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkloadIdentityPoolNamespace;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Delete extends StandardParameters {
     /**
      * Required. The name of the namespace to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Get extends StandardParameters {
     /**
      * Required. The name of the namespace to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$List extends StandardParameters {
     /**
      * The maximum number of namespaces to return. If unspecified, at most 50 namespaces are returned. The maximum value is 1000; values above are 1000 truncated to 1000.
      */
@@ -13912,8 +13841,7 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the namespace.
      */
@@ -13928,8 +13856,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkloadIdentityPoolNamespace;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Undelete extends StandardParameters {
     /**
      * Required. The name of the namespace to undelete.
      */
@@ -15497,8 +15424,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Addattestationrule
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Addattestationrule extends StandardParameters {
     /**
      * Required. The resource name of the managed identity or namespace resource to add an attestation rule to.
      */
@@ -15509,8 +15435,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$AddAttestationRuleRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Create extends StandardParameters {
     /**
      * Required. The parent resource to create the manage identity in. The only supported location is `global`.
      */
@@ -15525,22 +15450,19 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkloadIdentityPoolManagedIdentity;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Delete extends StandardParameters {
     /**
      * Required. The name of the managed identity to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Get extends StandardParameters {
     /**
      * Required. The name of the managed identity to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$List extends StandardParameters {
     /**
      * The maximum number of managed identities to return. If unspecified, at most 50 managed identities are returned. The maximum value is 1000; values above are 1000 truncated to 1000.
      */
@@ -15558,8 +15480,7 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Listattestationrules
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Listattestationrules extends StandardParameters {
     /**
      * Optional. A query filter. Supports the following function: * `container_ids()`: Returns only the AttestationRules under the specific container ids. The function expects a comma-delimited list with only project numbers and must use the format `projects/`. For example: `container_ids(projects/, projects/,...)`.
      */
@@ -15577,8 +15498,7 @@ export namespace iam_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the managed identity.
      */
@@ -15593,8 +15513,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkloadIdentityPoolManagedIdentity;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Removeattestationrule
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Removeattestationrule extends StandardParameters {
     /**
      * Required. The resource name of the managed identity or namespace resource to remove an attestation rule from.
      */
@@ -15605,8 +15524,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$RemoveAttestationRuleRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Setattestationrules
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Setattestationrules extends StandardParameters {
     /**
      * Required. The resource name of the managed identity or namespace resource to add an attestation rule to.
      */
@@ -15617,8 +15535,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SetAttestationRulesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Undelete extends StandardParameters {
     /**
      * Required. The name of the managed identity to undelete.
      */
@@ -15779,8 +15696,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -15948,8 +15864,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Workloadsources$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Workloadsources$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -16105,8 +16020,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -16261,8 +16175,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -17211,8 +17124,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Create extends StandardParameters {
     /**
      * Required. The pool to create this provider in.
      */
@@ -17227,22 +17139,19 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkloadIdentityPoolProvider;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Delete extends StandardParameters {
     /**
      * Required. The name of the provider to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Get extends StandardParameters {
     /**
      * Required. The name of the provider to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$List extends StandardParameters {
     /**
      * The maximum number of providers to return. If unspecified, at most 50 providers are returned. The maximum value is 100; values above 100 are truncated to 100.
      */
@@ -17260,8 +17169,7 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the provider.
      */
@@ -17276,8 +17184,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkloadIdentityPoolProvider;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Undelete extends StandardParameters {
     /**
      * Required. The name of the provider to undelete.
      */
@@ -18045,8 +17952,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create extends StandardParameters {
     /**
      * Required. The parent provider resource to create the key in.
      */
@@ -18061,22 +17967,19 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$WorkloadIdentityPoolProviderKey;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete extends StandardParameters {
     /**
      * Required. The name of the encryption key to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get extends StandardParameters {
     /**
      * Required. The name of the key to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List extends StandardParameters {
     /**
      * The maximum number of keys to return. If unspecified, all keys are returned. The maximum value is 10; values above 10 are truncated to 10.
      */
@@ -18094,8 +17997,7 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete extends StandardParameters {
     /**
      * Required. The name of the encryption key to undelete.
      */
@@ -18256,8 +18158,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -18413,8 +18314,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -19315,8 +19215,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Roles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Roles$Create extends StandardParameters {
     /**
      * The `parent` parameter's value depends on the target resource for the request, namely [projects](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles) or [organizations](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles). Each resource type's `parent` value format is described below: * [projects.roles.create](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles/create): `projects/{PROJECT_ID\}`. This method creates project-level [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles). Example request URL: `https://iam.googleapis.com/v1/projects/{PROJECT_ID\}/roles` * [organizations.roles.create](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles/create): `organizations/{ORGANIZATION_ID\}`. This method creates organization-level [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles). Example request URL: `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID\}/roles` Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -19327,8 +19226,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateRoleRequest;
   }
-  export interface Params$Resource$Projects$Roles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Roles$Delete extends StandardParameters {
     /**
      * Used to perform a consistent read-modify-write.
      */
@@ -19338,15 +19236,13 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Roles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Roles$Get extends StandardParameters {
     /**
      * The `name` parameter's value depends on the target resource for the request, namely [roles](https://cloud.google.com/iam/docs/reference/rest/v1/roles), [projects](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles), or [organizations](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below: * [roles.get](https://cloud.google.com/iam/docs/reference/rest/v1/roles/get): `roles/{ROLE_NAME\}`. This method returns results from all [predefined roles](https://cloud.google.com/iam/docs/understanding-roles#predefined_roles) in IAM. Example request URL: `https://iam.googleapis.com/v1/roles/{ROLE_NAME\}` * [projects.roles.get](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles/get): `projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method returns only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the project level. Example request URL: `https://iam.googleapis.com/v1/projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}` * [organizations.roles.get](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles/get): `organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method returns only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the organization level. Example request URL: `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}` Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Roles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Roles$List extends StandardParameters {
     /**
      * Optional limit on the number of roles to include in the response. The default is 300, and the maximum is 1,000.
      */
@@ -19368,8 +19264,7 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Roles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Roles$Patch extends StandardParameters {
     /**
      * The `name` parameter's value depends on the target resource for the request, namely [projects](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles) or [organizations](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below: * [projects.roles.patch](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles/patch): `projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method updates only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the project level. Example request URL: `https://iam.googleapis.com/v1/projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}` * [organizations.roles.patch](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles/patch): `organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method updates only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the organization level. Example request URL: `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}` Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -19384,8 +19279,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$Role;
   }
-  export interface Params$Resource$Projects$Roles$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Roles$Undelete extends StandardParameters {
     /**
      * The `name` parameter's value depends on the target resource for the request, namely [projects](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles) or [organizations](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below: * [projects.roles.undelete](https://cloud.google.com/iam/docs/reference/rest/v1/projects.roles/undelete): `projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method undeletes only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the project level. Example request URL: `https://iam.googleapis.com/v1/projects/{PROJECT_ID\}/roles/{CUSTOM_ROLE_ID\}` * [organizations.roles.undelete](https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles/undelete): `organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}`. This method undeletes only [custom roles](https://cloud.google.com/iam/docs/understanding-custom-roles) that have been created at the organization level. Example request URL: `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID\}/roles/{CUSTOM_ROLE_ID\}` Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -21450,8 +21344,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Serviceaccounts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Create extends StandardParameters {
     /**
      * Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
      */
@@ -21462,15 +21355,13 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Delete extends StandardParameters {
     /**
      * Required. The resource name of the service account. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Disable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Disable extends StandardParameters {
     /**
      * The resource name of the service account. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -21481,8 +21372,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$DisableServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Enable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Enable extends StandardParameters {
     /**
      * The resource name of the service account. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -21493,15 +21383,13 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$EnableServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Get extends StandardParameters {
     /**
      * Required. The resource name of the service account. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -21511,8 +21399,7 @@ export namespace iam_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$List extends StandardParameters {
     /**
      * Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
      */
@@ -21526,8 +21413,7 @@ export namespace iam_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Patch extends StandardParameters {
     /**
      * The resource name of the service account. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -21538,8 +21424,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$PatchServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -21550,8 +21435,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signblob
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Signblob extends StandardParameters {
     /**
      * Required. Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api). The resource name of the service account. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -21562,8 +21446,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SignBlobRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signjwt
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Signjwt extends StandardParameters {
     /**
      * Required. Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api). The resource name of the service account. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -21574,8 +21457,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SignJwtRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -21586,8 +21468,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Undelete extends StandardParameters {
     /**
      * The resource name of the service account. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -21598,8 +21479,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$UndeleteServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Update extends StandardParameters {
     /**
      * The resource name of the service account. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -22631,8 +22511,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Create extends StandardParameters {
     /**
      * Required. The resource name of the service account. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -22643,15 +22522,13 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateServiceAccountKeyRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete extends StandardParameters {
     /**
      * Required. The resource name of the service account key. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}/keys/{KEY_ID\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}/keys/{KEY_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}/keys/{KEY_ID\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}/keys/{KEY_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account key `projects/-/serviceAccounts/fake@example.com/keys/fake-key`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Disable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Disable extends StandardParameters {
     /**
      * Required. The resource name of the service account key. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}/keys/{KEY_ID\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}/keys/{KEY_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}/keys/{KEY_ID\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}/keys/{KEY_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account key `projects/-/serviceAccounts/fake@example.com/keys/fake-key`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -22662,8 +22539,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$DisableServiceAccountKeyRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Enable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Enable extends StandardParameters {
     /**
      * Required. The resource name of the service account key. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}/keys/{KEY_ID\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}/keys/{KEY_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}/keys/{KEY_ID\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}/keys/{KEY_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account key `projects/-/serviceAccounts/fake@example.com/keys/fake-key`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -22674,8 +22550,7 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$EnableServiceAccountKeyRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Get extends StandardParameters {
     /**
      * Required. The resource name of the service account key. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}/keys/{KEY_ID\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}/keys/{KEY_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}/keys/{KEY_ID\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}/keys/{KEY_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account key `projects/-/serviceAccounts/fake@example.com/keys/fake-key`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -22685,8 +22560,7 @@ export namespace iam_v1 {
      */
     publicKeyType?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$List extends StandardParameters {
     /**
      * Filters the types of keys the user wants to include in the list response. Duplicate key types are not allowed. If no key type is provided, all keys are returned.
      */
@@ -22696,8 +22570,7 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Upload
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Upload extends StandardParameters {
     /**
      * The resource name of the service account key. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
@@ -23175,8 +23048,7 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Roles$Querygrantableroles
-    extends StandardParameters {
+  export interface Params$Resource$Roles$Querygrantableroles extends StandardParameters {
     /**
      * Request body metadata
      */
