@@ -995,8 +995,7 @@ export namespace civicinfo_v2 {
     }
   }
 
-  export interface Params$Resource$Divisions$Querydivisionbyaddress
-    extends StandardParameters {
+  export interface Params$Resource$Divisions$Querydivisionbyaddress extends StandardParameters {
     /**
      *
      */
@@ -1330,15 +1329,13 @@ export namespace civicinfo_v2 {
     }
   }
 
-  export interface Params$Resource$Elections$Electionquery
-    extends StandardParameters {
+  export interface Params$Resource$Elections$Electionquery extends StandardParameters {
     /**
      * Whether to include data that has not been allowlisted yet
      */
     productionDataOnly?: boolean;
   }
-  export interface Params$Resource$Elections$Voterinfoquery
-    extends StandardParameters {
+  export interface Params$Resource$Elections$Voterinfoquery extends StandardParameters {
     /**
      * The registered address of the voter to look up.
      */
