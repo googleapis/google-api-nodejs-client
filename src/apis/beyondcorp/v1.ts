@@ -2239,8 +2239,7 @@ export namespace beyondcorp_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2251,22 +2250,19 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2623,15 +2619,13 @@ export namespace beyondcorp_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -4074,8 +4068,7 @@ export namespace beyondcorp_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Appconnections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnections$Create extends StandardParameters {
     /**
      * Optional. User-settable AppConnection resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.
      */
@@ -4098,8 +4091,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleCloudBeyondcorpAppconnectionsV1AppConnection;
   }
-  export interface Params$Resource$Projects$Locations$Appconnections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnections$Delete extends StandardParameters {
     /**
      * Required. BeyondCorp Connector name using the form: `projects/{project_id\}/locations/{location_id\}/appConnections/{app_connection_id\}`
      */
@@ -4113,15 +4105,13 @@ export namespace beyondcorp_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Appconnections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnections$Get extends StandardParameters {
     /**
      * Required. BeyondCorp AppConnection name using the form: `projects/{project_id\}/locations/{location_id\}/appConnections/{app_connection_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Appconnections$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnections$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4131,8 +4121,7 @@ export namespace beyondcorp_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Appconnections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnections$List extends StandardParameters {
     /**
      * Optional. A filter specifying constraints of a list operation.
      */
@@ -4154,8 +4143,7 @@ export namespace beyondcorp_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Appconnections$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnections$Patch extends StandardParameters {
     /**
      * Optional. If set as true, will create the resource if it is not found.
      */
@@ -4182,8 +4170,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleCloudBeyondcorpAppconnectionsV1AppConnection;
   }
-  export interface Params$Resource$Projects$Locations$Appconnections$Resolve
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnections$Resolve extends StandardParameters {
     /**
      * Required. BeyondCorp Connector name of the connector associated with those AppConnections using the form: `projects/{project_id\}/locations/{location_id\}/appConnectors/{app_connector_id\}`
      */
@@ -4201,8 +4188,7 @@ export namespace beyondcorp_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Appconnections$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnections$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4213,8 +4199,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Appconnections$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnections$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5782,8 +5767,7 @@ export namespace beyondcorp_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Appconnectors$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnectors$Create extends StandardParameters {
     /**
      * Optional. User-settable AppConnector resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.
      */
@@ -5806,8 +5790,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleCloudBeyondcorpAppconnectorsV1AppConnector;
   }
-  export interface Params$Resource$Projects$Locations$Appconnectors$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnectors$Delete extends StandardParameters {
     /**
      * Required. BeyondCorp AppConnector name using the form: `projects/{project_id\}/locations/{location_id\}/appConnectors/{app_connector_id\}`
      */
@@ -5821,15 +5804,13 @@ export namespace beyondcorp_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Appconnectors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnectors$Get extends StandardParameters {
     /**
      * Required. BeyondCorp AppConnector name using the form: `projects/{project_id\}/locations/{location_id\}/appConnectors/{app_connector_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Appconnectors$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnectors$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5839,8 +5820,7 @@ export namespace beyondcorp_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Appconnectors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnectors$List extends StandardParameters {
     /**
      * Optional. A filter specifying constraints of a list operation.
      */
@@ -5862,8 +5842,7 @@ export namespace beyondcorp_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Appconnectors$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnectors$Patch extends StandardParameters {
     /**
      * Required. Unique resource name of the AppConnector. The name is ignored when creating a AppConnector.
      */
@@ -5886,8 +5865,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleCloudBeyondcorpAppconnectorsV1AppConnector;
   }
-  export interface Params$Resource$Projects$Locations$Appconnectors$Reportstatus
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnectors$Reportstatus extends StandardParameters {
     /**
      * Required. BeyondCorp Connector name using the form: `projects/{project_id\}/locations/{location_id\}/connectors/{connector\}`
      */
@@ -5898,15 +5876,13 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleCloudBeyondcorpAppconnectorsV1ReportStatusRequest;
   }
-  export interface Params$Resource$Projects$Locations$Appconnectors$Resolveinstanceconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnectors$Resolveinstanceconfig extends StandardParameters {
     /**
      * Required. BeyondCorp AppConnector name using the form: `projects/{project_id\}/locations/{location_id\}/appConnectors/{app_connector\}`
      */
     appConnector?: string;
   }
-  export interface Params$Resource$Projects$Locations$Appconnectors$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnectors$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5917,8 +5893,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Appconnectors$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appconnectors$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7006,8 +6981,7 @@ export namespace beyondcorp_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Appgateways$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appgateways$Create extends StandardParameters {
     /**
      * Optional. User-settable AppGateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.
      */
@@ -7030,8 +7004,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$AppGateway;
   }
-  export interface Params$Resource$Projects$Locations$Appgateways$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appgateways$Delete extends StandardParameters {
     /**
      * Required. BeyondCorp AppGateway name using the form: `projects/{project_id\}/locations/{location_id\}/appGateways/{app_gateway_id\}`
      */
@@ -7045,15 +7018,13 @@ export namespace beyondcorp_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Appgateways$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appgateways$Get extends StandardParameters {
     /**
      * Required. BeyondCorp AppGateway name using the form: `projects/{project_id\}/locations/{location_id\}/appGateways/{app_gateway_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Appgateways$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appgateways$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -7063,8 +7034,7 @@ export namespace beyondcorp_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Appgateways$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appgateways$List extends StandardParameters {
     /**
      * Optional. A filter specifying constraints of a list operation.
      */
@@ -7086,8 +7056,7 @@ export namespace beyondcorp_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Appgateways$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appgateways$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7098,8 +7067,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Appgateways$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Appgateways$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7687,8 +7655,7 @@ export namespace beyondcorp_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -7699,22 +7666,19 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -8998,8 +8962,7 @@ export namespace beyondcorp_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Securitygateways$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Create extends StandardParameters {
     /**
      * Required. The resource project name of the SecurityGateway location using the form: `projects/{project_id\}/locations/{location_id\}`
      */
@@ -9018,8 +8981,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Delete extends StandardParameters {
     /**
      * Required. BeyondCorp SecurityGateway name using the form: `projects/{project_id\}/locations/{location_id\}/securityGateways/{security_gateway_id\}`
      */
@@ -9033,15 +8995,13 @@ export namespace beyondcorp_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Get extends StandardParameters {
     /**
      * Required. The resource name of the PartnerTenant using the form: `projects/{project_id\}/locations/{location_id\}/securityGateway/{security_gateway_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -9051,8 +9011,7 @@ export namespace beyondcorp_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$List extends StandardParameters {
     /**
      * Optional. A filter specifying constraints of a list operation. All fields in the SecurityGateway message are supported. For example, the following query will return the SecurityGateway with displayName "test-security-gateway" For more information, please refer to https://google.aip.dev/160.
      */
@@ -9074,8 +9033,7 @@ export namespace beyondcorp_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Patch extends StandardParameters {
     /**
      * Identifier. Name of the resource.
      */
@@ -9094,8 +9052,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9106,8 +9063,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10379,8 +10335,7 @@ export namespace beyondcorp_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Create extends StandardParameters {
     /**
      * Optional. User-settable Application resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or letter.
      */
@@ -10399,8 +10354,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Delete extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -10414,15 +10368,13 @@ export namespace beyondcorp_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Get extends StandardParameters {
     /**
      * Required. The resource name of the Application using the form: `projects/{project_id\}/locations/global/securityGateway/{security_gateway_id\}/applications/{application_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -10432,8 +10384,7 @@ export namespace beyondcorp_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$List extends StandardParameters {
     /**
      * Optional. A filter specifying constraints of a list operation. All fields in the Application message are supported. For example, the following query will return the Application with displayName "test-application" For more information, please refer to https://google.aip.dev/160.
      */
@@ -10455,8 +10406,7 @@ export namespace beyondcorp_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Patch extends StandardParameters {
     /**
      * Identifier. Name of the resource.
      */
@@ -10475,8 +10425,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10487,8 +10436,7 @@ export namespace beyondcorp_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
