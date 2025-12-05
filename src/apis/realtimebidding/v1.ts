@@ -1854,8 +1854,7 @@ export namespace realtimebidding_v1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Creatives$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Creatives$List extends StandardParameters {
     /**
      * Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      */
@@ -1877,8 +1876,7 @@ export namespace realtimebidding_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Bidders$Creatives$Watch
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Creatives$Watch extends StandardParameters {
     /**
      * Required. To watch all creatives pertaining to the bidder and all its child seat accounts, the bidder must follow the pattern `bidders/{bidderAccountId\}`.
      */
@@ -2334,15 +2332,13 @@ export namespace realtimebidding_v1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Endpoints$Get
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Endpoints$Get extends StandardParameters {
     /**
      * Required. Name of the bidder endpoint to get. Format: `bidders/{bidderAccountId\}/endpoints/{endpointId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Endpoints$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Endpoints$List extends StandardParameters {
     /**
      * The maximum number of endpoints to return. If unspecified, at most 100 endpoints will be returned. The maximum value is 500; values above 500 will be coerced to 500.
      */
@@ -2356,8 +2352,7 @@ export namespace realtimebidding_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Bidders$Endpoints$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Endpoints$Patch extends StandardParameters {
     /**
      * Output only. Name of the endpoint resource that must follow the pattern `bidders/{bidderAccountId\}/endpoints/{endpointId\}`, where {bidderAccountId\} is the account ID of the bidder who operates this endpoint, and {endpointId\} is a unique ID assigned by the server.
      */
@@ -4566,8 +4561,7 @@ export namespace realtimebidding_v1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Activate extends StandardParameters {
     /**
      * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      */
@@ -4578,8 +4572,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$ActivatePretargetingConfigRequest;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps extends StandardParameters {
     /**
      * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      */
@@ -4590,8 +4583,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$AddTargetedAppsRequest;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers extends StandardParameters {
     /**
      * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      */
@@ -4602,8 +4594,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$AddTargetedPublishersRequest;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites extends StandardParameters {
     /**
      * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      */
@@ -4614,8 +4605,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$AddTargetedSitesRequest;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Create extends StandardParameters {
     /**
      * Required. Name of the bidder to create the pretargeting configuration for. Format: bidders/{bidderAccountId\}
      */
@@ -4626,22 +4616,19 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$PretargetingConfig;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Delete extends StandardParameters {
     /**
      * Required. The name of the pretargeting configuration to delete. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the pretargeting configuration to get. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$List extends StandardParameters {
     /**
      * The maximum number of pretargeting configurations to return. If unspecified, at most 10 pretargeting configurations will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
@@ -4655,8 +4642,7 @@ export namespace realtimebidding_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Patch extends StandardParameters {
     /**
      * Output only. Name of the pretargeting configuration that must follow the pattern `bidders/{bidder_account_id\}/pretargetingConfigs/{config_id\}`
      */
@@ -4671,8 +4657,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$PretargetingConfig;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps extends StandardParameters {
     /**
      * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      */
@@ -4683,8 +4668,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$RemoveTargetedAppsRequest;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers extends StandardParameters {
     /**
      * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      */
@@ -4695,8 +4679,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$RemoveTargetedPublishersRequest;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites extends StandardParameters {
     /**
      * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      */
@@ -4707,8 +4690,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$RemoveTargetedSitesRequest;
   }
-  export interface Params$Resource$Bidders$Pretargetingconfigs$Suspend
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Suspend extends StandardParameters {
     /**
      * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      */
@@ -5334,8 +5316,7 @@ export namespace realtimebidding_v1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Publisherconnections$Batchapprove
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Publisherconnections$Batchapprove extends StandardParameters {
     /**
      * Required. The bidder for whom publisher connections will be approved. Format: `bidders/{bidder\}` where `{bidder\}` is the account ID of the bidder.
      */
@@ -5346,8 +5327,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$BatchApprovePublisherConnectionsRequest;
   }
-  export interface Params$Resource$Bidders$Publisherconnections$Batchreject
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Publisherconnections$Batchreject extends StandardParameters {
     /**
      * Required. The bidder for whom publisher connections will be rejected. Format: `bidders/{bidder\}` where `{bidder\}` is the account ID of the bidder.
      */
@@ -5358,15 +5338,13 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$BatchRejectPublisherConnectionsRequest;
   }
-  export interface Params$Resource$Bidders$Publisherconnections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Publisherconnections$Get extends StandardParameters {
     /**
      * Required. Name of the publisher whose connection information is to be retrieved. In the pattern `bidders/{bidder\}/publisherConnections/{publisher\}` where `{bidder\}` is the account ID of the bidder, and `{publisher\}` is the ads.txt/app-ads.txt publisher ID. See publisherConnection.name.
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Publisherconnections$List
-    extends StandardParameters {
+  export interface Params$Resource$Bidders$Publisherconnections$List extends StandardParameters {
     /**
      * Query string to filter publisher connections. Connections can be filtered by `displayName`, `publisherPlatform`, and `biddingState`. If no filter is specified, all publisher connections will be returned. Example: 'displayName="Great Publisher*" AND publisherPlatform=ADMOB AND biddingState != PENDING' See https://google.aip.dev/160 for more information about filtering syntax.
      */
@@ -5824,8 +5802,7 @@ export namespace realtimebidding_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Getremarketingtag
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Getremarketingtag extends StandardParameters {
     /**
      * Required. To fetch the remarketing tag for an account, the name must follow the pattern `buyers/{accountId\}`, where `{accountId\}` represents the ID of the buyer that owns the remarketing tag. For a bidder accessing the remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch the remarketing tag for a specific user list, the name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
      */
@@ -6526,8 +6503,7 @@ export namespace realtimebidding_v1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Creatives$Create
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Creatives$Create extends StandardParameters {
     /**
      * Required. The name of the parent buyer that the new creative belongs to that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns a creative. For a bidder accessing creatives on behalf of a child seat buyer, `{buyerAccountId\}` should represent the account ID of the child seat buyer.
      */
@@ -6538,8 +6514,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$Creative;
   }
-  export interface Params$Resource$Buyers$Creatives$Get
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Creatives$Get extends StandardParameters {
     /**
      * Required. Name of the creative to retrieve. See creative.name.
      */
@@ -6549,8 +6524,7 @@ export namespace realtimebidding_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Buyers$Creatives$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Creatives$List extends StandardParameters {
     /**
      * Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      */
@@ -6572,8 +6546,7 @@ export namespace realtimebidding_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Buyers$Creatives$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Creatives$Patch extends StandardParameters {
     /**
      * Output only. Name of the creative. Follows the pattern `buyers/{buyer\}/creatives/{creative\}`, where `{buyer\}` represents the account ID of the buyer who owns the creative, and `{creative\}` is the buyer-specific creative ID that references this creative in the bid response.
      */
@@ -7624,8 +7597,7 @@ export namespace realtimebidding_v1 {
     }
   }
 
-  export interface Params$Resource$Buyers$Userlists$Close
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Userlists$Close extends StandardParameters {
     /**
      * Required. The name of the user list to close. See UserList.name
      */
@@ -7636,8 +7608,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$CloseUserListRequest;
   }
-  export interface Params$Resource$Buyers$Userlists$Create
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Userlists$Create extends StandardParameters {
     /**
      * Required. The name of the parent buyer of the user list to be retrieved, which must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyerAccountId\}` should represent the account ID of the child seat buyer.
      */
@@ -7648,22 +7619,19 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$UserList;
   }
-  export interface Params$Resource$Buyers$Userlists$Get
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Userlists$Get extends StandardParameters {
     /**
      * Required. The name of the user list to be retrieved. See UserList.name.
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Userlists$Getremarketingtag
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Userlists$Getremarketingtag extends StandardParameters {
     /**
      * Required. To fetch the remarketing tag for an account, the name must follow the pattern `buyers/{accountId\}`, where `{accountId\}` represents the ID of the buyer that owns the remarketing tag. For a bidder accessing the remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch the remarketing tag for a specific user list, the name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
      */
     name?: string;
   }
-  export interface Params$Resource$Buyers$Userlists$List
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Userlists$List extends StandardParameters {
     /**
      * The number of results to return per page.
      */
@@ -7677,8 +7645,7 @@ export namespace realtimebidding_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Buyers$Userlists$Open
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Userlists$Open extends StandardParameters {
     /**
      * Required. The name of the user list to open. See UserList.name
      */
@@ -7689,8 +7656,7 @@ export namespace realtimebidding_v1 {
      */
     requestBody?: Schema$OpenUserListRequest;
   }
-  export interface Params$Resource$Buyers$Userlists$Update
-    extends StandardParameters {
+  export interface Params$Resource$Buyers$Userlists$Update extends StandardParameters {
     /**
      * Output only. Name of the user list that must follow the pattern `buyers/{buyer\}/userLists/{user_list\}`, where `{buyer\}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyer\}` represents the account ID of the child seat buyer. `{user_list\}` is an int64 identifier assigned by Google to uniquely identify a user list.
      */
