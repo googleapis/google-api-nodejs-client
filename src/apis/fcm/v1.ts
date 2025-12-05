@@ -656,8 +656,7 @@ export namespace fcm_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Messages$Send
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Messages$Send extends StandardParameters {
     /**
      * Required. It contains the Firebase project id (i.e. the unique identifier for your Firebase project), in the format of `projects/{project_id\}`. The numeric project number with no padding is also supported in the format of `projects/{project_number\}`.
      */
