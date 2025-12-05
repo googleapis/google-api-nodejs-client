@@ -1923,8 +1923,7 @@ export namespace bigquerydatapolicy_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datapolicies$Addgrantees
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datapolicies$Addgrantees extends StandardParameters {
     /**
      * Required. Resource name of this data policy, in the format of `projects/{project_number\}/locations/{location_id\}/dataPolicies/{data_policy_id\}`.
      */
@@ -1935,8 +1934,7 @@ export namespace bigquerydatapolicy_v2 {
      */
     requestBody?: Schema$AddGranteesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datapolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datapolicies$Create extends StandardParameters {
     /**
      * Required. Resource name of the project that the data policy will belong to. The format is `projects/{project_number\}/locations/{location_id\}`.
      */
@@ -1947,22 +1945,19 @@ export namespace bigquerydatapolicy_v2 {
      */
     requestBody?: Schema$CreateDataPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datapolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datapolicies$Delete extends StandardParameters {
     /**
      * Required. Resource name of the data policy to delete. Format is `projects/{project_number\}/locations/{location_id\}/dataPolicies/{id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datapolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datapolicies$Get extends StandardParameters {
     /**
      * Required. Resource name of the requested data policy. Format is `projects/{project_number\}/locations/{location_id\}/dataPolicies/{id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datapolicies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datapolicies$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1973,8 +1968,7 @@ export namespace bigquerydatapolicy_v2 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datapolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datapolicies$List extends StandardParameters {
     /**
      * Optional. Filters the data policies by policy tags that they are associated with. Currently filter only supports "policy_tag" based filtering and OR based predicates. Sample filter can be "policy_tag: projects/1/locations/us/taxonomies/2/policyTags/3". You may also use wildcard such as "policy_tag: projects/1/locations/us/taxonomies/2*". Please note that OR predicates cannot be used with wildcard filters.
      */
@@ -1992,8 +1986,7 @@ export namespace bigquerydatapolicy_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datapolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datapolicies$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the data policy is not found, a new data policy will be created. In this situation, update_mask is ignored.
      */
@@ -2012,8 +2005,7 @@ export namespace bigquerydatapolicy_v2 {
      */
     requestBody?: Schema$DataPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Datapolicies$Removegrantees
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datapolicies$Removegrantees extends StandardParameters {
     /**
      * Required. Resource name of this data policy, in the format of `projects/{project_number\}/locations/{location_id\}/dataPolicies/{data_policy_id\}`.
      */
@@ -2024,8 +2016,7 @@ export namespace bigquerydatapolicy_v2 {
      */
     requestBody?: Schema$RemoveGranteesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datapolicies$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datapolicies$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2036,8 +2027,7 @@ export namespace bigquerydatapolicy_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datapolicies$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datapolicies$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
