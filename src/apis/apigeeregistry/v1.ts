@@ -1113,15 +1113,13 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
@@ -2351,8 +2349,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Create extends StandardParameters {
     /**
      * Required. The ID to use for the API, which will become the final component of the API's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      */
@@ -2367,8 +2364,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Api;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Delete extends StandardParameters {
     /**
      * If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
      */
@@ -2378,15 +2374,13 @@ export namespace apigeeregistry_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Get extends StandardParameters {
     /**
      * Required. The name of the API to retrieve. Format: `projects/x/locations/x/apis/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2396,8 +2390,7 @@ export namespace apigeeregistry_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$List extends StandardParameters {
     /**
      * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
      */
@@ -2419,8 +2412,7 @@ export namespace apigeeregistry_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Patch extends StandardParameters {
     /**
      * If set to true, and the API is not found, a new API will be created. In this situation, `update_mask` is ignored.
      */
@@ -2439,8 +2431,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Api;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2451,8 +2442,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3812,8 +3802,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Create extends StandardParameters {
     /**
      * Required. The ID to use for the artifact, which will become the final component of the artifact's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      */
@@ -3828,29 +3817,25 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Artifact;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Delete extends StandardParameters {
     /**
      * Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Get extends StandardParameters {
     /**
      * Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Getcontents
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Getcontents extends StandardParameters {
     /**
      * Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3860,8 +3845,7 @@ export namespace apigeeregistry_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Artifacts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Artifacts$List extends StandardParameters {
     /**
      * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      */
@@ -3883,8 +3867,7 @@ export namespace apigeeregistry_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Replaceartifact
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Replaceartifact extends StandardParameters {
     /**
      * Resource name.
      */
@@ -3895,8 +3878,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Artifact;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3907,8 +3889,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Artifacts$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5800,8 +5781,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Create extends StandardParameters {
     /**
      * Required. The ID to use for the deployment, which will become the final component of the deployment's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      */
@@ -5816,8 +5796,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$ApiDeployment;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Delete extends StandardParameters {
     /**
      * If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
      */
@@ -5827,22 +5806,19 @@ export namespace apigeeregistry_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Deleterevision
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Deleterevision extends StandardParameters {
     /**
      * Required. The name of the deployment revision to be deleted, with a revision ID explicitly included. Example: `projects/sample/locations/global/apis/petstore/deployments/prod@c7cfa2a8`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Get extends StandardParameters {
     /**
      * Required. The name of the deployment to retrieve. Format: `projects/x/locations/x/apis/x/deployments/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5852,8 +5828,7 @@ export namespace apigeeregistry_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$List extends StandardParameters {
     /**
      * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
      */
@@ -5875,8 +5850,7 @@ export namespace apigeeregistry_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Listrevisions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Listrevisions extends StandardParameters {
     /**
      * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
      */
@@ -5894,8 +5868,7 @@ export namespace apigeeregistry_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Patch extends StandardParameters {
     /**
      * If set to true, and the deployment is not found, a new deployment will be created. In this situation, `update_mask` is ignored.
      */
@@ -5914,8 +5887,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$ApiDeployment;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Rollback
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Rollback extends StandardParameters {
     /**
      * Required. The deployment being rolled back.
      */
@@ -5926,8 +5898,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$RollbackApiDeploymentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5938,8 +5909,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Tagrevision
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Tagrevision extends StandardParameters {
     /**
      * Required. The name of the deployment to be tagged, including the revision ID is optional. If a revision is not specified, it will tag the latest revision.
      */
@@ -5950,8 +5920,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$TagApiDeploymentRevisionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6876,8 +6845,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Create extends StandardParameters {
     /**
      * Required. The ID to use for the artifact, which will become the final component of the artifact's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      */
@@ -6892,29 +6860,25 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Artifact;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Delete extends StandardParameters {
     /**
      * Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Get extends StandardParameters {
     /**
      * Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Getcontents
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Getcontents extends StandardParameters {
     /**
      * Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$List extends StandardParameters {
     /**
      * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      */
@@ -6936,8 +6900,7 @@ export namespace apigeeregistry_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Replaceartifact
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Replaceartifact extends StandardParameters {
     /**
      * Resource name.
      */
@@ -8167,8 +8130,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Create extends StandardParameters {
     /**
      * Required. The ID to use for the version, which will become the final component of the version's resource name. This value should be 1-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      */
@@ -8183,8 +8145,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$ApiVersion;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Delete extends StandardParameters {
     /**
      * If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
      */
@@ -8194,15 +8155,13 @@ export namespace apigeeregistry_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Get extends StandardParameters {
     /**
      * Required. The name of the version to retrieve. Format: `projects/x/locations/x/apis/x/versions/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -8212,8 +8171,7 @@ export namespace apigeeregistry_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$List extends StandardParameters {
     /**
      * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
      */
@@ -8235,8 +8193,7 @@ export namespace apigeeregistry_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Patch extends StandardParameters {
     /**
      * If set to true, and the version is not found, a new version will be created. In this situation, `update_mask` is ignored.
      */
@@ -8255,8 +8212,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$ApiVersion;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8267,8 +8223,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9648,8 +9603,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Create extends StandardParameters {
     /**
      * Required. The ID to use for the artifact, which will become the final component of the artifact's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      */
@@ -9664,29 +9618,25 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Artifact;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Delete extends StandardParameters {
     /**
      * Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Get extends StandardParameters {
     /**
      * Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getcontents
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getcontents extends StandardParameters {
     /**
      * Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -9696,8 +9646,7 @@ export namespace apigeeregistry_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$List extends StandardParameters {
     /**
      * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      */
@@ -9719,8 +9668,7 @@ export namespace apigeeregistry_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Replaceartifact
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Replaceartifact extends StandardParameters {
     /**
      * Resource name.
      */
@@ -9731,8 +9679,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Artifact;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9743,8 +9690,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11779,8 +11725,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Create extends StandardParameters {
     /**
      * Required. The ID to use for the spec, which will become the final component of the spec's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      */
@@ -11795,8 +11740,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$ApiSpec;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Delete extends StandardParameters {
     /**
      * If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
      */
@@ -11806,29 +11750,25 @@ export namespace apigeeregistry_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Deleterevision
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Deleterevision extends StandardParameters {
     /**
      * Required. The name of the spec revision to be deleted, with a revision ID explicitly included. Example: `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml@c7cfa2a8`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Get extends StandardParameters {
     /**
      * Required. The name of the spec to retrieve. Format: `projects/x/locations/x/apis/x/versions/x/specs/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Getcontents
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Getcontents extends StandardParameters {
     /**
      * Required. The name of the spec whose contents should be retrieved. Format: `projects/x/locations/x/apis/x/versions/x/specs/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -11838,8 +11778,7 @@ export namespace apigeeregistry_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$List extends StandardParameters {
     /**
      * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      */
@@ -11861,8 +11800,7 @@ export namespace apigeeregistry_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Listrevisions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Listrevisions extends StandardParameters {
     /**
      * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
      */
@@ -11880,8 +11818,7 @@ export namespace apigeeregistry_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Patch extends StandardParameters {
     /**
      * If set to true, and the spec is not found, a new spec will be created. In this situation, `update_mask` is ignored.
      */
@@ -11900,8 +11837,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$ApiSpec;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Rollback
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Rollback extends StandardParameters {
     /**
      * Required. The spec being rolled back.
      */
@@ -11912,8 +11848,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$RollbackApiSpecRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11924,8 +11859,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Tagrevision
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Tagrevision extends StandardParameters {
     /**
      * Required. The name of the spec to be tagged, including the revision ID is optional. If a revision is not specified, it will tag the latest revision.
      */
@@ -11936,8 +11870,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$TagApiSpecRevisionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13321,8 +13254,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Create extends StandardParameters {
     /**
      * Required. The ID to use for the artifact, which will become the final component of the artifact's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      */
@@ -13337,29 +13269,25 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Artifact;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Delete extends StandardParameters {
     /**
      * Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Get extends StandardParameters {
     /**
      * Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getcontents
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getcontents extends StandardParameters {
     /**
      * Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -13369,8 +13297,7 @@ export namespace apigeeregistry_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$List extends StandardParameters {
     /**
      * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      */
@@ -13392,8 +13319,7 @@ export namespace apigeeregistry_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Replaceartifact
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Replaceartifact extends StandardParameters {
     /**
      * Resource name.
      */
@@ -13404,8 +13330,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Artifact;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13416,8 +13341,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -14772,8 +14696,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Artifacts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Artifacts$Create extends StandardParameters {
     /**
      * Required. The ID to use for the artifact, which will become the final component of the artifact's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      */
@@ -14788,29 +14711,25 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Artifact;
   }
-  export interface Params$Resource$Projects$Locations$Artifacts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Artifacts$Delete extends StandardParameters {
     /**
      * Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Artifacts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Artifacts$Get extends StandardParameters {
     /**
      * Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Artifacts$Getcontents
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Artifacts$Getcontents extends StandardParameters {
     /**
      * Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Artifacts$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Artifacts$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -14820,8 +14739,7 @@ export namespace apigeeregistry_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Artifacts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Artifacts$List extends StandardParameters {
     /**
      * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      */
@@ -14843,8 +14761,7 @@ export namespace apigeeregistry_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Artifacts$Replaceartifact
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Artifacts$Replaceartifact extends StandardParameters {
     /**
      * Resource name.
      */
@@ -14855,8 +14772,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Artifact;
   }
-  export interface Params$Resource$Projects$Locations$Artifacts$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Artifacts$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -14867,8 +14783,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Artifacts$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Artifacts$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -15331,8 +15246,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Documents$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -15342,8 +15256,7 @@ export namespace apigeeregistry_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -15354,8 +15267,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -16257,8 +16169,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Create extends StandardParameters {
     /**
      * Required. Identifier to assign to the Instance. Must be unique within scope of the parent resource.
      */
@@ -16273,22 +16184,19 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Delete extends StandardParameters {
     /**
      * Required. The name of the Instance to delete. Format: `projects/x/locations/x/instances/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Get extends StandardParameters {
     /**
      * Required. The name of the Instance to retrieve. Format: `projects/x/locations/x/instances/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -16298,8 +16206,7 @@ export namespace apigeeregistry_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -16310,8 +16217,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -16888,8 +16794,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -16900,22 +16805,19 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -17383,8 +17285,7 @@ export namespace apigeeregistry_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Runtime$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Runtime$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -17394,8 +17295,7 @@ export namespace apigeeregistry_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Runtime$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Runtime$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -17406,8 +17306,7 @@ export namespace apigeeregistry_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Runtime$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Runtime$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
