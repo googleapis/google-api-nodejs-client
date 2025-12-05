@@ -521,6 +521,23 @@ export namespace youtube_v3 {
     type?: string | null;
   }
   /**
+   * Response for the Videos.stats API. Returns VideoStat information about a batch of videos. VideoStat contains a subset of the information in Video that is relevant to statistics and content details.
+   */
+  export interface Schema$BatchGetStatsResponse {
+    /**
+     * Output only. Etag of this resource.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The videos' stats information.
+     */
+    items?: Schema$VideoStat[];
+    /**
+     * Output only. Identifies what kind of resource this is. Value: the fixed string "youtube#batchGetStatsResponse".
+     */
+    kind?: string | null;
+  }
+  /**
    * A *caption* resource represents a YouTube caption track. A caption track is associated with exactly one YouTube video.
    */
   export interface Schema$Caption {
@@ -4561,6 +4578,39 @@ export namespace youtube_v3 {
     title?: string | null;
   }
   /**
+   * A *VideoStat* resource represents a YouTube video's stats.
+   */
+  export interface Schema$VideoStat {
+    /**
+     * Output only. The VideoStatsContentDetails object contains information about the video content, including the length of the video.
+     */
+    contentDetails?: Schema$VideoStatsContentDetails;
+    /**
+     * Output only. Etag of this resource.
+     */
+    etag?: string | null;
+    /**
+     * Output only. Identifies what kind of resource this is. Value: the fixed string "youtube#videoStats".
+     */
+    kind?: string | null;
+    /**
+     * Output only. Identifier. The resource name for the `VideoStats` resource, in the format `videoStats/{video_stat\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The VideoStatsSnippet object contains basic details about the video, such publish time.
+     */
+    snippet?: Schema$VideoStatsSnippet;
+    /**
+     * Output only. The VideoStatsStatistics object contains statistics about the video.
+     */
+    statistics?: Schema$VideoStatsStatistics;
+    /**
+     * Output only. The ID that YouTube uses to uniquely identify the video.
+     */
+    videoId?: string | null;
+  }
+  /**
    * Statistics about the video, such as the number of times the video was viewed or liked.
    */
   export interface Schema$VideoStatistics {
@@ -4582,6 +4632,41 @@ export namespace youtube_v3 {
     likeCount?: string | null;
     /**
      * The number of times the video has been viewed.
+     */
+    viewCount?: string | null;
+  }
+  /**
+   * Details about the content of a YouTube Video. This is a subset of the information in VideoContentDetails specifically for the Videos.stats API.
+   */
+  export interface Schema$VideoStatsContentDetails {
+    /**
+     * Output only. The length of the video. The property value is a [`google.protobuf.Duration`](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) object.
+     */
+    duration?: string | null;
+  }
+  /**
+   * Basic details about a video. This is a subset of the information in VideoSnippet specifically for the Videos.stats API.
+   */
+  export interface Schema$VideoStatsSnippet {
+    /**
+     * Output only. The date and time that the video was uploaded. The property value is a [`google.protobuf.Timestamp`](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#timestamp) object.
+     */
+    publishTime?: string | null;
+  }
+  /**
+   * Statistics about the video, such as the number of times the video was viewed or liked.
+   */
+  export interface Schema$VideoStatsStatistics {
+    /**
+     * Output only. The number of comments for the video.
+     */
+    commentCount?: string | null;
+    /**
+     * Output only. The number of users who have indicated that they liked the video by giving it a positive rating.
+     */
+    likeCount?: string | null;
+    /**
+     * Output only. The number of times the video has been viewed.
      */
     viewCount?: string | null;
   }
@@ -4883,8 +4968,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Abusereports$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Abusereports$Insert extends StandardParameters {
     /**
      * The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      */
@@ -5889,8 +5973,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Captions$Download
-    extends StandardParameters {
+  export interface Params$Resource$Captions$Download extends StandardParameters {
     /**
      * The ID of the caption track to download, required for One Platform.
      */
@@ -6184,8 +6267,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channelbanners$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Channelbanners$Insert extends StandardParameters {
     /**
      * Unused, channel_id is currently derived from the security context of the requestor.
      */
@@ -7269,8 +7351,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channelsections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Channelsections$Delete extends StandardParameters {
     /**
      *
      */
@@ -7280,8 +7361,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Channelsections$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Channelsections$Insert extends StandardParameters {
     /**
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -7300,8 +7380,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$ChannelSection;
   }
-  export interface Params$Resource$Channelsections$List
-    extends StandardParameters {
+  export interface Params$Resource$Channelsections$List extends StandardParameters {
     /**
      * Return the ChannelSections owned by the specified channel ID.
      */
@@ -7327,8 +7406,7 @@ export namespace youtube_v3 {
      */
     part?: string[];
   }
-  export interface Params$Resource$Channelsections$Update
-    extends StandardParameters {
+  export interface Params$Resource$Channelsections$Update extends StandardParameters {
     /**
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -8239,15 +8317,13 @@ export namespace youtube_v3 {
      */
     textFormat?: string;
   }
-  export interface Params$Resource$Comments$Markasspam
-    extends StandardParameters {
+  export interface Params$Resource$Comments$Markasspam extends StandardParameters {
     /**
      * Flags the comments with the given IDs as spam in the caller's opinion.
      */
     id?: string[];
   }
-  export interface Params$Resource$Comments$Setmoderationstatus
-    extends StandardParameters {
+  export interface Params$Resource$Comments$Setmoderationstatus extends StandardParameters {
     /**
      * If set to true the author of the comment gets added to the ban list. This means all future comments of the author will autmomatically be rejected. Only valid in combination with STATUS_REJECTED.
      */
@@ -8603,8 +8679,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Commentthreads$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Commentthreads$Insert extends StandardParameters {
     /**
      * The *part* parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
      */
@@ -8615,8 +8690,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$CommentThread;
   }
-  export interface Params$Resource$Commentthreads$List
-    extends StandardParameters {
+  export interface Params$Resource$Commentthreads$List extends StandardParameters {
     /**
      * Returns the comment threads of all videos of the channel and the channel comments as well.
      */
@@ -8823,8 +8897,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$I18nlanguages$List
-    extends StandardParameters {
+  export interface Params$Resource$I18nlanguages$List extends StandardParameters {
     /**
      *
      */
@@ -10121,8 +10194,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livebroadcasts$Bind
-    extends StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Bind extends StandardParameters {
     /**
      * Broadcast to bind to the stream
      */
@@ -10144,8 +10216,7 @@ export namespace youtube_v3 {
      */
     streamId?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Delete extends StandardParameters {
     /**
      * Broadcast to delete.
      */
@@ -10159,8 +10230,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwnerChannel?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Insert extends StandardParameters {
     /**
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -10179,8 +10249,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveBroadcast;
   }
-  export interface Params$Resource$Livebroadcasts$Insertcuepoint
-    extends StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Insertcuepoint extends StandardParameters {
     /**
      * Broadcast to insert ads to, or equivalently `external_video_id` for internal use.
      */
@@ -10203,8 +10272,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Cuepoint;
   }
-  export interface Params$Resource$Livebroadcasts$List
-    extends StandardParameters {
+  export interface Params$Resource$Livebroadcasts$List extends StandardParameters {
     /**
      * Return broadcasts with a certain status, e.g. active broadcasts.
      */
@@ -10242,8 +10310,7 @@ export namespace youtube_v3 {
      */
     part?: string[];
   }
-  export interface Params$Resource$Livebroadcasts$Transition
-    extends StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Transition extends StandardParameters {
     /**
      * The status to which the broadcast is going to transition.
      */
@@ -10265,8 +10332,7 @@ export namespace youtube_v3 {
      */
     part?: string[];
   }
-  export interface Params$Resource$Livebroadcasts$Update
-    extends StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Update extends StandardParameters {
     /**
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -10579,15 +10645,13 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livechatbans$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Livechatbans$Delete extends StandardParameters {
     /**
      *
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatbans$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Livechatbans$Insert extends StandardParameters {
     /**
      * The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
      */
@@ -11205,15 +11269,13 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livechatmessages$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Livechatmessages$Delete extends StandardParameters {
     /**
      *
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatmessages$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Livechatmessages$Insert extends StandardParameters {
     /**
      * The *part* parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to snippet.
      */
@@ -11224,8 +11286,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveChatMessage;
   }
-  export interface Params$Resource$Livechatmessages$List
-    extends StandardParameters {
+  export interface Params$Resource$Livechatmessages$List extends StandardParameters {
     /**
      * Specifies the localization language in which the system messages should be returned.
      */
@@ -11251,8 +11312,7 @@ export namespace youtube_v3 {
      */
     profileImageSize?: number;
   }
-  export interface Params$Resource$Livechatmessages$Transition
-    extends StandardParameters {
+  export interface Params$Resource$Livechatmessages$Transition extends StandardParameters {
     /**
      * The ID that uniquely identify the chat message event to transition.
      */
@@ -11717,15 +11777,13 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livechatmoderators$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Livechatmoderators$Delete extends StandardParameters {
     /**
      *
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatmoderators$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Livechatmoderators$Insert extends StandardParameters {
     /**
      * The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
      */
@@ -11736,8 +11794,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveChatModerator;
   }
-  export interface Params$Resource$Livechatmoderators$List
-    extends StandardParameters {
+  export interface Params$Resource$Livechatmoderators$List extends StandardParameters {
     /**
      * The id of the live chat for which moderators should be returned.
      */
@@ -12389,8 +12446,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livestreams$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Livestreams$Delete extends StandardParameters {
     /**
      *
      */
@@ -12404,8 +12460,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwnerChannel?: string;
   }
-  export interface Params$Resource$Livestreams$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Livestreams$Insert extends StandardParameters {
     /**
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -12454,8 +12509,7 @@ export namespace youtube_v3 {
      */
     part?: string[];
   }
-  export interface Params$Resource$Livestreams$Update
-    extends StandardParameters {
+  export interface Params$Resource$Livestreams$Update extends StandardParameters {
     /**
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -12820,8 +12874,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Membershipslevels$List
-    extends StandardParameters {
+  export interface Params$Resource$Membershipslevels$List extends StandardParameters {
     /**
      * The *part* parameter specifies the membershipsLevel resource parts that the API response will include. Supported values are id and snippet.
      */
@@ -13459,8 +13512,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Playlistimages$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Playlistimages$Delete extends StandardParameters {
     /**
      * Id to identify this image. This is returned from by the List method.
      */
@@ -13470,8 +13522,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Playlistimages$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Playlistimages$Insert extends StandardParameters {
     /**
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -13505,8 +13556,7 @@ export namespace youtube_v3 {
       body?: any;
     };
   }
-  export interface Params$Resource$Playlistimages$List
-    extends StandardParameters {
+  export interface Params$Resource$Playlistimages$List extends StandardParameters {
     /**
      * The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
      */
@@ -13532,8 +13582,7 @@ export namespace youtube_v3 {
      */
     part?: string[];
   }
-  export interface Params$Resource$Playlistimages$Update
-    extends StandardParameters {
+  export interface Params$Resource$Playlistimages$Update extends StandardParameters {
     /**
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -14191,8 +14240,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Playlistitems$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Playlistitems$Delete extends StandardParameters {
     /**
      *
      */
@@ -14202,8 +14250,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Playlistitems$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Playlistitems$Insert extends StandardParameters {
     /**
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -14218,8 +14265,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$PlaylistItem;
   }
-  export interface Params$Resource$Playlistitems$List
-    extends StandardParameters {
+  export interface Params$Resource$Playlistitems$List extends StandardParameters {
     /**
      *
      */
@@ -14249,8 +14295,7 @@ export namespace youtube_v3 {
      */
     videoId?: string;
   }
-  export interface Params$Resource$Playlistitems$Update
-    extends StandardParameters {
+  export interface Params$Resource$Playlistitems$Update extends StandardParameters {
     /**
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -15801,15 +15846,13 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Delete extends StandardParameters {
     /**
      *
      */
     id?: string;
   }
-  export interface Params$Resource$Subscriptions$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Insert extends StandardParameters {
     /**
      * The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      */
@@ -15820,8 +15863,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$List extends StandardParameters {
     /**
      * Return the subscriptions of the given channel owner.
      */
@@ -16037,8 +16079,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Superchatevents$List
-    extends StandardParameters {
+  export interface Params$Resource$Superchatevents$List extends StandardParameters {
     /**
      * Return rendered funding amounts in specified language.
      */
@@ -16832,8 +16873,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Thirdpartylinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Thirdpartylinks$Delete extends StandardParameters {
     /**
      * Channel ID to which changes should be applied, for delegation.
      */
@@ -16851,8 +16891,7 @@ export namespace youtube_v3 {
      */
     type?: string;
   }
-  export interface Params$Resource$Thirdpartylinks$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Thirdpartylinks$Insert extends StandardParameters {
     /**
      * Channel ID to which changes should be applied, for delegation.
      */
@@ -16867,8 +16906,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$ThirdPartyLink;
   }
-  export interface Params$Resource$Thirdpartylinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Thirdpartylinks$List extends StandardParameters {
     /**
      * Channel ID to which changes should be applied, for delegation.
      */
@@ -16886,8 +16924,7 @@ export namespace youtube_v3 {
      */
     type?: string;
   }
-  export interface Params$Resource$Thirdpartylinks$Update
-    extends StandardParameters {
+  export interface Params$Resource$Thirdpartylinks$Update extends StandardParameters {
     /**
      * Channel ID to which changes should be applied, for delegation.
      */
@@ -17265,8 +17302,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Videoabusereportreasons$List
-    extends StandardParameters {
+  export interface Params$Resource$Videoabusereportreasons$List extends StandardParameters {
     /**
      *
      */
@@ -17443,8 +17479,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Videocategories$List
-    extends StandardParameters {
+  export interface Params$Resource$Videocategories$List extends StandardParameters {
     /**
      *
      */
@@ -18713,8 +18748,7 @@ export namespace youtube_v3 {
      */
     rating?: string;
   }
-  export interface Params$Resource$Videos$Reportabuse
-    extends StandardParameters {
+  export interface Params$Resource$Videos$Reportabuse extends StandardParameters {
     /**
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -18893,8 +18927,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Videotrainability$Get
-    extends StandardParameters {
+  export interface Params$Resource$Videotrainability$Get extends StandardParameters {
     /**
      * The ID of the video to retrieve.
      */
@@ -19250,9 +19283,11 @@ export namespace youtube_v3 {
   export class Resource$Youtube$V3 {
     context: APIRequestContext;
     liveChat: Resource$Youtube$V3$Livechat;
+    videos: Resource$Youtube$V3$Videos;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.liveChat = new Resource$Youtube$V3$Livechat(this.context);
+      this.videos = new Resource$Youtube$V3$Videos(this.context);
     }
 
     /**
@@ -19411,8 +19446,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Youtube$V3$Updatecommentthreads
-    extends StandardParameters {
+  export interface Params$Resource$Youtube$V3$Updatecommentthreads extends StandardParameters {
     /**
      * The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
      */
@@ -19605,8 +19639,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Youtube$V3$Livechat$Messages$Stream
-    extends StandardParameters {
+  export interface Params$Resource$Youtube$V3$Livechat$Messages$Stream extends StandardParameters {
     /**
      * Specifies the localization language in which the system messages should be returned.
      */
@@ -19631,5 +19664,174 @@ export namespace youtube_v3 {
      * Specifies the size of the profile image that should be returned for each user.
      */
     profileImageSize?: number;
+  }
+
+  export class Resource$Youtube$V3$Videos {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves a batch of VideoStat resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.youtube.v3.videos.batchGetStats({
+     *     // Optional. **Note:** This parameter is intended exclusively for YouTube content partners. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // Required. The `**part**` parameter specifies a comma-separated list of one or more `videoStat` resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a `videoStat` resource, the `statistics` property contains `view_count` and `like_count`. As such, if you set `**part=snippet**`, the API response will contain all of those properties.
+     *     part: 'placeholder-value',
+     *     // Required. Return videos with the given ids.
+     *     videoIds: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGetStats(
+      params: Params$Resource$Youtube$V3$Videos$Batchgetstats,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchGetStats(
+      params?: Params$Resource$Youtube$V3$Videos$Batchgetstats,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchGetStatsResponse>>;
+    batchGetStats(
+      params: Params$Resource$Youtube$V3$Videos$Batchgetstats,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGetStats(
+      params: Params$Resource$Youtube$V3$Videos$Batchgetstats,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetStatsResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetStatsResponse>
+    ): void;
+    batchGetStats(
+      params: Params$Resource$Youtube$V3$Videos$Batchgetstats,
+      callback: BodyResponseCallback<Schema$BatchGetStatsResponse>
+    ): void;
+    batchGetStats(
+      callback: BodyResponseCallback<Schema$BatchGetStatsResponse>
+    ): void;
+    batchGetStats(
+      paramsOrCallback?:
+        | Params$Resource$Youtube$V3$Videos$Batchgetstats
+        | BodyResponseCallback<Schema$BatchGetStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchGetStatsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Youtube$V3$Videos$Batchgetstats;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Youtube$V3$Videos$Batchgetstats;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videos:batchGetStats').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchGetStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchGetStatsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Youtube$V3$Videos$Batchgetstats extends StandardParameters {
+    /**
+     * Optional. **Note:** This parameter is intended exclusively for YouTube content partners. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * Required. The `**part**` parameter specifies a comma-separated list of one or more `videoStat` resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a `videoStat` resource, the `statistics` property contains `view_count` and `like_count`. As such, if you set `**part=snippet**`, the API response will contain all of those properties.
+     */
+    part?: string[];
+    /**
+     * Required. Return videos with the given ids.
+     */
+    videoIds?: string[];
   }
 }
