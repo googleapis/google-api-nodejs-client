@@ -771,15 +771,13 @@ export namespace parallelstore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1890,8 +1888,7 @@ export namespace parallelstore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Create extends StandardParameters {
     /**
      * Required. The name of the Parallelstore instance. * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
      */
@@ -1910,8 +1907,7 @@ export namespace parallelstore_v1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Delete extends StandardParameters {
     /**
      * Required. Name of the resource
      */
@@ -1921,8 +1917,7 @@ export namespace parallelstore_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Exportdata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Exportdata extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -1933,15 +1928,13 @@ export namespace parallelstore_v1 {
      */
     requestBody?: Schema$ExportDataRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Get extends StandardParameters {
     /**
      * Required. The instance resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Importdata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Importdata extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -1952,8 +1945,7 @@ export namespace parallelstore_v1 {
      */
     requestBody?: Schema$ImportDataRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -1975,8 +1967,7 @@ export namespace parallelstore_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the instance, in the format `projects/{project\}/locations/{location\}/instances/{instance_id\}`.
      */
@@ -2564,8 +2555,7 @@ export namespace parallelstore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2576,22 +2566,19 @@ export namespace parallelstore_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
