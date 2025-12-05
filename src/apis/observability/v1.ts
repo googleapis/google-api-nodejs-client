@@ -158,7 +158,7 @@ export namespace observability_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -636,15 +636,13 @@ export namespace observability_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1123,7 +1121,7 @@ export namespace observability_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1235,8 +1233,7 @@ export namespace observability_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -1247,22 +1244,19 @@ export namespace observability_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -1280,7 +1274,7 @@ export namespace observability_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -1581,15 +1575,13 @@ export namespace observability_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Scopes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Get extends StandardParameters {
     /**
      * Required. Name of the resource. The format is: projects/{project\}/locations/{location\}/scopes/{scope\} The `{location\}` field must be set to `global`. The `{scope\}` field must be set to `_Default`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Patch extends StandardParameters {
     /**
      * Identifier. Name of the resource. The format is: projects/{project\}/locations/{location\}/scopes/{scope\} The `{location\}` field must be set to `global`. The `{scope\}` field must be set to `_Default`.
      */
@@ -2338,8 +2330,7 @@ export namespace observability_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tracescopes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tracescopes$Create extends StandardParameters {
     /**
      * Required. The full resource name of the location where the trace scope should be created projects/[PROJECT_ID]/locations/[LOCATION_ID] For example: projects/my-project/locations/global
      */
@@ -2354,22 +2345,19 @@ export namespace observability_v1 {
      */
     requestBody?: Schema$TraceScope;
   }
-  export interface Params$Resource$Projects$Locations$Tracescopes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tracescopes$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the trace scope to delete: projects/[PROJECT_ID]/locations/[LOCATION_ID]/traceScopes/[TRACE_SCOPE_ID] For example: projects/my-project/locations/global/traceScopes/my-trace-scope
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tracescopes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tracescopes$Get extends StandardParameters {
     /**
      * Required. The resource name of the trace scope: projects/[PROJECT_ID]/locations/[LOCATION_ID]/traceScopes/[TRACE_SCOPE_ID] For example: projects/my-project/locations/global/traceScopes/my-trace-scope
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tracescopes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tracescopes$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available.
      */
@@ -2383,8 +2371,7 @@ export namespace observability_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tracescopes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tracescopes$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the trace scope. For example: projects/my-project/locations/global/traceScopes/my-trace-scope
      */
