@@ -2175,6 +2175,10 @@ export namespace clouddeploy_v1 {
      */
     targetSnapshots?: Schema$Target[];
     /**
+     * Optional. The tool versions to use for this release and all subsequent operations involving this release. If unset, then it will freeze the tool versions at the time of release creation.
+     */
+    toolVersions?: Schema$ToolVersions;
+    /**
      * Output only. Unique identifier of the `Release`.
      */
     uid?: string | null;
@@ -2184,6 +2188,26 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$ReleaseCondition {
     /**
+     * Output only. Details around the support state of the release's Docker version.
+     */
+    dockerVersionSupportedCondition?: Schema$ToolVersionSupportedCondition;
+    /**
+     * Output only. Details around the support state of the release's Helm version.
+     */
+    helmVersionSupportedCondition?: Schema$ToolVersionSupportedCondition;
+    /**
+     * Output only. Details around the support state of the release's Kpt version.
+     */
+    kptVersionSupportedCondition?: Schema$ToolVersionSupportedCondition;
+    /**
+     * Output only. Details around the support state of the release's Kubectl version.
+     */
+    kubectlVersionSupportedCondition?: Schema$ToolVersionSupportedCondition;
+    /**
+     * Output only. Details around the support state of the release's Kustomize version.
+     */
+    kustomizeVersionSupportedCondition?: Schema$ToolVersionSupportedCondition;
+    /**
      * Details around the Releases's overall status.
      */
     releaseReadyCondition?: Schema$ReleaseReadyCondition;
@@ -2191,6 +2215,10 @@ export namespace clouddeploy_v1 {
      * Details around the support state of the release's Skaffold version.
      */
     skaffoldSupportedCondition?: Schema$SkaffoldSupportedCondition;
+    /**
+     * Output only. Details around the support state of the release's Skaffold version.
+     */
+    skaffoldVersionSupportedCondition?: Schema$ToolVersionSupportedCondition;
   }
   /**
    * Payload proto for "clouddeploy.googleapis.com/release_notification" Platform Log event that describes the failure to send release status change Pub/Sub notification.
@@ -3273,6 +3301,56 @@ export namespace clouddeploy_v1 {
     weeklyWindows?: Schema$WeeklyWindow[];
   }
   /**
+   * Details of ToolVersions for the release.
+   */
+  export interface Schema$ToolVersions {
+    /**
+     * Optional. The docker version to use for Cloud Deploy operations.
+     */
+    docker?: string | null;
+    /**
+     * Optional. The helm version to use for Cloud Deploy operations.
+     */
+    helm?: string | null;
+    /**
+     * Optional. The kpt version to use for Cloud Deploy operations.
+     */
+    kpt?: string | null;
+    /**
+     * Optional. The kubectl version to use for Cloud Deploy operations.
+     */
+    kubectl?: string | null;
+    /**
+     * Optional. The kustomize version to use for Cloud Deploy operations.
+     */
+    kustomize?: string | null;
+    /**
+     * Optional. The skaffold version to use for Cloud Deploy operations.
+     */
+    skaffold?: string | null;
+  }
+  /**
+   * ToolVersionSupportedCondition contains information about when support for the release's version of a Tool ends.
+   */
+  export interface Schema$ToolVersionSupportedCondition {
+    /**
+     * Output only. The time at which this release's version of the Tool will enter maintenance mode.
+     */
+    maintenanceModeTime?: string | null;
+    /**
+     * Output only. True if the version of Tool used by this release is supported.
+     */
+    status?: boolean | null;
+    /**
+     * Output only. The time at which this release's version of the Tool will no longer be supported.
+     */
+    supportExpirationTime?: string | null;
+    /**
+     * Output only. The Tool support state for this release's version of the Tool.
+     */
+    toolVersionSupportState?: string | null;
+  }
+  /**
    * A verify Job.
    */
   export interface Schema$VerifyJob {}
@@ -3773,22 +3851,19 @@ export namespace clouddeploy_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getconfig extends StandardParameters {
     /**
      * Required. Name of requested configuration.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -4888,8 +4963,7 @@ export namespace clouddeploy_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Customtargettypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customtargettypes$Create extends StandardParameters {
     /**
      * Required. ID of the `CustomTargetType`.
      */
@@ -4912,8 +4986,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$CustomTargetType;
   }
-  export interface Params$Resource$Projects$Locations$Customtargettypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customtargettypes$Delete extends StandardParameters {
     /**
      * Optional. If set to true, then deleting an already deleted or non-existing `CustomTargetType` will succeed.
      */
@@ -4935,15 +5008,13 @@ export namespace clouddeploy_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Customtargettypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customtargettypes$Get extends StandardParameters {
     /**
      * Required. Name of the `CustomTargetType`. Format must be `projects/{project_id\}/locations/{location_name\}/customTargetTypes/{custom_target_type\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Customtargettypes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customtargettypes$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4953,8 +5024,7 @@ export namespace clouddeploy_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Customtargettypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customtargettypes$List extends StandardParameters {
     /**
      * Optional. Filter custom target types to be returned. See https://google.aip.dev/160 for more details.
      */
@@ -4976,8 +5046,7 @@ export namespace clouddeploy_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Customtargettypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customtargettypes$Patch extends StandardParameters {
     /**
      * Optional. If set to true, updating a `CustomTargetType` that does not exist will result in the creation of a new `CustomTargetType`.
      */
@@ -5004,8 +5073,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$CustomTargetType;
   }
-  export interface Params$Resource$Projects$Locations$Customtargettypes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customtargettypes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6423,8 +6491,7 @@ export namespace clouddeploy_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Create extends StandardParameters {
     /**
      * Required. ID of the `DeliveryPipeline`.
      */
@@ -6447,8 +6514,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$DeliveryPipeline;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Delete extends StandardParameters {
     /**
      * Optional. If set to true, then deleting an already deleted or non-existing `DeliveryPipeline` will succeed.
      */
@@ -6474,15 +6540,13 @@ export namespace clouddeploy_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Get extends StandardParameters {
     /**
      * Required. Name of the `DeliveryPipeline`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -6492,8 +6556,7 @@ export namespace clouddeploy_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$List extends StandardParameters {
     /**
      * Filter pipelines to be returned. See https://google.aip.dev/160 for more details.
      */
@@ -6515,8 +6578,7 @@ export namespace clouddeploy_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Patch extends StandardParameters {
     /**
      * Optional. If set to true, updating a `DeliveryPipeline` that does not exist will result in the creation of a new `DeliveryPipeline`.
      */
@@ -6543,8 +6605,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$DeliveryPipeline;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget extends StandardParameters {
     /**
      * Required. The `DeliveryPipeline` for which the rollback `Rollout` must be created. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
@@ -6555,8 +6616,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$RollbackTargetRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6567,8 +6627,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7040,8 +7099,7 @@ export namespace clouddeploy_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel extends StandardParameters {
     /**
      * Required. Name of the `AutomationRun`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}/automationRuns/{automation_run\}`.
      */
@@ -7052,15 +7110,13 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$CancelAutomationRunRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get extends StandardParameters {
     /**
      * Required. Name of the `AutomationRun`. Format must be `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}/automationRuns/{automation_run\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List extends StandardParameters {
     /**
      * Filter automationRuns to be returned. All fields can be used in the filter.
      */
@@ -7873,8 +7929,7 @@ export namespace clouddeploy_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create extends StandardParameters {
     /**
      * Required. ID of the `Automation`.
      */
@@ -7897,8 +7952,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$Automation;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete extends StandardParameters {
     /**
      * Optional. If set to true, then deleting an already deleted or non-existing `Automation` will succeed.
      */
@@ -7920,15 +7974,13 @@ export namespace clouddeploy_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get extends StandardParameters {
     /**
      * Required. Name of the `Automation`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/automations/{automation_name\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$List extends StandardParameters {
     /**
      * Filter automations to be returned. All fields can be used in the filter.
      */
@@ -7950,8 +8002,7 @@ export namespace clouddeploy_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch extends StandardParameters {
     /**
      * Optional. If set to true, updating a `Automation` that does not exist will result in the creation of a new `Automation`.
      */
@@ -8206,6 +8257,7 @@ export namespace clouddeploy_v1 {
      *         //   "targetArtifacts": {},
      *         //   "targetRenders": {},
      *         //   "targetSnapshots": [],
+     *         //   "toolVersions": {},
      *         //   "uid": "my_uid"
      *         // }
      *       },
@@ -8378,6 +8430,7 @@ export namespace clouddeploy_v1 {
      *   //   "targetArtifacts": {},
      *   //   "targetRenders": {},
      *   //   "targetSnapshots": [],
+     *   //   "toolVersions": {},
      *   //   "uid": "my_uid"
      *   // }
      * }
@@ -8628,8 +8681,7 @@ export namespace clouddeploy_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon extends StandardParameters {
     /**
      * Required. Name of the Release. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}`.
      */
@@ -8640,8 +8692,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$AbandonReleaseRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create extends StandardParameters {
     /**
      * Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
      */
@@ -8668,15 +8719,13 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$Release;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Get extends StandardParameters {
     /**
      * Required. Name of the `Release`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$List extends StandardParameters {
     /**
      * Optional. Filter releases to be returned. See https://google.aip.dev/160 for more details.
      */
@@ -9961,8 +10010,7 @@ export namespace clouddeploy_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance extends StandardParameters {
     /**
      * Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
@@ -9973,8 +10021,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$AdvanceRolloutRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve extends StandardParameters {
     /**
      * Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
@@ -9985,8 +10032,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$ApproveRolloutRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel extends StandardParameters {
     /**
      * Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
@@ -9997,8 +10043,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$CancelRolloutRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create extends StandardParameters {
     /**
      * Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
      */
@@ -10029,15 +10074,13 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$Rollout;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Get extends StandardParameters {
     /**
      * Required. Name of the `Rollout`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob extends StandardParameters {
     /**
      * Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
@@ -10048,8 +10091,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$IgnoreJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List extends StandardParameters {
     /**
      * Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more details.
      */
@@ -10071,8 +10113,7 @@ export namespace clouddeploy_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob extends StandardParameters {
     /**
      * Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
@@ -10546,15 +10587,13 @@ export namespace clouddeploy_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get extends StandardParameters {
     /**
      * Required. Name of the `JobRun`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}/jobRuns/{job_run_name\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List extends StandardParameters {
     /**
      * Optional. Filter results to be returned. See https://google.aip.dev/160 for more details.
      */
@@ -10576,8 +10615,7 @@ export namespace clouddeploy_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate extends StandardParameters {
     /**
      * Required. Name of the `JobRun`. Format must be `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}/jobRuns/{jobRun\}`.
      */
@@ -11661,8 +11699,7 @@ export namespace clouddeploy_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deploypolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Create extends StandardParameters {
     /**
      * Required. ID of the `DeployPolicy`.
      */
@@ -11685,8 +11722,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$DeployPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Deploypolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Delete extends StandardParameters {
     /**
      * Optional. If set to true, then deleting an already deleted or non-existing `DeployPolicy` will succeed.
      */
@@ -11708,15 +11744,13 @@ export namespace clouddeploy_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Deploypolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Get extends StandardParameters {
     /**
      * Required. Name of the `DeployPolicy`. Format must be `projects/{project_id\}/locations/{location_name\}/deployPolicies/{deploy_policy_name\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -11726,8 +11760,7 @@ export namespace clouddeploy_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deploypolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deploypolicies$List extends StandardParameters {
     /**
      * Filter deploy policies to be returned. See https://google.aip.dev/160 for more details. All fields can be used in the filter.
      */
@@ -11749,8 +11782,7 @@ export namespace clouddeploy_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deploypolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Patch extends StandardParameters {
     /**
      * Optional. If set to true, updating a `DeployPolicy` that does not exist will result in the creation of a new `DeployPolicy`.
      */
@@ -11777,8 +11809,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$DeployPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12354,8 +12385,7 @@ export namespace clouddeploy_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -12366,22 +12396,19 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -13639,8 +13666,7 @@ export namespace clouddeploy_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Targets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targets$Create extends StandardParameters {
     /**
      * Required. The parent collection in which the `Target` must be created. The format is `projects/{project_id\}/locations/{location_name\}`.
      */
@@ -13663,8 +13689,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$Target;
   }
-  export interface Params$Resource$Projects$Locations$Targets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targets$Delete extends StandardParameters {
     /**
      * Optional. If set to true, then deleting an already deleted or non-existing `Target` will succeed.
      */
@@ -13686,15 +13711,13 @@ export namespace clouddeploy_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Targets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targets$Get extends StandardParameters {
     /**
      * Required. Name of the `Target`. Format must be `projects/{project_id\}/locations/{location_name\}/targets/{target_name\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Targets$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targets$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -13704,8 +13727,7 @@ export namespace clouddeploy_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Targets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targets$List extends StandardParameters {
     /**
      * Optional. Filter targets to be returned. See https://google.aip.dev/160 for more details.
      */
@@ -13727,8 +13749,7 @@ export namespace clouddeploy_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Targets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targets$Patch extends StandardParameters {
     /**
      * Optional. If set to true, updating a `Target` that does not exist will result in the creation of a new `Target`.
      */
@@ -13755,8 +13776,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$Target;
   }
-  export interface Params$Resource$Projects$Locations$Targets$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targets$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13767,8 +13787,7 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Targets$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targets$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
