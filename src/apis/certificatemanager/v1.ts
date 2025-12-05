@@ -1180,15 +1180,13 @@ export namespace certificatemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1995,8 +1993,7 @@ export namespace certificatemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create extends StandardParameters {
     /**
      * Required. A user-provided name of the certificate config.
      */
@@ -2011,22 +2008,19 @@ export namespace certificatemanager_v1 {
      */
     requestBody?: Schema$CertificateIssuanceConfig;
   }
-  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete extends StandardParameters {
     /**
      * Required. A name of the certificate issuance config to delete. Must be in the format `projects/x/locations/x/certificateIssuanceConfigs/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get extends StandardParameters {
     /**
      * Required. A name of the certificate issuance config to describe. Must be in the format `projects/x/locations/x/certificateIssuanceConfigs/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$List extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the Certificates Configs returned.
      */
@@ -2048,8 +2042,7 @@ export namespace certificatemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch extends StandardParameters {
     /**
      * Identifier. A user-defined name of the certificate issuance config. CertificateIssuanceConfig names must be unique globally and match pattern `projects/x/locations/x/certificateIssuanceConfigs/x`.
      */
@@ -2825,8 +2818,7 @@ export namespace certificatemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Certificatemaps$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatemaps$Create extends StandardParameters {
     /**
      * Required. A user-provided name of the certificate map.
      */
@@ -2841,22 +2833,19 @@ export namespace certificatemanager_v1 {
      */
     requestBody?: Schema$CertificateMap;
   }
-  export interface Params$Resource$Projects$Locations$Certificatemaps$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatemaps$Delete extends StandardParameters {
     /**
      * Required. A name of the certificate map to delete. Must be in the format `projects/x/locations/x/certificateMaps/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificatemaps$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatemaps$Get extends StandardParameters {
     /**
      * Required. A name of the certificate map to describe. Must be in the format `projects/x/locations/x/certificateMaps/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificatemaps$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatemaps$List extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the Certificates Maps returned.
      */
@@ -2878,8 +2867,7 @@ export namespace certificatemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificatemaps$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatemaps$Patch extends StandardParameters {
     /**
      * Identifier. A user-defined name of the Certificate Map. Certificate Map names must be unique globally and match pattern `projects/x/locations/x/certificateMaps/x`.
      */
@@ -3681,8 +3669,7 @@ export namespace certificatemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Create extends StandardParameters {
     /**
      * Required. A user-provided name of the certificate map entry.
      */
@@ -3697,22 +3684,19 @@ export namespace certificatemanager_v1 {
      */
     requestBody?: Schema$CertificateMapEntry;
   }
-  export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Delete extends StandardParameters {
     /**
      * Required. A name of the certificate map entry to delete. Must be in the format `projects/x/locations/x/certificateMaps/x/certificateMapEntries/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Get extends StandardParameters {
     /**
      * Required. A name of the certificate map entry to describe. Must be in the format `projects/x/locations/x/certificateMaps/x/certificateMapEntries/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$List extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the returned Certificate Map Entries.
      */
@@ -3734,8 +3718,7 @@ export namespace certificatemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Patch extends StandardParameters {
     /**
      * Identifier. A user-defined name of the Certificate Map Entry. Certificate Map Entry names must be unique globally and match pattern `projects/x/locations/x/certificateMaps/x/certificateMapEntries/x`.
      */
@@ -4516,8 +4499,7 @@ export namespace certificatemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Certificates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificates$Create extends StandardParameters {
     /**
      * Required. A user-provided name of the certificate.
      */
@@ -4532,22 +4514,19 @@ export namespace certificatemanager_v1 {
      */
     requestBody?: Schema$Certificate;
   }
-  export interface Params$Resource$Projects$Locations$Certificates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificates$Delete extends StandardParameters {
     /**
      * Required. A name of the certificate to delete. Must be in the format `projects/x/locations/x/certificates/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificates$Get extends StandardParameters {
     /**
      * Required. A name of the certificate to describe. Must be in the format `projects/x/locations/x/certificates/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificates$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificates$List extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the Certificates returned.
      */
@@ -4569,8 +4548,7 @@ export namespace certificatemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificates$Patch extends StandardParameters {
     /**
      * Identifier. A user-defined name of the certificate. Certificate names must be unique globally and match pattern `projects/x/locations/x/certificates/x`.
      */
@@ -5353,8 +5331,7 @@ export namespace certificatemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dnsauthorizations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsauthorizations$Create extends StandardParameters {
     /**
      * Required. A user-provided name of the dns authorization.
      */
@@ -5369,22 +5346,19 @@ export namespace certificatemanager_v1 {
      */
     requestBody?: Schema$DnsAuthorization;
   }
-  export interface Params$Resource$Projects$Locations$Dnsauthorizations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsauthorizations$Delete extends StandardParameters {
     /**
      * Required. A name of the dns authorization to delete. Must be in the format `projects/x/locations/x/dnsAuthorizations/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dnsauthorizations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsauthorizations$Get extends StandardParameters {
     /**
      * Required. A name of the dns authorization to describe. Must be in the format `projects/x/locations/x/dnsAuthorizations/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dnsauthorizations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsauthorizations$List extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the Dns Authorizations returned.
      */
@@ -5406,8 +5380,7 @@ export namespace certificatemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dnsauthorizations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsauthorizations$Patch extends StandardParameters {
     /**
      * Identifier. A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/x/locations/x/dnsAuthorizations/x`.
      */
@@ -5991,8 +5964,7 @@ export namespace certificatemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -6003,22 +5975,19 @@ export namespace certificatemanager_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -6796,8 +6765,7 @@ export namespace certificatemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Trustconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Trustconfigs$Create extends StandardParameters {
     /**
      * Required. The parent resource of the TrustConfig. Must be in the format `projects/x/locations/x`.
      */
@@ -6812,8 +6780,7 @@ export namespace certificatemanager_v1 {
      */
     requestBody?: Schema$TrustConfig;
   }
-  export interface Params$Resource$Projects$Locations$Trustconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Trustconfigs$Delete extends StandardParameters {
     /**
      * Optional. The current etag of the TrustConfig. If an etag is provided and does not match the current etag of the resource, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -6823,15 +6790,13 @@ export namespace certificatemanager_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Trustconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Trustconfigs$Get extends StandardParameters {
     /**
      * Required. A name of the TrustConfig to describe. Must be in the format `projects/x/locations/x/trustConfigs/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Trustconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Trustconfigs$List extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the TrustConfigs returned.
      */
@@ -6853,8 +6818,7 @@ export namespace certificatemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Trustconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Trustconfigs$Patch extends StandardParameters {
     /**
      * Identifier. A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/x/locations/x/trustConfigs/x`.
      */
