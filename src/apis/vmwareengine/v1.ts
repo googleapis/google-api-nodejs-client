@@ -2442,22 +2442,19 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getdnsbindpermission
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getdnsbindpermission extends StandardParameters {
     /**
      * Required. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
@@ -2782,15 +2779,13 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Announcements$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Announcements$Get extends StandardParameters {
     /**
      * Required. The resource name of the announcement to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/announcements/announcement-uuid`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Announcements$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Announcements$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of announcement runs, you can exclude the ones named `example-announcement` by specifying `name != "example-announcement"`. You can also filter nested fields. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-announcement") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "announcement-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "announcement-2") ```
      */
@@ -3116,8 +3111,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dnsbindpermission$Grant
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsbindpermission$Grant extends StandardParameters {
     /**
      * Required. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`
      */
@@ -3128,8 +3122,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$GrantDnsBindPermissionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dnsbindpermission$Revoke
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsbindpermission$Revoke extends StandardParameters {
     /**
      * Required. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`
      */
@@ -3928,8 +3921,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Networkpeerings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpeerings$Create extends StandardParameters {
     /**
      * Required. The user-provided identifier of the new `NetworkPeering`. This identifier must be unique among `NetworkPeering` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
      */
@@ -3948,8 +3940,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$NetworkPeering;
   }
-  export interface Params$Resource$Projects$Locations$Networkpeerings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpeerings$Delete extends StandardParameters {
     /**
      * Required. The resource name of the network peering to be deleted. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
      */
@@ -3959,15 +3950,13 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Networkpeerings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpeerings$Get extends StandardParameters {
     /**
      * Required. The resource name of the network peering to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Networkpeerings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpeerings$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of network peerings, you can exclude the ones named `example-peering` by specifying `name != "example-peering"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-peering") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-peering-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-peering-2") ```
      */
@@ -3989,8 +3978,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Networkpeerings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpeerings$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of the network peering. NetworkPeering is a global resource and location can only be global. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
      */
@@ -4168,8 +4156,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Networkpeerings$Peeringroutes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpeerings$Peeringroutes$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. Currently, only filtering on the `direction` field is supported. To return routes imported from the peer network, provide "direction=INCOMING". To return routes exported from the VMware Engine network, provide "direction=OUTGOING". Other filter expressions return an error.
      */
@@ -5113,8 +5100,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Networkpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Create extends StandardParameters {
     /**
      * Required. The user-provided identifier of the network policy to be created. This identifier must be unique within parent `projects/{my-project\}/locations/{us-central1\}/networkPolicies` and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
      */
@@ -5133,8 +5119,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$NetworkPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Networkpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Delete extends StandardParameters {
     /**
      * Required. The resource name of the network policy to delete. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`
      */
@@ -5144,8 +5129,7 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses extends StandardParameters {
     /**
      * Required. The resource name of the network policy to query for assigned external IP addresses. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-policy`
      */
@@ -5159,15 +5143,13 @@ export namespace vmwareengine_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Networkpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Get extends StandardParameters {
     /**
      * Required. The resource name of the network policy to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Networkpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpolicies$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of network policies, you can exclude the ones named `example-policy` by specifying `name != "example-policy"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-policy") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-policy-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-policy-2") ```
      */
@@ -5189,8 +5171,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Networkpolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of this network policy. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`
      */
@@ -6005,8 +5986,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create extends StandardParameters {
     /**
      * Required. The user-provided identifier of the `ExternalAccessRule` to be created. This identifier must be unique among `ExternalAccessRule` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
      */
@@ -6025,8 +6005,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$ExternalAccessRule;
   }
-  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete extends StandardParameters {
     /**
      * Required. The resource name of the external access firewall rule to delete. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-policy/externalAccessRules/my-rule`
      */
@@ -6036,15 +6015,13 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get extends StandardParameters {
     /**
      * Required. The resource name of the external access firewall rule to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-policy/externalAccessRules/my-rule`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of external access rules, you can exclude the ones named `example-rule` by specifying `name != "example-rule"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-rule") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-rule-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-rule-2") ```
      */
@@ -6066,8 +6043,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch extends StandardParameters {
     /**
      * Output only. The resource name of this external access rule. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-policy/externalAccessRules/my-rule`
      */
@@ -6385,15 +6361,13 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Nodetypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodetypes$Get extends StandardParameters {
     /**
      * Required. The resource name of the node type to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodetypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodetypes$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of node types, you can exclude the ones named `standard-72` by specifying `name != "standard-72"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "standard-72") (virtual_cpu_count \> 2) ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "standard-96") AND (virtual_cpu_count \> 2) OR (name = "standard-72") ```
      */
@@ -6838,22 +6812,19 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -9332,8 +9303,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateclouds$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Create extends StandardParameters {
     /**
      * Required. The resource name of the location to create the new private cloud in. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a`
      */
@@ -9356,8 +9326,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$PrivateCloud;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Delete extends StandardParameters {
     /**
      * Optional. Time delay of the deletion specified in hours. The default value is `3`. Specifying a non-zero value for this field changes the value of `PrivateCloud.state` to `DELETED` and sets `expire_time` to the planned deletion time. Deletion can be cancelled before `expire_time` elapses using VmwareEngine.UndeletePrivateCloud. Specifying a value of `0` for this field instead begins the deletion process and ceases billing immediately. During the final deletion process, the value of `PrivateCloud.state` becomes `PURGING`.
      */
@@ -9375,22 +9344,19 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Get extends StandardParameters {
     /**
      * Required. The resource name of the private cloud to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding extends StandardParameters {
     /**
      * Required. The resource name of a `DnsForwarding` to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -9400,8 +9366,7 @@ export namespace vmwareengine_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of private clouds, you can exclude the ones named `example-pc` by specifying `name != "example-pc"`. You can also filter nested fields. For example, you could specify `networkConfig.managementCidr = "192.168.0.0/24"` to include private clouds only if they have a matching address in their network configuration. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-pc") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "private-cloud-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "private-cloud-2") ```
      */
@@ -9423,8 +9388,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of this private cloud. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      */
@@ -9443,8 +9407,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$PrivateCloud;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Privateclouddeletionnow
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Privateclouddeletionnow extends StandardParameters {
     /**
      * Required. The resource name of the private cloud in softdeletion. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      */
@@ -9455,8 +9418,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$AcceleratePrivateCloudDeletionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Resetnsxcredentials
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Resetnsxcredentials extends StandardParameters {
     /**
      * Required. The resource name of the private cloud to reset credentials for. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      */
@@ -9467,8 +9429,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$ResetNsxCredentialsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Resetvcentercredentials
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Resetvcentercredentials extends StandardParameters {
     /**
      * Required. The resource name of the private cloud to reset credentials for. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      */
@@ -9479,8 +9440,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$ResetVcenterCredentialsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9491,15 +9451,13 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Shownsxcredentials
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Shownsxcredentials extends StandardParameters {
     /**
      * Required. The resource name of the private cloud to be queried for credentials. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      */
     privateCloud?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Showvcentercredentials
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Showvcentercredentials extends StandardParameters {
     /**
      * Required. The resource name of the private cloud to be queried for credentials. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      */
@@ -9509,8 +9467,7 @@ export namespace vmwareengine_v1 {
      */
     username?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9521,8 +9478,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Undelete extends StandardParameters {
     /**
      * Required. The resource name of the private cloud scheduled for deletion. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      */
@@ -9533,8 +9489,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$UndeletePrivateCloudRequest;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of this DNS profile. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`
      */
@@ -10782,8 +10737,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Create extends StandardParameters {
     /**
      * Required. The user-provided identifier of the new `Cluster`. This identifier must be unique among clusters within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
      */
@@ -10806,8 +10760,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Delete extends StandardParameters {
     /**
      * Required. The resource name of the cluster to delete. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      */
@@ -10817,15 +10770,13 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Get extends StandardParameters {
     /**
      * Required. The cluster resource name to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -10835,8 +10786,7 @@ export namespace vmwareengine_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$List extends StandardParameters {
     /**
      *  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-cluster") (nodeCount = "3") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-cluster-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-cluster-2") ```
      */
@@ -10858,8 +10808,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of this cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      */
@@ -10882,8 +10831,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10894,8 +10842,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11201,15 +11148,13 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get extends StandardParameters {
     /**
      * Required. The resource name of the node to retrieve. For example: `projects/{project\}/locations/{location\}/privateClouds/{private_cloud\}/clusters/{cluster\}/nodes/{node\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List extends StandardParameters {
     /**
      * The maximum number of nodes to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
      */
@@ -12000,8 +11945,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create extends StandardParameters {
     /**
      * Required. The user-provided identifier of the `ExternalAddress` to be created. This identifier must be unique among `ExternalAddress` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
      */
@@ -12020,8 +11964,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$ExternalAddress;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete extends StandardParameters {
     /**
      * Required. The resource name of the external IP address to delete. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-ip`
      */
@@ -12031,15 +11974,13 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get extends StandardParameters {
     /**
      * Required. The resource name of the external IP address to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-ip`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of IP addresses, you can exclude the ones named `example-ip` by specifying `name != "example-ip"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-ip") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-ip-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-ip-2") ```
      */
@@ -12061,8 +12002,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of this external IP address. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`
      */
@@ -12998,8 +12938,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Create extends StandardParameters {
     /**
      * Required. The user-provided identifier of the `HcxActivationKey` to be created. This identifier must be unique among `HcxActivationKey` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
      */
@@ -13018,15 +12957,13 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$HcxActivationKey;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Get extends StandardParameters {
     /**
      * Required. The resource name of the HCX activation key to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/privateClouds/my-cloud/hcxActivationKeys/my-key`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -13036,8 +12973,7 @@ export namespace vmwareengine_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$List extends StandardParameters {
     /**
      * The maximum number of HCX activation keys to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
      */
@@ -13051,8 +12987,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13063,8 +12998,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13844,8 +13778,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create extends StandardParameters {
     /**
      * Required. The user-provided identifier of the `LoggingServer` to be created. This identifier must be unique among `LoggingServer` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
      */
@@ -13864,8 +13797,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$LoggingServer;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete extends StandardParameters {
     /**
      * Required. The resource name of the logging server to delete. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/loggingServers/my-logging-server`
      */
@@ -13875,15 +13807,13 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get extends StandardParameters {
     /**
      * Required. The resource name of the Logging Server to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/loggingServers/my-logging-server`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of logging servers, you can exclude the ones named `example-server` by specifying `name != "example-server"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-server") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-server-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-server-2") ```
      */
@@ -13905,8 +13835,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch extends StandardParameters {
     /**
      * Output only. The resource name of this logging server. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/loggingServers/my-logging-server`
      */
@@ -14862,8 +14791,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create extends StandardParameters {
     /**
      * Required. The user-provided identifier of the `ManagementDnsZoneBinding` resource to be created. This identifier must be unique among `ManagementDnsZoneBinding` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
      */
@@ -14882,8 +14810,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$ManagementDnsZoneBinding;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete extends StandardParameters {
     /**
      * Required. The resource name of the management DNS zone binding to delete. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
      */
@@ -14893,15 +14820,13 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get extends StandardParameters {
     /**
      * Required. The resource name of the management DNS zone binding to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of Management DNS Zone Bindings, you can exclude the ones named `example-management-dns-zone-binding` by specifying `name != "example-management-dns-zone-binding"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-management-dns-zone-binding") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-management-dns-zone-binding-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-management-dns-zone-binding-2") ```
      */
@@ -14923,8 +14848,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch extends StandardParameters {
     /**
      * Output only. The resource name of this binding. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
      */
@@ -14943,8 +14867,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$ManagementDnsZoneBinding;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair extends StandardParameters {
     /**
      * Required. The resource name of the management DNS zone binding to repair. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
      */
@@ -15404,15 +15327,13 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateclouds$Subnets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Subnets$Get extends StandardParameters {
     /**
      * Required. The resource name of the subnet to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Subnets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Subnets$List extends StandardParameters {
     /**
      * The maximum number of subnets to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
      */
@@ -15426,8 +15347,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Subnets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Subnets$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of this subnet. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`
      */
@@ -15918,15 +15838,13 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get extends StandardParameters {
     /**
      * Required. The name of the `Upgrade` resource to be retrieved. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/upgrades/my-upgrade`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Upgrades$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Upgrades$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of upgrades, you can exclude the ones named `example-upgrade1` by specifying `name != "example-upgrade1"`. You can also filter nested fields. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-upgrade") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "upgrade-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "upgrade-2") ```
      */
@@ -15948,8 +15866,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of the private cloud `Upgrade`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/upgrades/my-upgrade`
      */
@@ -16752,8 +16669,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateconnections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Create extends StandardParameters {
     /**
      * Required. The resource name of the location to create the new private connection in. Private connection is a regional resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1`
      */
@@ -16772,8 +16688,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$PrivateConnection;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Delete extends StandardParameters {
     /**
      * Required. The resource name of the private connection to be deleted. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/privateConnections/my-connection`
      */
@@ -16783,15 +16698,13 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Get extends StandardParameters {
     /**
      * Required. The resource name of the private connection to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/privateConnections/my-connection`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of private connections, you can exclude the ones named `example-connection` by specifying `name != "example-connection"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-connection") (createTime \> "2022-09-22T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-connection-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-connection-2") ```
      */
@@ -16813,8 +16726,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the private connection. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/privateConnections/my-connection`
      */
@@ -16998,8 +16910,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateconnections$Peeringroutes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Peeringroutes$List extends StandardParameters {
     /**
      * The maximum number of peering routes to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
      */
@@ -17790,8 +17701,7 @@ export namespace vmwareengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Vmwareenginenetworks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareenginenetworks$Create extends StandardParameters {
     /**
      * Required. The resource name of the location to create the new VMware Engine network in. A VMware Engine network of type `LEGACY` is a regional resource, and a VMware Engine network of type `STANDARD` is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global`
      */
@@ -17810,8 +17720,7 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$VmwareEngineNetwork;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareenginenetworks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareenginenetworks$Delete extends StandardParameters {
     /**
      * Optional. Checksum used to ensure that the user-provided value is up to date before the server processes the request. The server compares provided checksum with the current checksum of the resource. If the user-provided value is out of date, this request returns an `ABORTED` error.
      */
@@ -17825,15 +17734,13 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareenginenetworks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareenginenetworks$Get extends StandardParameters {
     /**
      * Required. The resource name of the VMware Engine network to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/vmwareEngineNetworks/my-network`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareenginenetworks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareenginenetworks$List extends StandardParameters {
     /**
      * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of network peerings, you can exclude the ones named `example-network` by specifying `name != "example-network"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-network") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-network-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-network-2") ```
      */
@@ -17855,8 +17762,7 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareenginenetworks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareenginenetworks$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of the VMware Engine network. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/vmwareEngineNetworks/my-network`
      */
