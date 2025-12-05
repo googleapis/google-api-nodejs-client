@@ -315,6 +315,7 @@ export namespace dataportability_v1 {
      *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
      *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
      *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.conversations',
      *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
      *       'https://www.googleapis.com/auth/dataportability.youtube.music',
      *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
@@ -539,6 +540,7 @@ export namespace dataportability_v1 {
      *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
      *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
      *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.conversations',
      *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
      *       'https://www.googleapis.com/auth/dataportability.youtube.music',
      *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
@@ -755,6 +757,7 @@ export namespace dataportability_v1 {
      *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
      *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
      *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.conversations',
      *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
      *       'https://www.googleapis.com/auth/dataportability.youtube.music',
      *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
@@ -965,6 +968,7 @@ export namespace dataportability_v1 {
      *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
      *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
      *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.conversations',
      *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
      *       'https://www.googleapis.com/auth/dataportability.youtube.music',
      *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
@@ -1103,8 +1107,7 @@ export namespace dataportability_v1 {
     }
   }
 
-  export interface Params$Resource$Archivejobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Archivejobs$Cancel extends StandardParameters {
     /**
      * Required. The Archive job ID you're canceling. This is returned by the InitiatePortabilityArchive response. The format is: archiveJobs/{archive_job\}. Canceling is only executed if the job is in progress.
      */
@@ -1115,15 +1118,13 @@ export namespace dataportability_v1 {
      */
     requestBody?: Schema$CancelPortabilityArchiveRequest;
   }
-  export interface Params$Resource$Archivejobs$Getportabilityarchivestate
-    extends StandardParameters {
+  export interface Params$Resource$Archivejobs$Getportabilityarchivestate extends StandardParameters {
     /**
      * Required. The archive job ID that is returned when you request the state of the job. The format is: archiveJobs/{archive_job\}/portabilityArchiveState. archive_job is the job ID returned by the InitiatePortabilityArchiveResponse.
      */
     name?: string;
   }
-  export interface Params$Resource$Archivejobs$Retry
-    extends StandardParameters {
+  export interface Params$Resource$Archivejobs$Retry extends StandardParameters {
     /**
      * Required. The Archive job ID you're retrying. This is returned by the InitiatePortabilityArchiveResponse. Retrying is only executed if the initial job failed.
      */
@@ -1218,6 +1219,7 @@ export namespace dataportability_v1 {
      *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
      *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
      *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.conversations',
      *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
      *       'https://www.googleapis.com/auth/dataportability.youtube.music',
      *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
@@ -1348,8 +1350,7 @@ export namespace dataportability_v1 {
     }
   }
 
-  export interface Params$Resource$Authorization$Reset
-    extends StandardParameters {
+  export interface Params$Resource$Authorization$Reset extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -1439,6 +1440,7 @@ export namespace dataportability_v1 {
      *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
      *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
      *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.conversations',
      *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
      *       'https://www.googleapis.com/auth/dataportability.youtube.music',
      *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
@@ -1586,8 +1588,7 @@ export namespace dataportability_v1 {
     }
   }
 
-  export interface Params$Resource$Portabilityarchive$Initiate
-    extends StandardParameters {
+  export interface Params$Resource$Portabilityarchive$Initiate extends StandardParameters {
     /**
      * Request body metadata
      */
