@@ -958,15 +958,13 @@ export namespace merchantapi_promotions_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Promotions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Promotions$Get extends StandardParameters {
     /**
      * Required. The name of the promotion to retrieve. Format: `accounts/{account\}/promotions/{promotions\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Promotions$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Promotions$Insert extends StandardParameters {
     /**
      * Required. The account where the promotion will be inserted. Format: accounts/{account\}
      */
@@ -977,8 +975,7 @@ export namespace merchantapi_promotions_v1beta {
      */
     requestBody?: Schema$InsertPromotionRequest;
   }
-  export interface Params$Resource$Accounts$Promotions$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Promotions$List extends StandardParameters {
     /**
      * Optional. The maximum number of promotions to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of promotions will be returned.
      */

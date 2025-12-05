@@ -1235,22 +1235,19 @@ export namespace merchantapi_reviews_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Merchantreviews$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Merchantreviews$Delete extends StandardParameters {
     /**
      * Required. The ID of the merchant review. Format: accounts/{account\}/merchantReviews/{merchantReview\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Merchantreviews$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Merchantreviews$Get extends StandardParameters {
     /**
      * Required. The ID of the merchant review. Format: accounts/{account\}/merchantReviews/{merchantReview\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Merchantreviews$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Merchantreviews$Insert extends StandardParameters {
     /**
      * Required. The data source of the [merchantreview](https://support.google.com/merchants/answer/7045996?sjid=5253581244217581976-EU) Format: `accounts/{account\}/dataSources/{datasource\}`.
      */
@@ -1265,8 +1262,7 @@ export namespace merchantapi_reviews_v1beta {
      */
     requestBody?: Schema$MerchantReview;
   }
-  export interface Params$Resource$Accounts$Merchantreviews$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Merchantreviews$List extends StandardParameters {
     /**
      * Optional. The maximum number of merchant reviews to return. The service can return fewer than this value. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the maximum number of reviews is returned.
      */
@@ -1867,22 +1863,19 @@ export namespace merchantapi_reviews_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Productreviews$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Productreviews$Delete extends StandardParameters {
     /**
      * Required. The ID of the Product review. Format: accounts/{account\}/productReviews/{productReview\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Productreviews$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Productreviews$Get extends StandardParameters {
     /**
      * Required. The ID of the merchant review. Format: accounts/{account\}/productReviews/{productReview\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Productreviews$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Productreviews$Insert extends StandardParameters {
     /**
      * Required. Format: `accounts/{account\}/dataSources/{datasource\}`.
      */
@@ -1897,8 +1890,7 @@ export namespace merchantapi_reviews_v1beta {
      */
     requestBody?: Schema$ProductReview;
   }
-  export interface Params$Resource$Accounts$Productreviews$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Productreviews$List extends StandardParameters {
     /**
      * Optional. The maximum number of products to return. The service may return fewer than this value.
      */

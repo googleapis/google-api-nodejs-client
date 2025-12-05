@@ -670,8 +670,7 @@ export namespace merchantapi_lfp_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Lfpinventories$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Lfpinventories$Insert extends StandardParameters {
     /**
      * Required. The LFP provider account. Format: `accounts/{account\}`
      */
@@ -831,8 +830,7 @@ export namespace merchantapi_lfp_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Lfpmerchantstates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Lfpmerchantstates$Get extends StandardParameters {
     /**
      * Required. The name of the state to retrieve. Format: `accounts/{account\}/lfpMerchantStates/{target_merchant\}`. For example, `accounts/123456/lfpMerchantStates/567890`.
      */
@@ -1013,8 +1011,7 @@ export namespace merchantapi_lfp_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Lfpsales$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Lfpsales$Insert extends StandardParameters {
     /**
      * Required. The LFP provider account. Format: `accounts/{lfp_partner\}`
      */
@@ -1626,22 +1623,19 @@ export namespace merchantapi_lfp_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Lfpstores$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Lfpstores$Delete extends StandardParameters {
     /**
      * Required. The name of the store to delete for the target merchant account. Format: `accounts/{account\}/lfpStores/{target_merchant\}~{store_code\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Lfpstores$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Lfpstores$Get extends StandardParameters {
     /**
      * Required. The name of the store to retrieve. Format: `accounts/{account\}/lfpStores/{target_merchant\}~{store_code\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Lfpstores$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Lfpstores$Insert extends StandardParameters {
     /**
      * Required. The LFP provider account Format: `accounts/{account\}`
      */
@@ -1652,8 +1646,7 @@ export namespace merchantapi_lfp_v1beta {
      */
     requestBody?: Schema$LfpStore;
   }
-  export interface Params$Resource$Accounts$Lfpstores$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Lfpstores$List extends StandardParameters {
     /**
      * Optional. The maximum number of `LfpStore` resources for the given account to return. The service returns fewer than this value if the number of stores for the given account is less than the `pageSize`. The default value is 250. The maximum value is 1000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum.
      */

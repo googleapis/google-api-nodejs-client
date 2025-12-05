@@ -1190,8 +1190,7 @@ export namespace merchantapi_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Reports$Search
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Reports$Search extends StandardParameters {
     /**
      * Required. Id of the account making the call. Must be a standalone account or an MCA subaccount. Format: accounts/{account\}
      */

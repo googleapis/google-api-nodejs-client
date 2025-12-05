@@ -396,7 +396,7 @@ export namespace merchantapi_products_v1 {
     ratio?: number | null;
   }
   /**
-   * A message that represents loyalty program.
+   * LINT.IfChange(LoyaltyProgram) A message that represents loyalty program.
    */
   export interface Schema$LoyaltyProgram {
     /**
@@ -972,7 +972,7 @@ export namespace merchantapi_products_v1 {
      */
     legacyLocal?: boolean | null;
     /**
-     * Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of: `content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/en~US~sku123`. A legacy local product input name would be `accounts/123/productInputs/local~en~US~sku123`. Note: For calls to the v1beta version, the `productInput` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productInputs/online~en~US~sku123`.
+     * Identifier. The name of the product. Format: `accounts/{account\}/productInputs/{productinput\}` The {productinput\} segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the {productinput\} segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{productinput\}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{productinput\}` segment must be the base64url encoding of this string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name for the product would be `accounts/123/productinputs/ZW5-VVMtc2t1LzEyMw`. 2. **Plain Format**: The `{productinput\}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{productinput\}` segment is used to differentiate between the two formats. Note: For calls to the v1beta version, the plain format is `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productinputs/online~en~US~sku123`.
      */
     name?: string | null;
     /**
@@ -1325,10 +1325,8 @@ export namespace merchantapi_products_v1 {
      *   const res = await merchantapi.accounts.productInputs.delete({
      *     // Required. The primary or supplemental data source from which the product input should be deleted. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      *     dataSource: 'placeholder-value',
-     *     // Required. The name of the product input resource to delete. Format: `accounts/{account\}/productInputs/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/en~US~sku123`.
+     *     // Required. The name of the product input to delete. Format: `accounts/{account\}/productInputs/{productInput\}` The {productInput\} segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the {productInput\} segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{productInput\}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{productInput\}` segment must be the base64url encoding of this string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name for the product would be `accounts/123/productInputs/ZW5-VVMtc2t1LzEyMw`. 2. **Plain Format**: The `{productInput\}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{productInput\}` segment is used to differentiate between the two formats. Note: For calls to the v1beta version, the plain format is `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productinputs/online~en~US~sku123`.
      *     name: 'accounts/my-account/productInputs/my-productInput',
-     *     // Optional. If true, the `{productInput\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{productInput\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
-     *     productIdBase64UrlEncoded: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1594,7 +1592,7 @@ export namespace merchantapi_products_v1 {
     }
 
     /**
-     * Updates the existing product input in your Merchant Center account. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
+     * Updates the existing product input in your Merchant Center account. The name of the product input to update is taken from the `name` field within the `ProductInput` resource. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
      * @example
      * ```js
      * // Before running the sample:
@@ -1626,10 +1624,8 @@ export namespace merchantapi_products_v1 {
      *   const res = await merchantapi.accounts.productInputs.patch({
      *     // Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      *     dataSource: 'placeholder-value',
-     *     // Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of: `content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/en~US~sku123`. A legacy local product input name would be `accounts/123/productInputs/local~en~US~sku123`. Note: For calls to the v1beta version, the `productInput` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productInputs/online~en~US~sku123`.
+     *     // Identifier. The name of the product. Format: `accounts/{account\}/productInputs/{productinput\}` The {productinput\} segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the {productinput\} segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{productinput\}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{productinput\}` segment must be the base64url encoding of this string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name for the product would be `accounts/123/productinputs/ZW5-VVMtc2t1LzEyMw`. 2. **Plain Format**: The `{productinput\}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{productinput\}` segment is used to differentiate between the two formats. Note: For calls to the v1beta version, the plain format is `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productinputs/online~en~US~sku123`.
      *     name: 'accounts/my-account/productInputs/my-productInput',
-     *     // Optional. If true, the `{productInput\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{productInput\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
-     *     productIdBase64UrlEncoded: 'placeholder-value',
      *     // Optional. The list of product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special "*" value for full product replacement is not supported.
      *     updateMask: 'placeholder-value',
      *
@@ -1761,23 +1757,17 @@ export namespace merchantapi_products_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Productinputs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Productinputs$Delete extends StandardParameters {
     /**
      * Required. The primary or supplemental data source from which the product input should be deleted. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      */
     dataSource?: string;
     /**
-     * Required. The name of the product input resource to delete. Format: `accounts/{account\}/productInputs/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/en~US~sku123`.
+     * Required. The name of the product input to delete. Format: `accounts/{account\}/productInputs/{productInput\}` The {productInput\} segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the {productInput\} segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{productInput\}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{productInput\}` segment must be the base64url encoding of this string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name for the product would be `accounts/123/productInputs/ZW5-VVMtc2t1LzEyMw`. 2. **Plain Format**: The `{productInput\}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{productInput\}` segment is used to differentiate between the two formats. Note: For calls to the v1beta version, the plain format is `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productinputs/online~en~US~sku123`.
      */
     name?: string;
-    /**
-     * Optional. If true, the `{productInput\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{productInput\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
-     */
-    productIdBase64UrlEncoded?: boolean;
   }
-  export interface Params$Resource$Accounts$Productinputs$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Productinputs$Insert extends StandardParameters {
     /**
      * Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Create a primary data source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source). Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      */
@@ -1792,20 +1782,15 @@ export namespace merchantapi_products_v1 {
      */
     requestBody?: Schema$ProductInput;
   }
-  export interface Params$Resource$Accounts$Productinputs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Productinputs$Patch extends StandardParameters {
     /**
      * Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      */
     dataSource?: string;
     /**
-     * Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of: `content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/en~US~sku123`. A legacy local product input name would be `accounts/123/productInputs/local~en~US~sku123`. Note: For calls to the v1beta version, the `productInput` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productInputs/online~en~US~sku123`.
+     * Identifier. The name of the product. Format: `accounts/{account\}/productInputs/{productinput\}` The {productinput\} segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the {productinput\} segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{productinput\}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{productinput\}` segment must be the base64url encoding of this string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name for the product would be `accounts/123/productinputs/ZW5-VVMtc2t1LzEyMw`. 2. **Plain Format**: The `{productinput\}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{productinput\}` segment is used to differentiate between the two formats. Note: For calls to the v1beta version, the plain format is `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productinputs/online~en~US~sku123`.
      */
     name?: string;
-    /**
-     * Optional. If true, the `{productInput\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{productInput\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
-     */
-    productIdBase64UrlEncoded?: boolean;
     /**
      * Optional. The list of product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special "*" value for full product replacement is not supported.
      */
@@ -1854,10 +1839,8 @@ export namespace merchantapi_products_v1 {
      *
      *   // Do the magic
      *   const res = await merchantapi.accounts.products.get({
-     *     // Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.
+     *     // Required. The name of the product. Format: `accounts/{account\}/products/{product\}` The `{product\}` segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the `{product\}` segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{product\}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{product\}` segment must be the base64url encoding of this string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name for the product would be `accounts/123/products/ZW5-VVMtc2t1LzEyMw`. 2. **Plain Format**: The `{product\}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{product\}` segment is used to differentiate between the two formats. Note: For calls to the v1beta version, the plain format is `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.
      *     name: 'accounts/my-account/products/my-product',
-     *     // Optional. If true, the `{product\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
-     *     productIdBase64UrlEncoded: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2117,19 +2100,13 @@ export namespace merchantapi_products_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Products$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Products$Get extends StandardParameters {
     /**
-     * Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.
+     * Required. The name of the product. Format: `accounts/{account\}/products/{product\}` The `{product\}` segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the `{product\}` segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{product\}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{product\}` segment must be the base64url encoding of this string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name for the product would be `accounts/123/products/ZW5-VVMtc2t1LzEyMw`. 2. **Plain Format**: The `{product\}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{product\}` segment is used to differentiate between the two formats. Note: For calls to the v1beta version, the plain format is `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.
      */
     name?: string;
-    /**
-     * Optional. If true, the `{product\}` in the `name` field of the request will be interpreted as unpadded base64url-encoded and decoded during request processing to match the decoded value. Default value is `false`. Use this if your `{product\}` contains special characters, such as forward slash `/` or other characters that are unpadded base64url-encoded (as per RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2). Note that future versions of the API will only accept unpadded base64url-encoded product ids, so we strongly recommend proactively setting this to `true` and encoding the product ids.
-     */
-    productIdBase64UrlEncoded?: boolean;
   }
-  export interface Params$Resource$Accounts$Products$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Products$List extends StandardParameters {
     /**
      * The maximum number of products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the default page size of 25 products will be returned.
      */
