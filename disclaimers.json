@@ -870,9 +870,5 @@
   {
     "api": "storagebatchoperations",
     "package": "@google-cloud/storagebatchoperations"
-  },
-  {
-    "api": "cloudtrace",
-    "package": "@google-cloud/trace-agent"
   }
 ]
