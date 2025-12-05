@@ -1676,7 +1676,7 @@
       }
     }
   },
-  "revision": "20251024",
+  "revision": "20251128",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AsyncOptions": {
@@ -2251,6 +2251,17 @@
       },
       "type": "object"
     },
+    "FirewallPolicyRuleOperationMetadata": {
+      "id": "FirewallPolicyRuleOperationMetadata",
+      "properties": {
+        "allocatedPriority": {
+          "description": "The priority allocated for the firewall policy rule if query parameters specified minPriority/maxPriority.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GlobalSetPolicyRequest": {
       "id": "GlobalSetPolicyRequest",
       "properties": {
@@ -2514,10 +2525,11 @@
               "items": {
                 "properties": {
                   "arguments": {
-                    "description": "[Output Only] Optional error details WARNING: DO NOT MAKE VISIBLE This is for internal use-only (like componentization) (thus the visibility \"none\") and in case of public exposure it is strongly recommended to follow pattern of: https://aip.dev/193 and expose as details field.",
+                    "description": "Output only. [Output Only] Optional error details WARNING: DO NOT MAKE VISIBLE This is for internal use-only (like componentization) (thus the visibility \"none\") and in case of public exposure it is strongly recommended to follow pattern of: https://aip.dev/193 and expose as details field.",
                     "items": {
                       "type": "string"
                     },
+                    "readOnly": true,
                     "type": "array"
                   },
                   "code": {
@@ -2525,7 +2537,8 @@
                     "type": "string"
                   },
                   "debugInfo": {
-                    "$ref": "DebugInfo"
+                    "$ref": "DebugInfo",
+                    "readOnly": true
                   },
                   "errorDetails": {
                     "description": "[Output Only] An optional list of messages that contain the error details. There is a set of defined message types to use for providing details.The syntax depends on the error code. For example, QuotaExceededInfo will have details when the error code is QUOTA_EXCEEDED.",
@@ -2564,6 +2577,9 @@
           },
           "type": "object"
         },
+        "firewallPolicyRuleOperationMetadata": {
+          "$ref": "FirewallPolicyRuleOperationMetadata"
+        },
         "httpErrorMessage": {
           "description": "[Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.",
           "type": "string"
@@ -2587,7 +2603,8 @@
         },
         "kind": {
           "default": "compute#operation",
-          "description": "[Output Only] Type of the resource. Always `compute#operation` for Operation resources.",
+          "description": "Output only. [Output Only] Type of the resource. Always `compute#operation` for Operation resources.",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -2595,7 +2612,8 @@
           "type": "string"
         },
         "operationGroupId": {
-          "description": "[Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.",
+          "description": "Output only. [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.",
+          "readOnly": true,
           "type": "string"
         },
         "operationType": {
@@ -2616,7 +2634,8 @@
           "type": "string"
         },
         "selfLinkWithId": {
-          "description": "[Output Only] Server-defined URL for this resource with the resource id.",
+          "description": "Output only. [Output Only] Server-defined URL for this resource with the resource id.",
+          "readOnly": true,
           "type": "string"
         },
         "setAutoscalerLinkOperationMetadata": {
@@ -2625,7 +2644,8 @@
         },
         "setCommonInstanceMetadataOperationMetadata": {
           "$ref": "SetCommonInstanceMetadataOperationMetadata",
-          "description": "[Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state."
+          "description": "Output only. [Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state.",
+          "readOnly": true
         },
         "startTime": {
           "description": "[Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.",
@@ -3249,10 +3269,11 @@
               "items": {
                 "properties": {
                   "arguments": {
-                    "description": "[Output Only] Optional error details WARNING: DO NOT MAKE VISIBLE This is for internal use-only (like componentization) (thus the visibility \"none\") and in case of public exposure it is strongly recommended to follow pattern of: https://aip.dev/193 and expose as details field.",
+                    "description": "Output only. [Output Only] Optional error details WARNING: DO NOT MAKE VISIBLE This is for internal use-only (like componentization) (thus the visibility \"none\") and in case of public exposure it is strongly recommended to follow pattern of: https://aip.dev/193 and expose as details field.",
                     "items": {
                       "type": "string"
                     },
+                    "readOnly": true,
                     "type": "array"
                   },
                   "code": {
@@ -3260,7 +3281,8 @@
                     "type": "string"
                   },
                   "debugInfo": {
-                    "$ref": "DebugInfo"
+                    "$ref": "DebugInfo",
+                    "readOnly": true
                   },
                   "errorDetails": {
                     "description": "[Output Only] An optional list of messages that contain the error details. There is a set of defined message types to use for providing details.The syntax depends on the error code. For example, QuotaExceededInfo will have details when the error code is QUOTA_EXCEEDED.",
