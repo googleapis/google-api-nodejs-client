@@ -3061,8 +3061,7 @@ export namespace mybusinesslodging_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Getlodging
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Getlodging extends StandardParameters {
     /**
      * Required. Google identifier for this location in the form: `locations/{location_id\}/lodging`
      */
@@ -3072,8 +3071,7 @@ export namespace mybusinesslodging_v1 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Locations$Updatelodging
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Updatelodging extends StandardParameters {
     /**
      * Required. Google identifier for this location in the form: `locations/{location_id\}/lodging`
      */
@@ -3243,8 +3241,7 @@ export namespace mybusinesslodging_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Lodging$Getgoogleupdated
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Lodging$Getgoogleupdated extends StandardParameters {
     /**
      * Required. Google identifier for this location in the form: `locations/{location_id\}/lodging`
      */
