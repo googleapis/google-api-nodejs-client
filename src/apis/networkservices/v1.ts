@@ -2646,15 +2646,13 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -3455,8 +3453,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Authzextensions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzextensions$Create extends StandardParameters {
     /**
      * Required. User-provided ID of the `AuthzExtension` resource to be created.
      */
@@ -3475,8 +3472,7 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$AuthzExtension;
   }
-  export interface Params$Resource$Projects$Locations$Authzextensions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzextensions$Delete extends StandardParameters {
     /**
      * Required. The name of the `AuthzExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/authzExtensions/{authz_extension\}`.
      */
@@ -3486,15 +3482,13 @@ export namespace networkservices_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authzextensions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzextensions$Get extends StandardParameters {
     /**
      * Required. A name of the `AuthzExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/authzExtensions/{authz_extension\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authzextensions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzextensions$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -3516,8 +3510,7 @@ export namespace networkservices_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authzextensions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzextensions$Patch extends StandardParameters {
     /**
      * Required. Identifier. Name of the `AuthzExtension` resource in the following format: `projects/{project\}/locations/{location\}/authzExtensions/{authz_extension\}`.
      */
@@ -3998,8 +3991,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Edgecachekeysets$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Edgecachekeysets$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4009,8 +4001,7 @@ export namespace networkservices_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Edgecachekeysets$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Edgecachekeysets$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4021,8 +4012,7 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Edgecachekeysets$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Edgecachekeysets$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4495,8 +4485,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Edgecacheorigins$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Edgecacheorigins$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4506,8 +4495,7 @@ export namespace networkservices_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Edgecacheorigins$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Edgecacheorigins$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4518,8 +4506,7 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Edgecacheorigins$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Edgecacheorigins$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4992,8 +4979,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Edgecacheservices$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Edgecacheservices$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5003,8 +4989,7 @@ export namespace networkservices_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Edgecacheservices$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Edgecacheservices$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5015,8 +5000,7 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Edgecacheservices$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Edgecacheservices$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5795,8 +5779,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Endpointpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpointpolicies$Create extends StandardParameters {
     /**
      * Required. Short name of the EndpointPolicy resource to be created. E.g. "CustomECS".
      */
@@ -5811,22 +5794,19 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$EndpointPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Endpointpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpointpolicies$Delete extends StandardParameters {
     /**
      * Required. A name of the EndpointPolicy to delete. Must be in the format `projects/x/locations/x/endpointPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Endpointpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpointpolicies$Get extends StandardParameters {
     /**
      * Required. A name of the EndpointPolicy to get. Must be in the format `projects/x/locations/x/endpointPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Endpointpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpointpolicies$List extends StandardParameters {
     /**
      * Maximum number of EndpointPolicies to return per call.
      */
@@ -5844,8 +5824,7 @@ export namespace networkservices_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Endpointpolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpointpolicies$Patch extends StandardParameters {
     /**
      * Identifier. Name of the EndpointPolicy resource. It matches pattern `projects/{project\}/locations/x/endpointPolicies/{endpoint_policy\}`.
      */
@@ -6644,8 +6623,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Gateways$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Create extends StandardParameters {
     /**
      * Required. Short name of the Gateway resource to be created.
      */
@@ -6660,22 +6638,19 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$Gateway;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Delete extends StandardParameters {
     /**
      * Required. A name of the Gateway to delete. Must be in the format `projects/x/locations/x/gateways/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Get extends StandardParameters {
     /**
      * Required. A name of the Gateway to get. Must be in the format `projects/x/locations/x/gateways/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$List extends StandardParameters {
     /**
      * Maximum number of Gateways to return per call.
      */
@@ -6689,8 +6664,7 @@ export namespace networkservices_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Patch extends StandardParameters {
     /**
      * Identifier. Name of the Gateway resource. It matches pattern `projects/x/locations/x/gateways/`.
      */
@@ -7006,15 +6980,13 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Gateways$Routeviews$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Routeviews$Get extends StandardParameters {
     /**
      * Required. Name of the GatewayRouteView resource. Formats: projects/{project_number\}/locations/{location\}/gateways/{gateway\}/routeViews/{route_view\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gateways$Routeviews$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gateways$Routeviews$List extends StandardParameters {
     /**
      * Maximum number of GatewayRouteViews to return per call.
      */
@@ -7786,8 +7758,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Grpcroutes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Grpcroutes$Create extends StandardParameters {
     /**
      * Required. Short name of the GrpcRoute resource to be created.
      */
@@ -7802,22 +7773,19 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$GrpcRoute;
   }
-  export interface Params$Resource$Projects$Locations$Grpcroutes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Grpcroutes$Delete extends StandardParameters {
     /**
      * Required. A name of the GrpcRoute to delete. Must be in the format `projects/x/locations/x/grpcRoutes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Grpcroutes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Grpcroutes$Get extends StandardParameters {
     /**
      * Required. A name of the GrpcRoute to get. Must be in the format `projects/x/locations/x/grpcRoutes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Grpcroutes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Grpcroutes$List extends StandardParameters {
     /**
      * Maximum number of GrpcRoutes to return per call.
      */
@@ -7835,8 +7803,7 @@ export namespace networkservices_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Grpcroutes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Grpcroutes$Patch extends StandardParameters {
     /**
      * Identifier. Name of the GrpcRoute resource. It matches pattern `projects/x/locations/x/grpcRoutes/`
      */
@@ -8609,8 +8576,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Httproutes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Httproutes$Create extends StandardParameters {
     /**
      * Required. Short name of the HttpRoute resource to be created.
      */
@@ -8625,22 +8591,19 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$HttpRoute;
   }
-  export interface Params$Resource$Projects$Locations$Httproutes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Httproutes$Delete extends StandardParameters {
     /**
      * Required. A name of the HttpRoute to delete. Must be in the format `projects/x/locations/x/httpRoutes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Httproutes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Httproutes$Get extends StandardParameters {
     /**
      * Required. A name of the HttpRoute to get. Must be in the format `projects/x/locations/x/httpRoutes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Httproutes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Httproutes$List extends StandardParameters {
     /**
      * Maximum number of HttpRoutes to return per call.
      */
@@ -8658,8 +8621,7 @@ export namespace networkservices_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Httproutes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Httproutes$Patch extends StandardParameters {
     /**
      * Identifier. Name of the HttpRoute resource. It matches pattern `projects/x/locations/x/httpRoutes/http_route_name\>`.
      */
@@ -9441,8 +9403,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Create extends StandardParameters {
     /**
      * Required. User-provided ID of the `LbEdgeExtension` resource to be created.
      */
@@ -9461,8 +9422,7 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$LbEdgeExtension;
   }
-  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Delete extends StandardParameters {
     /**
      * Required. The name of the `LbEdgeExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/lbEdgeExtensions/{lb_edge_extension\}`.
      */
@@ -9472,15 +9432,13 @@ export namespace networkservices_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Get extends StandardParameters {
     /**
      * Required. A name of the `LbEdgeExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/lbEdgeExtensions/{lb_edge_extension\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lbedgeextensions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbedgeextensions$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -9502,8 +9460,7 @@ export namespace networkservices_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Patch extends StandardParameters {
     /**
      * Required. Identifier. Name of the `LbEdgeExtension` resource in the following format: `projects/{project\}/locations/{location\}/lbEdgeExtensions/{lb_edge_extension\}`.
      */
@@ -10297,8 +10254,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Create extends StandardParameters {
     /**
      * Required. User-provided ID of the `LbRouteExtension` resource to be created.
      */
@@ -10317,8 +10273,7 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$LbRouteExtension;
   }
-  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Delete extends StandardParameters {
     /**
      * Required. The name of the `LbRouteExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/lbRouteExtensions/{lb_route_extension\}`.
      */
@@ -10328,15 +10283,13 @@ export namespace networkservices_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Get extends StandardParameters {
     /**
      * Required. A name of the `LbRouteExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/lbRouteExtensions/{lb_route_extension\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lbrouteextensions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbrouteextensions$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -10358,8 +10311,7 @@ export namespace networkservices_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Patch extends StandardParameters {
     /**
      * Required. Identifier. Name of the `LbRouteExtension` resource in the following format: `projects/{project\}/locations/{location\}/lbRouteExtensions/{lb_route_extension\}`.
      */
@@ -11155,8 +11107,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Create extends StandardParameters {
     /**
      * Required. User-provided ID of the `LbTrafficExtension` resource to be created.
      */
@@ -11175,8 +11126,7 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$LbTrafficExtension;
   }
-  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Delete extends StandardParameters {
     /**
      * Required. The name of the `LbTrafficExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/lbTrafficExtensions/{lb_traffic_extension\}`.
      */
@@ -11186,15 +11136,13 @@ export namespace networkservices_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Get extends StandardParameters {
     /**
      * Required. A name of the `LbTrafficExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/lbTrafficExtensions/{lb_traffic_extension\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -11216,8 +11164,7 @@ export namespace networkservices_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Patch extends StandardParameters {
     /**
      * Required. Identifier. Name of the `LbTrafficExtension` resource in the following format: `projects/{project\}/locations/{location\}/lbTrafficExtensions/{lb_traffic_extension\}`.
      */
@@ -11990,8 +11937,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Meshes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Meshes$Create extends StandardParameters {
     /**
      * Required. Short name of the Mesh resource to be created.
      */
@@ -12006,22 +11952,19 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$Mesh;
   }
-  export interface Params$Resource$Projects$Locations$Meshes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Meshes$Delete extends StandardParameters {
     /**
      * Required. A name of the Mesh to delete. Must be in the format `projects/x/locations/x/meshes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Meshes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Meshes$Get extends StandardParameters {
     /**
      * Required. A name of the Mesh to get. Must be in the format `projects/x/locations/x/meshes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Meshes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Meshes$List extends StandardParameters {
     /**
      * Maximum number of Meshes to return per call.
      */
@@ -12039,8 +11982,7 @@ export namespace networkservices_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Meshes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Meshes$Patch extends StandardParameters {
     /**
      * Identifier. Name of the Mesh resource. It matches pattern `projects/x/locations/x/meshes/`.
      */
@@ -12351,15 +12293,13 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Meshes$Routeviews$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Meshes$Routeviews$Get extends StandardParameters {
     /**
      * Required. Name of the MeshRouteView resource. Format: projects/{project_number\}/locations/{location\}/meshes/{mesh\}/routeViews/{route_view\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Meshes$Routeviews$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Meshes$Routeviews$List extends StandardParameters {
     /**
      * Maximum number of MeshRouteViews to return per call.
      */
@@ -12942,8 +12882,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -12954,22 +12893,19 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -13742,8 +13678,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Servicebindings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servicebindings$Create extends StandardParameters {
     /**
      * Required. The parent resource of the ServiceBinding. Must be in the format `projects/x/locations/x`.
      */
@@ -13758,22 +13693,19 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$ServiceBinding;
   }
-  export interface Params$Resource$Projects$Locations$Servicebindings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servicebindings$Delete extends StandardParameters {
     /**
      * Required. A name of the ServiceBinding to delete. Must be in the format `projects/x/locations/x/serviceBindings/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Servicebindings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servicebindings$Get extends StandardParameters {
     /**
      * Required. A name of the ServiceBinding to get. Must be in the format `projects/x/locations/x/serviceBindings/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Servicebindings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servicebindings$List extends StandardParameters {
     /**
      * Maximum number of ServiceBindings to return per call.
      */
@@ -13787,8 +13719,7 @@ export namespace networkservices_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Servicebindings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servicebindings$Patch extends StandardParameters {
     /**
      * Identifier. Name of the ServiceBinding resource. It matches pattern `projects/x/locations/x/serviceBindings/`.
      */
@@ -14568,8 +14499,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Servicelbpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servicelbpolicies$Create extends StandardParameters {
     /**
      * Required. The parent resource of the ServiceLbPolicy. Must be in the format `projects/{project\}/locations/{location\}`.
      */
@@ -14584,22 +14514,19 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$ServiceLbPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Servicelbpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servicelbpolicies$Delete extends StandardParameters {
     /**
      * Required. A name of the ServiceLbPolicy to delete. Must be in the format `projects/{project\}/locations/{location\}/serviceLbPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Servicelbpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servicelbpolicies$Get extends StandardParameters {
     /**
      * Required. A name of the ServiceLbPolicy to get. Must be in the format `projects/{project\}/locations/{location\}/serviceLbPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Servicelbpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servicelbpolicies$List extends StandardParameters {
     /**
      * Maximum number of ServiceLbPolicies to return per call.
      */
@@ -14613,8 +14540,7 @@ export namespace networkservices_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Servicelbpolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servicelbpolicies$Patch extends StandardParameters {
     /**
      * Identifier. Name of the ServiceLbPolicy resource. It matches pattern `projects/{project\}/locations/{location\}/serviceLbPolicies/{service_lb_policy_name\}`.
      */
@@ -15384,8 +15310,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tcproutes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tcproutes$Create extends StandardParameters {
     /**
      * Required. The parent resource of the TcpRoute. Must be in the format `projects/x/locations/x`.
      */
@@ -15400,22 +15325,19 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$TcpRoute;
   }
-  export interface Params$Resource$Projects$Locations$Tcproutes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tcproutes$Delete extends StandardParameters {
     /**
      * Required. A name of the TcpRoute to delete. Must be in the format `projects/x/locations/x/tcpRoutes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tcproutes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tcproutes$Get extends StandardParameters {
     /**
      * Required. A name of the TcpRoute to get. Must be in the format `projects/x/locations/x/tcpRoutes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tcproutes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tcproutes$List extends StandardParameters {
     /**
      * Maximum number of TcpRoutes to return per call.
      */
@@ -15433,8 +15355,7 @@ export namespace networkservices_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Tcproutes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tcproutes$Patch extends StandardParameters {
     /**
      * Identifier. Name of the TcpRoute resource. It matches pattern `projects/x/locations/x/tcpRoutes/tcp_route_name\>`.
      */
@@ -16204,8 +16125,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tlsroutes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tlsroutes$Create extends StandardParameters {
     /**
      * Required. The parent resource of the TlsRoute. Must be in the format `projects/x/locations/x`.
      */
@@ -16220,22 +16140,19 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$TlsRoute;
   }
-  export interface Params$Resource$Projects$Locations$Tlsroutes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tlsroutes$Delete extends StandardParameters {
     /**
      * Required. A name of the TlsRoute to delete. Must be in the format `projects/x/locations/x/tlsRoutes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tlsroutes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tlsroutes$Get extends StandardParameters {
     /**
      * Required. A name of the TlsRoute to get. Must be in the format `projects/x/locations/x/tlsRoutes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tlsroutes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tlsroutes$List extends StandardParameters {
     /**
      * Maximum number of TlsRoutes to return per call.
      */
@@ -16253,8 +16170,7 @@ export namespace networkservices_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Tlsroutes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tlsroutes$Patch extends StandardParameters {
     /**
      * Identifier. Name of the TlsRoute resource. It matches pattern `projects/x/locations/x/tlsRoutes/tls_route_name\>`.
      */
@@ -17028,8 +16944,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Wasmplugins$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Create extends StandardParameters {
     /**
      * Required. The parent resource of the `WasmPlugin` resource. Must be in the format `projects/{project\}/locations/global`.
      */
@@ -17044,15 +16959,13 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$WasmPlugin;
   }
-  export interface Params$Resource$Projects$Locations$Wasmplugins$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Delete extends StandardParameters {
     /**
      * Required. A name of the `WasmPlugin` resource to delete. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Wasmplugins$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Get extends StandardParameters {
     /**
      * Required. A name of the `WasmPlugin` resource to get. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
      */
@@ -17062,8 +16975,7 @@ export namespace networkservices_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Wasmplugins$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Wasmplugins$List extends StandardParameters {
     /**
      * Maximum number of `WasmPlugin` resources to return per call. If not specified, at most 50 `WasmPlugin` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
@@ -17077,8 +16989,7 @@ export namespace networkservices_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Wasmplugins$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Patch extends StandardParameters {
     /**
      * Identifier. Name of the `WasmPlugin` resource in the following format: `projects/{project\}/locations/{location\}/wasmPlugins/{wasm_plugin\}`.
      */
@@ -17706,8 +17617,7 @@ export namespace networkservices_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Create extends StandardParameters {
     /**
      * Required. The parent resource of the `WasmPluginVersion` resource. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
      */
@@ -17722,22 +17632,19 @@ export namespace networkservices_v1 {
      */
     requestBody?: Schema$WasmPluginVersion;
   }
-  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete extends StandardParameters {
     /**
      * Required. A name of the `WasmPluginVersion` resource to delete. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}/versions/{wasm_plugin_version\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Get extends StandardParameters {
     /**
      * Required. A name of the `WasmPluginVersion` resource to get. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}/versions/{wasm_plugin_version\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$List extends StandardParameters {
     /**
      * Maximum number of `WasmPluginVersion` resources to return per call. If not specified, at most 50 `WasmPluginVersion` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
