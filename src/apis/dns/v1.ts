@@ -2419,8 +2419,7 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Managedzoneoperations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Managedzoneoperations$Get extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -2438,8 +2437,7 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzoneoperations$List
-    extends StandardParameters {
+  export interface Params$Resource$Managedzoneoperations$List extends StandardParameters {
     /**
      * Identifies the managed zone addressed by this request.
      */
@@ -3916,8 +3914,7 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Managedzones$Create
-    extends StandardParameters {
+  export interface Params$Resource$Managedzones$Create extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -3932,8 +3929,7 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Managedzones$Delete extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -3961,8 +3957,7 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Managedzones$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3973,8 +3968,7 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$GoogleIamV1GetIamPolicyRequest;
   }
-  export interface Params$Resource$Managedzones$List
-    extends StandardParameters {
+  export interface Params$Resource$Managedzones$List extends StandardParameters {
     /**
      * Restricts the list to return only zones with this domain name.
      */
@@ -3992,8 +3986,7 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Managedzones$Patch extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -4012,8 +4005,7 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Managedzones$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4024,8 +4016,7 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Managedzones$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Managedzones$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4036,8 +4027,7 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Managedzones$Update
-    extends StandardParameters {
+  export interface Params$Resource$Managedzones$Update extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -6056,8 +6046,7 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Resourcerecordsets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Resourcerecordsets$Create extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -6076,8 +6065,7 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ResourceRecordSet;
   }
-  export interface Params$Resource$Resourcerecordsets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Resourcerecordsets$Delete extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -6099,8 +6087,7 @@ export namespace dns_v1 {
      */
     type?: string;
   }
-  export interface Params$Resource$Resourcerecordsets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Resourcerecordsets$Get extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -6122,8 +6109,7 @@ export namespace dns_v1 {
      */
     type?: string;
   }
-  export interface Params$Resource$Resourcerecordsets$List
-    extends StandardParameters {
+  export interface Params$Resource$Resourcerecordsets$List extends StandardParameters {
     /**
      * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
@@ -6149,8 +6135,7 @@ export namespace dns_v1 {
      */
     type?: string;
   }
-  export interface Params$Resource$Resourcerecordsets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Resourcerecordsets$Patch extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -7115,8 +7100,7 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Responsepolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicies$Create extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -7131,8 +7115,7 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ResponsePolicy;
   }
-  export interface Params$Resource$Responsepolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicies$Delete extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -7146,8 +7129,7 @@ export namespace dns_v1 {
      */
     responsePolicy?: string;
   }
-  export interface Params$Resource$Responsepolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicies$Get extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -7161,8 +7143,7 @@ export namespace dns_v1 {
      */
     responsePolicy?: string;
   }
-  export interface Params$Resource$Responsepolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicies$List extends StandardParameters {
     /**
      * Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
      */
@@ -7176,8 +7157,7 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Responsepolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicies$Patch extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -7196,8 +7176,7 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ResponsePolicy;
   }
-  export interface Params$Resource$Responsepolicies$Update
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicies$Update extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -8166,8 +8145,7 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Responsepolicyrules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicyrules$Create extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -8186,8 +8164,7 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ResponsePolicyRule;
   }
-  export interface Params$Resource$Responsepolicyrules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicyrules$Delete extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -8205,8 +8182,7 @@ export namespace dns_v1 {
      */
     responsePolicyRule?: string;
   }
-  export interface Params$Resource$Responsepolicyrules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicyrules$Get extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -8224,8 +8200,7 @@ export namespace dns_v1 {
      */
     responsePolicyRule?: string;
   }
-  export interface Params$Resource$Responsepolicyrules$List
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicyrules$List extends StandardParameters {
     /**
      * Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
      */
@@ -8243,8 +8218,7 @@ export namespace dns_v1 {
      */
     responsePolicy?: string;
   }
-  export interface Params$Resource$Responsepolicyrules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicyrules$Patch extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
@@ -8267,8 +8241,7 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ResponsePolicyRule;
   }
-  export interface Params$Resource$Responsepolicyrules$Update
-    extends StandardParameters {
+  export interface Params$Resource$Responsepolicyrules$Update extends StandardParameters {
     /**
      * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      */
