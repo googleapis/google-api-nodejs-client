@@ -628,7 +628,7 @@ export namespace secretmanager_v1beta1 {
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -747,17 +747,15 @@ export namespace secretmanager_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -2104,8 +2102,7 @@ export namespace secretmanager_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Secrets$Addversion
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Addversion extends StandardParameters {
     /**
      * Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x`.
      */
@@ -2116,8 +2113,7 @@ export namespace secretmanager_v1beta1 {
      */
     requestBody?: Schema$AddSecretVersionRequest;
   }
-  export interface Params$Resource$Projects$Secrets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Create extends StandardParameters {
     /**
      * Required. The resource name of the project to associate with the Secret, in the format `projects/x`.
      */
@@ -2132,22 +2128,19 @@ export namespace secretmanager_v1beta1 {
      */
     requestBody?: Schema$Secret;
   }
-  export interface Params$Resource$Projects$Secrets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Secret to delete in the format `projects/x/secrets/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Secrets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Get extends StandardParameters {
     /**
      * Required. The resource name of the Secret, in the format `projects/x/secrets/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Secrets$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2157,8 +2150,7 @@ export namespace secretmanager_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Secrets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to be returned in a single page. If set to 0, the server decides the number of results to return. If the number is greater than 25000, it is capped at 25000.
      */
@@ -2172,8 +2164,7 @@ export namespace secretmanager_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Secrets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the Secret in the format `projects/x/secrets/x`.
      */
@@ -2188,8 +2179,7 @@ export namespace secretmanager_v1beta1 {
      */
     requestBody?: Schema$Secret;
   }
-  export interface Params$Resource$Projects$Secrets$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2200,8 +2190,7 @@ export namespace secretmanager_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Secrets$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3090,15 +3079,13 @@ export namespace secretmanager_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Secrets$Versions$Access
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Versions$Access extends StandardParameters {
     /**
      * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Secrets$Versions$Destroy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Versions$Destroy extends StandardParameters {
     /**
      * Required. The resource name of the SecretVersion to destroy in the format `projects/x/secrets/x/versions/x`.
      */
@@ -3109,8 +3096,7 @@ export namespace secretmanager_v1beta1 {
      */
     requestBody?: Schema$DestroySecretVersionRequest;
   }
-  export interface Params$Resource$Projects$Secrets$Versions$Disable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Versions$Disable extends StandardParameters {
     /**
      * Required. The resource name of the SecretVersion to disable in the format `projects/x/secrets/x/versions/x`.
      */
@@ -3121,8 +3107,7 @@ export namespace secretmanager_v1beta1 {
      */
     requestBody?: Schema$DisableSecretVersionRequest;
   }
-  export interface Params$Resource$Projects$Secrets$Versions$Enable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Versions$Enable extends StandardParameters {
     /**
      * Required. The resource name of the SecretVersion to enable in the format `projects/x/secrets/x/versions/x`.
      */
@@ -3133,15 +3118,13 @@ export namespace secretmanager_v1beta1 {
      */
     requestBody?: Schema$EnableSecretVersionRequest;
   }
-  export interface Params$Resource$Projects$Secrets$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Versions$Get extends StandardParameters {
     /**
      * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` is an alias to the `latest` SecretVersion.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Secrets$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Secrets$Versions$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to be returned in a single page. If set to 0, the server decides the number of results to return. If the number is greater than 25000, it is capped at 25000.
      */
