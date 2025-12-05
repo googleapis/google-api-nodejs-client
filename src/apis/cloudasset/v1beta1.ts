@@ -1196,8 +1196,7 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Folders$Exportassets
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Exportassets extends StandardParameters {
     /**
      * Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), a project number (such as "projects/12345"), or a folder number (such as "folders/123").
      */
@@ -1354,8 +1353,7 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Folders$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -1674,8 +1672,7 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Batchgetassetshistory
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Batchgetassetshistory extends StandardParameters {
     /**
      * A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more info. The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
      */
@@ -1697,8 +1694,7 @@ export namespace cloudasset_v1beta1 {
      */
     'readTimeWindow.startTime'?: string;
   }
-  export interface Params$Resource$Organizations$Exportassets
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Exportassets extends StandardParameters {
     /**
      * Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), a project number (such as "projects/12345"), or a folder number (such as "folders/123").
      */
@@ -1855,8 +1851,7 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -2175,8 +2170,7 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Batchgetassetshistory
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Batchgetassetshistory extends StandardParameters {
     /**
      * A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more info. The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
      */
@@ -2198,8 +2192,7 @@ export namespace cloudasset_v1beta1 {
      */
     'readTimeWindow.startTime'?: string;
   }
-  export interface Params$Resource$Projects$Exportassets
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Exportassets extends StandardParameters {
     /**
      * Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), a project number (such as "projects/12345"), or a folder number (such as "folders/123").
      */
@@ -2356,8 +2349,7 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
