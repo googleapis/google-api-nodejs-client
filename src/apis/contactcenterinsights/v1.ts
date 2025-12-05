@@ -8234,8 +8234,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels extends StandardParameters {
     /**
      * Required. The parent resource for new feedback labels.
      */
@@ -8246,8 +8245,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Bulkdownloadfeedbacklabels
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Bulkdownloadfeedbacklabels extends StandardParameters {
     /**
      * Required. The parent resource for new feedback labels.
      */
@@ -8258,8 +8256,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Bulkuploadfeedbacklabels
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Bulkuploadfeedbacklabels extends StandardParameters {
     /**
      * Required. The parent resource for new feedback labels.
      */
@@ -8270,22 +8267,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Getencryptionspec
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getencryptionspec extends StandardParameters {
     /**
      * Required. The name of the encryption spec resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getsettings extends StandardParameters {
     /**
      * Required. The name of the settings resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Listallfeedbacklabels
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Listallfeedbacklabels extends StandardParameters {
     /**
      * Optional. A filter to reduce results to a specific subset in the entire project. Supports disjunctions (OR) and conjunctions (AND). Supported fields: * `issue_model_id` * `qa_question_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING
      */
@@ -8303,8 +8297,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Querymetrics
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Querymetrics extends StandardParameters {
     /**
      * Required. The location of the data. "projects/{project\}/locations/{location\}"
      */
@@ -8315,8 +8308,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1QueryMetricsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queryperformanceoverview
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queryperformanceoverview extends StandardParameters {
     /**
      * Required. The parent resource of the conversations to derive performance stats from. "projects/{project\}/locations/{location\}"
      */
@@ -8327,8 +8319,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewRequest;
   }
-  export interface Params$Resource$Projects$Locations$Updatesettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Updatesettings extends StandardParameters {
     /**
      * Immutable. The resource name of the settings resource. Format: projects/{project\}/locations/{location\}/settings
      */
@@ -9133,8 +9124,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Analysisrules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Analysisrules$Create extends StandardParameters {
     /**
      * Required. The parent resource of the analysis rule. Required. The location to create a analysis rule for. Format: `projects//locations/` or `projects//locations/`
      */
@@ -9145,22 +9135,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1AnalysisRule;
   }
-  export interface Params$Resource$Projects$Locations$Analysisrules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Analysisrules$Delete extends StandardParameters {
     /**
      * Required. The name of the analysis rule to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Analysisrules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Analysisrules$Get extends StandardParameters {
     /**
      * Required. The name of the AnalysisRule to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Analysisrules$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Analysisrules$List extends StandardParameters {
     /**
      * Optional. The maximum number of analysis rule to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      */
@@ -9174,8 +9161,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Analysisrules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Analysisrules$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the analysis rule. Format: projects/{project\}/locations/{location\}/analysisRules/{analysis_rule\}
      */
@@ -9979,8 +9965,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Assessmentrules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assessmentrules$Create extends StandardParameters {
     /**
      * Optional. A unique ID for the new AssessmentRule. This ID will become the final component of the AssessmentRule's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
      */
@@ -9995,22 +9980,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1AssessmentRule;
   }
-  export interface Params$Resource$Projects$Locations$Assessmentrules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assessmentrules$Delete extends StandardParameters {
     /**
      * Required. The name of the assessment rule to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Assessmentrules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assessmentrules$Get extends StandardParameters {
     /**
      * Required. The name of the assessment rule to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Assessmentrules$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assessmentrules$List extends StandardParameters {
     /**
      * Optional. The maximum number of assessment rule to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      */
@@ -10024,8 +10006,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Assessmentrules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assessmentrules$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the assessment rule. Format: projects/{project\}/locations/{location\}/assessmentRules/{assessment_rule\}
      */
@@ -10828,8 +10809,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Create extends StandardParameters {
     /**
      * Optional. A unique ID for the new AuthorizedViewSet. This ID will become the final component of the AuthorizedViewSet's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`. See https://google.aip.dev/122#resource-id-segments
      */
@@ -10844,8 +10824,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Delete extends StandardParameters {
     /**
      * Optional. If set to true, all of this AuthorizedViewSet's child resources will also be deleted. Otherwise, the request will only succeed if it has none.
      */
@@ -10855,15 +10834,13 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Get extends StandardParameters {
     /**
      * Required. The name of the AuthorizedViewSet to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$List extends StandardParameters {
     /**
      * Optional. The filter expression to filter authorized view sets listed in the response.
      */
@@ -10885,8 +10862,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the AuthorizedViewSet. Format: projects/{project\}/locations/{location\}/authorizedViewSets/{authorized_view_set\}
      */
@@ -12663,8 +12639,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Create extends StandardParameters {
     /**
      * Optional. A unique ID for the new AuthorizedView. This ID will become the final component of the AuthorizedView's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`. See https://google.aip.dev/122#resource-id-segments
      */
@@ -12679,22 +12654,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1AuthorizedView;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Delete extends StandardParameters {
     /**
      * Required. The name of the AuthorizedView to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get extends StandardParameters {
     /**
      * Required. The name of the AuthorizedView to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -12704,8 +12676,7 @@ export namespace contactcenterinsights_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$List extends StandardParameters {
     /**
      * Optional. The filter expression to filter authorized views listed in the response.
      */
@@ -12727,8 +12698,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the AuthorizedView. Format: projects/{project\}/locations/{location\}/authorizedViewSets/{authorized_view_set\}/authorizedViews/{authorized_view\}
      */
@@ -12743,8 +12713,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1AuthorizedView;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Querymetrics
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Querymetrics extends StandardParameters {
     /**
      * Required. The location of the data. "projects/{project\}/locations/{location\}"
      */
@@ -12755,8 +12724,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1QueryMetricsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Queryperformanceoverview
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Queryperformanceoverview extends StandardParameters {
     /**
      * Required. The parent resource of the conversations to derive performance stats from. "projects/{project\}/locations/{location\}"
      */
@@ -12767,8 +12735,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewRequest;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Search extends StandardParameters {
     /**
      * Optional. The order by expression to order authorized views listed in the response.
      */
@@ -12790,8 +12757,7 @@ export namespace contactcenterinsights_v1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12802,8 +12768,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13468,8 +13433,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Calculatestats
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Calculatestats extends StandardParameters {
     /**
      * A filter to reduce results to a specific subset. This field is useful for getting statistics about conversations with specific properties.
      */
@@ -13479,8 +13443,7 @@ export namespace contactcenterinsights_v1 {
      */
     location?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Delete extends StandardParameters {
     /**
      * If set to true, all of this conversation's analyses will also be deleted. Otherwise, the request will only succeed if the conversation has no analyses.
      */
@@ -13490,8 +13453,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Get extends StandardParameters {
     /**
      * Required. The name of the conversation to get.
      */
@@ -13501,8 +13463,7 @@ export namespace contactcenterinsights_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$List extends StandardParameters {
     /**
      * A filter to reduce results to a specific subset. Useful for querying conversations with specific properties.
      */
@@ -14645,8 +14606,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Appeal
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Appeal extends StandardParameters {
     /**
      * Required. The name of the assessment to appeal.
      */
@@ -14657,8 +14617,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1AppealAssessmentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Create extends StandardParameters {
     /**
      * Required. The parent resource of the assessment.
      */
@@ -14669,8 +14628,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1Assessment;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Delete extends StandardParameters {
     /**
      * Optional. If set to true, all of this assessment's notes will also be deleted. Otherwise, the request will only succeed if it has no notes.
      */
@@ -14680,8 +14638,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Finalize
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Finalize extends StandardParameters {
     /**
      * Required. The name of the assessment to finalize.
      */
@@ -14692,15 +14649,13 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1FinalizeAssessmentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Get extends StandardParameters {
     /**
      * Required. The name of the assessment to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$List extends StandardParameters {
     /**
      * Optional. A filter to reduce results to a specific subset. Supported filters include: * `state` - The state of the assessment * `agent_info.agent_id` - The ID of the agent the assessment is for
      */
@@ -14718,8 +14673,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Publish
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Publish extends StandardParameters {
     /**
      * Required. The name of the assessment to publish.
      */
@@ -15381,8 +15335,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Notes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Notes$Create extends StandardParameters {
     /**
      * Required. The parent resource of the note.
      */
@@ -15393,15 +15346,13 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1Note;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Notes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Notes$Delete extends StandardParameters {
     /**
      * Required. The name of the note to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Notes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Notes$List extends StandardParameters {
     /**
      * Optional. The maximum number of notes to return in the response. If zero the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      */
@@ -15415,8 +15366,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Notes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Assessments$Notes$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the note. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}/assessments/{assessment\}/notes/{note\}
      */
@@ -16232,8 +16182,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Create extends StandardParameters {
     /**
      * Optional. The ID of the feedback label to create. If one is not specified it will be generated by the server.
      */
@@ -16248,22 +16197,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Delete extends StandardParameters {
     /**
      * Required. The name of the feedback label to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Get extends StandardParameters {
     /**
      * Required. The name of the feedback label to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$List extends StandardParameters {
     /**
      * Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Automatically sorts by conversation ID. To sort by all feedback labels in a project see ListAllFeedbackLabels. Supported fields: * `issue_model_id` * `qa_question_id` * `qa_scorecard_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING
      */
@@ -16281,8 +16227,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Patch extends StandardParameters {
     /**
      * Immutable. Resource name of the FeedbackLabel. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}/feedbackLabels/{feedback_label\}
      */
@@ -16751,22 +16696,19 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -18633,8 +18575,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversations$Bulkanalyze
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Bulkanalyze extends StandardParameters {
     /**
      * Required. The parent resource to create analyses in.
      */
@@ -18645,8 +18586,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Bulkdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Bulkdelete extends StandardParameters {
     /**
      * Required. The parent resource to delete conversations from. Format: projects/{project\}/locations/{location\}
      */
@@ -18657,8 +18597,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Calculatestats
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Calculatestats extends StandardParameters {
     /**
      * A filter to reduce results to a specific subset. This field is useful for getting statistics about conversations with specific properties.
      */
@@ -18668,8 +18607,7 @@ export namespace contactcenterinsights_v1 {
      */
     location?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Create extends StandardParameters {
     /**
      * A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z0-9-]{4,64\}$`. Valid characters are `a-z-`
      */
@@ -18684,8 +18622,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1Conversation;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Delete extends StandardParameters {
     /**
      * If set to true, all of this conversation's analyses will also be deleted. Otherwise, the request will only succeed if the conversation has no analyses.
      */
@@ -18695,8 +18632,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Get extends StandardParameters {
     /**
      * Required. The name of the conversation to get.
      */
@@ -18706,8 +18642,7 @@ export namespace contactcenterinsights_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Ingest
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Ingest extends StandardParameters {
     /**
      * Required. The parent resource for new conversations.
      */
@@ -18718,8 +18653,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$List extends StandardParameters {
     /**
      * A filter to reduce results to a specific subset. Useful for querying conversations with specific properties.
      */
@@ -18745,8 +18679,7 @@ export namespace contactcenterinsights_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Patch extends StandardParameters {
     /**
      * Optional. Defaults to false. If set to true, and the conversation is not found, a new conversation will be created. In this situation, `update_mask` is ignored.
      */
@@ -18765,8 +18698,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1Conversation;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Sample
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Sample extends StandardParameters {
     /**
      * Required. The parent resource of the dataset.
      */
@@ -18777,8 +18709,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1SampleConversationsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Upload
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Upload extends StandardParameters {
     /**
      * Required. The parent resource of the conversation.
      */
@@ -19406,8 +19337,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversations$Analyses$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Analyses$Create extends StandardParameters {
     /**
      * Required. The parent resource of the analysis.
      */
@@ -19418,22 +19348,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1Analysis;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Analyses$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Analyses$Delete extends StandardParameters {
     /**
      * Required. The name of the analysis to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Analyses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Analyses$Get extends StandardParameters {
     /**
      * Required. The name of the analysis to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Analyses$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Analyses$List extends StandardParameters {
     /**
      * A filter to reduce results to a specific subset. Useful for querying conversations with specific properties.
      */
@@ -20568,8 +20495,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Appeal
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Appeal extends StandardParameters {
     /**
      * Required. The name of the assessment to appeal.
      */
@@ -20580,8 +20506,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1AppealAssessmentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Create extends StandardParameters {
     /**
      * Required. The parent resource of the assessment.
      */
@@ -20592,8 +20517,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1Assessment;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Delete extends StandardParameters {
     /**
      * Optional. If set to true, all of this assessment's notes will also be deleted. Otherwise, the request will only succeed if it has no notes.
      */
@@ -20603,8 +20527,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Finalize
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Finalize extends StandardParameters {
     /**
      * Required. The name of the assessment to finalize.
      */
@@ -20615,15 +20538,13 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1FinalizeAssessmentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Get extends StandardParameters {
     /**
      * Required. The name of the assessment to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Assessments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Assessments$List extends StandardParameters {
     /**
      * Optional. A filter to reduce results to a specific subset. Supported filters include: * `state` - The state of the assessment * `agent_info.agent_id` - The ID of the agent the assessment is for
      */
@@ -20641,8 +20562,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Publish
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Publish extends StandardParameters {
     /**
      * Required. The name of the assessment to publish.
      */
@@ -21304,8 +21224,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Notes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Notes$Create extends StandardParameters {
     /**
      * Required. The parent resource of the note.
      */
@@ -21316,15 +21235,13 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1Note;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Notes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Notes$Delete extends StandardParameters {
     /**
      * Required. The name of the note to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Notes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Notes$List extends StandardParameters {
     /**
      * Optional. The maximum number of notes to return in the response. If zero the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      */
@@ -21338,8 +21255,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Notes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Assessments$Notes$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the note. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}/assessments/{assessment\}/notes/{note\}
      */
@@ -22155,8 +22071,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Create extends StandardParameters {
     /**
      * Optional. The ID of the feedback label to create. If one is not specified it will be generated by the server.
      */
@@ -22171,22 +22086,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Delete extends StandardParameters {
     /**
      * Required. The name of the feedback label to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Get extends StandardParameters {
     /**
      * Required. The name of the feedback label to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Feedbacklabels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Feedbacklabels$List extends StandardParameters {
     /**
      * Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Automatically sorts by conversation ID. To sort by all feedback labels in a project see ListAllFeedbackLabels. Supported fields: * `issue_model_id` * `qa_question_id` * `qa_scorecard_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING
      */
@@ -22204,8 +22116,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Patch extends StandardParameters {
     /**
      * Immutable. Resource name of the FeedbackLabel. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}/feedbackLabels/{feedback_label\}
      */
@@ -22390,8 +22301,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversations$Segments$Bulkanalyze
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Segments$Bulkanalyze extends StandardParameters {
     /**
      * Required. The parent resource to create analyses in.
      */
@@ -23846,8 +23756,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datasets$Bulkdeletefeedbacklabels
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Bulkdeletefeedbacklabels extends StandardParameters {
     /**
      * Required. The parent resource for new feedback labels.
      */
@@ -23858,8 +23767,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Bulkdownloadfeedbacklabels
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Bulkdownloadfeedbacklabels extends StandardParameters {
     /**
      * Required. The parent resource for new feedback labels.
      */
@@ -23870,8 +23778,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Bulkuploadfeedbacklabels
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Bulkuploadfeedbacklabels extends StandardParameters {
     /**
      * Required. The parent resource for new feedback labels.
      */
@@ -23882,8 +23789,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the dataset.
      */
@@ -23898,22 +23804,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1Dataset;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Delete extends StandardParameters {
     /**
      * Required. The name of the dataset to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Get extends StandardParameters {
     /**
      * Required. The name of the dataset to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$List extends StandardParameters {
     /**
      * Optional. A filter to reduce results to a specific subset. Useful for querying datasets with specific properties. Supported fields include, for Q2 though we only support list by project: - `type` - `description` - `project_number`
      */
@@ -23931,8 +23834,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Listallfeedbacklabels
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Listallfeedbacklabels extends StandardParameters {
     /**
      * Optional. A filter to reduce results to a specific subset in the entire project. Supports disjunctions (OR) and conjunctions (AND). Supported fields: * `issue_model_id` * `qa_question_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING
      */
@@ -23950,8 +23852,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. Resource name of the dataset. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}
      */
@@ -25101,8 +25002,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Bulkdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Bulkdelete extends StandardParameters {
     /**
      * Required. The parent resource to delete conversations from. Format: projects/{project\}/locations/{location\}
      */
@@ -25113,8 +25013,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats extends StandardParameters {
     /**
      * Required. The location of the conversations.
      */
@@ -25125,8 +25024,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1CalculateStatsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Delete extends StandardParameters {
     /**
      * If set to true, all of this conversation's analyses will also be deleted. Otherwise, the request will only succeed if the conversation has no analyses.
      */
@@ -25136,8 +25034,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Get extends StandardParameters {
     /**
      * Required. The name of the conversation to get.
      */
@@ -25147,8 +25044,7 @@ export namespace contactcenterinsights_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Ingest
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Ingest extends StandardParameters {
     /**
      * Required. The parent resource for new conversations.
      */
@@ -25159,8 +25055,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$List extends StandardParameters {
     /**
      * A filter to reduce results to a specific subset. Useful for querying conversations with specific properties.
      */
@@ -25186,8 +25081,7 @@ export namespace contactcenterinsights_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Sample
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Sample extends StandardParameters {
     /**
      * Required. The parent resource of the dataset.
      */
@@ -25999,8 +25893,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Create extends StandardParameters {
     /**
      * Optional. The ID of the feedback label to create. If one is not specified it will be generated by the server.
      */
@@ -26015,22 +25908,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Delete extends StandardParameters {
     /**
      * Required. The name of the feedback label to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Get extends StandardParameters {
     /**
      * Required. The name of the feedback label to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$List extends StandardParameters {
     /**
      * Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Automatically sorts by conversation ID. To sort by all feedback labels in a project see ListAllFeedbackLabels. Supported fields: * `issue_model_id` * `qa_question_id` * `qa_scorecard_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING
      */
@@ -26048,8 +25938,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Patch extends StandardParameters {
     /**
      * Immutable. Resource name of the FeedbackLabel. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}/feedbackLabels/{feedback_label\}
      */
@@ -26235,8 +26124,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datasets$Insightsdata$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Insightsdata$Export extends StandardParameters {
     /**
      * Required. The parent resource to export data from.
      */
@@ -26411,8 +26299,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Encryptionspec$Initialize
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Encryptionspec$Initialize extends StandardParameters {
     /**
      * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
      */
@@ -26591,8 +26478,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Insightsdata$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insightsdata$Export extends StandardParameters {
     /**
      * Required. The parent resource to export data from.
      */
@@ -28172,15 +28058,13 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Issuemodels$Calculateissuemodelstats
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Calculateissuemodelstats extends StandardParameters {
     /**
      * Required. The resource name of the issue model to query against.
      */
     issueModel?: string;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Create extends StandardParameters {
     /**
      * Required. The parent resource of the issue model.
      */
@@ -28191,15 +28075,13 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1IssueModel;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Delete extends StandardParameters {
     /**
      * Required. The name of the issue model to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Deploy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Deploy extends StandardParameters {
     /**
      * Required. The issue model to deploy.
      */
@@ -28210,8 +28092,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1DeployIssueModelRequest;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Export extends StandardParameters {
     /**
      * Required. The issue model to export.
      */
@@ -28222,15 +28103,13 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelRequest;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Get extends StandardParameters {
     /**
      * Required. The name of the issue model to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Import extends StandardParameters {
     /**
      * Required. The parent resource of the issue model.
      */
@@ -28241,15 +28120,13 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelRequest;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$List extends StandardParameters {
     /**
      * Required. The parent resource of the issue model.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the issue model. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}
      */
@@ -28264,8 +28141,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1IssueModel;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Undeploy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Undeploy extends StandardParameters {
     /**
      * Required. The issue model to undeploy.
      */
@@ -29051,8 +28927,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Issuemodels$Issues$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Issues$Create extends StandardParameters {
     /**
      * Required. The parent resource of the issue.
      */
@@ -29063,29 +28938,25 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1Issue;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Issues$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Issues$Delete extends StandardParameters {
     /**
      * Required. The name of the issue to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Issues$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Issues$Get extends StandardParameters {
     /**
      * Required. The name of the issue to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Issues$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Issues$List extends StandardParameters {
     /**
      * Required. The parent resource of the issue.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Issuemodels$Issues$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Issuemodels$Issues$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the issue. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}/issues/{issue\}
      */
@@ -29542,22 +29413,19 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -30387,8 +30255,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Phrasematchers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Phrasematchers$Create extends StandardParameters {
     /**
      * Required. The parent resource of the phrase matcher. Required. The location to create a phrase matcher for. Format: `projects//locations/` or `projects//locations/`
      */
@@ -30399,22 +30266,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher;
   }
-  export interface Params$Resource$Projects$Locations$Phrasematchers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Phrasematchers$Delete extends StandardParameters {
     /**
      * Required. The name of the phrase matcher to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Phrasematchers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Phrasematchers$Get extends StandardParameters {
     /**
      * Required. The name of the phrase matcher to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Phrasematchers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Phrasematchers$List extends StandardParameters {
     /**
      * A filter to reduce results to a specific subset. Useful for querying phrase matchers with specific properties.
      */
@@ -30432,8 +30296,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Phrasematchers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Phrasematchers$Patch extends StandardParameters {
     /**
      * The resource name of the phrase matcher. Format: projects/{project\}/locations/{location\}/phraseMatchers/{phrase_matcher\}
      */
@@ -31228,8 +31091,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Qaquestiontags$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qaquestiontags$Create extends StandardParameters {
     /**
      * Required. The parent resource of the QaQuestionTag.
      */
@@ -31244,22 +31106,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1QaQuestionTag;
   }
-  export interface Params$Resource$Projects$Locations$Qaquestiontags$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qaquestiontags$Delete extends StandardParameters {
     /**
      * Required. The name of the QaQuestionTag to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Qaquestiontags$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qaquestiontags$Get extends StandardParameters {
     /**
      * Required. The name of the QaQuestionTag to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Qaquestiontags$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qaquestiontags$List extends StandardParameters {
     /**
      * Optional. A filter to reduce results to a specific subset. Supports conjunctions (ie. AND operators). Supported fields include the following: * `project_id` - id of the project to list tags for * `qa_scorecard_id` - id of the scorecard to list tags for * `revision_id` - id of the scorecard revision to list tags for` * `qa_question_id - id of the question to list tags for`
      */
@@ -31269,8 +31128,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Qaquestiontags$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qaquestiontags$Patch extends StandardParameters {
     /**
      * Identifier. Resource name for the QaQuestionTag Format projects/{project\}/locations/{location\}/qaQuestionTags/{qa_question_tag\} In the above format, the last segment, i.e., qa_question_tag, is a server-generated ID corresponding to the tag resource.
      */
@@ -32079,8 +31937,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Qascorecards$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Create extends StandardParameters {
     /**
      * Required. The parent resource of the QaScorecard.
      */
@@ -32095,8 +31952,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1QaScorecard;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Delete extends StandardParameters {
     /**
      * Optional. If set to true, all of this QaScorecard's child resources will also be deleted. Otherwise, the request will only succeed if it has none.
      */
@@ -32106,15 +31962,13 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Get extends StandardParameters {
     /**
      * Required. The name of the QaScorecard to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$List extends StandardParameters {
     /**
      * Optional. The maximum number of scorecards to return in the response. If the value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      */
@@ -32132,8 +31986,7 @@ export namespace contactcenterinsights_v1 {
      */
     qaScorecardSources?: string[];
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Patch extends StandardParameters {
     /**
      * Identifier. The scorecard name. Format: projects/{project\}/locations/{location\}/qaScorecards/{qa_scorecard\}
      */
@@ -33263,8 +33116,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Create extends StandardParameters {
     /**
      * Required. The parent resource of the QaScorecardRevision.
      */
@@ -33279,8 +33131,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Delete extends StandardParameters {
     /**
      * Optional. If set to true, all of this QaScorecardRevision's child resources will also be deleted. Otherwise, the request will only succeed if it has none.
      */
@@ -33290,8 +33141,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Deploy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Deploy extends StandardParameters {
     /**
      * Required. The name of the QaScorecardRevision to deploy.
      */
@@ -33302,15 +33152,13 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1DeployQaScorecardRevisionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Get extends StandardParameters {
     /**
      * Required. The name of the QaScorecardRevision to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$List extends StandardParameters {
     /**
      * Optional. A filter to reduce results to a specific subset. Useful for querying scorecard revisions with specific properties.
      */
@@ -33332,8 +33180,7 @@ export namespace contactcenterinsights_v1 {
      */
     qaScorecardSources?: string[];
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Tuneqascorecardrevision
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Tuneqascorecardrevision extends StandardParameters {
     /**
      * Required. The parent resource for new fine tuning job instance.
      */
@@ -33344,8 +33191,7 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1TuneQaScorecardRevisionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Undeploy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Undeploy extends StandardParameters {
     /**
      * Required. The name of the QaScorecardRevision to undeploy.
      */
@@ -34190,8 +34036,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Create extends StandardParameters {
     /**
      * Required. The parent resource of the QaQuestion.
      */
@@ -34206,22 +34051,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1QaQuestion;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Delete extends StandardParameters {
     /**
      * Required. The name of the QaQuestion to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Get extends StandardParameters {
     /**
      * Required. The name of the QaQuestion to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$List extends StandardParameters {
     /**
      * Optional. The maximum number of questions to return in the response. If the value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      */
@@ -34235,8 +34077,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the question. Format: projects/{project\}/locations/{location\}/qaScorecards/{qa_scorecard\}/revisions/{revision\}/qaQuestions/{qa_question\}
      */
@@ -35021,8 +34862,7 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Views$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Views$Create extends StandardParameters {
     /**
      * Required. The parent resource of the view. Required. The location to create a view for. Format: `projects//locations/` or `projects//locations/`
      */
@@ -35033,22 +34873,19 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1View;
   }
-  export interface Params$Resource$Projects$Locations$Views$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Views$Delete extends StandardParameters {
     /**
      * Required. The name of the view to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Views$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Views$Get extends StandardParameters {
     /**
      * Required. The name of the view to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Views$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Views$List extends StandardParameters {
     /**
      * The maximum number of views to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      */
@@ -35062,8 +34899,7 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Views$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Views$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of the view. Format: projects/{project\}/locations/{location\}/views/{view\}
      */

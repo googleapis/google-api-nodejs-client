@@ -5378,7 +5378,7 @@
       }
     }
   },
-  "revision": "20251112",
+  "revision": "20251125",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -7748,6 +7748,9 @@
             "EXPORT_V9",
             "EXPORT_V10",
             "EXPORT_V11",
+            "EXPORT_V12",
+            "EXPORT_V13",
+            "EXPORT_V14",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -7763,6 +7766,9 @@
             "Export schema version 9.",
             "Export schema version 10.",
             "Export schema version 11.",
+            "Export schema version 12.",
+            "Export schema version 13.",
+            "Export schema version 14.",
             "Export schema version latest available."
           ],
           "type": "string"
@@ -12400,6 +12406,9 @@
             "EXPORT_V9",
             "EXPORT_V10",
             "EXPORT_V11",
+            "EXPORT_V12",
+            "EXPORT_V13",
+            "EXPORT_V14",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -12415,6 +12424,9 @@
             "Export schema version 9.",
             "Export schema version 10.",
             "Export schema version 11.",
+            "Export schema version 12.",
+            "Export schema version 13.",
+            "Export schema version 14.",
             "Export schema version latest available."
           ],
           "type": "string"
