@@ -2440,7 +2440,7 @@
       }
     }
   },
-  "revision": "20251106",
+  "revision": "20251111",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -5155,6 +5155,10 @@
         "adapters": {
           "$ref": "NetworkAdapterList",
           "description": "List of network adapters."
+        },
+        "defaultGateway": {
+          "description": "Optional. Default gateway address.",
+          "type": "string"
         },
         "primaryIpAddress": {
           "description": "The primary IP address of the machine.",
