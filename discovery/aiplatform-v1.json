@@ -91,6 +91,11 @@
     },
     {
       "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-north2-aiplatform.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
       "location": "europe-southwest1"
     },
@@ -233,6 +238,11 @@
       "description": "Locational Endpoint",
       "endpointUrl": "https://us-east5-aiplatform.googleapis.com/",
       "location": "us-east5"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west8-aiplatform.googleapis.com/",
+      "location": "us-west8"
     },
     {
       "description": "Regional Endpoint",
@@ -548,7 +558,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -708,7 +718,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -1034,7 +1044,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1196,7 +1206,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -1354,7 +1364,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1711,7 +1721,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -1869,7 +1879,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -2031,7 +2041,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -2427,7 +2437,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -2564,7 +2574,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -2697,7 +2707,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -2834,7 +2844,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -2967,7 +2977,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -3131,7 +3141,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -3289,7 +3299,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -3447,7 +3457,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -3607,7 +3617,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -3767,7 +3777,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -3927,7 +3937,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -4133,7 +4143,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -4293,7 +4303,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -4453,7 +4463,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -4611,7 +4621,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -4771,7 +4781,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -4931,7 +4941,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -5093,7 +5103,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -5251,7 +5261,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -5411,7 +5421,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -5571,7 +5581,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -5731,7 +5741,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -5885,7 +5895,7 @@
               "type": "string"
             },
             "returnPartialSuccess": {
-              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
               "location": "query",
               "type": "boolean"
             }
@@ -6043,7 +6053,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -6203,7 +6213,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -7237,7 +7247,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -7557,7 +7567,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -8167,7 +8177,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -8437,7 +8447,7 @@
                                   "type": "string"
                                 },
                                 "returnPartialSuccess": {
-                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                                   "location": "query",
                                   "type": "boolean"
                                 }
@@ -8595,7 +8605,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -8952,7 +8962,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -9189,7 +9199,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -9537,7 +9547,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -10333,6 +10343,48 @@
                     }
                   }
                 },
+                "google": {
+                  "resources": {
+                    "science": {
+                      "methods": {
+                        "inference": {
+                          "description": "Forwards arbitrary HTTP requests for both streaming and non-streaming cases. To use this method, invoke_route_prefix must be set to allow the paths that will be specified in the request.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/endpoints/google/science/inference",
+                          "httpMethod": "POST",
+                          "id": "aiplatform.projects.locations.endpoints.google.science.inference",
+                          "parameterOrder": [
+                            "endpoint"
+                          ],
+                          "parameters": {
+                            "deployedModelId": {
+                              "description": "ID of the DeployedModel that serves the invoke request.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "endpoint": {
+                              "description": "Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/google$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+endpoint}/science/inference",
+                          "request": {
+                            "$ref": "GoogleApiHttpBody"
+                          },
+                          "response": {
+                            "$ref": "GoogleApiHttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloud-platform.read-only"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
                 "invoke": {
                   "methods": {
                     "invoke": {
@@ -10520,7 +10572,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -11568,7 +11620,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -11701,7 +11753,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -12573,7 +12625,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -12706,7 +12758,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -13844,7 +13896,7 @@
                                   "type": "string"
                                 },
                                 "returnPartialSuccess": {
-                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                                   "location": "query",
                                   "type": "boolean"
                                 }
@@ -14002,7 +14054,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -14160,7 +14212,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -14475,7 +14527,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -14936,7 +14988,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -15313,7 +15365,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -15841,7 +15893,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -16318,7 +16370,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -16734,7 +16786,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -16995,7 +17047,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -17213,7 +17265,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -17618,7 +17670,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -18363,7 +18415,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -18625,7 +18677,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -19171,7 +19223,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -19592,7 +19644,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -19968,7 +20020,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -20126,7 +20178,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -20467,7 +20519,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -20848,7 +20900,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -21482,7 +21534,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -21761,7 +21813,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -21923,7 +21975,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -22299,7 +22351,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -22675,7 +22727,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -22996,7 +23048,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -23300,7 +23352,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -23742,7 +23794,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -24384,7 +24436,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -24771,7 +24823,7 @@
                                   "type": "string"
                                 },
                                 "returnPartialSuccess": {
-                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                                   "location": "query",
                                   "type": "boolean"
                                 }
@@ -25199,7 +25251,7 @@
                                       "type": "string"
                                     },
                                     "returnPartialSuccess": {
-                                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                                       "location": "query",
                                       "type": "boolean"
                                     }
@@ -25361,7 +25413,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -25676,7 +25728,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -25988,7 +26040,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -26387,7 +26439,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -26545,7 +26597,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -26707,7 +26759,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -27075,7 +27127,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -27235,7 +27287,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -27395,7 +27447,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -27555,7 +27607,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -27713,7 +27765,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -27877,7 +27929,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -28035,7 +28087,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -28193,7 +28245,7 @@
                               "type": "string"
                             },
                             "returnPartialSuccess": {
-                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -28355,7 +28407,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -28515,7 +28567,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -28675,7 +28727,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -28693,7 +28745,7 @@
       }
     }
   },
-  "revision": "20251101",
+  "revision": "20251117",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -29747,7 +29799,7 @@
       "id": "GoogleCloudAiplatformV1AutoscalingMetricSpec",
       "properties": {
         "metricName": {
-          "description": "Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization` * `aiplatform.googleapis.com/prediction/online/request_count`",
+          "description": "Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization` * `aiplatform.googleapis.com/prediction/online/request_count` * `pubsub.googleapis.com/subscription/num_undelivered_messages`",
           "type": "string"
         },
         "target": {
@@ -34483,7 +34535,7 @@
         },
         "response": {
           "$ref": "GoogleCloudAiplatformV1EvaluationInstanceInstanceData",
-          "description": "Required. Data used to populate placeholder `response` in a metric prompt template."
+          "description": "Optional. Data used to populate placeholder `response` in a metric prompt template."
         },
         "rubricGroups": {
           "additionalProperties": {
@@ -38060,6 +38112,17 @@
         "name": {
           "description": "Optional. The name of the function to call. Matches [FunctionDeclaration.name].",
           "type": "string"
+        },
+        "partialArgs": {
+          "description": "Optional. The partial argument value of the function call. If provided, represents the arguments/fields that are streamed incrementally.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1PartialArg"
+          },
+          "type": "array"
+        },
+        "willContinue": {
+          "description": "Optional. Whether this is the last part of the FunctionCall. If true, another partial message for the current FunctionCall is expected to follow.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -38090,6 +38153,10 @@
             "Model will not predict any function calls. Model behavior is same as when not passing any function declarations."
           ],
           "type": "string"
+        },
+        "streamFunctionCallArguments": {
+          "description": "Optional. When set to true, arguments of a single function call will be streamed out in multiple parts/contents/responses. Partial parameter results will be returned in the [FunctionCall.partial_args] field.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -38103,7 +38170,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The name of the function to call. Must start with a letter or an underscore. Must be a-z, A-Z, 0-9, or contain underscores, dots and dashes, with a maximum length of 64.",
+          "description": "Required. The name of the function to call. Must start with a letter or an underscore. Must be a-z, A-Z, 0-9, or contain underscores, dots, colons and dashes, with a maximum length of 64.",
           "type": "string"
         },
         "parameters": {
@@ -38882,6 +38949,20 @@
           "description": "Optional. The token budget for the model's thinking process. The model will make a best effort to stay within this budget. This can be used to control the trade-off between response quality and latency.",
           "format": "int32",
           "type": "integer"
+        },
+        "thinkingLevel": {
+          "description": "Optional. The number of thoughts tokens that the model should generate.",
+          "enum": [
+            "THINKING_LEVEL_UNSPECIFIED",
+            "LOW",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unspecified thinking level.",
+            "Low thinking level.",
+            "High thinking level."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -39424,6 +39505,10 @@
         "imageOutputOptions": {
           "$ref": "GoogleCloudAiplatformV1ImageConfigImageOutputOptions",
           "description": "Optional. The image output format for generated images."
+        },
+        "imageSize": {
+          "description": "Optional. Specifies the size of generated images. Supported values are `1K`, `2K`, `4K`. If not specified, the model will use default value `1K`.",
+          "type": "string"
         },
         "personGeneration": {
           "description": "Optional. Controls whether the model can generate people.",
@@ -41599,6 +41684,179 @@
           "format": "double",
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1MemoryBankCustomizationConfig": {
+      "description": "Configuration for organizing memories for a particular scope.",
+      "id": "GoogleCloudAiplatformV1MemoryBankCustomizationConfig",
+      "properties": {
+        "generateMemoriesExamples": {
+          "description": "Optional. Examples of how to generate memories for a particular scope.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExample"
+          },
+          "type": "array"
+        },
+        "memoryTopics": {
+          "description": "Optional. Topics of information that should be extracted from conversations and stored as memories. If not set, then Memory Bank's default topics will be used.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigMemoryTopic"
+          },
+          "type": "array"
+        },
+        "scopeKeys": {
+          "description": "Optional. The scope keys (i.e. 'user_id') for which to use this config. A request's scope must include all of the provided keys for the config to be used (order does not matter). If empty, then the config will be used for all requests that do not have a more specific config. Only one default config is allowed per Memory Bank.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExample": {
+      "description": "An example of how to generate memories for a particular scope.",
+      "id": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExample",
+      "properties": {
+        "conversationSource": {
+          "$ref": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSource",
+          "description": "A conversation source for the example."
+        },
+        "generatedMemories": {
+          "description": "Optional. The memories that are expected to be generated from the input conversation. An empty list indicates that no memories are expected to be generated for the input conversation.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExampleGeneratedMemory"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSource": {
+      "description": "A conversation source for the example. This is similar to `DirectContentsSource`.",
+      "id": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSource",
+      "properties": {
+        "events": {
+          "description": "Optional. The input conversation events for the example.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSourceEvent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSourceEvent": {
+      "description": "A single conversation event.",
+      "id": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSourceEvent",
+      "properties": {
+        "content": {
+          "$ref": "GoogleCloudAiplatformV1Content",
+          "description": "Required. The content of the event."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExampleGeneratedMemory": {
+      "description": "A memory generated by the operation.",
+      "id": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExampleGeneratedMemory",
+      "properties": {
+        "fact": {
+          "description": "Required. The fact to generate a memory from.",
+          "type": "string"
+        },
+        "topics": {
+          "description": "Optional. The list of topics that the memory should be associated with. For example, use `custom_memory_topic_label = \"jargon\"` if the extracted memory is an example of memory extraction for the custom topic `jargon`.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1MemoryTopicId"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1MemoryBankCustomizationConfigMemoryTopic": {
+      "description": "A topic of information that should be extracted from conversations and stored as memories.",
+      "id": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigMemoryTopic",
+      "properties": {
+        "customMemoryTopic": {
+          "$ref": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigMemoryTopicCustomMemoryTopic",
+          "description": "A custom memory topic defined by the developer."
+        },
+        "managedMemoryTopic": {
+          "$ref": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic",
+          "description": "A managed memory topic defined by Memory Bank."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1MemoryBankCustomizationConfigMemoryTopicCustomMemoryTopic": {
+      "description": "A custom memory topic defined by the developer.",
+      "id": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigMemoryTopicCustomMemoryTopic",
+      "properties": {
+        "description": {
+          "description": "Required. Description of the memory topic. This should explain what information should be extracted for this topic.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Required. The label of the topic.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic": {
+      "description": "A managed memory topic defined by the system.",
+      "id": "GoogleCloudAiplatformV1MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic",
+      "properties": {
+        "managedTopicEnum": {
+          "description": "Required. The managed topic.",
+          "enum": [
+            "MANAGED_TOPIC_ENUM_UNSPECIFIED",
+            "USER_PERSONAL_INFO",
+            "USER_PREFERENCES",
+            "KEY_CONVERSATION_DETAILS",
+            "EXPLICIT_INSTRUCTIONS"
+          ],
+          "enumDescriptions": [
+            "Unspecified topic. This value should not be used.",
+            "Significant personal information about the User like first names, relationships, hobbies, important dates.",
+            "Stated or implied likes, dislikes, preferred styles, or patterns.",
+            "Important milestones or conclusions within the dialogue.",
+            "Information that the user explicitly requested to remember or forget."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1MemoryTopicId": {
+      "description": "A memory topic identifier. This will be used to label a Memory and to restrict which topics are eligible for generation or retrieval.",
+      "id": "GoogleCloudAiplatformV1MemoryTopicId",
+      "properties": {
+        "customMemoryTopicLabel": {
+          "description": "Optional. The custom memory topic label.",
+          "type": "string"
+        },
+        "managedMemoryTopic": {
+          "description": "Optional. The managed memory topic.",
+          "enum": [
+            "MANAGED_TOPIC_ENUM_UNSPECIFIED",
+            "USER_PERSONAL_INFO",
+            "USER_PREFERENCES",
+            "KEY_CONVERSATION_DETAILS",
+            "EXPLICIT_INSTRUCTIONS"
+          ],
+          "enumDescriptions": [
+            "Unspecified topic. This value should not be used.",
+            "Significant personal information about the User like first names, relationships, hobbies, important dates.",
+            "Stated or implied likes, dislikes, preferred styles, or patterns.",
+            "Important milestones or conclusions within the dialogue.",
+            "Information that the user explicitly requested to remember or forget."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -45158,6 +45416,10 @@
           "$ref": "GoogleCloudAiplatformV1Blob",
           "description": "Optional. The inline data content of the part. This can be used to include images, audio, or video in a request."
         },
+        "mediaResolution": {
+          "$ref": "GoogleCloudAiplatformV1PartMediaResolution",
+          "description": "per part media resolution. Media resolution for the input media."
+        },
         "text": {
           "description": "Optional. The text content of the part.",
           "type": "string"
@@ -45174,6 +45436,67 @@
         "videoMetadata": {
           "$ref": "GoogleCloudAiplatformV1VideoMetadata",
           "description": "Optional. Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PartMediaResolution": {
+      "description": "per part media resolution. Media resolution for the input media.",
+      "id": "GoogleCloudAiplatformV1PartMediaResolution",
+      "properties": {
+        "level": {
+          "description": "The tokenization quality used for given media.",
+          "enum": [
+            "MEDIA_RESOLUTION_UNSPECIFIED",
+            "MEDIA_RESOLUTION_LOW",
+            "MEDIA_RESOLUTION_MEDIUM",
+            "MEDIA_RESOLUTION_HIGH"
+          ],
+          "enumDescriptions": [
+            "Media resolution has not been set.",
+            "Media resolution set to low.",
+            "Media resolution set to medium.",
+            "Media resolution set to high."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PartialArg": {
+      "description": "Partial argument value of the function call.",
+      "id": "GoogleCloudAiplatformV1PartialArg",
+      "properties": {
+        "boolValue": {
+          "description": "Optional. Represents a boolean value.",
+          "type": "boolean"
+        },
+        "jsonPath": {
+          "description": "Required. A JSON Path (RFC 9535) to the argument being streamed. https://datatracker.ietf.org/doc/html/rfc9535. e.g. \"$.foo.bar[0].data\".",
+          "type": "string"
+        },
+        "nullValue": {
+          "description": "Optional. Represents a null value.",
+          "enum": [
+            "NULL_VALUE"
+          ],
+          "enumDescriptions": [
+            "Null value."
+          ],
+          "type": "string"
+        },
+        "numberValue": {
+          "description": "Optional. Represents a double value.",
+          "format": "double",
+          "type": "number"
+        },
+        "stringValue": {
+          "description": "Optional. Represents a string value.",
+          "type": "string"
+        },
+        "willContinue": {
+          "description": "Optional. Whether this is not the last part of the same json_path. If true, another PartialArg message for the current json_path is expected to follow.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -48268,6 +48591,10 @@
       "description": "ReasoningEngine provides a customizable runtime for models to determine which actions to take and in which order.",
       "id": "GoogleCloudAiplatformV1ReasoningEngine",
       "properties": {
+        "contextSpec": {
+          "$ref": "GoogleCloudAiplatformV1ReasoningEngineContextSpec",
+          "description": "Optional. Configuration for how Agent Engine sub-resources should manage context."
+        },
         "createTime": {
           "description": "Output only. Timestamp when this ReasoningEngine was created.",
           "format": "google-datetime",
@@ -48309,6 +48636,112 @@
           "description": "Output only. Timestamp when this ReasoningEngine was most recently updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ReasoningEngineContextSpec": {
+      "description": "Configuration for how Agent Engine sub-resources should manage context.",
+      "id": "GoogleCloudAiplatformV1ReasoningEngineContextSpec",
+      "properties": {
+        "memoryBankConfig": {
+          "$ref": "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfig",
+          "description": "Optional. Specification for a Memory Bank, which manages memories for the Agent Engine."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfig": {
+      "description": "Specification for a Memory Bank.",
+      "id": "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfig",
+      "properties": {
+        "customizationConfigs": {
+          "description": "Optional. Configuration for how to customize Memory Bank behavior for a particular scope.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1MemoryBankCustomizationConfig"
+          },
+          "type": "array"
+        },
+        "disableMemoryRevisions": {
+          "description": "If true, no memory revisions will be created for any requests to the Memory Bank.",
+          "type": "boolean"
+        },
+        "generationConfig": {
+          "$ref": "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigGenerationConfig",
+          "description": "Optional. Configuration for how to generate memories for the Memory Bank."
+        },
+        "similaritySearchConfig": {
+          "$ref": "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig",
+          "description": "Optional. Configuration for how to perform similarity search on memories. If not set, the Memory Bank will use the default embedding model `text-embedding-005`."
+        },
+        "ttlConfig": {
+          "$ref": "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigTtlConfig",
+          "description": "Optional. Configuration for automatic TTL (\"time-to-live\") of the memories in the Memory Bank. If not set, TTL will not be applied automatically. The TTL can be explicitly set by modifying the `expire_time` of each Memory resource."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigGenerationConfig": {
+      "description": "Configuration for how to generate memories.",
+      "id": "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigGenerationConfig",
+      "properties": {
+        "model": {
+          "description": "Required. The model used to generate memories. Format: `projects/{project}/locations/{location}/publishers/google/models/{model}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig": {
+      "description": "Configuration for how to perform similarity search on memories.",
+      "id": "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig",
+      "properties": {
+        "embeddingModel": {
+          "description": "Required. The model used to generate embeddings to lookup similar memories. Format: `projects/{project}/locations/{location}/publishers/google/models/{model}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigTtlConfig": {
+      "description": "Configuration for automatically setting the TTL (\"time-to-live\") of the memories in the Memory Bank.",
+      "id": "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigTtlConfig",
+      "properties": {
+        "defaultTtl": {
+          "description": "Optional. The default TTL duration of the memories in the Memory Bank. This applies to all operations that create or update a memory.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "granularTtlConfig": {
+          "$ref": "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig",
+          "description": "Optional. The granular TTL configuration of the memories in the Memory Bank."
+        },
+        "memoryRevisionDefaultTtl": {
+          "description": "Optional. The default TTL duration of the memory revisions in the Memory Bank. This applies to all operations that create a memory revision. If not set, a default TTL of 365 days will be used.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig": {
+      "description": "Configuration for TTL of the memories in the Memory Bank based on the action that created or updated the memory.",
+      "id": "GoogleCloudAiplatformV1ReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig",
+      "properties": {
+        "createTtl": {
+          "description": "Optional. The TTL duration for memories uploaded via CreateMemory.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "generateCreatedTtl": {
+          "description": "Optional. The TTL duration for memories newly generated via GenerateMemories (GenerateMemoriesResponse.GeneratedMemory.Action.CREATED).",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "generateUpdatedTtl": {
+          "description": "Optional. The TTL duration for memories updated via GenerateMemories (GenerateMemoriesResponse.GeneratedMemory.Action.UPDATED). In the case of an UPDATE action, the `expire_time` of the existing memory will be updated to the new value (now + TTL).",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -48554,6 +48987,22 @@
       "description": "Response message for IndexService.RemoveDatapoints",
       "id": "GoogleCloudAiplatformV1RemoveDatapointsResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ReplicatedVoiceConfig": {
+      "description": "The configuration for the replicated voice to use.",
+      "id": "GoogleCloudAiplatformV1ReplicatedVoiceConfig",
+      "properties": {
+        "mimeType": {
+          "description": "Optional. The mimetype of the voice sample. Currently only mime_type=audio/pcm is supported, which is raw mono 16-bit signed little-endian pcm data, with 24k sampling rate.",
+          "type": "string"
+        },
+        "voiceSampleAudio": {
+          "description": "Optional. The sample of the custom voice.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1ReservationAffinity": {
@@ -51703,6 +52152,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderData": {
+      "description": "Defines data for an application builder.",
+      "id": "GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderData",
+      "properties": {
+        "codeRepositoryState": {
+          "description": "Serialized state of the code repository. This string will typically contain a JSON representation of the UI's CodeRepositoryService state (files, folders, content, and any metadata). The UI is responsible for serialization and deserialization.",
+          "type": "string"
+        },
+        "linkedResources": {
+          "description": "Linked resources attached to the application by the user.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderDataLinkedResource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderDataLinkedResource": {
+      "description": "A linked resource attached to the application by the user.",
+      "id": "GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderDataLinkedResource",
+      "properties": {
+        "displayName": {
+          "description": "A user-friendly name for the data source shown in the UI.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The unique resource name of the data source. The format is determined by the 'type' field. For type \"SAVED_PROMPT\": projects/{project}/locations/{location}/datasets/{dataset} For type \"AI_AGENT\": projects/{project}/locations/{location}/agents/{agent}",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the linked resource. e.g., \"SAVED_PROMPT\", \"AI_AGENT\" This string corresponds to the name of the LinkedResourceType enum member. See: google3/cloud/console/web/ai/platform/llm/prompts/build/services/specs_repository_service/linked_resources/linked_resource.ts",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1SchemaPromptSpecMultimodalPrompt": {
       "description": "Prompt variation that embeds preambles to prompt string.",
       "id": "GoogleCloudAiplatformV1SchemaPromptSpecMultimodalPrompt",
@@ -51805,6 +52291,10 @@
       "description": "Prompt variation that stores preambles in separate fields.",
       "id": "GoogleCloudAiplatformV1SchemaPromptSpecStructuredPrompt",
       "properties": {
+        "appBuilderData": {
+          "$ref": "GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderData",
+          "description": "Data for app builder use case."
+        },
         "context": {
           "$ref": "GoogleCloudAiplatformV1Content",
           "description": "Preamble: The context of the prompt."
@@ -58370,6 +58860,10 @@
         "prebuiltVoiceConfig": {
           "$ref": "GoogleCloudAiplatformV1PrebuiltVoiceConfig",
           "description": "The configuration for a prebuilt voice."
+        },
+        "replicatedVoiceConfig": {
+          "$ref": "GoogleCloudAiplatformV1ReplicatedVoiceConfig",
+          "description": "Optional. The configuration for a replicated voice. This enables users to replicate a voice from an audio sample."
         }
       },
       "type": "object"
@@ -58657,7 +59151,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
