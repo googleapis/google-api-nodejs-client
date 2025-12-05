@@ -1695,8 +1695,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Bookshelves$Volumes$List
-    extends StandardParameters {
+  export interface Params$Resource$Bookshelves$Volumes$List extends StandardParameters {
     /**
      * Maximum number of results to return
      */
@@ -2167,8 +2166,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Cloudloading$Addbook
-    extends StandardParameters {
+  export interface Params$Resource$Cloudloading$Addbook extends StandardParameters {
     /**
      * A drive document id. The upload_client_token must not be set.
      */
@@ -2186,15 +2184,13 @@ export namespace books_v1 {
      */
     upload_client_token?: string;
   }
-  export interface Params$Resource$Cloudloading$Deletebook
-    extends StandardParameters {
+  export interface Params$Resource$Cloudloading$Deletebook extends StandardParameters {
     /**
      * The id of the book to be removed.
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Cloudloading$Updatebook
-    extends StandardParameters {
+  export interface Params$Resource$Cloudloading$Updatebook extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2346,8 +2342,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Dictionary$Listofflinemetadata
-    extends StandardParameters {
+  export interface Params$Resource$Dictionary$Listofflinemetadata extends StandardParameters {
     /**
      * The device/version ID from which to request the data.
      */
@@ -2777,15 +2772,13 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Familysharing$Getfamilyinfo
-    extends StandardParameters {
+  export interface Params$Resource$Familysharing$Getfamilyinfo extends StandardParameters {
     /**
      * String to identify the originator of this request.
      */
     source?: string;
   }
-  export interface Params$Resource$Familysharing$Share
-    extends StandardParameters {
+  export interface Params$Resource$Familysharing$Share extends StandardParameters {
     /**
      * The docid to share.
      */
@@ -2799,8 +2792,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Familysharing$Unshare
-    extends StandardParameters {
+  export interface Params$Resource$Familysharing$Unshare extends StandardParameters {
     /**
      * The docid to unshare.
      */
@@ -3507,8 +3499,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Layers$Annotationdata$Get
-    extends StandardParameters {
+  export interface Params$Resource$Layers$Annotationdata$Get extends StandardParameters {
     /**
      * For the dictionary layer. Whether or not to allow web definitions.
      */
@@ -3550,8 +3541,7 @@ export namespace books_v1 {
      */
     w?: number;
   }
-  export interface Params$Resource$Layers$Annotationdata$List
-    extends StandardParameters {
+  export interface Params$Resource$Layers$Annotationdata$List extends StandardParameters {
     /**
      * The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
      */
@@ -3939,8 +3929,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Layers$Volumeannotations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Layers$Volumeannotations$Get extends StandardParameters {
     /**
      * The ID of the volume annotation to retrieve.
      */
@@ -3962,8 +3951,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Layers$Volumeannotations$List
-    extends StandardParameters {
+  export interface Params$Resource$Layers$Volumeannotations$List extends StandardParameters {
     /**
      * The content version for the requested volume.
      */
@@ -4770,15 +4758,13 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Myconfig$Getusersettings
-    extends StandardParameters {
+  export interface Params$Resource$Myconfig$Getusersettings extends StandardParameters {
     /**
      * Unused. Added only to workaround TEX mandatory request template requirement
      */
     country?: string;
   }
-  export interface Params$Resource$Myconfig$Releasedownloadaccess
-    extends StandardParameters {
+  export interface Params$Resource$Myconfig$Releasedownloadaccess extends StandardParameters {
     /**
      * The device/version ID from which to release the restriction.
      */
@@ -4796,8 +4782,7 @@ export namespace books_v1 {
      */
     volumeIds?: string[];
   }
-  export interface Params$Resource$Myconfig$Requestaccess
-    extends StandardParameters {
+  export interface Params$Resource$Myconfig$Requestaccess extends StandardParameters {
     /**
      * The device/version ID from which to request the restrictions.
      */
@@ -4823,8 +4808,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Myconfig$Syncvolumelicenses
-    extends StandardParameters {
+  export interface Params$Resource$Myconfig$Syncvolumelicenses extends StandardParameters {
     /**
      * The device/version ID from which to release the restriction.
      */
@@ -4858,8 +4842,7 @@ export namespace books_v1 {
      */
     volumeIds?: string[];
   }
-  export interface Params$Resource$Myconfig$Updateusersettings
-    extends StandardParameters {
+  export interface Params$Resource$Myconfig$Updateusersettings extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -5685,8 +5668,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Annotations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Annotations$Delete extends StandardParameters {
     /**
      * The ID for the annotation to delete.
      */
@@ -5696,8 +5678,7 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Annotations$Insert extends StandardParameters {
     /**
      * The ID for the annotation to insert.
      */
@@ -5720,8 +5701,7 @@ export namespace books_v1 {
      */
     requestBody?: Schema$Annotation;
   }
-  export interface Params$Resource$Mylibrary$Annotations$List
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Annotations$List extends StandardParameters {
     /**
      * The content version for the requested volume.
      */
@@ -5763,8 +5743,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Summary
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Annotations$Summary extends StandardParameters {
     /**
      * Array of layer IDs to get the summary for.
      */
@@ -5778,8 +5757,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Update
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Annotations$Update extends StandardParameters {
     /**
      * The ID for the annotation to update.
      */
@@ -6646,8 +6624,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Bookshelves$Addvolume
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Addvolume extends StandardParameters {
     /**
      * The reason for which the book is added to the library.
      */
@@ -6665,8 +6642,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Clearvolumes
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Clearvolumes extends StandardParameters {
     /**
      * ID of bookshelf from which to remove a volume.
      */
@@ -6676,8 +6652,7 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Get
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Get extends StandardParameters {
     /**
      * ID of bookshelf to retrieve.
      */
@@ -6687,15 +6662,13 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$List
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$List extends StandardParameters {
     /**
      * String to identify the originator of this request.
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Movevolume
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Movevolume extends StandardParameters {
     /**
      * ID of bookshelf with the volume.
      */
@@ -6713,8 +6686,7 @@ export namespace books_v1 {
      */
     volumePosition?: number;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Removevolume
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Removevolume extends StandardParameters {
     /**
      * The reason for which the book is removed from the library.
      */
@@ -6892,8 +6864,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Bookshelves$Volumes$List
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Volumes$List extends StandardParameters {
     /**
      * ISO-3166-1 code to override the IP-based location.
      */
@@ -7228,8 +7199,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Readingpositions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Readingpositions$Get extends StandardParameters {
     /**
      * Volume content version for which this reading position is requested.
      */
@@ -7243,8 +7213,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Readingpositions$Setposition
-    extends StandardParameters {
+  export interface Params$Resource$Mylibrary$Readingpositions$Setposition extends StandardParameters {
     /**
      * Action that caused this reading position to be set.
      */
@@ -7744,15 +7713,13 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Onboarding$Listcategories
-    extends StandardParameters {
+  export interface Params$Resource$Onboarding$Listcategories extends StandardParameters {
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
      */
     locale?: string;
   }
-  export interface Params$Resource$Onboarding$Listcategoryvolumes
-    extends StandardParameters {
+  export interface Params$Resource$Onboarding$Listcategoryvolumes extends StandardParameters {
     /**
      * List of category ids requested.
      */
@@ -7925,8 +7892,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Personalizedstream$Get
-    extends StandardParameters {
+  export interface Params$Resource$Personalizedstream$Get extends StandardParameters {
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
@@ -8391,8 +8357,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Promooffer$Accept
-    extends StandardParameters {
+  export interface Params$Resource$Promooffer$Accept extends StandardParameters {
     /**
      * device android_id
      */
@@ -8426,8 +8391,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Promooffer$Dismiss
-    extends StandardParameters {
+  export interface Params$Resource$Promooffer$Dismiss extends StandardParameters {
     /**
      * device android_id
      */
@@ -8787,8 +8751,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Series$Membership$Get
-    extends StandardParameters {
+  export interface Params$Resource$Series$Membership$Get extends StandardParameters {
     /**
      * Number of maximum results per page to be included in the response.
      */
@@ -9380,8 +9343,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Associated$List
-    extends StandardParameters {
+  export interface Params$Resource$Volumes$Associated$List extends StandardParameters {
     /**
      * Association type.
      */
@@ -9562,8 +9524,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Mybooks$List
-    extends StandardParameters {
+  export interface Params$Resource$Volumes$Mybooks$List extends StandardParameters {
     /**
      * How the book was acquired
      */
@@ -9897,8 +9858,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Recommended$List
-    extends StandardParameters {
+  export interface Params$Resource$Volumes$Recommended$List extends StandardParameters {
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
@@ -9912,8 +9872,7 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Volumes$Recommended$Rate
-    extends StandardParameters {
+  export interface Params$Resource$Volumes$Recommended$Rate extends StandardParameters {
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
@@ -10088,8 +10047,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Useruploaded$List
-    extends StandardParameters {
+  export interface Params$Resource$Volumes$Useruploaded$List extends StandardParameters {
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
