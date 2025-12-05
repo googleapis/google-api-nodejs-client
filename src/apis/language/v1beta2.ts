@@ -3700,50 +3700,43 @@ export namespace language_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Documents$Analyzeentities
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Analyzeentities extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeEntitiesRequest;
   }
-  export interface Params$Resource$Documents$Analyzeentitysentiment
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Analyzeentitysentiment extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeEntitySentimentRequest;
   }
-  export interface Params$Resource$Documents$Analyzesentiment
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Analyzesentiment extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeSentimentRequest;
   }
-  export interface Params$Resource$Documents$Analyzesyntax
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Analyzesyntax extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeSyntaxRequest;
   }
-  export interface Params$Resource$Documents$Annotatetext
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Annotatetext extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnnotateTextRequest;
   }
-  export interface Params$Resource$Documents$Classifytext
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Classifytext extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ClassifyTextRequest;
   }
-  export interface Params$Resource$Documents$Moderatetext
-    extends StandardParameters {
+  export interface Params$Resource$Documents$Moderatetext extends StandardParameters {
     /**
      * Request body metadata
      */
