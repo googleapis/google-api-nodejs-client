@@ -2052,8 +2052,7 @@ export namespace pubsub_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Subscriptions$Acknowledge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Acknowledge extends StandardParameters {
     /**
      * The subscription whose message is being acknowledged.
      */
@@ -2064,8 +2063,7 @@ export namespace pubsub_v1beta2 {
      */
     requestBody?: Schema$AcknowledgeRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Create extends StandardParameters {
     /**
      * The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
@@ -2076,22 +2074,19 @@ export namespace pubsub_v1beta2 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Projects$Subscriptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Delete extends StandardParameters {
     /**
      * The subscription to delete.
      */
     subscription?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Get extends StandardParameters {
     /**
      * The name of the subscription to get.
      */
     subscription?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2101,8 +2096,7 @@ export namespace pubsub_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$List extends StandardParameters {
     /**
      * Maximum number of subscriptions to return.
      */
@@ -2116,8 +2110,7 @@ export namespace pubsub_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$Modifyackdeadline
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Modifyackdeadline extends StandardParameters {
     /**
      * The name of the subscription.
      */
@@ -2128,8 +2121,7 @@ export namespace pubsub_v1beta2 {
      */
     requestBody?: Schema$ModifyAckDeadlineRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Modifypushconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Modifypushconfig extends StandardParameters {
     /**
      * The name of the subscription.
      */
@@ -2140,8 +2132,7 @@ export namespace pubsub_v1beta2 {
      */
     requestBody?: Schema$ModifyPushConfigRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Pull
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Pull extends StandardParameters {
     /**
      * The subscription from which messages should be pulled.
      */
@@ -2152,8 +2143,7 @@ export namespace pubsub_v1beta2 {
      */
     requestBody?: Schema$PullRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2164,8 +2154,7 @@ export namespace pubsub_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Subscriptions$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3344,8 +3333,7 @@ export namespace pubsub_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Topics$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Create extends StandardParameters {
     /**
      * The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
@@ -3356,22 +3344,19 @@ export namespace pubsub_v1beta2 {
      */
     requestBody?: Schema$Topic;
   }
-  export interface Params$Resource$Projects$Topics$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Delete extends StandardParameters {
     /**
      * Name of the topic to delete.
      */
     topic?: string;
   }
-  export interface Params$Resource$Projects$Topics$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Get extends StandardParameters {
     /**
      * The name of the topic to get.
      */
     topic?: string;
   }
-  export interface Params$Resource$Projects$Topics$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3381,8 +3366,7 @@ export namespace pubsub_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Topics$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$List extends StandardParameters {
     /**
      * Maximum number of topics to return.
      */
@@ -3396,8 +3380,7 @@ export namespace pubsub_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Topics$Publish
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Publish extends StandardParameters {
     /**
      * The messages in the request will be published on this topic.
      */
@@ -3408,8 +3391,7 @@ export namespace pubsub_v1beta2 {
      */
     requestBody?: Schema$PublishRequest;
   }
-  export interface Params$Resource$Projects$Topics$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3420,8 +3402,7 @@ export namespace pubsub_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Topics$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3591,8 +3572,7 @@ export namespace pubsub_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Topics$Subscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Topics$Subscriptions$List extends StandardParameters {
     /**
      * Maximum number of subscription names to return.
      */
