@@ -139,6 +139,10 @@ export namespace firebaseappdistribution_v1 {
      */
     blobId?: string | null;
     /**
+     * A serialized External Read Token passed from Bigstore -\> Scotty for a GCS download. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads.
+     */
+    downloadExternalReadToken?: string | null;
+    /**
      * Read handle passed from Bigstore -\> Scotty for a GCS download. This is a signed, serialized blobstore2.ReadHandle proto which must never be set outside of Bigstore, and is not applicable to non-GCS media downloads.
      */
     downloadReadHandle?: string | null;
@@ -799,7 +803,7 @@ export namespace firebaseappdistribution_v1 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1223,8 +1227,7 @@ export namespace firebaseappdistribution_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Getaabinfo
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Getaabinfo extends StandardParameters {
     /**
      * Required. The name of the `AabInfo` resource to retrieve. Format: `projects/{project_number\}/apps/{app\}/aabInfo`
      */
@@ -2030,8 +2033,7 @@ export namespace firebaseappdistribution_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Releases$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Batchdelete extends StandardParameters {
     /**
      * Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app\}`
      */
@@ -2042,8 +2044,7 @@ export namespace firebaseappdistribution_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1BatchDeleteReleasesRequest;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Distribute
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Distribute extends StandardParameters {
     /**
      * Required. The name of the release resource to distribute. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      */
@@ -2054,15 +2055,13 @@ export namespace firebaseappdistribution_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1DistributeReleaseRequest;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Get extends StandardParameters {
     /**
      * Required. The name of the release resource to retrieve. Format: projects/{project_number\}/apps/{app\}/releases/{release\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Releases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$List extends StandardParameters {
     /**
      * Optional. The expression to filter releases listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `releaseNotes.text` supports `=` (can contain a wildcard character (`*`) at the beginning or end of the string) - `createTime` supports `<`, `<=`, `\>` and `\>=`, and expects an RFC-3339 formatted string Examples: - `createTime <= "2021-09-08T00:00:00+04:00"` - `releaseNotes.text="fixes" AND createTime \>= "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"`
      */
@@ -2084,8 +2083,7 @@ export namespace firebaseappdistribution_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Patch extends StandardParameters {
     /**
      * The name of the release resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      */
@@ -2552,22 +2550,19 @@ export namespace firebaseappdistribution_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Releases$Feedbackreports$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Feedbackreports$Delete extends StandardParameters {
     /**
      * Required. The name of the feedback report to delete. Format: projects/{project_number\}/apps/{app\}/releases/{release\}/feedbackReports/{feedback_report\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Feedbackreports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Feedbackreports$Get extends StandardParameters {
     /**
      * Required. The name of the feedback report to retrieve. Format: projects/{project_number\}/apps/{app\}/releases/{release\}/feedbackReports/{feedback_report\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Feedbackreports$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Feedbackreports$List extends StandardParameters {
     /**
      * Output only. The maximum number of feedback reports to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 feedback reports are returned. Values above 100 are coerced to 100.
      */
@@ -3046,7 +3041,7 @@ export namespace firebaseappdistribution_v1 {
      *       pageSize: 'placeholder-value',
      *       // The standard list page token.
      *       pageToken: 'placeholder-value',
-     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *       returnPartialSuccess: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -3318,8 +3313,7 @@ export namespace firebaseappdistribution_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Releases$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3330,22 +3324,19 @@ export namespace firebaseappdistribution_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -3363,12 +3354,11 @@ export namespace firebaseappdistribution_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Operations$Wait
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Operations$Wait extends StandardParameters {
     /**
      * The name of the operation resource to wait on.
      */
@@ -4430,8 +4420,7 @@ export namespace firebaseappdistribution_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Groups$Batchjoin
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$Batchjoin extends StandardParameters {
     /**
      * Required. The name of the group resource to which testers are added. Format: `projects/{project_number\}/groups/{group_alias\}`
      */
@@ -4442,8 +4431,7 @@ export namespace firebaseappdistribution_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1BatchJoinGroupRequest;
   }
-  export interface Params$Resource$Projects$Groups$Batchleave
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$Batchleave extends StandardParameters {
     /**
      * Required. The name of the group resource from which testers are removed. Format: `projects/{project_number\}/groups/{group_alias\}`
      */
@@ -4454,8 +4442,7 @@ export namespace firebaseappdistribution_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1BatchLeaveGroupRequest;
   }
-  export interface Params$Resource$Projects$Groups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$Create extends StandardParameters {
     /**
      * Optional. The "alias" to use for the group, which will become the final component of the group's resource name. This value must be unique per project. The field is named `groupId` to comply with AIP guidance for user-specified IDs. This value should be 4-63 characters, and valid characters are `/a-z-/`. If not set, it will be generated based on the display name.
      */
@@ -4470,22 +4457,19 @@ export namespace firebaseappdistribution_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1Group;
   }
-  export interface Params$Resource$Projects$Groups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$Delete extends StandardParameters {
     /**
      * Required. The name of the group resource. Format: `projects/{project_number\}/groups/{group_alias\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Groups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$Get extends StandardParameters {
     /**
      * Required. The name of the group resource to retrieve. Format: `projects/{project_number\}/groups/{group_alias\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Groups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$List extends StandardParameters {
     /**
      * Optional. The maximum number of groups to return. The service may return fewer than this value. The valid range is [1-1000]; If unspecified (0), at most 25 groups are returned. Values above 1000 are coerced to 1000.
      */
@@ -4499,8 +4483,7 @@ export namespace firebaseappdistribution_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Groups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$Patch extends StandardParameters {
     /**
      * The name of the group resource. Format: `projects/{project_number\}/groups/{group_alias\}`
      */
@@ -5147,8 +5130,7 @@ export namespace firebaseappdistribution_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Testers$Batchadd
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Testers$Batchadd extends StandardParameters {
     /**
      * Required. The name of the project resource. Format: `projects/{project_number\}`
      */
@@ -5159,8 +5141,7 @@ export namespace firebaseappdistribution_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1BatchAddTestersRequest;
   }
-  export interface Params$Resource$Projects$Testers$Batchremove
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Testers$Batchremove extends StandardParameters {
     /**
      * Required. The name of the project resource. Format: `projects/{project_number\}`
      */
@@ -5171,8 +5152,7 @@ export namespace firebaseappdistribution_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1BatchRemoveTestersRequest;
   }
-  export interface Params$Resource$Projects$Testers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Testers$List extends StandardParameters {
     /**
      * Optional. The expression to filter testers listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `name` - `displayName` - `groups` Example: - `name = "projects/-/testers/x@example.com"` - `displayName = "Joe Sixpack"` - `groups = "projects/x/groups/qa-team"`
      */
@@ -5190,8 +5170,7 @@ export namespace firebaseappdistribution_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Testers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Testers$Patch extends StandardParameters {
     /**
      * The name of the tester resource. Format: `projects/{project_number\}/testers/{email_address\}`
      */
