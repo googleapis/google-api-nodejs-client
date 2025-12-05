@@ -743,8 +743,7 @@ export namespace biglake_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Catalogs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Catalogs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -754,8 +753,7 @@ export namespace biglake_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Catalogs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Catalogs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1073,8 +1071,7 @@ export namespace biglake_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Catalogs$Namespaces$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Catalogs$Namespaces$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -1084,8 +1081,7 @@ export namespace biglake_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Catalogs$Namespaces$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Catalogs$Namespaces$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1704,8 +1700,7 @@ export namespace biglake_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Create extends StandardParameters {
     /**
      * Required. The ID to use for the catalog, which will become the final component of the catalog's resource name.
      */
@@ -1720,22 +1715,19 @@ export namespace biglake_v1 {
      */
     requestBody?: Schema$Catalog;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Delete extends StandardParameters {
     /**
      * Required. The name of the catalog to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Get extends StandardParameters {
     /**
      * Required. The name of the catalog to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$List extends StandardParameters {
     /**
      * The maximum number of catalogs to return. The service may return fewer than this value. If unspecified, at most 50 catalogs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -2520,8 +2512,7 @@ export namespace biglake_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Create extends StandardParameters {
     /**
      * Required. The ID to use for the database, which will become the final component of the database's resource name.
      */
@@ -2536,22 +2527,19 @@ export namespace biglake_v1 {
      */
     requestBody?: Schema$Database;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Delete extends StandardParameters {
     /**
      * Required. The name of the database to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Get extends StandardParameters {
     /**
      * Required. The name of the database to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Databases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Databases$List extends StandardParameters {
     /**
      * The maximum number of databases to return. The service may return fewer than this value. If unspecified, at most 50 databases will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -2565,8 +2553,7 @@ export namespace biglake_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Patch extends StandardParameters {
     /**
      * Output only. The resource name. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}
      */
@@ -3515,8 +3502,7 @@ export namespace biglake_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Create extends StandardParameters {
     /**
      * Required. The parent resource where this table will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}
      */
@@ -3531,22 +3517,19 @@ export namespace biglake_v1 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Delete extends StandardParameters {
     /**
      * Required. The name of the table to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}/tables/{table_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Get extends StandardParameters {
     /**
      * Required. The name of the table to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}/tables/{table_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$List extends StandardParameters {
     /**
      * The maximum number of tables to return. The service may return fewer than this value. If unspecified, at most 50 tables will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -3564,8 +3547,7 @@ export namespace biglake_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Patch extends StandardParameters {
     /**
      * Output only. The resource name. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}/tables/{table_id\}
      */
@@ -3580,8 +3562,7 @@ export namespace biglake_v1 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Rename
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Rename extends StandardParameters {
     /**
      * Required. The table's `name` field is used to identify the table to rename. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}/tables/{table_id\}
      */
