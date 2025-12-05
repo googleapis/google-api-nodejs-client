@@ -46,6 +46,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.europe-west4.rep.googleapis.com/",
+      "location": "europe-west4"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.europe-west6.rep.googleapis.com/",
       "location": "europe-west6"
     },
@@ -63,6 +68,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.me-central2.rep.googleapis.com/",
       "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.northamerica-northeast1.rep.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2"
     },
     {
       "description": "Regional Endpoint",
@@ -1267,7 +1282,7 @@
       }
     }
   },
-  "revision": "20251009",
+  "revision": "20251105",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
