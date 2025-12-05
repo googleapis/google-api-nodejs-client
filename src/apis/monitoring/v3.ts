@@ -2793,8 +2793,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Folders$Timeseries$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Timeseries$List extends StandardParameters {
     /**
      * The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
      */
@@ -3054,8 +3053,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Organizations$Timeseries$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Timeseries$List extends StandardParameters {
     /**
      * The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
      */
@@ -3951,8 +3949,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Alertpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Alertpolicies$Create extends StandardParameters {
     /**
      * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a Metrics Scope, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.
      */
@@ -3963,22 +3960,19 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$AlertPolicy;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Alertpolicies$Delete extends StandardParameters {
     /**
      * Required. The alerting policy to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] For more information, see AlertPolicy.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Alertpolicies$Get extends StandardParameters {
     /**
      * Required. The alerting policy to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Alertpolicies$List extends StandardParameters {
     /**
      * Optional. If provided, this field specifies the criteria that must be met by alert policies to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      */
@@ -4000,8 +3994,7 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Alertpolicies$Patch extends StandardParameters {
     /**
      * Identifier. Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
      */
@@ -4321,15 +4314,13 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Alerts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Alerts$Get extends StandardParameters {
     /**
      * Required. The name of the alert.The format is: projects/[PROJECT_ID_OR_NUMBER]/alerts/[ALERT_ID] The [ALERT_ID] is a system-assigned unique identifier for the alert.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Alerts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Alerts$List extends StandardParameters {
     /**
      * Optional. An alert is returned if there is a match on any fields belonging to the alert or its subfields.
      */
@@ -4521,8 +4512,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Collectdtimeseries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Collectdtimeseries$Create extends StandardParameters {
     /**
      * The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the time series. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
@@ -5281,8 +5271,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Groups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$Create extends StandardParameters {
     /**
      * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the group. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
@@ -5297,8 +5286,7 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$Group;
   }
-  export interface Params$Resource$Projects$Groups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$Delete extends StandardParameters {
     /**
      * Required. The group to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      */
@@ -5308,15 +5296,13 @@ export namespace monitoring_v3 {
      */
     recursive?: boolean;
   }
-  export interface Params$Resource$Projects$Groups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$Get extends StandardParameters {
     /**
      * Required. The group to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Groups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$List extends StandardParameters {
     /**
      * A group name. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] Returns groups that are ancestors of the specified group. The groups are returned in order, starting with the immediate parent and ending with the most distant ancestor. If the specified group has no immediate parent, the results are empty.
      */
@@ -5342,8 +5328,7 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Groups$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$Update extends StandardParameters {
     /**
      * Output only. The name of this group. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique [GROUP_ID] that is generated automatically.
      */
@@ -5521,8 +5506,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Groups$Members$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Groups$Members$List extends StandardParameters {
     /**
      * An optional list filter (https://cloud.google.com/monitoring/api/learn_more#filtering) describing the members to be returned. The filter may reference the type, labels, and metadata of monitored resources that comprise the group. For example, to return only resources representing Compute Engine VM instances, use this filter: `resource.type = "gce_instance"`
      */
@@ -6166,8 +6150,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Metricdescriptors$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Metricdescriptors$Create extends StandardParameters {
     /**
      * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: 4 projects/PROJECT_ID_OR_NUMBER
      */
@@ -6178,22 +6161,19 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$MetricDescriptor;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Metricdescriptors$Delete extends StandardParameters {
     /**
      * Required. The metric descriptor on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID] An example of [METRIC_ID] is: "custom.googleapis.com/my_test_metric".
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Metricdescriptors$Get extends StandardParameters {
     /**
      * Required. The metric descriptor on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID] An example value of [METRIC_ID] is "compute.googleapis.com/instance/disk/read_bytes_count".
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Metricdescriptors$List extends StandardParameters {
     /**
      * Optional. If true, only metrics and monitored resource types that have recent data (within roughly 25 hours) will be included in the response. - If a metric descriptor enumerates monitored resource types, only the monitored resource types for which the metric type has recent data will be included in the returned metric descriptor, and if none of them have recent data, the metric descriptor will not be returned. - If a metric descriptor does not enumerate the compatible monitored resource types, it will be returned only if the metric type has recent data for some monitored resource type. The returned descriptor will not enumerate any monitored resource types.
      */
@@ -6532,15 +6512,13 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Monitoredresourcedescriptors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Monitoredresourcedescriptors$Get extends StandardParameters {
     /**
      * Required. The monitored resource descriptor to get. The format is: projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE] The [RESOURCE_TYPE] is a predefined type, such as cloudsql_database.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Monitoredresourcedescriptors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Monitoredresourcedescriptors$List extends StandardParameters {
     /**
      * An optional filter (https://cloud.google.com/monitoring/api/v3/filters) describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an id label: resource.type = starts_with("gce_") AND resource.label:id
      */
@@ -6873,15 +6851,13 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Notificationchanneldescriptors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationchanneldescriptors$Get extends StandardParameters {
     /**
      * Required. The channel type for which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[CHANNEL_TYPE]
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationchanneldescriptors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationchanneldescriptors$List extends StandardParameters {
     /**
      * Required. The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID_OR_NUMBER] Note that this names (https://cloud.google.com/monitoring/api/v3#project_name) the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead.
      */
@@ -8140,8 +8116,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Notificationchannels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Create extends StandardParameters {
     /**
      * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container into which the channel will be written, this does not name the newly created channel. The resulting channel's name will have a normalized version of this field as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify the channel.
      */
@@ -8152,8 +8127,7 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$NotificationChannel;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Delete extends StandardParameters {
     /**
      * If true, the notification channel will be deleted regardless of its use in alert policies (the policies will be updated to remove the channel). If false, this operation will fail if the notification channel is referenced by existing alerting policies.
      */
@@ -8163,15 +8137,13 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Get extends StandardParameters {
     /**
      * Required. The channel for which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Getverificationcode
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Getverificationcode extends StandardParameters {
     /**
      * Required. The notification channel for which a verification code is to be generated and retrieved. This must name a channel that is already verified; if the specified channel is not verified, the request will fail.
      */
@@ -8182,8 +8154,7 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$GetNotificationChannelVerificationCodeRequest;
   }
-  export interface Params$Resource$Projects$Notificationchannels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$List extends StandardParameters {
     /**
      * Optional. If provided, this field specifies the criteria that must be met by notification channels to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      */
@@ -8205,8 +8176,7 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Patch extends StandardParameters {
     /**
      * Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
      */
@@ -8221,8 +8191,7 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$NotificationChannel;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Sendverificationcode
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Sendverificationcode extends StandardParameters {
     /**
      * Required. The notification channel to which to send a verification code.
      */
@@ -8233,8 +8202,7 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$SendNotificationChannelVerificationCodeRequest;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Verify
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Verify extends StandardParameters {
     /**
      * Required. The notification channel to verify.
      */
@@ -8849,8 +8817,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Snoozes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snoozes$Create extends StandardParameters {
     /**
      * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which a Snooze should be created. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
@@ -8861,15 +8828,13 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$Snooze;
   }
-  export interface Params$Resource$Projects$Snoozes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snoozes$Get extends StandardParameters {
     /**
      * Required. The ID of the Snooze to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID]
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Snoozes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snoozes$List extends StandardParameters {
     /**
      * Optional. Optional filter to restrict results to the given criteria. The following fields are supported. interval.start_time interval.end_timeFor example: interval.start_time \> "2022-03-11T00:00:00-08:00" AND interval.end_time < "2022-03-12T00:00:00-08:00"
      */
@@ -8887,8 +8852,7 @@ export namespace monitoring_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Snoozes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snoozes$Patch extends StandardParameters {
     /**
      * Required. Identifier. The name of the Snooze. The format is: projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID] The ID of the Snooze will be generated by the system.
      */
@@ -9538,8 +9502,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Timeseries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Timeseries$Create extends StandardParameters {
     /**
      * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
@@ -9550,8 +9513,7 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$CreateTimeSeriesRequest;
   }
-  export interface Params$Resource$Projects$Timeseries$Createservice
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Timeseries$Createservice extends StandardParameters {
     /**
      * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
@@ -9562,8 +9524,7 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$CreateTimeSeriesRequest;
   }
-  export interface Params$Resource$Projects$Timeseries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Timeseries$List extends StandardParameters {
     /**
      * The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
      */
@@ -9629,8 +9590,7 @@ export namespace monitoring_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Timeseries$Query
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Timeseries$Query extends StandardParameters {
     /**
      * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
@@ -10452,8 +10412,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Create extends StandardParameters {
     /**
      * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the Uptime check. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
@@ -10464,22 +10423,19 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$UptimeCheckConfig;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Delete extends StandardParameters {
     /**
      * Required. The Uptime check configuration to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Get extends StandardParameters {
     /**
      * Required. The Uptime check configuration to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$List extends StandardParameters {
     /**
      * If provided, this field specifies the criteria that must be met by uptime checks to be included in the response.For more details, see Filtering syntax (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax).
      */
@@ -10497,8 +10453,7 @@ export namespace monitoring_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Patch extends StandardParameters {
     /**
      * Identifier. A unique resource name for this Uptime check configuration. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] [PROJECT_ID_OR_NUMBER] is the Workspace host project associated with the Uptime check.This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
      */
@@ -12145,8 +12100,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Services$Servicelevelobjectives$Create
-    extends StandardParameters {
+  export interface Params$Resource$Services$Servicelevelobjectives$Create extends StandardParameters {
     /**
      * Required. Resource name of the parent Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      */
@@ -12161,15 +12115,13 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$ServiceLevelObjective;
   }
-  export interface Params$Resource$Services$Servicelevelobjectives$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Services$Servicelevelobjectives$Delete extends StandardParameters {
     /**
      * Required. Resource name of the ServiceLevelObjective to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Servicelevelobjectives$Get
-    extends StandardParameters {
+  export interface Params$Resource$Services$Servicelevelobjectives$Get extends StandardParameters {
     /**
      * Required. Resource name of the ServiceLevelObjective to get. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      */
@@ -12179,8 +12131,7 @@ export namespace monitoring_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Services$Servicelevelobjectives$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Servicelevelobjectives$List extends StandardParameters {
     /**
      * A filter specifying what ServiceLevelObjectives to return.
      */
@@ -12202,8 +12153,7 @@ export namespace monitoring_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Services$Servicelevelobjectives$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Services$Servicelevelobjectives$Patch extends StandardParameters {
     /**
      * Identifier. Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      */
@@ -12371,8 +12321,7 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Uptimecheckips$List
-    extends StandardParameters {
+  export interface Params$Resource$Uptimecheckips$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned. NOTE: this field is not yet implemented
      */
