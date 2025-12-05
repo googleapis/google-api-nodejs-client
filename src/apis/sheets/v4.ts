@@ -3073,7 +3073,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$NumberFormat {
     /**
-     * Pattern string used for formatting. If not set, a default pattern based on the user's locale will be used if necessary for the given type. See the [Date and Number Formats guide](https://developers.google.com/workspace/sheets/api/guides/formats) for more information about the supported patterns.
+     * Pattern string used for formatting. If not set, a default pattern based on the spreadsheet's locale will be used if necessary for the given type. See the [Date and Number Formats guide](https://developers.google.com/workspace/sheets/api/guides/formats) for more information about the supported patterns.
      */
     pattern?: string | null;
     /**
@@ -5873,8 +5873,7 @@ export namespace sheets_v4 {
     }
   }
 
-  export interface Params$Resource$Spreadsheets$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Batchupdate extends StandardParameters {
     /**
      * The spreadsheet to apply the updates to.
      */
@@ -5885,8 +5884,7 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchUpdateSpreadsheetRequest;
   }
-  export interface Params$Resource$Spreadsheets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Create extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -5910,8 +5908,7 @@ export namespace sheets_v4 {
      */
     spreadsheetId?: string;
   }
-  export interface Params$Resource$Spreadsheets$Getbydatafilter
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Getbydatafilter extends StandardParameters {
     /**
      * The spreadsheet to request.
      */
@@ -6232,8 +6229,7 @@ export namespace sheets_v4 {
     }
   }
 
-  export interface Params$Resource$Spreadsheets$Developermetadata$Get
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Developermetadata$Get extends StandardParameters {
     /**
      * The ID of the developer metadata to retrieve.
      */
@@ -6243,8 +6239,7 @@ export namespace sheets_v4 {
      */
     spreadsheetId?: string;
   }
-  export interface Params$Resource$Spreadsheets$Developermetadata$Search
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Developermetadata$Search extends StandardParameters {
     /**
      * The ID of the spreadsheet to retrieve metadata from.
      */
@@ -6423,8 +6418,7 @@ export namespace sheets_v4 {
     }
   }
 
-  export interface Params$Resource$Spreadsheets$Sheets$Copyto
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Sheets$Copyto extends StandardParameters {
     /**
      * The ID of the sheet to copy.
      */
@@ -8043,8 +8037,7 @@ export namespace sheets_v4 {
     }
   }
 
-  export interface Params$Resource$Spreadsheets$Values$Append
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Values$Append extends StandardParameters {
     /**
      * Determines if the update response should include the values of the cells that were appended. By default, responses do not include the updated values.
      */
@@ -8079,8 +8072,7 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$ValueRange;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchclear
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Values$Batchclear extends StandardParameters {
     /**
      * The ID of the spreadsheet to update.
      */
@@ -8091,8 +8083,7 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchClearValuesRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchclearbydatafilter
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Values$Batchclearbydatafilter extends StandardParameters {
     /**
      * The ID of the spreadsheet to update.
      */
@@ -8103,8 +8094,7 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchClearValuesByDataFilterRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Values$Batchget extends StandardParameters {
     /**
      * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      */
@@ -8126,8 +8116,7 @@ export namespace sheets_v4 {
      */
     valueRenderOption?: string;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchgetbydatafilter
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Values$Batchgetbydatafilter extends StandardParameters {
     /**
      * The ID of the spreadsheet to retrieve data from.
      */
@@ -8138,8 +8127,7 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchGetValuesByDataFilterRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Values$Batchupdate extends StandardParameters {
     /**
      * The ID of the spreadsheet to update.
      */
@@ -8150,8 +8138,7 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchUpdateValuesRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter extends StandardParameters {
     /**
      * The ID of the spreadsheet to update.
      */
@@ -8162,8 +8149,7 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchUpdateValuesByDataFilterRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Clear
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Values$Clear extends StandardParameters {
     /**
      * The [A1 notation or R1C1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell) of the values to clear.
      */
@@ -8178,8 +8164,7 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$ClearValuesRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Get
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Values$Get extends StandardParameters {
     /**
      * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      */
@@ -8201,8 +8186,7 @@ export namespace sheets_v4 {
      */
     valueRenderOption?: string;
   }
-  export interface Params$Resource$Spreadsheets$Values$Update
-    extends StandardParameters {
+  export interface Params$Resource$Spreadsheets$Values$Update extends StandardParameters {
     /**
      * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      */
