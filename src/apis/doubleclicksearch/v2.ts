@@ -1398,8 +1398,7 @@ export namespace doubleclicksearch_v2 {
      */
     startRow?: number;
   }
-  export interface Params$Resource$Conversion$Getbycustomerid
-    extends StandardParameters {
+  export interface Params$Resource$Conversion$Getbycustomerid extends StandardParameters {
     /**
      * Numeric ID of the ad group.
      */
@@ -1449,22 +1448,19 @@ export namespace doubleclicksearch_v2 {
      */
     startRow?: number;
   }
-  export interface Params$Resource$Conversion$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Conversion$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ConversionList;
   }
-  export interface Params$Resource$Conversion$Update
-    extends StandardParameters {
+  export interface Params$Resource$Conversion$Update extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ConversionList;
   }
-  export interface Params$Resource$Conversion$Updateavailability
-    extends StandardParameters {
+  export interface Params$Resource$Conversion$Updateavailability extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2243,8 +2239,7 @@ export namespace doubleclicksearch_v2 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Reports$Getidmappingfile
-    extends StandardParameters {
+  export interface Params$Resource$Reports$Getidmappingfile extends StandardParameters {
     /**
      * Legacy SA360 advertiser ID.
      */
@@ -2409,8 +2404,7 @@ export namespace doubleclicksearch_v2 {
     }
   }
 
-  export interface Params$Resource$Savedcolumns$List
-    extends StandardParameters {
+  export interface Params$Resource$Savedcolumns$List extends StandardParameters {
     /**
      * DS ID of the advertiser.
      */
