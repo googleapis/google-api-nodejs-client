@@ -2171,8 +2171,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__ExplainRequest;
   }
-  export interface Params$Resource$Projects$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getconfig extends StandardParameters {
     /**
      * Required. The project name.
      */
@@ -3430,8 +3429,7 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Cancel extends StandardParameters {
     /**
      * Required. The name of the job to cancel.
      */
@@ -3442,8 +3440,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__CancelJobRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Create extends StandardParameters {
     /**
      * Required. The project name.
      */
@@ -3454,15 +3451,13 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Job;
   }
-  export interface Params$Resource$Projects$Jobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Get extends StandardParameters {
     /**
      * Required. The name of the job to get the description of.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3472,8 +3467,7 @@ export namespace ml_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$List extends StandardParameters {
     /**
      * Optional. Specifies the subset of jobs to retrieve. You can filter on the value of one or more attributes of the job object. For example, retrieve jobs with a job identifier that starts with 'census': gcloud ai-platform jobs list --filter='jobId:census*' List all failed jobs with names that start with 'rnn': gcloud ai-platform jobs list --filter='jobId:rnn* AND state:FAILED' For more examples, see the guide to monitoring jobs.
      */
@@ -3491,8 +3485,7 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Patch extends StandardParameters {
     /**
      * Required. The job name.
      */
@@ -3507,8 +3500,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Job;
   }
-  export interface Params$Resource$Projects$Jobs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3519,8 +3511,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3840,15 +3831,13 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Required. The name of the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. The number of locations to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field. The default value is 20, and the maximum page size is 100.
      */
@@ -4148,15 +4137,13 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -4752,8 +4739,7 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Studies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Create extends StandardParameters {
     /**
      * Required. The project and location that the study belongs to. Format: projects/{project\}/locations/{location\}
      */
@@ -4768,22 +4754,19 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Study;
   }
-  export interface Params$Resource$Projects$Locations$Studies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Delete extends StandardParameters {
     /**
      * Required. The study name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Studies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Get extends StandardParameters {
     /**
      * Required. The study name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Studies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$List extends StandardParameters {
     /**
      * Required. The project and location that the study belongs to. Format: projects/{project\}/locations/{location\}
      */
@@ -6325,8 +6308,7 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement extends StandardParameters {
     /**
      * Required. The trial name.
      */
@@ -6337,8 +6319,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__AddTrialMeasurementRequest;
   }
-  export interface Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate extends StandardParameters {
     /**
      * Required. The trial name.
      */
@@ -6349,8 +6330,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__CheckTrialEarlyStoppingStateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Studies$Trials$Complete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Complete extends StandardParameters {
     /**
      * Required. The trial name.metat
      */
@@ -6361,8 +6341,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__CompleteTrialRequest;
   }
-  export interface Params$Resource$Projects$Locations$Studies$Trials$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Create extends StandardParameters {
     /**
      * Required. The name of the study that the trial belongs to.
      */
@@ -6373,29 +6352,25 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Trial;
   }
-  export interface Params$Resource$Projects$Locations$Studies$Trials$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Delete extends StandardParameters {
     /**
      * Required. The trial name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Studies$Trials$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Get extends StandardParameters {
     /**
      * Required. The trial name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Studies$Trials$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Trials$List extends StandardParameters {
     /**
      * Required. The name of the study that the trial belongs to.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials extends StandardParameters {
     /**
      * Required. The name of the study that the pareto-optimal trial belongs to.
      */
@@ -6406,8 +6381,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__ListOptimalTrialsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Studies$Trials$Stop
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Stop extends StandardParameters {
     /**
      * Required. The trial name.
      */
@@ -6418,8 +6392,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__StopTrialRequest;
   }
-  export interface Params$Resource$Projects$Locations$Studies$Trials$Suggest
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Suggest extends StandardParameters {
     /**
      * Required. The name of the study that the trial belongs to.
      */
@@ -7659,8 +7632,7 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Models$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Create extends StandardParameters {
     /**
      * Required. The project name.
      */
@@ -7671,22 +7643,19 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Model;
   }
-  export interface Params$Resource$Projects$Models$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Delete extends StandardParameters {
     /**
      * Required. The name of the model.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Get extends StandardParameters {
     /**
      * Required. The name of the model.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -7696,8 +7665,7 @@ export namespace ml_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Models$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$List extends StandardParameters {
     /**
      * Optional. Specifies the subset of models to retrieve.
      */
@@ -7715,8 +7683,7 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Models$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Patch extends StandardParameters {
     /**
      * Required. The project name.
      */
@@ -7731,8 +7698,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Model;
   }
-  export interface Params$Resource$Projects$Models$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7743,8 +7709,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Models$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8756,8 +8721,7 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Models$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Versions$Create extends StandardParameters {
     /**
      * Required. The name of the model.
      */
@@ -8768,22 +8732,19 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Version;
   }
-  export interface Params$Resource$Projects$Models$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Versions$Delete extends StandardParameters {
     /**
      * Required. The name of the version. You can get the names of all the versions of a model by calling projects.models.versions.list.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Versions$Get extends StandardParameters {
     /**
      * Required. The name of the version.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Versions$List extends StandardParameters {
     /**
      * Optional. Specifies the subset of versions to retrieve.
      */
@@ -8801,8 +8762,7 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Versions$Patch extends StandardParameters {
     /**
      * Required. The name of the model.
      */
@@ -8817,8 +8777,7 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Version;
   }
-  export interface Params$Resource$Projects$Models$Versions$Setdefault
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Versions$Setdefault extends StandardParameters {
     /**
      * Required. The name of the version to make the default for the model. You can get the names of all the versions of a model by calling projects.models.versions.list.
      */
@@ -9269,22 +9228,19 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
