@@ -718,15 +718,13 @@ export namespace chromeuxreport_v1 {
     }
   }
 
-  export interface Params$Resource$Records$Queryhistoryrecord
-    extends StandardParameters {
+  export interface Params$Resource$Records$Queryhistoryrecord extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$QueryHistoryRequest;
   }
-  export interface Params$Resource$Records$Queryrecord
-    extends StandardParameters {
+  export interface Params$Resource$Records$Queryrecord extends StandardParameters {
     /**
      * Request body metadata
      */
