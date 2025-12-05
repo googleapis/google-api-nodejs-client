@@ -1332,15 +1332,13 @@ export namespace memcache_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
@@ -2757,8 +2755,7 @@ export namespace memcache_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Applyparameters
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Applyparameters extends StandardParameters {
     /**
      * Required. Resource name of the Memcached instance for which parameter group updates should be applied.
      */
@@ -2769,8 +2766,7 @@ export namespace memcache_v1 {
      */
     requestBody?: Schema$ApplyParametersRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Create extends StandardParameters {
     /**
      * Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location. If any of the above are not met, the API raises an invalid argument error.
      */
@@ -2785,22 +2781,19 @@ export namespace memcache_v1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Delete extends StandardParameters {
     /**
      * Required. Memcached instance resource name in the format: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Get extends StandardParameters {
     /**
      * Required. Memcached instance resource name in the format: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$List extends StandardParameters {
     /**
      * List filter. For example, exclude all Memcached instances with name as my-instance by specifying `"name != my-instance"`.
      */
@@ -2822,8 +2815,7 @@ export namespace memcache_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Patch extends StandardParameters {
     /**
      * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Memcached instances are managed and addressed at the regional level so `location_id` here refers to a Google Cloud region; however, users may choose which zones Memcached nodes should be provisioned in within an instance. Refer to zones field for more details.
      */
@@ -2838,8 +2830,7 @@ export namespace memcache_v1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Reschedulemaintenance
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Reschedulemaintenance extends StandardParameters {
     /**
      * Required. Memcache instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
@@ -2850,8 +2841,7 @@ export namespace memcache_v1 {
      */
     requestBody?: Schema$RescheduleMaintenanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Updateparameters
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Updateparameters extends StandardParameters {
     /**
      * Required. Resource name of the Memcached instance for which the parameters should be updated.
      */
@@ -2862,8 +2852,7 @@ export namespace memcache_v1 {
      */
     requestBody?: Schema$UpdateParametersRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Upgrade
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Upgrade extends StandardParameters {
     /**
      * Required. Memcache instance resource name using the form: `projects/{project\}/locations/{location\}/instances/{instance\}` where `location_id` refers to a GCP region.
      */
@@ -3439,8 +3428,7 @@ export namespace memcache_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3451,22 +3439,19 @@ export namespace memcache_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
