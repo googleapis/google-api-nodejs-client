@@ -1326,8 +1326,7 @@ export namespace adsense_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Getadblockingrecoverytag
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Getadblockingrecoverytag extends StandardParameters {
     /**
      * Required. The name of the account to get the tag for. Format: accounts/{account\}
      */
@@ -1343,8 +1342,7 @@ export namespace adsense_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Listchildaccounts
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Listchildaccounts extends StandardParameters {
     /**
      * The maximum number of accounts to include in the response, used for paging. If unspecified, at most 10000 accounts will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
@@ -1802,22 +1800,19 @@ export namespace adsense_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adclients$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Get extends StandardParameters {
     /**
      * Required. The name of the ad client to retrieve. Format: accounts/{account\}/adclients/{adclient\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$Getadcode
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Getadcode extends StandardParameters {
     /**
      * Required. Name of the ad client for which to get the adcode. Format: accounts/{account\}/adclients/{adclient\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$List extends StandardParameters {
     /**
      * The maximum number of ad clients to include in the response, used for paging. If unspecified, at most 10000 ad clients will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
@@ -2725,8 +2720,7 @@ export namespace adsense_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adclients$Adunits$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Adunits$Create extends StandardParameters {
     /**
      * Required. Ad client to create an ad unit under. Format: accounts/{account\}/adclients/{adclient\}
      */
@@ -2737,22 +2731,19 @@ export namespace adsense_v2 {
      */
     requestBody?: Schema$AdUnit;
   }
-  export interface Params$Resource$Accounts$Adclients$Adunits$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Adunits$Get extends StandardParameters {
     /**
      * Required. AdUnit to get information about. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$Adunits$Getadcode
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Adunits$Getadcode extends StandardParameters {
     /**
      * Required. Name of the adunit for which to get the adcode. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$Adunits$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Adunits$List extends StandardParameters {
     /**
      * The maximum number of ad units to include in the response, used for paging. If unspecified, at most 10000 ad units will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
@@ -2766,8 +2757,7 @@ export namespace adsense_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$Adunits$Listlinkedcustomchannels
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Adunits$Listlinkedcustomchannels extends StandardParameters {
     /**
      * The maximum number of custom channels to include in the response, used for paging. If unspecified, at most 10000 custom channels will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
@@ -2781,8 +2771,7 @@ export namespace adsense_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$Adunits$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Adunits$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the ad unit. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
      */
@@ -3680,8 +3669,7 @@ export namespace adsense_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adclients$Customchannels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Customchannels$Create extends StandardParameters {
     /**
      * Required. The ad client to create a custom channel under. Format: accounts/{account\}/adclients/{adclient\}
      */
@@ -3692,22 +3680,19 @@ export namespace adsense_v2 {
      */
     requestBody?: Schema$CustomChannel;
   }
-  export interface Params$Resource$Accounts$Adclients$Customchannels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Customchannels$Delete extends StandardParameters {
     /**
      * Required. Name of the custom channel to delete. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$Customchannels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Customchannels$Get extends StandardParameters {
     /**
      * Required. Name of the custom channel. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$Customchannels$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Customchannels$List extends StandardParameters {
     /**
      * The maximum number of custom channels to include in the response, used for paging. If unspecified, at most 10000 custom channels will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
@@ -3721,8 +3706,7 @@ export namespace adsense_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$Customchannels$Listlinkedadunits
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Customchannels$Listlinkedadunits extends StandardParameters {
     /**
      * The maximum number of ad units to include in the response, used for paging. If unspecified, at most 10000 ad units will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
@@ -3736,8 +3720,7 @@ export namespace adsense_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$Customchannels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Customchannels$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the custom channel. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
      */
@@ -4046,15 +4029,13 @@ export namespace adsense_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adclients$Urlchannels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Urlchannels$Get extends StandardParameters {
     /**
      * Required. The name of the url channel to retrieve. Format: accounts/{account\}/adclients/{adclient\}/urlchannels/{urlchannel\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$Urlchannels$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Urlchannels$List extends StandardParameters {
     /**
      * The maximum number of url channels to include in the response, used for paging. If unspecified, at most 10000 url channels will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
@@ -4218,8 +4199,7 @@ export namespace adsense_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Alerts$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Alerts$List extends StandardParameters {
     /**
      * The language to use for translating alert messages. If unspecified, this defaults to the user's display language. If the given language is not supported, alerts will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).
      */
@@ -4379,8 +4359,7 @@ export namespace adsense_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Payments$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Payments$List extends StandardParameters {
     /**
      * Required. The account which owns the collection of payments. Format: accounts/{account\}
      */
@@ -4689,15 +4668,13 @@ export namespace adsense_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Policyissues$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Policyissues$Get extends StandardParameters {
     /**
      * Required. Name of the policy issue. Format: accounts/{account\}/policyIssues/{policy_issue\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Policyissues$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Policyissues$List extends StandardParameters {
     /**
      * The maximum number of policy issues to include in the response, used for paging. If unspecified, at most 10000 policy issues will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
@@ -5208,8 +5185,7 @@ export namespace adsense_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Reports$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Reports$Generate extends StandardParameters {
     /**
      * Required. The account which owns the collection of reports. Format: accounts/{account\}
      */
@@ -5275,8 +5251,7 @@ export namespace adsense_v2 {
      */
     'startDate.year'?: number;
   }
-  export interface Params$Resource$Accounts$Reports$Generatecsv
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Reports$Generatecsv extends StandardParameters {
     /**
      * Required. The account which owns the collection of reports. Format: accounts/{account\}
      */
@@ -5342,8 +5317,7 @@ export namespace adsense_v2 {
      */
     'startDate.year'?: number;
   }
-  export interface Params$Resource$Accounts$Reports$Getsaved
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Reports$Getsaved extends StandardParameters {
     /**
      * Required. The name of the saved report to retrieve. Format: accounts/{account\}/reports/{report\}
      */
@@ -5833,8 +5807,7 @@ export namespace adsense_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Reports$Saved$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Reports$Saved$Generate extends StandardParameters {
     /**
      * The [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) to use when reporting on monetary metrics. Defaults to the account's currency if not set.
      */
@@ -5880,8 +5853,7 @@ export namespace adsense_v2 {
      */
     'startDate.year'?: number;
   }
-  export interface Params$Resource$Accounts$Reports$Saved$Generatecsv
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Reports$Saved$Generatecsv extends StandardParameters {
     /**
      * The [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) to use when reporting on monetary metrics. Defaults to the account's currency if not set.
      */
@@ -5927,8 +5899,7 @@ export namespace adsense_v2 {
      */
     'startDate.year'?: number;
   }
-  export interface Params$Resource$Accounts$Reports$Saved$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Reports$Saved$List extends StandardParameters {
     /**
      * The maximum number of reports to include in the response, used for paging. If unspecified, at most 10000 reports will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
@@ -6236,15 +6207,13 @@ export namespace adsense_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Sites$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Sites$Get extends StandardParameters {
     /**
      * Required. Name of the site. Format: accounts/{account\}/sites/{site\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Sites$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Sites$List extends StandardParameters {
     /**
      * The maximum number of sites to include in the response, used for paging. If unspecified, at most 10000 sites will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
