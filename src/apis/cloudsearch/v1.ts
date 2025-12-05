@@ -4098,8 +4098,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Debug$Datasources$Items$Checkaccess
-    extends StandardParameters {
+  export interface Params$Resource$Debug$Datasources$Items$Checkaccess extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -4114,8 +4113,7 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$Principal;
   }
-  export interface Params$Resource$Debug$Datasources$Items$Searchbyviewurl
-    extends StandardParameters {
+  export interface Params$Resource$Debug$Datasources$Items$Searchbyviewurl extends StandardParameters {
     /**
      * Source name, format: datasources/{source_id\}
      */
@@ -4287,8 +4285,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Debug$Datasources$Items$Unmappedids$List
-    extends StandardParameters {
+  export interface Params$Resource$Debug$Datasources$Items$Unmappedids$List extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -4489,8 +4486,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity
-    extends StandardParameters {
+  export interface Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -4679,8 +4675,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Debug$Identitysources$Unmappedids$List
-    extends StandardParameters {
+  export interface Params$Resource$Debug$Identitysources$Unmappedids$List extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -5167,8 +5162,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Indexing$Datasources$Deleteschema
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Deleteschema extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -5178,8 +5172,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Indexing$Datasources$Getschema
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Getschema extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -5189,8 +5182,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Indexing$Datasources$Updateschema
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Updateschema extends StandardParameters {
     /**
      * The name of the data source to update Schema. Format: datasources/{source_id\}
      */
@@ -6589,8 +6581,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Indexing$Datasources$Items$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Delete extends StandardParameters {
     /**
      * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
@@ -6612,8 +6603,7 @@ export namespace cloudsearch_v1 {
      */
     version?: string;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Deletequeueitems
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Deletequeueitems extends StandardParameters {
     /**
      * The name of the Data Source to delete items in a queue. Format: datasources/{source_id\}
      */
@@ -6624,8 +6614,7 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$DeleteQueueItemsRequest;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Get
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Get extends StandardParameters {
     /**
      * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
@@ -6639,8 +6628,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Index
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Index extends StandardParameters {
     /**
      * The name of the Item. Format: datasources/{source_id\}/items/{item_id\} This is a required field. The maximum length is 1536 characters.
      */
@@ -6651,8 +6639,7 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$IndexItemRequest;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$List
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$List extends StandardParameters {
     /**
      * When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, If this value is false, then all the fields are populated in Item.
      */
@@ -6678,8 +6665,7 @@ export namespace cloudsearch_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Poll
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Poll extends StandardParameters {
     /**
      * The name of the Data Source to poll items. Format: datasources/{source_id\}
      */
@@ -6690,8 +6676,7 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$PollItemsRequest;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Push
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Push extends StandardParameters {
     /**
      * The name of the item to push into the indexing queue. Format: datasources/{source_id\}/items/{ID\} This is a required field. The maximum length is 1536 characters.
      */
@@ -6702,8 +6687,7 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$PushItemRequest;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Unreserve
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Unreserve extends StandardParameters {
     /**
      * The name of the Data Source to unreserve all items. Format: datasources/{source_id\}
      */
@@ -6714,8 +6698,7 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$UnreserveItemsRequest;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Upload
-    extends StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Upload extends StandardParameters {
     /**
      * The name of the Item to start a resumable upload. Format: datasources/{source_id\}/items/{item_id\}. The maximum length is 1536 bytes.
      */
@@ -7233,8 +7216,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Lro$List
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Lro$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -7867,15 +7849,13 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Query$Debugsearch
-    extends StandardParameters {
+  export interface Params$Resource$Query$Debugsearch extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$SearchRequest;
   }
-  export interface Params$Resource$Query$Removeactivity
-    extends StandardParameters {
+  export interface Params$Resource$Query$Removeactivity extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -8049,8 +8029,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Query$Sources$List
-    extends StandardParameters {
+  export interface Params$Resource$Query$Sources$List extends StandardParameters {
     /**
      * Number of sources to return in the response.
      */
@@ -8379,10 +8358,8 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Settings$Getcustomer
-    extends StandardParameters {}
-  export interface Params$Resource$Settings$Updatecustomer
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Getcustomer extends StandardParameters {}
+  export interface Params$Resource$Settings$Updatecustomer extends StandardParameters {
     /**
      * Update mask to control which fields get updated. If you specify a field in the update_mask but don't specify its value here, that field will be cleared. If the mask is not present or empty, all fields will be updated. Currently supported field paths: vpc_settings and audit_logging_settings
      */
@@ -9325,15 +9302,13 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Settings$Datasources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Datasources$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$DataSource;
   }
-  export interface Params$Resource$Settings$Datasources$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Datasources$Delete extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -9343,8 +9318,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Settings$Datasources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Datasources$Get extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -9354,8 +9328,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Settings$Datasources$List
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Datasources$List extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -9369,8 +9342,7 @@ export namespace cloudsearch_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Settings$Datasources$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Datasources$Patch extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -9389,8 +9361,7 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$DataSource;
   }
-  export interface Params$Resource$Settings$Datasources$Update
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Datasources$Update extends StandardParameters {
     /**
      * The name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
      */
@@ -10504,15 +10475,13 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Settings$Searchapplications$Create
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$SearchApplication;
   }
-  export interface Params$Resource$Settings$Searchapplications$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$Delete extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -10522,8 +10491,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Settings$Searchapplications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$Get extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -10533,8 +10501,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Settings$Searchapplications$List
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$List extends StandardParameters {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -10548,8 +10515,7 @@ export namespace cloudsearch_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Settings$Searchapplications$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$Patch extends StandardParameters {
     /**
      * The name of the Search Application. Format: searchapplications/{application_id\}.
      */
@@ -10564,8 +10530,7 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$SearchApplication;
   }
-  export interface Params$Resource$Settings$Searchapplications$Reset
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$Reset extends StandardParameters {
     /**
      * The name of the search application to be reset. Format: applications/{application_id\}.
      */
@@ -10576,8 +10541,7 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$ResetSearchApplicationRequest;
   }
-  export interface Params$Resource$Settings$Searchapplications$Update
-    extends StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$Update extends StandardParameters {
     /**
      * The name of the Search Application. Format: searchapplications/{application_id\}.
      */
@@ -11436,8 +11400,7 @@ export namespace cloudsearch_v1 {
      */
     'toDate.year'?: number;
   }
-  export interface Params$Resource$Stats$Getsearchapplication
-    extends StandardParameters {
+  export interface Params$Resource$Stats$Getsearchapplication extends StandardParameters {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
@@ -11692,8 +11655,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Stats$Index$Datasources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Stats$Index$Datasources$Get extends StandardParameters {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
@@ -11906,8 +11868,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Stats$Query$Searchapplications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Stats$Query$Searchapplications$Get extends StandardParameters {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
@@ -12119,8 +12080,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Stats$Session$Searchapplications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Stats$Session$Searchapplications$Get extends StandardParameters {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
@@ -12332,8 +12292,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Stats$User$Searchapplications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Stats$User$Searchapplications$Get extends StandardParameters {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
@@ -12519,8 +12478,7 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$V1$Initializecustomer
-    extends StandardParameters {
+  export interface Params$Resource$V1$Initializecustomer extends StandardParameters {
     /**
      * Request body metadata
      */
