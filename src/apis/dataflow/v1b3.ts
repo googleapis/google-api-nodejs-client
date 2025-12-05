@@ -4647,8 +4647,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Deletesnapshots
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deletesnapshots extends StandardParameters {
     /**
      * The location that contains this snapshot.
      */
@@ -4662,8 +4661,7 @@ export namespace dataflow_v1b3 {
      */
     snapshotId?: string;
   }
-  export interface Params$Resource$Projects$Workermessages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Workermessages extends StandardParameters {
     /**
      * The project to send the WorkerMessages to.
      */
@@ -5891,8 +5889,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Aggregated
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Aggregated extends StandardParameters {
     /**
      * The kind of filter to use.
      */
@@ -5922,8 +5919,7 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Create extends StandardParameters {
     /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
@@ -5946,8 +5942,7 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Jobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Get extends StandardParameters {
     /**
      * The job ID.
      */
@@ -5965,8 +5960,7 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Getmetrics
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Getmetrics extends StandardParameters {
     /**
      * The job to get metrics for.
      */
@@ -5984,8 +5978,7 @@ export namespace dataflow_v1b3 {
      */
     startTime?: string;
   }
-  export interface Params$Resource$Projects$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$List extends StandardParameters {
     /**
      * The kind of filter to use.
      */
@@ -6015,8 +6008,7 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Snapshot
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Snapshot extends StandardParameters {
     /**
      * The job to be snapshotted.
      */
@@ -6031,8 +6023,7 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$SnapshotJobRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Update extends StandardParameters {
     /**
      * The job ID.
      */
@@ -6375,8 +6366,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Debug$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Debug$Getconfig extends StandardParameters {
     /**
      * The job id.
      */
@@ -6391,8 +6381,7 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$GetDebugConfigRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Debug$Sendcapture
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Debug$Sendcapture extends StandardParameters {
     /**
      * The job id.
      */
@@ -6572,8 +6561,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Messages$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Messages$List extends StandardParameters {
     /**
      * Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
      */
@@ -6937,8 +6925,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Workitems$Lease
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Workitems$Lease extends StandardParameters {
     /**
      * Identifies the workflow job this worker belongs to.
      */
@@ -6953,8 +6940,7 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$LeaseWorkItemRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Workitems$Reportstatus
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Workitems$Reportstatus extends StandardParameters {
     /**
      * The job which the WorkItem is part of.
      */
@@ -7142,8 +7128,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workermessages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workermessages extends StandardParameters {
     /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job.
      */
@@ -7321,8 +7306,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Flextemplates$Launch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Flextemplates$Launch extends StandardParameters {
     /**
      * Required. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request. E.g., us-central1, us-west1.
      */
@@ -8565,8 +8549,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Create extends StandardParameters {
     /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
@@ -8589,8 +8572,7 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Get extends StandardParameters {
     /**
      * The job ID.
      */
@@ -8608,8 +8590,7 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Getexecutiondetails
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Getexecutiondetails extends StandardParameters {
     /**
      * The job to get execution details for.
      */
@@ -8631,8 +8612,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Getmetrics
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Getmetrics extends StandardParameters {
     /**
      * The job to get metrics for.
      */
@@ -8650,8 +8630,7 @@ export namespace dataflow_v1b3 {
      */
     startTime?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$List extends StandardParameters {
     /**
      * The kind of filter to use.
      */
@@ -8681,8 +8660,7 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Snapshot
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Snapshot extends StandardParameters {
     /**
      * The job to be snapshotted.
      */
@@ -8701,8 +8679,7 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$SnapshotJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Update extends StandardParameters {
     /**
      * The job ID.
      */
@@ -9211,8 +9188,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Debug$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Debug$Getconfig extends StandardParameters {
     /**
      * The job id.
      */
@@ -9231,8 +9207,7 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$GetDebugConfigRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Debug$Getworkerstacktraces
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Debug$Getworkerstacktraces extends StandardParameters {
     /**
      * The job for which to get stacktraces.
      */
@@ -9251,8 +9226,7 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$GetWorkerStacktracesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture extends StandardParameters {
     /**
      * The job id.
      */
@@ -9437,8 +9411,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Messages$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Messages$List extends StandardParameters {
     /**
      * Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
      */
@@ -9626,8 +9599,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Snapshots$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Snapshots$List extends StandardParameters {
     /**
      * If specified, list snapshots created from this job.
      */
@@ -9811,8 +9783,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Stages$Getexecutiondetails
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Stages$Getexecutiondetails extends StandardParameters {
     /**
      * Upper time bound of work items to include, by start time.
      */
@@ -10181,8 +10152,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Workitems$Lease
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Workitems$Lease extends StandardParameters {
     /**
      * Identifies the workflow job this worker belongs to.
      */
@@ -10201,8 +10171,7 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$LeaseWorkItemRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus extends StandardParameters {
     /**
      * The job which the WorkItem is part of.
      */
@@ -10672,8 +10641,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Snapshots$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Snapshots$Delete extends StandardParameters {
     /**
      * The location that contains this snapshot.
      */
@@ -10687,8 +10655,7 @@ export namespace dataflow_v1b3 {
      */
     snapshotId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Snapshots$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Snapshots$Get extends StandardParameters {
     /**
      * The location that contains this snapshot.
      */
@@ -10702,8 +10669,7 @@ export namespace dataflow_v1b3 {
      */
     snapshotId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Snapshots$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Snapshots$List extends StandardParameters {
     /**
      * If specified, list snapshots created from this job.
      */
@@ -11219,8 +11185,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Templates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Templates$Create extends StandardParameters {
     /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      */
@@ -11235,8 +11200,7 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$CreateJobFromTemplateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Templates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Templates$Get extends StandardParameters {
     /**
      * Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
@@ -11254,8 +11218,7 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Templates$Launch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Templates$Launch extends StandardParameters {
     /**
      * Path to the dynamic template specification file on Cloud Storage. The file must be a JSON serialized `DynamicTemplateFileSpec` object.
      */
@@ -11592,8 +11555,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Snapshots$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snapshots$Get extends StandardParameters {
     /**
      * The location that contains this snapshot.
      */
@@ -11607,8 +11569,7 @@ export namespace dataflow_v1b3 {
      */
     snapshotId?: string;
   }
-  export interface Params$Resource$Projects$Snapshots$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Snapshots$List extends StandardParameters {
     /**
      * If specified, list snapshots created from this job.
      */
@@ -12121,8 +12082,7 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Templates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Templates$Create extends StandardParameters {
     /**
      * Required. The ID of the Cloud Platform project that the job belongs to.
      */
@@ -12133,8 +12093,7 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$CreateJobFromTemplateRequest;
   }
-  export interface Params$Resource$Projects$Templates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Templates$Get extends StandardParameters {
     /**
      * Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
@@ -12152,8 +12111,7 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Templates$Launch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Templates$Launch extends StandardParameters {
     /**
      * Path to the dynamic template specification file on Cloud Storage. The file must be a JSON serialized `DynamicTemplateFileSpec` object.
      */
