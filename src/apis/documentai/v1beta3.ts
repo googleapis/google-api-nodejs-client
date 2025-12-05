@@ -519,6 +519,10 @@ export namespace documentai_v1beta3 {
      */
     displayName?: string | null;
     /**
+     * Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.
+     */
+    documentPrompt?: string | null;
+    /**
      * Entity types of the schema.
      */
     entityTypes?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityType[];
@@ -3700,7 +3704,7 @@ export namespace documentai_v1beta3 {
      */
     generateSchemaVersionParams?: Schema$GoogleCloudDocumentaiV1beta3GenerateSchemaVersionRequestGenerateSchemaVersionParams;
     /**
-     * The set of documents specified inline.
+     * The set of documents specified inline. For each document, its `uri` or `content` field must be set.
      */
     inlineDocuments?: Schema$GoogleCloudDocumentaiV1beta3Documents;
     /**
@@ -3823,6 +3827,10 @@ export namespace documentai_v1beta3 {
      * Target dataset split where the documents must be stored.
      */
     datasetSplit?: string | null;
+    /**
+     * Optional. The type of the documents to be imported in this batch. This will be used to auto-label the documents with a single entity of the provided type. This field can only be used with a classifier or splitter processor. Providing this field is mutually exclusive with `entities` and `auto_labeling_config`.
+     */
+    documentType?: string | null;
   }
   /**
    * The config for auto-split.
@@ -4158,6 +4166,10 @@ export namespace documentai_v1beta3 {
      * Optional. Whether to include table annotations in layout parser response.
      */
     enableTableAnnotation?: boolean | null;
+    /**
+     * Optional. Whether to split table.
+     */
+    enableTableSplit?: boolean | null;
     /**
      * Optional. Whether to include bounding boxes in layout parser processor response.
      */
@@ -5107,7 +5119,7 @@ export namespace documentai_v1beta3 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -5791,22 +5803,19 @@ export namespace documentai_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Fetchprocessortypes
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Fetchprocessortypes extends StandardParameters {
     /**
      * Required. The location of processor types to list. Format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -6151,7 +6160,7 @@ export namespace documentai_v1beta3 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6267,22 +6276,19 @@ export namespace documentai_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -6300,7 +6306,7 @@ export namespace documentai_v1beta3 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -7894,8 +7900,7 @@ export namespace documentai_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Processors$Batchprocess
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Batchprocess extends StandardParameters {
     /**
      * Required. The resource name of Processor or ProcessorVersion. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      */
@@ -7906,8 +7911,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3BatchProcessRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Create extends StandardParameters {
     /**
      * Required. The parent (project and location) under which to create the processor. Format: `projects/{project\}/locations/{location\}`
      */
@@ -7918,15 +7922,13 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3Processor;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Delete extends StandardParameters {
     /**
      * Required. The processor resource name to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Disable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Disable extends StandardParameters {
     /**
      * Required. The processor resource name to be disabled.
      */
@@ -7937,8 +7939,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3DisableProcessorRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Enable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Enable extends StandardParameters {
     /**
      * Required. The processor resource name to be enabled.
      */
@@ -7949,15 +7950,13 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3EnableProcessorRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Get extends StandardParameters {
     /**
      * Required. The processor resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Processors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$List extends StandardParameters {
     /**
      * The maximum number of processors to return. If unspecified, at most `50` processors will be returned. The maximum value is `100`. Values above `100` will be coerced to `100`.
      */
@@ -7971,8 +7970,7 @@ export namespace documentai_v1beta3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Process
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Process extends StandardParameters {
     /**
      * Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      */
@@ -7983,8 +7981,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3ProcessRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion extends StandardParameters {
     /**
      * Required. The resource name of the Processor to change default version.
      */
@@ -7995,8 +7992,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Updatedataset
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Updatedataset extends StandardParameters {
     /**
      * Dataset resource name. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/dataset`
      */
@@ -8978,8 +8974,7 @@ export namespace documentai_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments extends StandardParameters {
     /**
      * Required. The dataset resource name. Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
      */
@@ -8990,8 +8985,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Dataset$Getdatasetschema
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Dataset$Getdatasetschema extends StandardParameters {
     /**
      * Required. The dataset schema resource name. Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset/datasetSchema
      */
@@ -9001,8 +8995,7 @@ export namespace documentai_v1beta3 {
      */
     visibleFieldsOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Dataset$Getdocument
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Dataset$Getdocument extends StandardParameters {
     /**
      * Required. The resource name of the dataset that the document belongs to . Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
      */
@@ -9044,8 +9037,7 @@ export namespace documentai_v1beta3 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments extends StandardParameters {
     /**
      * Required. The dataset resource name. Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
      */
@@ -9056,8 +9048,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments extends StandardParameters {
     /**
      * Required. The resource name of the dataset to be listed. Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
      */
@@ -9068,8 +9059,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3ListDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Dataset$Updatedatasetschema
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Dataset$Updatedatasetschema extends StandardParameters {
     /**
      * Dataset schema resource name. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/dataset/datasetSchema`
      */
@@ -9253,8 +9243,7 @@ export namespace documentai_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Processors$Humanreviewconfig$Reviewdocument
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Humanreviewconfig$Reviewdocument extends StandardParameters {
     /**
      * Required. The resource name of the HumanReviewConfig that the document will be reviewed with.
      */
@@ -10848,8 +10837,7 @@ export namespace documentai_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess extends StandardParameters {
     /**
      * Required. The resource name of Processor or ProcessorVersion. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      */
@@ -10860,15 +10848,13 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3BatchProcessRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Delete extends StandardParameters {
     /**
      * Required. The processor version resource name to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Deploy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Deploy extends StandardParameters {
     /**
      * Required. The processor version resource name to be deployed.
      */
@@ -10879,8 +10865,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion extends StandardParameters {
     /**
      * Required. The resource name of the ProcessorVersion to evaluate. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      */
@@ -10891,15 +10876,13 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Get extends StandardParameters {
     /**
      * Required. The processor resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Importprocessorversion
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Importprocessorversion extends StandardParameters {
     /**
      * Required. The destination processor name to create the processor version in. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`
      */
@@ -10910,8 +10893,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$List extends StandardParameters {
     /**
      * The maximum number of processor versions to return. If unspecified, at most `10` processor versions will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.
      */
@@ -10925,8 +10907,7 @@ export namespace documentai_v1beta3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Process
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Process extends StandardParameters {
     /**
      * Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      */
@@ -10937,8 +10918,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3ProcessRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Train
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Train extends StandardParameters {
     /**
      * Required. The parent (project, location and processor) to create the new version for. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`.
      */
@@ -10949,8 +10929,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy extends StandardParameters {
     /**
      * Required. The processor version resource name to be undeployed.
      */
@@ -11280,15 +11259,13 @@ export namespace documentai_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get extends StandardParameters {
     /**
      * Required. The resource name of the Evaluation to get. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}/evaluations/{evaluation\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List extends StandardParameters {
     /**
      * The standard list page size. If unspecified, at most `5` evaluations are returned. The maximum value is `100`. Values above `100` are coerced to `100`.
      */
@@ -11612,15 +11589,13 @@ export namespace documentai_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Processortypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processortypes$Get extends StandardParameters {
     /**
      * Required. The processor type resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Processortypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Processortypes$List extends StandardParameters {
     /**
      * The maximum number of processor types to return. If unspecified, at most `100` processor types will be returned. The maximum value is `500`. Values above `500` will be coerced to `500`.
      */
@@ -12414,8 +12389,7 @@ export namespace documentai_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemas$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemas$Create extends StandardParameters {
     /**
      * Required. The parent (project and location) under which to create the Schema. Format: `projects/{project\}/locations/{location\}`
      */
@@ -12426,8 +12400,7 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3NextSchema;
   }
-  export interface Params$Resource$Projects$Locations$Schemas$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemas$Delete extends StandardParameters {
     /**
      * Optional. If set to true, any child resources of this Schema will also be deleted. (Otherwise, the request will only work if the Schema has no child resources.)
      */
@@ -12437,15 +12410,13 @@ export namespace documentai_v1beta3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemas$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemas$Get extends StandardParameters {
     /**
      * Required. The name of the Schema to get. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemas$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemas$List extends StandardParameters {
     /**
      * Optional. The maximum number of schema groups to return. If unspecified, at most `10` Schema will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.
      */
@@ -12459,8 +12430,7 @@ export namespace documentai_v1beta3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemas$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemas$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the Schema. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
      */
@@ -13420,8 +13390,7 @@ export namespace documentai_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Create extends StandardParameters {
     /**
      * Required. The parent (project and location) under which to create the SchemaVersion. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
      */
@@ -13432,15 +13401,13 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3SchemaVersion;
   }
-  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete extends StandardParameters {
     /**
      * Required. The name of the SchemaVersion to delete. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Generate extends StandardParameters {
     /**
      * Required. The parent (project, location and schema) under which to generate the SchemaVersion. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
      */
@@ -13451,15 +13418,13 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3GenerateSchemaVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Get extends StandardParameters {
     /**
      * Required. The name of the SchemaVersion to get. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$List extends StandardParameters {
     /**
      * Optional. The maximum number of SchemaVersion to return. If unspecified, at most `10` SchemaVersion will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.
      */
@@ -13473,8 +13438,7 @@ export namespace documentai_v1beta3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemas$Schemaversions$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the SchemaVersion. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
      */
