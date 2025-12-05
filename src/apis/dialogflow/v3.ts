@@ -11865,15 +11865,13 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -13753,8 +13751,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Create extends StandardParameters {
     /**
      * Required. The location to create a agent for. Format: `projects//locations/`.
      */
@@ -13765,15 +13762,13 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Agent;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Delete extends StandardParameters {
     /**
      * Required. The name of the agent to delete. Format: `projects//locations//agents/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Export extends StandardParameters {
     /**
      * Required. The name of the agent to export. Format: `projects//locations//agents/`.
      */
@@ -13784,15 +13779,13 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ExportAgentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Get extends StandardParameters {
     /**
      * Required. The name of the agent. Format: `projects//locations//agents/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Getgenerativesettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Getgenerativesettings extends StandardParameters {
     /**
      * Required. Language code of the generative settings.
      */
@@ -13802,8 +13795,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Getvalidationresult
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Getvalidationresult extends StandardParameters {
     /**
      * If not specified, the agent's default language is used.
      */
@@ -13813,8 +13805,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -13828,8 +13819,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Patch extends StandardParameters {
     /**
      * The unique identifier of the agent. Required for the Agents.UpdateAgent method. Agents.CreateAgent populates the name automatically. Format: `projects//locations//agents/`.
      */
@@ -13844,8 +13834,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Agent;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Restore extends StandardParameters {
     /**
      * Required. The name of the agent to restore into. Format: `projects//locations//agents/`.
      */
@@ -13856,8 +13845,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3RestoreAgentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Updategenerativesettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Updategenerativesettings extends StandardParameters {
     /**
      * Format: `projects//locations//agents//generativeSettings`.
      */
@@ -13872,8 +13860,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3GenerativeSettings;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Validate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Validate extends StandardParameters {
     /**
      * Required. The agent to validate. Format: `projects//locations//agents/`.
      */
@@ -14204,15 +14191,13 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Changelogs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Changelogs$Get extends StandardParameters {
     /**
      * Required. The name of the changelog to get. Format: `projects//locations//agents//changelogs/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Changelogs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Changelogs$List extends StandardParameters {
     /**
      * The filter string. Supports filter by user_email, resource, type and create_time. Some examples: 1. By user email: user_email = "someone@google.com" 2. By resource name: resource = "projects/123/locations/global/agents/456/flows/789" 3. By resource display name: display_name = "my agent" 4. By action: action = "Create" 5. By type: type = "flows" 6. By create time. Currently predicates on `create_time` and `create_time_epoch_seconds` are supported: create_time_epoch_seconds \> 1551790877 AND create_time <= 2017-01-15T01:30:15.01Z 7. Combination of above filters: resource = "projects/123/locations/global/agents/456/flows/789" AND user_email = "someone@google.com" AND create_time <= 2017-01-15T01:30:15.01Z
      */
@@ -15361,8 +15346,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Create extends StandardParameters {
     /**
      * The language of the following fields in `entity_type`: * `EntityType.entities.value` * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -15377,8 +15361,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3EntityType;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Delete extends StandardParameters {
     /**
      * This field has no effect for entity type not being used. For entity types that are used by intents or pages: * If `force` is set to false, an error will be returned with message indicating the referencing resources. * If `force` is set to true, Dialogflow will remove the entity type, as well as any references to the entity type (i.e. Page parameter of the entity type will be changed to '@sys.any' and intent parameter of the entity type will be removed).
      */
@@ -15388,8 +15371,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Export extends StandardParameters {
     /**
      * Required. The name of the parent agent to export entity types. Format: `projects//locations//agents/`.
      */
@@ -15400,8 +15382,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ExportEntityTypesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Get extends StandardParameters {
     /**
      * The language to retrieve the entity type for. The following fields are language dependent: * `EntityType.entities.value` * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -15411,8 +15392,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Import extends StandardParameters {
     /**
      * Required. The agent to import the entity types into. Format: `projects//locations//agents/`.
      */
@@ -15423,8 +15403,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ImportEntityTypesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$List extends StandardParameters {
     /**
      * The language to list entity types for. The following fields are language dependent: * `EntityType.entities.value` * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -15442,8 +15421,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Patch extends StandardParameters {
     /**
      * The language of the following fields in `entity_type`: * `EntityType.entities.value` * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -16736,8 +16714,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Create extends StandardParameters {
     /**
      * Required. The Agent to create an Environment for. Format: `projects//locations//agents/`.
      */
@@ -16748,15 +16725,13 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Environment;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Delete extends StandardParameters {
     /**
      * Required. The name of the Environment to delete. Format: `projects//locations//agents//environments/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Deployflow
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Deployflow extends StandardParameters {
     /**
      * Required. The environment to deploy the flow to. Format: `projects//locations//agents//environments/`.
      */
@@ -16767,15 +16742,13 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3DeployFlowRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Get extends StandardParameters {
     /**
      * Required. The name of the Environment. Format: `projects//locations//agents//environments/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 20 and at most 100.
      */
@@ -16789,8 +16762,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory extends StandardParameters {
     /**
      * Required. Resource name of the environment to look up the history for. Format: `projects//locations//agents//environments/`.
      */
@@ -16804,8 +16776,7 @@ export namespace dialogflow_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Patch extends StandardParameters {
     /**
      * The name of the environment. Format: `projects//locations//agents//environments/`.
      */
@@ -16820,8 +16791,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Environment;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest extends StandardParameters {
     /**
      * Required. Format: `projects//locations//agents//environments/`.
      */
@@ -17000,8 +16970,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -17335,15 +17304,13 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get extends StandardParameters {
     /**
      * Required. The name of the Deployment. Format: `projects//locations//agents//environments//deployments/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Deployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Deployments$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 20 and at most 100.
      */
@@ -18537,8 +18504,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create extends StandardParameters {
     /**
      * Required. The Agent to create an Environment for. Format: `projects//locations//agents//environments/`.
      */
@@ -18549,22 +18515,19 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Experiment;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete extends StandardParameters {
     /**
      * Required. The name of the Environment to delete. Format: `projects//locations//agents//environments//experiments/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get extends StandardParameters {
     /**
      * Required. The name of the Environment. Format: `projects//locations//agents//environments//experiments/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 20 and at most 100.
      */
@@ -18578,8 +18541,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch extends StandardParameters {
     /**
      * The name of the experiment. Format: projects//locations//agents//environments//experiments/.
      */
@@ -18594,8 +18556,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Experiment;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start extends StandardParameters {
     /**
      * Required. Resource name of the experiment to start. Format: `projects//locations//agents//environments//experiments/`.
      */
@@ -18606,8 +18567,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3StartExperimentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop extends StandardParameters {
     /**
      * Required. Resource name of the experiment to stop. Format: `projects//locations//agents//environments//experiments/`.
      */
@@ -19308,8 +19268,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Detectintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Detectintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
      */
@@ -19320,8 +19279,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3DetectIntentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session).
      */
@@ -19332,8 +19290,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3FulfillIntentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Matchintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Matchintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session).
      */
@@ -19344,8 +19301,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3MatchIntentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
      */
@@ -20148,8 +20104,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Create extends StandardParameters {
     /**
      * Required. The session to create a session entity type for. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment.
      */
@@ -20160,22 +20115,19 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3SessionEntityType;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Delete extends StandardParameters {
     /**
      * Required. The name of the session entity type to delete. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Get extends StandardParameters {
     /**
      * Required. The name of the session entity type. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -20189,8 +20141,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Patch extends StandardParameters {
     /**
      * Required. The unique identifier of the session entity type. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
      */
@@ -21813,8 +21764,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Create extends StandardParameters {
     /**
      * The language of the following fields in `flow`: * `Flow.event_handlers.trigger_fulfillment.messages` * `Flow.event_handlers.trigger_fulfillment.conditional_cases` * `Flow.transition_routes.trigger_fulfillment.messages` * `Flow.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -21829,8 +21779,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Flow;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Delete extends StandardParameters {
     /**
      * This field has no effect for flows with no incoming transitions. For flows with incoming transitions: * If `force` is set to false, an error will be returned with message indicating the incoming transitions. * If `force` is set to true, Dialogflow will remove the flow, as well as any transitions to the flow (i.e. Target flow in event handlers or Target flow in transition routes that point to this flow will be cleared).
      */
@@ -21840,8 +21789,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Export extends StandardParameters {
     /**
      * Required. The name of the flow to export. Format: `projects//locations//agents//flows/`.
      */
@@ -21852,8 +21800,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ExportFlowRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Get extends StandardParameters {
     /**
      * The language to retrieve the flow for. The following fields are language dependent: * `Flow.event_handlers.trigger_fulfillment.messages` * `Flow.event_handlers.trigger_fulfillment.conditional_cases` * `Flow.transition_routes.trigger_fulfillment.messages` * `Flow.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -21863,8 +21810,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult extends StandardParameters {
     /**
      * If not specified, the agent's default language is used.
      */
@@ -21874,8 +21820,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Import extends StandardParameters {
     /**
      * Required. The agent to import the flow into. Format: `projects//locations//agents/`.
      */
@@ -21886,8 +21831,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ImportFlowRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$List extends StandardParameters {
     /**
      * The language to list flows for. The following fields are language dependent: * `Flow.event_handlers.trigger_fulfillment.messages` * `Flow.event_handlers.trigger_fulfillment.conditional_cases` * `Flow.transition_routes.trigger_fulfillment.messages` * `Flow.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -21905,8 +21849,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Patch extends StandardParameters {
     /**
      * The language of the following fields in `flow`: * `Flow.event_handlers.trigger_fulfillment.messages` * `Flow.event_handlers.trigger_fulfillment.conditional_cases` * `Flow.transition_routes.trigger_fulfillment.messages` * `Flow.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -21925,8 +21868,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Flow;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Train
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Train extends StandardParameters {
     /**
      * Required. The flow to train. Format: `projects//locations//agents//flows/`.
      */
@@ -21937,8 +21879,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3TrainFlowRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Validate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Validate extends StandardParameters {
     /**
      * Required. The flow to validate. Format: `projects//locations//agents//flows/`.
      */
@@ -22759,8 +22700,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Pages$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Pages$Create extends StandardParameters {
     /**
      * The language of the following fields in `page`: * `Page.entry_fulfillment.messages` * `Page.entry_fulfillment.conditional_cases` * `Page.event_handlers.trigger_fulfillment.messages` * `Page.event_handlers.trigger_fulfillment.conditional_cases` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.messages` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.conditional_cases` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.messages` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.conditional_cases` * `Page.transition_routes.trigger_fulfillment.messages` * `Page.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -22775,8 +22715,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Page;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Pages$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Pages$Delete extends StandardParameters {
     /**
      * This field has no effect for pages with no incoming transitions. For pages with incoming transitions: * If `force` is set to false, an error will be returned with message indicating the incoming transitions. * If `force` is set to true, Dialogflow will remove the page, as well as any transitions to the page (i.e. Target page in event handlers or Target page in transition routes that point to this page will be cleared).
      */
@@ -22786,8 +22725,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Pages$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Pages$Get extends StandardParameters {
     /**
      * The language to retrieve the page for. The following fields are language dependent: * `Page.entry_fulfillment.messages` * `Page.entry_fulfillment.conditional_cases` * `Page.event_handlers.trigger_fulfillment.messages` * `Page.event_handlers.trigger_fulfillment.conditional_cases` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.messages` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.conditional_cases` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.messages` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.conditional_cases` * `Page.transition_routes.trigger_fulfillment.messages` * `Page.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -22797,8 +22735,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Pages$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Pages$List extends StandardParameters {
     /**
      * The language to list pages for. The following fields are language dependent: * `Page.entry_fulfillment.messages` * `Page.entry_fulfillment.conditional_cases` * `Page.event_handlers.trigger_fulfillment.messages` * `Page.event_handlers.trigger_fulfillment.conditional_cases` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.messages` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.conditional_cases` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.messages` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.conditional_cases` * `Page.transition_routes.trigger_fulfillment.messages` * `Page.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -22816,8 +22753,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Pages$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Pages$Patch extends StandardParameters {
     /**
      * The language of the following fields in `page`: * `Page.entry_fulfillment.messages` * `Page.entry_fulfillment.conditional_cases` * `Page.event_handlers.trigger_fulfillment.messages` * `Page.event_handlers.trigger_fulfillment.conditional_cases` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.messages` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.conditional_cases` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.messages` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.conditional_cases` * `Page.transition_routes.trigger_fulfillment.messages` * `Page.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -23636,8 +23572,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Create extends StandardParameters {
     /**
      * The language of the following fields in `TransitionRouteGroup`: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -23652,8 +23587,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3TransitionRouteGroup;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Delete extends StandardParameters {
     /**
      * This field has no effect for transition route group that no page is using. If the transition route group is referenced by any page: * If `force` is set to false, an error will be returned with message indicating pages that reference the transition route group. * If `force` is set to true, Dialogflow will remove the transition route group, as well as any reference to it.
      */
@@ -23663,8 +23597,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Get extends StandardParameters {
     /**
      * The language to retrieve the transition route group for. The following fields are language dependent: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -23674,8 +23607,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List extends StandardParameters {
     /**
      * The language to list transition route groups for. The following fields are language dependent: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -23693,8 +23625,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Patch extends StandardParameters {
     /**
      * The language of the following fields in `TransitionRouteGroup`: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -24816,8 +24747,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Compareversions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Compareversions extends StandardParameters {
     /**
      * Required. Name of the base flow version to compare with the target version. Use version ID `0` to indicate the draft version of the specified flow. Format: `projects//locations//agents//flows//versions/`.
      */
@@ -24828,8 +24758,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3CompareVersionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Create extends StandardParameters {
     /**
      * Required. The Flow to create an Version for. Format: `projects//locations//agents//flows/`.
      */
@@ -24840,22 +24769,19 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Version;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Delete extends StandardParameters {
     /**
      * Required. The name of the Version to delete. Format: `projects//locations//agents//flows//versions/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Get extends StandardParameters {
     /**
      * Required. The name of the Version. Format: `projects//locations//agents//flows//versions/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 20 and at most 100.
      */
@@ -24869,8 +24795,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Load
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Load extends StandardParameters {
     /**
      * Required. The Version to be loaded to draft flow. Format: `projects//locations//agents//flows//versions/`.
      */
@@ -24881,8 +24806,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3LoadVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Patch extends StandardParameters {
     /**
      * Format: projects//locations//agents//flows//versions/. Version ID is a self-increasing number generated by Dialogflow upon version creation.
      */
@@ -25696,8 +25620,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Generators$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Generators$Create extends StandardParameters {
     /**
      * The language to create generators for the following fields: * `Generator.prompt_text.text` If not specified, the agent's default language is used.
      */
@@ -25712,8 +25635,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Generator;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Generators$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Generators$Delete extends StandardParameters {
     /**
      * This field has no effect for generators not being used. For generators that are used by pages/flows/transition route groups: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the generator, as well as any references to the generator (i.e. Generator) in fulfillments.
      */
@@ -25723,8 +25645,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Generators$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Generators$Get extends StandardParameters {
     /**
      * The language to list generators for.
      */
@@ -25734,8 +25655,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Generators$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Generators$List extends StandardParameters {
     /**
      * The language to list generators for.
      */
@@ -25753,8 +25673,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Generators$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Generators$Patch extends StandardParameters {
     /**
      * The language to list generators for.
      */
@@ -26883,8 +26802,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Intents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Intents$Create extends StandardParameters {
     /**
      * The language of the following fields in `intent`: * `Intent.training_phrases.parts.text` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -26899,15 +26817,13 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Intent;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Intents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Intents$Delete extends StandardParameters {
     /**
      * Required. The name of the intent to delete. Format: `projects//locations//agents//intents/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Intents$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Intents$Export extends StandardParameters {
     /**
      * Required. The name of the parent agent to export intents. Format: `projects//locations//agents/`.
      */
@@ -26918,8 +26834,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ExportIntentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Intents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Intents$Get extends StandardParameters {
     /**
      * The language to retrieve the intent for. The following fields are language dependent: * `Intent.training_phrases.parts.text` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -26929,8 +26844,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Intents$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Intents$Import extends StandardParameters {
     /**
      * Required. The agent to import the intents into. Format: `projects//locations//agents/`.
      */
@@ -26941,8 +26855,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ImportIntentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Intents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Intents$List extends StandardParameters {
     /**
      * The resource view to apply to the returned intent.
      */
@@ -26964,8 +26877,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Intents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Intents$Patch extends StandardParameters {
     /**
      * The language of the following fields in `intent`: * `Intent.training_phrases.parts.text` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -28149,8 +28061,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Create extends StandardParameters {
     /**
      * Required. The agent to create a playbook for. Format: `projects//locations//agents/`.
      */
@@ -28161,15 +28072,13 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Playbook;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Delete extends StandardParameters {
     /**
      * Required. The name of the playbook to delete. Format: `projects//locations//agents//playbooks/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Export extends StandardParameters {
     /**
      * Required. The name of the playbook to export. Format: `projects//locations//agents//playbooks/`.
      */
@@ -28180,15 +28089,13 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ExportPlaybookRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Get extends StandardParameters {
     /**
      * Required. The name of the playbook. Format: `projects//locations//agents//playbooks/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Import extends StandardParameters {
     /**
      * Required. The agent to import the playbook into. Format: `projects//locations//agents/`.
      */
@@ -28199,8 +28106,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ImportPlaybookRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -28214,8 +28120,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Patch extends StandardParameters {
     /**
      * The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.
      */
@@ -29055,8 +28960,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create extends StandardParameters {
     /**
      * Required. The playbook to create an example for. Format: `projects//locations//agents//playbooks/`.
      */
@@ -29067,22 +28971,19 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Example;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete extends StandardParameters {
     /**
      * Required. The name of the example to delete. Format: `projects//locations//agents//playbooks//examples/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get extends StandardParameters {
     /**
      * Required. The name of the example. Format: `projects//locations//agents//playbooks//examples/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List extends StandardParameters {
     /**
      * Optional. The language to list examples for. If not specified, list all examples under the playbook. Note: languages must be enabled in the agent before they can be used.
      */
@@ -29100,8 +29001,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch extends StandardParameters {
     /**
      * The unique identifier of the playbook example. Format: `projects//locations//agents//playbooks//examples/`.
      */
@@ -29900,8 +29800,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create extends StandardParameters {
     /**
      * Required. The playbook to create a version for. Format: `projects//locations//agents//playbooks/`.
      */
@@ -29912,22 +29811,19 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3PlaybookVersion;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete extends StandardParameters {
     /**
      * Required. The name of the playbook version to delete. Format: `projects//locations//agents//playbooks//versions/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get extends StandardParameters {
     /**
      * Required. The name of the playbook version. Format: `projects//locations//agents//playbooks//versions/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -29941,8 +29837,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore extends StandardParameters {
     /**
      * Required. The name of the playbook version. Format: `projects//locations//agents//playbooks//versions/`.
      */
@@ -30801,8 +30696,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Sessions$Detectintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Sessions$Detectintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
      */
@@ -30813,8 +30707,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3DetectIntentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session).
      */
@@ -30825,8 +30718,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3FulfillIntentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Sessions$Matchintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Sessions$Matchintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session).
      */
@@ -30837,8 +30729,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3MatchIntentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
      */
@@ -30849,8 +30740,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3DetectIntentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Sessions$Submitanswerfeedback
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Sessions$Submitanswerfeedback extends StandardParameters {
     /**
      * Required. The name of the session the feedback was sent to.
      */
@@ -31643,8 +31533,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Create extends StandardParameters {
     /**
      * Required. The session to create a session entity type for. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment.
      */
@@ -31655,22 +31544,19 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3SessionEntityType;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Delete extends StandardParameters {
     /**
      * Required. The name of the session entity type to delete. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Get extends StandardParameters {
     /**
      * Required. The name of the session entity type. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -31684,8 +31570,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Patch extends StandardParameters {
     /**
      * Required. The unique identifier of the session entity type. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
      */
@@ -33302,8 +33187,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete extends StandardParameters {
     /**
      * Required. The agent to delete test cases from. Format: `projects//locations//agents/`.
      */
@@ -33314,8 +33198,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3BatchDeleteTestCasesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Batchrun
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$Batchrun extends StandardParameters {
     /**
      * Required. Agent name. Format: `projects//locations//agents/`.
      */
@@ -33326,8 +33209,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3BatchRunTestCasesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage extends StandardParameters {
     /**
      * Required. The agent to calculate coverage for. Format: `projects//locations//agents/`.
      */
@@ -33337,8 +33219,7 @@ export namespace dialogflow_v3 {
      */
     type?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$Create extends StandardParameters {
     /**
      * Required. The agent to create the test case for. Format: `projects//locations//agents/`.
      */
@@ -33349,8 +33230,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3TestCase;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$Export extends StandardParameters {
     /**
      * Required. The agent where to export test cases from. Format: `projects//locations//agents/`.
      */
@@ -33361,15 +33241,13 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ExportTestCasesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$Get extends StandardParameters {
     /**
      * Required. The name of the testcase. Format: `projects//locations//agents//testCases/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$Import extends StandardParameters {
     /**
      * Required. The agent to import test cases to. Format: `projects//locations//agents/`.
      */
@@ -33380,8 +33258,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ImportTestCasesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 20. Note that when TestCaseView = FULL, the maximum page size allowed is 20. When TestCaseView = BASIC, the maximum page size allowed is 500.
      */
@@ -33399,8 +33276,7 @@ export namespace dialogflow_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$Patch extends StandardParameters {
     /**
      * The unique identifier of the test case. TestCases.CreateTestCase will populate the name automatically. Otherwise use format: `projects//locations//agents//testCases/`.
      */
@@ -33415,8 +33291,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3TestCase;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$Run extends StandardParameters {
     /**
      * Required. Format of test case name to run: `projects//locations//agents//testCases/`.
      */
@@ -33748,15 +33623,13 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Results$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$Results$Get extends StandardParameters {
     /**
      * Required. The name of the testcase. Format: `projects//locations//agents//testCases//results/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Results$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Testcases$Results$List extends StandardParameters {
     /**
      * The filter expression used to filter test case results. See [API Filtering](https://aip.dev/160). The expression is case insensitive. Only 'AND' is supported for logical operators. The supported syntax is listed below in detail: [AND ] ... [AND latest] The supported fields and operators are: field operator `environment` `=`, `IN` (Use value `draft` for draft environment) `test_time` `\>`, `<` `latest` only returns the latest test result in all results for each test case. Examples: * "environment=draft AND latest" matches the latest test result for each test case in the draft environment. * "environment IN (e1,e2)" matches any test case results with an environment resource name of either "e1" or "e2". * "test_time \> 1602540713" matches any test case results with test time later than a unix timestamp in seconds 1602540713.
      */
@@ -34558,8 +34431,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Tools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Create extends StandardParameters {
     /**
      * Required. The agent to create a Tool for. Format: `projects//locations//agents/`.
      */
@@ -34570,8 +34442,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Tool;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Tools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Delete extends StandardParameters {
     /**
      * This field has no effect for Tools not being used. For Tools that are used: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the tool, as well as any references to the tool.
      */
@@ -34581,15 +34452,13 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Tools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Get extends StandardParameters {
     /**
      * Required. The name of the Tool. Format: `projects//locations//agents//tools/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Tools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Tools$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -34603,8 +34472,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Tools$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Patch extends StandardParameters {
     /**
      * The unique identifier of the Tool. Format: `projects//locations//agents//tools/`.
      */
@@ -35401,8 +35269,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Create extends StandardParameters {
     /**
      * Required. The tool to create a version for. Format: `projects//locations//agents//tools/`.
      */
@@ -35413,8 +35280,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3ToolVersion;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete extends StandardParameters {
     /**
      * Optional. This field has no effect for Tools not being used. For Tools that are used: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the tool, as well as any references to the tool.
      */
@@ -35424,15 +35290,13 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Get extends StandardParameters {
     /**
      * Required. The name of the tool version. Format: `projects//locations//agents//tools//versions/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -35446,8 +35310,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore extends StandardParameters {
     /**
      * Required. The name of the tool version. Format: `projects//locations//agents//tools//versions/`.
      */
@@ -36248,8 +36111,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Create extends StandardParameters {
     /**
      * The language of the following fields in `TransitionRouteGroup`: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -36264,8 +36126,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3TransitionRouteGroup;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Delete extends StandardParameters {
     /**
      * This field has no effect for transition route group that no page is using. If the transition route group is referenced by any page: * If `force` is set to false, an error will be returned with message indicating pages that reference the transition route group. * If `force` is set to true, Dialogflow will remove the transition route group, as well as any reference to it.
      */
@@ -36275,8 +36136,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Get extends StandardParameters {
     /**
      * The language to retrieve the transition route group for. The following fields are language dependent: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -36286,8 +36146,7 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Transitionroutegroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Transitionroutegroups$List extends StandardParameters {
     /**
      * The language to list transition route groups for. The following fields are language dependent: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -36305,8 +36164,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Patch extends StandardParameters {
     /**
      * The language of the following fields in `TransitionRouteGroup`: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -37114,8 +36972,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agents$Webhooks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Webhooks$Create extends StandardParameters {
     /**
      * Required. The agent to create a webhook for. Format: `projects//locations//agents/`.
      */
@@ -37126,8 +36983,7 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Webhook;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Webhooks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Webhooks$Delete extends StandardParameters {
     /**
      * This field has no effect for webhook not being used. For webhooks that are used by pages/flows/transition route groups: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the webhook, as well as any references to the webhook (i.e. Webhook and tagin fulfillments that point to this webhook will be removed).
      */
@@ -37137,15 +36993,13 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Webhooks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Webhooks$Get extends StandardParameters {
     /**
      * Required. The name of the webhook. Format: `projects//locations//agents//webhooks/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Webhooks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Webhooks$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -37159,8 +37013,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agents$Webhooks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agents$Webhooks$Patch extends StandardParameters {
     /**
      * The unique identifier of the webhook. Required for the Webhooks.UpdateWebhook method. Webhooks.CreateWebhook populates the name automatically. Format: `projects//locations//agents//webhooks/`.
      */
@@ -37623,22 +37476,19 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -38473,8 +38323,7 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Securitysettings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitysettings$Create extends StandardParameters {
     /**
      * Required. The location to create an SecuritySettings for. Format: `projects//locations/`.
      */
@@ -38485,22 +38334,19 @@ export namespace dialogflow_v3 {
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3SecuritySettings;
   }
-  export interface Params$Resource$Projects$Locations$Securitysettings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitysettings$Delete extends StandardParameters {
     /**
      * Required. The name of the SecuritySettings to delete. Format: `projects//locations//securitySettings/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Securitysettings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitysettings$Get extends StandardParameters {
     /**
      * Required. Resource name of the settings. Format: `projects//locations//securitySettings/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Securitysettings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitysettings$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 20 and at most 100.
      */
@@ -38514,8 +38360,7 @@ export namespace dialogflow_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Securitysettings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Securitysettings$Patch extends StandardParameters {
     /**
      * Resource name of the settings. Required for the SecuritySettingsService.UpdateSecuritySettings method. SecuritySettingsService.CreateSecuritySettings populates the name automatically. Format: `projects//locations//securitySettings/`.
      */
@@ -38978,22 +38823,19 @@ export namespace dialogflow_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */

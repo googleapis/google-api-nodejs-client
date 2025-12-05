@@ -12406,22 +12406,19 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Deleteagent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deleteagent extends StandardParameters {
     /**
      * Required. The project that the agent to delete is associated with. Format: `projects/`.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Getagent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getagent extends StandardParameters {
     /**
      * Required. The project that the agent to fetch is associated with. Format: `projects/`.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Setagent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Setagent extends StandardParameters {
     /**
      * Required. The project of this agent. Format: `projects/`.
      */
@@ -13707,8 +13704,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Export extends StandardParameters {
     /**
      * Required. The project that the agent to export is associated with. Format: `projects/`.
      */
@@ -13719,15 +13715,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ExportAgentRequest;
   }
-  export interface Params$Resource$Projects$Agent$Getfulfillment
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Getfulfillment extends StandardParameters {
     /**
      * Required. The name of the fulfillment. Format: `projects//agent/fulfillment`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Getvalidationresult
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Getvalidationresult extends StandardParameters {
     /**
      * Optional. The language for which you want a validation result. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -13737,8 +13731,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Import extends StandardParameters {
     /**
      * Required. The project that the agent to import is associated with. Format: `projects/`.
      */
@@ -13749,8 +13742,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ImportAgentRequest;
   }
-  export interface Params$Resource$Projects$Agent$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Restore extends StandardParameters {
     /**
      * Required. The project that the agent to restore is associated with. Format: `projects/`.
      */
@@ -13761,8 +13753,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2RestoreAgentRequest;
   }
-  export interface Params$Resource$Projects$Agent$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Search extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -13776,8 +13767,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Train
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Train extends StandardParameters {
     /**
      * Required. The project that the agent to train is associated with. Format: `projects/`.
      */
@@ -13788,8 +13778,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2TrainAgentRequest;
   }
-  export interface Params$Resource$Projects$Agent$Updatefulfillment
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Updatefulfillment extends StandardParameters {
     /**
      * Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment` This field is not used for Fulfillment in an Environment.
      */
@@ -14916,8 +14905,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Entitytypes$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Batchdelete extends StandardParameters {
     /**
      * Required. The name of the agent to delete all entities types for. Format: `projects//agent`.
      */
@@ -14928,8 +14916,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteEntityTypesRequest;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Batchupdate extends StandardParameters {
     /**
      * Required. The name of the agent to update or create entity types in. Format: `projects//agent`.
      */
@@ -14940,8 +14927,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesRequest;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Create extends StandardParameters {
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -14956,15 +14942,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2EntityType;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Delete extends StandardParameters {
     /**
      * Required. The name of the entity type to delete. Format: `projects//agent/entityTypes/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Get extends StandardParameters {
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -14974,8 +14958,7 @@ export namespace dialogflow_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Entitytypes$List extends StandardParameters {
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -14993,8 +14976,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Patch extends StandardParameters {
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -15496,8 +15478,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate extends StandardParameters {
     /**
      * Required. The name of the entity type to create entities in. Format: `projects//agent/entityTypes/`.
      */
@@ -15508,8 +15489,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchCreateEntitiesRequest;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete extends StandardParameters {
     /**
      * Required. The name of the entity type to delete entries for. Format: `projects//agent/entityTypes/`.
      */
@@ -15520,8 +15500,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteEntitiesRequest;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate extends StandardParameters {
     /**
      * Required. The name of the entity type to update or create entities in. Format: `projects//agent/entityTypes/`.
      */
@@ -16488,8 +16467,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Environments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Create extends StandardParameters {
     /**
      * Required. The unique id of the new environment.
      */
@@ -16504,22 +16482,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Environment;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Delete extends StandardParameters {
     /**
      * Required. The name of the environment to delete. / Format: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Get extends StandardParameters {
     /**
      * Required. The name of the environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Gethistory
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Gethistory extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -16533,8 +16508,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Environments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -16548,8 +16522,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Patch extends StandardParameters {
     /**
      * Optional. This field is used to prevent accidental overwrite of the default environment, which is an operation that cannot be undone. To confirm that the caller desires this overwrite, this field must be explicitly set to true when updating the default environment (environment ID = `-`).
      */
@@ -16735,8 +16708,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Environments$Intents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Intents$List extends StandardParameters {
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -17099,15 +17071,13 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts extends StandardParameters {
     /**
      * Required. The name of the session to delete all contexts from. Format: `projects//agent/sessions/` or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//agent/sessions/`, or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment (`Environment ID` might be referred to as environment name at some places). If `User ID` is not specified, we are using "-". It's up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random number or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters. For more information, see the [API interactions guide](https://cloud.google.com/dialogflow/docs/api-overview). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      */
@@ -17892,8 +17862,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create extends StandardParameters {
     /**
      * Required. The session to create a context for. Format: `projects//agent/sessions/` or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
@@ -17904,22 +17873,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Context;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete extends StandardParameters {
     /**
      * Required. The name of the context to delete. Format: `projects//agent/sessions//contexts/` or `projects//agent/environments//users//sessions//contexts/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get extends StandardParameters {
     /**
      * Required. The name of the context. Format: `projects//agent/sessions//contexts/` or `projects//agent/environments//users//sessions//contexts/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -17933,8 +17899,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch extends StandardParameters {
     /**
      * Required. The unique identifier of the context. Format: `projects//agent/sessions//contexts/`, or `projects//agent/environments//users//sessions//contexts/`. The `Context ID` is always converted to lowercase, may only contain characters in `a-zA-Z0-9_-%` and may be at most 250 bytes long. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names: * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      */
@@ -18741,8 +18706,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create extends StandardParameters {
     /**
      * Required. The session to create a session entity type for. Format: `projects//agent/sessions/` or `projects//agent/environments//users// sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
@@ -18753,22 +18717,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SessionEntityType;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete extends StandardParameters {
     /**
      * Required. The name of the entity type to delete. Format: `projects//agent/sessions//entityTypes/` or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get extends StandardParameters {
     /**
      * Required. The name of the session entity type. Format: `projects//agent/sessions//entityTypes/` or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -18782,8 +18743,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch extends StandardParameters {
     /**
      * Required. The unique identifier of this session entity type. Format: `projects//agent/sessions//entityTypes/`, or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
@@ -19973,8 +19933,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Intents$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Intents$Batchdelete extends StandardParameters {
     /**
      * Required. The name of the agent to delete all entities types for. Format: `projects//agent`.
      */
@@ -19985,8 +19944,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteIntentsRequest;
   }
-  export interface Params$Resource$Projects$Agent$Intents$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Intents$Batchupdate extends StandardParameters {
     /**
      * Required. The name of the agent to update or create intents in. Format: `projects//agent`.
      */
@@ -19997,8 +19955,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchUpdateIntentsRequest;
   }
-  export interface Params$Resource$Projects$Agent$Intents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Intents$Create extends StandardParameters {
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -20017,15 +19974,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Intent;
   }
-  export interface Params$Resource$Projects$Agent$Intents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Intents$Delete extends StandardParameters {
     /**
      * Required. The name of the intent to delete. If this intent has direct or indirect followup intents, we also delete them. Format: `projects//agent/intents/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Intents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Intents$Get extends StandardParameters {
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -20039,8 +19994,7 @@ export namespace dialogflow_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Intents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Intents$List extends StandardParameters {
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -20062,8 +20016,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Intents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Intents$Patch extends StandardParameters {
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -20864,8 +20817,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Knowledgebases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Create extends StandardParameters {
     /**
      * Required. The project to create a knowledge base for. Format: `projects//locations/`.
      */
@@ -20876,8 +20828,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2KnowledgeBase;
   }
-  export interface Params$Resource$Projects$Agent$Knowledgebases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Delete extends StandardParameters {
     /**
      * Optional. Force deletes the knowledge base. When set to true, any documents in the knowledge base are also deleted.
      */
@@ -20887,15 +20838,13 @@ export namespace dialogflow_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Knowledgebases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Get extends StandardParameters {
     /**
      * Required. The name of the knowledge base to retrieve. Format `projects//locations//knowledgeBases/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Knowledgebases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Knowledgebases$List extends StandardParameters {
     /**
      * The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -20913,8 +20862,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Knowledgebases$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Patch extends StandardParameters {
     /**
      * The knowledge base resource name. The name must be empty when creating a knowledge base. Format: `projects//locations//knowledgeBases/`.
      */
@@ -21881,8 +21829,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Create extends StandardParameters {
     /**
      * Required. The knowledge base to create a document for. Format: `projects//locations//knowledgeBases/`.
      */
@@ -21893,22 +21840,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Document;
   }
-  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Delete extends StandardParameters {
     /**
      * Required. The name of the document to delete. Format: `projects//locations//knowledgeBases//documents/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Get extends StandardParameters {
     /**
      * Required. The name of the document to retrieve. Format `projects//locations//knowledgeBases//documents/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$List extends StandardParameters {
     /**
      * The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -21926,8 +21870,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch extends StandardParameters {
     /**
      * Optional. The document resource name. The name must be empty when creating a document. Format: `projects//locations//knowledgeBases//documents/`.
      */
@@ -21942,8 +21885,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Document;
   }
-  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload extends StandardParameters {
     /**
      * Required. The name of the document to reload. Format: `projects//locations//knowledgeBases//documents/`
      */
@@ -22276,15 +22218,13 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Sessions$Deletecontexts
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Deletecontexts extends StandardParameters {
     /**
      * Required. The name of the session to delete all contexts from. Format: `projects//agent/sessions/` or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Detectintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Detectintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//agent/sessions/`, or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment (`Environment ID` might be referred to as environment name at some places). If `User ID` is not specified, we are using "-". It's up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random number or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters. For more information, see the [API interactions guide](https://cloud.google.com/dialogflow/docs/api-overview). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      */
@@ -23053,8 +22993,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Create extends StandardParameters {
     /**
      * Required. The session to create a context for. Format: `projects//agent/sessions/` or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
@@ -23065,22 +23004,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Context;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Delete extends StandardParameters {
     /**
      * Required. The name of the context to delete. Format: `projects//agent/sessions//contexts/` or `projects//agent/environments//users//sessions//contexts/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Get extends StandardParameters {
     /**
      * Required. The name of the context. Format: `projects//agent/sessions//contexts/` or `projects//agent/environments//users//sessions//contexts/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Contexts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Contexts$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -23094,8 +23030,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Patch extends StandardParameters {
     /**
      * Required. The unique identifier of the context. Format: `projects//agent/sessions//contexts/`, or `projects//agent/environments//users//sessions//contexts/`. The `Context ID` is always converted to lowercase, may only contain characters in `a-zA-Z0-9_-%` and may be at most 250 bytes long. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names: * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      */
@@ -23883,8 +23818,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Create extends StandardParameters {
     /**
      * Required. The session to create a session entity type for. Format: `projects//agent/sessions/` or `projects//agent/environments//users// sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
@@ -23895,22 +23829,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SessionEntityType;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete extends StandardParameters {
     /**
      * Required. The name of the entity type to delete. Format: `projects//agent/sessions//entityTypes/` or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Get extends StandardParameters {
     /**
      * Required. The name of the session entity type. Format: `projects//agent/sessions//entityTypes/` or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -23924,8 +23855,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch extends StandardParameters {
     /**
      * Required. The unique identifier of this session entity type. Format: `projects//agent/sessions//entityTypes/`, or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
@@ -24708,8 +24638,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Versions$Create extends StandardParameters {
     /**
      * Required. The agent to create a version for. Supported formats: - `projects//agent` - `projects//locations//agent`
      */
@@ -24720,22 +24649,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Version;
   }
-  export interface Params$Resource$Projects$Agent$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Versions$Delete extends StandardParameters {
     /**
      * Required. The name of the version to delete. Supported formats: - `projects//agent/versions/` - `projects//locations//agent/versions/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Versions$Get extends StandardParameters {
     /**
      * Required. The name of the version. Supported formats: - `projects//agent/versions/` - `projects//locations//agent/versions/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Versions$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -24749,8 +24675,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Versions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agent$Versions$Patch extends StandardParameters {
     /**
      * Output only. The unique identifier of this agent version. Supported formats: - `projects//agent/versions/` - `projects//locations//agent/versions/`
      */
@@ -25091,8 +25016,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Answerrecords$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Answerrecords$List extends StandardParameters {
     /**
      * Optional. Filters to restrict results to specific answer records. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * conversation_id with equals(=) operator Examples: * `conversation_id=bar` matches answer records in the `projects/foo/locations/global/conversations/bar` conversation (assuming the parent is `projects/foo/locations/global`). For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -25110,8 +25034,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Answerrecords$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Answerrecords$Patch extends StandardParameters {
     /**
      * The unique identifier of this answer record. Format: `projects//locations//answerRecords/`.
      */
@@ -25602,15 +25525,13 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Conversationdatasets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationdatasets$Get extends StandardParameters {
     /**
      * Required. The conversation dataset to retrieve. Format: `projects//locations//conversationDatasets/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Conversationdatasets$Importconversationdata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationdatasets$Importconversationdata extends StandardParameters {
     /**
      * Required. Dataset resource name. Format: `projects//locations//conversationDatasets/`
      */
@@ -25621,8 +25542,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ImportConversationDataRequest;
   }
-  export interface Params$Resource$Projects$Conversationdatasets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationdatasets$List extends StandardParameters {
     /**
      * Optional. Maximum number of conversation datasets to return in a single page. By default 100 and at most 1000.
      */
@@ -26574,8 +26494,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Conversationmodels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationmodels$Create extends StandardParameters {
     /**
      * The project to create conversation model for. Format: `projects/`
      */
@@ -26586,15 +26505,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ConversationModel;
   }
-  export interface Params$Resource$Projects$Conversationmodels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationmodels$Delete extends StandardParameters {
     /**
      * Required. The conversation model to delete. Format: `projects//conversationModels/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Conversationmodels$Deploy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationmodels$Deploy extends StandardParameters {
     /**
      * Required. The conversation model to deploy. Format: `projects//conversationModels/`
      */
@@ -26605,15 +26522,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2DeployConversationModelRequest;
   }
-  export interface Params$Resource$Projects$Conversationmodels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationmodels$Get extends StandardParameters {
     /**
      * Required. The conversation model to retrieve. Format: `projects//conversationModels/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Conversationmodels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationmodels$List extends StandardParameters {
     /**
      * Optional. Maximum number of conversation models to return in a single page. By default 100 and at most 1000.
      */
@@ -26627,8 +26542,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Conversationmodels$Undeploy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationmodels$Undeploy extends StandardParameters {
     /**
      * Required. The conversation model to undeploy. Format: `projects//conversationModels/`
      */
@@ -26956,15 +26870,13 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Conversationmodels$Evaluations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationmodels$Evaluations$Get extends StandardParameters {
     /**
      * Required. The conversation model evaluation resource name. Format: `projects//conversationModels//evaluations/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Conversationmodels$Evaluations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationmodels$Evaluations$List extends StandardParameters {
     /**
      * Optional. Maximum number of evaluations to return in a single page. By default 100 and at most 1000.
      */
@@ -28134,8 +28046,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Conversationprofiles$Clearsuggestionfeatureconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationprofiles$Clearsuggestionfeatureconfig extends StandardParameters {
     /**
      * Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
      */
@@ -28146,8 +28057,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ClearSuggestionFeatureConfigRequest;
   }
-  export interface Params$Resource$Projects$Conversationprofiles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationprofiles$Create extends StandardParameters {
     /**
      * Required. The project to create a conversation profile for. Format: `projects//locations/`.
      */
@@ -28158,22 +28068,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ConversationProfile;
   }
-  export interface Params$Resource$Projects$Conversationprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationprofiles$Delete extends StandardParameters {
     /**
      * Required. The name of the conversation profile to delete. Format: `projects//locations//conversationProfiles/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Conversationprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationprofiles$Get extends StandardParameters {
     /**
      * Required. The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Conversationprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationprofiles$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -28187,8 +28094,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Conversationprofiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationprofiles$Patch extends StandardParameters {
     /**
      * The unique identifier of this conversation profile. Format: `projects//locations//conversationProfiles/`.
      */
@@ -28203,8 +28109,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ConversationProfile;
   }
-  export interface Params$Resource$Projects$Conversationprofiles$Setsuggestionfeatureconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversationprofiles$Setsuggestionfeatureconfig extends StandardParameters {
     /**
      * Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
      */
@@ -28887,8 +28792,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Conversations$Complete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Complete extends StandardParameters {
     /**
      * Required. Resource identifier of the conversation to close. Format: `projects//locations//conversations/`.
      */
@@ -28899,8 +28803,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2CompleteConversationRequest;
   }
-  export interface Params$Resource$Projects$Conversations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Create extends StandardParameters {
     /**
      * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
@@ -28915,15 +28818,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Conversation;
   }
-  export interface Params$Resource$Projects$Conversations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Get extends StandardParameters {
     /**
      * Required. The name of the conversation. Format: `projects//locations//conversations/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Conversations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$List extends StandardParameters {
     /**
      * Optional. A filter expression that filters conversations listed in the response. Only `lifecycle_state` can be filtered on in this way. For example, the following expression only returns `COMPLETED` conversations: `lifecycle_state = "COMPLETED"` For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -29106,8 +29007,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Conversations$Messages$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Messages$List extends StandardParameters {
     /**
      * Optional. Filter on message fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds \> 1551790877964485` or `create_time \> 2017-01-15T01:30:15.01Z`. For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -29957,8 +29857,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Conversations$Participants$Analyzecontent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Participants$Analyzecontent extends StandardParameters {
     /**
      * Required. The name of the participant this text comes from. Format: `projects//locations//conversations//participants/`.
      */
@@ -29969,8 +29868,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2AnalyzeContentRequest;
   }
-  export interface Params$Resource$Projects$Conversations$Participants$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Participants$Create extends StandardParameters {
     /**
      * Required. Resource identifier of the conversation adding the participant. Format: `projects//locations//conversations/`.
      */
@@ -29981,15 +29879,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Participant;
   }
-  export interface Params$Resource$Projects$Conversations$Participants$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Participants$Get extends StandardParameters {
     /**
      * Required. The name of the participant. Format: `projects//locations//conversations//participants/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Conversations$Participants$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Participants$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -30003,8 +29899,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Conversations$Participants$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Participants$Patch extends StandardParameters {
     /**
      * Optional. The unique identifier of this participant. Format: `projects//locations//conversations//participants/`.
      */
@@ -30691,8 +30586,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles extends StandardParameters {
     /**
      * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
      */
@@ -30703,8 +30597,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SuggestArticlesRequest;
   }
-  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestfaqanswers
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestfaqanswers extends StandardParameters {
     /**
      * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
      */
@@ -30715,8 +30608,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersRequest;
   }
-  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestknowledgeassist
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestknowledgeassist extends StandardParameters {
     /**
      * Required. The name of the participant to fetch suggestions for. Format: `projects//locations//conversations//participants/`.
      */
@@ -30727,8 +30619,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistRequest;
   }
-  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies extends StandardParameters {
     /**
      * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
      */
@@ -31243,8 +31134,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Conversations$Suggestions$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Suggestions$Generate extends StandardParameters {
     /**
      * Required. The conversation for which the suggestions are generated. Format: `projects//locations//conversations/`. The conversation must be created with a conversation profile which has generators configured in it to be able to get suggestions.
      */
@@ -31255,8 +31145,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsRequest;
   }
-  export interface Params$Resource$Projects$Conversations$Suggestions$Searchknowledge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Suggestions$Searchknowledge extends StandardParameters {
     /**
      * Optional. The conversation (between human agent and end user) where the search request is triggered. Format: `projects//locations//conversations/`.
      */
@@ -31267,8 +31156,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequest;
   }
-  export interface Params$Resource$Projects$Conversations$Suggestions$Suggestconversationsummary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Conversations$Suggestions$Suggestconversationsummary extends StandardParameters {
     /**
      * Required. The conversation to fetch suggestion for. Format: `projects//locations//conversations/`.
      */
@@ -31624,8 +31512,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Generators$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Generators$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
@@ -31640,8 +31527,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Generator;
   }
-  export interface Params$Resource$Projects$Generators$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Generators$List extends StandardParameters {
     /**
      * Optional. Maximum number of conversation models to return in a single page. Default to 10.
      */
@@ -32433,8 +32319,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Knowledgebases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Create extends StandardParameters {
     /**
      * Required. The project to create a knowledge base for. Format: `projects//locations/`.
      */
@@ -32445,8 +32330,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2KnowledgeBase;
   }
-  export interface Params$Resource$Projects$Knowledgebases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Delete extends StandardParameters {
     /**
      * Optional. Force deletes the knowledge base. When set to true, any documents in the knowledge base are also deleted.
      */
@@ -32456,15 +32340,13 @@ export namespace dialogflow_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Knowledgebases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Get extends StandardParameters {
     /**
      * Required. The name of the knowledge base to retrieve. Format `projects//locations//knowledgeBases/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Knowledgebases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$List extends StandardParameters {
     /**
      * The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -32482,8 +32364,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Knowledgebases$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Patch extends StandardParameters {
     /**
      * The knowledge base resource name. The name must be empty when creating a knowledge base. Format: `projects//locations//knowledgeBases/`.
      */
@@ -33757,8 +33638,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Knowledgebases$Documents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Documents$Create extends StandardParameters {
     /**
      * Required. The knowledge base to create a document for. Format: `projects//locations//knowledgeBases/`.
      */
@@ -33769,15 +33649,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Document;
   }
-  export interface Params$Resource$Projects$Knowledgebases$Documents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Documents$Delete extends StandardParameters {
     /**
      * Required. The name of the document to delete. Format: `projects//locations//knowledgeBases//documents/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Knowledgebases$Documents$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Documents$Export extends StandardParameters {
     /**
      * Required. The name of the document to export. Format: `projects//locations//knowledgeBases//documents/`.
      */
@@ -33788,15 +33666,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ExportDocumentRequest;
   }
-  export interface Params$Resource$Projects$Knowledgebases$Documents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Documents$Get extends StandardParameters {
     /**
      * Required. The name of the document to retrieve. Format `projects//locations//knowledgeBases//documents/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Knowledgebases$Documents$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Documents$Import extends StandardParameters {
     /**
      * Required. The knowledge base to import documents into. Format: `projects//locations//knowledgeBases/`.
      */
@@ -33807,8 +33683,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ImportDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Knowledgebases$Documents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Documents$List extends StandardParameters {
     /**
      * The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -33826,8 +33701,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Knowledgebases$Documents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Documents$Patch extends StandardParameters {
     /**
      * Optional. The document resource name. The name must be empty when creating a document. Format: `projects//locations//knowledgeBases//documents/`.
      */
@@ -33842,8 +33716,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Document;
   }
-  export interface Params$Resource$Projects$Knowledgebases$Documents$Reload
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Knowledgebases$Documents$Reload extends StandardParameters {
     /**
      * Required. The name of the document to reload. Format: `projects//locations//knowledgeBases//documents/`
      */
@@ -34835,36 +34708,31 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deleteagent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deleteagent extends StandardParameters {
     /**
      * Required. The project that the agent to delete is associated with. Format: `projects/`.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getagent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getagent extends StandardParameters {
     /**
      * Required. The project that the agent to fetch is associated with. Format: `projects/`.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getencryptionspec
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getencryptionspec extends StandardParameters {
     /**
      * Required. The name of the encryption spec resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -34886,8 +34754,7 @@ export namespace dialogflow_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Setagent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Setagent extends StandardParameters {
     /**
      * Required. The project of this agent. Format: `projects/`.
      */
@@ -36179,8 +36046,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Export extends StandardParameters {
     /**
      * Required. The project that the agent to export is associated with. Format: `projects/`.
      */
@@ -36191,15 +36057,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ExportAgentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Getfulfillment
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Getfulfillment extends StandardParameters {
     /**
      * Required. The name of the fulfillment. Format: `projects//agent/fulfillment`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Getvalidationresult
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Getvalidationresult extends StandardParameters {
     /**
      * Optional. The language for which you want a validation result. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -36209,8 +36073,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Import extends StandardParameters {
     /**
      * Required. The project that the agent to import is associated with. Format: `projects/`.
      */
@@ -36221,8 +36084,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ImportAgentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Restore extends StandardParameters {
     /**
      * Required. The project that the agent to restore is associated with. Format: `projects/`.
      */
@@ -36233,8 +36095,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2RestoreAgentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Search extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -36248,8 +36109,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Train
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Train extends StandardParameters {
     /**
      * Required. The project that the agent to train is associated with. Format: `projects/`.
      */
@@ -36260,8 +36120,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2TrainAgentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Updatefulfillment
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Updatefulfillment extends StandardParameters {
     /**
      * Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment` This field is not used for Fulfillment in an Environment.
      */
@@ -37399,8 +37258,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Batchdelete extends StandardParameters {
     /**
      * Required. The name of the agent to delete all entities types for. Format: `projects//agent`.
      */
@@ -37411,8 +37269,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteEntityTypesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Batchupdate extends StandardParameters {
     /**
      * Required. The name of the agent to update or create entity types in. Format: `projects//agent`.
      */
@@ -37423,8 +37280,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Create extends StandardParameters {
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -37439,15 +37295,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2EntityType;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Delete extends StandardParameters {
     /**
      * Required. The name of the entity type to delete. Format: `projects//agent/entityTypes/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Get extends StandardParameters {
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -37457,8 +37311,7 @@ export namespace dialogflow_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$List extends StandardParameters {
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -37476,8 +37329,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Patch extends StandardParameters {
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -37985,8 +37837,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchcreate extends StandardParameters {
     /**
      * Required. The name of the entity type to create entities in. Format: `projects//agent/entityTypes/`.
      */
@@ -37997,8 +37848,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchCreateEntitiesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchdelete extends StandardParameters {
     /**
      * Required. The name of the entity type to delete entries for. Format: `projects//agent/entityTypes/`.
      */
@@ -38009,8 +37859,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteEntitiesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchupdate extends StandardParameters {
     /**
      * Required. The name of the entity type to update or create entities in. Format: `projects//agent/entityTypes/`.
      */
@@ -38988,8 +38837,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Create extends StandardParameters {
     /**
      * Required. The unique id of the new environment.
      */
@@ -39004,22 +38852,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Environment;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Delete extends StandardParameters {
     /**
      * Required. The name of the environment to delete. / Format: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Get extends StandardParameters {
     /**
      * Required. The name of the environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Gethistory
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Gethistory extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -39033,8 +38878,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -39048,8 +38892,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Patch extends StandardParameters {
     /**
      * Optional. This field is used to prevent accidental overwrite of the default environment, which is an operation that cannot be undone. To confirm that the caller desires this overwrite, this field must be explicitly set to true when updating the default environment (environment ID = `-`).
      */
@@ -39238,8 +39081,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Intents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Intents$List extends StandardParameters {
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -39607,15 +39449,13 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Deletecontexts
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Deletecontexts extends StandardParameters {
     /**
      * Required. The name of the session to delete all contexts from. Format: `projects//agent/sessions/` or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Detectintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Detectintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//agent/sessions/`, or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment (`Environment ID` might be referred to as environment name at some places). If `User ID` is not specified, we are using "-". It's up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random number or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters. For more information, see the [API interactions guide](https://cloud.google.com/dialogflow/docs/api-overview). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      */
@@ -40406,8 +40246,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Create extends StandardParameters {
     /**
      * Required. The session to create a context for. Format: `projects//agent/sessions/` or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
@@ -40418,22 +40257,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Context;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Delete extends StandardParameters {
     /**
      * Required. The name of the context to delete. Format: `projects//agent/sessions//contexts/` or `projects//agent/environments//users//sessions//contexts/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Get extends StandardParameters {
     /**
      * Required. The name of the context. Format: `projects//agent/sessions//contexts/` or `projects//agent/environments//users//sessions//contexts/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -40447,8 +40283,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Patch extends StandardParameters {
     /**
      * Required. The unique identifier of the context. Format: `projects//agent/sessions//contexts/`, or `projects//agent/environments//users//sessions//contexts/`. The `Context ID` is always converted to lowercase, may only contain characters in `a-zA-Z0-9_-%` and may be at most 250 bytes long. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names: * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      */
@@ -41255,8 +41090,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Create extends StandardParameters {
     /**
      * Required. The session to create a session entity type for. Format: `projects//agent/sessions/` or `projects//agent/environments//users// sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
@@ -41267,22 +41101,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SessionEntityType;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Delete extends StandardParameters {
     /**
      * Required. The name of the entity type to delete. Format: `projects//agent/sessions//entityTypes/` or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Get extends StandardParameters {
     /**
      * Required. The name of the session entity type. Format: `projects//agent/sessions//entityTypes/` or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -41296,8 +41127,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Patch extends StandardParameters {
     /**
      * Required. The unique identifier of this session entity type. Format: `projects//agent/sessions//entityTypes/`, or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
@@ -42489,8 +42319,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Intents$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Intents$Batchdelete extends StandardParameters {
     /**
      * Required. The name of the agent to delete all entities types for. Format: `projects//agent`.
      */
@@ -42501,8 +42330,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteIntentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Intents$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Intents$Batchupdate extends StandardParameters {
     /**
      * Required. The name of the agent to update or create intents in. Format: `projects//agent`.
      */
@@ -42513,8 +42341,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchUpdateIntentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Intents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Intents$Create extends StandardParameters {
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -42533,15 +42360,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Intent;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Intents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Intents$Delete extends StandardParameters {
     /**
      * Required. The name of the intent to delete. If this intent has direct or indirect followup intents, we also delete them. Format: `projects//agent/intents/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Intents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Intents$Get extends StandardParameters {
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -42555,8 +42380,7 @@ export namespace dialogflow_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Intents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Intents$List extends StandardParameters {
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -42578,8 +42402,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Intents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Intents$Patch extends StandardParameters {
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -42931,15 +42754,13 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Deletecontexts
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Deletecontexts extends StandardParameters {
     /**
      * Required. The name of the session to delete all contexts from. Format: `projects//agent/sessions/` or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Detectintent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Detectintent extends StandardParameters {
     /**
      * Required. The name of the session this query is sent to. Format: `projects//agent/sessions/`, or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment (`Environment ID` might be referred to as environment name at some places). If `User ID` is not specified, we are using "-". It's up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random number or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters. For more information, see the [API interactions guide](https://cloud.google.com/dialogflow/docs/api-overview). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      */
@@ -43719,8 +43540,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Create extends StandardParameters {
     /**
      * Required. The session to create a context for. Format: `projects//agent/sessions/` or `projects//agent/environments//users//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
@@ -43731,22 +43551,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Context;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Delete extends StandardParameters {
     /**
      * Required. The name of the context to delete. Format: `projects//agent/sessions//contexts/` or `projects//agent/environments//users//sessions//contexts/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Get extends StandardParameters {
     /**
      * Required. The name of the context. Format: `projects//agent/sessions//contexts/` or `projects//agent/environments//users//sessions//contexts/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Contexts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Contexts$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -43760,8 +43577,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Patch extends StandardParameters {
     /**
      * Required. The unique identifier of the context. Format: `projects//agent/sessions//contexts/`, or `projects//agent/environments//users//sessions//contexts/`. The `Context ID` is always converted to lowercase, may only contain characters in `a-zA-Z0-9_-%` and may be at most 250 bytes long. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names: * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      */
@@ -44558,8 +44374,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Create extends StandardParameters {
     /**
      * Required. The session to create a session entity type for. Format: `projects//agent/sessions/` or `projects//agent/environments//users// sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
@@ -44570,22 +44385,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SessionEntityType;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Delete extends StandardParameters {
     /**
      * Required. The name of the entity type to delete. Format: `projects//agent/sessions//entityTypes/` or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Get extends StandardParameters {
     /**
      * Required. The name of the session entity type. Format: `projects//agent/sessions//entityTypes/` or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -44599,8 +44411,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Patch extends StandardParameters {
     /**
      * Required. The unique identifier of this session entity type. Format: `projects//agent/sessions//entityTypes/`, or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
@@ -45383,8 +45194,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Agent$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Versions$Create extends StandardParameters {
     /**
      * Required. The agent to create a version for. Supported formats: - `projects//agent` - `projects//locations//agent`
      */
@@ -45395,22 +45205,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Version;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Versions$Delete extends StandardParameters {
     /**
      * Required. The name of the version to delete. Supported formats: - `projects//agent/versions/` - `projects//locations//agent/versions/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Versions$Get extends StandardParameters {
     /**
      * Required. The name of the version. Supported formats: - `projects//agent/versions/` - `projects//locations//agent/versions/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Versions$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -45424,8 +45231,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Agent$Versions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Agent$Versions$Patch extends StandardParameters {
     /**
      * Output only. The unique identifier of this agent version. Supported formats: - `projects//agent/versions/` - `projects//locations//agent/versions/`
      */
@@ -45766,8 +45572,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Answerrecords$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Answerrecords$List extends StandardParameters {
     /**
      * Optional. Filters to restrict results to specific answer records. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * conversation_id with equals(=) operator Examples: * `conversation_id=bar` matches answer records in the `projects/foo/locations/global/conversations/bar` conversation (assuming the parent is `projects/foo/locations/global`). For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -45785,8 +45590,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Answerrecords$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Answerrecords$Patch extends StandardParameters {
     /**
      * The unique identifier of this answer record. Format: `projects//locations//answerRecords/`.
      */
@@ -46592,8 +46396,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversationdatasets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationdatasets$Create extends StandardParameters {
     /**
      * Required. The project to create conversation dataset for. Format: `projects//locations/`
      */
@@ -46604,22 +46407,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ConversationDataset;
   }
-  export interface Params$Resource$Projects$Locations$Conversationdatasets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationdatasets$Delete extends StandardParameters {
     /**
      * Required. The conversation dataset to delete. Format: `projects//locations//conversationDatasets/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversationdatasets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationdatasets$Get extends StandardParameters {
     /**
      * Required. The conversation dataset to retrieve. Format: `projects//locations//conversationDatasets/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversationdatasets$Importconversationdata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationdatasets$Importconversationdata extends StandardParameters {
     /**
      * Required. Dataset resource name. Format: `projects//locations//conversationDatasets/`
      */
@@ -46630,8 +46430,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ImportConversationDataRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversationdatasets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationdatasets$List extends StandardParameters {
     /**
      * Optional. Maximum number of conversation datasets to return in a single page. By default 100 and at most 1000.
      */
@@ -47590,8 +47389,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversationmodels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationmodels$Create extends StandardParameters {
     /**
      * The project to create conversation model for. Format: `projects/`
      */
@@ -47602,15 +47400,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ConversationModel;
   }
-  export interface Params$Resource$Projects$Locations$Conversationmodels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationmodels$Delete extends StandardParameters {
     /**
      * Required. The conversation model to delete. Format: `projects//conversationModels/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversationmodels$Deploy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationmodels$Deploy extends StandardParameters {
     /**
      * Required. The conversation model to deploy. Format: `projects//conversationModels/`
      */
@@ -47621,15 +47417,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2DeployConversationModelRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversationmodels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationmodels$Get extends StandardParameters {
     /**
      * Required. The conversation model to retrieve. Format: `projects//conversationModels/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversationmodels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationmodels$List extends StandardParameters {
     /**
      * Optional. Maximum number of conversation models to return in a single page. By default 100 and at most 1000.
      */
@@ -47643,8 +47437,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversationmodels$Undeploy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationmodels$Undeploy extends StandardParameters {
     /**
      * Required. The conversation model to undeploy. Format: `projects//conversationModels/`
      */
@@ -48134,8 +47927,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversationmodels$Evaluations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationmodels$Evaluations$Create extends StandardParameters {
     /**
      * Required. The conversation model resource name. Format: `projects//locations//conversationModels/`
      */
@@ -48146,15 +47938,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2CreateConversationModelEvaluationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversationmodels$Evaluations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationmodels$Evaluations$Get extends StandardParameters {
     /**
      * Required. The conversation model evaluation resource name. Format: `projects//conversationModels//evaluations/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversationmodels$Evaluations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationmodels$Evaluations$List extends StandardParameters {
     /**
      * Optional. Maximum number of evaluations to return in a single page. By default 100 and at most 1000.
      */
@@ -49331,8 +49121,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversationprofiles$Clearsuggestionfeatureconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Clearsuggestionfeatureconfig extends StandardParameters {
     /**
      * Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
      */
@@ -49343,8 +49132,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ClearSuggestionFeatureConfigRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversationprofiles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Create extends StandardParameters {
     /**
      * Required. The project to create a conversation profile for. Format: `projects//locations/`.
      */
@@ -49355,22 +49143,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ConversationProfile;
   }
-  export interface Params$Resource$Projects$Locations$Conversationprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Delete extends StandardParameters {
     /**
      * Required. The name of the conversation profile to delete. Format: `projects//locations//conversationProfiles/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversationprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Get extends StandardParameters {
     /**
      * Required. The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversationprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$List extends StandardParameters {
     /**
      * The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -49384,8 +49169,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversationprofiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Patch extends StandardParameters {
     /**
      * The unique identifier of this conversation profile. Format: `projects//locations//conversationProfiles/`.
      */
@@ -49400,8 +49184,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ConversationProfile;
   }
-  export interface Params$Resource$Projects$Locations$Conversationprofiles$Setsuggestionfeatureconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Setsuggestionfeatureconfig extends StandardParameters {
     /**
      * Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
      */
@@ -50245,8 +50028,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversations$Complete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Complete extends StandardParameters {
     /**
      * Required. Resource identifier of the conversation to close. Format: `projects//locations//conversations/`.
      */
@@ -50257,8 +50039,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2CompleteConversationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Create extends StandardParameters {
     /**
      * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
@@ -50273,15 +50054,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Conversation;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Get extends StandardParameters {
     /**
      * Required. The name of the conversation. Format: `projects//locations//conversations/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Ingestcontextreferences
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Ingestcontextreferences extends StandardParameters {
     /**
      * Required. Resource identifier of the conversation to ingest context information for. Format: `projects//locations//conversations/`.
      */
@@ -50292,8 +50071,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2IngestContextReferencesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$List extends StandardParameters {
     /**
      * Optional. A filter expression that filters conversations listed in the response. Only `lifecycle_state` can be filtered on in this way. For example, the following expression only returns `COMPLETED` conversations: `lifecycle_state = "COMPLETED"` For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -50478,8 +50256,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversations$Messages$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Messages$List extends StandardParameters {
     /**
      * Optional. Filter on message fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds \> 1551790877964485` or `create_time \> 2017-01-15T01:30:15.01Z`. For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -51339,8 +51116,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversations$Participants$Analyzecontent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Analyzecontent extends StandardParameters {
     /**
      * Required. The name of the participant this text comes from. Format: `projects//locations//conversations//participants/`.
      */
@@ -51351,8 +51127,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2AnalyzeContentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Participants$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Create extends StandardParameters {
     /**
      * Required. Resource identifier of the conversation adding the participant. Format: `projects//locations//conversations/`.
      */
@@ -51363,15 +51138,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Participant;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Participants$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Get extends StandardParameters {
     /**
      * Required. The name of the participant. Format: `projects//locations//conversations//participants/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Participants$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -51385,8 +51158,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Participants$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Patch extends StandardParameters {
     /**
      * Optional. The unique identifier of this participant. Format: `projects//locations//conversations//participants/`.
      */
@@ -52073,8 +51845,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles extends StandardParameters {
     /**
      * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
      */
@@ -52085,8 +51856,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SuggestArticlesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestfaqanswers
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestfaqanswers extends StandardParameters {
     /**
      * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
      */
@@ -52097,8 +51867,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestknowledgeassist
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestknowledgeassist extends StandardParameters {
     /**
      * Required. The name of the participant to fetch suggestions for. Format: `projects//locations//conversations//participants/`.
      */
@@ -52109,8 +51878,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies extends StandardParameters {
     /**
      * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
      */
@@ -52631,8 +52399,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Conversations$Suggestions$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Suggestions$Generate extends StandardParameters {
     /**
      * Required. The conversation for which the suggestions are generated. Format: `projects//locations//conversations/`. The conversation must be created with a conversation profile which has generators configured in it to be able to get suggestions.
      */
@@ -52643,8 +52410,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge extends StandardParameters {
     /**
      * Optional. The conversation (between human agent and end user) where the search request is triggered. Format: `projects//locations//conversations/`.
      */
@@ -52655,8 +52421,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Conversations$Suggestions$Suggestconversationsummary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Conversations$Suggestions$Suggestconversationsummary extends StandardParameters {
     /**
      * Required. The conversation to fetch suggestion for. Format: `projects//locations//conversations/`.
      */
@@ -52832,8 +52597,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Encryptionspec$Initialize
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Encryptionspec$Initialize extends StandardParameters {
     /**
      * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
      */
@@ -53665,8 +53429,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Generators$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Generators$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
@@ -53681,22 +53444,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Generator;
   }
-  export interface Params$Resource$Projects$Locations$Generators$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Generators$Delete extends StandardParameters {
     /**
      * Required. The generator resource name to delete. Format: `projects//locations//generators/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Generators$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Generators$Get extends StandardParameters {
     /**
      * Required. The generator resource name to retrieve. Format: `projects//locations//generators/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Generators$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Generators$List extends StandardParameters {
     /**
      * Optional. Maximum number of conversation models to return in a single page. Default to 10.
      */
@@ -53710,8 +53470,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Generators$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Generators$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of the generator. Format: `projects//locations//generators/`
      */
@@ -54354,8 +54113,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Generators$Evaluations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Generators$Evaluations$Create extends StandardParameters {
     /**
      * Required. The generator resource name. Format: `projects//locations//generators/`
      */
@@ -54366,22 +54124,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2GeneratorEvaluation;
   }
-  export interface Params$Resource$Projects$Locations$Generators$Evaluations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Generators$Evaluations$Delete extends StandardParameters {
     /**
      * Required. The generator evaluation resource name. Format: `projects//locations//generators// evaluations/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Generators$Evaluations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Generators$Evaluations$Get extends StandardParameters {
     /**
      * Required. The generator evaluation resource name. Format: `projects//locations//generators//evaluations/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Generators$Evaluations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Generators$Evaluations$List extends StandardParameters {
     /**
      * Optional. Maximum number of evaluations to return in a single page. By default 100 and at most 1000.
      */
@@ -55173,8 +54928,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Create extends StandardParameters {
     /**
      * Required. The project to create a knowledge base for. Format: `projects//locations/`.
      */
@@ -55185,8 +54939,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2KnowledgeBase;
   }
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Delete extends StandardParameters {
     /**
      * Optional. Force deletes the knowledge base. When set to true, any documents in the knowledge base are also deleted.
      */
@@ -55196,15 +54949,13 @@ export namespace dialogflow_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Get extends StandardParameters {
     /**
      * Required. The name of the knowledge base to retrieve. Format `projects//locations//knowledgeBases/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Knowledgebases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$List extends StandardParameters {
     /**
      * The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -55222,8 +54973,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Patch extends StandardParameters {
     /**
      * The knowledge base resource name. The name must be empty when creating a knowledge base. Format: `projects//locations//knowledgeBases/`.
      */
@@ -56516,8 +56266,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Create extends StandardParameters {
     /**
      * Required. The knowledge base to create a document for. Format: `projects//locations//knowledgeBases/`.
      */
@@ -56528,15 +56277,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Document;
   }
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Delete extends StandardParameters {
     /**
      * Required. The name of the document to delete. Format: `projects//locations//knowledgeBases//documents/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Export extends StandardParameters {
     /**
      * Required. The name of the document to export. Format: `projects//locations//knowledgeBases//documents/`.
      */
@@ -56547,15 +56294,13 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ExportDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Get extends StandardParameters {
     /**
      * Required. The name of the document to retrieve. Format `projects//locations//knowledgeBases//documents/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Import extends StandardParameters {
     /**
      * Required. The knowledge base to import documents into. Format: `projects//locations//knowledgeBases/`.
      */
@@ -56566,8 +56311,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ImportDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$List extends StandardParameters {
     /**
      * The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -56585,8 +56329,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Patch extends StandardParameters {
     /**
      * Optional. The document resource name. The name must be empty when creating a document. Format: `projects//locations//knowledgeBases//documents/`.
      */
@@ -56601,8 +56344,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Document;
   }
-  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Reload
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Reload extends StandardParameters {
     /**
      * Required. The name of the document to reload. Format: `projects//locations//knowledgeBases//documents/`
      */
@@ -57061,22 +56803,19 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -57861,8 +57600,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Siptrunks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Siptrunks$Create extends StandardParameters {
     /**
      * Required. The location to create a SIP trunk for. Format: `projects//locations/`.
      */
@@ -57873,22 +57611,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SipTrunk;
   }
-  export interface Params$Resource$Projects$Locations$Siptrunks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Siptrunks$Delete extends StandardParameters {
     /**
      * Required. The name of the SIP trunk to delete. Format: `projects//locations//sipTrunks/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Siptrunks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Siptrunks$Get extends StandardParameters {
     /**
      * Required. The name of the SIP trunk to delete. Format: `projects//locations//sipTrunks/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Siptrunks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Siptrunks$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -57902,8 +57637,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Siptrunks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Siptrunks$Patch extends StandardParameters {
     /**
      * Identifier. The unique identifier of the SIP trunk. Format: `projects//locations//sipTrunks/`.
      */
@@ -58089,8 +57823,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Statelesssuggestion$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Statelesssuggestion$Generate extends StandardParameters {
     /**
      * Required. The parent resource to charge for the Suggestion's generation. Format: `projects//locations/`.
      */
@@ -58441,8 +58174,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary extends StandardParameters {
     /**
      * Required. The parent resource to charge for the Summary's generation. Format: `projects//locations/`.
      */
@@ -58453,8 +58185,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2GenerateStatelessSummaryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Suggestions$Searchknowledge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Suggestions$Searchknowledge extends StandardParameters {
     /**
      * Required. The parent resource contains the conversation profile Format: 'projects/' or `projects//locations/`.
      */
@@ -59269,8 +59000,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tools$Create extends StandardParameters {
     /**
      * Required. The project/location to create tool for. Format: `projects//locations/`
      */
@@ -59285,22 +59015,19 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Tool;
   }
-  export interface Params$Resource$Projects$Locations$Tools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tools$Delete extends StandardParameters {
     /**
      * Required. The tool resource name to delete. Format: `projects//locations//tools/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tools$Get extends StandardParameters {
     /**
      * Required. The tool resource name to retrieve. Format: `projects//locations//tools/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tools$List extends StandardParameters {
     /**
      * Optional. Maximum number of conversation models to return in a single page. Default to 10.
      */
@@ -59314,8 +59041,7 @@ export namespace dialogflow_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tools$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tools$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of the tool. Format: `projects//locations//tools/`.
      */
@@ -59778,22 +59504,19 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -60153,8 +59876,7 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Suggestions$Generatestatelesssummary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Suggestions$Generatestatelesssummary extends StandardParameters {
     /**
      * Required. The parent resource to charge for the Summary's generation. Format: `projects//locations/`.
      */
@@ -60165,8 +59887,7 @@ export namespace dialogflow_v2 {
      */
     requestBody?: Schema$GoogleCloudDialogflowV2GenerateStatelessSummaryRequest;
   }
-  export interface Params$Resource$Projects$Suggestions$Searchknowledge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Suggestions$Searchknowledge extends StandardParameters {
     /**
      * Required. The parent resource contains the conversation profile Format: 'projects/' or `projects//locations/`.
      */
