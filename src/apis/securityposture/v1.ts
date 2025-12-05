@@ -1553,8 +1553,7 @@ export namespace securityposture_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -1565,22 +1564,19 @@ export namespace securityposture_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2391,8 +2387,7 @@ export namespace securityposture_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Posturedeployments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Posturedeployments$Create extends StandardParameters {
     /**
      * Required. The parent resource name, in the format `organizations/{organization\}/locations/global`.
      */
@@ -2407,8 +2402,7 @@ export namespace securityposture_v1 {
      */
     requestBody?: Schema$PostureDeployment;
   }
-  export interface Params$Resource$Organizations$Locations$Posturedeployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Posturedeployments$Delete extends StandardParameters {
     /**
      * Optional. An opaque identifier for the current version of the posture deployment. If you provide this value, then it must match the existing value. If the values don't match, then the request fails with an ABORTED error. If you omit this value, then the posture deployment is deleted regardless of its current `etag` value.
      */
@@ -2418,15 +2412,13 @@ export namespace securityposture_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Posturedeployments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Posturedeployments$Get extends StandardParameters {
     /**
      * Required. The name of the PostureDeployment, in the format `organizations/{organization\}/locations/global/postureDeployments/{posture_deployment_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Posturedeployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Posturedeployments$List extends StandardParameters {
     /**
      * Optional. A filter to apply to the list of postures, in the format defined in [AIP-160: Filtering](https://google.aip.dev/160).
      */
@@ -2444,8 +2436,7 @@ export namespace securityposture_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Posturedeployments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Posturedeployments$Patch extends StandardParameters {
     /**
      * Required. Identifier. The name of the posture deployment, in the format `organizations/{organization\}/locations/global/postureDeployments/{deployment_id\}`.
      */
@@ -3529,8 +3520,7 @@ export namespace securityposture_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Postures$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Postures$Create extends StandardParameters {
     /**
      * Required. The parent resource name, in the format `organizations/{organization\}/locations/global`.
      */
@@ -3545,8 +3535,7 @@ export namespace securityposture_v1 {
      */
     requestBody?: Schema$Posture;
   }
-  export interface Params$Resource$Organizations$Locations$Postures$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Postures$Delete extends StandardParameters {
     /**
      * Optional. An opaque identifier for the current version of the posture. If you provide this value, then it must match the existing value. If the values don't match, then the request fails with an ABORTED error. If you omit this value, then the posture is deleted regardless of its current `etag` value.
      */
@@ -3556,8 +3545,7 @@ export namespace securityposture_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Postures$Extract
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Postures$Extract extends StandardParameters {
     /**
      * Required. The parent resource name, in the format `organizations/{organization\}/locations/global`.
      */
@@ -3568,8 +3556,7 @@ export namespace securityposture_v1 {
      */
     requestBody?: Schema$ExtractPostureRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Postures$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Postures$Get extends StandardParameters {
     /**
      * Required. The name of the Posture, in the format `organizations/{organization\}/locations/global/postures/{posture_id\}`.
      */
@@ -3579,8 +3566,7 @@ export namespace securityposture_v1 {
      */
     revisionId?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Postures$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Postures$List extends StandardParameters {
     /**
      * Optional. A filter to apply to the list of postures, in the format defined in [AIP-160: Filtering](https://google.aip.dev/160).
      */
@@ -3598,8 +3584,7 @@ export namespace securityposture_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Postures$Listrevisions
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Postures$Listrevisions extends StandardParameters {
     /**
      * Required. The name of the Posture, in the format `organizations/{organization\}/locations/global/postures/{posture_id\}`.
      */
@@ -3613,8 +3598,7 @@ export namespace securityposture_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Postures$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Postures$Patch extends StandardParameters {
     /**
      * Required. Identifier. The name of the posture, in the format `organizations/{organization\}/locations/global/postures/{posture_id\}`.
      */
@@ -3938,8 +3922,7 @@ export namespace securityposture_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Posturetemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Posturetemplates$Get extends StandardParameters {
     /**
      * Required. The name of the PostureTemplate, in the format `organizations/{organization\}/locations/global/postureTemplates/{posture_template\}`.
      */
@@ -3949,8 +3932,7 @@ export namespace securityposture_v1 {
      */
     revisionId?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Posturetemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Posturetemplates$List extends StandardParameters {
     /**
      * Optional. A filter to apply to the list of postures, in the format defined in [AIP-160: Filtering](https://google.aip.dev/160).
      */
@@ -4415,8 +4397,7 @@ export namespace securityposture_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Reports$Createiacvalidationreport
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Reports$Createiacvalidationreport extends StandardParameters {
     /**
      * Required. The parent resource name, in the format `organizations/{organization\}/locations/global`.
      */
@@ -4427,15 +4408,13 @@ export namespace securityposture_v1 {
      */
     requestBody?: Schema$CreateIaCValidationReportRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Reports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Reports$Get extends StandardParameters {
     /**
      * Required. The name of the report, in the format `organizations/{organization\}/locations/global/reports/{report_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Reports$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Reports$List extends StandardParameters {
     /**
      * Optional. A filter to apply to the list of reports, in the format defined in [AIP-160: Filtering](https://google.aip.dev/160).
      */
@@ -4758,15 +4737,13 @@ export namespace securityposture_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
