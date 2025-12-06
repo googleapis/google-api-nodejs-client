@@ -1526,17 +1526,14 @@ export namespace reseller_v1 {
     }
   }
 
-  export interface Params$Resource$Resellernotify$Getwatchdetails
-    extends StandardParameters {}
-  export interface Params$Resource$Resellernotify$Register
-    extends StandardParameters {
+  export interface Params$Resource$Resellernotify$Getwatchdetails extends StandardParameters {}
+  export interface Params$Resource$Resellernotify$Register extends StandardParameters {
     /**
      * The service account which will own the created Cloud-PubSub topic.
      */
     serviceAccountEmailAddress?: string;
   }
-  export interface Params$Resource$Resellernotify$Unregister
-    extends StandardParameters {
+  export interface Params$Resource$Resellernotify$Unregister extends StandardParameters {
     /**
      * The service account which owns the Cloud-PubSub topic.
      */
@@ -3147,8 +3144,7 @@ export namespace reseller_v1 {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Activate extends StandardParameters {
     /**
      * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
@@ -3158,8 +3154,7 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Changeplan
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Changeplan extends StandardParameters {
     /**
      * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
@@ -3174,8 +3169,7 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$ChangePlanRequest;
   }
-  export interface Params$Resource$Subscriptions$Changerenewalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Changerenewalsettings extends StandardParameters {
     /**
      * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
@@ -3190,8 +3184,7 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$RenewalSettings;
   }
-  export interface Params$Resource$Subscriptions$Changeseats
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Changeseats extends StandardParameters {
     /**
      * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
@@ -3206,8 +3199,7 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$Seats;
   }
-  export interface Params$Resource$Subscriptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Delete extends StandardParameters {
     /**
      * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
@@ -3221,8 +3213,7 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Get extends StandardParameters {
     /**
      * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
@@ -3232,8 +3223,7 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Insert extends StandardParameters {
     /**
      * The intented insert action. Advised to set this when the customer already has a subscription for a different SKU in the same product.
      */
@@ -3256,8 +3246,7 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$List extends StandardParameters {
     /**
      * The `customerAuthToken` query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
      */
@@ -3279,8 +3268,7 @@ export namespace reseller_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Subscriptions$Startpaidservice
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Startpaidservice extends StandardParameters {
     /**
      * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
@@ -3290,8 +3278,7 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Suspend
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Suspend extends StandardParameters {
     /**
      * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
