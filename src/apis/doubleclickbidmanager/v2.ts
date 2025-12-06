@@ -1424,8 +1424,7 @@ export namespace doubleclickbidmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Queries$Reports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Queries$Reports$Get extends StandardParameters {
     /**
      * Required. The ID of the query that generated the report.
      */
@@ -1435,8 +1434,7 @@ export namespace doubleclickbidmanager_v2 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Queries$Reports$List
-    extends StandardParameters {
+  export interface Params$Resource$Queries$Reports$List extends StandardParameters {
     /**
      * Field to sort the list by. Accepts the following values: * `key.reportId` (default) The default sorting order is ascending. To specify descending order for a field, add the suffix `desc` to the field name. For example, `key.reportId desc`.
      */
