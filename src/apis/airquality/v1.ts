@@ -707,8 +707,7 @@ export namespace airquality_v1 {
     }
   }
 
-  export interface Params$Resource$Currentconditions$Lookup
-    extends StandardParameters {
+  export interface Params$Resource$Currentconditions$Lookup extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -1209,8 +1208,7 @@ export namespace airquality_v1 {
     }
   }
 
-  export interface Params$Resource$Maptypes$Heatmaptiles$Lookupheatmaptile
-    extends StandardParameters {
+  export interface Params$Resource$Maptypes$Heatmaptiles$Lookupheatmaptile extends StandardParameters {
     /**
      * Required. The type of the air quality heatmap. Defines the pollutant that the map will graphically represent. Allowed values: - UAQI_RED_GREEN (UAQI, red-green palette) - UAQI_INDIGO_PERSIAN (UAQI, indigo-persian palette) - PM25_INDIGO_PERSIAN - GBR_DEFRA - DEU_UBA - CAN_EC - FRA_ATMO - US_AQI
      */
