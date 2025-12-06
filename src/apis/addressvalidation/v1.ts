@@ -985,15 +985,13 @@ export namespace addressvalidation_v1 {
     }
   }
 
-  export interface Params$Resource$V1$Providevalidationfeedback
-    extends StandardParameters {
+  export interface Params$Resource$V1$Providevalidationfeedback extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleMapsAddressvalidationV1ProvideValidationFeedbackRequest;
   }
-  export interface Params$Resource$V1$Validateaddress
-    extends StandardParameters {
+  export interface Params$Resource$V1$Validateaddress extends StandardParameters {
     /**
      * Request body metadata
      */
