@@ -174,6 +174,10 @@ export namespace calendar_v3 {
   }
   export interface Schema$Calendar {
     /**
+     * Whether this calendar automatically accepts invitations. Only valid for resource calendars.
+     */
+    autoAcceptInvitations?: boolean | null;
+    /**
      * Conferencing properties for this calendar, for example what types of conferences are allowed.
      */
     conferenceProperties?: Schema$ConferenceProperties;
@@ -3604,8 +3608,7 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Calendarlist$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Calendarlist$Delete extends StandardParameters {
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      */
@@ -3617,8 +3620,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendarlist$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Calendarlist$Insert extends StandardParameters {
     /**
      * Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      */
@@ -3629,8 +3631,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$List
-    extends StandardParameters {
+  export interface Params$Resource$Calendarlist$List extends StandardParameters {
     /**
      * Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
      */
@@ -3660,8 +3661,7 @@ export namespace calendar_v3 {
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Calendarlist$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Calendarlist$Patch extends StandardParameters {
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      */
@@ -3676,8 +3676,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$Update
-    extends StandardParameters {
+  export interface Params$Resource$Calendarlist$Update extends StandardParameters {
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      */
@@ -3692,8 +3691,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$Watch
-    extends StandardParameters {
+  export interface Params$Resource$Calendarlist$Watch extends StandardParameters {
     /**
      * Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
      */
@@ -4043,6 +4041,7 @@ export namespace calendar_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoAcceptInvitations": false,
      *   //   "conferenceProperties": {},
      *   //   "dataOwner": "my_dataOwner",
      *   //   "description": "my_description",
@@ -4191,6 +4190,7 @@ export namespace calendar_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autoAcceptInvitations": false,
      *       //   "conferenceProperties": {},
      *       //   "dataOwner": "my_dataOwner",
      *       //   "description": "my_description",
@@ -4207,6 +4207,7 @@ export namespace calendar_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoAcceptInvitations": false,
      *   //   "conferenceProperties": {},
      *   //   "dataOwner": "my_dataOwner",
      *   //   "description": "my_description",
@@ -4355,6 +4356,7 @@ export namespace calendar_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autoAcceptInvitations": false,
      *       //   "conferenceProperties": {},
      *       //   "dataOwner": "my_dataOwner",
      *       //   "description": "my_description",
@@ -4371,6 +4373,7 @@ export namespace calendar_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoAcceptInvitations": false,
      *   //   "conferenceProperties": {},
      *   //   "dataOwner": "my_dataOwner",
      *   //   "description": "my_description",
@@ -4519,6 +4522,7 @@ export namespace calendar_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autoAcceptInvitations": false,
      *       //   "conferenceProperties": {},
      *       //   "dataOwner": "my_dataOwner",
      *       //   "description": "my_description",
@@ -4535,6 +4539,7 @@ export namespace calendar_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoAcceptInvitations": false,
      *   //   "conferenceProperties": {},
      *   //   "dataOwner": "my_dataOwner",
      *   //   "description": "my_description",
