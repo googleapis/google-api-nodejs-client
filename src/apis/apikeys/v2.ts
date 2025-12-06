@@ -1714,8 +1714,7 @@ export namespace apikeys_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Keys$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keys$Create extends StandardParameters {
     /**
      * User specified key id (optional). If specified, it will become the final component of the key resource name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. In another word, the id must match the regular expression: `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`. The id must NOT be a UUID-like string.
      */
@@ -1730,8 +1729,7 @@ export namespace apikeys_v2 {
      */
     requestBody?: Schema$V2Key;
   }
-  export interface Params$Resource$Projects$Locations$Keys$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keys$Delete extends StandardParameters {
     /**
      * Optional. The etag known to the client for the expected state of the key. This is to be used for optimistic concurrency.
      */
@@ -1741,22 +1739,19 @@ export namespace apikeys_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keys$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keys$Get extends StandardParameters {
     /**
      * Required. The resource name of the API key to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keys$Getkeystring
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keys$Getkeystring extends StandardParameters {
     /**
      * Required. The resource name of the API key to be retrieved.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keys$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keys$List extends StandardParameters {
     /**
      * Optional. Specifies the maximum number of results to be returned at a time.
      */
@@ -1774,8 +1769,7 @@ export namespace apikeys_v2 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Keys$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keys$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.
      */
@@ -1790,8 +1784,7 @@ export namespace apikeys_v2 {
      */
     requestBody?: Schema$V2Key;
   }
-  export interface Params$Resource$Projects$Locations$Keys$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keys$Undelete extends StandardParameters {
     /**
      * Required. The resource name of the API key to be undeleted.
      */
