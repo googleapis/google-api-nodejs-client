@@ -2941,8 +2941,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Services$Consumerquotametrics$Get
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Get extends StandardParameters {
     /**
      * The resource name of the quota metric, returned by a ListConsumerQuotaMetrics call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus`
      */
@@ -2952,8 +2951,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Importproduceroverrides
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Importproduceroverrides extends StandardParameters {
     /**
      * The resource name of the consumer. An example name would be: `services/compute.googleapis.com/projects/123`
      */
@@ -2964,8 +2962,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     requestBody?: Schema$V1Beta1ImportProducerOverridesRequest;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies extends StandardParameters {
     /**
      * The resource name of the consumer. An example name would be: `services/compute.googleapis.com/organizations/123`
      */
@@ -2976,8 +2973,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     requestBody?: Schema$V1Beta1ImportProducerQuotaPoliciesRequest;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$List extends StandardParameters {
     /**
      * Requested size of the next page of data.
      */
@@ -3158,8 +3154,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Get
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Get extends StandardParameters {
     /**
      * The resource name of the quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
      */
@@ -3814,8 +3809,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Create
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Create extends StandardParameters {
     /**
      * Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
      */
@@ -3838,8 +3832,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     requestBody?: Schema$V1Beta1QuotaOverride;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Delete extends StandardParameters {
     /**
      * Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
      */
@@ -3857,8 +3850,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$List extends StandardParameters {
     /**
      * Requested size of the next page of data.
      */
@@ -3872,8 +3864,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Patch extends StandardParameters {
     /**
      * Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
      */
@@ -4545,8 +4536,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create extends StandardParameters {
     /**
      * Whether to force the creation of the quota policy. If the policy creation would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */
@@ -4569,8 +4559,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     requestBody?: Schema$V1Beta1ProducerQuotaPolicy;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete extends StandardParameters {
     /**
      * Whether to force the deletion of the quota policy. If the policy deletion would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */
@@ -4588,8 +4577,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List extends StandardParameters {
     /**
      * Requested size of the next page of data.
      */
@@ -4603,8 +4591,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch extends StandardParameters {
     /**
      * Whether to force the update of the quota policy. If the policy update would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */

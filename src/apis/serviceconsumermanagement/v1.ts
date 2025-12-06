@@ -2741,8 +2741,7 @@ export namespace serviceconsumermanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2753,8 +2752,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
@@ -4317,8 +4315,7 @@ export namespace serviceconsumermanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Tenancyunits$Addproject
-    extends StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Addproject extends StandardParameters {
     /**
      * Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
@@ -4329,8 +4326,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$AddTenantProjectRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Applyprojectconfig
-    extends StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Applyprojectconfig extends StandardParameters {
     /**
      * Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
@@ -4341,8 +4337,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$ApplyTenantProjectConfigRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Attachproject
-    extends StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Attachproject extends StandardParameters {
     /**
      * Required. Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
@@ -4353,8 +4348,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$AttachTenantProjectRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Create
-    extends StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Create extends StandardParameters {
     /**
      * Required. services/{service\}/{collection id\}/{resource id\} {collection id\} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id\} is the consumer numeric id, such as project number: '123456'. {service\} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
      */
@@ -4365,15 +4359,13 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$CreateTenancyUnitRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Delete extends StandardParameters {
     /**
      * Required. Name of the tenancy unit to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Tenancyunits$Deleteproject
-    extends StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Deleteproject extends StandardParameters {
     /**
      * Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
@@ -4384,8 +4376,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$DeleteTenantProjectRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$List extends StandardParameters {
     /**
      * Optional. Filter expression over tenancy resources field. Optional.
      */
@@ -4403,8 +4394,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Services$Tenancyunits$Removeproject
-    extends StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Removeproject extends StandardParameters {
     /**
      * Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
@@ -4415,8 +4405,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$RemoveTenantProjectRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Undeleteproject
-    extends StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Undeleteproject extends StandardParameters {
     /**
      * Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
