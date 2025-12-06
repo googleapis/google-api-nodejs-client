@@ -3524,8 +3524,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collectapidata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collectapidata extends StandardParameters {
     /**
      * Required. The regional location of the API hub instance and its resources. Format: `projects/{project\}/locations/{location\}`
      */
@@ -3536,15 +3535,13 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1CollectApiDataRequest;
   }
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -3566,15 +3563,13 @@ export namespace apihub_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lookupruntimeprojectattachment
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lookupruntimeprojectattachment extends StandardParameters {
     /**
      * Required. Runtime project ID to look up runtime project attachment for. Lookup happens across all regions. Expected format: `projects/{project\}/locations/{location\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Searchresources
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Searchresources extends StandardParameters {
     /**
      * Required. The resource name of the location which will be of the type `projects/{project_id\}/locations/{location_id\}`. This field is used to identify the instance of API-Hub in which resources should be searched.
      */
@@ -4043,15 +4038,13 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Addons$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addons$Get extends StandardParameters {
     /**
      * Required. The name of the addon to get. Format: `projects/{project\}/locations/{location\}/addons/{addon\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Addons$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addons$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of addons. The only supported filter is `plugin_instance_name`. It can be used to filter addons that are enabled for a given plugin instance. The format of the filter is `plugin_instance_name = "projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}"`.
      */
@@ -4069,8 +4062,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Addons$Manageconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addons$Manageconfig extends StandardParameters {
     /**
      * Required. The name of the addon for which the config is to be managed. Format: `projects/{project\}/locations/{location\}/addons/{addon\}`.
      */
@@ -4694,8 +4686,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apihubinstances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apihubinstances$Create extends StandardParameters {
     /**
      * Optional. Identifier to assign to the Api Hub instance. Must be unique within scope of the parent resource. If the field is not provided, system generated id will be used. This value should be 4-40 characters, and valid characters are `/a-z[0-9]-_/`.
      */
@@ -4710,22 +4701,19 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1ApiHubInstance;
   }
-  export interface Params$Resource$Projects$Locations$Apihubinstances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apihubinstances$Delete extends StandardParameters {
     /**
      * Required. The name of the Api Hub instance to delete. Format: `projects/{project\}/locations/{location\}/apiHubInstances/{apiHubInstance\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apihubinstances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apihubinstances$Get extends StandardParameters {
     /**
      * Required. The name of the Api Hub instance to retrieve. Format: `projects/{project\}/locations/{location\}/apiHubInstances/{apiHubInstance\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apihubinstances$Lookup
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apihubinstances$Lookup extends StandardParameters {
     /**
      * Required. There will always be only one Api Hub instance for a GCP project across all locations. The parent resource for the Api Hub instance resource. Format: `projects/{project\}/locations/{location\}`
      */
@@ -5551,8 +5539,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the API resource, which will become the final component of the API's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another API resource in the API hub. * If not provided, a system generated id will be used. This value should be 4-500 characters, and valid characters are /a-z[0-9]-_/.
      */
@@ -5567,8 +5554,7 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1Api;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Delete extends StandardParameters {
     /**
      * Optional. If set to true, any versions from this API will also be deleted. Otherwise, the request will only work if the API has no versions.
      */
@@ -5578,15 +5564,13 @@ export namespace apihub_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Get extends StandardParameters {
     /**
      * Required. The name of the API resource to retrieve. Format: `projects/{project\}/locations/{location\}/apis/{api\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of ApiResources. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>`, `:` or `=`. Filters are not case sensitive. The following fields in the `ApiResource` are eligible for filtering: * `owner.email` - The email of the team which owns the ApiResource. Allowed comparison operators: `=`. * `create_time` - The time at which the ApiResource was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `display_name` - The display name of the ApiResource. Allowed comparison operators: `=`. * `target_user.enum_values.values.id` - The allowed value id of the target users attribute associated with the ApiResource. Allowed comparison operator is `:`. * `target_user.enum_values.values.display_name` - The allowed value display name of the target users attribute associated with the ApiResource. Allowed comparison operator is `:`. * `team.enum_values.values.id` - The allowed value id of the team attribute associated with the ApiResource. Allowed comparison operator is `:`. * `team.enum_values.values.display_name` - The allowed value display name of the team attribute associated with the ApiResource. Allowed comparison operator is `:`. * `business_unit.enum_values.values.id` - The allowed value id of the business unit attribute associated with the ApiResource. Allowed comparison operator is `:`. * `business_unit.enum_values.values.display_name` - The allowed value display name of the business unit attribute associated with the ApiResource. Allowed comparison operator is `:`. * `maturity_level.enum_values.values.id` - The allowed value id of the maturity level attribute associated with the ApiResource. Allowed comparison operator is `:`. * `maturity_level.enum_values.values.display_name` - The allowed value display name of the maturity level attribute associated with the ApiResource. Allowed comparison operator is `:`. * `api_style.enum_values.values.id` - The allowed value id of the api style attribute associated with the ApiResource. Allowed comparison operator is `:`. * `api_style.enum_values.values.display_name` - The allowed value display name of the api style attribute associated with the ApiResource. Allowed comparison operator is `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"api-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/apis/api-1\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `owner.email = \"apihub@google.com\"` - - The owner team email is _apihub@google.com_. * `owner.email = \"apihub@google.com\" AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The owner team email is _apihub@google.com_ and the api was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `owner.email = \"apihub@google.com\" OR team.enum_values.values.id: apihub-team-id` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ or the id of the allowed value associated with the team attribute is _apihub-team-id_. * `owner.email = \"apihub@google.com\" OR team.enum_values.values.display_name: ApiHub Team` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ or the display name of the allowed value associated with the team attribute is `ApiHub Team`. * `owner.email = \"apihub@google.com\" AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id: test_enum_id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/1765\0f90-4a29-5431-b3d0-d5532da3764c.string_values.values: test_string_value` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ and the id of the allowed value associated with the user defined attribute of type enum is _test_enum_id_ and the value of the user defined attribute of type string is _test_..
      */
@@ -5604,8 +5588,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Patch extends StandardParameters {
     /**
      * Identifier. The name of the API resource in the API Hub. Format: `projects/{project\}/locations/{location\}/apis/{api\}`
      */
@@ -6438,8 +6421,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Create extends StandardParameters {
     /**
      * Required. The parent resource for API version. Format: `projects/{project\}/locations/{location\}/apis/{api\}`
      */
@@ -6454,8 +6436,7 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1Version;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Delete extends StandardParameters {
     /**
      * Optional. If set to true, any specs from this version will also be deleted. Otherwise, the request will only work if the version has no specs.
      */
@@ -6465,15 +6446,13 @@ export namespace apihub_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Get extends StandardParameters {
     /**
      * Required. The name of the API version to retrieve. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of Versions. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `Version` are eligible for filtering: * `display_name` - The display name of the Version. Allowed comparison operators: `=`. * `create_time` - The time at which the Version was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `lifecycle.enum_values.values.id` - The allowed value id of the lifecycle attribute associated with the Version. Allowed comparison operators: `:`. * `lifecycle.enum_values.values.display_name` - The allowed value display name of the lifecycle attribute associated with the Version. Allowed comparison operators: `:`. * `compliance.enum_values.values.id` - The allowed value id of the compliances attribute associated with the Version. Allowed comparison operators: `:`. * `compliance.enum_values.values.display_name` - The allowed value display name of the compliances attribute associated with the Version. Allowed comparison operators: `:`. * `accreditation.enum_values.values.id` - The allowed value id of the accreditations attribute associated with the Version. Allowed comparison operators: `:`. * `accreditation.enum_values.values.display_name` - The allowed value display name of the accreditations attribute associated with the Version. Allowed comparison operators: `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `lifecycle.enum_values.values.id: preview-id` - The filter string specifies that the id of the allowed value associated with the lifecycle attribute of the Version is _preview-id_. * `lifecycle.enum_values.values.display_name: \"Preview Display Name\"` - The filter string specifies that the display name of the allowed value associated with the lifecycle attribute of the Version is `Preview Display Name`. * `lifecycle.enum_values.values.id: preview-id AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The id of the allowed value associated with the lifecycle attribute of the Version is _preview-id_ and it was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `compliance.enum_values.values.id: gdpr-id OR compliance.enum_values.values.id: pci-dss-id` - The id of the allowed value associated with the compliance attribute is _gdpr-id_ or _pci-dss-id_. * `lifecycle.enum_values.values.id: preview-id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.string_values.values: test` - The filter string specifies that the id of the allowed value associated with the lifecycle attribute of the Version is _preview-id_ and the value of the user defined attribute of type string is _test_.
      */
@@ -6491,8 +6470,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Patch extends StandardParameters {
     /**
      * Identifier. The name of the version. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}`
      */
@@ -6662,8 +6640,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Definitions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Definitions$Get extends StandardParameters {
     /**
      * Required. The name of the definition to retrieve. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/definitions/{definition\}`
      */
@@ -7443,8 +7420,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Operations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Operations$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the operation resource, which will become the final component of the operation's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another operation resource in the API hub. * If not provided, a system generated id will be used. This value should be 4-500 characters, overall resource name which will be of format `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/operations/{operation\}`, its length is limited to 700 characters, and valid characters are /a-z[0-9]-_/.
      */
@@ -7459,22 +7435,19 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1ApiOperation;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Operations$Delete extends StandardParameters {
     /**
      * Required. The name of the operation resource to delete. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/operations/{operation\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Operations$Get extends StandardParameters {
     /**
      * Required. The name of the operation to retrieve. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/operations/{operation\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Operations$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of ApiOperations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string or a boolean. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `ApiOperation` are eligible for filtering: * `name` - The ApiOperation resource name. Allowed comparison operators: `=`. * `details.http_operation.path.path` - The http operation's complete path relative to server endpoint. Allowed comparison operators: `=`. * `details.http_operation.method` - The http operation method type. Allowed comparison operators: `=`. * `details.deprecated` - Indicates if the ApiOperation is deprecated. Allowed values are True / False indicating the deprycation status of the ApiOperation. Allowed comparison operators: `=`. * `create_time` - The time at which the ApiOperation was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `details.deprecated = True` - The ApiOperation is deprecated. * `details.http_operation.method = GET AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The method of the http operation of the ApiOperation is _GET_ and the spec was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `details.http_operation.method = GET OR details.http_operation.method = POST`. - The http operation of the method of ApiOperation is _GET_ or _POST_. * `details.deprecated = True AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.string_values.values: test` - The filter string specifies that the ApiOperation is deprecated and the value of the user defined attribute of type string is _test_.
      */
@@ -7492,8 +7465,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Operations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Operations$Patch extends StandardParameters {
     /**
      * Identifier. The name of the operation. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/operations/{operation\}`
      */
@@ -8586,8 +8558,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Create extends StandardParameters {
     /**
      * Required. The parent resource for Spec. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}`
      */
@@ -8602,29 +8573,25 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1Spec;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Delete extends StandardParameters {
     /**
      * Required. The name of the spec to delete. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Get extends StandardParameters {
     /**
      * Required. The name of the spec to retrieve. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Getcontents
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Getcontents extends StandardParameters {
     /**
      * Required. The name of the spec whose contents need to be retrieved. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Lint
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Lint extends StandardParameters {
     /**
      * Required. The name of the spec to be linted. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec\}`
      */
@@ -8635,8 +8602,7 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1LintSpecRequest;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of Specs. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>`, `:` or `=`. Filters are not case sensitive. The following fields in the `Spec` are eligible for filtering: * `display_name` - The display name of the Spec. Allowed comparison operators: `=`. * `create_time` - The time at which the Spec was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `spec_type.enum_values.values.id` - The allowed value id of the spec_type attribute associated with the Spec. Allowed comparison operators: `:`. * `spec_type.enum_values.values.display_name` - The allowed value display name of the spec_type attribute associated with the Spec. Allowed comparison operators: `:`. * `lint_response.json_values.values` - The json value of the lint_response attribute associated with the Spec. Allowed comparison operators: `:`. * `mime_type` - The MIME type of the Spec. Allowed comparison operators: `=`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `spec_type.enum_values.values.id: rest-id` - The filter string specifies that the id of the allowed value associated with the spec_type attribute is _rest-id_. * `spec_type.enum_values.values.display_name: \"Rest Display Name\"` - The filter string specifies that the display name of the allowed value associated with the spec_type attribute is `Rest Display Name`. * `spec_type.enum_values.values.id: grpc-id AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The id of the allowed value associated with the spec_type attribute is _grpc-id_ and the spec was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `spec_type.enum_values.values.id: rest-id OR spec_type.enum_values.values.id: grpc-id` - The id of the allowed value associated with the spec_type attribute is _rest-id_ or _grpc-id_. * `spec_type.enum_values.values.id: rest-id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id: test` - The filter string specifies that the id of the allowed value associated with the spec_type attribute is _rest-id_ and the id of the allowed value associated with the user defined attribute of type enum is _test_.
      */
@@ -8654,8 +8620,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Patch extends StandardParameters {
     /**
      * Identifier. The name of the spec. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec\}`
      */
@@ -9457,8 +9422,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Attributes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Attributes$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the attribute, which will become the final component of the attribute's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another attribute resource in the API hub. * If not provided, a system generated id will be used. This value should be 4-500 characters, and valid characters are /a-z[0-9]-_/.
      */
@@ -9473,22 +9437,19 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1Attribute;
   }
-  export interface Params$Resource$Projects$Locations$Attributes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Attributes$Delete extends StandardParameters {
     /**
      * Required. The name of the attribute to delete. Format: `projects/{project\}/locations/{location\}/attributes/{attribute\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Attributes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Attributes$Get extends StandardParameters {
     /**
      * Required. The name of the attribute to retrieve. Format: `projects/{project\}/locations/{location\}/attributes/{attribute\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Attributes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Attributes$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of Attributes. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string or a boolean. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `Attribute` are eligible for filtering: * `display_name` - The display name of the Attribute. Allowed comparison operators: `=`. * `definition_type` - The definition type of the attribute. Allowed comparison operators: `=`. * `scope` - The scope of the attribute. Allowed comparison operators: `=`. * `data_type` - The type of the data of the attribute. Allowed comparison operators: `=`. * `mandatory` - Denotes whether the attribute is mandatory or not. Allowed comparison operators: `=`. * `create_time` - The time at which the Attribute was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `display_name = production` - - The display name of the attribute is _production_. * `(display_name = production) AND (create_time < \"2021-08-15T14:50:00Z\") AND (create_time \> \"2021-08-10T12:00:00Z\")` - The display name of the attribute is _production_ and the attribute was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `display_name = production OR scope = api` - The attribute where the display name is _production_ or the scope is _api_.
      */
@@ -9506,8 +9467,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Attributes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Attributes$Patch extends StandardParameters {
     /**
      * Identifier. The name of the attribute in the API Hub. Format: `projects/{project\}/locations/{location\}/attributes/{attribute\}`
      */
@@ -10298,8 +10258,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Curations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Curations$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the curation resource, which will become the final component of the curations's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified ID is already used by another curation resource in the API hub. * If not provided, a system generated ID will be used. This value should be 4-500 characters, and valid characters are /a-z[0-9]-_/.
      */
@@ -10314,22 +10273,19 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1Curation;
   }
-  export interface Params$Resource$Projects$Locations$Curations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Curations$Delete extends StandardParameters {
     /**
      * Required. The name of the curation resource to delete. Format: `projects/{project\}/locations/{location\}/curations/{curation\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Curations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Curations$Get extends StandardParameters {
     /**
      * Required. The name of the curation resource to retrieve. Format: `projects/{project\}/locations/{location\}/curations/{curation\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Curations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Curations$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of curation resources. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>`, `:` or `=`. Filters are case insensitive. The following fields in the `curation resource` are eligible for filtering: * `create_time` - The time at which the curation was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `display_name` - The display name of the curation. Allowed comparison operators: `=`. * `state` - The state of the curation. Allowed comparison operators: `=`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The curation resource was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_.
      */
@@ -10347,8 +10303,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Curations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Curations$Patch extends StandardParameters {
     /**
      * Identifier. The name of the curation. Format: `projects/{project\}/locations/{location\}/curations/{curation\}`
      */
@@ -11145,8 +11100,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dependencies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dependencies$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the dependency resource, which will become the final component of the dependency's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if duplicate id is provided by the client. * If not provided, a system generated id will be used. This value should be 4-500 characters, and valid characters are `a-z[0-9]-_`.
      */
@@ -11161,22 +11115,19 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1Dependency;
   }
-  export interface Params$Resource$Projects$Locations$Dependencies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dependencies$Delete extends StandardParameters {
     /**
      * Required. The name of the dependency resource to delete. Format: `projects/{project\}/locations/{location\}/dependencies/{dependency\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dependencies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dependencies$Get extends StandardParameters {
     /**
      * Required. The name of the dependency resource to retrieve. Format: `projects/{project\}/locations/{location\}/dependencies/{dependency\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dependencies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dependencies$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of Dependencies. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. Allowed comparison operator is `=`. Filters are not case sensitive. The following fields in the `Dependency` are eligible for filtering: * `consumer.operation_resource_name` - The operation resource name for the consumer entity involved in a dependency. Allowed comparison operators: `=`. * `consumer.external_api_resource_name` - The external api resource name for the consumer entity involved in a dependency. Allowed comparison operators: `=`. * `supplier.operation_resource_name` - The operation resource name for the supplier entity involved in a dependency. Allowed comparison operators: `=`. * `supplier.external_api_resource_name` - The external api resource name for the supplier entity involved in a dependency. Allowed comparison operators: `=`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. For example, `consumer.operation_resource_name = \"projects/p1/locations/global/apis/a1/versions/v1/operations/o1\" OR supplier.operation_resource_name = \"projects/p1/locations/global/apis/a1/versions/v1/operations/o1\"` - The dependencies with either consumer or supplier operation resource name as _projects/p1/locations/global/apis/a1/versions/v1/operations/o1_.
      */
@@ -11194,8 +11145,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dependencies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dependencies$Patch extends StandardParameters {
     /**
      * Identifier. The name of the dependency in the API Hub. Format: `projects/{project\}/locations/{location\}/dependencies/{dependency\}`
      */
@@ -12032,8 +11982,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deployments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the deployment resource, which will become the final component of the deployment's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another deployment resource in the API hub. * If not provided, a system generated id will be used. This value should be 4-500 characters, and valid characters are /a-z[0-9]-_/.
      */
@@ -12048,22 +11997,19 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1Deployment;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Delete extends StandardParameters {
     /**
      * Required. The name of the deployment resource to delete. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Get extends StandardParameters {
     /**
      * Required. The name of the deployment resource to retrieve. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of Deployments. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `Deployments` are eligible for filtering: * `display_name` - The display name of the Deployment. Allowed comparison operators: `=`. * `create_time` - The time at which the Deployment was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `resource_uri` - A URI to the deployment resource. Allowed comparison operators: `=`. * `api_versions` - The API versions linked to this deployment. Allowed comparison operators: `:`. * `source_project` - The project/organization at source for the deployment. Allowed comparison operators: `=`. * `source_environment` - The environment at source for the deployment. Allowed comparison operators: `=`. * `deployment_type.enum_values.values.id` - The allowed value id of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `deployment_type.enum_values.values.display_name` - The allowed value display name of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `slo.string_values.values` -The allowed string value of the slo attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.id` - The allowed value id of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.display_name` - The allowed value display name of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"deployment-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/deployments/deployment-1\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `environment.enum_values.values.id: staging-id` - The allowed value id of the environment attribute associated with the Deployment is _staging-id_. * `environment.enum_values.values.display_name: \"Staging Deployment\"` - The allowed value display name of the environment attribute associated with the Deployment is `Staging Deployment`. * `environment.enum_values.values.id: production-id AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The allowed value id of the environment attribute associated with the Deployment is _production-id_ and Deployment was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `environment.enum_values.values.id: production-id OR slo.string_values.values: \"99.99%\"` - The allowed value id of the environment attribute Deployment is _production-id_ or string value of the slo attribute is _99.99%_. * `environment.enum_values.values.id: staging-id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.string_values.values: test` - The filter string specifies that the allowed value id of the environment attribute associated with the Deployment is _staging-id_ and the value of the user defined attribute of type string is _test_.
      */
@@ -12081,8 +12027,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Patch extends StandardParameters {
     /**
      * Identifier. The name of the deployment. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}`
      */
@@ -12421,15 +12366,13 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$Get extends StandardParameters {
     /**
      * Required. The name of the DiscoveredApiObservation to retrieve. Format: projects/{project\}/locations/{location\}/discoveredApiObservations/{discovered_api_observation\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$List extends StandardParameters {
     /**
      * Optional. The maximum number of ApiObservations to return. The service may return fewer than this value. If unspecified, at most 10 ApiObservations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -12765,15 +12708,13 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$Get extends StandardParameters {
     /**
      * Required. The name of the DiscoveredApiOperation to retrieve. Format: projects/{project\}/locations/{location\}/discoveredApiObservations/{discovered_api_observation\}/discoveredApiOperations/{discovered_api_operation\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$List extends StandardParameters {
     /**
      * Optional. DiscoveredApiOperations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -13562,8 +13503,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Externalapis$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Externalapis$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the External API resource, which will become the final component of the External API's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another External API resource in the API hub. * If not provided, a system generated id will be used. This value should be 4-500 characters, and valid characters are /a-z[0-9]-_/.
      */
@@ -13578,22 +13518,19 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1ExternalApi;
   }
-  export interface Params$Resource$Projects$Locations$Externalapis$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Externalapis$Delete extends StandardParameters {
     /**
      * Required. The name of the External API resource to delete. Format: `projects/{project\}/locations/{location\}/externalApis/{externalApi\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Externalapis$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Externalapis$Get extends StandardParameters {
     /**
      * Required. The name of the External API resource to retrieve. Format: `projects/{project\}/locations/{location\}/externalApis/{externalApi\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Externalapis$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Externalapis$List extends StandardParameters {
     /**
      * Optional. The maximum number of External API resources to return. The service may return fewer than this value. If unspecified, at most 50 ExternalApis will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -13607,8 +13544,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Externalapis$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Externalapis$Patch extends StandardParameters {
     /**
      * Identifier. Format: `projects/{project\}/locations/{location\}/externalApi/{externalApi\}`.
      */
@@ -14097,8 +14033,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Hostprojectregistrations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Hostprojectregistrations$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Host Project Registration, which will become the final component of the host project registration's resource name. The ID must be the same as the Google cloud project specified in the host_project_registration.gcp_project field.
      */
@@ -14113,15 +14048,13 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1HostProjectRegistration;
   }
-  export interface Params$Resource$Projects$Locations$Hostprojectregistrations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Hostprojectregistrations$Get extends StandardParameters {
     /**
      * Required. Host project registration resource name. projects/{project\}/locations/{location\}/hostProjectRegistrations/{host_project_registration_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Hostprojectregistrations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Hostprojectregistrations$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of HostProjectRegistrations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. All standard operators as documented at https://google.aip.dev/160 are supported. The following fields in the `HostProjectRegistration` are eligible for filtering: * `name` - The name of the HostProjectRegistration. * `create_time` - The time at which the HostProjectRegistration was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. * `gcp_project` - The Google cloud project associated with the HostProjectRegistration.
      */
@@ -14720,8 +14653,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -14732,22 +14664,19 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -16021,8 +15950,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Plugins$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Create extends StandardParameters {
     /**
      * Required. The parent resource where this plugin will be created. Format: `projects/{project\}/locations/{location\}`.
      */
@@ -16037,15 +15965,13 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1Plugin;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Delete extends StandardParameters {
     /**
      * Required. The name of the Plugin resource to delete. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Disable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Disable extends StandardParameters {
     /**
      * Required. The name of the plugin to disable. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}`.
      */
@@ -16056,8 +15982,7 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1DisablePluginRequest;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Enable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Enable extends StandardParameters {
     /**
      * Required. The name of the plugin to enable. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}`.
      */
@@ -16068,22 +15993,19 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1EnablePluginRequest;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Get extends StandardParameters {
     /**
      * Required. The name of the plugin to retrieve. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Getstyleguide
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Getstyleguide extends StandardParameters {
     /**
      * Required. The name of the spec to retrieve. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/styleGuide`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of plugins. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `Plugins` are eligible for filtering: * `plugin_category` - The category of the Plugin. Allowed comparison operators: `=`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `plugin_category = ON_RAMP` - The plugin is of category on ramp.
      */
@@ -16101,8 +16023,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Updatestyleguide
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Updatestyleguide extends StandardParameters {
     /**
      * Identifier. The name of the style guide. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/styleGuide`
      */
@@ -17538,8 +17459,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Plugins$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Instances$Create extends StandardParameters {
     /**
      * Required. The parent of the plugin instance resource. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}`
      */
@@ -17554,15 +17474,13 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1PluginInstance;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Instances$Delete extends StandardParameters {
     /**
      * Required. The name of the plugin instance to delete. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Instances$Disableaction
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Instances$Disableaction extends StandardParameters {
     /**
      * Required. The name of the plugin instance to disable. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}`
      */
@@ -17573,8 +17491,7 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1DisablePluginInstanceActionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Instances$Enableaction
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Instances$Enableaction extends StandardParameters {
     /**
      * Required. The name of the plugin instance to enable. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}`
      */
@@ -17585,8 +17502,7 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1EnablePluginInstanceActionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Instances$Executeaction
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Instances$Executeaction extends StandardParameters {
     /**
      * Required. The name of the plugin instance to execute. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}`
      */
@@ -17597,15 +17513,13 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1ExecutePluginInstanceActionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Instances$Get extends StandardParameters {
     /**
      * Required. The name of the plugin instance to retrieve. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Instances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Instances$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of plugin instances. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `PluginInstances` are eligible for filtering: * `state` - The state of the Plugin Instance. Allowed comparison operators: `=`. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"plugin-instance-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/plugins/plugin-1/instances/plugin-instance-1\"` provided the parent is `projects/test-project-id/locations/test-location-id/plugins/plugin-1`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `state = ENABLED` - The plugin instance is in enabled state.
      */
@@ -17623,8 +17537,7 @@ export namespace apihub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Instances$Managesourcedata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Instances$Managesourcedata extends StandardParameters {
     /**
      * Required. The name of the plugin instance for which data needs to be managed. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}`
      */
@@ -17635,8 +17548,7 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataRequest;
   }
-  export interface Params$Resource$Projects$Locations$Plugins$Instances$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Instances$Patch extends StandardParameters {
     /**
      * Identifier. The unique name of the plugin instance resource. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}`
      */
@@ -17808,8 +17720,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Plugins$Styleguide$Getcontents
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Plugins$Styleguide$Getcontents extends StandardParameters {
     /**
      * Required. The name of the StyleGuide whose contents need to be retrieved. There is exactly one style guide resource per project per location. The expected format is `projects/{project\}/locations/{location\}/plugins/{plugin\}/styleGuide`.
      */
@@ -18422,8 +18333,7 @@ export namespace apihub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Runtimeprojectattachments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Runtimeprojectattachments$Create extends StandardParameters {
     /**
      * Required. The parent resource for the Runtime Project Attachment. Format: `projects/{project\}/locations/{location\}`
      */
@@ -18438,22 +18348,19 @@ export namespace apihub_v1 {
      */
     requestBody?: Schema$GoogleCloudApihubV1RuntimeProjectAttachment;
   }
-  export interface Params$Resource$Projects$Locations$Runtimeprojectattachments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Runtimeprojectattachments$Delete extends StandardParameters {
     /**
      * Required. The name of the Runtime Project Attachment to delete. Format: `projects/{project\}/locations/{location\}/runtimeProjectAttachments/{runtime_project_attachment\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Runtimeprojectattachments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Runtimeprojectattachments$Get extends StandardParameters {
     /**
      * Required. The name of the API resource to retrieve. Format: `projects/{project\}/locations/{location\}/runtimeProjectAttachments/{runtime_project_attachment\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Runtimeprojectattachments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Runtimeprojectattachments$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of RuntimeProjectAttachments. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. All standard operators as documented at https://google.aip.dev/160 are supported. The following fields in the `RuntimeProjectAttachment` are eligible for filtering: * `name` - The name of the RuntimeProjectAttachment. * `create_time` - The time at which the RuntimeProjectAttachment was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. * `runtime_project` - The Google cloud project associated with the RuntimeProjectAttachment.
      */
