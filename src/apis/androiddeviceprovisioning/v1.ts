@@ -1839,8 +1839,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Configurations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Configurations$Create extends StandardParameters {
     /**
      * Required. The customer that manages the configuration. An API resource name in the format `customers/[CUSTOMER_ID]`. This field has custom validation in CreateConfigurationRequestValidator
      */
@@ -1851,29 +1850,25 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$Configuration;
   }
-  export interface Params$Resource$Customers$Configurations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Configurations$Delete extends StandardParameters {
     /**
      * Required. The configuration to delete. An API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. If the configuration is applied to any devices, the API call fails.
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Configurations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Configurations$Get extends StandardParameters {
     /**
      * Required. The configuration to get. An API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Configurations$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Configurations$List extends StandardParameters {
     /**
      * Required. The customer that manages the listed configurations. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Configurations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Configurations$Patch extends StandardParameters {
     /**
      * Output only. The API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. Assigned by the server.
      */
@@ -2617,8 +2612,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Devices$Applyconfiguration
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Applyconfiguration extends StandardParameters {
     /**
      * Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
@@ -2629,15 +2623,13 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$CustomerApplyConfigurationRequest;
   }
-  export interface Params$Resource$Customers$Devices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Get extends StandardParameters {
     /**
      * Required. The device to get. An API resource name in the format `customers/[CUSTOMER_ID]/devices/[DEVICE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Devices$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$List extends StandardParameters {
     /**
      * Required. The maximum number of devices to show in a page of results. Must be between 1 and 100 inclusive.
      */
@@ -2651,8 +2643,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Devices$Removeconfiguration
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Removeconfiguration extends StandardParameters {
     /**
      * Required. The customer managing the device in the format `customers/[CUSTOMER_ID]`.
      */
@@ -2663,8 +2654,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$CustomerRemoveConfigurationRequest;
   }
-  export interface Params$Resource$Customers$Devices$Unclaim
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Unclaim extends StandardParameters {
     /**
      * Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
@@ -2820,8 +2810,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Dpcs$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Dpcs$List extends StandardParameters {
     /**
      * Required. The customer that can use the DPCs in configurations. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
@@ -3300,8 +3289,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Customers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Customers$Create extends StandardParameters {
     /**
      * Required. The parent resource ID in the format `partners/[PARTNER_ID]` that identifies the reseller.
      */
@@ -3312,8 +3300,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$CreateCustomerRequest;
   }
-  export interface Params$Resource$Partners$Customers$List
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Customers$List extends StandardParameters {
     /**
      * The maximum number of results to be returned. If not specified or 0, all the records are returned.
      */
@@ -4839,8 +4826,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Devices$Claim
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Devices$Claim extends StandardParameters {
     /**
      * Required. The ID of the reseller partner.
      */
@@ -4851,8 +4837,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$ClaimDeviceRequest;
   }
-  export interface Params$Resource$Partners$Devices$Claimasync
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Devices$Claimasync extends StandardParameters {
     /**
      * Required. The ID of the reseller partner.
      */
@@ -4863,8 +4848,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$ClaimDevicesRequest;
   }
-  export interface Params$Resource$Partners$Devices$Findbyidentifier
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Devices$Findbyidentifier extends StandardParameters {
     /**
      * Required. The ID of the reseller partner.
      */
@@ -4875,8 +4859,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$FindDevicesByDeviceIdentifierRequest;
   }
-  export interface Params$Resource$Partners$Devices$Findbyowner
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Devices$Findbyowner extends StandardParameters {
     /**
      * Required. The ID of the reseller partner.
      */
@@ -4887,15 +4870,13 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$FindDevicesByOwnerRequest;
   }
-  export interface Params$Resource$Partners$Devices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Devices$Get extends StandardParameters {
     /**
      * Required. The device API resource name in the format `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Partners$Devices$Getsimlockstate
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Devices$Getsimlockstate extends StandardParameters {
     /**
      * Required. The ID of the partner.
      */
@@ -4906,8 +4887,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$GetDeviceSimLockStateRequest;
   }
-  export interface Params$Resource$Partners$Devices$Metadata
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Devices$Metadata extends StandardParameters {
     /**
      * Required. The ID of the device.
      */
@@ -4922,8 +4902,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$UpdateDeviceMetadataRequest;
   }
-  export interface Params$Resource$Partners$Devices$Unclaim
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Devices$Unclaim extends StandardParameters {
     /**
      * Required. The ID of the reseller partner.
      */
@@ -4934,8 +4913,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$UnclaimDeviceRequest;
   }
-  export interface Params$Resource$Partners$Devices$Unclaimasync
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Devices$Unclaimasync extends StandardParameters {
     /**
      * Required. The reseller partner ID.
      */
@@ -4946,8 +4924,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$UnclaimDevicesRequest;
   }
-  export interface Params$Resource$Partners$Devices$Updatemetadataasync
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Devices$Updatemetadataasync extends StandardParameters {
     /**
      * Required. The reseller partner ID.
      */
@@ -5112,8 +5089,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Vendors$List
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Vendors$List extends StandardParameters {
     /**
      * The maximum number of results to be returned.
      */
@@ -5283,8 +5259,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Vendors$Customers$List
-    extends StandardParameters {
+  export interface Params$Resource$Partners$Vendors$Customers$List extends StandardParameters {
     /**
      * The maximum number of results to be returned.
      */
