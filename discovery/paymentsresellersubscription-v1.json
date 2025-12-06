@@ -586,7 +586,7 @@
       }
     }
   },
-  "revision": "20251109",
+  "revision": "20251113",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "Amount": {
@@ -1332,14 +1332,14 @@
           "description": "Optional. The cycle options for the subscription."
         },
         "resumeMode": {
-          "description": "Optional. The mode to resume the subscription.",
+          "description": "Required. The mode to resume the subscription.",
           "enum": [
             "RESUME_MODE_UNSPECIFIED",
             "RESUME_MODE_CYCLE_OPTIONS",
             "RESUME_MODE_RESTORE_EXISTING_BILLING_SCHEDULE"
           ],
           "enumDescriptions": [
-            "Reserved value for invalid or unexpected value.",
+            "Reserved for invalid or unexpected value. Do not use.",
             "Resume the subscription using the input from `cycle_options`.",
             "Resume the subscription with the existing billing schedule. The subscription's next renewal time must still be in the future for this mode to be applicable."
           ],
