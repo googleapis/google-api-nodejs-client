@@ -112,7 +112,6 @@ export namespace discoveryengine_v1beta {
    */
   export class Discoveryengine {
     context: APIRequestContext;
-    media: Resource$Media;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -121,342 +120,10 @@ export namespace discoveryengine_v1beta {
         google,
       };
 
-      this.media = new Resource$Media(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
 
-  /**
-   * Information to read/write to blobstore2.
-   */
-  export interface Schema$GdataBlobstore2Info {
-    /**
-     * The blob generation id.
-     */
-    blobGeneration?: string | null;
-    /**
-     * The blob id, e.g., /blobstore/prod/playground/scotty
-     */
-    blobId?: string | null;
-    /**
-     * Read handle passed from Bigstore -\> Scotty for a GCS download. This is a signed, serialized blobstore2.ReadHandle proto which must never be set outside of Bigstore, and is not applicable to non-GCS media downloads.
-     */
-    downloadReadHandle?: string | null;
-    /**
-     * The blob read token. Needed to read blobs that have not been replicated. Might not be available until the final call.
-     */
-    readToken?: string | null;
-    /**
-     * Metadata passed from Blobstore -\> Scotty for a new GCS upload. This is a signed, serialized blobstore2.BlobMetadataContainer proto which must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads.
-     */
-    uploadMetadataContainer?: string | null;
-  }
-  /**
-   * A sequence of media data references representing composite data. Introduced to support Bigstore composite objects. For details, visit http://go/bigstore-composites.
-   */
-  export interface Schema$GdataCompositeMedia {
-    /**
-     * Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef.
-     */
-    blobRef?: string | null;
-    /**
-     * Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob.
-     */
-    blobstore2Info?: Schema$GdataBlobstore2Info;
-    /**
-     * A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field.
-     */
-    cosmoBinaryReference?: string | null;
-    /**
-     * crc32.c hash for the payload.
-     */
-    crc32cHash?: number | null;
-    /**
-     * Media data, set if reference_type is INLINE
-     */
-    inline?: string | null;
-    /**
-     * Size of the data, in bytes
-     */
-    length?: string | null;
-    /**
-     * MD5 hash for the payload.
-     */
-    md5Hash?: string | null;
-    /**
-     * Reference to a TI Blob, set if reference_type is BIGSTORE_REF.
-     */
-    objectId?: Schema$GdataObjectId;
-    /**
-     * Path to the data, set if reference_type is PATH
-     */
-    path?: string | null;
-    /**
-     * Describes what the field reference contains.
-     */
-    referenceType?: string | null;
-    /**
-     * SHA-1 hash for the payload.
-     */
-    sha1Hash?: string | null;
-  }
-  /**
-   * Detailed Content-Type information from Scotty. The Content-Type of the media will typically be filled in by the header or Scotty's best_guess, but this extended information provides the backend with more information so that it can make a better decision if needed. This is only used on media upload requests from Scotty.
-   */
-  export interface Schema$GdataContentTypeInfo {
-    /**
-     * Scotty's best guess of what the content type of the file is.
-     */
-    bestGuess?: string | null;
-    /**
-     * The content type of the file derived by looking at specific bytes (i.e. "magic bytes") of the actual file.
-     */
-    fromBytes?: string | null;
-    /**
-     * The content type of the file derived from the file extension of the original file name used by the client.
-     */
-    fromFileName?: string | null;
-    /**
-     * The content type of the file as specified in the request headers, multipart headers, or RUPIO start request.
-     */
-    fromHeader?: string | null;
-    /**
-     * The content type of the file derived from the file extension of the URL path. The URL path is assumed to represent a file name (which is typically only true for agents that are providing a REST API).
-     */
-    fromUrlPath?: string | null;
-  }
-  /**
-   * Backend response for a Diff get checksums response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
-   */
-  export interface Schema$GdataDiffChecksumsResponse {
-    /**
-     * Exactly one of these fields must be populated. If checksums_location is filled, the server will return the corresponding contents to the user. If object_location is filled, the server will calculate the checksums based on the content there and return that to the user. For details on the format of the checksums, see http://go/scotty-diff-protocol.
-     */
-    checksumsLocation?: Schema$GdataCompositeMedia;
-    /**
-     * The chunk size of checksums. Must be a multiple of 256KB.
-     */
-    chunkSizeBytes?: string | null;
-    /**
-     * If set, calculate the checksums based on the contents and return them to the caller.
-     */
-    objectLocation?: Schema$GdataCompositeMedia;
-    /**
-     * The total size of the server object.
-     */
-    objectSizeBytes?: string | null;
-    /**
-     * The object version of the object the checksums are being returned for.
-     */
-    objectVersion?: string | null;
-  }
-  /**
-   * Backend response for a Diff download response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
-   */
-  export interface Schema$GdataDiffDownloadResponse {
-    /**
-     * The original object location.
-     */
-    objectLocation?: Schema$GdataCompositeMedia;
-  }
-  /**
-   * A Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
-   */
-  export interface Schema$GdataDiffUploadRequest {
-    /**
-     * The location of the checksums for the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received. For details on the format of the checksums, see http://go/scotty-diff-protocol.
-     */
-    checksumsInfo?: Schema$GdataCompositeMedia;
-    /**
-     * The location of the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received.
-     */
-    objectInfo?: Schema$GdataCompositeMedia;
-    /**
-     * The object version of the object that is the base version the incoming diff script will be applied to. This field will always be filled in.
-     */
-    objectVersion?: string | null;
-  }
-  /**
-   * Backend response for a Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
-   */
-  export interface Schema$GdataDiffUploadResponse {
-    /**
-     * The object version of the object at the server. Must be included in the end notification response. The version in the end notification response must correspond to the new version of the object that is now stored at the server, after the upload.
-     */
-    objectVersion?: string | null;
-    /**
-     * The location of the original file for a diff upload request. Must be filled in if responding to an upload start notification.
-     */
-    originalObject?: Schema$GdataCompositeMedia;
-  }
-  /**
-   * Backend response for a Diff get version response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
-   */
-  export interface Schema$GdataDiffVersionResponse {
-    /**
-     * The total size of the server object.
-     */
-    objectSizeBytes?: string | null;
-    /**
-     * The version of the object stored at the server.
-     */
-    objectVersion?: string | null;
-  }
-  /**
-   * Parameters specific to media downloads.
-   */
-  export interface Schema$GdataDownloadParameters {
-    /**
-     * A boolean to be returned in the response to Scotty. Allows/disallows gzip encoding of the payload content when the server thinks it's advantageous (hence, does not guarantee compression) which allows Scotty to GZip the response to the client.
-     */
-    allowGzipCompression?: boolean | null;
-    /**
-     * Determining whether or not Apiary should skip the inclusion of any Content-Range header on its response to Scotty.
-     */
-    ignoreRange?: boolean | null;
-  }
-  /**
-   * A reference to data stored on the filesystem, on GFS or in blobstore.
-   */
-  export interface Schema$GdataMedia {
-    /**
-     * Deprecated, use one of explicit hash type fields instead. Algorithm used for calculating the hash. As of 2011/01/21, "MD5" is the only possible value for this field. New values may be added at any time.
-     */
-    algorithm?: string | null;
-    /**
-     * Use object_id instead.
-     */
-    bigstoreObjectRef?: string | null;
-    /**
-     * Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef.
-     */
-    blobRef?: string | null;
-    /**
-     * Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob.
-     */
-    blobstore2Info?: Schema$GdataBlobstore2Info;
-    /**
-     * A composite media composed of one or more media objects, set if reference_type is COMPOSITE_MEDIA. The media length field must be set to the sum of the lengths of all composite media objects. Note: All composite media must have length specified.
-     */
-    compositeMedia?: Schema$GdataCompositeMedia[];
-    /**
-     * MIME type of the data
-     */
-    contentType?: string | null;
-    /**
-     * Extended content type information provided for Scotty uploads.
-     */
-    contentTypeInfo?: Schema$GdataContentTypeInfo;
-    /**
-     * A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field.
-     */
-    cosmoBinaryReference?: string | null;
-    /**
-     * For Scotty Uploads: Scotty-provided hashes for uploads For Scotty Downloads: (WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.) A Hash provided by the agent to be used to verify the data being downloaded. Currently only supported for inline payloads. Further, only crc32c_hash is currently supported.
-     */
-    crc32cHash?: number | null;
-    /**
-     * Set if reference_type is DIFF_CHECKSUMS_RESPONSE.
-     */
-    diffChecksumsResponse?: Schema$GdataDiffChecksumsResponse;
-    /**
-     * Set if reference_type is DIFF_DOWNLOAD_RESPONSE.
-     */
-    diffDownloadResponse?: Schema$GdataDiffDownloadResponse;
-    /**
-     * Set if reference_type is DIFF_UPLOAD_REQUEST.
-     */
-    diffUploadRequest?: Schema$GdataDiffUploadRequest;
-    /**
-     * Set if reference_type is DIFF_UPLOAD_RESPONSE.
-     */
-    diffUploadResponse?: Schema$GdataDiffUploadResponse;
-    /**
-     * Set if reference_type is DIFF_VERSION_RESPONSE.
-     */
-    diffVersionResponse?: Schema$GdataDiffVersionResponse;
-    /**
-     * Parameters for a media download.
-     */
-    downloadParameters?: Schema$GdataDownloadParameters;
-    /**
-     * Original file name
-     */
-    filename?: string | null;
-    /**
-     * Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/blobstore2/api/scotty/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media.
-     */
-    hash?: string | null;
-    /**
-     * For Scotty uploads only. If a user sends a hash code and the backend has requested that Scotty verify the upload against the client hash, Scotty will perform the check on behalf of the backend and will reject it if the hashes don't match. This is set to true if Scotty performed this verification.
-     */
-    hashVerified?: boolean | null;
-    /**
-     * Media data, set if reference_type is INLINE
-     */
-    inline?: string | null;
-    /**
-     * |is_potential_retry| is set false only when Scotty is certain that it has not sent the request before. When a client resumes an upload, this field must be set true in agent calls, because Scotty cannot be certain that it has never sent the request before due to potential failure in the session state persistence.
-     */
-    isPotentialRetry?: boolean | null;
-    /**
-     * Size of the data, in bytes
-     */
-    length?: string | null;
-    /**
-     * Scotty-provided MD5 hash for an upload.
-     */
-    md5Hash?: string | null;
-    /**
-     * Media id to forward to the operation GetMedia. Can be set if reference_type is GET_MEDIA.
-     */
-    mediaId?: string | null;
-    /**
-     * Reference to a TI Blob, set if reference_type is BIGSTORE_REF.
-     */
-    objectId?: Schema$GdataObjectId;
-    /**
-     * Path to the data, set if reference_type is PATH
-     */
-    path?: string | null;
-    /**
-     * Describes what the field reference contains.
-     */
-    referenceType?: string | null;
-    /**
-     * Scotty-provided SHA1 hash for an upload.
-     */
-    sha1Hash?: string | null;
-    /**
-     * Scotty-provided SHA256 hash for an upload.
-     */
-    sha256Hash?: string | null;
-    /**
-     * Time at which the media data was last updated, in milliseconds since UNIX epoch
-     */
-    timestamp?: string | null;
-    /**
-     * A unique fingerprint/version id for the media data
-     */
-    token?: string | null;
-  }
-  /**
-   * This is a copy of the tech.blob.ObjectId proto, which could not be used directly here due to transitive closure issues with JavaScript support; see http://b/8801763.
-   */
-  export interface Schema$GdataObjectId {
-    /**
-     * The name of the bucket to which this object belongs.
-     */
-    bucketName?: string | null;
-    /**
-     * Generation of the object. Generations are monotonically increasing across writes, allowing them to be be compared to determine which generation is newer. If this is omitted in a request, then you are requesting the live object. See http://go/bigstore-versions
-     */
-    generation?: string | null;
-    /**
-     * The name of the object.
-     */
-    objectName?: string | null;
-  }
   /**
    * `Distribution` contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets. The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths. Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the `mean` and `sum_of_squared_deviation` fields meaningless.
    */
@@ -3191,6 +2858,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig {
     /**
+     * Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.
+     */
+    requiredSubscriptionTier?: string | null;
+    /**
      * The add-on that this search engine enables.
      */
     searchAddOns?: string[] | null;
@@ -4324,6 +3995,10 @@ export namespace discoveryengine_v1beta {
      */
     contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec;
     /**
+     * Optional. Crowding specifications for improving result diversity. If multiple CrowdingSpecs are specified, crowding will be evaluated on each unique combination of the `field` values, and max_count will be the maximum value of `max_count` across all CrowdingSpecs. For example, if the first CrowdingSpec has `field` = "color" and `max_count` = 3, and the second CrowdingSpec has `field` = "size" and `max_count` = 2, then after 3 documents that share the same color AND size have been returned, subsequent ones should be removed or demoted.
+     */
+    crowdingSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestCrowdingSpec[];
+    /**
      * Custom fine tuning configs. If set, it has higher priority than the configs set in ServingConfig.custom_fine_tuning_spec.
      */
     customFineTuningSpec?: Schema$GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec;
@@ -4371,6 +4046,10 @@ export namespace discoveryengine_v1beta {
      * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering the website search results, see [Order web search results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results). For more information on ordering the healthcare search results, see [Order healthcare search results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results). If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      */
     orderBy?: string | null;
+    /**
+     * Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. To represent full path of a category, use '\>' character to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, `Graphics Cards \> RTX\>4090 \> Founders Edition` where "RTX \> 4090" represents one level, can be rewritten as `Graphics Cards \> RTX_4090 \> Founders Edition`
+     */
+    pageCategories?: string[] | null;
     /**
      * Maximum number of Documents to return. The maximum allowed value depends on the data type. Values above the maximum value are coerced to the maximum value. * Websites with basic indexing: Default `10`, Maximum `25`. * Websites with advanced indexing: Default `25`, Maximum `50`. * Other: Default `50`, Maximum `100`. If this field is negative, an `INVALID_ARGUMENT` is returned.
      */
@@ -4675,6 +4354,23 @@ export namespace discoveryengine_v1beta {
      * Optional. Source of image returned in the answer.
      */
     imageSource?: string | null;
+  }
+  /**
+   * Specification for crowding. Crowding improves the diversity of search results by limiting the number of results that share the same field value. For example, crowding on the color field with a max_count of 3 and mode DROP_CROWDED_RESULTS will return at most 3 results with the same color across all pages.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestCrowdingSpec {
+    /**
+     * The field to use for crowding. Documents can be crowded by a field in the Document object. Crowding field is case sensitive.
+     */
+    field?: string | null;
+    /**
+     * The maximum number of documents to keep per value of the field. Once there are at least max_count previous results which contain the same value for the given field (according to the order specified in `order_by`), later results with the same value are "crowded away". If not specified, the default value is 1.
+     */
+    maxCount?: number | null;
+    /**
+     * Mode to use for documents that are crowded away.
+     */
+    mode?: string | null;
   }
   /**
    * A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.
@@ -5365,6 +5061,14 @@ export namespace discoveryengine_v1beta {
      */
     customerPolicy?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy;
     /**
+     * Optional. Description for additional information. Expected to be shown on the configuration UI, not to the users of the assistant.
+     */
+    description?: string | null;
+    /**
+     * Required. The assistant display name. It must be a UTF-8 encoded string with a length limit of 128 characters.
+     */
+    displayName?: string | null;
+    /**
      * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
      */
     enabledTools?: {
@@ -5435,9 +5139,17 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfig {
     /**
+     * Optional. The list of models that are allowed to be used for assistant.
+     */
+    allowedModelIds?: string[] | null;
+    /**
      * The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.
      */
     defaultLanguage?: string | null;
+    /**
+     * Optional. The default model to use for assistant.
+     */
+    defaultModelId?: string | null;
     /**
      * System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
      */
@@ -6790,6 +6502,14 @@ export namespace discoveryengine_v1beta {
      */
     customerPolicy?: Schema$GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicy;
     /**
+     * Optional. Description for additional information. Expected to be shown on the configuration UI, not to the users of the assistant.
+     */
+    description?: string | null;
+    /**
+     * Required. The assistant display name. It must be a UTF-8 encoded string with a length limit of 128 characters.
+     */
+    displayName?: string | null;
+    /**
      * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
      */
     enabledTools?: {
@@ -6941,9 +6661,17 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantGenerationConfig {
     /**
+     * Optional. The list of models that are allowed to be used for assistant.
+     */
+    allowedModelIds?: string[] | null;
+    /**
      * The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.
      */
     defaultLanguage?: string | null;
+    /**
+     * Optional. The default model to use for assistant.
+     */
+    defaultModelId?: string | null;
     /**
      * System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
      */
@@ -8938,6 +8666,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig {
     /**
+     * Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.
+     */
+    requiredSubscriptionTier?: string | null;
+    /**
      * The add-on that this search engine enables.
      */
     searchAddOns?: string[] | null;
@@ -9162,6 +8894,10 @@ export namespace discoveryengine_v1beta {
      * Required. Identity outside the customer identity provider. The length limit of external identity will be of 100 characters.
      */
     externalIdentity?: string | null;
+    /**
+     * Optional. The name of the external identity.
+     */
+    externalIdentityName?: string | null;
     /**
      * Group identifier. For Google Workspace user account, group_id should be the google workspace group email. For non-google identity provider, group_id is the mapped group identifier configured during the workforcepool config.
      */
@@ -9730,6 +9466,19 @@ export namespace discoveryengine_v1beta {
      * Required. The number of licenses used.
      */
     usedLicenseCount?: string | null;
+  }
+  /**
+   * Response message for the AssistantService.ListAssistants method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse {
+    /**
+     * All the customer's Assistants.
+     */
+    assistants?: Schema$GoogleCloudDiscoveryengineV1betaAssistant[];
+    /**
+     * A token that can be sent as ListAssistantsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response message for CmekConfigService.ListCmekConfigs method.
@@ -10896,6 +10645,10 @@ export namespace discoveryengine_v1beta {
      */
     contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec;
     /**
+     * Optional. Crowding specifications for improving result diversity. If multiple CrowdingSpecs are specified, crowding will be evaluated on each unique combination of the `field` values, and max_count will be the maximum value of `max_count` across all CrowdingSpecs. For example, if the first CrowdingSpec has `field` = "color" and `max_count` = 3, and the second CrowdingSpec has `field` = "size" and `max_count` = 2, then after 3 documents that share the same color AND size have been returned, subsequent ones should be removed or demoted.
+     */
+    crowdingSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestCrowdingSpec[];
+    /**
      * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec[];
@@ -10939,6 +10692,10 @@ export namespace discoveryengine_v1beta {
      * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering the website search results, see [Order web search results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results). For more information on ordering the healthcare search results, see [Order healthcare search results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results). If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      */
     orderBy?: string | null;
+    /**
+     * Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. To represent full path of a category, use '\>' character to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, `Graphics Cards \> RTX\>4090 \> Founders Edition` where "RTX \> 4090" represents one level, can be rewritten as `Graphics Cards \> RTX_4090 \> Founders Edition`
+     */
+    pageCategories?: string[] | null;
     /**
      * Maximum number of Documents to return. The maximum allowed value depends on the data type. Values above the maximum value are coerced to the maximum value. * Websites with basic indexing: Default `10`, Maximum `25`. * Websites with advanced indexing: Default `25`, Maximum `50`. * Other: Default `50`, Maximum `100`. If this field is negative, an `INVALID_ARGUMENT` is returned.
      */
@@ -11241,6 +10998,23 @@ export namespace discoveryengine_v1beta {
     imageSource?: string | null;
   }
   /**
+   * Specification for crowding. Crowding improves the diversity of search results by limiting the number of results that share the same field value. For example, crowding on the color field with a max_count of 3 and mode DROP_CROWDED_RESULTS will return at most 3 results with the same color across all pages.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestCrowdingSpec {
+    /**
+     * The field to use for crowding. Documents can be crowded by a field in the Document object. Crowding field is case sensitive.
+     */
+    field?: string | null;
+    /**
+     * The maximum number of documents to keep per value of the field. Once there are at least max_count previous results which contain the same value for the given field (according to the order specified in `order_by`), later results with the same value are "crowded away". If not specified, the default value is 1.
+     */
+    maxCount?: number | null;
+    /**
+     * Mode to use for documents that are crowded away.
+     */
+    mode?: string | null;
+  }
+  /**
    * A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec {
@@ -11508,6 +11282,10 @@ export namespace discoveryengine_v1beta {
      * Promotions for site search.
      */
     searchLinkPromotions?: Schema$GoogleCloudDiscoveryengineV1betaSearchLinkPromotion[];
+    /**
+     * Output only. Indicates the semantic state of the search response.
+     */
+    semanticState?: string | null;
     /**
      * Session information. Only set if SearchRequest.session is provided. See its description for more details.
      */
@@ -12413,6 +12191,10 @@ export namespace discoveryengine_v1beta {
      * A global unique ID that identifies the current pair of request and stream of responses. Used for feedback and support.
      */
     assistToken?: string | null;
+    /**
+     * The tool names of the tools that were invoked.
+     */
+    invocationTools?: string[] | null;
     /**
      * Session information. Only included in the final StreamAssistResponse of the response stream.
      */
@@ -14059,6 +13841,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1EngineSearchEngineConfig {
     /**
+     * Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.
+     */
+    requiredSubscriptionTier?: string | null;
+    /**
      * The add-on that this search engine enables.
      */
     searchAddOns?: string[] | null;
@@ -15145,7 +14931,7 @@ export namespace discoveryengine_v1beta {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -15355,202 +15141,6 @@ export namespace discoveryengine_v1beta {
     version?: string | null;
   }
 
-  export class Resource$Media {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Downloads a file from the session.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const discoveryengine = google.discoveryengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
-     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await discoveryengine.media.download({
-     *     // Required. The ID of the file to be downloaded.
-     *     fileId: 'placeholder-value',
-     *     // Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
-     *     name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/sessions/my-session',
-     *     // Optional. The ID of the view to be downloaded.
-     *     viewId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "algorithm": "my_algorithm",
-     *   //   "bigstoreObjectRef": "my_bigstoreObjectRef",
-     *   //   "blobRef": "my_blobRef",
-     *   //   "blobstore2Info": {},
-     *   //   "compositeMedia": [],
-     *   //   "contentType": "my_contentType",
-     *   //   "contentTypeInfo": {},
-     *   //   "cosmoBinaryReference": "my_cosmoBinaryReference",
-     *   //   "crc32cHash": 0,
-     *   //   "diffChecksumsResponse": {},
-     *   //   "diffDownloadResponse": {},
-     *   //   "diffUploadRequest": {},
-     *   //   "diffUploadResponse": {},
-     *   //   "diffVersionResponse": {},
-     *   //   "downloadParameters": {},
-     *   //   "filename": "my_filename",
-     *   //   "hash": "my_hash",
-     *   //   "hashVerified": false,
-     *   //   "inline": "my_inline",
-     *   //   "isPotentialRetry": false,
-     *   //   "length": "my_length",
-     *   //   "md5Hash": "my_md5Hash",
-     *   //   "mediaId": "my_mediaId",
-     *   //   "objectId": {},
-     *   //   "path": "my_path",
-     *   //   "referenceType": "my_referenceType",
-     *   //   "sha1Hash": "my_sha1Hash",
-     *   //   "sha256Hash": "my_sha256Hash",
-     *   //   "timestamp": "my_timestamp",
-     *   //   "token": "my_token"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    download(
-      params: Params$Resource$Media$Download,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    download(
-      params?: Params$Resource$Media$Download,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>;
-    download(
-      params: Params$Resource$Media$Download,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    download(
-      params: Params$Resource$Media$Download,
-      options: MethodOptions | BodyResponseCallback<Schema$GdataMedia>,
-      callback: BodyResponseCallback<Schema$GdataMedia>
-    ): void;
-    download(
-      params: Params$Resource$Media$Download,
-      callback: BodyResponseCallback<Schema$GdataMedia>
-    ): void;
-    download(callback: BodyResponseCallback<Schema$GdataMedia>): void;
-    download(
-      paramsOrCallback?:
-        | Params$Resource$Media$Download
-        | BodyResponseCallback<Schema$GdataMedia>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GdataMedia>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GdataMedia>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Media$Download;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://discoveryengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+name}:downloadFile').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GdataMedia>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GdataMedia>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Media$Download extends StandardParameters {
-    /**
-     * Required. The ID of the file to be downloaded.
-     */
-    fileId?: string;
-    /**
-     * Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
-     */
-    name?: string;
-    /**
-     * Optional. The ID of the view to be downloaded.
-     */
-    viewId?: string;
-  }
-
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -15721,8 +15311,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Provision
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Provision extends StandardParameters {
     /**
      * Required. Full resource name of a Project, such as `projects/{project_id_or_number\}`.
      */
@@ -16895,22 +16484,19 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Getaclconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getaclconfig extends StandardParameters {
     /**
      * Required. Resource name of AclConfig, such as `projects/x/locations/x/aclConfig`. If the caller does not have permission to access the AclConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getcmekconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getcmekconfig extends StandardParameters {
     /**
      * Required. Resource name of CmekConfig, such as `projects/x/locations/x/cmekConfig` or `projects/x/locations/x/cmekConfigs/x`. If the caller does not have permission to access the CmekConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Obtaincrawlrate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Obtaincrawlrate extends StandardParameters {
     /**
      * Required. The location resource where crawl rate management will be performed. Format: `projects/{project\}/locations/{location\}`
      */
@@ -16921,8 +16507,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaObtainCrawlRateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Removededicatedcrawlrate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Removededicatedcrawlrate extends StandardParameters {
     /**
      * Required. The location resource where crawl rate management will be performed. Format: `projects/{project\}/locations/{location\}`
      */
@@ -16933,8 +16518,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaRemoveDedicatedCrawlRateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Setdedicatedcrawlrate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Setdedicatedcrawlrate extends StandardParameters {
     /**
      * Required. The location resource where crawl rate management will be performed. Format: `projects/{project\}/locations/{location\}`
      */
@@ -16945,8 +16529,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Updateaclconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Updateaclconfig extends StandardParameters {
     /**
      * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
@@ -16957,8 +16540,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaAclConfig;
   }
-  export interface Params$Resource$Projects$Locations$Updatecmekconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Updatecmekconfig extends StandardParameters {
     /**
      * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
      */
@@ -17596,29 +17178,25 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Cmekconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cmekconfigs$Delete extends StandardParameters {
     /**
      * Required. The resource name of the CmekConfig to delete, such as `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Cmekconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cmekconfigs$Get extends StandardParameters {
     /**
      * Required. Resource name of CmekConfig, such as `projects/x/locations/x/cmekConfig` or `projects/x/locations/x/cmekConfigs/x`. If the caller does not have permission to access the CmekConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Cmekconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cmekconfigs$List extends StandardParameters {
     /**
      * Required. The parent location resource name, such as `projects/{project\}/locations/{location\}`. If the caller does not have permission to list CmekConfigs under this location, regardless of whether or not a CmekConfig exists, a PERMISSION_DENIED error is returned.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Cmekconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cmekconfigs$Patch extends StandardParameters {
     /**
      * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
      */
@@ -17868,7 +17446,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -17990,15 +17568,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Dataconnector$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Dataconnector$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Dataconnector$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Dataconnector$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -18016,7 +17592,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -19458,8 +19034,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Completequery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Completequery extends StandardParameters {
     /**
      * Required. The parent data store resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`.
      */
@@ -19481,8 +19056,7 @@ export namespace discoveryengine_v1beta {
      */
     userPseudoId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Create extends StandardParameters {
     /**
      * Resource name of the CmekConfig to use for protecting this DataStore.
      */
@@ -19513,29 +19087,25 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDataStore;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Delete extends StandardParameters {
     /**
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to delete the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the DataStore to delete does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Get extends StandardParameters {
     /**
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Getsitesearchengine
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Getsitesearchengine extends StandardParameters {
     /**
      * Required. Resource name of SiteSearchEngine, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. If the caller does not have permission to access the [SiteSearchEngine], regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$List extends StandardParameters {
     /**
      * Filter by solution type . For example: `filter = 'solution_type:SOLUTION_TYPE_SEARCH'`
      */
@@ -19553,8 +19123,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
@@ -19569,8 +19138,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDataStore;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel extends StandardParameters {
     /**
      * Required. The resource name of the Data Store, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`. This field is used to identify the data store where to train the models.
      */
@@ -19758,8 +19326,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Batchgetdocumentsmetadata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Batchgetdocumentsmetadata extends StandardParameters {
     /**
      * Required. The FHIR resources to match by. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}/fhirStores/{fhir_store\}/fhir/{resource_type\}/{fhir_resource_id\}
      */
@@ -20956,8 +20523,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Document, which becomes the final component of the Document.name. If the caller does not have permission to create the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. This field must be unique among all Documents with the same parent. Otherwise, an `ALREADY_EXISTS` error is returned. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
@@ -20972,22 +20538,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDocument;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Delete extends StandardParameters {
     /**
      * Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to delete the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the Document to delete does not exist, a `NOT_FOUND` error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Get extends StandardParameters {
     /**
      * Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Import extends StandardParameters {
     /**
      * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Requires create/update permission.
      */
@@ -20998,8 +20561,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaImportDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$List extends StandardParameters {
     /**
      * Maximum number of Documents to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 are set to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
@@ -21013,8 +20575,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Patch extends StandardParameters {
     /**
      * If set to `true` and the Document is not found, a new Document is be created.
      */
@@ -21033,8 +20594,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDocument;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Purge extends StandardParameters {
     /**
      * Required. The parent resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`.
      */
@@ -21395,7 +20955,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -21517,8 +21077,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -21529,15 +21088,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -21555,7 +21112,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -21744,8 +21301,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Completionconfig$Completequery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Completionconfig$Completequery extends StandardParameters {
     /**
      * Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
      */
@@ -22089,8 +21645,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import extends StandardParameters {
     /**
      * Required. The parent data store resource name for which to import customer autocomplete suggestions. Follows pattern `projects/x/locations/x/collections/x/dataStores/x`
      */
@@ -22101,8 +21656,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaImportCompletionSuggestionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge extends StandardParameters {
     /**
      * Required. The parent data store resource name for which to purge completion suggestions. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
      */
@@ -22954,8 +22508,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value must be within 1-63 characters. Valid characters are /a-z-_/.
      */
@@ -22970,22 +22523,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaControl;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Control to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$Get extends StandardParameters {
     /**
      * Required. The resource name of the Control to get. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$List extends StandardParameters {
     /**
      * Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. Currently this field is unsupported.
      */
@@ -23003,8 +22553,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/x/locations/global/dataStore/x/controls/x`
      */
@@ -24008,8 +23557,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Converse
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Converse extends StandardParameters {
     /**
      * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
      */
@@ -24020,8 +23568,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaConverseConversationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Create extends StandardParameters {
     /**
      * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
@@ -24032,22 +23579,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaConversation;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Conversation to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Get extends StandardParameters {
     /**
      * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$List extends StandardParameters {
     /**
      * A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: "user_pseudo_id = some_id"
      */
@@ -24069,8 +23613,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/dataStore/x/conversations/x` or `projects/{project\}/locations/global/collections/{collection\}/engines/x/conversations/x`.
      */
@@ -24249,8 +23792,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List extends StandardParameters {
     /**
      * Required. The resource name of the parent Data Store, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`. This field is used to identify the data store where to fetch the models from.
      */
@@ -24469,7 +24011,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -24591,15 +24133,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Models$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Models$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Models$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Models$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -24617,7 +24157,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -24822,7 +24362,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -24944,15 +24484,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -24970,7 +24508,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -25780,8 +25318,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Create extends StandardParameters {
     /**
      * Required. The parent data store resource name, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`.
      */
@@ -25796,22 +25333,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSchema;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Get extends StandardParameters {
     /**
      * Required. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$List extends StandardParameters {
     /**
      * The maximum number of Schemas to return. The service may return fewer than this value. If unspecified, at most 100 Schemas are returned. The maximum value is 1000; values above 1000 are set to 1000.
      */
@@ -25825,8 +25359,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Patch extends StandardParameters {
     /**
      * If set to true, and the Schema is not found, a new Schema is created. In this situation, `update_mask` is ignored.
      */
@@ -26042,7 +25575,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -26164,15 +25697,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -26190,7 +25721,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -27137,6 +26668,7 @@ export namespace discoveryengine_v1beta {
      *           //   "branch": "my_branch",
      *           //   "canonicalFilter": "my_canonicalFilter",
      *           //   "contentSearchSpec": {},
+     *           //   "crowdingSpecs": [],
      *           //   "dataStoreSpecs": [],
      *           //   "displaySpec": {},
      *           //   "embeddingSpec": {},
@@ -27148,6 +26680,7 @@ export namespace discoveryengine_v1beta {
      *           //   "offset": 0,
      *           //   "oneBoxPageSize": 0,
      *           //   "orderBy": "my_orderBy",
+     *           //   "pageCategories": [],
      *           //   "pageSize": 0,
      *           //   "pageToken": "my_pageToken",
      *           //   "params": {},
@@ -27190,6 +26723,7 @@ export namespace discoveryengine_v1beta {
      *   //   "redirectUri": "my_redirectUri",
      *   //   "results": [],
      *   //   "searchLinkPromotions": [],
+     *   //   "semanticState": "my_semanticState",
      *   //   "sessionInfo": {},
      *   //   "suggestedQuery": "my_suggestedQuery",
      *   //   "summary": {},
@@ -27353,6 +26887,7 @@ export namespace discoveryengine_v1beta {
      *           //   "branch": "my_branch",
      *           //   "canonicalFilter": "my_canonicalFilter",
      *           //   "contentSearchSpec": {},
+     *           //   "crowdingSpecs": [],
      *           //   "dataStoreSpecs": [],
      *           //   "displaySpec": {},
      *           //   "embeddingSpec": {},
@@ -27364,6 +26899,7 @@ export namespace discoveryengine_v1beta {
      *           //   "offset": 0,
      *           //   "oneBoxPageSize": 0,
      *           //   "orderBy": "my_orderBy",
+     *           //   "pageCategories": [],
      *           //   "pageSize": 0,
      *           //   "pageToken": "my_pageToken",
      *           //   "params": {},
@@ -27406,6 +26942,7 @@ export namespace discoveryengine_v1beta {
      *   //   "redirectUri": "my_redirectUri",
      *   //   "results": [],
      *   //   "searchLinkPromotions": [],
+     *   //   "semanticState": "my_semanticState",
      *   //   "sessionInfo": {},
      *   //   "suggestedQuery": "my_suggestedQuery",
      *   //   "summary": {},
@@ -27698,8 +27235,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Answer
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Answer extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -27710,15 +27246,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get extends StandardParameters {
     /**
      * Required. The resource name of the ServingConfig to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List extends StandardParameters {
     /**
      * Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
      */
@@ -27732,8 +27266,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/servingConfigs/{serving_config_id\}`
      */
@@ -27748,8 +27281,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaServingConfig;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Recommend
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Recommend extends StandardParameters {
     /**
      * Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID is used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.
      */
@@ -27760,8 +27292,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaRecommendRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Search extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -27772,8 +27303,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Searchlite
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Searchlite extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -27784,8 +27314,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Streamanswer
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Streamanswer extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -28639,8 +28168,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Create extends StandardParameters {
     /**
      * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
@@ -28651,15 +28179,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSession;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Session to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Get extends StandardParameters {
     /**
      * Optional. If set to true, the full session including all answer details will be returned.
      */
@@ -28669,8 +28195,7 @@ export namespace discoveryengine_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List extends StandardParameters {
     /**
      * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
@@ -28692,8 +28217,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/engines/{engine\}/sessions/x`
      */
@@ -28882,8 +28406,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Answers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Answers$Get extends StandardParameters {
     /**
      * Required. The resource name of the Answer to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
      */
@@ -29715,8 +29238,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Batchverifytargetsites
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Batchverifytargetsites extends StandardParameters {
     /**
      * Required. The parent resource shared by all TargetSites being verified. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`.
      */
@@ -29727,8 +29249,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaBatchVerifyTargetSitesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Disableadvancedsitesearch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Disableadvancedsitesearch extends StandardParameters {
     /**
      * Required. Full resource name of the SiteSearchEngine, such as `projects/{project\}/locations/{location\}/dataStores/{data_store_id\}/siteSearchEngine`.
      */
@@ -29739,8 +29260,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Enableadvancedsitesearch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Enableadvancedsitesearch extends StandardParameters {
     /**
      * Required. Full resource name of the SiteSearchEngine, such as `projects/{project\}/locations/{location\}/dataStores/{data_store_id\}/siteSearchEngine`.
      */
@@ -29751,8 +29271,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Fetchdomainverificationstatus
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Fetchdomainverificationstatus extends StandardParameters {
     /**
      * Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
      */
@@ -29766,8 +29285,7 @@ export namespace discoveryengine_v1beta {
      */
     siteSearchEngine?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Recrawluris
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Recrawluris extends StandardParameters {
     /**
      * Required. Full resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
      */
@@ -29979,7 +29497,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -30101,15 +29619,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -30127,7 +29643,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -30611,8 +30127,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Create extends StandardParameters {
     /**
      * Required. Parent resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
      */
@@ -30623,15 +30138,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSitemap;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Delete extends StandardParameters {
     /**
      * Required. Full resource name of Sitemap, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/sitemaps/{sitemap\}`. If the caller does not have permission to access the Sitemap, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Sitemap does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Fetch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Fetch extends StandardParameters {
     /**
      * The Sitemap uris.
      */
@@ -31626,8 +31139,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Batchcreate extends StandardParameters {
     /**
      * Required. The parent resource shared by all TargetSites being created. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. The parent field in the CreateBookRequest messages must either be empty or match this field.
      */
@@ -31638,8 +31150,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaBatchCreateTargetSitesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Create extends StandardParameters {
     /**
      * Required. Parent resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`.
      */
@@ -31650,22 +31161,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaTargetSite;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Delete extends StandardParameters {
     /**
      * Required. Full resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Get extends StandardParameters {
     /**
      * Required. Full resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$List extends StandardParameters {
     /**
      * Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
      */
@@ -31679,8 +31187,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Patch extends StandardParameters {
     /**
      * Output only. The fully qualified resource name of the target site. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}` The `target_site_id` is system-generated.
      */
@@ -31892,7 +31399,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -32014,15 +31521,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -32040,7 +31545,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -32375,8 +31880,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import extends StandardParameters {
     /**
      * Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
      */
@@ -32387,8 +31891,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge extends StandardParameters {
     /**
      * Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
      */
@@ -33101,8 +32604,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Collect
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Collect extends StandardParameters {
     /**
      * The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
      */
@@ -33120,8 +32622,7 @@ export namespace discoveryengine_v1beta {
      */
     userEvent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Import extends StandardParameters {
     /**
      * Required. Parent DataStore resource name, of the form `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
      */
@@ -33132,8 +32633,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaImportUserEventsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Purge extends StandardParameters {
     /**
      * Required. The resource name of the catalog under which the events are created. The format is `projects/{project\}/locations/global/collections/{collection\}/dataStores/{dataStore\}`.
      */
@@ -33144,8 +32644,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaPurgeUserEventsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Write
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Write extends StandardParameters {
     /**
      * Required. The parent resource name. If the write user event action is applied in DataStore level, the format is: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`. If the write user event action is applied in Location level, for example, the event with Document across multiple DataStore, the format is: `projects/{project\}/locations/{location\}`.
      */
@@ -34562,8 +34061,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Engine, which will become the final component of the Engine's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -34578,22 +34076,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaEngine;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Delete extends StandardParameters {
     /**
      * Required. Full resource name of Engine, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`. If the caller does not have permission to delete the Engine, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Engine to delete does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Get extends StandardParameters {
     /**
      * Required. Full resource name of Engine, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$List extends StandardParameters {
     /**
      * Optional. Filter by solution type. For example: solution_type=SOLUTION_TYPE_SEARCH
      */
@@ -34611,8 +34106,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -34627,8 +34121,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaEngine;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Pause extends StandardParameters {
     /**
      * Required. The name of the engine to pause. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`
      */
@@ -34639,8 +34132,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaPauseEngineRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Resume extends StandardParameters {
     /**
      * Required. The name of the engine to resume. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`
      */
@@ -34651,8 +34143,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaResumeEngineRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Tune
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Tune extends StandardParameters {
     /**
      * Required. The resource name of the engine to tune. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`
      */
@@ -34666,8 +34157,333 @@ export namespace discoveryengine_v1beta {
 
   export class Resource$Projects$Locations$Collections$Engines$Assistants {
     context: APIRequestContext;
+    agents: Resource$Projects$Locations$Collections$Engines$Assistants$Agents;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.agents =
+        new Resource$Projects$Locations$Collections$Engines$Assistants$Agents(
+          this.context
+        );
+    }
+
+    /**
+     * Creates an Assistant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.create(
+     *       {
+     *         // Required. The ID to use for the Assistant, which will become the final component of the Assistant's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with a length limit of 63 characters.
+     *         assistantId: 'placeholder-value',
+     *         // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "customerPolicy": {},
+     *           //   "description": "my_description",
+     *           //   "displayName": "my_displayName",
+     *           //   "enabledTools": {},
+     *           //   "generationConfig": {},
+     *           //   "name": "my_name",
+     *           //   "webGroundingType": "my_webGroundingType"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customerPolicy": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "enabledTools": {},
+     *   //   "generationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "webGroundingType": "my_webGroundingType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Create
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/assistants').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAssistant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAssistant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an Assistant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.delete(
+     *       {
+     *         // Required. Resource name of Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` If the caller does not have permission to delete the Assistant, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Assistant to delete does not exist, a NOT_FOUND error is returned.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
     }
 
     /**
@@ -34716,6 +34532,8 @@ export namespace discoveryengine_v1beta {
      *   // Example response
      *   // {
      *   //   "customerPolicy": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
      *   //   "enabledTools": {},
      *   //   "generationConfig": {},
      *   //   "name": "my_name",
@@ -34828,6 +34646,168 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
+     * Lists all Assistants under an Engine.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.list(
+     *       {
+     *         // Maximum number of Assistants to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // A page token ListAssistantsResponse.next_page_token, received from a previous AssistantService.ListAssistants call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAssistants must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assistants": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/assistants').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListAssistantsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates an Assistant
      * @example
      * ```js
@@ -34874,6 +34854,8 @@ export namespace discoveryengine_v1beta {
      *           // request body parameters
      *           // {
      *           //   "customerPolicy": {},
+     *           //   "description": "my_description",
+     *           //   "displayName": "my_displayName",
      *           //   "enabledTools": {},
      *           //   "generationConfig": {},
      *           //   "name": "my_name",
@@ -34887,6 +34869,8 @@ export namespace discoveryengine_v1beta {
      *   // Example response
      *   // {
      *   //   "customerPolicy": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
      *   //   "enabledTools": {},
      *   //   "generationConfig": {},
      *   //   "name": "my_name",
@@ -35057,6 +35041,7 @@ export namespace discoveryengine_v1beta {
      *   // {
      *   //   "answer": {},
      *   //   "assistToken": "my_assistToken",
+     *   //   "invocationTools": [],
      *   //   "sessionInfo": {}
      *   // }
      * }
@@ -35169,15 +35154,48 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Create extends StandardParameters {
+    /**
+     * Required. The ID to use for the Assistant, which will become the final component of the Assistant's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with a length limit of 63 characters.
+     */
+    assistantId?: string;
+    /**
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaAssistant;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Delete extends StandardParameters {
+    /**
+     * Required. Resource name of Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` If the caller does not have permission to delete the Assistant, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Assistant to delete does not exist, a NOT_FOUND error is returned.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get extends StandardParameters {
     /**
      * Required. Resource name of Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$List extends StandardParameters {
+    /**
+     * Maximum number of Assistants to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token ListAssistantsResponse.next_page_token, received from a previous AssistantService.ListAssistants call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAssistants must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch extends StandardParameters {
     /**
      * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
@@ -35192,8 +35210,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaAssistant;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist extends StandardParameters {
     /**
      * Required. The resource name of the Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
      */
@@ -35203,6 +35220,182 @@ export namespace discoveryengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequest;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations$Get extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Completionconfig {
@@ -35555,8 +35748,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Completequery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Completequery extends StandardParameters {
     /**
      * Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
      */
@@ -35567,8 +35759,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaAdvancedCompleteQueryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Removesuggestion
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Removesuggestion extends StandardParameters {
     /**
      * Required. The completion_config of the parent engine resource name for which the search history suggestion is to be removed, such as `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
      */
@@ -36416,8 +36607,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value must be within 1-63 characters. Valid characters are /a-z-_/.
      */
@@ -36432,22 +36622,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaControl;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Control to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$Get extends StandardParameters {
     /**
      * Required. The resource name of the Control to get. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$List extends StandardParameters {
     /**
      * Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. Currently this field is unsupported.
      */
@@ -36465,8 +36652,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/x/locations/global/dataStore/x/controls/x`
      */
@@ -37470,8 +37656,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Converse
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Converse extends StandardParameters {
     /**
      * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
      */
@@ -37482,8 +37667,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaConverseConversationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Create extends StandardParameters {
     /**
      * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
@@ -37494,22 +37678,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaConversation;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Conversation to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Get extends StandardParameters {
     /**
      * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$List extends StandardParameters {
     /**
      * A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: "user_pseudo_id = some_id"
      */
@@ -37531,8 +37712,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/dataStore/x/conversations/x` or `projects/{project\}/locations/global/collections/{collection\}/engines/x/conversations/x`.
      */
@@ -37748,7 +37928,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -37870,15 +38050,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -37896,7 +38074,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -38843,6 +39021,7 @@ export namespace discoveryengine_v1beta {
      *           //   "branch": "my_branch",
      *           //   "canonicalFilter": "my_canonicalFilter",
      *           //   "contentSearchSpec": {},
+     *           //   "crowdingSpecs": [],
      *           //   "dataStoreSpecs": [],
      *           //   "displaySpec": {},
      *           //   "embeddingSpec": {},
@@ -38854,6 +39033,7 @@ export namespace discoveryengine_v1beta {
      *           //   "offset": 0,
      *           //   "oneBoxPageSize": 0,
      *           //   "orderBy": "my_orderBy",
+     *           //   "pageCategories": [],
      *           //   "pageSize": 0,
      *           //   "pageToken": "my_pageToken",
      *           //   "params": {},
@@ -38896,6 +39076,7 @@ export namespace discoveryengine_v1beta {
      *   //   "redirectUri": "my_redirectUri",
      *   //   "results": [],
      *   //   "searchLinkPromotions": [],
+     *   //   "semanticState": "my_semanticState",
      *   //   "sessionInfo": {},
      *   //   "suggestedQuery": "my_suggestedQuery",
      *   //   "summary": {},
@@ -39059,6 +39240,7 @@ export namespace discoveryengine_v1beta {
      *           //   "branch": "my_branch",
      *           //   "canonicalFilter": "my_canonicalFilter",
      *           //   "contentSearchSpec": {},
+     *           //   "crowdingSpecs": [],
      *           //   "dataStoreSpecs": [],
      *           //   "displaySpec": {},
      *           //   "embeddingSpec": {},
@@ -39070,6 +39252,7 @@ export namespace discoveryengine_v1beta {
      *           //   "offset": 0,
      *           //   "oneBoxPageSize": 0,
      *           //   "orderBy": "my_orderBy",
+     *           //   "pageCategories": [],
      *           //   "pageSize": 0,
      *           //   "pageToken": "my_pageToken",
      *           //   "params": {},
@@ -39112,6 +39295,7 @@ export namespace discoveryengine_v1beta {
      *   //   "redirectUri": "my_redirectUri",
      *   //   "results": [],
      *   //   "searchLinkPromotions": [],
+     *   //   "semanticState": "my_semanticState",
      *   //   "sessionInfo": {},
      *   //   "suggestedQuery": "my_suggestedQuery",
      *   //   "summary": {},
@@ -39404,8 +39588,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Answer
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Answer extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -39416,15 +39599,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get extends StandardParameters {
     /**
      * Required. The resource name of the ServingConfig to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List extends StandardParameters {
     /**
      * Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
      */
@@ -39438,8 +39619,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/servingConfigs/{serving_config_id\}`
      */
@@ -39454,8 +39634,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaServingConfig;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend extends StandardParameters {
     /**
      * Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID is used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.
      */
@@ -39466,8 +39645,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaRecommendRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -39478,8 +39656,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Searchlite
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Searchlite extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -39490,8 +39667,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Streamanswer
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Streamanswer extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -40341,8 +40517,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Create extends StandardParameters {
     /**
      * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
@@ -40353,15 +40528,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSession;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Session to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Get extends StandardParameters {
     /**
      * Optional. If set to true, the full session including all answer details will be returned.
      */
@@ -40371,8 +40544,7 @@ export namespace discoveryengine_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$List extends StandardParameters {
     /**
      * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
@@ -40394,8 +40566,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/engines/{engine\}/sessions/x`
      */
@@ -40584,8 +40755,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Answers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Answers$Get extends StandardParameters {
     /**
      * Required. The resource name of the Answer to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
      */
@@ -40789,7 +40959,7 @@ export namespace discoveryengine_v1beta {
      *       pageSize: 'placeholder-value',
      *       // The standard list page token.
      *       pageToken: 'placeholder-value',
-     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *       returnPartialSuccess: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -40910,15 +41080,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Collections$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Collections$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Collections$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -40936,7 +41104,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -42182,8 +42350,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Completequery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Completequery extends StandardParameters {
     /**
      * Required. The parent data store resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`.
      */
@@ -42205,8 +42372,7 @@ export namespace discoveryengine_v1beta {
      */
     userPseudoId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Create extends StandardParameters {
     /**
      * Resource name of the CmekConfig to use for protecting this DataStore.
      */
@@ -42237,29 +42403,25 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDataStore;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Delete extends StandardParameters {
     /**
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to delete the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the DataStore to delete does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Get extends StandardParameters {
     /**
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Getsitesearchengine
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Getsitesearchengine extends StandardParameters {
     /**
      * Required. Resource name of SiteSearchEngine, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. If the caller does not have permission to access the [SiteSearchEngine], regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$List extends StandardParameters {
     /**
      * Filter by solution type . For example: `filter = 'solution_type:SOLUTION_TYPE_SEARCH'`
      */
@@ -42277,8 +42439,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
@@ -42470,8 +42631,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Branches$Batchgetdocumentsmetadata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Batchgetdocumentsmetadata extends StandardParameters {
     /**
      * Required. The FHIR resources to match by. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}/fhirStores/{fhir_store\}/fhir/{resource_type\}/{fhir_resource_id\}
      */
@@ -43666,8 +43826,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Document, which becomes the final component of the Document.name. If the caller does not have permission to create the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. This field must be unique among all Documents with the same parent. Otherwise, an `ALREADY_EXISTS` error is returned. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
@@ -43682,22 +43841,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDocument;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Delete extends StandardParameters {
     /**
      * Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to delete the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the Document to delete does not exist, a `NOT_FOUND` error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Get extends StandardParameters {
     /**
      * Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Import extends StandardParameters {
     /**
      * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Requires create/update permission.
      */
@@ -43708,8 +43864,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaImportDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$List extends StandardParameters {
     /**
      * Maximum number of Documents to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 are set to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
@@ -43723,8 +43878,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Patch extends StandardParameters {
     /**
      * If set to `true` and the Document is not found, a new Document is be created.
      */
@@ -43743,8 +43897,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDocument;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Purge extends StandardParameters {
     /**
      * Required. The parent resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`.
      */
@@ -44105,7 +44258,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -44227,8 +44380,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Branches$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -44239,15 +44391,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Branches$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Branches$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -44265,7 +44415,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -44454,8 +44604,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Completionconfig$Completequery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Completionconfig$Completequery extends StandardParameters {
     /**
      * Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
      */
@@ -44799,8 +44948,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import extends StandardParameters {
     /**
      * Required. The parent data store resource name for which to import customer autocomplete suggestions. Follows pattern `projects/x/locations/x/collections/x/dataStores/x`
      */
@@ -44811,8 +44959,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaImportCompletionSuggestionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge extends StandardParameters {
     /**
      * Required. The parent data store resource name for which to purge completion suggestions. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
      */
@@ -45654,8 +45801,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Controls$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Controls$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value must be within 1-63 characters. Valid characters are /a-z-_/.
      */
@@ -45670,22 +45816,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaControl;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Controls$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Controls$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Control to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Controls$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Controls$Get extends StandardParameters {
     /**
      * Required. The resource name of the Control to get. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Controls$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Controls$List extends StandardParameters {
     /**
      * Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. Currently this field is unsupported.
      */
@@ -45703,8 +45846,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Controls$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Controls$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/x/locations/global/dataStore/x/controls/x`
      */
@@ -46696,8 +46838,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Conversations$Converse
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Conversations$Converse extends StandardParameters {
     /**
      * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
      */
@@ -46708,8 +46849,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaConverseConversationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Conversations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Conversations$Create extends StandardParameters {
     /**
      * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
@@ -46720,22 +46860,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaConversation;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Conversations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Conversations$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Conversation to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Conversations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Conversations$Get extends StandardParameters {
     /**
      * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Conversations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Conversations$List extends StandardParameters {
     /**
      * A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: "user_pseudo_id = some_id"
      */
@@ -46757,8 +46894,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Conversations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Conversations$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/dataStore/x/conversations/x` or `projects/{project\}/locations/global/collections/{collection\}/engines/x/conversations/x`.
      */
@@ -46983,7 +47119,7 @@ export namespace discoveryengine_v1beta {
      *       pageSize: 'placeholder-value',
      *       // The standard list page token.
      *       pageToken: 'placeholder-value',
-     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *       returnPartialSuccess: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -47104,15 +47240,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Models$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Models$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Models$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Models$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -47130,7 +47264,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -47332,7 +47466,7 @@ export namespace discoveryengine_v1beta {
      *       pageSize: 'placeholder-value',
      *       // The standard list page token.
      *       pageToken: 'placeholder-value',
-     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *       returnPartialSuccess: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -47453,15 +47587,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -47479,7 +47611,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -48272,8 +48404,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Schemas$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Schemas$Create extends StandardParameters {
     /**
      * Required. The parent data store resource name, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`.
      */
@@ -48288,22 +48419,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSchema;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Schemas$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Schemas$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Schemas$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Schemas$Get extends StandardParameters {
     /**
      * Required. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Schemas$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Schemas$List extends StandardParameters {
     /**
      * The maximum number of Schemas to return. The service may return fewer than this value. If unspecified, at most 100 Schemas are returned. The maximum value is 1000; values above 1000 are set to 1000.
      */
@@ -48317,8 +48445,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Schemas$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Schemas$Patch extends StandardParameters {
     /**
      * If set to true, and the Schema is not found, a new Schema is created. In this situation, `update_mask` is ignored.
      */
@@ -49267,6 +49394,7 @@ export namespace discoveryengine_v1beta {
      *         //   "branch": "my_branch",
      *         //   "canonicalFilter": "my_canonicalFilter",
      *         //   "contentSearchSpec": {},
+     *         //   "crowdingSpecs": [],
      *         //   "dataStoreSpecs": [],
      *         //   "displaySpec": {},
      *         //   "embeddingSpec": {},
@@ -49278,6 +49406,7 @@ export namespace discoveryengine_v1beta {
      *         //   "offset": 0,
      *         //   "oneBoxPageSize": 0,
      *         //   "orderBy": "my_orderBy",
+     *         //   "pageCategories": [],
      *         //   "pageSize": 0,
      *         //   "pageToken": "my_pageToken",
      *         //   "params": {},
@@ -49319,6 +49448,7 @@ export namespace discoveryengine_v1beta {
      *   //   "redirectUri": "my_redirectUri",
      *   //   "results": [],
      *   //   "searchLinkPromotions": [],
+     *   //   "semanticState": "my_semanticState",
      *   //   "sessionInfo": {},
      *   //   "suggestedQuery": "my_suggestedQuery",
      *   //   "summary": {},
@@ -49482,6 +49612,7 @@ export namespace discoveryengine_v1beta {
      *           //   "branch": "my_branch",
      *           //   "canonicalFilter": "my_canonicalFilter",
      *           //   "contentSearchSpec": {},
+     *           //   "crowdingSpecs": [],
      *           //   "dataStoreSpecs": [],
      *           //   "displaySpec": {},
      *           //   "embeddingSpec": {},
@@ -49493,6 +49624,7 @@ export namespace discoveryengine_v1beta {
      *           //   "offset": 0,
      *           //   "oneBoxPageSize": 0,
      *           //   "orderBy": "my_orderBy",
+     *           //   "pageCategories": [],
      *           //   "pageSize": 0,
      *           //   "pageToken": "my_pageToken",
      *           //   "params": {},
@@ -49535,6 +49667,7 @@ export namespace discoveryengine_v1beta {
      *   //   "redirectUri": "my_redirectUri",
      *   //   "results": [],
      *   //   "searchLinkPromotions": [],
+     *   //   "semanticState": "my_semanticState",
      *   //   "sessionInfo": {},
      *   //   "suggestedQuery": "my_suggestedQuery",
      *   //   "summary": {},
@@ -49827,8 +49960,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Answer
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Answer extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -49839,15 +49971,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get extends StandardParameters {
     /**
      * Required. The resource name of the ServingConfig to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$List extends StandardParameters {
     /**
      * Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
      */
@@ -49861,8 +49991,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/servingConfigs/{serving_config_id\}`
      */
@@ -49877,8 +50006,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaServingConfig;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Recommend
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Recommend extends StandardParameters {
     /**
      * Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID is used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.
      */
@@ -49889,8 +50017,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaRecommendRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Search extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -49901,8 +50028,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Searchlite
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Searchlite extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -49913,8 +50039,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Streamanswer
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Streamanswer extends StandardParameters {
     /**
      * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
      */
@@ -50758,8 +50883,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Sessions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sessions$Create extends StandardParameters {
     /**
      * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
@@ -50770,15 +50894,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSession;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sessions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sessions$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Session to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sessions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sessions$Get extends StandardParameters {
     /**
      * Optional. If set to true, the full session including all answer details will be returned.
      */
@@ -50788,8 +50910,7 @@ export namespace discoveryengine_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sessions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sessions$List extends StandardParameters {
     /**
      * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
@@ -50811,8 +50932,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sessions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sessions$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/engines/{engine\}/sessions/x`
      */
@@ -50999,8 +51119,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Sessions$Answers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sessions$Answers$Get extends StandardParameters {
     /**
      * Required. The resource name of the Answer to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
      */
@@ -51505,8 +51624,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Disableadvancedsitesearch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Disableadvancedsitesearch extends StandardParameters {
     /**
      * Required. Full resource name of the SiteSearchEngine, such as `projects/{project\}/locations/{location\}/dataStores/{data_store_id\}/siteSearchEngine`.
      */
@@ -51517,8 +51635,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Enableadvancedsitesearch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Enableadvancedsitesearch extends StandardParameters {
     /**
      * Required. Full resource name of the SiteSearchEngine, such as `projects/{project\}/locations/{location\}/dataStores/{data_store_id\}/siteSearchEngine`.
      */
@@ -51529,8 +51646,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Recrawluris
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Recrawluris extends StandardParameters {
     /**
      * Required. Full resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
      */
@@ -52021,8 +52137,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Create extends StandardParameters {
     /**
      * Required. Parent resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
      */
@@ -52033,15 +52148,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSitemap;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Delete extends StandardParameters {
     /**
      * Required. Full resource name of Sitemap, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/sitemaps/{sitemap\}`. If the caller does not have permission to access the Sitemap, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Sitemap does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Fetch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Fetch extends StandardParameters {
     /**
      * The Sitemap uris.
      */
@@ -53031,8 +53144,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Batchcreate extends StandardParameters {
     /**
      * Required. The parent resource shared by all TargetSites being created. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. The parent field in the CreateBookRequest messages must either be empty or match this field.
      */
@@ -53043,8 +53155,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaBatchCreateTargetSitesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Create extends StandardParameters {
     /**
      * Required. Parent resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`.
      */
@@ -53055,22 +53166,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaTargetSite;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Delete extends StandardParameters {
     /**
      * Required. Full resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Get extends StandardParameters {
     /**
      * Required. Full resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$List extends StandardParameters {
     /**
      * Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
      */
@@ -53084,8 +53192,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Patch extends StandardParameters {
     /**
      * Output only. The fully qualified resource name of the target site. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}` The `target_site_id` is system-generated.
      */
@@ -53426,8 +53533,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import extends StandardParameters {
     /**
      * Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
      */
@@ -53438,8 +53544,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge extends StandardParameters {
     /**
      * Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
      */
@@ -54144,8 +54249,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datastores$Userevents$Collect
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Userevents$Collect extends StandardParameters {
     /**
      * The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
      */
@@ -54163,8 +54267,7 @@ export namespace discoveryengine_v1beta {
      */
     userEvent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Userevents$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Userevents$Import extends StandardParameters {
     /**
      * Required. Parent DataStore resource name, of the form `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
      */
@@ -54175,8 +54278,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaImportUserEventsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Userevents$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Userevents$Purge extends StandardParameters {
     /**
      * Required. The resource name of the catalog under which the events are created. The format is `projects/{project\}/locations/global/collections/{collection\}/dataStores/{dataStore\}`.
      */
@@ -54187,8 +54289,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaPurgeUserEventsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datastores$Userevents$Write
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datastores$Userevents$Write extends StandardParameters {
     /**
      * Required. The parent resource name. If the write user event action is applied in DataStore level, the format is: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`. If the write user event action is applied in Location level, for example, the event with Document across multiple DataStore, the format is: `projects/{project\}/locations/{location\}`.
      */
@@ -54238,6 +54339,7 @@ export namespace discoveryengine_v1beta {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
      *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
      *     ],
      *   });
@@ -54848,8 +54950,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Evaluations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Create extends StandardParameters {
     /**
      * Required. The parent resource name, such as `projects/{project\}/locations/{location\}`.
      */
@@ -54860,15 +54961,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaEvaluation;
   }
-  export interface Params$Resource$Projects$Locations$Evaluations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Get extends StandardParameters {
     /**
      * Required. Full resource name of Evaluation, such as `projects/{project\}/locations/{location\}/evaluations/{evaluation\}`. If the caller does not have permission to access the Evaluation, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Evaluation does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Evaluations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$List extends StandardParameters {
     /**
      * Optional. Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
@@ -54882,8 +54981,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Evaluations$Listresults
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Listresults extends StandardParameters {
     /**
      * Required. The evaluation resource name, such as `projects/{project\}/locations/{location\}/evaluations/{evaluation\}`. If the caller does not have permission to list ListEvaluationResultsResponse.EvaluationResult under this evaluation, regardless of whether or not this evaluation set exists, a `PERMISSION_DENIED` error is returned.
      */
@@ -55053,8 +55151,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Evaluations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -55235,8 +55332,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Groundingconfigs$Check
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groundingconfigs$Check extends StandardParameters {
     /**
      * Required. The resource name of the grounding config, such as `projects/x/locations/global/groundingConfigs/default_grounding_config`.
      */
@@ -56373,8 +56469,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Identitymappingstores$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Identitymappingstores$Create extends StandardParameters {
     /**
      * Resource name of the CmekConfig to use for protecting this Identity Mapping Store.
      */
@@ -56397,22 +56492,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaIdentityMappingStore;
   }
-  export interface Params$Resource$Projects$Locations$Identitymappingstores$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Identitymappingstores$Delete extends StandardParameters {
     /**
      * Required. The name of the Identity Mapping Store to delete. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identityMappingStore\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Identitymappingstores$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Identitymappingstores$Get extends StandardParameters {
     /**
      * Required. The name of the Identity Mapping Store to get. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identityMappingStore\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Identitymappingstores$Importidentitymappings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Identitymappingstores$Importidentitymappings extends StandardParameters {
     /**
      * Required. The name of the Identity Mapping Store to import Identity Mapping Entries to. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identityMappingStore\}`
      */
@@ -56423,8 +56515,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaImportIdentityMappingsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Identitymappingstores$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Identitymappingstores$List extends StandardParameters {
     /**
      * Maximum number of IdentityMappingStores to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000.
      */
@@ -56438,8 +56529,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Identitymappingstores$Listidentitymappings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Identitymappingstores$Listidentitymappings extends StandardParameters {
     /**
      * Required. The name of the Identity Mapping Store to list Identity Mapping Entries in. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identityMappingStore\}`
      */
@@ -56453,8 +56543,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Identitymappingstores$Purgeidentitymappings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Identitymappingstores$Purgeidentitymappings extends StandardParameters {
     /**
      * Required. The name of the Identity Mapping Store to purge Identity Mapping Entries from. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identityMappingStore\}`
      */
@@ -56666,7 +56755,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // The standard list page token.
      *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -56788,15 +56877,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Identitymappingstores$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Identitymappingstores$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -56814,7 +56901,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -57338,8 +57425,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Licenseconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Licenseconfigs$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the LicenseConfig, which will become the final component of the LicenseConfig's resource name. We are using the tier (product edition) name as the license config id such as `search` or `search_and_assistant`.
      */
@@ -57354,15 +57440,13 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaLicenseConfig;
   }
-  export interface Params$Resource$Projects$Locations$Licenseconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Licenseconfigs$Get extends StandardParameters {
     /**
      * Required. Full resource name of LicenseConfig, such as `projects/{project\}/locations/{location\}/licenseConfigs/x`. If the caller does not have permission to access the LicenseConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested LicenseConfig does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Licenseconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Licenseconfigs$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The fully qualified resource name of the license config. Format: `projects/{project\}/locations/{location\}/licenseConfigs/{license_config\}`
      */
@@ -57572,7 +57656,7 @@ export namespace discoveryengine_v1beta {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -57692,15 +57776,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -57718,7 +57800,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -57888,8 +57970,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Podcasts$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Podcasts$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -58068,8 +58149,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Rankingconfigs$Rank
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rankingconfigs$Rank extends StandardParameters {
     /**
      * Required. The resource name of the rank service config, such as `projects/{project_num\}/locations/{location\}/rankingConfigs/default_ranking_config`.
      */
@@ -58874,8 +58954,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Samplequerysets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$Create extends StandardParameters {
     /**
      * Required. The parent resource name, such as `projects/{project\}/locations/{location\}`.
      */
@@ -58890,22 +58969,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSampleQuerySet;
   }
-  export interface Params$Resource$Projects$Locations$Samplequerysets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$Delete extends StandardParameters {
     /**
      * Required. Full resource name of SampleQuerySet, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}`. If the caller does not have permission to delete the SampleQuerySet, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the SampleQuerySet to delete does not exist, a `NOT_FOUND` error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Samplequerysets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$Get extends StandardParameters {
     /**
      * Required. Full resource name of SampleQuerySet, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}`. If the caller does not have permission to access the SampleQuerySet, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested SampleQuerySet does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Samplequerysets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$List extends StandardParameters {
     /**
      * Maximum number of SampleQuerySets to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
@@ -58919,8 +58995,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Samplequerysets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$Patch extends StandardParameters {
     /**
      * Identifier. The full resource name of the SampleQuerySet, in the format of `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
@@ -59091,8 +59166,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Samplequerysets$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -60060,8 +60134,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$Create extends StandardParameters {
     /**
      * Required. The parent resource name, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sampleQuerySet\}`.
      */
@@ -60076,22 +60149,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSampleQuery;
   }
-  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$Delete extends StandardParameters {
     /**
      * Required. Full resource name of SampleQuery, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}/sampleQueries/{sample_query\}`. If the caller does not have permission to delete the SampleQuery, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the SampleQuery to delete does not exist, a `NOT_FOUND` error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$Get extends StandardParameters {
     /**
      * Required. Full resource name of SampleQuery, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}/sampleQueries/{sample_query\}`. If the caller does not have permission to access the SampleQuery, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested SampleQuery does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$Import extends StandardParameters {
     /**
      * Required. The parent sample query set resource name, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sampleQuerySet\}`. If the caller does not have permission to list SampleQuerys under this sample query set, regardless of whether or not this sample query set exists, a `PERMISSION_DENIED` error is returned.
      */
@@ -60102,8 +60172,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaImportSampleQueriesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$List extends StandardParameters {
     /**
      * Maximum number of SampleQuerys to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
@@ -60117,8 +60186,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$Patch extends StandardParameters {
     /**
      * Identifier. The full resource name of the sample query, in the format of `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}/sampleQueries/{sample_query\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
@@ -60656,8 +60724,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Userevents$Collect
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Userevents$Collect extends StandardParameters {
     /**
      * The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
      */
@@ -60675,8 +60742,7 @@ export namespace discoveryengine_v1beta {
      */
     userEvent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Userevents$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Userevents$Import extends StandardParameters {
     /**
      * Required. Parent DataStore resource name, of the form `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
      */
@@ -60687,8 +60753,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaImportUserEventsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Userevents$Write
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Userevents$Write extends StandardParameters {
     /**
      * Required. The parent resource name. If the write user event action is applied in DataStore level, the format is: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`. If the write user event action is applied in Location level, for example, the event with Document across multiple DataStore, the format is: `projects/{project\}/locations/{location\}`.
      */
@@ -61514,8 +61579,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses extends StandardParameters {
     /**
      * Required. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
      */
@@ -61526,8 +61590,7 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaBatchUpdateUserLicensesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Userstores$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Userstores$Create extends StandardParameters {
     /**
      * Required. The parent collection resource name, such as `projects/{project\}/locations/{location\}`.
      */
@@ -61542,22 +61605,19 @@ export namespace discoveryengine_v1beta {
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaUserStore;
   }
-  export interface Params$Resource$Projects$Locations$Userstores$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Userstores$Delete extends StandardParameters {
     /**
      * Required. The name of the User Store to delete. Format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Userstores$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Userstores$Get extends StandardParameters {
     /**
      * Required. The name of the User Store to get. Format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Userstores$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Userstores$Patch extends StandardParameters {
     /**
      * Immutable. The full resource name of the User Store, in the format of `projects/{project\}/locations/{location\}/userStores/{user_store\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
@@ -61735,8 +61795,7 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Userstores$Licenseconfigsusagestats$List extends StandardParameters {
     /**
      * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
      */
@@ -61784,8 +61843,8 @@ export namespace discoveryengine_v1beta {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.userStores.userLicenses.list({
-     *       // Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
-     *       filter: 'placeholder-value',
+     *       // Optional. The order in which the UserLicenses are listed. The value must be a comma-separated list of fields. Default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. Redundant space characters in the syntax are insignificant. Supported fields: * `license_assignment_state` * `user_principal` * `user_profile` * `last_login_date` * `update_time` If not set, the default ordering is by `user_principal`. Examples: * `user_principal desc` to order by `user_principal` in descending order. * `license_assignment_state` to order by `license_assignment_state` in ascending order. * `last_login_date desc` to order by `last_login_date` in descending order. * `update_time desc` to order by `update_time` in descending order. * `last_login_date desc, user_principal` to order by `last_login_date` in descending order and then by `user_principal` in ascending order.
+     *       orderBy: 'placeholder-value',
      *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.
      *       pageSize: 'placeholder-value',
      *       // Optional. A page token, received from a previous `ListUserLicenses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLicenses` must match the call that provided the page token.
@@ -61911,12 +61970,11 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Userstores$Userlicenses$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Userstores$Userlicenses$List extends StandardParameters {
     /**
-     * Optional. Filter for the list request. Supported fields: * `license`_`assignment`_`state` * `user_principal` * `user_profile` Examples: * `license`_`assignment`_`state = ASSIGNED` to list assigned user licenses. * `license`_`assignment`_`state = NO_LICENSE` to list not licensed users. * `license`_`assignment`_`state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license`_`assignment`_`state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
+     * Optional. The order in which the UserLicenses are listed. The value must be a comma-separated list of fields. Default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. Redundant space characters in the syntax are insignificant. Supported fields: * `license_assignment_state` * `user_principal` * `user_profile` * `last_login_date` * `update_time` If not set, the default ordering is by `user_principal`. Examples: * `user_principal desc` to order by `user_principal` in descending order. * `license_assignment_state` to order by `license_assignment_state` in ascending order. * `last_login_date desc` to order by `last_login_date` in descending order. * `update_time desc` to order by `update_time` in descending order. * `last_login_date desc, user_principal` to order by `last_login_date` in descending order and then by `user_principal` in ascending order.
      */
-    filter?: string;
+    orderBy?: string;
     /**
      * Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.
      */
@@ -62125,7 +62183,7 @@ export namespace discoveryengine_v1beta {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -62245,15 +62303,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -62271,7 +62327,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
