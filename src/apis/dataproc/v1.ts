@@ -5955,8 +5955,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Create extends StandardParameters {
     /**
      * Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.create, the resource name of the region has the following format: projects/{project_id\}/regions/{region\} For projects.locations.autoscalingPolicies.create, the resource name of the location has the following format: projects/{project_id\}/locations/{location\}
      */
@@ -5967,22 +5966,19 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$AutoscalingPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Delete extends StandardParameters {
     /**
      * Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Get extends StandardParameters {
     /**
      * Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5993,8 +5989,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return in each response. Must be less than or equal to 1000. Defaults to 100.
      */
@@ -6008,8 +6003,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6020,8 +6014,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6032,8 +6025,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Update extends StandardParameters {
     /**
      * Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
      */
@@ -6803,8 +6795,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Batches$Analyze
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Analyze extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to analyze in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      */
@@ -6815,8 +6806,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$AnalyzeBatchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the batch, which will become the final component of the batch's resource name.This value must be 4-63 characters. Valid characters are /[a-z][0-9]-/.
      */
@@ -6835,22 +6825,19 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$Batch;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Delete extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Get extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$List extends StandardParameters {
     /**
      * Optional. A filter for the batches to return in the response.A filter is a logical expression constraining the values of various fields in each batch resource. Filters are case sensitive, and may contain multiple clauses combined with logical operators (AND/OR). Supported fields are batch_id, batch_uuid, state, create_time, and labels.e.g. state = RUNNING and create_time < "2023-01-01T00:00:00Z" filters for batches in state RUNNING that were created before 2023-01-01. state = RUNNING and labels.environment=production filters for batches in state in a RUNNING state that have a production environment label.See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed description of the filter syntax and a list of supported comparisons.
      */
@@ -10015,8 +10002,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Access
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Access extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10026,8 +10012,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10037,8 +10022,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob extends StandardParameters {
     /**
      * Required. Job ID to fetch data for.
      */
@@ -10052,8 +10036,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan extends StandardParameters {
     /**
      * Required. Execution ID
      */
@@ -10067,8 +10050,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery extends StandardParameters {
     /**
      * Optional. Lists/ hides details of Spark plan nodes. True is set to list and false to hide.
      */
@@ -10090,8 +10072,7 @@ export namespace dataproc_v1 {
      */
     planDescription?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10113,8 +10094,7 @@ export namespace dataproc_v1 {
      */
     summaryMetricsMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10128,8 +10108,7 @@ export namespace dataproc_v1 {
      */
     stageId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Search extends StandardParameters {
     /**
      * Optional. Search only applications in the chosen state.
      */
@@ -10163,8 +10142,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors extends StandardParameters {
     /**
      * Optional. Filter to select whether active/ dead or all executors should be selected.
      */
@@ -10186,8 +10164,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10213,8 +10190,7 @@ export namespace dataproc_v1 {
      */
     stageId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs extends StandardParameters {
     /**
      * Optional. List only jobs in the specific state.
      */
@@ -10236,8 +10212,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries extends StandardParameters {
     /**
      * Optional. Lists/ hides details of Spark plan nodes. True is set to list and false to hide.
      */
@@ -10263,8 +10238,7 @@ export namespace dataproc_v1 {
      */
     planDescription?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10290,8 +10264,7 @@ export namespace dataproc_v1 {
      */
     summaryMetricsMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10325,8 +10298,7 @@ export namespace dataproc_v1 {
      */
     taskStatus?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10352,8 +10324,7 @@ export namespace dataproc_v1 {
      */
     summaryMetricsMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10363,8 +10334,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10374,8 +10344,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10393,8 +10362,7 @@ export namespace dataproc_v1 {
      */
     stageId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages extends StandardParameters {
     /**
      * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10404,8 +10372,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Write
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Write extends StandardParameters {
     /**
      * Required. The fully qualified name of the spark application to write data about in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
      */
@@ -10972,29 +10939,25 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -11781,8 +11744,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sessions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Create extends StandardParameters {
     /**
      * Required. The parent resource where this session will be created.
      */
@@ -11801,8 +11763,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$Session;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Delete extends StandardParameters {
     /**
      * Required. The name of the session resource to delete.
      */
@@ -11812,15 +11773,13 @@ export namespace dataproc_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Get extends StandardParameters {
     /**
      * Required. The name of the session to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$List extends StandardParameters {
     /**
      * Optional. A filter for the sessions to return in the response.A filter is a logical expression constraining the values of various fields in each session resource. Filters are case sensitive, and may contain multiple clauses combined with logical operators (AND, OR). Supported fields are session_id, session_uuid, state, create_time, and labels.Example: state = ACTIVE and create_time < "2023-01-01T00:00:00Z" is a filter for sessions in an ACTIVE state that were created before 2023-01-01. state = ACTIVE and labels.environment=production is a filter for sessions in an ACTIVE state that have a production environment label.See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed description of the filter syntax and a list of supported comparators.
      */
@@ -11838,8 +11797,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Terminate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Terminate extends StandardParameters {
     /**
      * Required. The name of the session resource to terminate.
      */
@@ -15012,8 +14970,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access extends StandardParameters {
     /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -15023,8 +14980,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo extends StandardParameters {
     /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -15034,8 +14990,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob extends StandardParameters {
     /**
      * Required. Job ID to fetch data for.
      */
@@ -15049,8 +15004,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan extends StandardParameters {
     /**
      * Required. Execution ID
      */
@@ -15064,8 +15018,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery extends StandardParameters {
     /**
      * Optional. Lists/ hides details of Spark plan nodes. True is set to list and false to hide.
      */
@@ -15087,8 +15040,7 @@ export namespace dataproc_v1 {
      */
     planDescription?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt extends StandardParameters {
     /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -15110,8 +15062,7 @@ export namespace dataproc_v1 {
      */
     summaryMetricsMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph extends StandardParameters {
     /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -15125,8 +15076,7 @@ export namespace dataproc_v1 {
      */
     stageId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search extends StandardParameters {
     /**
      * Optional. Search only applications in the chosen state.
      */
@@ -15160,8 +15110,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors extends StandardParameters {
     /**
      * Optional. Filter to select whether active/ dead or all executors should be selected.
      */
@@ -15183,8 +15132,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary extends StandardParameters {
     /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -15210,8 +15158,7 @@ export namespace dataproc_v1 {
      */
     stageId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs extends StandardParameters {
     /**
      * Optional. List of Job IDs to filter by if provided.
      */
@@ -15237,8 +15184,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries extends StandardParameters {
     /**
      * Optional. Lists/ hides details of Spark plan nodes. True is set to list and false to hide.
      */
@@ -15268,8 +15214,7 @@ export namespace dataproc_v1 {
      */
     planDescription?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts extends StandardParameters {
     /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -15295,8 +15240,7 @@ export namespace dataproc_v1 {
      */
     summaryMetricsMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks extends StandardParameters {
     /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -15330,8 +15274,7 @@ export namespace dataproc_v1 {
      */
     taskStatus?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages extends StandardParameters {
     /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -15361,8 +15304,7 @@ export namespace dataproc_v1 {
      */
     summaryMetricsMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors extends StandardParameters {
     /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -15372,8 +15314,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs extends StandardParameters {
     /**
      * Optional. List of Job IDs to filter by if provided.
      */
@@ -15387,8 +15328,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks extends StandardParameters {
     /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -15406,8 +15346,7 @@ export namespace dataproc_v1 {
      */
     stageId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages extends StandardParameters {
     /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -15421,8 +15360,7 @@ export namespace dataproc_v1 {
      */
     stageIds?: string[];
   }
-  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write extends StandardParameters {
     /**
      * Required. The fully qualified name of the spark application to write data about in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
@@ -16197,8 +16135,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sessiontemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessiontemplates$Create extends StandardParameters {
     /**
      * Required. The parent resource where this session template will be created.
      */
@@ -16209,22 +16146,19 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$SessionTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Sessiontemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessiontemplates$Delete extends StandardParameters {
     /**
      * Required. The name of the session template resource to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessiontemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessiontemplates$Get extends StandardParameters {
     /**
      * Required. The name of the session template to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessiontemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessiontemplates$List extends StandardParameters {
     /**
      * Optional. A filter for the session templates to return in the response. Filters are case sensitive and have the following syntax:field = value AND field = value ...
      */
@@ -16242,8 +16176,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sessiontemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sessiontemplates$Patch extends StandardParameters {
     /**
      * Required. Identifier. The resource name of the session template.
      */
@@ -17786,8 +17719,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Create extends StandardParameters {
     /**
      * Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.create, the resource name of the region has the following format: projects/{project_id\}/regions/{region\} For projects.locations.workflowTemplates.create, the resource name of the location has the following format: projects/{project_id\}/locations/{location\}
      */
@@ -17798,8 +17730,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Delete extends StandardParameters {
     /**
      * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.delete, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
      */
@@ -17809,8 +17740,7 @@ export namespace dataproc_v1 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Get extends StandardParameters {
     /**
      * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
      */
@@ -17820,8 +17750,7 @@ export namespace dataproc_v1 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -17832,8 +17761,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiate extends StandardParameters {
     /**
      * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
      */
@@ -17844,8 +17772,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$InstantiateWorkflowTemplateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline extends StandardParameters {
     /**
      * Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource name of the region has the following format: projects/{project_id\}/regions/{region\} For projects.locations.workflowTemplates.instantiateinline, the resource name of the location has the following format: projects/{project_id\}/locations/{location\}
      */
@@ -17860,8 +17787,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return in each response.
      */
@@ -17875,8 +17801,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -17887,8 +17812,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -17899,8 +17823,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Update extends StandardParameters {
     /**
      * Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
      */
@@ -19124,8 +19047,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Create extends StandardParameters {
     /**
      * Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.create, the resource name of the region has the following format: projects/{project_id\}/regions/{region\} For projects.locations.autoscalingPolicies.create, the resource name of the location has the following format: projects/{project_id\}/locations/{location\}
      */
@@ -19136,22 +19058,19 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$AutoscalingPolicy;
   }
-  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Delete extends StandardParameters {
     /**
      * Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Get extends StandardParameters {
     /**
      * Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -19162,8 +19081,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return in each response. Must be less than or equal to 1000. Defaults to 100.
      */
@@ -19177,8 +19095,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -19189,8 +19106,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -19201,8 +19117,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Update extends StandardParameters {
     /**
      * Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
      */
@@ -21225,8 +21140,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Clusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Create extends StandardParameters {
     /**
      * Optional. Failure action when primary worker creation fails.
      */
@@ -21249,8 +21163,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Delete extends StandardParameters {
     /**
      * Required. The cluster name.
      */
@@ -21276,8 +21189,7 @@ export namespace dataproc_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Diagnose
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Diagnose extends StandardParameters {
     /**
      * Required. The cluster name.
      */
@@ -21296,8 +21208,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$DiagnoseClusterRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Get extends StandardParameters {
     /**
      * Required. The cluster name.
      */
@@ -21311,8 +21222,7 @@ export namespace dataproc_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -21323,8 +21233,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Injectcredentials
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Injectcredentials extends StandardParameters {
     /**
      * Required. The cluster, in the form clusters/.
      */
@@ -21343,8 +21252,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$InjectCredentialsRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$List extends StandardParameters {
     /**
      * Optional. A filter constraining the clusters to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is one of status.state, clusterName, or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be one of the following: ACTIVE, INACTIVE, CREATING, RUNNING, ERROR, DELETING, UPDATING, STOPPING, or STOPPED. ACTIVE contains the CREATING, UPDATING, and RUNNING states. INACTIVE contains the DELETING, ERROR, STOPPING, and STOPPED states. clusterName is the name of the cluster provided at creation time. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND clusterName = mycluster AND labels.env = staging AND labels.starred = *
      */
@@ -21366,8 +21274,7 @@ export namespace dataproc_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Patch extends StandardParameters {
     /**
      * Required. The cluster name.
      */
@@ -21398,8 +21305,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Repair
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Repair extends StandardParameters {
     /**
      * Required. The cluster name.
      */
@@ -21418,8 +21324,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$RepairClusterRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -21430,8 +21335,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Start
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Start extends StandardParameters {
     /**
      * Required. The cluster name.
      */
@@ -21450,8 +21354,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$StartClusterRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Stop
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Stop extends StandardParameters {
     /**
      * Required. The cluster name.
      */
@@ -21470,8 +21373,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$StopClusterRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -22085,8 +21987,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Clusters$Nodegroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Nodegroups$Create extends StandardParameters {
     /**
      * Optional. An optional node group ID. Generated if not specified.The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of from 3 to 33 characters.
      */
@@ -22109,15 +22010,13 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$NodeGroup;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Nodegroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Nodegroups$Get extends StandardParameters {
     /**
      * Required. The name of the node group to retrieve. Format: projects/{project\}/regions/{region\}/clusters/{cluster\}/nodeGroups/{nodeGroup\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Nodegroups$Repair
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Nodegroups$Repair extends StandardParameters {
     /**
      * Required. The name of the node group to resize. Format: projects/{project\}/regions/{region\}/clusters/{cluster\}/nodeGroups/{nodeGroup\}
      */
@@ -22128,8 +22027,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$RepairNodeGroupRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize extends StandardParameters {
     /**
      * Required. The name of the node group to resize. Format: projects/{project\}/regions/{region\}/clusters/{cluster\}/nodeGroups/{nodeGroup\}
      */
@@ -23720,8 +23618,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Jobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Cancel extends StandardParameters {
     /**
      * Required. The job ID.
      */
@@ -23740,8 +23637,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$CancelJobRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Delete extends StandardParameters {
     /**
      * Required. The job ID.
      */
@@ -23755,8 +23651,7 @@ export namespace dataproc_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Get extends StandardParameters {
     /**
      * Required. The job ID.
      */
@@ -23770,8 +23665,7 @@ export namespace dataproc_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -23782,8 +23676,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$List extends StandardParameters {
     /**
      * Optional. If set, the returned jobs list includes only jobs that were submitted to the named cluster.
      */
@@ -23813,8 +23706,7 @@ export namespace dataproc_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Patch extends StandardParameters {
     /**
      * Required. The job ID.
      */
@@ -23837,8 +23729,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -23849,8 +23740,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Submit
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Submit extends StandardParameters {
     /**
      * Required. The ID of the Google Cloud Platform project that the job belongs to.
      */
@@ -23865,8 +23755,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$SubmitJobRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Submitasoperation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Submitasoperation extends StandardParameters {
     /**
      * Required. The ID of the Google Cloud Platform project that the job belongs to.
      */
@@ -23881,8 +23770,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$SubmitJobRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -24893,29 +24781,25 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Operations$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -24926,8 +24810,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -24949,8 +24832,7 @@ export namespace dataproc_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Operations$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -24961,8 +24843,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Operations$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -26504,8 +26385,7 @@ export namespace dataproc_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Create extends StandardParameters {
     /**
      * Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.create, the resource name of the region has the following format: projects/{project_id\}/regions/{region\} For projects.locations.workflowTemplates.create, the resource name of the location has the following format: projects/{project_id\}/locations/{location\}
      */
@@ -26516,8 +26396,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Delete extends StandardParameters {
     /**
      * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.delete, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
      */
@@ -26527,8 +26406,7 @@ export namespace dataproc_v1 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Get extends StandardParameters {
     /**
      * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
      */
@@ -26538,8 +26416,7 @@ export namespace dataproc_v1 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -26550,8 +26427,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiate extends StandardParameters {
     /**
      * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
      */
@@ -26562,8 +26438,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$InstantiateWorkflowTemplateRequest;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline extends StandardParameters {
     /**
      * Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource name of the region has the following format: projects/{project_id\}/regions/{region\} For projects.locations.workflowTemplates.instantiateinline, the resource name of the location has the following format: projects/{project_id\}/locations/{location\}
      */
@@ -26578,8 +26453,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return in each response.
      */
@@ -26593,8 +26467,7 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -26605,8 +26478,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -26617,8 +26489,7 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Update extends StandardParameters {
     /**
      * Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
      */
