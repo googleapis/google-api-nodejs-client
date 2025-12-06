@@ -470,15 +470,13 @@ export namespace firebasestorage_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Deletedefaultbucket
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deletedefaultbucket extends StandardParameters {
     /**
      * Required. The name of the default bucket to delete, `projects/{project_id_or_number\}/defaultBucket`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getdefaultbucket
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getdefaultbucket extends StandardParameters {
     /**
      * Required. The name of the default bucket to retrieve, `projects/{project_id_or_number\}/defaultBucket`.
      */
@@ -1068,8 +1066,7 @@ export namespace firebasestorage_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Buckets$Addfirebase
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Buckets$Addfirebase extends StandardParameters {
     /**
      * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
      */
@@ -1080,15 +1077,13 @@ export namespace firebasestorage_v1beta {
      */
     requestBody?: Schema$AddFirebaseRequest;
   }
-  export interface Params$Resource$Projects$Buckets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Buckets$Get extends StandardParameters {
     /**
      * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Buckets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Buckets$List extends StandardParameters {
     /**
      * The maximum number of buckets to return. If not set, the server will use a reasonable default.
      */
@@ -1102,8 +1097,7 @@ export namespace firebasestorage_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Buckets$Removefirebase
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Buckets$Removefirebase extends StandardParameters {
     /**
      * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
      */
@@ -1277,8 +1271,7 @@ export namespace firebasestorage_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Defaultbucket$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Defaultbucket$Create extends StandardParameters {
     /**
      * Required. The parent resource where the default bucket will be created, `projects/{project_id_or_number\}`.
      */
