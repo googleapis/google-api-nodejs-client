@@ -715,8 +715,7 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Dataset$Aggregate
-    extends StandardParameters {
+  export interface Params$Resource$Users$Dataset$Aggregate extends StandardParameters {
     /**
      * Aggregate data for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      */
@@ -1573,8 +1572,7 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Datasources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Users$Datasources$Create extends StandardParameters {
     /**
      * Create the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      */
@@ -1585,8 +1583,7 @@ export namespace fitness_v1 {
      */
     requestBody?: Schema$DataSource;
   }
-  export interface Params$Resource$Users$Datasources$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Datasources$Delete extends StandardParameters {
     /**
      * The data stream ID of the data source to delete.
      */
@@ -1596,8 +1593,7 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Datasources$Get extends StandardParameters {
     /**
      * The data stream ID of the data source to retrieve.
      */
@@ -1607,8 +1603,7 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Datasources$List extends StandardParameters {
     /**
      * The names of data types to include in the list. If not specified, all data sources will be returned.
      */
@@ -1618,8 +1613,7 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Update
-    extends StandardParameters {
+  export interface Params$Resource$Users$Datasources$Update extends StandardParameters {
     /**
      * The data stream ID of the data source to update.
      */
@@ -1817,8 +1811,7 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Datasources$Datapointchanges$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Datasources$Datapointchanges$List extends StandardParameters {
     /**
      * The data stream ID of the data source that created the dataset.
      */
@@ -2331,8 +2324,7 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Datasources$Datasets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Datasources$Datasets$Delete extends StandardParameters {
     /**
      * Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
      */
@@ -2346,8 +2338,7 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Datasets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Datasources$Datasets$Get extends StandardParameters {
     /**
      * Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
      */
@@ -2369,8 +2360,7 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Datasets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Users$Datasources$Datasets$Patch extends StandardParameters {
     /**
      * This field is not used, and can be safely omitted.
      */
@@ -2871,8 +2861,7 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Sessions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Sessions$Delete extends StandardParameters {
     /**
      * The ID of the session to be deleted.
      */
@@ -2882,8 +2871,7 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Sessions$List
-    extends StandardParameters {
+  export interface Params$Resource$Users$Sessions$List extends StandardParameters {
     /**
      * If non-empty, only sessions with these activity types should be returned.
      */
@@ -2909,8 +2897,7 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Sessions$Update
-    extends StandardParameters {
+  export interface Params$Resource$Users$Sessions$Update extends StandardParameters {
     /**
      * The ID of the session to be created.
      */
