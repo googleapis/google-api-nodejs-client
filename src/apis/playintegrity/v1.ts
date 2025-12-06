@@ -615,8 +615,7 @@ export namespace playintegrity_v1 {
     }
   }
 
-  export interface Params$Resource$Devicerecall$Write
-    extends StandardParameters {
+  export interface Params$Resource$Devicerecall$Write extends StandardParameters {
     /**
      * Required. Package name of the app the attached integrity token belongs to.
      */
@@ -938,8 +937,7 @@ export namespace playintegrity_v1 {
     }
   }
 
-  export interface Params$Resource$V1$Decodeintegritytoken
-    extends StandardParameters {
+  export interface Params$Resource$V1$Decodeintegritytoken extends StandardParameters {
     /**
      *  Package name of the app the attached integrity token belongs to.
      */
@@ -950,8 +948,7 @@ export namespace playintegrity_v1 {
      */
     requestBody?: Schema$DecodeIntegrityTokenRequest;
   }
-  export interface Params$Resource$V1$Decodepcintegritytoken
-    extends StandardParameters {
+  export interface Params$Resource$V1$Decodepcintegritytoken extends StandardParameters {
     /**
      * Package name of the app the attached integrity token belongs to.
      */
