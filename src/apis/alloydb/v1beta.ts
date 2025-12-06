@@ -192,6 +192,10 @@ export namespace alloydb_v1beta {
      */
     annotations?: {[key: string]: string} | null;
     /**
+     * Output only. Set to true if the cluster corresponding to this backup is deleted. This field is only populated for when using the BACKUP_VIEW_CLUSTER_DELETED view.
+     */
+    clusterDeleted?: boolean | null;
+    /**
      * Required. The full resource name of the backup source cluster (e.g., projects/{project\}/locations/{region\}/clusters/{cluster_id\}).
      */
     clusterName?: string | null;
@@ -1111,6 +1115,10 @@ export namespace alloydb_v1beta {
      * Configurations for the machines that host the underlying database engine.
      */
     machineConfig?: Schema$MachineConfig;
+    /**
+     * Output only. Maintenance version of the instance, for example: POSTGRES_15.2025_07_15.04_00. Output only. Update this field via the parent cluster's maintenance_version field(s).
+     */
+    maintenanceVersionName?: string | null;
     /**
      * Output only. The name of the instance resource with the format: * projects/{project\}/locations/{region\}/clusters/{cluster_id\}/instances/{instance_id\} where the cluster and instance ID segments should satisfy the regex expression `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`, e.g. 1-63 characters of lowercase letters, numbers, and dashes, starting with a letter, and ending with a letter or number. For more details see https://google.aip.dev/122. The prefix of the instance resource name is the name of the parent resource: * projects/{project\}/locations/{region\}/clusters/{cluster_id\}
      */
@@ -2202,7 +2210,7 @@ export namespace alloydb_v1beta {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 29
+   * Common model for database resource instance metadata. Next ID: 30
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
     /**
@@ -2257,6 +2265,10 @@ export namespace alloydb_v1beta {
      * The type of the instance. Specified at creation time.
      */
     instanceType?: string | null;
+    /**
+     * Optional. Whether deletion protection is enabled for this resource.
+     */
+    isDeletionProtectionEnabled?: boolean | null;
     /**
      * The resource location. REQUIRED
      */
@@ -3149,15 +3161,13 @@ export namespace alloydb_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -3231,6 +3241,7 @@ export namespace alloydb_v1beta {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "clusterDeleted": false,
      *       //   "clusterName": "my_clusterName",
      *       //   "clusterUid": "my_clusterUid",
      *       //   "createCompletionTime": "my_createCompletionTime",
@@ -3541,12 +3552,15 @@ export namespace alloydb_v1beta {
      *   const res = await alloydb.projects.locations.backups.get({
      *     // Required. Name of the resource
      *     name: 'projects/my-project/locations/my-location/backups/my-backup',
+     *     // Optional. The view of the backup to return.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "clusterDeleted": false,
      *   //   "clusterName": "my_clusterName",
      *   //   "clusterUid": "my_clusterUid",
      *   //   "createCompletionTime": "my_createCompletionTime",
@@ -3706,6 +3720,8 @@ export namespace alloydb_v1beta {
      *     pageToken: 'placeholder-value',
      *     // Required. Parent value for ListBackupsRequest
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. The view of the backup to return.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -3859,6 +3875,7 @@ export namespace alloydb_v1beta {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "clusterDeleted": false,
      *       //   "clusterName": "my_clusterName",
      *       //   "clusterUid": "my_clusterUid",
      *       //   "createCompletionTime": "my_createCompletionTime",
@@ -3990,8 +4007,7 @@ export namespace alloydb_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backups$Create extends StandardParameters {
     /**
      * Required. ID of the requesting object.
      */
@@ -4014,8 +4030,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$Backup;
   }
-  export interface Params$Resource$Projects$Locations$Backups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backups$Delete extends StandardParameters {
     /**
      * Optional. The current etag of the Backup. If an etag is provided and does not match the current etag of the Backup, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -4033,15 +4048,17 @@ export namespace alloydb_v1beta {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Backups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backups$Get extends StandardParameters {
     /**
      * Required. Name of the resource
      */
     name?: string;
+    /**
+     * Optional. The view of the backup to return.
+     */
+    view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backups$List extends StandardParameters {
     /**
      * Filtering results
      */
@@ -4062,9 +4079,12 @@ export namespace alloydb_v1beta {
      * Required. Parent value for ListBackupsRequest
      */
     parent?: string;
+    /**
+     * Optional. The view of the backup to return.
+     */
+    view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backups$Patch extends StandardParameters {
     /**
      * Optional. If set to true, update succeeds even if instance is not found. In that case, a new backup is created and `update_mask` is ignored.
      */
@@ -6221,8 +6241,7 @@ export namespace alloydb_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Create extends StandardParameters {
     /**
      * Required. ID of the requesting object.
      */
@@ -6245,8 +6264,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Createsecondary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Createsecondary extends StandardParameters {
     /**
      * Required. ID of the requesting object (the secondary cluster).
      */
@@ -6269,8 +6287,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Delete extends StandardParameters {
     /**
      * Optional. The current etag of the Cluster. If an etag is provided and does not match the current etag of the Cluster, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -6292,8 +6309,7 @@ export namespace alloydb_v1beta {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Export extends StandardParameters {
     /**
      * Required. The resource name of the cluster.
      */
@@ -6304,8 +6320,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$ExportClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Get extends StandardParameters {
     /**
      * Required. The name of the resource. For the required format, see the comment on the Cluster.name field.
      */
@@ -6315,8 +6330,7 @@ export namespace alloydb_v1beta {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Import extends StandardParameters {
     /**
      * Required. The resource name of the cluster.
      */
@@ -6327,8 +6341,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$ImportClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -6350,8 +6363,7 @@ export namespace alloydb_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Patch extends StandardParameters {
     /**
      * Optional. If set to true, update succeeds even if cluster is not found. In that case, a new cluster is created and `update_mask` is ignored.
      */
@@ -6378,8 +6390,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Promote
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Promote extends StandardParameters {
     /**
      * Required. The name of the resource. For the required format, see the comment on the Cluster.name field
      */
@@ -6390,8 +6401,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$PromoteClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Restore extends StandardParameters {
     /**
      * Required. The name of the parent resource. For the required format, see the comment on the Cluster.name field.
      */
@@ -6402,8 +6412,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$RestoreClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Restorefromcloudsql
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Restorefromcloudsql extends StandardParameters {
     /**
      * Required. The location of the new cluster. For the required format, see the comment on Cluster.name field.
      */
@@ -6414,8 +6423,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$RestoreFromCloudSQLRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Switchover
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Switchover extends StandardParameters {
     /**
      * Required. The name of the resource. For the required format, see the comment on the Cluster.name field
      */
@@ -6426,8 +6434,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$SwitchoverClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Upgrade
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Upgrade extends StandardParameters {
     /**
      * Required. The resource name of the cluster.
      */
@@ -6506,6 +6513,7 @@ export namespace alloydb_v1beta {
      *       //   "ipAddress": "my_ipAddress",
      *       //   "labels": {},
      *       //   "machineConfig": {},
+     *       //   "maintenanceVersionName": "my_maintenanceVersionName",
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "nodes": [],
@@ -6695,6 +6703,7 @@ export namespace alloydb_v1beta {
      *         //   "ipAddress": "my_ipAddress",
      *         //   "labels": {},
      *         //   "machineConfig": {},
+     *         //   "maintenanceVersionName": "my_maintenanceVersionName",
      *         //   "name": "my_name",
      *         //   "networkConfig": {},
      *         //   "nodes": [],
@@ -7174,6 +7183,7 @@ export namespace alloydb_v1beta {
      *   //   "ipAddress": "my_ipAddress",
      *   //   "labels": {},
      *   //   "machineConfig": {},
+     *   //   "maintenanceVersionName": "my_maintenanceVersionName",
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
      *   //   "nodes": [],
@@ -7800,6 +7810,7 @@ export namespace alloydb_v1beta {
      *       //   "ipAddress": "my_ipAddress",
      *       //   "labels": {},
      *       //   "machineConfig": {},
+     *       //   "maintenanceVersionName": "my_maintenanceVersionName",
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "nodes": [],
@@ -8077,8 +8088,7 @@ export namespace alloydb_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Instances$Create extends StandardParameters {
     /**
      * Required. ID of the requesting object.
      */
@@ -8101,8 +8111,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Instances$Createsecondary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Instances$Createsecondary extends StandardParameters {
     /**
      * Required. ID of the requesting object.
      */
@@ -8125,8 +8134,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Instances$Delete extends StandardParameters {
     /**
      * Optional. The current etag of the Instance. If an etag is provided and does not match the current etag of the Instance, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -8144,8 +8152,7 @@ export namespace alloydb_v1beta {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Instances$Failover
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Instances$Failover extends StandardParameters {
     /**
      * Required. The name of the resource. For the required format, see the comment on the Instance.name field.
      */
@@ -8156,8 +8163,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$FailoverInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Instances$Get extends StandardParameters {
     /**
      * Required. The name of the resource. For the required format, see the comment on the Instance.name field.
      */
@@ -8167,8 +8173,7 @@ export namespace alloydb_v1beta {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo extends StandardParameters {
     /**
      * Required. The name of the parent resource. The required format is: projects/{project\}/locations/{location\}/clusters/{cluster\}/instances/{instance\}
      */
@@ -8178,8 +8183,7 @@ export namespace alloydb_v1beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Instances$Injectfault
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Instances$Injectfault extends StandardParameters {
     /**
      * Required. The name of the resource. For the required format, see the comment on the Instance.name field.
      */
@@ -8190,8 +8194,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$InjectFaultRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Instances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Instances$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -8213,8 +8216,7 @@ export namespace alloydb_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Instances$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Instances$Patch extends StandardParameters {
     /**
      * Optional. If set to true, update succeeds even if instance is not found. In that case, a new instance is created and `update_mask` is ignored.
      */
@@ -8241,8 +8243,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Instances$Restart
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Instances$Restart extends StandardParameters {
     /**
      * Required. The name of the resource. For the required format, see the comment on the Instance.name field.
      */
@@ -8999,8 +9000,7 @@ export namespace alloydb_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Users$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Users$Create extends StandardParameters {
     /**
      * Required. Value for parent.
      */
@@ -9023,8 +9023,7 @@ export namespace alloydb_v1beta {
      */
     requestBody?: Schema$User;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Users$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Users$Delete extends StandardParameters {
     /**
      * Required. The name of the resource. For the required format, see the comment on the User.name field.
      */
@@ -9038,15 +9037,13 @@ export namespace alloydb_v1beta {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Users$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Users$Get extends StandardParameters {
     /**
      * Required. The name of the resource. For the required format, see the comment on the User.name field.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Users$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Users$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -9068,8 +9065,7 @@ export namespace alloydb_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Users$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Users$Patch extends StandardParameters {
     /**
      * Optional. Allow missing fields in the update mask.
      */
@@ -9658,29 +9654,25 @@ export namespace alloydb_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -9865,8 +9857,7 @@ export namespace alloydb_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Supporteddatabaseflags$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Supporteddatabaseflags$List extends StandardParameters {
     /**
      * Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      */
