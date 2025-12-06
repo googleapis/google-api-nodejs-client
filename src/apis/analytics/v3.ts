@@ -3238,8 +3238,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Data$Realtime$Get
-    extends StandardParameters {
+  export interface Params$Resource$Data$Realtime$Get extends StandardParameters {
     /**
      * A comma-separated list of real time dimensions. E.g., 'rt:medium,rt:city'.
      */
@@ -3489,8 +3488,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Accounts$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Accounts$List extends StandardParameters {
     /**
      * The maximum number of accounts to include in this response.
      */
@@ -3656,8 +3654,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Accountsummaries$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Accountsummaries$List extends StandardParameters {
     /**
      * The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
      */
@@ -4269,8 +4266,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Accountuserlinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Management$Accountuserlinks$Delete extends StandardParameters {
     /**
      * Account ID to delete the user link for.
      */
@@ -4280,8 +4276,7 @@ export namespace analytics_v3 {
      */
     linkId?: string;
   }
-  export interface Params$Resource$Management$Accountuserlinks$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Accountuserlinks$Insert extends StandardParameters {
     /**
      * Account ID to create the user link for.
      */
@@ -4292,8 +4287,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityUserLink;
   }
-  export interface Params$Resource$Management$Accountuserlinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Accountuserlinks$List extends StandardParameters {
     /**
      * Account ID to retrieve the user links for.
      */
@@ -4307,8 +4301,7 @@ export namespace analytics_v3 {
      */
     'start-index'?: number;
   }
-  export interface Params$Resource$Management$Accountuserlinks$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Accountuserlinks$Update extends StandardParameters {
     /**
      * Account ID to update the account-user link for.
      */
@@ -4484,8 +4477,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Clientid$Hashclientid
-    extends StandardParameters {
+  export interface Params$Resource$Management$Clientid$Hashclientid extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -4653,8 +4645,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Customdatasources$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Customdatasources$List extends StandardParameters {
     /**
      * Account Id for the custom data sources to retrieve.
      */
@@ -5503,8 +5494,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Customdimensions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Customdimensions$Get extends StandardParameters {
     /**
      * Account ID for the custom dimension to retrieve.
      */
@@ -5518,8 +5508,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Customdimensions$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Customdimensions$Insert extends StandardParameters {
     /**
      * Account ID for the custom dimension to create.
      */
@@ -5534,8 +5523,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomDimension;
   }
-  export interface Params$Resource$Management$Customdimensions$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Customdimensions$List extends StandardParameters {
     /**
      * Account ID for the custom dimensions to retrieve.
      */
@@ -5553,8 +5541,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Customdimensions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Management$Customdimensions$Patch extends StandardParameters {
     /**
      * Account ID for the custom dimension to update.
      */
@@ -5577,8 +5564,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomDimension;
   }
-  export interface Params$Resource$Management$Customdimensions$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Customdimensions$Update extends StandardParameters {
     /**
      * Account ID for the custom dimension to update.
      */
@@ -6453,8 +6439,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Custommetrics$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Custommetrics$Get extends StandardParameters {
     /**
      * Account ID for the custom metric to retrieve.
      */
@@ -6468,8 +6453,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Custommetrics$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Custommetrics$Insert extends StandardParameters {
     /**
      * Account ID for the custom metric to create.
      */
@@ -6484,8 +6468,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomMetric;
   }
-  export interface Params$Resource$Management$Custommetrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Custommetrics$List extends StandardParameters {
     /**
      * Account ID for the custom metrics to retrieve.
      */
@@ -6503,8 +6486,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Custommetrics$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Management$Custommetrics$Patch extends StandardParameters {
     /**
      * Account ID for the custom metric to update.
      */
@@ -6527,8 +6509,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomMetric;
   }
-  export interface Params$Resource$Management$Custommetrics$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Custommetrics$Update extends StandardParameters {
     /**
      * Account ID for the custom metric to update.
      */
@@ -7670,8 +7651,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Experiments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Management$Experiments$Delete extends StandardParameters {
     /**
      * Account ID to which the experiment belongs
      */
@@ -7689,8 +7669,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Experiments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Experiments$Get extends StandardParameters {
     /**
      * Account ID to retrieve the experiment for.
      */
@@ -7708,8 +7687,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Experiments$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Experiments$Insert extends StandardParameters {
     /**
      * Account ID to create the experiment for.
      */
@@ -7728,8 +7706,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Experiment;
   }
-  export interface Params$Resource$Management$Experiments$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Experiments$List extends StandardParameters {
     /**
      * Account ID to retrieve experiments for.
      */
@@ -7751,8 +7728,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Experiments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Management$Experiments$Patch extends StandardParameters {
     /**
      * Account ID of the experiment to update.
      */
@@ -7775,8 +7751,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Experiment;
   }
-  export interface Params$Resource$Management$Experiments$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Experiments$Update extends StandardParameters {
     /**
      * Account ID of the experiment to update.
      */
@@ -8788,8 +8763,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Filters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Management$Filters$Delete extends StandardParameters {
     /**
      * Account ID to delete the filter for.
      */
@@ -8799,8 +8773,7 @@ export namespace analytics_v3 {
      */
     filterId?: string;
   }
-  export interface Params$Resource$Management$Filters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Filters$Get extends StandardParameters {
     /**
      * Account ID to retrieve filters for.
      */
@@ -8810,8 +8783,7 @@ export namespace analytics_v3 {
      */
     filterId?: string;
   }
-  export interface Params$Resource$Management$Filters$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Filters$Insert extends StandardParameters {
     /**
      * Account ID to create filter for.
      */
@@ -8822,8 +8794,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Filter;
   }
-  export interface Params$Resource$Management$Filters$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Filters$List extends StandardParameters {
     /**
      * Account ID to retrieve filters for.
      */
@@ -8837,8 +8808,7 @@ export namespace analytics_v3 {
      */
     'start-index'?: number;
   }
-  export interface Params$Resource$Management$Filters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Management$Filters$Patch extends StandardParameters {
     /**
      * Account ID to which the filter belongs.
      */
@@ -8853,8 +8823,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Filter;
   }
-  export interface Params$Resource$Management$Filters$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Filters$Update extends StandardParameters {
     /**
      * Account ID to which the filter belongs.
      */
@@ -9749,8 +9718,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Goals$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Goals$Get extends StandardParameters {
     /**
      * Account ID to retrieve the goal for.
      */
@@ -9768,8 +9736,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Goals$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Goals$Insert extends StandardParameters {
     /**
      * Account ID to create the goal for.
      */
@@ -9788,8 +9755,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Goal;
   }
-  export interface Params$Resource$Management$Goals$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Goals$List extends StandardParameters {
     /**
      * Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
      */
@@ -9811,8 +9777,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Goals$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Management$Goals$Patch extends StandardParameters {
     /**
      * Account ID to update the goal.
      */
@@ -9835,8 +9800,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Goal;
   }
-  export interface Params$Resource$Management$Goals$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Goals$Update extends StandardParameters {
     /**
      * Account ID to update the goal.
      */
@@ -10790,8 +10754,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Profilefilterlinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$Delete extends StandardParameters {
     /**
      * Account ID to which the profile filter link belongs.
      */
@@ -10809,8 +10772,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$Get extends StandardParameters {
     /**
      * Account ID to retrieve profile filter link for.
      */
@@ -10828,8 +10790,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$Insert extends StandardParameters {
     /**
      * Account ID to create profile filter link for.
      */
@@ -10848,8 +10809,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$ProfileFilterLink;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$List extends StandardParameters {
     /**
      * Account ID to retrieve profile filter links for.
      */
@@ -10871,8 +10831,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$Patch extends StandardParameters {
     /**
      * Account ID to which profile filter link belongs.
      */
@@ -10895,8 +10854,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$ProfileFilterLink;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$Update extends StandardParameters {
     /**
      * Account ID to which profile filter link belongs.
      */
@@ -11979,8 +11937,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Profiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profiles$Delete extends StandardParameters {
     /**
      * Account ID to delete the view (profile) for.
      */
@@ -11994,8 +11951,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profiles$Get extends StandardParameters {
     /**
      * Account ID to retrieve the view (profile) for.
      */
@@ -12009,8 +11965,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profiles$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profiles$Insert extends StandardParameters {
     /**
      * Account ID to create the view (profile) for.
      */
@@ -12025,8 +11980,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Profile;
   }
-  export interface Params$Resource$Management$Profiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profiles$List extends StandardParameters {
     /**
      * Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
      */
@@ -12044,8 +11998,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profiles$Patch extends StandardParameters {
     /**
      * Account ID to which the view (profile) belongs
      */
@@ -12064,8 +12017,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Profile;
   }
-  export interface Params$Resource$Management$Profiles$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profiles$Update extends StandardParameters {
     /**
      * Account ID to which the view (profile) belongs
      */
@@ -12702,8 +12654,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Profileuserlinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profileuserlinks$Delete extends StandardParameters {
     /**
      * Account ID to delete the user link for.
      */
@@ -12721,8 +12672,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profileuserlinks$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profileuserlinks$Insert extends StandardParameters {
     /**
      * Account ID to create the user link for.
      */
@@ -12741,8 +12691,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityUserLink;
   }
-  export interface Params$Resource$Management$Profileuserlinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profileuserlinks$List extends StandardParameters {
     /**
      * Account ID which the given view (profile) belongs to.
      */
@@ -12764,8 +12713,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profileuserlinks$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Profileuserlinks$Update extends StandardParameters {
     /**
      * Account ID to update the user link for.
      */
@@ -13767,8 +13715,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Remarketingaudience$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$Delete extends StandardParameters {
     /**
      * Account ID to which the remarketing audience belongs.
      */
@@ -13782,8 +13729,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$Get extends StandardParameters {
     /**
      * The account ID of the remarketing audience to retrieve.
      */
@@ -13797,8 +13743,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$Insert extends StandardParameters {
     /**
      * The account ID for which to create the remarketing audience.
      */
@@ -13813,8 +13758,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$RemarketingAudience;
   }
-  export interface Params$Resource$Management$Remarketingaudience$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$List extends StandardParameters {
     /**
      * The account ID of the remarketing audiences to retrieve.
      */
@@ -13836,8 +13780,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$Patch extends StandardParameters {
     /**
      * The account ID of the remarketing audience to update.
      */
@@ -13856,8 +13799,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$RemarketingAudience;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$Update extends StandardParameters {
     /**
      * The account ID of the remarketing audience to update.
      */
@@ -14034,8 +13976,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Segments$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Segments$List extends StandardParameters {
     /**
      * The maximum number of segments to include in this response.
      */
@@ -14718,8 +14659,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Unsampledreports$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Management$Unsampledreports$Delete extends StandardParameters {
     /**
      * Account ID to delete the unsampled report for.
      */
@@ -14737,8 +14677,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Unsampledreports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Unsampledreports$Get extends StandardParameters {
     /**
      * Account ID to retrieve unsampled report for.
      */
@@ -14756,8 +14695,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Unsampledreports$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Unsampledreports$Insert extends StandardParameters {
     /**
      * Account ID to create the unsampled report for.
      */
@@ -14776,8 +14714,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$UnsampledReport;
   }
-  export interface Params$Resource$Management$Unsampledreports$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Unsampledreports$List extends StandardParameters {
     /**
      * Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
      */
@@ -15432,8 +15369,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Uploads$Deleteuploaddata
-    extends StandardParameters {
+  export interface Params$Resource$Management$Uploads$Deleteuploaddata extends StandardParameters {
     /**
      * Account Id for the uploads to be deleted.
      */
@@ -15452,8 +15388,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$AnalyticsDataimportDeleteUploadDataRequest;
   }
-  export interface Params$Resource$Management$Uploads$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Uploads$Get extends StandardParameters {
     /**
      * Account Id for the upload to retrieve.
      */
@@ -15471,8 +15406,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Uploads$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Uploads$List extends StandardParameters {
     /**
      * Account Id for the uploads to retrieve.
      */
@@ -15494,8 +15428,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Uploads$Uploaddata
-    extends StandardParameters {
+  export interface Params$Resource$Management$Uploads$Uploaddata extends StandardParameters {
     /**
      * Account Id associated with the upload.
      */
@@ -16396,8 +16329,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Webproperties$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webproperties$Get extends StandardParameters {
     /**
      * Account ID to retrieve the web property for.
      */
@@ -16407,8 +16339,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webproperties$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webproperties$Insert extends StandardParameters {
     /**
      * Account ID to create the web property for.
      */
@@ -16419,8 +16350,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Webproperty;
   }
-  export interface Params$Resource$Management$Webproperties$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webproperties$List extends StandardParameters {
     /**
      * Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
      */
@@ -16434,8 +16364,7 @@ export namespace analytics_v3 {
      */
     'start-index'?: number;
   }
-  export interface Params$Resource$Management$Webproperties$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webproperties$Patch extends StandardParameters {
     /**
      * Account ID to which the web property belongs
      */
@@ -16450,8 +16379,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Webproperty;
   }
-  export interface Params$Resource$Management$Webproperties$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webproperties$Update extends StandardParameters {
     /**
      * Account ID to which the web property belongs
      */
@@ -17410,8 +17338,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Webpropertyadwordslinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Delete extends StandardParameters {
     /**
      * ID of the account which the given web property belongs to.
      */
@@ -17425,8 +17352,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webpropertyadwordslinks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Get extends StandardParameters {
     /**
      * ID of the account which the given web property belongs to.
      */
@@ -17440,8 +17366,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webpropertyadwordslinks$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Insert extends StandardParameters {
     /**
      * ID of the Google Analytics account to create the link for.
      */
@@ -17456,8 +17381,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityAdWordsLink;
   }
-  export interface Params$Resource$Management$Webpropertyadwordslinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$List extends StandardParameters {
     /**
      * ID of the account which the given web property belongs to.
      */
@@ -17475,8 +17399,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webpropertyadwordslinks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Patch extends StandardParameters {
     /**
      * ID of the account which the given web property belongs to.
      */
@@ -17495,8 +17418,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityAdWordsLink;
   }
-  export interface Params$Resource$Management$Webpropertyadwordslinks$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Update extends StandardParameters {
     /**
      * ID of the account which the given web property belongs to.
      */
@@ -18125,8 +18047,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Webpropertyuserlinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webpropertyuserlinks$Delete extends StandardParameters {
     /**
      * Account ID to delete the user link for.
      */
@@ -18140,8 +18061,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webpropertyuserlinks$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webpropertyuserlinks$Insert extends StandardParameters {
     /**
      * Account ID to create the user link for.
      */
@@ -18156,8 +18076,7 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityUserLink;
   }
-  export interface Params$Resource$Management$Webpropertyuserlinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webpropertyuserlinks$List extends StandardParameters {
     /**
      * Account ID which the given web property belongs to.
      */
@@ -18175,8 +18094,7 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webpropertyuserlinks$Update
-    extends StandardParameters {
+  export interface Params$Resource$Management$Webpropertyuserlinks$Update extends StandardParameters {
     /**
      * Account ID to update the account-user link for.
      */
@@ -18356,8 +18274,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Metadata$Columns$List
-    extends StandardParameters {
+  export interface Params$Resource$Metadata$Columns$List extends StandardParameters {
     /**
      * Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core Reporting API
      */
@@ -18675,15 +18592,13 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Provisioning$Createaccountticket
-    extends StandardParameters {
+  export interface Params$Resource$Provisioning$Createaccountticket extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AccountTicket;
   }
-  export interface Params$Resource$Provisioning$Createaccounttree
-    extends StandardParameters {
+  export interface Params$Resource$Provisioning$Createaccounttree extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -18859,8 +18774,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Userdeletion$Userdeletionrequest$Upsert
-    extends StandardParameters {
+  export interface Params$Resource$Userdeletion$Userdeletionrequest$Upsert extends StandardParameters {
     /**
      * Request body metadata
      */
