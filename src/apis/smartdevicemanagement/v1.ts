@@ -703,8 +703,7 @@ export namespace smartdevicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Devices$Executecommand
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Devices$Executecommand extends StandardParameters {
     /**
      * The name of the device requested. For example: "enterprises/XYZ/devices/123"
      */
@@ -715,15 +714,13 @@ export namespace smartdevicemanagement_v1 {
      */
     requestBody?: Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandRequest;
   }
-  export interface Params$Resource$Enterprises$Devices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Devices$Get extends StandardParameters {
     /**
      * The name of the device requested. For example: "enterprises/XYZ/devices/123"
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Devices$List
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Devices$List extends StandardParameters {
     /**
      * Optional filter to list devices. Filters can be done on: Device custom name (substring match): 'customName=wing'
      */
@@ -1039,15 +1036,13 @@ export namespace smartdevicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Structures$Get
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Structures$Get extends StandardParameters {
     /**
      * The name of the structure requested. For example: "enterprises/XYZ/structures/ABC".
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Structures$List
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Structures$List extends StandardParameters {
     /**
      * Optional filter to list structures.
      */
@@ -1355,15 +1350,13 @@ export namespace smartdevicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Structures$Rooms$Get
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Structures$Rooms$Get extends StandardParameters {
     /**
      * The name of the room requested. For example: "enterprises/XYZ/structures/ABC/rooms/123".
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Structures$Rooms$List
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Structures$Rooms$List extends StandardParameters {
     /**
      * The parent resource name of the rooms requested. For example: "enterprises/XYZ/structures/ABC".
      */
