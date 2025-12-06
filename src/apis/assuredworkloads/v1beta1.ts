@@ -1283,15 +1283,13 @@ export namespace assuredworkloads_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2804,8 +2802,7 @@ export namespace assuredworkloads_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove extends StandardParameters {
     /**
      * Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      */
@@ -2827,8 +2824,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     target?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Create extends StandardParameters {
     /**
      * Optional. A identifier associated with the workload and underlying projects which allows for the break down of billing costs for a workload. The value provided for the identifier will add a label to the workload and contained projects with the identifier as the value.
      */
@@ -2843,8 +2839,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1Workload;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Delete extends StandardParameters {
     /**
      * Optional. The etag of the workload. If this is provided, it must match the server's etag.
      */
@@ -2854,29 +2849,25 @@ export namespace assuredworkloads_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates extends StandardParameters {
     /**
      * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring extends StandardParameters {
     /**
      * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Get extends StandardParameters {
     /**
      * Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$List extends StandardParameters {
     /**
      * A custom filter for filtering by properties of a workload. At this time, only filtering by labels is supported.
      */
@@ -2894,8 +2885,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Patch extends StandardParameters {
     /**
      * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
      */
@@ -2910,8 +2900,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1Workload;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources extends StandardParameters {
     /**
      * Required. The resource name of the Workload. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
      */
@@ -3242,8 +3231,7 @@ export namespace assuredworkloads_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Workloads$Updates$Apply
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Updates$Apply extends StandardParameters {
     /**
      * Required. The resource name of the update. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}/updates/{update_id\}
      */
@@ -3254,8 +3242,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1ApplyWorkloadUpdateRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$Updates$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Updates$List extends StandardParameters {
     /**
      * Page size. The default value is 20 and the max allowed value is 100.
      */
@@ -3765,8 +3752,7 @@ export namespace assuredworkloads_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Workloads$Violations$Acknowledge
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Violations$Acknowledge extends StandardParameters {
     /**
      * Required. The resource name of the Violation to acknowledge. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
      */
@@ -3777,15 +3763,13 @@ export namespace assuredworkloads_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$Violations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Violations$Get extends StandardParameters {
     /**
      * Required. The resource name of the Violation to fetch (ie. Violation.name). Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$Violations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Workloads$Violations$List extends StandardParameters {
     /**
      * Optional. A custom filter for filtering by the Violations properties.
      */
