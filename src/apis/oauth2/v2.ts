@@ -655,6 +655,5 @@ export namespace oauth2_v2 {
     }
   }
 
-  export interface Params$Resource$Userinfo$V2$Me$Get
-    extends StandardParameters {}
+  export interface Params$Resource$Userinfo$V2$Me$Get extends StandardParameters {}
 }
