@@ -541,6 +541,12 @@ export namespace deploymentmanager_alpha {
      */
     title?: string | null;
   }
+  export interface Schema$FirewallPolicyRuleOperationMetadata {
+    /**
+     * The priority allocated for the firewall policy rule if query parameters specified minPriority/maxPriority.
+     */
+    allocatedPriority?: number | null;
+  }
   export interface Schema$GlobalSetPolicyRequest {
     /**
      * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify bindings.
@@ -752,6 +758,7 @@ export namespace deploymentmanager_alpha {
         message?: string;
       }>;
     } | null;
+    firewallPolicyRuleOperationMetadata?: Schema$FirewallPolicyRuleOperationMetadata;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      */
@@ -770,7 +777,7 @@ export namespace deploymentmanager_alpha {
     insertTime?: string | null;
     instancesBulkInsertOperationMetadata?: Schema$InstancesBulkInsertOperationMetadata;
     /**
-     * [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
+     * Output only. [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      */
     kind?: string | null;
     /**
@@ -778,7 +785,7 @@ export namespace deploymentmanager_alpha {
      */
     name?: string | null;
     /**
-     * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
+     * Output only. [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
      */
     operationGroupId?: string | null;
     /**
@@ -798,7 +805,7 @@ export namespace deploymentmanager_alpha {
      */
     selfLink?: string | null;
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      */
     selfLinkWithId?: string | null;
     /**
@@ -806,7 +813,7 @@ export namespace deploymentmanager_alpha {
      */
     setAutoscalerLinkOperationMetadata?: Schema$SetAutoscalerLinkOperationMetadata;
     /**
-     * [Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state.
+     * Output only. [Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state.
      */
     setCommonInstanceMetadataOperationMetadata?: Schema$SetCommonInstanceMetadataOperationMetadata;
     /**
@@ -1463,6 +1470,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -1805,6 +1813,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2151,6 +2160,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2340,6 +2350,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2463,8 +2474,7 @@ export namespace deploymentmanager_alpha {
     }
   }
 
-  export interface Params$Resource$Compositetypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Compositetypes$Delete extends StandardParameters {
     /**
      * The name of the type for this request.
      */
@@ -2478,8 +2488,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Compositetypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Compositetypes$Get extends StandardParameters {
     /**
      * The name of the composite type for this request.
      */
@@ -2493,8 +2502,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Compositetypes$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Compositetypes$Insert extends StandardParameters {
     /**
      *
      */
@@ -2509,8 +2517,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$CompositeType;
   }
-  export interface Params$Resource$Compositetypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Compositetypes$List extends StandardParameters {
     /**
      * A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
      */
@@ -2532,8 +2539,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Compositetypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Compositetypes$Patch extends StandardParameters {
     /**
      * The name of the composite type for this request.
      */
@@ -2552,8 +2558,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$CompositeType;
   }
-  export interface Params$Resource$Compositetypes$Update
-    extends StandardParameters {
+  export interface Params$Resource$Compositetypes$Update extends StandardParameters {
     /**
      * The name of the composite type for this request.
      */
@@ -2636,6 +2641,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2811,6 +2817,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -3317,6 +3324,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -3671,6 +3679,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -4008,6 +4017,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -4364,6 +4374,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -4487,8 +4498,7 @@ export namespace deploymentmanager_alpha {
     }
   }
 
-  export interface Params$Resource$Deployments$Cancelpreview
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Cancelpreview extends StandardParameters {
     /**
      * The name of the deployment for this request.
      */
@@ -4503,8 +4513,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$DeploymentsCancelPreviewRequest;
   }
-  export interface Params$Resource$Deployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Delete extends StandardParameters {
     /**
      * Sets the policy to use for deleting resources.
      */
@@ -4536,8 +4545,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Getiampolicy extends StandardParameters {
     /**
      *
      */
@@ -4555,8 +4563,7 @@ export namespace deploymentmanager_alpha {
      */
     resource?: string;
   }
-  export interface Params$Resource$Deployments$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Insert extends StandardParameters {
     /**
      * Sets the policy to use for creating new resources.
      */
@@ -4601,8 +4608,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Patch extends StandardParameters {
     /**
      * Sets the policy to use for creating new resources.
      */
@@ -4633,8 +4639,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$Deployment;
   }
-  export interface Params$Resource$Deployments$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Setiampolicy extends StandardParameters {
     /**
      * Project ID for this request.
      */
@@ -4664,8 +4669,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$DeploymentsStopRequest;
   }
-  export interface Params$Resource$Deployments$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Testiampermissions extends StandardParameters {
     /**
      *
      */
@@ -4684,8 +4688,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Deployments$Update
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Update extends StandardParameters {
     /**
      * Sets the policy to use for creating new resources.
      */
@@ -5141,6 +5144,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -5880,6 +5884,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -6382,6 +6387,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -6891,6 +6897,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -7082,6 +7089,7 @@ export namespace deploymentmanager_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -7205,8 +7213,7 @@ export namespace deploymentmanager_alpha {
     }
   }
 
-  export interface Params$Resource$Typeproviders$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Typeproviders$Delete extends StandardParameters {
     /**
      *
      */
@@ -7220,8 +7227,7 @@ export namespace deploymentmanager_alpha {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Get
-    extends StandardParameters {
+  export interface Params$Resource$Typeproviders$Get extends StandardParameters {
     /**
      *
      */
@@ -7235,8 +7241,7 @@ export namespace deploymentmanager_alpha {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Gettype
-    extends StandardParameters {
+  export interface Params$Resource$Typeproviders$Gettype extends StandardParameters {
     /**
      *
      */
@@ -7254,8 +7259,7 @@ export namespace deploymentmanager_alpha {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Typeproviders$Insert extends StandardParameters {
     /**
      *
      */
@@ -7270,8 +7274,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$TypeProvider;
   }
-  export interface Params$Resource$Typeproviders$List
-    extends StandardParameters {
+  export interface Params$Resource$Typeproviders$List extends StandardParameters {
     /**
      * A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
      */
@@ -7293,8 +7296,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Typeproviders$Listtypes
-    extends StandardParameters {
+  export interface Params$Resource$Typeproviders$Listtypes extends StandardParameters {
     /**
      * A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
      */
@@ -7320,8 +7322,7 @@ export namespace deploymentmanager_alpha {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Typeproviders$Patch extends StandardParameters {
     /**
      *
      */
@@ -7340,8 +7341,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$TypeProvider;
   }
-  export interface Params$Resource$Typeproviders$Update
-    extends StandardParameters {
+  export interface Params$Resource$Typeproviders$Update extends StandardParameters {
     /**
      *
      */
