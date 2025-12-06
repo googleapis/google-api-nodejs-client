@@ -1354,8 +1354,7 @@ export namespace mybusinessbusinessinformation_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Locations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Locations$Create extends StandardParameters {
     /**
      * Required. The name of the account in which to create this location.
      */
@@ -1374,8 +1373,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     requestBody?: Schema$Location;
   }
-  export interface Params$Resource$Accounts$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Locations$List extends StandardParameters {
     /**
      * Optional. A filter constraining the locations to return. The response includes only entries that match the filter. If `filter` is empty, then constraints are applied and all locations (paginated) are retrieved for the requested account. For more information about valid fields and example usage, see [Work with Location Data Guide](https://developers.google.com/my-business/content/location-data#filter_results_when_you_list_locations).
      */
@@ -1901,8 +1899,7 @@ export namespace mybusinessbusinessinformation_v1 {
     }
   }
 
-  export interface Params$Resource$Categories$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Categories$Batchget extends StandardParameters {
     /**
      * Required. The BCP 47 code of language that the category names should be returned in.
      */
@@ -2410,8 +2407,7 @@ export namespace mybusinessbusinessinformation_v1 {
     }
   }
 
-  export interface Params$Resource$Googlelocations$Search
-    extends StandardParameters {
+  export interface Params$Resource$Googlelocations$Search extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -3355,15 +3351,13 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Locations$Getattributes
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Getattributes extends StandardParameters {
     /**
      * Required. Google identifier for this location in the form of `locations/{location_id\}/attributes`.
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Getgoogleupdated
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Getgoogleupdated extends StandardParameters {
     /**
      * Required. The name of the location to fetch.
      */
@@ -3392,8 +3386,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     requestBody?: Schema$Location;
   }
-  export interface Params$Resource$Locations$Updateattributes
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Updateattributes extends StandardParameters {
     /**
      * Required. Attribute name of attributes that you'd like to update. Represented by `attributes/{attribute\}`. Updates: All attributes provided in the attributes field that you would like to update must be set in the `attribute_mask`. Attributes set in the above list but not in the `attribute_mask` will be ignored. Deletes: If you'd like to delete certain attributes, they must be specified in the `attribute_mask` with no matching entry in the attributes list. If you'd like to delete all attributes set on a location, you should look up all the applicable attributes for the location and then add them to the `attribute_mask` with an empty attributes field.
      */
@@ -3558,8 +3551,7 @@ export namespace mybusinessbusinessinformation_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Attributes$Getgoogleupdated
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Attributes$Getgoogleupdated extends StandardParameters {
     /**
      * Required. Google identifier for this location in the form of `locations/{location_id\}/attributes`.
      */
