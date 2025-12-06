@@ -683,15 +683,13 @@ export namespace workflows_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1140,22 +1138,19 @@ export namespace workflows_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2110,8 +2105,7 @@ export namespace workflows_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workflows$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflows$Create extends StandardParameters {
     /**
      * Required. Project and location in which the workflow should be created. Format: projects/{project\}/locations/{location\}
      */
@@ -2126,15 +2120,13 @@ export namespace workflows_v1 {
      */
     requestBody?: Schema$Workflow;
   }
-  export interface Params$Resource$Projects$Locations$Workflows$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflows$Delete extends StandardParameters {
     /**
      * Required. Name of the workflow to be deleted. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workflows$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflows$Get extends StandardParameters {
     /**
      * Required. Name of the workflow for which information should be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      */
@@ -2144,8 +2136,7 @@ export namespace workflows_v1 {
      */
     revisionId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workflows$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflows$List extends StandardParameters {
     /**
      * Filter to restrict results to specific workflows. For details, see AIP-160. For example, if you are using the Google APIs Explorer: `state="SUCCEEDED"` or `createTime\>"2023-08-01" AND state="FAILED"`
      */
@@ -2167,8 +2158,7 @@ export namespace workflows_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workflows$Listrevisions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflows$Listrevisions extends StandardParameters {
     /**
      * Required. Workflow for which the revisions should be listed. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      */
@@ -2182,8 +2172,7 @@ export namespace workflows_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workflows$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflows$Patch extends StandardParameters {
     /**
      * The resource name of the workflow. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}. This is a workflow-wide field and is not tied to a specific revision.
      */
