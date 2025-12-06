@@ -1031,29 +1031,25 @@ export namespace accessapproval_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Deleteaccessapprovalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Deleteaccessapprovalsettings extends StandardParameters {
     /**
      * Name of the AccessApprovalSettings to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getaccessapprovalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getaccessapprovalsettings extends StandardParameters {
     /**
      * The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getserviceaccount
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getserviceaccount extends StandardParameters {
     /**
      * Name of the AccessApprovalServiceAccount to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Updateaccessapprovalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Updateaccessapprovalsettings extends StandardParameters {
     /**
      * The resource name of the settings. Format is one of: * "projects/{project\}/accessApprovalSettings" * "folders/{folder\}/accessApprovalSettings" * "organizations/{organization\}/accessApprovalSettings"
      */
@@ -1836,8 +1832,7 @@ export namespace accessapproval_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Approvalrequests$Approve
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Approvalrequests$Approve extends StandardParameters {
     /**
      * Name of the approval request to approve.
      */
@@ -1848,8 +1843,7 @@ export namespace accessapproval_v1 {
      */
     requestBody?: Schema$ApproveApprovalRequestMessage;
   }
-  export interface Params$Resource$Folders$Approvalrequests$Dismiss
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Approvalrequests$Dismiss extends StandardParameters {
     /**
      * Name of the ApprovalRequest to dismiss.
      */
@@ -1860,15 +1854,13 @@ export namespace accessapproval_v1 {
      */
     requestBody?: Schema$DismissApprovalRequestMessage;
   }
-  export interface Params$Resource$Folders$Approvalrequests$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Approvalrequests$Get extends StandardParameters {
     /**
      * The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Approvalrequests$Invalidate
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Approvalrequests$Invalidate extends StandardParameters {
     /**
      * Name of the ApprovalRequest to invalidate.
      */
@@ -1879,8 +1871,7 @@ export namespace accessapproval_v1 {
      */
     requestBody?: Schema$InvalidateApprovalRequestMessage;
   }
-  export interface Params$Resource$Folders$Approvalrequests$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Approvalrequests$List extends StandardParameters {
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: * [not set]: Requests that are pending or have active approvals. * ALL: All requests. * PENDING: Only pending requests. * ACTIVE: Only active (i.e. currently approved) requests. * DISMISSED: Only requests that have been dismissed, or requests that are not approved and past expiration. * EXPIRED: Only requests that have been approved, and the approval has expired. * HISTORY: Active, dismissed and expired requests.
      */
@@ -2516,29 +2507,25 @@ export namespace accessapproval_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Deleteaccessapprovalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Deleteaccessapprovalsettings extends StandardParameters {
     /**
      * Name of the AccessApprovalSettings to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Getaccessapprovalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getaccessapprovalsettings extends StandardParameters {
     /**
      * The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Getserviceaccount
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getserviceaccount extends StandardParameters {
     /**
      * Name of the AccessApprovalServiceAccount to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Updateaccessapprovalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updateaccessapprovalsettings extends StandardParameters {
     /**
      * The resource name of the settings. Format is one of: * "projects/{project\}/accessApprovalSettings" * "folders/{folder\}/accessApprovalSettings" * "organizations/{organization\}/accessApprovalSettings"
      */
@@ -3322,8 +3309,7 @@ export namespace accessapproval_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Approvalrequests$Approve
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Approvalrequests$Approve extends StandardParameters {
     /**
      * Name of the approval request to approve.
      */
@@ -3334,8 +3320,7 @@ export namespace accessapproval_v1 {
      */
     requestBody?: Schema$ApproveApprovalRequestMessage;
   }
-  export interface Params$Resource$Organizations$Approvalrequests$Dismiss
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Approvalrequests$Dismiss extends StandardParameters {
     /**
      * Name of the ApprovalRequest to dismiss.
      */
@@ -3346,15 +3331,13 @@ export namespace accessapproval_v1 {
      */
     requestBody?: Schema$DismissApprovalRequestMessage;
   }
-  export interface Params$Resource$Organizations$Approvalrequests$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Approvalrequests$Get extends StandardParameters {
     /**
      * The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Approvalrequests$Invalidate
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Approvalrequests$Invalidate extends StandardParameters {
     /**
      * Name of the ApprovalRequest to invalidate.
      */
@@ -3365,8 +3348,7 @@ export namespace accessapproval_v1 {
      */
     requestBody?: Schema$InvalidateApprovalRequestMessage;
   }
-  export interface Params$Resource$Organizations$Approvalrequests$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Approvalrequests$List extends StandardParameters {
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: * [not set]: Requests that are pending or have active approvals. * ALL: All requests. * PENDING: Only pending requests. * ACTIVE: Only active (i.e. currently approved) requests. * DISMISSED: Only requests that have been dismissed, or requests that are not approved and past expiration. * EXPIRED: Only requests that have been approved, and the approval has expired. * HISTORY: Active, dismissed and expired requests.
      */
@@ -4000,29 +3982,25 @@ export namespace accessapproval_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Deleteaccessapprovalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deleteaccessapprovalsettings extends StandardParameters {
     /**
      * Name of the AccessApprovalSettings to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getaccessapprovalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getaccessapprovalsettings extends StandardParameters {
     /**
      * The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getserviceaccount
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getserviceaccount extends StandardParameters {
     /**
      * Name of the AccessApprovalServiceAccount to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updateaccessapprovalsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updateaccessapprovalsettings extends StandardParameters {
     /**
      * The resource name of the settings. Format is one of: * "projects/{project\}/accessApprovalSettings" * "folders/{folder\}/accessApprovalSettings" * "organizations/{organization\}/accessApprovalSettings"
      */
@@ -4805,8 +4783,7 @@ export namespace accessapproval_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Approvalrequests$Approve
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Approvalrequests$Approve extends StandardParameters {
     /**
      * Name of the approval request to approve.
      */
@@ -4817,8 +4794,7 @@ export namespace accessapproval_v1 {
      */
     requestBody?: Schema$ApproveApprovalRequestMessage;
   }
-  export interface Params$Resource$Projects$Approvalrequests$Dismiss
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Approvalrequests$Dismiss extends StandardParameters {
     /**
      * Name of the ApprovalRequest to dismiss.
      */
@@ -4829,15 +4805,13 @@ export namespace accessapproval_v1 {
      */
     requestBody?: Schema$DismissApprovalRequestMessage;
   }
-  export interface Params$Resource$Projects$Approvalrequests$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Approvalrequests$Get extends StandardParameters {
     /**
      * The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Approvalrequests$Invalidate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Approvalrequests$Invalidate extends StandardParameters {
     /**
      * Name of the ApprovalRequest to invalidate.
      */
@@ -4848,8 +4822,7 @@ export namespace accessapproval_v1 {
      */
     requestBody?: Schema$InvalidateApprovalRequestMessage;
   }
-  export interface Params$Resource$Projects$Approvalrequests$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Approvalrequests$List extends StandardParameters {
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: * [not set]: Requests that are pending or have active approvals. * ALL: All requests. * PENDING: Only pending requests. * ACTIVE: Only active (i.e. currently approved) requests. * DISMISSED: Only requests that have been dismissed, or requests that are not approved and past expiration. * EXPIRED: Only requests that have been approved, and the approval has expired. * HISTORY: Active, dismissed and expired requests.
      */
