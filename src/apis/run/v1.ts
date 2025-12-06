@@ -1361,6 +1361,10 @@ export namespace run_v1 {
      */
     artifactId?: string | null;
     /**
+     * Optional. Path to a folder containing the files to upload to Artifact Registry. This can be either an absolute path, e.g. `/workspace/my-app/target/`, or a relative path from /workspace, e.g. `my-app/target/`. This field is mutually exclusive with the `path` field.
+     */
+    deployFolder?: string | null;
+    /**
      * Maven `groupId` value used when uploading the artifact to Artifact Registry.
      */
     groupId?: string | null;
@@ -1767,7 +1771,7 @@ export namespace run_v1 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -2294,7 +2298,7 @@ export namespace run_v1 {
    */
   export interface Schema$ObjectMeta {
     /**
-     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service. * `run.googleapis.com/build-id`: Service. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/gpu-zonal-redundancy-disabled`: Revision. * `run.googleapis.com/health-check-disabled`: Revision. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.
+     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service. * `run.googleapis.com/build-id`: Service. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/gpu-zonal-redundancy-disabled`: Revision. * `run.googleapis.com/health-check-disabled`: Revision. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service. * `run.googleapis.com/maxScale`: Service. * `run.googleapis.com/manualInstanceCount`: Service. * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. `run.googleapis.com/scalingMode`: Service. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -3368,8 +3372,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Authorizeddomains$List
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Authorizeddomains$List extends StandardParameters {
     /**
      * Maximum results to return per page.
      */
@@ -3690,15 +3693,13 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Configurations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Configurations$Get extends StandardParameters {
     /**
      * The name of the configuration to retrieve. For Cloud Run, replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Configurations$List
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Configurations$List extends StandardParameters {
     /**
      * Optional. Encoded string to continue paging.
      */
@@ -4343,8 +4344,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Domainmappings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Domainmappings$Create extends StandardParameters {
     /**
      * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      */
@@ -4359,8 +4359,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$DomainMapping;
   }
-  export interface Params$Resource$Namespaces$Domainmappings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Domainmappings$Delete extends StandardParameters {
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -4382,15 +4381,13 @@ export namespace run_v1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Namespaces$Domainmappings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Domainmappings$Get extends StandardParameters {
     /**
      * Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Domainmappings$List
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Domainmappings$List extends StandardParameters {
     /**
      * Optional. Encoded string to continue paging.
      */
@@ -5023,8 +5020,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Executions$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Executions$Cancel extends StandardParameters {
     /**
      * Required. The name of the execution to cancel. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
@@ -5035,8 +5031,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$CancelExecutionRequest;
   }
-  export interface Params$Resource$Namespaces$Executions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Executions$Delete extends StandardParameters {
     /**
      * Optional. Cloud Run currently ignores this parameter.
      */
@@ -5054,15 +5049,13 @@ export namespace run_v1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Namespaces$Executions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Executions$Get extends StandardParameters {
     /**
      * Required. The name of the execution to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Executions$List
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Executions$List extends StandardParameters {
     /**
      * Optional. Optional encoded string to continue paging.
      */
@@ -6001,8 +5994,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Jobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Jobs$Create extends StandardParameters {
     /**
      * Required. The namespace in which the job should be created. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
@@ -6013,8 +6005,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Namespaces$Jobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Jobs$Delete extends StandardParameters {
     /**
      * Optional. Cloud Run currently ignores this parameter.
      */
@@ -6032,15 +6023,13 @@ export namespace run_v1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Namespaces$Jobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Jobs$Get extends StandardParameters {
     /**
      * Required. The name of the job to retrieve. It takes the form namespaces/{namespace\}/jobs/{job_name\} and the `endpoint` must be regional. Replace {namespace\} with the project ID or number.
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Jobs$List extends StandardParameters {
     /**
      * Optional. Optional encoded string to continue paging.
      */
@@ -6074,8 +6063,7 @@ export namespace run_v1 {
      */
     watch?: boolean;
   }
-  export interface Params$Resource$Namespaces$Jobs$Replacejob
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Jobs$Replacejob extends StandardParameters {
     /**
      * Required. The name of the job being replaced. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
@@ -6086,8 +6074,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Namespaces$Jobs$Run
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Jobs$Run extends StandardParameters {
     /**
      * Required. The name of the job to run. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
@@ -6553,8 +6540,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Revisions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Revisions$Delete extends StandardParameters {
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -6576,15 +6562,13 @@ export namespace run_v1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Namespaces$Revisions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Revisions$Get extends StandardParameters {
     /**
      * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Revisions$List
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Revisions$List extends StandardParameters {
     /**
      * Optional. Encoded string to continue paging.
      */
@@ -6921,15 +6905,13 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Routes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Routes$Get extends StandardParameters {
     /**
      * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Routes$List
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Routes$List extends StandardParameters {
     /**
      * Optional. Encoded string to continue paging.
      */
@@ -7727,8 +7709,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Services$Create
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Services$Create extends StandardParameters {
     /**
      * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      */
@@ -7743,8 +7724,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Namespaces$Services$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Services$Delete extends StandardParameters {
     /**
      * Not supported, and ignored by Cloud Run.
      */
@@ -7766,15 +7746,13 @@ export namespace run_v1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Namespaces$Services$Get
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Services$Get extends StandardParameters {
     /**
      * Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Services$List
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Services$List extends StandardParameters {
     /**
      * Encoded string to continue paging.
      */
@@ -7808,8 +7786,7 @@ export namespace run_v1 {
      */
     watch?: boolean;
   }
-  export interface Params$Resource$Namespaces$Services$Replaceservice
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Services$Replaceservice extends StandardParameters {
     /**
      * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      */
@@ -8127,15 +8104,13 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Tasks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Tasks$Get extends StandardParameters {
     /**
      * Required. The name of the task to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Tasks$List
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Tasks$List extends StandardParameters {
     /**
      * Optional. Optional encoded string to continue paging.
      */
@@ -8919,8 +8894,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Workerpools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Workerpools$Create extends StandardParameters {
     /**
      * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      */
@@ -8935,8 +8909,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$WorkerPool;
   }
-  export interface Params$Resource$Namespaces$Workerpools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Workerpools$Delete extends StandardParameters {
     /**
      * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      */
@@ -8946,15 +8919,13 @@ export namespace run_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Workerpools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Workerpools$Get extends StandardParameters {
     /**
      * Required. The fully qualified name of the worker pool to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/workerpools/{worker_pool_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/workerpools/{worker_pool_name\}` * `projects/{project_id_or_number\}/regions/{region\}/workerpools/{worker_pool_name\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Workerpools$List
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Workerpools$List extends StandardParameters {
     /**
      * Encoded string to continue paging.
      */
@@ -8972,8 +8943,7 @@ export namespace run_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Namespaces$Workerpools$Replaceworkerpool
-    extends StandardParameters {
+  export interface Params$Resource$Namespaces$Workerpools$Replaceworkerpool extends StandardParameters {
     /**
      * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      */
@@ -9157,8 +9127,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Authorizeddomains$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Authorizeddomains$List extends StandardParameters {
     /**
      * Maximum results to return per page.
      */
@@ -9355,8 +9324,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -9535,8 +9503,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Authorizeddomains$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizeddomains$List extends StandardParameters {
     /**
      * Maximum results to return per page.
      */
@@ -9855,15 +9822,13 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Configurations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Configurations$Get extends StandardParameters {
     /**
      * The name of the configuration to retrieve. For Cloud Run, replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Configurations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Configurations$List extends StandardParameters {
     /**
      * Optional. Encoded string to continue paging.
      */
@@ -10504,8 +10469,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Domainmappings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Domainmappings$Create extends StandardParameters {
     /**
      * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      */
@@ -10520,8 +10484,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$DomainMapping;
   }
-  export interface Params$Resource$Projects$Locations$Domainmappings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Domainmappings$Delete extends StandardParameters {
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -10543,15 +10506,13 @@ export namespace run_v1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Projects$Locations$Domainmappings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Domainmappings$Get extends StandardParameters {
     /**
      * Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Domainmappings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Domainmappings$List extends StandardParameters {
     /**
      * Optional. Encoded string to continue paging.
      */
@@ -11034,8 +10995,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -11045,8 +11005,7 @@ export namespace run_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11057,8 +11016,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11389,7 +11347,7 @@ export namespace run_v1 {
      *     pageSize: 'placeholder-value',
      *     // Token identifying which result to start with, which is returned by a previous list call.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11658,22 +11616,19 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * Optional. A filter for matching the completed or in-progress operations. The supported formats of *filter* are: To query for only completed operations: done:true To query for only ongoing operations: done:false Must be empty to query for all of the latest operations for the given parent project.
      */
@@ -11691,12 +11646,11 @@ export namespace run_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Wait
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Wait extends StandardParameters {
     /**
      * The name of the operation resource to wait on.
      */
@@ -12157,8 +12111,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Revisions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Revisions$Delete extends StandardParameters {
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -12180,15 +12133,13 @@ export namespace run_v1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Projects$Locations$Revisions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Revisions$Get extends StandardParameters {
     /**
      * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Revisions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Revisions$List extends StandardParameters {
     /**
      * Optional. Encoded string to continue paging.
      */
@@ -12523,15 +12474,13 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Routes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Routes$Get extends StandardParameters {
     /**
      * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Routes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Routes$List extends StandardParameters {
     /**
      * Optional. Encoded string to continue paging.
      */
@@ -13764,8 +13713,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Create extends StandardParameters {
     /**
      * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      */
@@ -13780,8 +13728,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Projects$Locations$Services$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Delete extends StandardParameters {
     /**
      * Not supported, and ignored by Cloud Run.
      */
@@ -13803,15 +13750,13 @@ export namespace run_v1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Get extends StandardParameters {
     /**
      * Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -13821,8 +13766,7 @@ export namespace run_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$List extends StandardParameters {
     /**
      * Encoded string to continue paging.
      */
@@ -13856,8 +13800,7 @@ export namespace run_v1 {
      */
     watch?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Services$Replaceservice
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Replaceservice extends StandardParameters {
     /**
      * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      */
@@ -13872,8 +13815,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Projects$Locations$Services$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13884,8 +13826,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -14350,8 +14291,7 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workerpools$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -14361,8 +14301,7 @@ export namespace run_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -14373,8 +14312,7 @@ export namespace run_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
