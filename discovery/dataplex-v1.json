@@ -7229,7 +7229,7 @@
       }
     }
   },
-  "revision": "20251109",
+  "revision": "20251113",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -13956,6 +13956,10 @@
           "$ref": "GoogleCloudDataplexV1TriggerOnDemand",
           "description": "The scan runs once via RunDataScan API."
         },
+        "oneTime": {
+          "$ref": "GoogleCloudDataplexV1TriggerOneTime",
+          "description": "The scan runs once, and does not create an associated ScanJob child resource."
+        },
         "schedule": {
           "$ref": "GoogleCloudDataplexV1TriggerSchedule",
           "description": "The scan is scheduled to run periodically."
@@ -13967,6 +13971,18 @@
       "description": "The scan runs once via RunDataScan API.",
       "id": "GoogleCloudDataplexV1TriggerOnDemand",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1TriggerOneTime": {
+      "description": "The scan runs once using create API.",
+      "id": "GoogleCloudDataplexV1TriggerOneTime",
+      "properties": {
+        "ttlAfterScanCompletion": {
+          "description": "Optional. Time to live for OneTime scans. default value is 24 hours, minimum value is 0 seconds, and maximum value is 365 days. The time is calculated from the data scan job completion time. If value is set as 0 seconds, the scan will be immediately deleted upon job completion, regardless of whether the job succeeded or failed.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDataplexV1TriggerSchedule": {

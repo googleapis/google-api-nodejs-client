@@ -4616,6 +4616,10 @@ export namespace dataplex_v1 {
      */
     onDemand?: Schema$GoogleCloudDataplexV1TriggerOnDemand;
     /**
+     * The scan runs once, and does not create an associated ScanJob child resource.
+     */
+    oneTime?: Schema$GoogleCloudDataplexV1TriggerOneTime;
+    /**
      * The scan is scheduled to run periodically.
      */
     schedule?: Schema$GoogleCloudDataplexV1TriggerSchedule;
@@ -4624,6 +4628,15 @@ export namespace dataplex_v1 {
    * The scan runs once via RunDataScan API.
    */
   export interface Schema$GoogleCloudDataplexV1TriggerOnDemand {}
+  /**
+   * The scan runs once using create API.
+   */
+  export interface Schema$GoogleCloudDataplexV1TriggerOneTime {
+    /**
+     * Optional. Time to live for OneTime scans. default value is 24 hours, minimum value is 0 seconds, and maximum value is 365 days. The time is calculated from the data scan job completion time. If value is set as 0 seconds, the scan will be immediately deleted upon job completion, regardless of whether the job succeeded or failed.
+     */
+    ttlAfterScanCompletion?: string | null;
+  }
   /**
    * The scan is scheduled to run periodically.
    */
@@ -6245,8 +6258,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Create extends StandardParameters {
     /**
      * Required. The ID of the EncryptionConfig to create. Currently, only a value of "default" is supported.
      */
@@ -6261,8 +6273,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1EncryptionConfig;
   }
-  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Delete extends StandardParameters {
     /**
      * Optional. Etag of the EncryptionConfig. This is a strong etag.
      */
@@ -6272,15 +6283,13 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Get extends StandardParameters {
     /**
      * Required. The name of the EncryptionConfig to fetch.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -6290,8 +6299,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$List extends StandardParameters {
     /**
      * Optional. Filter the EncryptionConfigs to be returned. Using bare literals: (These values will be matched anywhere it may appear in the object's field values) * filter=some_value Using fields: (These values will be matched only in the specified field) * filter=some_field=some_value Supported fields: * name, key, create_time, update_time, encryption_state Example: * filter=name=organizations/123/locations/us-central1/encryptionConfigs/test-config conjunctions: (AND, OR, NOT) * filter=name=organizations/123/locations/us-central1/encryptionConfigs/test-config AND mode=CMEK logical operators: (\>, <, \>=, <=, !=, =, :), * filter=create_time\>2024-05-01T00:00:00.000Z
      */
@@ -6313,8 +6321,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the EncryptionConfig. Format: organizations/{organization\}/locations/{location\}/encryptionConfigs/{encryption_config\} Global location is not supported.
      */
@@ -6329,8 +6336,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1EncryptionConfig;
   }
-  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6341,8 +6347,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6932,8 +6937,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -6944,22 +6948,19 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -7665,15 +7666,13 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -7695,8 +7694,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lookupentry
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lookupentry extends StandardParameters {
     /**
      * Optional. Limits the aspects returned to the provided aspect types. It only works for CUSTOM view.
      */
@@ -7718,8 +7716,7 @@ export namespace dataplex_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Searchentries
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Searchentries extends StandardParameters {
     /**
      * Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/global.
      */
@@ -8998,8 +8995,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Aspecttypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Aspecttypes$Create extends StandardParameters {
     /**
      * Required. AspectType identifier.
      */
@@ -9018,8 +9014,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1AspectType;
   }
-  export interface Params$Resource$Projects$Locations$Aspecttypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Aspecttypes$Delete extends StandardParameters {
     /**
      * Optional. If the client provided etag value does not match the current etag value, the DeleteAspectTypeRequest method returns an ABORTED error response.
      */
@@ -9029,15 +9024,13 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Aspecttypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Aspecttypes$Get extends StandardParameters {
     /**
      * Required. The resource name of the AspectType: projects/{project_number\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Aspecttypes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Aspecttypes$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -9047,8 +9040,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Aspecttypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Aspecttypes$List extends StandardParameters {
     /**
      * Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = "value1" labels:key1 name = "value"These restrictions can be conjoined with AND, OR, and NOT conjunctions.
      */
@@ -9070,8 +9062,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Aspecttypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Aspecttypes$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the AspectType, of the form: projects/{project_number\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}.
      */
@@ -9090,8 +9081,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1AspectType;
   }
-  export interface Params$Resource$Projects$Locations$Aspecttypes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Aspecttypes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9102,8 +9092,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Aspecttypes$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Aspecttypes$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9579,8 +9568,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Changerequests$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Changerequests$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -9590,8 +9578,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Changerequests$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Changerequests$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9602,8 +9589,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Changerequests$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Changerequests$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10872,8 +10858,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dataattributebindings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$Create extends StandardParameters {
     /**
      * Required. DataAttributeBinding identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the Location.
      */
@@ -10892,8 +10877,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1DataAttributeBinding;
   }
-  export interface Params$Resource$Projects$Locations$Dataattributebindings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$Delete extends StandardParameters {
     /**
      * Required. If the client provided etag value does not match the current etag value, the DeleteDataAttributeBindingRequest method returns an ABORTED error response. Etags must be used when calling the DeleteDataAttributeBinding.
      */
@@ -10903,15 +10887,13 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dataattributebindings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$Get extends StandardParameters {
     /**
      * Required. The resource name of the DataAttributeBinding: projects/{project_number\}/locations/{location_id\}/dataAttributeBindings/{data_attribute_binding_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dataattributebindings$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -10921,8 +10903,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dataattributebindings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$List extends StandardParameters {
     /**
      * Optional. Filter request. Filter using resource: filter=resource:"resource-name" Filter using attribute: filter=attributes:"attribute-name" Filter using attribute in paths list: filter=paths.attributes:"attribute-name"
      */
@@ -10944,8 +10925,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dataattributebindings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the Data Attribute Binding, of the form: projects/{project_number\}/locations/{location\}/dataAttributeBindings/{data_attribute_binding_id\}
      */
@@ -10964,8 +10944,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1DataAttributeBinding;
   }
-  export interface Params$Resource$Projects$Locations$Dataattributebindings$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10976,8 +10955,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dataattributebindings$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11454,8 +11432,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dataproducts$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataproducts$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -11465,8 +11442,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dataproducts$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataproducts$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11477,8 +11453,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dataproducts$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataproducts$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13068,8 +13043,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datascans$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Create extends StandardParameters {
     /**
      * Required. DataScan identifier. Must contain only lowercase letters, numbers and hyphens. Must start with a letter. Must end with a number or a letter. Must be between 1-63 characters. Must be unique within the customer project / location.
      */
@@ -13088,8 +13062,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1DataScan;
   }
-  export interface Params$Resource$Projects$Locations$Datascans$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Delete extends StandardParameters {
     /**
      * Optional. If set to true, any child resources of this data scan will also be deleted. (Otherwise, the request will only work if the data scan has no child resources.)
      */
@@ -13099,8 +13072,7 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules extends StandardParameters {
     /**
      * Required. The name must be one of the following: The name of a data scan with at least one successful, completed data profiling job The name of a successful, completed data profiling job (a data scan job where the job type is data profiling)
      */
@@ -13111,8 +13083,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1GenerateDataQualityRulesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datascans$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Get extends StandardParameters {
     /**
      * Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where project refers to a project_id or project_number and location_id refers to a Google Cloud region.
      */
@@ -13122,8 +13093,7 @@ export namespace dataplex_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datascans$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -13133,8 +13103,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datascans$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$List extends StandardParameters {
     /**
      * Optional. Filter request.
      */
@@ -13156,8 +13125,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datascans$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}, where project refers to a project_id or project_number and location_id refers to a Google Cloud region.
      */
@@ -13176,8 +13144,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1DataScan;
   }
-  export interface Params$Resource$Projects$Locations$Datascans$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Run extends StandardParameters {
     /**
      * Required. The resource name of the DataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}. where project refers to a project_id or project_number and location_id refers to a Google Cloud region.Only OnDemand data scans are allowed.
      */
@@ -13188,8 +13155,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1RunDataScanRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datascans$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13200,8 +13166,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datascans$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13687,8 +13652,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules extends StandardParameters {
     /**
      * Required. The name must be one of the following: The name of a data scan with at least one successful, completed data profiling job The name of a successful, completed data profiling job (a data scan job where the job type is data profiling)
      */
@@ -13699,8 +13663,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1GenerateDataQualityRulesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datascans$Jobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Jobs$Get extends StandardParameters {
     /**
      * Required. The resource name of the DataScanJob: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}/jobs/{data_scan_job_id\} where project refers to a project_id or project_number and location_id refers to a Google Cloud region.
      */
@@ -13710,8 +13673,7 @@ export namespace dataplex_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datascans$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datascans$Jobs$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the ListDataScanJobs request.If unspecified, all datascan jobs will be returned. Multiple filters can be applied (with AND, OR logical operators). Filters are case-sensitive.Allowed fields are: start_time end_timestart_time and end_time expect RFC-3339 formatted strings (e.g. 2018-10-08T18:30:00-07:00).For instance, 'start_time \> 2018-10-08T00:00:00.123456789Z AND end_time < 2018-10-09T00:00:00.123456789Z' limits results to DataScanJobs between specified start and end times.
      */
@@ -14979,8 +14941,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Create extends StandardParameters {
     /**
      * Required. DataTaxonomy identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the Project.
      */
@@ -14999,8 +14960,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1DataTaxonomy;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Delete extends StandardParameters {
     /**
      * Optional. If the client provided etag value does not match the current etag value,the DeleteDataTaxonomy method returns an ABORTED error.
      */
@@ -15010,15 +14970,13 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Get extends StandardParameters {
     /**
      *
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -15028,8 +14986,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$List extends StandardParameters {
     /**
      * Optional. Filter request.
      */
@@ -15051,8 +15008,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the DataTaxonomy, of the form: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}.
      */
@@ -15071,8 +15027,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1DataTaxonomy;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -15083,8 +15038,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -16364,8 +16318,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create extends StandardParameters {
     /**
      * Required. DataAttribute identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the DataTaxonomy.
      */
@@ -16384,8 +16337,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1DataAttribute;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete extends StandardParameters {
     /**
      * Optional. If the client provided etag value does not match the current etag value, the DeleteDataAttribute method returns an ABORTED error response.
      */
@@ -16395,15 +16347,13 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get extends StandardParameters {
     /**
      * Required. The resource name of the dataAttribute: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -16413,8 +16363,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$List extends StandardParameters {
     /**
      * Optional. Filter request.
      */
@@ -16436,8 +16385,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the dataAttribute, of the form: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}.
      */
@@ -16456,8 +16404,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1DataAttribute;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -16468,8 +16415,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -17728,8 +17674,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Entrygroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Create extends StandardParameters {
     /**
      * Required. EntryGroup identifier.
      */
@@ -17748,8 +17693,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1EntryGroup;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Delete extends StandardParameters {
     /**
      * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryGroupRequest method returns an ABORTED error response.
      */
@@ -17759,15 +17703,13 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Get extends StandardParameters {
     /**
      * Required. The resource name of the EntryGroup: projects/{project_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -17777,8 +17719,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$List extends StandardParameters {
     /**
      * Optional. Filter request.
      */
@@ -17800,8 +17741,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the EntryGroup, in the format projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
      */
@@ -17820,8 +17760,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1EntryGroup;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -17832,8 +17771,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -18642,8 +18580,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Create extends StandardParameters {
     /**
      * Required. Entry identifier. It has to be unique within an Entry Group.Entries corresponding to Google Cloud resources use an Entry ID format based on full resource names (https://cloud.google.com/apis/design/resource_names#full_resource_name). The format is a full resource name of the resource without the prefix double slashes in the API service name part of the full resource name. This allows retrieval of entries using their associated resource name.For example, if the full resource name of a resource is //library.googleapis.com/shelves/shelf1/books/book2, then the suggested entry_id is library.googleapis.com/shelves/shelf1/books/book2.It is also suggested to follow the same convention for entries corresponding to resources from providers or systems other than Google Cloud.The maximum size of the field is 4000 characters.
      */
@@ -18658,15 +18595,13 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Entry;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Entry: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Get extends StandardParameters {
     /**
      * Optional. Limits the aspects returned to the provided aspect types. It only works for CUSTOM view.
      */
@@ -18684,8 +18619,7 @@ export namespace dataplex_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$List extends StandardParameters {
     /**
      * Optional. A filter on the entries to return. Filters are case-sensitive. You can filter the request by the following fields: entry_type entry_source.display_name parent_entryThe comparison operators are =, !=, <, \>, <=, \>=. The service compares strings according to lexical order.You can use the logical operators AND, OR, NOT in the filter.You can use Wildcard "*", but for entry_type and parent_entry you need to provide the full project id or number.You cannot use parent_entry in conjunction with other fields.Example filter expressions: "entry_source.display_name=AnExampleDisplayName" "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type" "entry_type=projects/example-project/locations/us/entryTypes/a* OR entry_type=projects/another-project/locations/x" "NOT entry_source.display_name=AnotherExampleDisplayName" "parent_entry=projects/example-project/locations/us/entryGroups/example-entry-group/entries/example-entry"
      */
@@ -18703,8 +18637,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch extends StandardParameters {
     /**
      * Optional. If set to true and the entry doesn't exist, the service will create it.
      */
@@ -19192,8 +19125,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create extends StandardParameters {
     /**
      * Required. Entry Link identifier * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the EntryGroup.
      */
@@ -19208,15 +19140,13 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1EntryLink;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Entry Link: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get extends StandardParameters {
     /**
      * Required. The resource name of the Entry Link: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}.
      */
@@ -19687,8 +19617,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Entrylinktypes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrylinktypes$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -19698,8 +19627,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrylinktypes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrylinktypes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -19710,8 +19638,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Entrylinktypes$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrylinktypes$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -20974,8 +20901,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Entrytypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrytypes$Create extends StandardParameters {
     /**
      * Required. EntryType identifier.
      */
@@ -20994,8 +20920,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1EntryType;
   }
-  export interface Params$Resource$Projects$Locations$Entrytypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrytypes$Delete extends StandardParameters {
     /**
      * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryTypeRequest method returns an ABORTED error response.
      */
@@ -21005,15 +20930,13 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrytypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrytypes$Get extends StandardParameters {
     /**
      * Required. The resource name of the EntryType: projects/{project_number\}/locations/{location_id\}/entryTypes/{entry_type_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrytypes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrytypes$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -21023,8 +20946,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrytypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrytypes$List extends StandardParameters {
     /**
      * Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = "value1" labels:key1 name = "value"These restrictions can be conjoined with AND, OR, and NOT conjunctions.
      */
@@ -21046,8 +20968,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrytypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrytypes$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the EntryType, of the form: projects/{project_number\}/locations/{location_id\}/entryTypes/{entry_type_id\}.
      */
@@ -21066,8 +20987,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1EntryType;
   }
-  export interface Params$Resource$Projects$Locations$Entrytypes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrytypes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -21078,8 +20998,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Entrytypes$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrytypes$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -22341,8 +22260,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Glossaries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Create extends StandardParameters {
     /**
      * Required. Glossary ID: Glossary identifier.
      */
@@ -22361,8 +22279,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Glossary;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Delete extends StandardParameters {
     /**
      * Optional. The etag of the Glossary. If this is provided, it must match the server's etag. If the etag is provided and does not match the server-computed etag, the request must fail with a ABORTED error code.
      */
@@ -22372,15 +22289,13 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Get extends StandardParameters {
     /**
      * Required. The name of the Glossary to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -22390,8 +22305,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$List extends StandardParameters {
     /**
      * Optional. Filter expression that filters Glossaries listed in the response. Filters on proto fields of Glossary are supported. Examples of using a filter are: - display_name="my-glossary" - categoryCount=1 - termCount=0
      */
@@ -22413,8 +22327,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of the Glossary. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
      */
@@ -22433,8 +22346,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Glossary;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -22445,8 +22357,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -23708,8 +23619,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Create extends StandardParameters {
     /**
      * Required. GlossaryCategory identifier.
      */
@@ -23724,22 +23634,19 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1GlossaryCategory;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Delete extends StandardParameters {
     /**
      * Required. The name of the GlossaryCategory to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Get extends StandardParameters {
     /**
      * Required. The name of the GlossaryCategory to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -23749,8 +23656,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Categories$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$List extends StandardParameters {
     /**
      * Optional. Filter expression that filters GlossaryCategories listed in the response. Filters are supported on the following fields: - immediate_parentExamples of using a filter are: - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}" - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}"This will only return the GlossaryCategories that are directly nested under the specified parent.
      */
@@ -23772,8 +23678,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
@@ -23788,8 +23693,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1GlossaryCategory;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -23800,8 +23704,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -25059,8 +24962,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Create extends StandardParameters {
     /**
      * Required. The parent resource where the GlossaryTerm will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where location_id refers to a Google Cloud region.
      */
@@ -25075,22 +24977,19 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1GlossaryTerm;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Delete extends StandardParameters {
     /**
      * Required. The name of the GlossaryTerm to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Get extends StandardParameters {
     /**
      * Required. The name of the GlossaryTerm to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -25100,8 +24999,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Terms$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$List extends StandardParameters {
     /**
      * Optional. Filter expression that filters GlossaryTerms listed in the response. Filters are supported on the following fields: - immediate_parentExamples of using a filter are: - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}" - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}"This will only return the GlossaryTerms that are directly nested under the specified parent.
      */
@@ -25123,8 +25021,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
      */
@@ -25139,8 +25036,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1GlossaryTerm;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -25151,8 +25047,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -25628,8 +25523,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Governancerules$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Governancerules$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -25639,8 +25533,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Governancerules$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Governancerules$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -25651,8 +25544,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Governancerules$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Governancerules$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -26921,8 +26813,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Create extends StandardParameters {
     /**
      * Required. Lake identifier. This ID will be used to generate names such as database and dataset names when publishing metadata to Hive Metastore and BigQuery. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must end with a number or a letter. * Must be between 1-63 characters. * Must be unique within the customer project / location.
      */
@@ -26941,22 +26832,19 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Lake;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Delete extends StandardParameters {
     /**
      * Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Get extends StandardParameters {
     /**
      * Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -26966,8 +26854,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$List extends StandardParameters {
     /**
      * Optional. Filter request.
      */
@@ -26989,8 +26876,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the lake, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
@@ -27009,8 +26895,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Lake;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -27021,8 +26906,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -27193,8 +27077,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Actions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Actions$List extends StandardParameters {
     /**
      * Optional. Maximum number of actions to return. The service may return fewer than this value. If unspecified, at most 10 actions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -28451,8 +28334,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Content$Create extends StandardParameters {
     /**
      * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
      */
@@ -28467,15 +28349,13 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Content;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Content$Delete extends StandardParameters {
     /**
      * Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Content$Get extends StandardParameters {
     /**
      * Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
      */
@@ -28485,8 +28365,7 @@ export namespace dataplex_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -28496,8 +28375,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Content$List extends StandardParameters {
     /**
      * Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 type = "NOTEBOOK" type = "SQL_SCRIPT"These restrictions can be coinjoined with AND, OR and NOT conjunctions.
      */
@@ -28515,8 +28393,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Content$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the content, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
      */
@@ -28535,8 +28412,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Content;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -28547,8 +28423,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -29811,8 +29686,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Create extends StandardParameters {
     /**
      * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
      */
@@ -29827,15 +29701,13 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Content;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Delete extends StandardParameters {
     /**
      * Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Get extends StandardParameters {
     /**
      * Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
      */
@@ -29845,8 +29717,7 @@ export namespace dataplex_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -29856,8 +29727,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$List extends StandardParameters {
     /**
      * Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 type = "NOTEBOOK" type = "SQL_SCRIPT"These restrictions can be coinjoined with AND, OR and NOT conjunctions.
      */
@@ -29875,8 +29745,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the content, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
      */
@@ -29895,8 +29764,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Content;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -29907,8 +29775,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -31184,8 +31051,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Environments$Create extends StandardParameters {
     /**
      * Required. Environment identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the lake.
      */
@@ -31204,22 +31070,19 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Environment;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Environments$Delete extends StandardParameters {
     /**
      * Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Environments$Get extends StandardParameters {
     /**
      * Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Environments$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -31229,8 +31092,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Environments$List extends StandardParameters {
     /**
      * Optional. Filter request.
      */
@@ -31252,8 +31114,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Environments$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the environment, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}
      */
@@ -31272,8 +31133,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Environment;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Environments$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -31284,8 +31144,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Environments$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -31461,8 +31320,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List extends StandardParameters {
     /**
      * Optional. Filter request. The following mode filter is supported to return only the sessions belonging to the requester when the mode is USER and return sessions of all the users when the mode is ADMIN. When no filter is sent default to USER mode. NOTE: When the mode is ADMIN, the requester should have dataplex.environments.listAllSessions permission to list all sessions, in absence of the permission, the request fails.mode = ADMIN | USER
      */
@@ -32883,8 +32741,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Create extends StandardParameters {
     /**
      * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
@@ -32903,22 +32760,19 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Task;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Delete extends StandardParameters {
     /**
      * Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/task/{task_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Get extends StandardParameters {
     /**
      * Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{tasks_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -32928,8 +32782,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$List extends StandardParameters {
     /**
      * Optional. Filter request.
      */
@@ -32951,8 +32804,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the task, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/ tasks/{task_id\}.
      */
@@ -32971,8 +32823,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Task;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Run extends StandardParameters {
     /**
      * Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}.
      */
@@ -32983,8 +32834,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1RunTaskRequest;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -32995,8 +32845,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -33451,8 +33300,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Cancel extends StandardParameters {
     /**
      * Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/task/{task_id\}/job/{job_id\}.
      */
@@ -33463,15 +33311,13 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1CancelJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Get extends StandardParameters {
     /**
      * Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}/jobs/{job_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$List extends StandardParameters {
     /**
      * Optional. Maximum number of jobs to return. The service may return fewer than this value. If unspecified, at most 10 jobs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -34739,8 +34585,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Create extends StandardParameters {
     /**
      * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
@@ -34759,22 +34604,19 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Zone;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Delete extends StandardParameters {
     /**
      * Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Get extends StandardParameters {
     /**
      * Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -34784,8 +34626,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$List extends StandardParameters {
     /**
      * Optional. Filter request.
      */
@@ -34807,8 +34648,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the zone, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      */
@@ -34827,8 +34667,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Zone;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -34839,8 +34678,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -35013,8 +34851,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Actions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Actions$List extends StandardParameters {
     /**
      * Optional. Maximum number of actions to return. The service may return fewer than this value. If unspecified, at most 10 actions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -36291,8 +36128,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Create extends StandardParameters {
     /**
      * Required. Asset identifier. This ID will be used to generate names such as table names when publishing metadata to Hive Metastore and BigQuery. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must end with a number or a letter. * Must be between 1-63 characters. * Must be unique within the zone.
      */
@@ -36311,22 +36147,19 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Asset;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Delete extends StandardParameters {
     /**
      * Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Get extends StandardParameters {
     /**
      * Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -36336,8 +36169,7 @@ export namespace dataplex_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$List extends StandardParameters {
     /**
      * Optional. Filter request.
      */
@@ -36359,8 +36191,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Patch extends StandardParameters {
     /**
      * Output only. The relative resource name of the asset, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
      */
@@ -36379,8 +36210,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Asset;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -36391,8 +36221,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -36567,8 +36396,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Actions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Actions$List extends StandardParameters {
     /**
      * Optional. Maximum number of actions to return. The service may return fewer than this value. If unspecified, at most 10 actions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -37416,8 +37244,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Create extends StandardParameters {
     /**
      * Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      */
@@ -37432,8 +37259,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Entity;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Delete extends StandardParameters {
     /**
      * Required. The etag associated with the entity, which can be retrieved with a GetEntity request.
      */
@@ -37443,8 +37269,7 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Get extends StandardParameters {
     /**
      * Required. The resource name of the entity: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}.
      */
@@ -37454,8 +37279,7 @@ export namespace dataplex_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$List extends StandardParameters {
     /**
      * Optional. The following filter parameters can be added to the URL to limit the entities returned by the API: Entity ID: ?filter="id=entityID" Asset ID: ?filter="asset=assetID" Data path ?filter="data_path=gs://my-bucket" Is HIVE compatible: ?filter="hive_compatible=true" Is BigQuery compatible: ?filter="bigquery_compatible=true"
      */
@@ -37477,8 +37301,7 @@ export namespace dataplex_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Update extends StandardParameters {
     /**
      * Output only. The resource name of the entity, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{id\}.
      */
@@ -38101,8 +37924,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Create extends StandardParameters {
     /**
      * Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}.
      */
@@ -38117,8 +37939,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1Partition;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Delete extends StandardParameters {
     /**
      * Optional. The etag associated with the partition.
      */
@@ -38128,15 +37949,13 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Get extends StandardParameters {
     /**
      * Required. The resource name of the partition: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}/partitions/{partition_value_path\}. The {partition_value_path\} segment consists of an ordered sequence of partition values separated by "/". All values must be provided.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$List extends StandardParameters {
     /**
      * Optional. Filter the partitions returned to the caller using a key value pair expression. Supported operators and syntax: logic operators: AND, OR comparison operators: <, \>, \>=, <= ,=, != LIKE operators: The right hand of a LIKE operator supports "." and "*" for wildcard searches, for example "value1 LIKE ".*oo.*" parenthetical grouping: ( )Sample filter expression: `?filter="key1 < value1 OR key2 \> value2"Notes: Keys to the left of operators are case insensitive. Partition results are sorted first by creation time, then by lexicographic order. Up to 20 key value filter pairs are allowed, but due to performance considerations, only the first 10 will be used as a filter.
      */
@@ -38778,8 +38597,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Metadatajobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Metadatajobs$Cancel extends StandardParameters {
     /**
      * Required. The resource name of the job, in the format projects/{project_id_or_number\}/locations/{location_id\}/metadataJobs/{metadata_job_id\}
      */
@@ -38790,8 +38608,7 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1CancelMetadataJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Metadatajobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Metadatajobs$Create extends StandardParameters {
     /**
      * Optional. The metadata job ID. If not provided, a unique ID is generated with the prefix metadata-job-.
      */
@@ -38810,15 +38627,13 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleCloudDataplexV1MetadataJob;
   }
-  export interface Params$Resource$Projects$Locations$Metadatajobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Metadatajobs$Get extends StandardParameters {
     /**
      * Required. The resource name of the metadata job, in the format projects/{project_id_or_number\}/locations/{location_id\}/metadataJobs/{metadata_job_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Metadatajobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Metadatajobs$List extends StandardParameters {
     /**
      * Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = "value1" labels:key1 name = "value"You can combine filters with AND, OR, and NOT operators.
      */
@@ -39417,8 +39232,7 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -39429,22 +39243,19 @@ export namespace dataplex_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
