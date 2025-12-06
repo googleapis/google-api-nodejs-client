@@ -1012,8 +1012,7 @@ export namespace safebrowsing_v5 {
     }
   }
 
-  export interface Params$Resource$Hashlists$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Hashlists$Batchget extends StandardParameters {
     /**
      * Required. The names of the particular hash lists. The list MAY be a threat list, or it may be the Global Cache. The names MUST NOT contain duplicates; if they did, the client will get an error.
      */

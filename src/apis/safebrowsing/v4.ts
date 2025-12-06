@@ -730,8 +730,7 @@ export namespace safebrowsing_v4 {
     }
   }
 
-  export interface Params$Resource$Encodedfullhashes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Encodedfullhashes$Get extends StandardParameters {
     /**
      * A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
      */
@@ -904,8 +903,7 @@ export namespace safebrowsing_v4 {
     }
   }
 
-  export interface Params$Resource$Encodedupdates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Encodedupdates$Get extends StandardParameters {
     /**
      * A client ID that uniquely identifies the client implementation of the Safe Browsing API.
      */
@@ -1239,8 +1237,7 @@ export namespace safebrowsing_v4 {
     }
   }
 
-  export interface Params$Resource$Threathits$Create
-    extends StandardParameters {
+  export interface Params$Resource$Threathits$Create extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -1394,8 +1391,7 @@ export namespace safebrowsing_v4 {
     }
   }
 
-  export interface Params$Resource$Threatlists$List
-    extends StandardParameters {}
+  export interface Params$Resource$Threatlists$List extends StandardParameters {}
 
   export class Resource$Threatlistupdates {
     context: APIRequestContext;
@@ -1558,8 +1554,7 @@ export namespace safebrowsing_v4 {
     }
   }
 
-  export interface Params$Resource$Threatlistupdates$Fetch
-    extends StandardParameters {
+  export interface Params$Resource$Threatlistupdates$Fetch extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -1726,8 +1721,7 @@ export namespace safebrowsing_v4 {
     }
   }
 
-  export interface Params$Resource$Threatmatches$Find
-    extends StandardParameters {
+  export interface Params$Resource$Threatmatches$Find extends StandardParameters {
     /**
      * Request body metadata
      */
