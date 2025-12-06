@@ -796,15 +796,13 @@ export namespace tpu_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
@@ -1122,15 +1120,13 @@ export namespace tpu_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Acceleratortypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Acceleratortypes$Get extends StandardParameters {
     /**
      * Required. The resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Acceleratortypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Acceleratortypes$List extends StandardParameters {
     /**
      * List filter.
      */
@@ -2199,8 +2195,7 @@ export namespace tpu_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Nodes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Create extends StandardParameters {
     /**
      * The unqualified resource name.
      */
@@ -2215,22 +2210,19 @@ export namespace tpu_v1 {
      */
     requestBody?: Schema$Node;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Delete extends StandardParameters {
     /**
      * Required. The resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Get extends StandardParameters {
     /**
      * Required. The resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$List extends StandardParameters {
     /**
      * The maximum number of items to return.
      */
@@ -2244,8 +2236,7 @@ export namespace tpu_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Reimage
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Reimage extends StandardParameters {
     /**
      * The resource name.
      */
@@ -2256,8 +2247,7 @@ export namespace tpu_v1 {
      */
     requestBody?: Schema$ReimageNodeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Start
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Start extends StandardParameters {
     /**
      * The resource name.
      */
@@ -2268,8 +2258,7 @@ export namespace tpu_v1 {
      */
     requestBody?: Schema$StartNodeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Stop
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Stop extends StandardParameters {
     /**
      * The resource name.
      */
@@ -2839,29 +2828,25 @@ export namespace tpu_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -3181,15 +3166,13 @@ export namespace tpu_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tensorflowversions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tensorflowversions$Get extends StandardParameters {
     /**
      * Required. The resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tensorflowversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tensorflowversions$List extends StandardParameters {
     /**
      * List filter.
      */
