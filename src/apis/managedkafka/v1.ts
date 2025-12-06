@@ -650,7 +650,7 @@ export namespace managedkafka_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1374,15 +1374,13 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2180,8 +2178,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Create extends StandardParameters {
     /**
      * Required. The ID to use for the cluster, which will become the final component of the cluster's name. The ID must be 1-63 characters long, and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` to comply with RFC 1035. This value is structured like: `my-cluster-id`.
      */
@@ -2200,8 +2197,7 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Delete extends StandardParameters {
     /**
      * Required. The name of the cluster to delete.
      */
@@ -2211,15 +2207,13 @@ export namespace managedkafka_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Get extends StandardParameters {
     /**
      * Required. The name of the cluster whose configuration to return.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$List extends StandardParameters {
     /**
      * Optional. Filter expression for the result.
      */
@@ -2241,8 +2235,7 @@ export namespace managedkafka_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Patch extends StandardParameters {
     /**
      * Identifier. The name of the cluster. Structured like: projects/{project_number\}/locations/{location\}/clusters/{cluster_id\}
      */
@@ -3294,8 +3287,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry extends StandardParameters {
     /**
      * Required. The name of the acl to add the acl entry to. Structured like: `projects/{project\}/locations/{location\}/clusters/{cluster\}/acls/{acl_id\}`. The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. See `Acl.name` for details.
      */
@@ -3306,8 +3298,7 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$AclEntry;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Acls$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Create extends StandardParameters {
     /**
      * Required. The ID to use for the acl, which will become the final component of the acl's name. The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. `acl_id` is structured like one of the following: For acls on the cluster: `cluster` For acls on a single resource within the cluster: `topic/{resource_name\}` `consumerGroup/{resource_name\}` `transactionalId/{resource_name\}` For acls on all resources that match a prefix: `topicPrefixed/{resource_name\}` `consumerGroupPrefixed/{resource_name\}` `transactionalIdPrefixed/{resource_name\}` For acls on all resources of a given type (i.e. the wildcard literal "*"): `allTopics` (represents `topic/x`) `allConsumerGroups` (represents `consumerGroup/x`) `allTransactionalIds` (represents `transactionalId/x`)
      */
@@ -3322,22 +3313,19 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$Acl;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Acls$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Delete extends StandardParameters {
     /**
      * Required. The name of the acl to delete. Structured like: `projects/{project\}/locations/{location\}/clusters/{cluster\}/acls/{acl_id\}`. The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. See `Acl.name` for details.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Acls$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Get extends StandardParameters {
     /**
      * Required. The name of the acl to return. Structured like: `projects/{project\}/locations/{location\}/clusters/{cluster\}/acls/{acl_id\}`. The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. See `Acl.name` for details.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Acls$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$List extends StandardParameters {
     /**
      * Optional. The maximum number of acls to return. The service may return fewer than this value. If unset or zero, all acls for the parent is returned.
      */
@@ -3351,8 +3339,7 @@ export namespace managedkafka_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Acls$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Patch extends StandardParameters {
     /**
      * Identifier. The name for the acl. Represents a single Resource Pattern. Structured like: projects/{project\}/locations/{location\}/clusters/{cluster\}/acls/{acl_id\} The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. `acl_id` is structured like one of the following: For acls on the cluster: `cluster` For acls on a single resource within the cluster: `topic/{resource_name\}` `consumerGroup/{resource_name\}` `transactionalId/{resource_name\}` For acls on all resources that match a prefix: `topicPrefixed/{resource_name\}` `consumerGroupPrefixed/{resource_name\}` `transactionalIdPrefixed/{resource_name\}` For acls on all resources of a given type (i.e. the wildcard literal "*"): `allTopics` (represents `topic/x`) `allConsumerGroups` (represents `consumerGroup/x`) `allTransactionalIds` (represents `transactionalId/x`)
      */
@@ -3367,8 +3354,7 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$Acl;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry extends StandardParameters {
     /**
      * Required. The name of the acl to remove the acl entry from. Structured like: `projects/{project\}/locations/{location\}/clusters/{cluster\}/acls/{acl_id\}`. The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. See `Acl.name` for details.
      */
@@ -3955,22 +3941,19 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Consumergroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Consumergroups$Delete extends StandardParameters {
     /**
      * Required. The name of the consumer group to delete. `projects/{project\}/locations/{location\}/clusters/{cluster\}/consumerGroups/{consumerGroup\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Consumergroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Consumergroups$Get extends StandardParameters {
     /**
      * Required. The name of the consumer group whose configuration to return. `projects/{project\}/locations/{location\}/clusters/{cluster\}/consumerGroups/{consumerGroup\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Consumergroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Consumergroups$List extends StandardParameters {
     /**
      * Optional. The maximum number of consumer groups to return. The service may return fewer than this value. If unset or zero, all consumer groups for the parent is returned.
      */
@@ -3984,8 +3967,7 @@ export namespace managedkafka_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Consumergroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Consumergroups$Patch extends StandardParameters {
     /**
      * Identifier. The name of the consumer group. The `consumer_group` segment is used when connecting directly to the cluster. Structured like: projects/{project\}/locations/{location\}/clusters/{cluster\}/consumerGroups/{consumer_group\}
      */
@@ -4724,8 +4706,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Topics$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Topics$Create extends StandardParameters {
     /**
      * Required. The parent cluster in which to create the topic. Structured like `projects/{project\}/locations/{location\}/clusters/{cluster\}`.
      */
@@ -4740,22 +4721,19 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$Topic;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Topics$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Topics$Delete extends StandardParameters {
     /**
      * Required. The name of the topic to delete. `projects/{project\}/locations/{location\}/clusters/{cluster\}/topics/{topic\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Topics$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Topics$Get extends StandardParameters {
     /**
      * Required. The name of the topic whose configuration to return. Structured like: projects/{project\}/locations/{location\}/clusters/{cluster\}/topics/{topic\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Topics$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Topics$List extends StandardParameters {
     /**
      * Optional. The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the parent is returned.
      */
@@ -4769,8 +4747,7 @@ export namespace managedkafka_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Topics$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Topics$Patch extends StandardParameters {
     /**
      * Identifier. The name of the topic. The `topic` segment is used when connecting directly to the cluster. Structured like: projects/{project\}/locations/{location\}/clusters/{cluster\}/topics/{topic\}
      */
@@ -5558,8 +5535,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connectclusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Connect cluster, which will become the final component of the cluster's name. The ID must be 1-63 characters long, and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` to comply with RFC 1035. This value is structured like: `my-cluster-id`.
      */
@@ -5578,8 +5554,7 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$ConnectCluster;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Delete extends StandardParameters {
     /**
      * Required. The name of the Kafka Connect cluster to delete. Structured like `projects/{project\}/locations/{location\}/connectClusters/{connect_cluster_id\}`.
      */
@@ -5589,15 +5564,13 @@ export namespace managedkafka_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Get extends StandardParameters {
     /**
      * Required. The name of the Kafka Connect cluster whose configuration to return. Structured like `projects/{project\}/locations/{location\}/connectClusters/{connect_cluster_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$List extends StandardParameters {
     /**
      * Optional. Filter expression for the result.
      */
@@ -5619,8 +5592,7 @@ export namespace managedkafka_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Patch extends StandardParameters {
     /**
      * Identifier. The name of the Kafka Connect cluster. Structured like: projects/{project_number\}/locations/{location\}/connectClusters/{connect_cluster_id\}
      */
@@ -6950,8 +6922,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Create extends StandardParameters {
     /**
      * Required. The ID to use for the connector, which will become the final component of the connector's name. The ID must be 1-63 characters long, and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` to comply with RFC 1035. This value is structured like: `my-connector-id`.
      */
@@ -6966,22 +6937,19 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$Connector;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete extends StandardParameters {
     /**
      * Required. The name of the connector to delete. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Get extends StandardParameters {
     /**
      * Required. The name of the connector whose configuration to return. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$List extends StandardParameters {
     /**
      * Optional. The maximum number of connectors to return. The service may return fewer than this value. If unspecified, server will pick an appropriate default.
      */
@@ -6995,8 +6963,7 @@ export namespace managedkafka_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch extends StandardParameters {
     /**
      * Identifier. The name of the connector. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connect_cluster\}/connectors/{connector\}
      */
@@ -7011,8 +6978,7 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$Connector;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause extends StandardParameters {
     /**
      * Required. The name of the connector to pause. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
      */
@@ -7023,8 +6989,7 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$PauseConnectorRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart extends StandardParameters {
     /**
      * Required. The name of the connector to restart. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
      */
@@ -7035,8 +7000,7 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$RestartConnectorRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume extends StandardParameters {
     /**
      * Required. The name of the connector to pause. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
      */
@@ -7047,8 +7011,7 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$ResumeConnectorRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop extends StandardParameters {
     /**
      * Required. The name of the connector to stop. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
      */
@@ -7513,7 +7476,7 @@ export namespace managedkafka_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7624,8 +7587,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -7636,22 +7598,19 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -7669,7 +7628,7 @@ export namespace managedkafka_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -8267,8 +8226,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Create extends StandardParameters {
     /**
      * Required. The parent whose schema registry instance is to be created. Structured like: `projects/{project\}/locations/{location\}`
      */
@@ -8279,22 +8237,19 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$CreateSchemaRegistryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Delete extends StandardParameters {
     /**
      * Required. The name of the schema registry instance to delete. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Get extends StandardParameters {
     /**
      * Required. The name of the schema registry instance to return. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$List extends StandardParameters {
     /**
      * Required. The parent whose schema registry instances are to be listed. Structured like: `projects/{project\}/locations/{location\}`
      */
@@ -8466,8 +8421,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Compatibility$Checkcompatibility
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Compatibility$Checkcompatibility extends StandardParameters {
     /**
      * Required. The name of the resource to check compatibility for. The format is either of following: * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/compatibility/subjects/x/versions: Check compatibility with one or more versions of the specified subject. * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/compatibility/subjects/{subject\}/versions/{version\}: Check compatibility with a specific version of the subject.
      */
@@ -8912,15 +8866,13 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Config$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Config$Delete extends StandardParameters {
     /**
      * Required. The resource name of subject to delete the config for. The format is * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/config/{subject\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Config$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Config$Get extends StandardParameters {
     /**
      * Optional. If true, the config will fall back to the config at the global level if no subject level config is found.
      */
@@ -8930,8 +8882,7 @@ export namespace managedkafka_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Config$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Config$Update extends StandardParameters {
     /**
      * Required. The resource name to update the config for. It can be either of following: * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/config: Update config at global level. * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/config/{subject\}: Update config for a specific subject.
      */
@@ -9254,15 +9205,13 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Get extends StandardParameters {
     /**
      * Required. The name of the context to return. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$List extends StandardParameters {
     /**
      * Required. The parent of the contexts. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}`
      */
@@ -9430,8 +9379,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Compatibility$Checkcompatibility
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Compatibility$Checkcompatibility extends StandardParameters {
     /**
      * Required. The name of the resource to check compatibility for. The format is either of following: * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/compatibility/subjects/x/versions: Check compatibility with one or more versions of the specified subject. * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/compatibility/subjects/{subject\}/versions/{version\}: Check compatibility with a specific version of the subject.
      */
@@ -9879,15 +9827,13 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Config$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Config$Delete extends StandardParameters {
     /**
      * Required. The resource name of subject to delete the config for. The format is * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/config/{subject\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Config$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Config$Get extends StandardParameters {
     /**
      * Optional. If true, the config will fall back to the config at the global level if no subject level config is found.
      */
@@ -9897,8 +9843,7 @@ export namespace managedkafka_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Config$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Config$Update extends StandardParameters {
     /**
      * Required. The resource name to update the config for. It can be either of following: * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/config: Update config at global level. * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/config/{subject\}: Update config for a specific subject.
      */
@@ -10337,22 +10282,19 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Mode$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Mode$Delete extends StandardParameters {
     /**
      * Required. The resource name of subject to delete the mode for. The format is * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/mode/{subject\} * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/mode/{subject\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Mode$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Mode$Get extends StandardParameters {
     /**
      * Required. The resource name of the mode. The format is * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/mode/{subject\}: mode for a schema registry, or * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/mode/{subject\}: mode for a specific subject in a specific context
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Mode$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Mode$Update extends StandardParameters {
     /**
      * Required. The resource name of the mode. The format is * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/mode/{subject\}: mode for a schema registry, or * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/mode/{subject\}: mode for a specific subject in a specific context
      */
@@ -10670,8 +10612,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Schemas$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Schemas$Get extends StandardParameters {
     /**
      * Required. The name of the schema to return. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/schemas/ids/{schema\}`
      */
@@ -10681,8 +10622,7 @@ export namespace managedkafka_v1 {
      */
     subject?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Schemas$Getschema
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Schemas$Getschema extends StandardParameters {
     /**
      * Required. The name of the schema to return. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/schemas/ids/{schema\}`
      */
@@ -10848,8 +10788,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Schemas$Subjects$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Schemas$Subjects$List extends StandardParameters {
     /**
      * Optional. If true, the response will include soft-deleted subjects. The default is false.
      */
@@ -11015,8 +10954,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Schemas$Types$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Schemas$Types$List extends StandardParameters {
     /**
      * Required. The parent schema registry whose schema types are to be listed. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}`
      */
@@ -11178,8 +11116,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Schemas$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Schemas$Versions$List extends StandardParameters {
     /**
      * Optional. If true, the response will include soft-deleted versions of the schema, even if the subject is soft-deleted. The default is false.
      */
@@ -11652,8 +11589,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Delete extends StandardParameters {
     /**
      * Required. The name of the subject to delete. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/subjects/{subject\}` or `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/subjects/{subject\}`
      */
@@ -11663,8 +11599,7 @@ export namespace managedkafka_v1 {
      */
     permanent?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$List extends StandardParameters {
     /**
      * Optional. If true, the response will include soft-deleted subjects. The default is false.
      */
@@ -11678,8 +11613,7 @@ export namespace managedkafka_v1 {
      */
     subjectPrefix?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Lookupversion
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Lookupversion extends StandardParameters {
     /**
      * Required. The subject to lookup the schema in. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/subjects/{subject\}` or `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/subjects/{subject\}`
      */
@@ -12435,8 +12369,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$Create extends StandardParameters {
     /**
      * Required. The subject to create the version for. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/subjects/{subject\}` or `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/subjects/{subject\}`
      */
@@ -12447,8 +12380,7 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$CreateVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$Delete extends StandardParameters {
     /**
      * Required. The name of the subject version to delete. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/subjects/{subject\}/versions/{version\}` or `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/subjects/{subject\}/versions/{version\}`
      */
@@ -12458,8 +12390,7 @@ export namespace managedkafka_v1 {
      */
     permanent?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$Get extends StandardParameters {
     /**
      * Optional. If true, no matter if the subject/version is soft-deleted or not, it returns the version details. If false, it returns NOT_FOUND error if the subject/version is soft-deleted. The default is false.
      */
@@ -12469,8 +12400,7 @@ export namespace managedkafka_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$Getschema
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$Getschema extends StandardParameters {
     /**
      * Optional. If true, no matter if the subject/version is soft-deleted or not, it returns the version details. If false, it returns NOT_FOUND error if the subject/version is soft-deleted. The default is false.
      */
@@ -12480,8 +12410,7 @@ export namespace managedkafka_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$List extends StandardParameters {
     /**
      * Optional. If true, the response will include soft-deleted versions of an active or soft-deleted subject. The default is false.
      */
@@ -12643,8 +12572,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$Referencedby$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$Referencedby$List extends StandardParameters {
     /**
      * Required. The version to list referenced by. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/subjects/{subject\}/versions/{version\}` or `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/subjects/{subject\}/versions/{version\}`
      */
@@ -13073,22 +13001,19 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Mode$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Mode$Delete extends StandardParameters {
     /**
      * Required. The resource name of subject to delete the mode for. The format is * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/mode/{subject\} * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/mode/{subject\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Mode$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Mode$Get extends StandardParameters {
     /**
      * Required. The resource name of the mode. The format is * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/mode/{subject\}: mode for a schema registry, or * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/mode/{subject\}: mode for a specific subject in a specific context
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Mode$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Mode$Update extends StandardParameters {
     /**
      * Required. The resource name of the mode. The format is * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/mode/{subject\}: mode for a schema registry, or * projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/mode/{subject\}: mode for a specific subject in a specific context
      */
@@ -13402,8 +13327,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Schemas$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Schemas$Get extends StandardParameters {
     /**
      * Required. The name of the schema to return. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/schemas/ids/{schema\}`
      */
@@ -13413,8 +13337,7 @@ export namespace managedkafka_v1 {
      */
     subject?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Schemas$Getschema
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Schemas$Getschema extends StandardParameters {
     /**
      * Required. The name of the schema to return. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/schemas/ids/{schema\}`
      */
@@ -13580,8 +13503,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Schemas$Subjects$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Schemas$Subjects$List extends StandardParameters {
     /**
      * Optional. If true, the response will include soft-deleted subjects. The default is false.
      */
@@ -13745,8 +13667,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Schemas$Types$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Schemas$Types$List extends StandardParameters {
     /**
      * Required. The parent schema registry whose schema types are to be listed. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}`
      */
@@ -13908,8 +13829,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Schemas$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Schemas$Versions$List extends StandardParameters {
     /**
      * Optional. If true, the response will include soft-deleted versions of the schema, even if the subject is soft-deleted. The default is false.
      */
@@ -14378,8 +14298,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Delete extends StandardParameters {
     /**
      * Required. The name of the subject to delete. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/subjects/{subject\}` or `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/subjects/{subject\}`
      */
@@ -14389,8 +14308,7 @@ export namespace managedkafka_v1 {
      */
     permanent?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$List extends StandardParameters {
     /**
      * Optional. If true, the response will include soft-deleted subjects. The default is false.
      */
@@ -14404,8 +14322,7 @@ export namespace managedkafka_v1 {
      */
     subjectPrefix?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Lookupversion
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Lookupversion extends StandardParameters {
     /**
      * Required. The subject to lookup the schema in. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/subjects/{subject\}` or `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/subjects/{subject\}`
      */
@@ -15161,8 +15078,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$Create extends StandardParameters {
     /**
      * Required. The subject to create the version for. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/subjects/{subject\}` or `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/subjects/{subject\}`
      */
@@ -15173,8 +15089,7 @@ export namespace managedkafka_v1 {
      */
     requestBody?: Schema$CreateVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$Delete extends StandardParameters {
     /**
      * Required. The name of the subject version to delete. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/subjects/{subject\}/versions/{version\}` or `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/subjects/{subject\}/versions/{version\}`
      */
@@ -15184,8 +15099,7 @@ export namespace managedkafka_v1 {
      */
     permanent?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$Get extends StandardParameters {
     /**
      * Optional. If true, no matter if the subject/version is soft-deleted or not, it returns the version details. If false, it returns NOT_FOUND error if the subject/version is soft-deleted. The default is false.
      */
@@ -15195,8 +15109,7 @@ export namespace managedkafka_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$Getschema
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$Getschema extends StandardParameters {
     /**
      * Optional. If true, no matter if the subject/version is soft-deleted or not, it returns the version details. If false, it returns NOT_FOUND error if the subject/version is soft-deleted. The default is false.
      */
@@ -15206,8 +15119,7 @@ export namespace managedkafka_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$List extends StandardParameters {
     /**
      * Optional. If true, the response will include soft-deleted versions of an active or soft-deleted subject. The default is false.
      */
@@ -15369,8 +15281,7 @@ export namespace managedkafka_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$Referencedby$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$Referencedby$List extends StandardParameters {
     /**
      * Required. The version to list referenced by. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/subjects/{subject\}/versions/{version\}` or `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/subjects/{subject\}/versions/{version\}`
      */
