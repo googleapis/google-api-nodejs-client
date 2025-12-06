@@ -1862,8 +1862,7 @@ export namespace cloudresourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Clearorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Clearorgpolicy extends StandardParameters {
     /**
      * Name of the resource for the `Policy` to clear.
      */
@@ -1874,8 +1873,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ClearOrgPolicyRequest;
   }
-  export interface Params$Resource$Folders$Geteffectiveorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Geteffectiveorgpolicy extends StandardParameters {
     /**
      * The name of the resource to start computing the effective `Policy`.
      */
@@ -1886,8 +1884,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
-  export interface Params$Resource$Folders$Getorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getorgpolicy extends StandardParameters {
     /**
      * Name of the resource the `Policy` is set on.
      */
@@ -1898,8 +1895,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetOrgPolicyRequest;
   }
-  export interface Params$Resource$Folders$Listavailableorgpolicyconstraints
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Listavailableorgpolicyconstraints extends StandardParameters {
     /**
      * Name of the resource to list `Constraints` for.
      */
@@ -1910,8 +1906,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
-  export interface Params$Resource$Folders$Listorgpolicies
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Listorgpolicies extends StandardParameters {
     /**
      * Name of the resource to list Policies for.
      */
@@ -1922,8 +1917,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListOrgPoliciesRequest;
   }
-  export interface Params$Resource$Folders$Setorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Setorgpolicy extends StandardParameters {
     /**
      * Resource name of the resource to attach the `Policy`.
      */
@@ -4384,8 +4378,7 @@ export namespace cloudresourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Clearorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Clearorgpolicy extends StandardParameters {
     /**
      * Name of the resource for the `Policy` to clear.
      */
@@ -4396,15 +4389,13 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ClearOrgPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Get extends StandardParameters {
     /**
      * The resource name of the Organization to fetch. This is the organization's relative path in the API, formatted as "organizations/[organizationId]". For example, "organizations/1234".
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Geteffectiveorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Geteffectiveorgpolicy extends StandardParameters {
     /**
      * The name of the resource to start computing the effective `Policy`.
      */
@@ -4415,8 +4406,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4427,8 +4417,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Getorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getorgpolicy extends StandardParameters {
     /**
      * Name of the resource the `Policy` is set on.
      */
@@ -4439,8 +4428,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetOrgPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Listavailableorgpolicyconstraints
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Listavailableorgpolicyconstraints extends StandardParameters {
     /**
      * Name of the resource to list `Constraints` for.
      */
@@ -4451,8 +4439,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
-  export interface Params$Resource$Organizations$Listorgpolicies
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Listorgpolicies extends StandardParameters {
     /**
      * Name of the resource to list Policies for.
      */
@@ -4463,15 +4450,13 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListOrgPoliciesRequest;
   }
-  export interface Params$Resource$Organizations$Search
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Search extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$SearchOrganizationsRequest;
   }
-  export interface Params$Resource$Organizations$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4482,8 +4467,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Setorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Setorgpolicy extends StandardParameters {
     /**
      * Resource name of the resource to attach the `Policy`.
      */
@@ -4494,8 +4478,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetOrgPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6924,8 +6907,7 @@ export namespace cloudresourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Clearorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Clearorgpolicy extends StandardParameters {
     /**
      * Name of the resource for the `Policy` to clear.
      */
@@ -6954,8 +6936,7 @@ export namespace cloudresourcemanager_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Getancestry
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getancestry extends StandardParameters {
     /**
      * Required. The Project ID (for example, `my-project-123`).
      */
@@ -6966,8 +6947,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetAncestryRequest;
   }
-  export interface Params$Resource$Projects$Geteffectiveorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Geteffectiveorgpolicy extends StandardParameters {
     /**
      * The name of the resource to start computing the effective `Policy`.
      */
@@ -6978,8 +6958,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
-  export interface Params$Resource$Projects$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6990,8 +6969,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Getorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getorgpolicy extends StandardParameters {
     /**
      * Name of the resource the `Policy` is set on.
      */
@@ -7016,8 +6994,7 @@ export namespace cloudresourcemanager_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Listavailableorgpolicyconstraints
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Listavailableorgpolicyconstraints extends StandardParameters {
     /**
      * Name of the resource to list `Constraints` for.
      */
@@ -7028,8 +7005,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
-  export interface Params$Resource$Projects$Listorgpolicies
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Listorgpolicies extends StandardParameters {
     /**
      * Name of the resource to list Policies for.
      */
@@ -7040,8 +7016,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListOrgPoliciesRequest;
   }
-  export interface Params$Resource$Projects$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7052,8 +7027,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Setorgpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Setorgpolicy extends StandardParameters {
     /**
      * Resource name of the resource to attach the `Policy`.
      */
@@ -7064,8 +7038,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetOrgPolicyRequest;
   }
-  export interface Params$Resource$Projects$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7076,8 +7049,7 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Undelete extends StandardParameters {
     /**
      * Required. The project ID (for example, `foo-bar-123`).
      */

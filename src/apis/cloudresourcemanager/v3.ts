@@ -1230,8 +1230,7 @@ export namespace cloudresourcemanager_v3 {
     }
   }
 
-  export interface Params$Resource$Effectivetags$List
-    extends StandardParameters {
+  export interface Params$Resource$Effectivetags$List extends StandardParameters {
     /**
      * Optional. The maximum number of effective tags to return in the response. The server allows a maximum of 300 effective tags to return in a single page. If unspecified, the server will use 100 as the default.
      */
@@ -2902,8 +2901,7 @@ export namespace cloudresourcemanager_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2972,8 +2970,7 @@ export namespace cloudresourcemanager_v3 {
      */
     query?: string;
   }
-  export interface Params$Resource$Folders$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2984,8 +2981,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Folders$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3301,15 +3297,13 @@ export namespace cloudresourcemanager_v3 {
     }
   }
 
-  export interface Params$Resource$Folders$Capabilities$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Capabilities$Get extends StandardParameters {
     /**
      * Required. The name of the capability to get. For example, `folders/123/capabilities/app-management`
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Capabilities$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Capabilities$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The resource name of the capability. Must be in the following form: * `folders/{folder_id\}/capabilities/{capability_name\}` For example, `folders/123/capabilities/app-management` Following are the allowed {capability_name\} values: * `app-management`
      */
@@ -4105,8 +4099,7 @@ export namespace cloudresourcemanager_v3 {
     }
   }
 
-  export interface Params$Resource$Locations$Effectivetagbindingcollections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Effectivetagbindingcollections$Get extends StandardParameters {
     /**
      * Required. The full name of the EffectiveTagBindingCollection in format: `locations/{location\}/effectiveTagBindingCollections/{encoded-full-resource-name\}` where the encoded-full-resource-name is the UTF-8 encoded name of the resource the TagBindings are bound to. E.g. "locations/global/effectiveTagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123"
      */
@@ -4415,15 +4408,13 @@ export namespace cloudresourcemanager_v3 {
     }
   }
 
-  export interface Params$Resource$Locations$Tagbindingcollections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Tagbindingcollections$Get extends StandardParameters {
     /**
      * Required. The full name of the TagBindingCollection in format: `locations/{location\}/tagBindingCollections/{encoded-full-resource-name\}` where the enoded-full-resource-name is the UTF-8 encoded name of the resource the TagBindings are bound to. E.g. "locations/global/tagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123"
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Tagbindingcollections$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Tagbindingcollections$Patch extends StandardParameters {
     /**
      * Identifier. The name of the TagBindingCollection, following the convention: `locations/{location\}/tagBindingCollections/{encoded-full-resource-name\}` where the encoded-full-resource-name is the UTF-8 encoded name of the GCP resource the TagBindings are bound to. "locations/global/tagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123"
      */
@@ -5351,15 +5342,13 @@ export namespace cloudresourcemanager_v3 {
     }
   }
 
-  export interface Params$Resource$Organizations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Get extends StandardParameters {
     /**
      * Required. The resource name of the Organization to fetch. This is the organization's relative path in the API, formatted as "organizations/[organizationId]". For example, "organizations/1234".
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5370,8 +5359,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Search
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Search extends StandardParameters {
     /**
      * Optional. The maximum number of organizations to return in the response. The server can return fewer organizations than requested. If unspecified, server picks an appropriate default.
      */
@@ -5385,8 +5373,7 @@ export namespace cloudresourcemanager_v3 {
      */
     query?: string;
   }
-  export interface Params$Resource$Organizations$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5397,8 +5384,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7076,8 +7062,7 @@ export namespace cloudresourcemanager_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7146,8 +7131,7 @@ export namespace cloudresourcemanager_v3 {
      */
     query?: string;
   }
-  export interface Params$Resource$Projects$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7158,8 +7142,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7170,8 +7153,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Undelete extends StandardParameters {
     /**
      * Required. The name of the project (for example, `projects/415104041262`). Required.
      */
@@ -7623,8 +7605,7 @@ export namespace cloudresourcemanager_v3 {
     }
   }
 
-  export interface Params$Resource$Tagbindings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Tagbindings$Create extends StandardParameters {
     /**
      * Optional. Set to true to perform the validations necessary for creating the resource, but not actually perform the action.
      */
@@ -7635,8 +7616,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$TagBinding;
   }
-  export interface Params$Resource$Tagbindings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Tagbindings$Delete extends StandardParameters {
     /**
      * Required. The name of the TagBinding. This is a String of the form: `tagBindings/{id\}` (e.g. `tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2F123/tagValues/456`).
      */
@@ -9045,8 +9025,7 @@ export namespace cloudresourcemanager_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Tagkeys$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Tagkeys$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9057,8 +9036,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Tagkeys$Getnamespaced
-    extends StandardParameters {
+  export interface Params$Resource$Tagkeys$Getnamespaced extends StandardParameters {
     /**
      * Required. A namespaced tag key name in the format `{parentId\}/{tagKeyShort\}`, such as `42/foo` for a key with short name "foo" under the organization with ID 42 or `r2-d2/bar` for a key with short name "bar" under the project `r2-d2`.
      */
@@ -9097,8 +9075,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$TagKey;
   }
-  export interface Params$Resource$Tagkeys$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Tagkeys$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9109,8 +9086,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Tagkeys$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Tagkeys$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10502,8 +10478,7 @@ export namespace cloudresourcemanager_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Tagvalues$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Tagvalues$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10514,8 +10489,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Tagvalues$Getnamespaced
-    extends StandardParameters {
+  export interface Params$Resource$Tagvalues$Getnamespaced extends StandardParameters {
     /**
      * Required. A namespaced tag value name in the following format: `{parentId\}/{tagKeyShort\}/{tagValueShort\}` Examples: - `42/foo/abc` for a value with short name "abc" under the key with short name "foo" under the organization with ID 42 - `r2-d2/bar/xyz` for a value with short name "xyz" under the key with short name "bar" under the project with ID "r2-d2"
      */
@@ -10554,8 +10528,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$TagValue;
   }
-  export interface Params$Resource$Tagvalues$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Tagvalues$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10566,8 +10539,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Tagvalues$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Tagvalues$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11033,8 +11005,7 @@ export namespace cloudresourcemanager_v3 {
     }
   }
 
-  export interface Params$Resource$Tagvalues$Tagholds$Create
-    extends StandardParameters {
+  export interface Params$Resource$Tagvalues$Tagholds$Create extends StandardParameters {
     /**
      * Required. The resource name of the TagHold's parent TagValue. Must be of the form: `tagValues/{tag-value-id\}`.
      */
@@ -11049,8 +11020,7 @@ export namespace cloudresourcemanager_v3 {
      */
     requestBody?: Schema$TagHold;
   }
-  export interface Params$Resource$Tagvalues$Tagholds$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Tagvalues$Tagholds$Delete extends StandardParameters {
     /**
      * Required. The resource name of the TagHold to delete. Must be of the form: `tagValues/{tag-value-id\}/tagHolds/{tag-hold-id\}`.
      */
@@ -11060,8 +11030,7 @@ export namespace cloudresourcemanager_v3 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Tagvalues$Tagholds$List
-    extends StandardParameters {
+  export interface Params$Resource$Tagvalues$Tagholds$List extends StandardParameters {
     /**
      * Optional. Criteria used to select a subset of TagHolds parented by the TagValue to return. This field follows the syntax defined by aip.dev/160; the `holder` and `origin` fields are supported for filtering. Currently only `AND` syntax is supported. Some example queries are: * `holder = //compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group` * `origin = 35678234` * `holder = //compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group AND origin = 35678234`
      */
