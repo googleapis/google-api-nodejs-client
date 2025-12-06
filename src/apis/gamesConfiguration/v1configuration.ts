@@ -1134,22 +1134,19 @@ export namespace gamesConfiguration_v1configuration {
     }
   }
 
-  export interface Params$Resource$Achievementconfigurations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Achievementconfigurations$Delete extends StandardParameters {
     /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievementconfigurations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Achievementconfigurations$Get extends StandardParameters {
     /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievementconfigurations$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Achievementconfigurations$Insert extends StandardParameters {
     /**
      * The application ID from the Google Play developer console.
      */
@@ -1160,8 +1157,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     requestBody?: Schema$AchievementConfiguration;
   }
-  export interface Params$Resource$Achievementconfigurations$List
-    extends StandardParameters {
+  export interface Params$Resource$Achievementconfigurations$List extends StandardParameters {
     /**
      * The application ID from the Google Play developer console.
      */
@@ -1175,8 +1171,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Achievementconfigurations$Update
-    extends StandardParameters {
+  export interface Params$Resource$Achievementconfigurations$Update extends StandardParameters {
     /**
      * The ID of the achievement used by this method.
      */
@@ -1952,22 +1947,19 @@ export namespace gamesConfiguration_v1configuration {
     }
   }
 
-  export interface Params$Resource$Leaderboardconfigurations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Leaderboardconfigurations$Delete extends StandardParameters {
     /**
      * The ID of the leaderboard.
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Leaderboardconfigurations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Leaderboardconfigurations$Get extends StandardParameters {
     /**
      * The ID of the leaderboard.
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Leaderboardconfigurations$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Leaderboardconfigurations$Insert extends StandardParameters {
     /**
      * The application ID from the Google Play developer console.
      */
@@ -1978,8 +1970,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     requestBody?: Schema$LeaderboardConfiguration;
   }
-  export interface Params$Resource$Leaderboardconfigurations$List
-    extends StandardParameters {
+  export interface Params$Resource$Leaderboardconfigurations$List extends StandardParameters {
     /**
      * The application ID from the Google Play developer console.
      */
@@ -1993,8 +1984,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Leaderboardconfigurations$Update
-    extends StandardParameters {
+  export interface Params$Resource$Leaderboardconfigurations$Update extends StandardParameters {
     /**
      * The ID of the leaderboard.
      */
