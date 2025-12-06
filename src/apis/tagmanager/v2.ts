@@ -205,6 +205,12 @@ export namespace tagmanager_v2 {
      */
     workspaceId?: string | null;
   }
+  export interface Schema$BulkUpdateWorkspaceResponse {
+    /**
+     * The entities that were added or updated during the bulk-update. Does not include entities that were deleted or updated by the system.
+     */
+    changes?: Schema$Entity[];
+  }
   export interface Schema$Client {
     /**
      * GTM Account ID.
@@ -1189,6 +1195,12 @@ export namespace tagmanager_v2 {
      * A parameter's value (may contain variable references). as appropriate to the specified type.
      */
     value?: string | null;
+  }
+  export interface Schema$ProposedChange {
+    /**
+     * The list of workspace changes to be applied.
+     */
+    changes?: Schema$Entity[];
   }
   /**
    * Publish container version response.
@@ -3804,8 +3816,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Combine
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Combine extends StandardParameters {
     /**
      * Must be set to true to allow features.user_permissions to change from false to true. If this operation causes an update but this bit is false, the operation will fail.
      */
@@ -3823,8 +3834,7 @@ export namespace tagmanager_v2 {
      */
     settingSource?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Create extends StandardParameters {
     /**
      * GTM Account's API relative path.
      */
@@ -3835,22 +3845,19 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Container;
   }
-  export interface Params$Resource$Accounts$Containers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Delete extends StandardParameters {
     /**
      * GTM Container's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Get extends StandardParameters {
     /**
      * GTM Container's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -3860,8 +3867,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Lookup
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Lookup extends StandardParameters {
     /**
      * Destination ID linked to a GTM Container, e.g. AW-123456789. Only one of destination_id or tag_id should be set.
      */
@@ -3871,8 +3877,7 @@ export namespace tagmanager_v2 {
      */
     tagId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Move_tag_id
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Move_tag_id extends StandardParameters {
     /**
      * Must be set to true to allow features.user_permissions to change from false to true. If this operation causes an update but this bit is false, the operation will fail.
      */
@@ -3902,15 +3907,13 @@ export namespace tagmanager_v2 {
      */
     tagName?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Snippet
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Snippet extends StandardParameters {
     /**
      * Container snippet's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the container in storage.
      */
@@ -4370,15 +4373,13 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Destinations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Destinations$Get extends StandardParameters {
     /**
      * Google Tag Destination's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Destinations$Link
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Destinations$Link extends StandardParameters {
     /**
      * Must be set to true to allow features.user_permissions to change from false to true. If this operation causes an update but this bit is false, the operation will fail.
      */
@@ -4392,8 +4393,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Destinations$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Destinations$List extends StandardParameters {
     /**
      * GTM parent Container's API relative path.
      */
@@ -5358,8 +5358,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Environments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Environments$Create extends StandardParameters {
     /**
      * GTM Container's API relative path.
      */
@@ -5370,22 +5369,19 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Environments$Delete extends StandardParameters {
     /**
      * GTM Environment's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Environments$Get extends StandardParameters {
     /**
      * GTM Environment's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Environments$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -5395,8 +5391,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Reauthorize
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Environments$Reauthorize extends StandardParameters {
     /**
      * GTM Environment's API relative path.
      */
@@ -5407,8 +5402,7 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Environments$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the environment in storage.
      */
@@ -6531,15 +6525,13 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Delete extends StandardParameters {
     /**
      * GTM ContainerVersion's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Get extends StandardParameters {
     /**
      * The GTM ContainerVersion ID. Specify published to retrieve the currently published version.
      */
@@ -6549,15 +6541,13 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Live
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Live extends StandardParameters {
     /**
      * GTM Container's API relative path.
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Publish
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Publish extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the container version in storage.
      */
@@ -6567,22 +6557,19 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Set_latest
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Set_latest extends StandardParameters {
     /**
      * GTM ContainerVersion's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Undelete extends StandardParameters {
     /**
      * GTM ContainerVersion's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the container version in storage.
      */
@@ -6912,15 +6899,13 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Version_headers$Latest
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Version_headers$Latest extends StandardParameters {
     /**
      * GTM Container's API relative path.
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Version_headers$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Version_headers$List extends StandardParameters {
     /**
      * Also retrieve deleted (archived) versions when true.
      */
@@ -6980,6 +6965,156 @@ export namespace tagmanager_v2 {
       this.zones = new Resource$Accounts$Containers$Workspaces$Zones(
         this.context
       );
+    }
+
+    /**
+     * Applies multiple entity changes to a workspace in one call. When creating new entities, their entity IDs must be unique and in correct format. That is, they must start with "new_" and followed by number, e.g. "new_1", "new_2". Example body snippet to create myNewTag under myNewFolder is: ``` "changes": [ { "folder": { "folderId": "new_1", "name": "myNewFolder", ... \}, "changeStatus": "added" \}, { "tag": { "tagId": "new_2", "name": "myNewTag", "parentFolderId": "new_1", ... \}, "changeStatus": "added" \} ] ```
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.bulk_update({
+     *     // GTM Workspace's API relative path.
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "changes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulk_update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Bulk_update,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    bulk_update(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Bulk_update,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BulkUpdateWorkspaceResponse>>;
+    bulk_update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Bulk_update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulk_update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Bulk_update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkUpdateWorkspaceResponse>,
+      callback: BodyResponseCallback<Schema$BulkUpdateWorkspaceResponse>
+    ): void;
+    bulk_update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Bulk_update,
+      callback: BodyResponseCallback<Schema$BulkUpdateWorkspaceResponse>
+    ): void;
+    bulk_update(
+      callback: BodyResponseCallback<Schema$BulkUpdateWorkspaceResponse>
+    ): void;
+    bulk_update(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Bulk_update
+        | BodyResponseCallback<Schema$BulkUpdateWorkspaceResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkUpdateWorkspaceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkUpdateWorkspaceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BulkUpdateWorkspaceResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Bulk_update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Bulk_update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tagmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}/bulk_update').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkUpdateWorkspaceResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkUpdateWorkspaceResponse>(parameters);
+      }
     }
 
     /**
@@ -8465,8 +8600,18 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Bulk_update extends StandardParameters {
+    /**
+     * GTM Workspace's API relative path.
+     */
+    path?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProposedChange;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Create extends StandardParameters {
     /**
      * GTM parent Container's API relative path.
      */
@@ -8477,8 +8622,7 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Workspace;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Create_version
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Create_version extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
@@ -8489,29 +8633,25 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$CreateContainerVersionRequestVersionOptions;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Delete extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Get extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Getstatus
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Getstatus extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -8521,15 +8661,13 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Quick_preview
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Quick_preview extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the entity_in_workspace in the merge conflict.
      */
@@ -8544,15 +8682,13 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Entity;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Sync
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Sync extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the workspace in storage.
      */
@@ -9157,8 +9293,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
@@ -9168,8 +9303,7 @@ export namespace tagmanager_v2 {
      */
     type?: string[];
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete extends StandardParameters {
     /**
      * GTM BuiltInVariable's API relative path.
      */
@@ -9179,8 +9313,7 @@ export namespace tagmanager_v2 {
      */
     type?: string[];
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -9190,8 +9323,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert extends StandardParameters {
     /**
      * GTM BuiltInVariable's API relative path.
      */
@@ -10123,8 +10255,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Create extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
@@ -10135,22 +10266,19 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Client;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Delete extends StandardParameters {
     /**
      * GTM Client's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Get extends StandardParameters {
     /**
      * GTM Client's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -10160,8 +10288,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Revert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Revert extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the client in storage.
      */
@@ -10171,8 +10298,7 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the client in storage.
      */
@@ -11390,8 +11516,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Create extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
@@ -11402,15 +11527,13 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Folder;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Delete extends StandardParameters {
     /**
      * GTM Folder's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Entities
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Entities extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -11420,15 +11543,13 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Get extends StandardParameters {
     /**
      * GTM Folder's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -11438,8 +11559,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder extends StandardParameters {
     /**
      * GTM Folder's API relative path.
      */
@@ -11462,8 +11582,7 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Folder;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Revert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Revert extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the tag in storage.
      */
@@ -11473,8 +11592,7 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the folder in storage.
      */
@@ -12254,8 +12372,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$Create extends StandardParameters {
     /**
      * Workspace's API relative path.
      */
@@ -12266,22 +12383,19 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$GtagConfig;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$Delete extends StandardParameters {
     /**
      * Google tag config's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$Get extends StandardParameters {
     /**
      * Google tag config's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -12291,8 +12405,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the config in storage.
      */
@@ -13285,8 +13398,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Create extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
@@ -13297,22 +13409,19 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Tag;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Delete extends StandardParameters {
     /**
      * GTM Tag's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Get extends StandardParameters {
     /**
      * GTM Tag's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -13322,8 +13431,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Revert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Revert extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of thetag in storage.
      */
@@ -13333,8 +13441,7 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the tag in storage.
      */
@@ -14418,8 +14525,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Create extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
@@ -14430,22 +14536,19 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$CustomTemplate;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Delete extends StandardParameters {
     /**
      * GTM Custom Template's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Get extends StandardParameters {
     /**
      * GTM Custom Template's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Import_from_gallery
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Import_from_gallery extends StandardParameters {
     /**
      * Must be set to true to allow Gallery template to be imported into the workspace. If this bit is false, the import operation will fail.
      */
@@ -14467,8 +14570,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -14478,8 +14580,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Revert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Revert extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the template in storage.
      */
@@ -14489,8 +14590,7 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the templates in storage.
      */
@@ -15436,8 +15536,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Create extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
@@ -15448,22 +15547,19 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Transformation;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete extends StandardParameters {
     /**
      * GTM Transformation's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Get extends StandardParameters {
     /**
      * GTM Transformation's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -15473,8 +15569,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Revert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Revert extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the transformation in storage.
      */
@@ -15484,8 +15579,7 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the transformation in storage.
      */
@@ -16519,8 +16613,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Create extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
@@ -16531,22 +16624,19 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Trigger;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete extends StandardParameters {
     /**
      * GTM Trigger's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Get extends StandardParameters {
     /**
      * GTM Trigger's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -16556,8 +16646,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the trigger in storage.
      */
@@ -16567,8 +16656,7 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the trigger in storage.
      */
@@ -17527,8 +17615,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Create extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
@@ -17539,22 +17626,19 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Variable;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Delete extends StandardParameters {
     /**
      * GTM Variable's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Get extends StandardParameters {
     /**
      * GTM Variable's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -17564,8 +17648,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Revert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Revert extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the variable in storage.
      */
@@ -17575,8 +17658,7 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the variable in storage.
      */
@@ -18505,8 +18587,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Create extends StandardParameters {
     /**
      * GTM Workspace's API relative path.
      */
@@ -18517,22 +18598,19 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Zone;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Delete extends StandardParameters {
     /**
      * GTM Zone's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Get extends StandardParameters {
     /**
      * GTM Zone's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -18542,8 +18620,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Revert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Revert extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the zone in storage.
      */
@@ -18553,8 +18630,7 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Update extends StandardParameters {
     /**
      * When provided, this fingerprint must match the fingerprint of the zone in storage.
      */
@@ -19296,8 +19372,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$User_permissions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$User_permissions$Create extends StandardParameters {
     /**
      * GTM Account's API relative path.
      */
@@ -19308,22 +19383,19 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$UserPermission;
   }
-  export interface Params$Resource$Accounts$User_permissions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$User_permissions$Delete extends StandardParameters {
     /**
      * GTM UserPermission's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$User_permissions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$User_permissions$Get extends StandardParameters {
     /**
      * GTM UserPermission's API relative path.
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$User_permissions$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$User_permissions$List extends StandardParameters {
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -19333,8 +19405,7 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$User_permissions$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$User_permissions$Update extends StandardParameters {
     /**
      * GTM UserPermission's API relative path.
      */
