@@ -3029,8 +3029,7 @@ export namespace serviceusage_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3041,8 +3040,7 @@ export namespace serviceusage_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
@@ -3973,8 +3971,7 @@ export namespace serviceusage_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Batchenable
-    extends StandardParameters {
+  export interface Params$Resource$Services$Batchenable extends StandardParameters {
     /**
      * Parent to enable services on. An example name would be: `projects/123` where `123` is the project number. The `BatchEnableServices` method currently only supports projects.
      */
@@ -3985,8 +3982,7 @@ export namespace serviceusage_v1 {
      */
     requestBody?: Schema$BatchEnableServicesRequest;
   }
-  export interface Params$Resource$Services$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Services$Batchget extends StandardParameters {
     /**
      * Names of the services to retrieve. An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number. A single request can get a maximum of 30 services at a time.
      */
