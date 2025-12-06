@@ -1503,7 +1503,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2DataSourceType {
     /**
-     * An identifying string to the type of resource being profiled. Current values: * google/bigquery/table * google/project * google/sql/table * google/gcs/bucket
+     * A string that identifies the type of resource being profiled. Current values: * google/bigquery/table * google/project * google/sql/table * google/gcs/bucket
      */
     dataSource?: string | null;
   }
@@ -5527,7 +5527,7 @@ export namespace dlp_v2 {
     patterns?: Schema$GooglePrivacyDlpV2VertexDatasetRegex[];
   }
   /**
-   * Identifies a single Vertex AI resource. Currently only datasets are supported.
+   * Identifies a single Vertex AI resource. Only datasets are supported.
    */
   export interface Schema$GooglePrivacyDlpV2VertexDatasetResourceReference {
     /**
@@ -5977,8 +5977,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Locations$Infotypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Infotypes$List extends StandardParameters {
     /**
      * filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      */
@@ -6782,8 +6781,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Deidentifytemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -6794,22 +6792,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Deidentifytemplates$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -6831,8 +6826,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
@@ -7608,8 +7602,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Inspecttemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Inspecttemplates$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -7620,22 +7613,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Inspecttemplates$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Inspecttemplates$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Inspecttemplates$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -7657,8 +7647,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Inspecttemplates$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
@@ -8045,15 +8034,13 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Columndataprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Columndataprofiles$Get extends StandardParameters {
     /**
      * Required. Resource name, for example `organizations/12345/locations/us/columnDataProfiles/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Columndataprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Columndataprofiles$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields: - `table_data_profile_name`: The name of the related table data profile - `project_id`: The Google Cloud project ID (REQUIRED) - `dataset_id`: The BigQuery dataset ID (REQUIRED) - `table_id`: The BigQuery table ID (REQUIRED) - `field_id`: The ID of the BigQuery field - `info_type`: The infotype detected in the resource - `sensitivity_level`: HIGH|MEDIUM|LOW - `data_risk_level`: How much risk is associated with this data - `status_code`: An RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto - `profile_last_generated`: Date and time the profile was last generated * The operator must be `=` for project_id, dataset_id, and table_id. Other filters also support `!=`. The `profile_last_generated` filter also supports `<` and `\>`. The syntax is based on https://google.aip.dev/160. Examples: * project_id = 12345 AND status_code = 1 * project_id = 12345 AND sensitivity_level = HIGH * project_id = 12345 AND info_type = STREET_ADDRESS * profile_last_generated < "2025-01-01T00:00:00.000Z" The length of this field should be no more than 500 characters.
      */
@@ -8976,8 +8963,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Connections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Connections$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id\}/locations/{location_id\}` + Organizations scope: `organizations/{org_id\}/locations/{location_id\}`
      */
@@ -8988,22 +8974,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateConnectionRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Connections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Connections$Delete extends StandardParameters {
     /**
      * Required. Resource name of the Connection to be deleted, in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Connections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Connections$Get extends StandardParameters {
     /**
      * Required. Resource name in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Connections$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Connections$List extends StandardParameters {
     /**
      * Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR The syntax is based on https://google.aip.dev/160.
      */
@@ -9021,8 +9004,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Connections$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Connections$Patch extends StandardParameters {
     /**
      * Required. Resource name in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
      */
@@ -9033,8 +9015,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2UpdateConnectionRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Connections$Search
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Connections$Search extends StandardParameters {
     /**
      * Optional. Supported field/value: - `state` - MISSING|AVAILABLE|ERROR The syntax is based on https://google.aip.dev/160.
      */
@@ -9822,8 +9803,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Deidentifytemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Deidentifytemplates$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -9834,22 +9814,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Deidentifytemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Deidentifytemplates$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Deidentifytemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Deidentifytemplates$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Deidentifytemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Deidentifytemplates$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -9871,8 +9848,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Deidentifytemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Deidentifytemplates$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
@@ -10671,8 +10647,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id\}/locations/{location_id\}` + Organizations scope: `organizations/{org_id\}/locations/{location_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -10683,22 +10658,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDiscoveryConfigRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Delete extends StandardParameters {
     /**
      * Required. Resource name of the project and the config, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Get extends StandardParameters {
     /**
      * Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$List extends StandardParameters {
     /**
      * Comma-separated list of config fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `last_run_time`: corresponds to the last time the DiscoveryConfig ran. - `name`: corresponds to the DiscoveryConfig's name. - `status`: corresponds to DiscoveryConfig's status.
      */
@@ -10716,8 +10688,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Patch extends StandardParameters {
     /**
      * Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
      */
@@ -10896,8 +10867,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Dlpjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Dlpjobs$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect jobs: - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - `trigger_name` - The name of the trigger that created the job. - 'end_time` - Corresponds to the time the job finished. - 'start_time` - Corresponds to the time the job finished. * Supported fields for risk analysis jobs: - `state` - RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to the time the job finished. - 'start_time` - Corresponds to the time the job finished. * The operator must be `=` or `!=`. The syntax is based on https://google.aip.dev/160. Examples: * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
@@ -11396,22 +11366,19 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete extends StandardParameters {
     /**
      * Required. Resource name of the file store data profile.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$Get extends StandardParameters {
     /**
      * Required. Resource name, for example `organizations/12345/locations/us/fileStoreDataProfiles/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$List extends StandardParameters {
     /**
      * Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields: - `project_id`: The Google Cloud project ID - `account_id`: The AWS account ID - `file_store_path`: The path like "gs://bucket" - `data_source_type`: The profile's data source type, like "google/storage/bucket" - `data_storage_location`: The location where the file store's data is stored, like "us-central1" - `sensitivity_level`: HIGH|MODERATE|LOW - `data_risk_level`: HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code`: an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto - `profile_last_generated`: Date and time the profile was last generated * The operator must be `=` or `!=`. The `profile_last_generated` filter also supports `<` and `\>`. The syntax is based on https://google.aip.dev/160. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `file_store_path = "gs://mybucket"` * `profile_last_generated < "2025-01-01T00:00:00.000Z"` The length of this field should be no more than 500 characters.
      */
@@ -11594,8 +11561,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Infotypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Infotypes$List extends StandardParameters {
     /**
      * filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      */
@@ -12383,8 +12349,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Inspecttemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Inspecttemplates$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -12395,22 +12360,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Inspecttemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Inspecttemplates$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Inspecttemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Inspecttemplates$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Inspecttemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Inspecttemplates$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -12432,8 +12394,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Inspecttemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Inspecttemplates$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
@@ -13216,8 +13177,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Jobtriggers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Jobtriggers$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -13228,22 +13188,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateJobTriggerRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Jobtriggers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Jobtriggers$Delete extends StandardParameters {
     /**
      * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Jobtriggers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Jobtriggers$Get extends StandardParameters {
     /**
      * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Jobtriggers$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Jobtriggers$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect triggers: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. The syntax is based on https://google.aip.dev/160. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
@@ -13273,8 +13230,7 @@ export namespace dlp_v2 {
      */
     type?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Jobtriggers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Jobtriggers$Patch extends StandardParameters {
     /**
      * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
@@ -13602,15 +13558,13 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Projectdataprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Projectdataprofiles$Get extends StandardParameters {
     /**
      * Required. Resource name, for example `organizations/12345/locations/us/projectDataProfiles/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Projectdataprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Projectdataprofiles$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields: - `project_id`: the Google Cloud project ID - `sensitivity_level`: HIGH|MODERATE|LOW - `data_risk_level`: HIGH|MODERATE|LOW - `status_code`: an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto - `profile_last_generated`: Date and time the profile was last generated * The operator must be `=` or `!=`. The `profile_last_generated` filter also supports `<` and `\>`. The syntax is based on https://google.aip.dev/160. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `profile_last_generated < "2025-01-01T00:00:00.000Z"` The length of this field should be no more than 500 characters.
      */
@@ -14393,8 +14347,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Storedinfotypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Storedinfotypes$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -14405,22 +14358,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Storedinfotypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Storedinfotypes$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Storedinfotypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Storedinfotypes$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Storedinfotypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Storedinfotypes$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -14442,8 +14392,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Storedinfotypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Storedinfotypes$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
@@ -14926,22 +14875,19 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Tabledataprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Tabledataprofiles$Delete extends StandardParameters {
     /**
      * Required. Resource name of the table data profile.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Tabledataprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Tabledataprofiles$Get extends StandardParameters {
     /**
      * Required. Resource name, for example `organizations/12345/locations/us/tableDataProfiles/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Tabledataprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Tabledataprofiles$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields: - `project_id`: The Google Cloud project ID - `dataset_id`: The BigQuery dataset ID - `table_id`: The ID of the BigQuery table - `sensitivity_level`: HIGH|MODERATE|LOW - `data_risk_level`: HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code`: an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto - `profile_last_generated`: Date and time the profile was last generated * The operator must be `=` or `!=`. The `profile_last_generated` filter also supports `<` and `\>`. The syntax is based on https://google.aip.dev/160. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `profile_last_generated < "2025-01-01T00:00:00.000Z"` The length of this field should be no more than 500 characters.
      */
@@ -15719,8 +15665,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Storedinfotypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Storedinfotypes$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -15731,22 +15676,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Storedinfotypes$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Storedinfotypes$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Storedinfotypes$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -15768,8 +15710,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Storedinfotypes$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
@@ -16297,8 +16238,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Content$Deidentify
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Content$Deidentify extends StandardParameters {
     /**
      * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -16309,8 +16249,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2DeidentifyContentRequest;
   }
-  export interface Params$Resource$Projects$Content$Inspect
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Content$Inspect extends StandardParameters {
     /**
      * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -16321,8 +16260,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2InspectContentRequest;
   }
-  export interface Params$Resource$Projects$Content$Reidentify
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Content$Reidentify extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -17098,8 +17036,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Deidentifytemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deidentifytemplates$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -17110,22 +17047,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deidentifytemplates$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deidentifytemplates$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deidentifytemplates$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -17147,8 +17081,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deidentifytemplates$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
@@ -17907,8 +17840,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Dlpjobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Dlpjobs$Cancel extends StandardParameters {
     /**
      * Required. The name of the DlpJob resource to be cancelled.
      */
@@ -17919,8 +17851,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CancelDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Dlpjobs$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -17931,22 +17862,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Dlpjobs$Delete extends StandardParameters {
     /**
      * Required. The name of the DlpJob resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Dlpjobs$Get extends StandardParameters {
     /**
      * Required. The name of the DlpJob resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Dlpjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Dlpjobs$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect jobs: - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - `trigger_name` - The name of the trigger that created the job. - 'end_time` - Corresponds to the time the job finished. - 'start_time` - Corresponds to the time the job finished. * Supported fields for risk analysis jobs: - `state` - RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to the time the job finished. - 'start_time` - Corresponds to the time the job finished. * The operator must be `=` or `!=`. The syntax is based on https://google.aip.dev/160. Examples: * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
@@ -18147,8 +18075,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Image$Redact
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Image$Redact extends StandardParameters {
     /**
      * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -18924,8 +18851,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Inspecttemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Inspecttemplates$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -18936,22 +18862,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Inspecttemplates$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Inspecttemplates$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Inspecttemplates$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -18973,8 +18896,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Inspecttemplates$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
@@ -19912,8 +19834,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobtriggers$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobtriggers$Activate extends StandardParameters {
     /**
      * Required. Resource name of the trigger to activate, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
@@ -19924,8 +19845,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2ActivateJobTriggerRequest;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobtriggers$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -19936,22 +19856,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateJobTriggerRequest;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobtriggers$Delete extends StandardParameters {
     /**
      * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobtriggers$Get extends StandardParameters {
     /**
      * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobtriggers$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect triggers: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. The syntax is based on https://google.aip.dev/160. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
@@ -19981,8 +19898,7 @@ export namespace dlp_v2 {
      */
     type?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Jobtriggers$Patch extends StandardParameters {
     /**
      * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
@@ -20372,15 +20288,13 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Columndataprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Columndataprofiles$Get extends StandardParameters {
     /**
      * Required. Resource name, for example `organizations/12345/locations/us/columnDataProfiles/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Columndataprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Columndataprofiles$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields: - `table_data_profile_name`: The name of the related table data profile - `project_id`: The Google Cloud project ID (REQUIRED) - `dataset_id`: The BigQuery dataset ID (REQUIRED) - `table_id`: The BigQuery table ID (REQUIRED) - `field_id`: The ID of the BigQuery field - `info_type`: The infotype detected in the resource - `sensitivity_level`: HIGH|MEDIUM|LOW - `data_risk_level`: How much risk is associated with this data - `status_code`: An RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto - `profile_last_generated`: Date and time the profile was last generated * The operator must be `=` for project_id, dataset_id, and table_id. Other filters also support `!=`. The `profile_last_generated` filter also supports `<` and `\>`. The syntax is based on https://google.aip.dev/160. Examples: * project_id = 12345 AND status_code = 1 * project_id = 12345 AND sensitivity_level = HIGH * project_id = 12345 AND info_type = STREET_ADDRESS * profile_last_generated < "2025-01-01T00:00:00.000Z" The length of this field should be no more than 500 characters.
      */
@@ -21299,8 +21213,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id\}/locations/{location_id\}` + Organizations scope: `organizations/{org_id\}/locations/{location_id\}`
      */
@@ -21311,22 +21224,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateConnectionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Delete extends StandardParameters {
     /**
      * Required. Resource name of the Connection to be deleted, in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Get extends StandardParameters {
     /**
      * Required. Resource name in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$List extends StandardParameters {
     /**
      * Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR The syntax is based on https://google.aip.dev/160.
      */
@@ -21344,8 +21254,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Patch extends StandardParameters {
     /**
      * Required. Resource name in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
      */
@@ -21356,8 +21265,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2UpdateConnectionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Search extends StandardParameters {
     /**
      * Optional. Supported field/value: - `state` - MISSING|AVAILABLE|ERROR The syntax is based on https://google.aip.dev/160.
      */
@@ -21863,8 +21771,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Content$Deidentify
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Content$Deidentify extends StandardParameters {
     /**
      * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -21875,8 +21782,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2DeidentifyContentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Content$Inspect
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Content$Inspect extends StandardParameters {
     /**
      * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -21887,8 +21793,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2InspectContentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Content$Reidentify
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Content$Reidentify extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -22669,8 +22574,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deidentifytemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deidentifytemplates$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -22681,22 +22585,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deidentifytemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deidentifytemplates$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deidentifytemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deidentifytemplates$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deidentifytemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deidentifytemplates$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -22718,8 +22619,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deidentifytemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deidentifytemplates$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      */
@@ -23516,8 +23416,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id\}/locations/{location_id\}` + Organizations scope: `organizations/{org_id\}/locations/{location_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -23528,22 +23427,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDiscoveryConfigRequest;
   }
-  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Delete extends StandardParameters {
     /**
      * Required. Resource name of the project and the config, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Get extends StandardParameters {
     /**
      * Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveryconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveryconfigs$List extends StandardParameters {
     /**
      * Comma-separated list of config fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `last_run_time`: corresponds to the last time the DiscoveryConfig ran. - `name`: corresponds to the DiscoveryConfig's name. - `status`: corresponds to DiscoveryConfig's status.
      */
@@ -23561,8 +23457,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Patch extends StandardParameters {
     /**
      * Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
      */
@@ -24612,8 +24507,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dlpjobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dlpjobs$Cancel extends StandardParameters {
     /**
      * Required. The name of the DlpJob resource to be cancelled.
      */
@@ -24624,8 +24518,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CancelDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dlpjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dlpjobs$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -24636,15 +24529,13 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dlpjobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dlpjobs$Delete extends StandardParameters {
     /**
      * Required. The name of the DlpJob resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dlpjobs$Finish
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dlpjobs$Finish extends StandardParameters {
     /**
      * Required. The name of the DlpJob resource to be finished.
      */
@@ -24655,15 +24546,13 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2FinishDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dlpjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dlpjobs$Get extends StandardParameters {
     /**
      * Required. The name of the DlpJob resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect extends StandardParameters {
     /**
      * Required. Resource name of the job to execute a hybrid inspect on, for example `projects/dlp-test-project/dlpJob/53234423`.
      */
@@ -24674,8 +24563,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2HybridInspectDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dlpjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dlpjobs$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect jobs: - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - `trigger_name` - The name of the trigger that created the job. - 'end_time` - Corresponds to the time the job finished. - 'start_time` - Corresponds to the time the job finished. * Supported fields for risk analysis jobs: - `state` - RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to the time the job finished. - 'start_time` - Corresponds to the time the job finished. * The operator must be `=` or `!=`. The syntax is based on https://google.aip.dev/160. Examples: * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
@@ -25174,22 +25062,19 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$Delete extends StandardParameters {
     /**
      * Required. Resource name of the file store data profile.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$Get extends StandardParameters {
     /**
      * Required. Resource name, for example `organizations/12345/locations/us/fileStoreDataProfiles/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$List extends StandardParameters {
     /**
      * Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields: - `project_id`: The Google Cloud project ID - `account_id`: The AWS account ID - `file_store_path`: The path like "gs://bucket" - `data_source_type`: The profile's data source type, like "google/storage/bucket" - `data_storage_location`: The location where the file store's data is stored, like "us-central1" - `sensitivity_level`: HIGH|MODERATE|LOW - `data_risk_level`: HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code`: an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto - `profile_last_generated`: Date and time the profile was last generated * The operator must be `=` or `!=`. The `profile_last_generated` filter also supports `<` and `\>`. The syntax is based on https://google.aip.dev/160. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `file_store_path = "gs://mybucket"` * `profile_last_generated < "2025-01-01T00:00:00.000Z"` The length of this field should be no more than 500 characters.
      */
@@ -25382,8 +25267,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Image$Redact
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Image$Redact extends StandardParameters {
     /**
      * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -25555,8 +25439,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Infotypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Infotypes$List extends StandardParameters {
     /**
      * filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      */
@@ -26342,8 +26225,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Inspecttemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Inspecttemplates$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -26354,22 +26236,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Inspecttemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Inspecttemplates$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Inspecttemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Inspecttemplates$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Inspecttemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Inspecttemplates$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -26391,8 +26270,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Inspecttemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Inspecttemplates$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      */
@@ -27484,8 +27362,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobtriggers$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobtriggers$Activate extends StandardParameters {
     /**
      * Required. Resource name of the trigger to activate, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
@@ -27496,8 +27373,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2ActivateJobTriggerRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobtriggers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobtriggers$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -27508,22 +27384,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateJobTriggerRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobtriggers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobtriggers$Delete extends StandardParameters {
     /**
      * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobtriggers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobtriggers$Get extends StandardParameters {
     /**
      * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect extends StandardParameters {
     /**
      * Required. Resource name of the trigger to execute a hybrid inspect on, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
@@ -27534,8 +27407,7 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2HybridInspectJobTriggerRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobtriggers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobtriggers$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect triggers: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. The syntax is based on https://google.aip.dev/160. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
@@ -27565,8 +27437,7 @@ export namespace dlp_v2 {
      */
     type?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobtriggers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobtriggers$Patch extends StandardParameters {
     /**
      * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
@@ -27894,15 +27765,13 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Projectdataprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Projectdataprofiles$Get extends StandardParameters {
     /**
      * Required. Resource name, for example `organizations/12345/locations/us/projectDataProfiles/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Projectdataprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Projectdataprofiles$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields: - `project_id`: the Google Cloud project ID - `sensitivity_level`: HIGH|MODERATE|LOW - `data_risk_level`: HIGH|MODERATE|LOW - `status_code`: an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto - `profile_last_generated`: Date and time the profile was last generated * The operator must be `=` or `!=`. The `profile_last_generated` filter also supports `<` and `\>`. The syntax is based on https://google.aip.dev/160. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `profile_last_generated < "2025-01-01T00:00:00.000Z"` The length of this field should be no more than 500 characters.
      */
@@ -28682,8 +28551,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Storedinfotypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Storedinfotypes$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -28694,22 +28562,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Storedinfotypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Storedinfotypes$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Storedinfotypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Storedinfotypes$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Storedinfotypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Storedinfotypes$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -28731,8 +28596,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Storedinfotypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Storedinfotypes$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
@@ -29214,22 +29078,19 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tabledataprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tabledataprofiles$Delete extends StandardParameters {
     /**
      * Required. Resource name of the table data profile.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tabledataprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tabledataprofiles$Get extends StandardParameters {
     /**
      * Required. Resource name, for example `organizations/12345/locations/us/tableDataProfiles/53234423`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tabledataprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tabledataprofiles$List extends StandardParameters {
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields: - `project_id`: The Google Cloud project ID - `dataset_id`: The BigQuery dataset ID - `table_id`: The ID of the BigQuery table - `sensitivity_level`: HIGH|MODERATE|LOW - `data_risk_level`: HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code`: an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto - `profile_last_generated`: Date and time the profile was last generated * The operator must be `=` or `!=`. The `profile_last_generated` filter also supports `<` and `\>`. The syntax is based on https://google.aip.dev/160. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `profile_last_generated < "2025-01-01T00:00:00.000Z"` The length of this field should be no more than 500 characters.
      */
@@ -30007,8 +29868,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Storedinfotypes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Storedinfotypes$Create extends StandardParameters {
     /**
      * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
@@ -30019,22 +29879,19 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Storedinfotypes$Delete extends StandardParameters {
     /**
      * Required. Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Storedinfotypes$Get extends StandardParameters {
     /**
      * Required. Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Storedinfotypes$List extends StandardParameters {
     /**
      * Deprecated. This field has no effect.
      */
@@ -30056,8 +29913,7 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Storedinfotypes$Patch extends StandardParameters {
     /**
      * Required. Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      */
