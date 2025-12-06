@@ -450,7 +450,7 @@ export namespace datamigration_v1beta1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1176,15 +1176,13 @@ export namespace datamigration_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2437,8 +2435,7 @@ export namespace datamigration_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Create extends StandardParameters {
     /**
      * Required. The connection profile identifier.
      */
@@ -2457,8 +2454,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$ConnectionProfile;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Delete extends StandardParameters {
     /**
      * In case of force delete, the CloudSQL replica database is also deleted (only for CloudSQL connection profile).
      */
@@ -2472,15 +2468,13 @@ export namespace datamigration_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Get extends StandardParameters {
     /**
      * Required. Name of the connection profile resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2490,8 +2484,7 @@ export namespace datamigration_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$List extends StandardParameters {
     /**
      * A filter expression that filters connection profiles listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list connection profiles created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z**. You can also filter nested fields. For example, you could specify **mySql.username = %lt;my_username%gt;** to list all connection profiles configured to connect with a specific username.
      */
@@ -2513,8 +2506,7 @@ export namespace datamigration_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Patch extends StandardParameters {
     /**
      * The name of this connection profile resource in the form of projects/{project\}/locations/{location\}/connectionProfiles/{connectionProfile\}.
      */
@@ -2533,8 +2525,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$ConnectionProfile;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2545,8 +2536,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4847,8 +4837,7 @@ export namespace datamigration_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Create extends StandardParameters {
     /**
      * Required. The ID of the instance to create.
      */
@@ -4867,8 +4856,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$MigrationJob;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Delete extends StandardParameters {
     /**
      * The destination CloudSQL connection profile is always deleted with the migration job. In case of force delete, the destination CloudSQL replica database is also deleted.
      */
@@ -4882,8 +4870,7 @@ export namespace datamigration_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Generatesshscript
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Generatesshscript extends StandardParameters {
     /**
      * Name of the migration job resource to generate the SSH script.
      */
@@ -4894,15 +4881,13 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$GenerateSshScriptRequest;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Get extends StandardParameters {
     /**
      * Required. Name of the migration job resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4912,8 +4897,7 @@ export namespace datamigration_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$List extends StandardParameters {
     /**
      * A filter expression that filters migration jobs listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list migration jobs created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **reverseSshConnectivity.vmIp = "1.2.3.4"** to select all migration jobs connecting through the specific SSH tunnel bastion.
      */
@@ -4935,8 +4919,7 @@ export namespace datamigration_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Patch extends StandardParameters {
     /**
      * The name (URI) of this migration job resource, in the form of: projects/{project\}/locations/{location\}/migrationJobs/{migrationJob\}.
      */
@@ -4955,8 +4938,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$MigrationJob;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Promote
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Promote extends StandardParameters {
     /**
      * Name of the migration job resource to promote.
      */
@@ -4967,8 +4949,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$PromoteMigrationJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Restart
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Restart extends StandardParameters {
     /**
      * Name of the migration job resource to restart.
      */
@@ -4979,8 +4960,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$RestartMigrationJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Resume extends StandardParameters {
     /**
      * Name of the migration job resource to resume.
      */
@@ -4991,8 +4971,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$ResumeMigrationJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5003,8 +4982,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Start
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Start extends StandardParameters {
     /**
      * Name of the migration job resource to start.
      */
@@ -5015,8 +4993,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$StartMigrationJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Stop
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Stop extends StandardParameters {
     /**
      * Name of the migration job resource to stop.
      */
@@ -5027,8 +5004,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$StopMigrationJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5039,8 +5015,7 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Migrationjobs$Verify
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Verify extends StandardParameters {
     /**
      * Name of the migration job resource to verify.
      */
@@ -5511,7 +5486,7 @@ export namespace datamigration_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5623,8 +5598,7 @@ export namespace datamigration_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -5635,22 +5609,19 @@ export namespace datamigration_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -5668,7 +5639,7 @@ export namespace datamigration_v1beta1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
