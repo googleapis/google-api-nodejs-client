@@ -418,8 +418,7 @@ export namespace iamcredentials_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Workforcepools$Getallowedlocations
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Workforcepools$Getallowedlocations extends StandardParameters {
     /**
      * Required. Resource name of workforce pool.
      */
@@ -609,8 +608,7 @@ export namespace iamcredentials_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations extends StandardParameters {
     /**
      * Required. Resource name of workload identity pool.
      */
@@ -1377,8 +1375,7 @@ export namespace iamcredentials_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Serviceaccounts$Generateaccesstoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Generateaccesstoken extends StandardParameters {
     /**
      * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
@@ -1389,8 +1386,7 @@ export namespace iamcredentials_v1 {
      */
     requestBody?: Schema$GenerateAccessTokenRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Generateidtoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Generateidtoken extends StandardParameters {
     /**
      * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
@@ -1401,15 +1397,13 @@ export namespace iamcredentials_v1 {
      */
     requestBody?: Schema$GenerateIdTokenRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Getallowedlocations
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Getallowedlocations extends StandardParameters {
     /**
      * Required. Resource name of service account.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signblob
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Signblob extends StandardParameters {
     /**
      * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
@@ -1420,8 +1414,7 @@ export namespace iamcredentials_v1 {
      */
     requestBody?: Schema$SignBlobRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signjwt
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Signjwt extends StandardParameters {
     /**
      * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
