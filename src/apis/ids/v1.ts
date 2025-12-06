@@ -646,15 +646,13 @@ export namespace ids_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1449,8 +1447,7 @@ export namespace ids_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Endpoints$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpoints$Create extends StandardParameters {
     /**
      * Required. The endpoint identifier. This will be part of the endpoint's resource name. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen. Values that do not match this pattern will trigger an INVALID_ARGUMENT error.
      */
@@ -1469,8 +1466,7 @@ export namespace ids_v1 {
      */
     requestBody?: Schema$Endpoint;
   }
-  export interface Params$Resource$Projects$Locations$Endpoints$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpoints$Delete extends StandardParameters {
     /**
      * Required. The name of the endpoint to delete.
      */
@@ -1480,15 +1476,13 @@ export namespace ids_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Endpoints$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpoints$Get extends StandardParameters {
     /**
      * Required. The name of the endpoint to retrieve. Format: projects/{project\}/locations/{location\}/endpoints/{endpoint\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Endpoints$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpoints$List extends StandardParameters {
     /**
      * Optional. The filter expression, following the syntax outlined in https://google.aip.dev/160.
      */
@@ -1510,8 +1504,7 @@ export namespace ids_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Endpoints$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Endpoints$Patch extends StandardParameters {
     /**
      * Output only. The name of the endpoint.
      */
@@ -2095,8 +2088,7 @@ export namespace ids_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2107,22 +2099,19 @@ export namespace ids_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
