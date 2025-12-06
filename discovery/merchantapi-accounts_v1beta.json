@@ -2223,6 +2223,40 @@
                 "https://www.googleapis.com/auth/content"
               ]
             }
+          },
+          "resources": {
+            "me": {
+              "methods": {
+                "verifySelf": {
+                  "description": "Updates the user that is represented by the caller from pending to verified.",
+                  "flatPath": "accounts/v1beta/accounts/{accountsId}/users/me:verifySelf",
+                  "httpMethod": "PATCH",
+                  "id": "merchantapi.accounts.users.me.verifySelf",
+                  "parameterOrder": [
+                    "account"
+                  ],
+                  "parameters": {
+                    "account": {
+                      "description": "Required. The name of the account under which the caller is a user. Format: `accounts/{account}`",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "accounts/v1beta/{+account}/users/me:verifySelf",
+                  "request": {
+                    "$ref": "VerifySelfRequest"
+                  },
+                  "response": {
+                    "$ref": "User"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/content"
+                  ]
+                }
+              }
+            }
           }
         }
       }
@@ -2326,7 +2360,7 @@
       }
     }
   },
-  "revision": "20251023",
+  "revision": "20251120",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -2525,6 +2559,10 @@
           "$ref": "CampaignsManagement",
           "description": "Service type for managing advertising campaigns. Grants the provider access to create and manage the business's ad campaigns, including setting up campaigns, adjusting bids, and optimizing performance."
         },
+        "comparisonShopping": {
+          "$ref": "ComparisonShopping",
+          "description": "Service type for comparison shopping. The provider is a CSS (Comparison Shopping Service) managing the account. See https://support.google.com/merchants/answer/12653197"
+        },
         "externalAccountId": {
           "description": "Immutable. An optional, immutable identifier that Google uses to refer to this account when communicating with the provider. This should be the unique account ID within the provider's system (for example, your shop ID in Shopify). If you have multiple accounts with the same provider - for instance, different accounts for various regions — the `external_account_id` differentiates between them, ensuring accurate linking and integration between Google and the provider.",
           "type": "string"
@@ -2582,6 +2620,26 @@
           "$ref": "AccountAggregation",
           "description": "The provider is an [aggregator](https://support.google.com/merchants/answer/188487) for the account. Payload for service type Account Aggregation."
         },
+        "accountManagement": {
+          "$ref": "AccountManagement",
+          "description": "The provider manages this account. Payload for service type Account Management."
+        },
+        "campaignsManagement": {
+          "$ref": "CampaignsManagement",
+          "description": "The provider manages campaigns for this account. Payload for service type campaigns management."
+        },
+        "comparisonShopping": {
+          "$ref": "ComparisonShopping",
+          "description": "The provider is a CSS (Comparison Shopping Service) of this account. Payload for service type Comparison Shopping."
+        },
+        "externalAccountId": {
+          "description": "Immutable. An optional, immutable identifier that Google uses to refer to this account when communicating with the provider. This should be the unique account ID within the provider's system (for example, your shop ID in Shopify). If you have multiple accounts with the same provider - for instance, different accounts for various regions — the `external_account_id` differentiates between them, ensuring accurate linking and integration between Google and the provider. The external account ID must be specified for the campaigns management service type. The external account ID must not be specified for the account aggregation service type. The external account ID is optional / may be specified for all other service types.",
+          "type": "string"
+        },
+        "productsManagement": {
+          "$ref": "ProductsManagement",
+          "description": "The provider manages products for this account. Payload for service type products management."
+        },
         "provider": {
           "description": "Required. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).",
           "type": "string"
@@ -2600,6 +2658,10 @@
         "userId": {
           "description": "Required. The email address of the user (for example, `john.doe@gmail.com`).",
           "type": "string"
+        },
+        "verificationMailSettings": {
+          "$ref": "VerificationMailSettings",
+          "description": "Optional. Settings related to configuring the verification email that is sent after adding a user."
         }
       },
       "type": "object"
@@ -3033,6 +3095,12 @@
       },
       "type": "object"
     },
+    "ComparisonShopping": {
+      "description": "`ComparisonShopping` payload.",
+      "id": "ComparisonShopping",
+      "properties": {},
+      "type": "object"
+    },
     "CreateAndConfigureAccountRequest": {
       "description": "Request message for the `CreateAndConfigureAccount` method.",
       "id": "CreateAndConfigureAccountRequest",
@@ -3045,6 +3113,13 @@
           "description": "Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation` and `accounts.createAndConfigure` method can be used to create a sub-account under an existing advanced account through this method. Additional `account_management` or `product_management` services may be provided.",
           "items": {
             "$ref": "AddAccountService"
+          },
+          "type": "array"
+        },
+        "setAlias": {
+          "description": "Optional. If a relationship is created with a provider, you can set an alias for it with this field. The calling user must be an admin on the provider to be able to set an alias.",
+          "items": {
+            "$ref": "SetAliasForRelationship"
           },
           "type": "array"
         },
@@ -3734,6 +3809,23 @@
         "allowStrictAvailabilityUpdates": {
           "description": "If `allow_availability_updates` is enabled, items are automatically updated in all your Shopping target countries. By default, availability updates will only be applied to items that are 'out of stock' on your website but 'in stock' on Shopping. Set this to true to also update items that are 'in stock' on your website, but 'out of stock' on Google Shopping. In order for this field to have an effect, you must also set `allow_availability_updates`.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "LatLng": {
+      "description": "An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.",
+      "id": "LatLng",
+      "properties": {
+        "latitude": {
+          "description": "The latitude in degrees. It must be in the range [-90.0, +90.0].",
+          "format": "double",
+          "type": "number"
+        },
+        "longitude": {
+          "description": "The longitude in degrees. It must be in the range [-180.0, +180.0].",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -4719,6 +4811,40 @@
       },
       "type": "object"
     },
+    "RadiusArea": {
+      "description": "A radius area that defines the region area.",
+      "id": "RadiusArea",
+      "properties": {
+        "latLng": {
+          "$ref": "LatLng",
+          "description": "Required. The center of the radius area. It represents a latitude/longitude pair in decimal degrees format."
+        },
+        "radius": {
+          "description": "Required. The radius distance of the area.",
+          "format": "double",
+          "type": "number"
+        },
+        "radiusUnits": {
+          "description": "Optional. The unit of the radius.",
+          "enum": [
+            "RADIUS_UNITS_UNSPECIFIED",
+            "MILES",
+            "KILOMETERS"
+          ],
+          "enumDescriptions": [
+            "Unused default value",
+            "The distance is measured in miles.",
+            "The distance is measured in kilometers."
+          ],
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Required. [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) or the country the radius area applies to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RateGroup": {
       "description": "Shipping rate group definitions. Only the last one is allowed to have an empty `applicable_shipping_labels`, which means \"everything else\". The other `applicable_shipping_labels` must not overlap.",
       "id": "RateGroup",
@@ -4778,6 +4904,10 @@
         "postalCodeArea": {
           "$ref": "PostalCodeArea",
           "description": "Optional. A list of postal codes that defines the region area."
+        },
+        "radiusArea": {
+          "$ref": "RadiusArea",
+          "description": "Optional. A radius area that defines the region area."
         },
         "regionalInventoryEligible": {
           "description": "Output only. Indicates if the region is eligible for use in the Regional Inventory configuration.",
@@ -5016,6 +5146,21 @@
         "storeConfig": {
           "$ref": "StoreConfig",
           "description": "A list of stores your products are delivered from. This is only valid for the local delivery shipment type."
+        }
+      },
+      "type": "object"
+    },
+    "SetAliasForRelationship": {
+      "description": "Set an alias for a relationship between a provider and the account to be created.",
+      "id": "SetAliasForRelationship",
+      "properties": {
+        "accountIdAlias": {
+          "description": "Required. The unique ID of this account in the provider's system. The value must be unique across all accounts on the platform for this provider.",
+          "type": "string"
+        },
+        "provider": {
+          "description": "Required. The provider of the service. This is a reference to an account such as `providers/123` or `accounts/123`. The same provider must be specified in at least one of the `service` fields.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5389,6 +5534,33 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "VerificationMailSettings": {
+      "description": "Settings related to the verification email that is sent after adding a user.",
+      "id": "VerificationMailSettings",
+      "properties": {
+        "verificationMailMode": {
+          "description": "Optional. Mode of the verification mail. If not set, the default is `SEND_VERIFICATION_MAIL`.",
+          "enum": [
+            "VERIFICATION_MAIL_MODE_UNSPECIFIED",
+            "SEND_VERIFICATION_MAIL",
+            "SUPPRESS_VERIFICATION_MAIL"
+          ],
+          "enumDescriptions": [
+            "Default first member of every enum. Do not use.",
+            "An invitation email is sent to the user added shortly after.",
+            "No invitation email is sent. This can be useful if the user is expected to accept the invitation through the API without needing another notification."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VerifySelfRequest": {
+      "description": "Request message for the `VerifySelf` method.",
+      "id": "VerifySelfRequest",
+      "properties": {},
       "type": "object"
     },
     "Warehouse": {

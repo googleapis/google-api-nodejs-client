@@ -273,6 +273,10 @@ export namespace merchantapi_accounts_v1beta {
      */
     campaignsManagement?: Schema$CampaignsManagement;
     /**
+     * Service type for comparison shopping. The provider is a CSS (Comparison Shopping Service) managing the account. See https://support.google.com/merchants/answer/12653197
+     */
+    comparisonShopping?: Schema$ComparisonShopping;
+    /**
      * Immutable. An optional, immutable identifier that Google uses to refer to this account when communicating with the provider. This should be the unique account ID within the provider's system (for example, your shop ID in Shopify). If you have multiple accounts with the same provider - for instance, different accounts for various regions — the `external_account_id` differentiates between them, ensuring accurate linking and integration between Google and the provider.
      */
     externalAccountId?: string | null;
@@ -313,6 +317,26 @@ export namespace merchantapi_accounts_v1beta {
      * The provider is an [aggregator](https://support.google.com/merchants/answer/188487) for the account. Payload for service type Account Aggregation.
      */
     accountAggregation?: Schema$AccountAggregation;
+    /**
+     * The provider manages this account. Payload for service type Account Management.
+     */
+    accountManagement?: Schema$AccountManagement;
+    /**
+     * The provider manages campaigns for this account. Payload for service type campaigns management.
+     */
+    campaignsManagement?: Schema$CampaignsManagement;
+    /**
+     * The provider is a CSS (Comparison Shopping Service) of this account. Payload for service type Comparison Shopping.
+     */
+    comparisonShopping?: Schema$ComparisonShopping;
+    /**
+     * Immutable. An optional, immutable identifier that Google uses to refer to this account when communicating with the provider. This should be the unique account ID within the provider's system (for example, your shop ID in Shopify). If you have multiple accounts with the same provider - for instance, different accounts for various regions — the `external_account_id` differentiates between them, ensuring accurate linking and integration between Google and the provider. The external account ID must be specified for the campaigns management service type. The external account ID must not be specified for the account aggregation service type. The external account ID is optional / may be specified for all other service types.
+     */
+    externalAccountId?: string | null;
+    /**
+     * The provider manages products for this account. Payload for service type products management.
+     */
+    productsManagement?: Schema$ProductsManagement;
     /**
      * Required. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).
      */
@@ -355,6 +379,10 @@ export namespace merchantapi_accounts_v1beta {
      * Required. The email address of the user (for example, `john.doe@gmail.com`).
      */
     userId?: string | null;
+    /**
+     * Optional. Settings related to configuring the verification email that is sent after adding a user.
+     */
+    verificationMailSettings?: Schema$VerificationMailSettings;
   }
   /**
    * Request to approve an account service.
@@ -596,6 +624,10 @@ export namespace merchantapi_accounts_v1beta {
     overwrite?: boolean | null;
   }
   /**
+   * `ComparisonShopping` payload.
+   */
+  export interface Schema$ComparisonShopping {}
+  /**
    * Request message for the `CreateAndConfigureAccount` method.
    */
   export interface Schema$CreateAndConfigureAccountRequest {
@@ -607,6 +639,10 @@ export namespace merchantapi_accounts_v1beta {
      * Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation` and `accounts.createAndConfigure` method can be used to create a sub-account under an existing advanced account through this method. Additional `account_management` or `product_management` services may be provided.
      */
     service?: Schema$AddAccountService[];
+    /**
+     * Optional. If a relationship is created with a provider, you can set an alias for it with this field. The calling user must be an admin on the provider to be able to set an alias.
+     */
+    setAlias?: Schema$SetAliasForRelationship[];
     /**
      * Optional. Users to be added to the account.
      */
@@ -1002,6 +1038,19 @@ export namespace merchantapi_accounts_v1beta {
      * If `allow_availability_updates` is enabled, items are automatically updated in all your Shopping target countries. By default, availability updates will only be applied to items that are 'out of stock' on your website but 'in stock' on Shopping. Set this to true to also update items that are 'in stock' on your website, but 'out of stock' on Google Shopping. In order for this field to have an effect, you must also set `allow_availability_updates`.
      */
     allowStrictAvailabilityUpdates?: boolean | null;
+  }
+  /**
+   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.
+   */
+  export interface Schema$LatLng {
+    /**
+     * The latitude in degrees. It must be in the range [-90.0, +90.0].
+     */
+    latitude?: number | null;
+    /**
+     * The longitude in degrees. It must be in the range [-180.0, +180.0].
+     */
+    longitude?: number | null;
   }
   /**
    * Collection of information related to the LFP link.
@@ -1628,6 +1677,27 @@ export namespace merchantapi_accounts_v1beta {
     provider?: string | null;
   }
   /**
+   * A radius area that defines the region area.
+   */
+  export interface Schema$RadiusArea {
+    /**
+     * Required. The center of the radius area. It represents a latitude/longitude pair in decimal degrees format.
+     */
+    latLng?: Schema$LatLng;
+    /**
+     * Required. The radius distance of the area.
+     */
+    radius?: number | null;
+    /**
+     * Optional. The unit of the radius.
+     */
+    radiusUnits?: string | null;
+    /**
+     * Required. [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) or the country the radius area applies to.
+     */
+    regionCode?: string | null;
+  }
+  /**
    * Shipping rate group definitions. Only the last one is allowed to have an empty `applicable_shipping_labels`, which means "everything else". The other `applicable_shipping_labels` must not overlap.
    */
   export interface Schema$RateGroup {
@@ -1676,6 +1746,10 @@ export namespace merchantapi_accounts_v1beta {
      * Optional. A list of postal codes that defines the region area.
      */
     postalCodeArea?: Schema$PostalCodeArea;
+    /**
+     * Optional. A radius area that defines the region area.
+     */
+    radiusArea?: Schema$RadiusArea;
     /**
      * Output only. Indicates if the region is eligible for use in the Regional Inventory configuration.
      */
@@ -1846,6 +1920,19 @@ export namespace merchantapi_accounts_v1beta {
      * A list of stores your products are delivered from. This is only valid for the local delivery shipment type.
      */
     storeConfig?: Schema$StoreConfig;
+  }
+  /**
+   * Set an alias for a relationship between a provider and the account to be created.
+   */
+  export interface Schema$SetAliasForRelationship {
+    /**
+     * Required. The unique ID of this account in the provider's system. The value must be unique across all accounts on the platform for this provider.
+     */
+    accountIdAlias?: string | null;
+    /**
+     * Required. The provider of the service. This is a reference to an account such as `providers/123` or `accounts/123`. The same provider must be specified in at least one of the `service` fields.
+     */
+    provider?: string | null;
   }
   /**
    * The Merchant Center account's [shipping settings](https://support.google.com/merchants/answer/6069284). The `ShippingSettings` resource lets you retrieve and update the shipping settings of your advanced account and all its associated sub-accounts.
@@ -2102,6 +2189,19 @@ export namespace merchantapi_accounts_v1beta {
     subtable?: string | null;
   }
   /**
+   * Settings related to the verification email that is sent after adding a user.
+   */
+  export interface Schema$VerificationMailSettings {
+    /**
+     * Optional. Mode of the verification mail. If not set, the default is `SEND_VERIFICATION_MAIL`.
+     */
+    verificationMailMode?: string | null;
+  }
+  /**
+   * Request message for the `VerifySelf` method.
+   */
+  export interface Schema$VerifySelfRequest {}
+  /**
    * A fulfillment warehouse, which stores and handles inventory.
    */
   export interface Schema$Warehouse {
@@ -2266,6 +2366,7 @@ export namespace merchantapi_accounts_v1beta {
      *       // {
      *       //   "account": {},
      *       //   "service": [],
+     *       //   "setAlias": [],
      *       //   "user": [],
      *       //   "users": []
      *       // }
@@ -3104,8 +3205,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Createandconfigure
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Createandconfigure extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -3141,8 +3241,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Listsubaccounts
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Listsubaccounts extends StandardParameters {
     /**
      * Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 250 accounts are returned. The maximum value is 500; values above 500 are coerced to 500.
      */
@@ -3476,15 +3575,13 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Autofeedsettings$Getautofeedsettings
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Autofeedsettings$Getautofeedsettings extends StandardParameters {
     /**
      * Required. The resource name of the autofeed settings. Format: `accounts/{account\}/autofeedSettings`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Autofeedsettings$Updateautofeedsettings
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Autofeedsettings$Updateautofeedsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the autofeed settings. Format: `accounts/{account\}/autofeedSettings`.
      */
@@ -3814,15 +3911,13 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements extends StandardParameters {
     /**
      * Required. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements extends StandardParameters {
     /**
      * Identifier. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`.
      */
@@ -4154,15 +4249,13 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Businessidentity$Getbusinessidentity
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Businessidentity$Getbusinessidentity extends StandardParameters {
     /**
      * Required. The resource name of the business identity. Format: `accounts/{account\}/businessIdentity`. For example, `accounts/123456/businessIdentity`.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Businessidentity$Updatebusinessidentity
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Businessidentity$Updatebusinessidentity extends StandardParameters {
     /**
      * Identifier. The resource name of the business identity. Format: `accounts/{account\}/businessIdentity`
      */
@@ -4486,15 +4579,13 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Businessinfo$Getbusinessinfo
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Businessinfo$Getbusinessinfo extends StandardParameters {
     /**
      * Required. The resource name of the business info. Format: `accounts/{account\}/businessInfo`. For example, `accounts/123456/businessInfo`.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Businessinfo$Updatebusinessinfo
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Businessinfo$Updatebusinessinfo extends StandardParameters {
     /**
      * Identifier. The resource name of the business info. Format: `accounts/{account\}/businessInfo`
      */
@@ -5101,17 +5192,14 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Developerregistration$Getaccountforgcpregistration
-    extends StandardParameters {}
-  export interface Params$Resource$Accounts$Developerregistration$Getdeveloperregistration
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Developerregistration$Getaccountforgcpregistration extends StandardParameters {}
+  export interface Params$Resource$Accounts$Developerregistration$Getdeveloperregistration extends StandardParameters {
     /**
      * Required. The `name` (ID) of the developer registration.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Developerregistration$Registergcp
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Developerregistration$Registergcp extends StandardParameters {
     /**
      * Required. The name of the developer registration to be created for the merchant account that the GCP will be registered with. Format: `accounts/{account\}/developerRegistration`
      */
@@ -5122,8 +5210,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$RegisterGcpRequest;
   }
-  export interface Params$Resource$Accounts$Developerregistration$Unregistergcp
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Developerregistration$Unregistergcp extends StandardParameters {
     /**
      * Required. The name of the developer registration to be created for the merchant account that the GCP will be registered with. Format: `accounts/{account\}/developerRegistration`
      */
@@ -5436,15 +5523,13 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Emailpreferences$Getemailpreferences
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Emailpreferences$Getemailpreferences extends StandardParameters {
     /**
      * Required. The name of the `EmailPreferences` resource. Format: `accounts/{account\}/users/{email\}/emailPreferences`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Emailpreferences$Updateemailpreferences
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Emailpreferences$Updateemailpreferences extends StandardParameters {
     /**
      * Identifier. The name of the EmailPreferences. The endpoint is only supported for the authenticated user.
      */
@@ -5759,8 +5844,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount extends StandardParameters {
     /**
      * Required. The name of the parent resource to which the GBP account is linked. Format: `accounts/{account\}`.
      */
@@ -5771,8 +5855,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$LinkGbpAccountRequest;
   }
-  export interface Params$Resource$Accounts$Gbpaccounts$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Gbpaccounts$List extends StandardParameters {
     /**
      * Optional. The maximum number of `GbpAccount` resources to return. The service returns fewer than this value if the number of gbp accounts is less that than the `pageSize`. The default value is 50. The maximum value is 1000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum.
      */
@@ -6376,8 +6459,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Homepage$Claim
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Homepage$Claim extends StandardParameters {
     /**
      * Required. The name of the homepage to claim. Format: `accounts/{account\}/homepage`
      */
@@ -6388,15 +6470,13 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$ClaimHomepageRequest;
   }
-  export interface Params$Resource$Accounts$Homepage$Gethomepage
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Homepage$Gethomepage extends StandardParameters {
     /**
      * Required. The name of the homepage to retrieve. Format: `accounts/{account\}/homepage`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Homepage$Unclaim
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Homepage$Unclaim extends StandardParameters {
     /**
      * Required. The name of the homepage to unclaim. Format: `accounts/{account\}/homepage`
      */
@@ -6407,8 +6487,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$UnclaimHomepageRequest;
   }
-  export interface Params$Resource$Accounts$Homepage$Updatehomepage
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Homepage$Updatehomepage extends StandardParameters {
     /**
      * Identifier. The resource name of the store's homepage. Format: `accounts/{account\}/homepage`
      */
@@ -6581,8 +6660,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Issues$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Issues$List extends StandardParameters {
     /**
      * Optional. The issues in the response will have human-readable fields in the given language. The format is [BCP-47](https://tools.ietf.org/html/bcp47), such as `en-US` or `sr-Latn`. If not value is provided, `en-US` will be used.
      */
@@ -7386,8 +7464,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Omnichannelsettings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Omnichannelsettings$Create extends StandardParameters {
     /**
      * Required. The parent resource where this omnichannel setting will be created. Format: `accounts/{account\}`
      */
@@ -7398,15 +7475,13 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$OmnichannelSetting;
   }
-  export interface Params$Resource$Accounts$Omnichannelsettings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Omnichannelsettings$Get extends StandardParameters {
     /**
      * Required. The name of the omnichannel setting to retrieve. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Omnichannelsettings$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Omnichannelsettings$List extends StandardParameters {
     /**
      * Optional. The maximum number of omnichannel settings to return. The service may return fewer than this value. If unspecified, at most 50 omnichannel settings will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -7420,8 +7495,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Omnichannelsettings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Omnichannelsettings$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the omnichannel setting. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`
      */
@@ -7436,8 +7510,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$OmnichannelSetting;
   }
-  export interface Params$Resource$Accounts$Omnichannelsettings$Requestinventoryverification
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Omnichannelsettings$Requestinventoryverification extends StandardParameters {
     /**
      * Required. The name of the omnichannel setting to request inventory verification. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`
      */
@@ -7753,8 +7826,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find extends StandardParameters {
     /**
      * Optional. The maximum number of `LfpProvider` resources to return. The service returns fewer than this value if the number of lfp providers is less that than the `pageSize`. The default value is 50. The maximum value is 1000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum.
      */
@@ -7768,8 +7840,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider extends StandardParameters {
     /**
      * Required. The name of the LFP provider resource to link. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}/lfpProviders/{lfp_provider\}`. The `lfp_provider` is the LFP provider ID.
      */
@@ -8572,8 +8643,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Onlinereturnpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Onlinereturnpolicies$Create extends StandardParameters {
     /**
      * Required. The Merchant Center account for which the return policy will be created. Format: `accounts/{account\}`
      */
@@ -8584,22 +8654,19 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$OnlineReturnPolicy;
   }
-  export interface Params$Resource$Accounts$Onlinereturnpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Onlinereturnpolicies$Delete extends StandardParameters {
     /**
      * Required. The name of the return policy to delete. Format: `accounts/{account\}/onlineReturnPolicies/{return_policy\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Onlinereturnpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Onlinereturnpolicies$Get extends StandardParameters {
     /**
      * Required. The name of the return policy to retrieve. Format: `accounts/{account\}/onlineReturnPolicies/{return_policy\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Onlinereturnpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Onlinereturnpolicies$List extends StandardParameters {
     /**
      * Optional. The maximum number of `OnlineReturnPolicy` resources to return. The service returns fewer than this value if the number of return policies for the given business is less that than the `pageSize`. The default value is 10. The maximum value is 100; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum
      */
@@ -8613,8 +8680,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Onlinereturnpolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Onlinereturnpolicies$Patch extends StandardParameters {
     /**
      * Identifier. The name of the `OnlineReturnPolicy` resource. Format: `accounts/{account\}/onlineReturnPolicies/{return_policy\}`
      */
@@ -9220,8 +9286,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Programs$Disable
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Programs$Disable extends StandardParameters {
     /**
      * Required. The name of the program for which to disable participation for the given account. Format: `accounts/{account\}/programs/{program\}`. For example, `accounts/123456/programs/free-listings`.
      */
@@ -9232,8 +9297,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$DisableProgramRequest;
   }
-  export interface Params$Resource$Accounts$Programs$Enable
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Programs$Enable extends StandardParameters {
     /**
      * Required. The name of the program for which to enable participation for the given account. Format: `accounts/{account\}/programs/{program\}`. For example, `accounts/123456/programs/free-listings`.
      */
@@ -9244,15 +9308,13 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$EnableProgramRequest;
   }
-  export interface Params$Resource$Accounts$Programs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Programs$Get extends StandardParameters {
     /**
      * Required. The name of the program to retrieve. Format: `accounts/{account\}/programs/{program\}`. For example, `accounts/123456/programs/free-listings`.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Programs$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Programs$List extends StandardParameters {
     /**
      * Optional. The maximum number of programs to return in a single response. If unspecified (or 0), a default size of 1000 is used. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -9887,8 +9949,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Create extends StandardParameters {
     /**
      * Required. The merchant account for which the `CheckoutSettings` will be created.
      */
@@ -9899,22 +9960,19 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$CheckoutSettings;
   }
-  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Deletecheckoutsettings
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Deletecheckoutsettings extends StandardParameters {
     /**
      * Required. The name/identifier of the merchant account. Format: `accounts/{account\}/programs/{program\}/checkoutSettings`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Getcheckoutsettings
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Getcheckoutsettings extends StandardParameters {
     /**
      * Required. The name/identifier of the merchant account. Format: `accounts/{account\}/programs/{program\}/checkoutSettings`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Updatecheckoutsettings
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Updatecheckoutsettings extends StandardParameters {
     /**
      * Identifier. The resource name of the program configuration settings. Format: `accounts/{account\}/programs/{program\}/checkoutSettings`
      */
@@ -9980,6 +10038,7 @@ export namespace merchantapi_accounts_v1beta {
      *       //   "geotargetArea": {},
      *       //   "name": "my_name",
      *       //   "postalCodeArea": {},
+     *       //   "radiusArea": {},
      *       //   "regionalInventoryEligible": false,
      *       //   "shippingEligible": false
      *       // }
@@ -9993,6 +10052,7 @@ export namespace merchantapi_accounts_v1beta {
      *   //   "geotargetArea": {},
      *   //   "name": "my_name",
      *   //   "postalCodeArea": {},
+     *   //   "radiusArea": {},
      *   //   "regionalInventoryEligible": false,
      *   //   "shippingEligible": false
      *   // }
@@ -10270,6 +10330,7 @@ export namespace merchantapi_accounts_v1beta {
      *   //   "geotargetArea": {},
      *   //   "name": "my_name",
      *   //   "postalCodeArea": {},
+     *   //   "radiusArea": {},
      *   //   "regionalInventoryEligible": false,
      *   //   "shippingEligible": false
      *   // }
@@ -10556,6 +10617,7 @@ export namespace merchantapi_accounts_v1beta {
      *       //   "geotargetArea": {},
      *       //   "name": "my_name",
      *       //   "postalCodeArea": {},
+     *       //   "radiusArea": {},
      *       //   "regionalInventoryEligible": false,
      *       //   "shippingEligible": false
      *       // }
@@ -10569,6 +10631,7 @@ export namespace merchantapi_accounts_v1beta {
      *   //   "geotargetArea": {},
      *   //   "name": "my_name",
      *   //   "postalCodeArea": {},
+     *   //   "radiusArea": {},
      *   //   "regionalInventoryEligible": false,
      *   //   "shippingEligible": false
      *   // }
@@ -10670,8 +10733,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Regions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Regions$Create extends StandardParameters {
     /**
      * Required. The account to create a region for. Format: `accounts/{account\}`
      */
@@ -10686,22 +10748,19 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$Region;
   }
-  export interface Params$Resource$Accounts$Regions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Regions$Delete extends StandardParameters {
     /**
      * Required. The name of the region to delete. Format: `accounts/{account\}/regions/{region\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Regions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Regions$Get extends StandardParameters {
     /**
      * Required. The name of the region to retrieve. Format: `accounts/{account\}/regions/{region\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Regions$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Regions$List extends StandardParameters {
     /**
      * Optional. The maximum number of regions to return. The service may return fewer than this value. If unspecified, at most 50 regions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -10715,8 +10774,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Regions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Regions$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the region. Format: `accounts/{account\}/regions/{region\}`
      */
@@ -11184,15 +11242,13 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Relationships$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Relationships$Get extends StandardParameters {
     /**
      * Required. The resource name of the account relationship to get. Format: `accounts/{account\}/relationships/{relationship\}`. For example, `accounts/123456/relationships/567890`.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Relationships$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Relationships$List extends StandardParameters {
     /**
      * Optional. The maximum number of elements to return in the response. Use for paging. If no `page_size` is specified, `100` is used as the default value. The maximum allowed value is `1000`.
      */
@@ -11206,8 +11262,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Relationships$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Relationships$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the account relationship. Format: `accounts/{account\}/relationships/{relationship\}`. For example, `accounts/123456/relationships/567890`.
      */
@@ -11276,6 +11331,7 @@ export namespace merchantapi_accounts_v1beta {
      *   //   "accountAggregation": {},
      *   //   "accountManagement": {},
      *   //   "campaignsManagement": {},
+     *   //   "comparisonShopping": {},
      *   //   "externalAccountId": "my_externalAccountId",
      *   //   "handshake": {},
      *   //   "localListingManagement": {},
@@ -11423,6 +11479,7 @@ export namespace merchantapi_accounts_v1beta {
      *   //   "accountAggregation": {},
      *   //   "accountManagement": {},
      *   //   "campaignsManagement": {},
+     *   //   "comparisonShopping": {},
      *   //   "externalAccountId": "my_externalAccountId",
      *   //   "handshake": {},
      *   //   "localListingManagement": {},
@@ -11725,6 +11782,7 @@ export namespace merchantapi_accounts_v1beta {
      *   //   "accountAggregation": {},
      *   //   "accountManagement": {},
      *   //   "campaignsManagement": {},
+     *   //   "comparisonShopping": {},
      *   //   "externalAccountId": "my_externalAccountId",
      *   //   "handshake": {},
      *   //   "localListingManagement": {},
@@ -11972,8 +12030,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Services$Approve
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Services$Approve extends StandardParameters {
     /**
      * Required. The resource name of the account service to approve. Format: `accounts/{account\}/services/{service\}`
      */
@@ -11984,15 +12041,13 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$ApproveAccountServiceRequest;
   }
-  export interface Params$Resource$Accounts$Services$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Services$Get extends StandardParameters {
     /**
      * Required. The resource name of the account service to get. Format: `accounts/{account\}/services/{service\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Services$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Services$List extends StandardParameters {
     /**
      * Optional. The maximum number of elements to return in the response. Use for paging. If no `page_size` is specified, `100` is used as the default value. The maximum allowed value is `1000`.
      */
@@ -12006,8 +12061,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Services$Propose
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Services$Propose extends StandardParameters {
     /**
      * Required. The resource name of the parent account for the service. Format: `accounts/{account\}`
      */
@@ -12018,8 +12072,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$ProposeAccountServiceRequest;
   }
-  export interface Params$Resource$Accounts$Services$Reject
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Services$Reject extends StandardParameters {
     /**
      * Required. The resource name of the account service to reject. Format: `accounts/{account\}/services/{service\}`
      */
@@ -12331,15 +12384,13 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Shippingsettings$Getshippingsettings
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Shippingsettings$Getshippingsettings extends StandardParameters {
     /**
      * Required. The name of the shipping setting to retrieve. Format: `accounts/{account\}/shippingsettings`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Shippingsettings$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Shippingsettings$Insert extends StandardParameters {
     /**
      * Required. The account for which this shipping setting will be inserted. If you are using an advanced account, you must specify the unique identifier of the sub-account for which you want to insert the shipping setting. Format: `accounts/{ACCOUNT_ID\}`
      */
@@ -12657,15 +12708,13 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Termsofserviceagreementstates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Termsofserviceagreementstates$Get extends StandardParameters {
     /**
      * Required. The resource name of the terms of service version. Format: `accounts/{account\}/termsOfServiceAgreementStates/{identifier\}` The identifier format is: `{TermsOfServiceKind\}-{country\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Termsofserviceagreementstates$Retrieveforapplication
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Termsofserviceagreementstates$Retrieveforapplication extends StandardParameters {
     /**
      * Required. The account for which to get a TermsOfServiceAgreementState Format: `accounts/{account\}`
      */
@@ -12674,8 +12723,10 @@ export namespace merchantapi_accounts_v1beta {
 
   export class Resource$Accounts$Users {
     context: APIRequestContext;
+    me: Resource$Accounts$Users$Me;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.me = new Resource$Accounts$Users$Me(this.context);
     }
 
     /**
@@ -13397,8 +13448,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Users$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Users$Create extends StandardParameters {
     /**
      * Required. The resource name of the account for which a user will be created. Format: `accounts/{account\}`
      */
@@ -13413,22 +13463,19 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$User;
   }
-  export interface Params$Resource$Accounts$Users$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Users$Delete extends StandardParameters {
     /**
      * Required. The name of the user to delete. Format: `accounts/{account\}/users/{email\}` It is also possible to delete the user corresponding to the caller by using `me` rather than an email address as in `accounts/{account\}/users/me`.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Users$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Users$Get extends StandardParameters {
     /**
      * Required. The name of the user to retrieve. Format: `accounts/{account\}/users/{email\}` It is also possible to retrieve the user corresponding to the caller by using `me` rather than an email address as in `accounts/{account\}/users/me`.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Users$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Users$List extends StandardParameters {
     /**
      * Optional. The maximum number of users to return. The service may return fewer than this value. If unspecified, at most 50 users will be returned. The maximum value is 100; values above 100 will be coerced to 100
      */
@@ -13442,8 +13489,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Users$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Users$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the user. Format: `accounts/{account\}/user/{email\}` Use `me` to refer to your own email address, for example `accounts/{account\}/users/me`.
      */
@@ -13457,6 +13503,169 @@ export namespace merchantapi_accounts_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$User;
+  }
+
+  export class Resource$Accounts$Users$Me {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Updates the user that is represented by the caller from pending to verified.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.users.me.verifySelf({
+     *     // Required. The name of the account under which the caller is a user. Format: `accounts/{account\}`
+     *     account: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRights": [],
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    verifySelf(
+      params: Params$Resource$Accounts$Users$Me$Verifyself,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    verifySelf(
+      params?: Params$Resource$Accounts$Users$Me$Verifyself,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
+    verifySelf(
+      params: Params$Resource$Accounts$Users$Me$Verifyself,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    verifySelf(
+      params: Params$Resource$Accounts$Users$Me$Verifyself,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    verifySelf(
+      params: Params$Resource$Accounts$Users$Me$Verifyself,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    verifySelf(callback: BodyResponseCallback<Schema$User>): void;
+    verifySelf(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Users$Me$Verifyself
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Users$Me$Verifyself;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Users$Me$Verifyself;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1beta/{+account}/users/me:verifySelf'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['account'],
+        pathParams: ['account'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Users$Me$Verifyself extends StandardParameters {
+    /**
+     * Required. The name of the account under which the caller is a user. Format: `accounts/{account\}`
+     */
+    account?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VerifySelfRequest;
   }
 
   export class Resource$Termsofservice {
@@ -13896,8 +14105,7 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
-  export interface Params$Resource$Termsofservice$Accept
-    extends StandardParameters {
+  export interface Params$Resource$Termsofservice$Accept extends StandardParameters {
     /**
      * Required. The account for which to accept the ToS. Format: `accounts/{account\}`
      */
@@ -13911,15 +14119,13 @@ export namespace merchantapi_accounts_v1beta {
      */
     regionCode?: string;
   }
-  export interface Params$Resource$Termsofservice$Get
-    extends StandardParameters {
+  export interface Params$Resource$Termsofservice$Get extends StandardParameters {
     /**
      * Required. The resource name of the terms of service version. Format: `termsOfService/{version\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Termsofservice$Retrievelatest
-    extends StandardParameters {
+  export interface Params$Resource$Termsofservice$Retrievelatest extends StandardParameters {
     /**
      * Required. The Kind this terms of service version applies to.
      */

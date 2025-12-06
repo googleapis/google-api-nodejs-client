@@ -1457,8 +1457,7 @@ export namespace merchantapi_datasources_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Datasources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Datasources$Create extends StandardParameters {
     /**
      * Required. The account where this data source will be created. Format: `accounts/{account\}`
      */
@@ -1469,15 +1468,13 @@ export namespace merchantapi_datasources_v1beta {
      */
     requestBody?: Schema$DataSource;
   }
-  export interface Params$Resource$Accounts$Datasources$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Datasources$Delete extends StandardParameters {
     /**
      * Required. The name of the data source to delete. Format: `accounts/{account\}/dataSources/{datasource\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Datasources$Fetch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Datasources$Fetch extends StandardParameters {
     /**
      * Required. The name of the data source resource to fetch. Format: `accounts/{account\}/dataSources/{datasource\}`
      */
@@ -1488,15 +1485,13 @@ export namespace merchantapi_datasources_v1beta {
      */
     requestBody?: Schema$FetchDataSourceRequest;
   }
-  export interface Params$Resource$Accounts$Datasources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Datasources$Get extends StandardParameters {
     /**
      * Required. The name of the data source to retrieve. Format: `accounts/{account\}/dataSources/{datasource\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Datasources$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Datasources$List extends StandardParameters {
     /**
      * Optional. The maximum number of data sources to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of data sources will be returned.
      */
@@ -1510,8 +1505,7 @@ export namespace merchantapi_datasources_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Datasources$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Datasources$Patch extends StandardParameters {
     /**
      * Required. Identifier. The name of the data source. Format: `accounts/{account\}/dataSources/{datasource\}`
      */
@@ -1678,8 +1672,7 @@ export namespace merchantapi_datasources_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Datasources$Fileuploads$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Datasources$Fileuploads$Get extends StandardParameters {
     /**
      * Required. The name of the data source file upload to retrieve. Format: `accounts/{account\}/dataSources/{datasource\}/fileUploads/latest`
      */

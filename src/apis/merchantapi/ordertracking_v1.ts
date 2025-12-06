@@ -580,8 +580,7 @@ export namespace merchantapi_ordertracking_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Ordertrackingsignals$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Ordertrackingsignals$Create extends StandardParameters {
     /**
      * Output only. The ID that uniquely identifies this order tracking signal.
      */

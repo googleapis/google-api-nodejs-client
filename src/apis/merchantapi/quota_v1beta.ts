@@ -406,8 +406,7 @@ export namespace merchantapi_quota_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Quotas$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Quotas$List extends StandardParameters {
     /**
      * Optional. The maximum number of quotas to return in the response, used for paging. Defaults to 500; values above 1000 will be coerced to 1000.
      */
