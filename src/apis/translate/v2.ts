@@ -542,8 +542,7 @@ export namespace translate_v2 {
     }
   }
 
-  export interface Params$Resource$Detections$Detect
-    extends StandardParameters {
+  export interface Params$Resource$Detections$Detect extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -1039,8 +1038,7 @@ export namespace translate_v2 {
     }
   }
 
-  export interface Params$Resource$Translations$List
-    extends StandardParameters {
+  export interface Params$Resource$Translations$List extends StandardParameters {
     /**
      * The customization id for translate
      */
@@ -1073,8 +1071,7 @@ export namespace translate_v2 {
      */
     target?: string;
   }
-  export interface Params$Resource$Translations$Translate
-    extends StandardParameters {
+  export interface Params$Resource$Translations$Translate extends StandardParameters {
     /**
      * Request body metadata
      */
