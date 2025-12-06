@@ -558,6 +558,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getTags": {
+                  "description": "Returns tags directly bound to a GCP resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlans/{backupPlansId}:getTags",
+                  "httpMethod": "GET",
+                  "id": "gkebackup.projects.locations.backupPlans.getTags",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the service resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:getTags",
+                  "response": {
+                    "$ref": "GetTagsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists BackupPlans in a given location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlans",
@@ -661,6 +686,34 @@
                   },
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setTags": {
+                  "description": "Updates tags directly bound to a GCP resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlans/{backupPlansId}:setTags",
+                  "httpMethod": "POST",
+                  "id": "gkebackup.projects.locations.backupPlans.setTags",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the service resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:setTags",
+                  "request": {
+                    "$ref": "SetTagsRequest"
+                  },
+                  "response": {
+                    "$ref": "SetTagsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1269,7 +1322,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1659,6 +1712,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getTags": {
+                  "description": "Returns tags directly bound to a GCP resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/restorePlans/{restorePlansId}:getTags",
+                  "httpMethod": "GET",
+                  "id": "gkebackup.projects.locations.restorePlans.getTags",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the service resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:getTags",
+                  "response": {
+                    "$ref": "GetTagsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists RestorePlans in a given location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/restorePlans",
@@ -1762,6 +1840,34 @@
                   },
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setTags": {
+                  "description": "Updates tags directly bound to a GCP resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/restorePlans/{restorePlansId}:setTags",
+                  "httpMethod": "POST",
+                  "id": "gkebackup.projects.locations.restorePlans.setTags",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the service resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:setTags",
+                  "request": {
+                    "$ref": "SetTagsRequest"
+                  },
+                  "response": {
+                    "$ref": "SetTagsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2232,7 +2338,7 @@
       }
     }
   },
-  "revision": "20251027",
+  "revision": "20251112",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3086,6 +3192,28 @@
       },
       "type": "object"
     },
+    "GetTagsResponse": {
+      "description": "Response message for GetTags.",
+      "id": "GetTagsResponse",
+      "properties": {
+        "etag": {
+          "description": "A checksum based on the current bindings. This field is always set in server responses.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The full resource name of the service resource.",
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as \" : \". For example: \"123/environment\" : \"production\", \"123/costCenter\" : \"marketing\"",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "GoogleLongrunningCancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "GoogleLongrunningCancelOperationRequest",
@@ -3108,7 +3236,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -4224,6 +4352,50 @@
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetTagsRequest": {
+      "description": "Request message for SetTags.",
+      "id": "SetTagsRequest",
+      "properties": {
+        "etag": {
+          "description": "Optional. A checksum based on the current bindings which can be passed to prevent race conditions. If not passed, etag check would be skipped.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. A unique identifier for this request. Must be a valid UUID. This request is only idempotent if a `request_id` is provided.",
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. These bindings will override any bindings previously set and will be effective immediately. Each item in the map must be expressed as \" : \". For example: \"123/environment\" : \"production\", \"123/costCenter\" : \"marketing\"",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "SetTagsResponse": {
+      "description": "Response message for SetTags.",
+      "id": "SetTagsResponse",
+      "properties": {
+        "etag": {
+          "description": "A checksum based on the current bindings. This field is always set in server responses.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The full resource name of the service resource.",
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as \" : \". For example: \"123/environment\" : \"production\", \"123/costCenter\" : \"marketing\"",
+          "type": "object"
         }
       },
       "type": "object"
