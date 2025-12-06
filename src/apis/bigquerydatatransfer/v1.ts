@@ -898,8 +898,7 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Enrolldatasources
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Enrolldatasources extends StandardParameters {
     /**
      * Required. The name of the project resource in the form: `projects/{project_id\}`
      */
@@ -1375,8 +1374,7 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasources$Checkvalidcreds
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasources$Checkvalidcreds extends StandardParameters {
     /**
      * Required. The name of the data source. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/dataSources/{data_source_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      */
@@ -1387,15 +1385,13 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$CheckValidCredsRequest;
   }
-  export interface Params$Resource$Projects$Datasources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasources$Get extends StandardParameters {
     /**
      * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/dataSources/{data_source_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasources$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Datasources$List extends StandardParameters {
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -2017,8 +2013,7 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Enrolldatasources
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Enrolldatasources extends StandardParameters {
     /**
      * Required. The name of the project resource in the form: `projects/{project_id\}`
      */
@@ -2029,15 +2024,13 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$EnrollDataSourcesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2059,8 +2052,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Unenrolldatasources
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Unenrolldatasources extends StandardParameters {
     /**
      * Required. The name of the project resource in the form: `projects/{project_id\}`
      */
@@ -2538,8 +2530,7 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datasources$Checkvalidcreds
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasources$Checkvalidcreds extends StandardParameters {
     /**
      * Required. The name of the data source. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/dataSources/{data_source_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      */
@@ -2550,15 +2541,13 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$CheckValidCredsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasources$Get extends StandardParameters {
     /**
      * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/dataSources/{data_source_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasources$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasources$List extends StandardParameters {
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -3743,8 +3732,7 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Create extends StandardParameters {
     /**
      * Deprecated: Authorization code was required when `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used in any data sources. Use `version_info` instead. Optional OAuth2 authorization code to use with this transfer configuration. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' and new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to create the transfer config.
      */
@@ -3767,22 +3755,19 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$TransferConfig;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Delete extends StandardParameters {
     /**
      * Required. The name of the resource to delete. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Get extends StandardParameters {
     /**
      * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$List extends StandardParameters {
     /**
      * When specified, only configurations of requested data sources are returned.
      */
@@ -3800,8 +3785,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Patch extends StandardParameters {
     /**
      * Deprecated: Authorization code was required when `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used in any data sources. Use `version_info` instead. Optional OAuth2 authorization code to use with this transfer configuration. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' and new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to update the transfer config.
      */
@@ -3828,8 +3812,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$TransferConfig;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns extends StandardParameters {
     /**
      * Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
@@ -3840,8 +3823,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$ScheduleTransferRunsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns extends StandardParameters {
     /**
      * Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
@@ -4311,22 +4293,19 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete extends StandardParameters {
     /**
      * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Get extends StandardParameters {
     /**
      * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$List extends StandardParameters {
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -4512,8 +4491,7 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List extends StandardParameters {
     /**
      * Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      */
@@ -5685,8 +5663,7 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Transferconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Create extends StandardParameters {
     /**
      * Deprecated: Authorization code was required when `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used in any data sources. Use `version_info` instead. Optional OAuth2 authorization code to use with this transfer configuration. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' and new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to create the transfer config.
      */
@@ -5709,22 +5686,19 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$TransferConfig;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Delete extends StandardParameters {
     /**
      * Required. The name of the resource to delete. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Get extends StandardParameters {
     /**
      * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$List extends StandardParameters {
     /**
      * When specified, only configurations of requested data sources are returned.
      */
@@ -5742,8 +5716,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Patch extends StandardParameters {
     /**
      * Deprecated: Authorization code was required when `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used in any data sources. Use `version_info` instead. Optional OAuth2 authorization code to use with this transfer configuration. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' and new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to update the transfer config.
      */
@@ -5770,8 +5743,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$TransferConfig;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Scheduleruns
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Scheduleruns extends StandardParameters {
     /**
      * Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
@@ -5782,8 +5754,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$ScheduleTransferRunsRequest;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Startmanualruns
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Startmanualruns extends StandardParameters {
     /**
      * Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
@@ -6244,22 +6215,19 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Transferconfigs$Runs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Runs$Delete extends StandardParameters {
     /**
      * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Runs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Runs$Get extends StandardParameters {
     /**
      * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Runs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Runs$List extends StandardParameters {
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -6443,8 +6411,7 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List extends StandardParameters {
     /**
      * Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      */
