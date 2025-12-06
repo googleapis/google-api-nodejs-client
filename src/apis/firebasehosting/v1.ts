@@ -762,8 +762,7 @@ export namespace firebasehosting_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -774,8 +773,7 @@ export namespace firebasehosting_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
@@ -1124,8 +1122,7 @@ export namespace firebasehosting_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sites$Customdomains$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Customdomains$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -1136,8 +1133,7 @@ export namespace firebasehosting_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Sites$Customdomains$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Customdomains$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */

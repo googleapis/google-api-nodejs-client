@@ -1151,8 +1151,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -2214,8 +2213,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sites$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Create extends StandardParameters {
     /**
      * Required. The Firebase project in which to create a Hosting site, in the format: projects/PROJECT_IDENTIFIER Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
@@ -2234,29 +2232,25 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Site;
   }
-  export interface Params$Resource$Projects$Sites$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Delete extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Get extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values. Since a SITE_ID is a globally unique identifier, you can also use the unique sub-collection resource access pattern, in the format: projects/-/sites/SITE_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Getconfig extends StandardParameters {
     /**
      * Required. The site for which to get the SiteConfig, in the format: sites/ site-name/config
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$List extends StandardParameters {
     /**
      * Optional. The maximum number of sites to return. The service may return a lower number if fewer sites exist than this maximum number. If unspecified, defaults to 40.
      */
@@ -2270,8 +2264,7 @@ export namespace firebasehosting_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Sites$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Patch extends StandardParameters {
     /**
      * Output only. The fully-qualified resource name of the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID PROJECT_IDENTIFIER: the Firebase project's [`ProjectNumber`](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510).
      */
@@ -2286,8 +2279,7 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Site;
   }
-  export interface Params$Resource$Projects$Sites$Updateconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Updateconfig extends StandardParameters {
     /**
      * Required. The site for which to update the SiteConfig, in the format: sites/ site-name/config
      */
@@ -3079,8 +3071,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sites$Channels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Channels$Create extends StandardParameters {
     /**
      * Required. Immutable. A unique ID within the site that identifies the channel.
      */
@@ -3095,22 +3086,19 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Channel;
   }
-  export interface Params$Resource$Projects$Sites$Channels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Channels$Delete extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Channels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Channels$Get extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Channels$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Channels$List extends StandardParameters {
     /**
      * The maximum number of channels to return. The service may return a lower number if fewer channels exist than this maximum number. If unspecified, defaults to 10. The maximum value is 100; values above 100 will be coerced to 100.
      */
@@ -3124,8 +3112,7 @@ export namespace firebasehosting_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Sites$Channels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Channels$Patch extends StandardParameters {
     /**
      * The fully-qualified resource name for the channel, in the format: sites/ SITE_ID/channels/CHANNEL_ID
      */
@@ -3604,8 +3591,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sites$Channels$Releases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Channels$Releases$Create extends StandardParameters {
     /**
      * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
@@ -3620,15 +3606,13 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Release;
   }
-  export interface Params$Resource$Projects$Sites$Channels$Releases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Channels$Releases$Get extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Channels$Releases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Channels$Releases$List extends StandardParameters {
     /**
      * The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
      */
@@ -4608,8 +4592,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sites$Customdomains$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Customdomains$Create extends StandardParameters {
     /**
      * Required. The ID of the `CustomDomain`, which is the domain name you'd like to use with Firebase Hosting.
      */
@@ -4628,8 +4611,7 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$CustomDomain;
   }
-  export interface Params$Resource$Projects$Sites$Customdomains$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Customdomains$Delete extends StandardParameters {
     /**
      * If true, the request succeeds even if the `CustomDomain` doesn't exist.
      */
@@ -4647,15 +4629,13 @@ export namespace firebasehosting_v1beta1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Sites$Customdomains$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Customdomains$Get extends StandardParameters {
     /**
      * Required. The name of the `CustomDomain` to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Customdomains$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Customdomains$List extends StandardParameters {
     /**
      * The max number of `CustomDomain` entities to return in a request. Defaults to 10.
      */
@@ -4673,8 +4653,7 @@ export namespace firebasehosting_v1beta1 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Sites$Customdomains$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Customdomains$Patch extends StandardParameters {
     /**
      * If true, Hosting creates the `CustomDomain` if it doesn't already exist.
      */
@@ -4697,8 +4676,7 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$CustomDomain;
   }
-  export interface Params$Resource$Projects$Sites$Customdomains$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Customdomains$Undelete extends StandardParameters {
     /**
      * Required. The name of the `CustomDomain` to delete.
      */
@@ -5021,15 +4999,13 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sites$Customdomains$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Customdomains$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Customdomains$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Customdomains$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -5803,8 +5779,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sites$Domains$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Domains$Create extends StandardParameters {
     /**
      * Required. The parent to create the domain association for, in the format: sites/site-name
      */
@@ -5815,22 +5790,19 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Domain;
   }
-  export interface Params$Resource$Projects$Sites$Domains$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Domains$Delete extends StandardParameters {
     /**
      * Required. The name of the domain association to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Domains$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Domains$Get extends StandardParameters {
     /**
      * Required. The name of the domain configuration to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Domains$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Domains$List extends StandardParameters {
     /**
      * The page size to return. Defaults to 50.
      */
@@ -5844,8 +5816,7 @@ export namespace firebasehosting_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Sites$Domains$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Domains$Update extends StandardParameters {
     /**
      * Required. The name of the domain association to update or create, if an association doesn't already exist.
      */
@@ -6320,8 +6291,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sites$Releases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Releases$Create extends StandardParameters {
     /**
      * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
@@ -6336,15 +6306,13 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Release;
   }
-  export interface Params$Resource$Projects$Sites$Releases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Releases$Get extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Releases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Releases$List extends StandardParameters {
     /**
      * The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
      */
@@ -7464,8 +7432,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sites$Versions$Clone
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Versions$Clone extends StandardParameters {
     /**
      * Required. The target site for the cloned version, in the format: sites/ SITE_ID
      */
@@ -7476,8 +7443,7 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$CloneVersionRequest;
   }
-  export interface Params$Resource$Projects$Sites$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Versions$Create extends StandardParameters {
     /**
      * Required. The site in which to create the version, in the format: sites/ SITE_ID
      */
@@ -7496,22 +7462,19 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Projects$Sites$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Versions$Delete extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Versions$Get extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Sites$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Versions$List extends StandardParameters {
     /**
      * A filter string used to return a subset of versions in the response. The currently supported fields for filtering are: `name`, `status`, and `create_time`. Learn more about filtering in Google's [AIP 160 standard](https://google.aip.dev/160).
      */
@@ -7529,8 +7492,7 @@ export namespace firebasehosting_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Sites$Versions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Versions$Patch extends StandardParameters {
     /**
      * The fully-qualified resource name for the version, in the format: sites/ SITE_ID/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
      */
@@ -7545,8 +7507,7 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Projects$Sites$Versions$Populatefiles
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Versions$Populatefiles extends StandardParameters {
     /**
      * Required. The version to which to add files, in the format: sites/SITE_ID /versions/VERSION_ID
      */
@@ -7717,8 +7678,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sites$Versions$Files$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sites$Versions$Files$List extends StandardParameters {
     /**
      * The maximum number of version files to return. The service may return a lower number if fewer version files exist than this maximum number. If unspecified, defaults to 1000.
      */
@@ -8048,8 +8008,7 @@ export namespace firebasehosting_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Updateconfig
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Updateconfig extends StandardParameters {
     /**
      * Required. The site for which to update the SiteConfig, in the format: sites/ site-name/config
      */
@@ -8839,8 +8798,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Sites$Channels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Channels$Create extends StandardParameters {
     /**
      * Required. Immutable. A unique ID within the site that identifies the channel.
      */
@@ -8855,22 +8813,19 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Channel;
   }
-  export interface Params$Resource$Sites$Channels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Channels$Delete extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Channels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Channels$Get extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Channels$List
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Channels$List extends StandardParameters {
     /**
      * The maximum number of channels to return. The service may return a lower number if fewer channels exist than this maximum number. If unspecified, defaults to 10. The maximum value is 100; values above 100 will be coerced to 100.
      */
@@ -8884,8 +8839,7 @@ export namespace firebasehosting_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Sites$Channels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Channels$Patch extends StandardParameters {
     /**
      * The fully-qualified resource name for the channel, in the format: sites/ SITE_ID/channels/CHANNEL_ID
      */
@@ -9364,8 +9318,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Sites$Channels$Releases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Channels$Releases$Create extends StandardParameters {
     /**
      * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
@@ -9380,15 +9333,13 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Release;
   }
-  export interface Params$Resource$Sites$Channels$Releases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Channels$Releases$Get extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Channels$Releases$List
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Channels$Releases$List extends StandardParameters {
     /**
      * The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
      */
@@ -10154,8 +10105,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Sites$Domains$Create
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Domains$Create extends StandardParameters {
     /**
      * Required. The parent to create the domain association for, in the format: sites/site-name
      */
@@ -10166,22 +10116,19 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Domain;
   }
-  export interface Params$Resource$Sites$Domains$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Domains$Delete extends StandardParameters {
     /**
      * Required. The name of the domain association to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Domains$Get
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Domains$Get extends StandardParameters {
     /**
      * Required. The name of the domain configuration to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Domains$List
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Domains$List extends StandardParameters {
     /**
      * The page size to return. Defaults to 50.
      */
@@ -10195,8 +10142,7 @@ export namespace firebasehosting_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Sites$Domains$Update
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Domains$Update extends StandardParameters {
     /**
      * Required. The name of the domain association to update or create, if an association doesn't already exist.
      */
@@ -10671,8 +10617,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Sites$Releases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Releases$Create extends StandardParameters {
     /**
      * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
@@ -10687,15 +10632,13 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Release;
   }
-  export interface Params$Resource$Sites$Releases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Releases$Get extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Releases$List
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Releases$List extends StandardParameters {
     /**
      * The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
      */
@@ -11815,8 +11758,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Sites$Versions$Clone
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Versions$Clone extends StandardParameters {
     /**
      * Required. The target site for the cloned version, in the format: sites/ SITE_ID
      */
@@ -11827,8 +11769,7 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$CloneVersionRequest;
   }
-  export interface Params$Resource$Sites$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Versions$Create extends StandardParameters {
     /**
      * Required. The site in which to create the version, in the format: sites/ SITE_ID
      */
@@ -11847,22 +11788,19 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Sites$Versions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Versions$Delete extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Versions$Get extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Versions$List extends StandardParameters {
     /**
      * A filter string used to return a subset of versions in the response. The currently supported fields for filtering are: `name`, `status`, and `create_time`. Learn more about filtering in Google's [AIP 160 standard](https://google.aip.dev/160).
      */
@@ -11880,8 +11818,7 @@ export namespace firebasehosting_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Sites$Versions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Versions$Patch extends StandardParameters {
     /**
      * The fully-qualified resource name for the version, in the format: sites/ SITE_ID/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
      */
@@ -11896,8 +11833,7 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Sites$Versions$Populatefiles
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Versions$Populatefiles extends StandardParameters {
     /**
      * Required. The version to which to add files, in the format: sites/SITE_ID /versions/VERSION_ID
      */
@@ -12068,8 +12004,7 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Sites$Versions$Files$List
-    extends StandardParameters {
+  export interface Params$Resource$Sites$Versions$Files$List extends StandardParameters {
     /**
      * The maximum number of version files to return. The service may return a lower number if fewer version files exist than this maximum number. If unspecified, defaults to 1000.
      */
