@@ -956,8 +956,7 @@ export namespace customsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Cse$Siterestrict$List
-    extends StandardParameters {
+  export interface Params$Resource$Cse$Siterestrict$List extends StandardParameters {
     /**
      * Enables or disables [Simplified and Traditional Chinese Search](https://developers.google.com/custom-search/docs/json_api_reference#chineseSearch). The default value for this parameter is 0 (zero), meaning that the feature is enabled. Supported values are: * `1`: Disabled * `0`: Enabled (default)
      */
