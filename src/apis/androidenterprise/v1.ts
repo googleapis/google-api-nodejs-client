@@ -2506,8 +2506,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Devices$Forcereportupload
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Forcereportupload extends StandardParameters {
     /**
      * The ID of the device.
      */
@@ -2761,8 +2760,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Enrollmenttokens$Create
-    extends StandardParameters {
+  export interface Params$Resource$Enrollmenttokens$Create extends StandardParameters {
     /**
      * Required. The ID of the enterprise.
      */
@@ -4944,15 +4942,13 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Acknowledgenotificationset
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Acknowledgenotificationset extends StandardParameters {
     /**
      * The notification set ID as returned by Enterprises.PullNotificationSet. This must be provided.
      */
     notificationSetId?: string;
   }
-  export interface Params$Resource$Enterprises$Completesignup
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Completesignup extends StandardParameters {
     /**
      * The Completion token initially returned by GenerateSignupUrl.
      */
@@ -4962,8 +4958,7 @@ export namespace androidenterprise_v1 {
      */
     enterpriseToken?: string;
   }
-  export interface Params$Resource$Enterprises$Createwebtoken
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Createwebtoken extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -4974,8 +4969,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$AdministratorWebTokenSpec;
   }
-  export interface Params$Resource$Enterprises$Enroll
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Enroll extends StandardParameters {
     /**
      * Required. The token provided by the enterprise to register the EMM.
      */
@@ -4986,8 +4980,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$Enterprise;
   }
-  export interface Params$Resource$Enterprises$Generateenterpriseupgradeurl
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Generateenterpriseupgradeurl extends StandardParameters {
     /**
      * Optional. Email address used to prefill the admin field of the enterprise signup form as part of the upgrade process. This value is a hint only and can be altered by the user. Personal email addresses are not allowed. If `allowedDomains` is non-empty then this must belong to one of the `allowedDomains`.
      */
@@ -5001,8 +4994,7 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$Generatesignupurl
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Generatesignupurl extends StandardParameters {
     /**
      * Optional. Email address used to prefill the admin field of the enterprise signup form. This value is a hint only and can be altered by the user. If `allowedDomains` is non-empty then this must belong to one of the `allowedDomains`.
      */
@@ -5022,8 +5014,7 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$Getserviceaccount
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Getserviceaccount extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -5033,8 +5024,7 @@ export namespace androidenterprise_v1 {
      */
     keyType?: string;
   }
-  export interface Params$Resource$Enterprises$Getstorelayout
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Getstorelayout extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -5046,22 +5036,19 @@ export namespace androidenterprise_v1 {
      */
     domain?: string;
   }
-  export interface Params$Resource$Enterprises$Pullnotificationset
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Pullnotificationset extends StandardParameters {
     /**
      * The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Specifying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
      */
     requestMode?: string;
   }
-  export interface Params$Resource$Enterprises$Sendtestpushnotification
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Sendtestpushnotification extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$Setaccount
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Setaccount extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -5072,8 +5059,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$EnterpriseAccount;
   }
-  export interface Params$Resource$Enterprises$Setstorelayout
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Setstorelayout extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -5084,8 +5070,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StoreLayout;
   }
-  export interface Params$Resource$Enterprises$Unenroll
-    extends StandardParameters {
+  export interface Params$Resource$Enterprises$Unenroll extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -5672,8 +5657,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Entitlements$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Entitlements$Delete extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -5701,8 +5685,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Entitlements$List
-    extends StandardParameters {
+  export interface Params$Resource$Entitlements$List extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -5712,8 +5695,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Entitlements$Update
-    extends StandardParameters {
+  export interface Params$Resource$Entitlements$Update extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -6031,8 +6013,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Grouplicenses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Grouplicenses$Get extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -6042,8 +6023,7 @@ export namespace androidenterprise_v1 {
      */
     groupLicenseId?: string;
   }
-  export interface Params$Resource$Grouplicenses$List
-    extends StandardParameters {
+  export interface Params$Resource$Grouplicenses$List extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -6203,8 +6183,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Grouplicenseusers$List
-    extends StandardParameters {
+  export interface Params$Resource$Grouplicenseusers$List extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -7510,8 +7489,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Managedconfigurationsfordevice$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Managedconfigurationsfordevice$Delete extends StandardParameters {
     /**
      * The Android ID of the device.
      */
@@ -7529,8 +7507,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$Get
-    extends StandardParameters {
+  export interface Params$Resource$Managedconfigurationsfordevice$Get extends StandardParameters {
     /**
      * The Android ID of the device.
      */
@@ -7548,8 +7525,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$List
-    extends StandardParameters {
+  export interface Params$Resource$Managedconfigurationsfordevice$List extends StandardParameters {
     /**
      * The Android ID of the device.
      */
@@ -7563,8 +7539,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$Update
-    extends StandardParameters {
+  export interface Params$Resource$Managedconfigurationsfordevice$Update extends StandardParameters {
     /**
      * The Android ID of the device.
      */
@@ -8197,8 +8172,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Managedconfigurationsforuser$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Managedconfigurationsforuser$Delete extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -8212,8 +8186,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$Get
-    extends StandardParameters {
+  export interface Params$Resource$Managedconfigurationsforuser$Get extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -8227,8 +8200,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$List
-    extends StandardParameters {
+  export interface Params$Resource$Managedconfigurationsforuser$List extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -8238,8 +8210,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$Update
-    extends StandardParameters {
+  export interface Params$Resource$Managedconfigurationsforuser$Update extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -8416,8 +8387,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Managedconfigurationssettings$List
-    extends StandardParameters {
+  export interface Params$Resource$Managedconfigurationssettings$List extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -9641,8 +9611,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ProductsApproveRequest;
   }
-  export interface Params$Resource$Products$Generateapprovalurl
-    extends StandardParameters {
+  export interface Params$Resource$Products$Generateapprovalurl extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -9670,8 +9639,7 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Getapprestrictionsschema
-    extends StandardParameters {
+  export interface Params$Resource$Products$Getapprestrictionsschema extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -9685,8 +9653,7 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Getpermissions
-    extends StandardParameters {
+  export interface Params$Resource$Products$Getpermissions extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -9722,8 +9689,7 @@ export namespace androidenterprise_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Products$Unapprove
-    extends StandardParameters {
+  export interface Params$Resource$Products$Unapprove extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -10170,8 +10136,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Serviceaccountkeys$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Serviceaccountkeys$Delete extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -10181,8 +10146,7 @@ export namespace androidenterprise_v1 {
      */
     keyId?: string;
   }
-  export interface Params$Resource$Serviceaccountkeys$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Serviceaccountkeys$Insert extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -10193,8 +10157,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ServiceAccountKey;
   }
-  export interface Params$Resource$Serviceaccountkeys$List
-    extends StandardParameters {
+  export interface Params$Resource$Serviceaccountkeys$List extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -10944,8 +10907,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Storelayoutclusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Storelayoutclusters$Delete extends StandardParameters {
     /**
      * The ID of the cluster.
      */
@@ -10959,8 +10921,7 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Storelayoutclusters$Get extends StandardParameters {
     /**
      * The ID of the cluster.
      */
@@ -10974,8 +10935,7 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Storelayoutclusters$Insert extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -10990,8 +10950,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StoreCluster;
   }
-  export interface Params$Resource$Storelayoutclusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Storelayoutclusters$List extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -11001,8 +10960,7 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Update
-    extends StandardParameters {
+  export interface Params$Resource$Storelayoutclusters$Update extends StandardParameters {
     /**
      * The ID of the cluster.
      */
@@ -11750,8 +11708,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Storelayoutpages$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Storelayoutpages$Delete extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -11761,8 +11718,7 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Get
-    extends StandardParameters {
+  export interface Params$Resource$Storelayoutpages$Get extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -11772,8 +11728,7 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Storelayoutpages$Insert extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -11784,15 +11739,13 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StorePage;
   }
-  export interface Params$Resource$Storelayoutpages$List
-    extends StandardParameters {
+  export interface Params$Resource$Storelayoutpages$List extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Update
-    extends StandardParameters {
+  export interface Params$Resource$Storelayoutpages$Update extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -13123,8 +13076,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Generateauthenticationtoken
-    extends StandardParameters {
+  export interface Params$Resource$Users$Generateauthenticationtoken extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -13144,8 +13096,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Getavailableproductset
-    extends StandardParameters {
+  export interface Params$Resource$Users$Getavailableproductset extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -13176,8 +13127,7 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Users$Revokedeviceaccess
-    extends StandardParameters {
+  export interface Params$Resource$Users$Revokedeviceaccess extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
@@ -13187,8 +13137,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Setavailableproductset
-    extends StandardParameters {
+  export interface Params$Resource$Users$Setavailableproductset extends StandardParameters {
     /**
      * The ID of the enterprise.
      */
