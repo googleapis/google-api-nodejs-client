@@ -2127,12 +2127,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Customers$Listgcpprojectdeployments
-    extends StandardParameters {}
-  export interface Params$Resource$Customers$Listlegacyorganizations
-    extends StandardParameters {}
-  export interface Params$Resource$Customers$Migrateorganization
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Listgcpprojectdeployments extends StandardParameters {}
+  export interface Params$Resource$Customers$Listlegacyorganizations extends StandardParameters {}
+  export interface Params$Resource$Customers$Migrateorganization extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2153,15 +2150,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalCustomer;
   }
-  export interface Params$Resource$Customers$Provisiondeployment
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Provisiondeployment extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$SasPortalProvisionDeploymentRequest;
   }
-  export interface Params$Resource$Customers$Setupsasanalytics
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Setupsasanalytics extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -3074,8 +3069,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Customers$Deployments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Deployments$Create extends StandardParameters {
     /**
      * Required. The parent resource name where the deployment is to be created.
      */
@@ -3086,22 +3080,19 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDeployment;
   }
-  export interface Params$Resource$Customers$Deployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Deployments$Delete extends StandardParameters {
     /**
      * Required. The name of the deployment.
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Deployments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Deployments$Get extends StandardParameters {
     /**
      * Required. The name of the deployment.
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Deployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Deployments$List extends StandardParameters {
     /**
      * The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no deployments are filtered.
      */
@@ -3119,8 +3110,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Deployments$Move
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Deployments$Move extends StandardParameters {
     /**
      * Required. The name of the deployment to move.
      */
@@ -3131,8 +3121,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalMoveDeploymentRequest;
   }
-  export interface Params$Resource$Customers$Deployments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Deployments$Patch extends StandardParameters {
     /**
      * Output only. Resource name.
      */
@@ -3640,8 +3629,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Customers$Deployments$Devices$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Deployments$Devices$Create extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -3652,8 +3640,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDevice;
   }
-  export interface Params$Resource$Customers$Deployments$Devices$Createsigned
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Deployments$Devices$Createsigned extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -3664,8 +3651,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalCreateSignedDeviceRequest;
   }
-  export interface Params$Resource$Customers$Deployments$Devices$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Deployments$Devices$List extends StandardParameters {
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
      */
@@ -5086,8 +5072,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Customers$Devices$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Create extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -5098,8 +5083,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDevice;
   }
-  export interface Params$Resource$Customers$Devices$Createsigned
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Createsigned extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -5110,22 +5094,19 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalCreateSignedDeviceRequest;
   }
-  export interface Params$Resource$Customers$Devices$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Delete extends StandardParameters {
     /**
      * Required. The name of the device.
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Devices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Get extends StandardParameters {
     /**
      * Required. The name of the device.
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Devices$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$List extends StandardParameters {
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
      */
@@ -5143,8 +5124,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Devices$Move
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Move extends StandardParameters {
     /**
      * Required. The name of the device to move.
      */
@@ -5155,8 +5135,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalMoveDeviceRequest;
   }
-  export interface Params$Resource$Customers$Devices$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Patch extends StandardParameters {
     /**
      * Output only. The resource path name.
      */
@@ -5171,8 +5150,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDevice;
   }
-  export interface Params$Resource$Customers$Devices$Signdevice
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Signdevice extends StandardParameters {
     /**
      * Output only. The resource path name.
      */
@@ -5183,8 +5161,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalSignDeviceRequest;
   }
-  export interface Params$Resource$Customers$Devices$Updatesigned
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Devices$Updatesigned extends StandardParameters {
     /**
      * Required. The name of the device to update.
      */
@@ -6095,8 +6072,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Customers$Nodes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Create extends StandardParameters {
     /**
      * Required. The parent resource name where the node is to be created.
      */
@@ -6107,22 +6083,19 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalNode;
   }
-  export interface Params$Resource$Customers$Nodes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Delete extends StandardParameters {
     /**
      * Required. The name of the node.
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Nodes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Get extends StandardParameters {
     /**
      * Required. The name of the node.
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Nodes$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$List extends StandardParameters {
     /**
      * The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no nodes are filtered.
      */
@@ -6140,8 +6113,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Nodes$Move
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Move extends StandardParameters {
     /**
      * Required. The name of the node to move.
      */
@@ -6152,8 +6124,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalMoveNodeRequest;
   }
-  export interface Params$Resource$Customers$Nodes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Patch extends StandardParameters {
     /**
      * Output only. Resource name.
      */
@@ -6489,8 +6460,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Customers$Nodes$Deployments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Deployments$Create extends StandardParameters {
     /**
      * Required. The parent resource name where the deployment is to be created.
      */
@@ -6501,8 +6471,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDeployment;
   }
-  export interface Params$Resource$Customers$Nodes$Deployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Deployments$List extends StandardParameters {
     /**
      * The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no deployments are filtered.
      */
@@ -7011,8 +6980,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Customers$Nodes$Devices$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Devices$Create extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -7023,8 +6991,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDevice;
   }
-  export interface Params$Resource$Customers$Nodes$Devices$Createsigned
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Devices$Createsigned extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -7035,8 +7002,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalCreateSignedDeviceRequest;
   }
-  export interface Params$Resource$Customers$Nodes$Devices$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Devices$List extends StandardParameters {
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
      */
@@ -7367,8 +7333,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Customers$Nodes$Nodes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Nodes$Create extends StandardParameters {
     /**
      * Required. The parent resource name where the node is to be created.
      */
@@ -7379,8 +7344,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalNode;
   }
-  export interface Params$Resource$Customers$Nodes$Nodes$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Nodes$Nodes$List extends StandardParameters {
     /**
      * The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no nodes are filtered.
      */
@@ -8474,22 +8438,19 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Deployments$Devices$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Devices$Delete extends StandardParameters {
     /**
      * Required. The name of the device.
      */
     name?: string;
   }
-  export interface Params$Resource$Deployments$Devices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Devices$Get extends StandardParameters {
     /**
      * Required. The name of the device.
      */
     name?: string;
   }
-  export interface Params$Resource$Deployments$Devices$Move
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Devices$Move extends StandardParameters {
     /**
      * Required. The name of the device to move.
      */
@@ -8500,8 +8461,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalMoveDeviceRequest;
   }
-  export interface Params$Resource$Deployments$Devices$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Devices$Patch extends StandardParameters {
     /**
      * Output only. The resource path name.
      */
@@ -8516,8 +8476,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDevice;
   }
-  export interface Params$Resource$Deployments$Devices$Signdevice
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Devices$Signdevice extends StandardParameters {
     /**
      * Output only. The resource path name.
      */
@@ -8528,8 +8487,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalSignDeviceRequest;
   }
-  export interface Params$Resource$Deployments$Devices$Updatesigned
-    extends StandardParameters {
+  export interface Params$Resource$Deployments$Devices$Updatesigned extends StandardParameters {
     /**
      * Required. The name of the device to update.
      */
@@ -8854,15 +8812,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Installer$Generatesecret
-    extends StandardParameters {
+  export interface Params$Resource$Installer$Generatesecret extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$SasPortalGenerateSecretRequest;
   }
-  export interface Params$Resource$Installer$Validate
-    extends StandardParameters {
+  export interface Params$Resource$Installer$Validate extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -9779,22 +9735,19 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Nodes$Deployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Deployments$Delete extends StandardParameters {
     /**
      * Required. The name of the deployment.
      */
     name?: string;
   }
-  export interface Params$Resource$Nodes$Deployments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Deployments$Get extends StandardParameters {
     /**
      * Required. The name of the deployment.
      */
     name?: string;
   }
-  export interface Params$Resource$Nodes$Deployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Deployments$List extends StandardParameters {
     /**
      * The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no deployments are filtered.
      */
@@ -9812,8 +9765,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Nodes$Deployments$Move
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Deployments$Move extends StandardParameters {
     /**
      * Required. The name of the deployment to move.
      */
@@ -9824,8 +9776,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalMoveDeploymentRequest;
   }
-  export interface Params$Resource$Nodes$Deployments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Deployments$Patch extends StandardParameters {
     /**
      * Output only. Resource name.
      */
@@ -10331,8 +10282,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Nodes$Deployments$Devices$Create
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Deployments$Devices$Create extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -10343,8 +10293,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDevice;
   }
-  export interface Params$Resource$Nodes$Deployments$Devices$Createsigned
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Deployments$Devices$Createsigned extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -10355,8 +10304,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalCreateSignedDeviceRequest;
   }
-  export interface Params$Resource$Nodes$Deployments$Devices$List
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Deployments$Devices$List extends StandardParameters {
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
      */
@@ -11777,8 +11725,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Nodes$Devices$Create
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Devices$Create extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -11789,8 +11736,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDevice;
   }
-  export interface Params$Resource$Nodes$Devices$Createsigned
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Devices$Createsigned extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -11801,22 +11747,19 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalCreateSignedDeviceRequest;
   }
-  export interface Params$Resource$Nodes$Devices$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Devices$Delete extends StandardParameters {
     /**
      * Required. The name of the device.
      */
     name?: string;
   }
-  export interface Params$Resource$Nodes$Devices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Devices$Get extends StandardParameters {
     /**
      * Required. The name of the device.
      */
     name?: string;
   }
-  export interface Params$Resource$Nodes$Devices$List
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Devices$List extends StandardParameters {
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
      */
@@ -11834,8 +11777,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Nodes$Devices$Move
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Devices$Move extends StandardParameters {
     /**
      * Required. The name of the device to move.
      */
@@ -11846,8 +11788,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalMoveDeviceRequest;
   }
-  export interface Params$Resource$Nodes$Devices$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Devices$Patch extends StandardParameters {
     /**
      * Output only. The resource path name.
      */
@@ -11862,8 +11803,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDevice;
   }
-  export interface Params$Resource$Nodes$Devices$Signdevice
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Devices$Signdevice extends StandardParameters {
     /**
      * Output only. The resource path name.
      */
@@ -11874,8 +11814,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalSignDeviceRequest;
   }
-  export interface Params$Resource$Nodes$Devices$Updatesigned
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Devices$Updatesigned extends StandardParameters {
     /**
      * Required. The name of the device to update.
      */
@@ -12783,8 +12722,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Nodes$Nodes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Nodes$Create extends StandardParameters {
     /**
      * Required. The parent resource name where the node is to be created.
      */
@@ -12795,8 +12733,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalNode;
   }
-  export interface Params$Resource$Nodes$Nodes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Nodes$Delete extends StandardParameters {
     /**
      * Required. The name of the node.
      */
@@ -12837,8 +12774,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalMoveNodeRequest;
   }
-  export interface Params$Resource$Nodes$Nodes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Nodes$Patch extends StandardParameters {
     /**
      * Output only. Resource name.
      */
@@ -13174,8 +13110,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Nodes$Nodes$Deployments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Nodes$Deployments$Create extends StandardParameters {
     /**
      * Required. The parent resource name where the deployment is to be created.
      */
@@ -13186,8 +13121,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDeployment;
   }
-  export interface Params$Resource$Nodes$Nodes$Deployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Nodes$Deployments$List extends StandardParameters {
     /**
      * The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no deployments are filtered.
      */
@@ -13696,8 +13630,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Nodes$Nodes$Devices$Create
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Nodes$Devices$Create extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -13708,8 +13641,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalDevice;
   }
-  export interface Params$Resource$Nodes$Nodes$Devices$Createsigned
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Nodes$Devices$Createsigned extends StandardParameters {
     /**
      * Required. The name of the parent resource.
      */
@@ -13720,8 +13652,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalCreateSignedDeviceRequest;
   }
-  export interface Params$Resource$Nodes$Nodes$Devices$List
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Nodes$Devices$List extends StandardParameters {
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
      */
@@ -14052,8 +13983,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Nodes$Nodes$Nodes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Nodes$Nodes$Create extends StandardParameters {
     /**
      * Required. The parent resource name where the node is to be created.
      */
@@ -14064,8 +13994,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     requestBody?: Schema$SasPortalNode;
   }
-  export interface Params$Resource$Nodes$Nodes$Nodes$List
-    extends StandardParameters {
+  export interface Params$Resource$Nodes$Nodes$Nodes$List extends StandardParameters {
     /**
      * The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no nodes are filtered.
      */
