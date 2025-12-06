@@ -4716,50 +4716,43 @@ export namespace identitytoolkit_v3 {
     }
   }
 
-  export interface Params$Resource$Relyingparty$Createauthuri
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Createauthuri extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyCreateAuthUriRequest;
   }
-  export interface Params$Resource$Relyingparty$Deleteaccount
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Deleteaccount extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyDeleteAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Downloadaccount
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Downloadaccount extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyDownloadAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Emaillinksignin
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Emaillinksignin extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyEmailLinkSigninRequest;
   }
-  export interface Params$Resource$Relyingparty$Getaccountinfo
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Getaccountinfo extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyGetAccountInfoRequest;
   }
-  export interface Params$Resource$Relyingparty$Getoobconfirmationcode
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Getoobconfirmationcode extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$Relyingparty;
   }
-  export interface Params$Resource$Relyingparty$Getprojectconfig
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Getprojectconfig extends StandardParameters {
     /**
      * Delegated GCP project number of the request.
      */
@@ -4769,82 +4762,69 @@ export namespace identitytoolkit_v3 {
      */
     projectNumber?: string;
   }
-  export interface Params$Resource$Relyingparty$Getpublickeys
-    extends StandardParameters {}
-  export interface Params$Resource$Relyingparty$Getrecaptchaparam
-    extends StandardParameters {}
-  export interface Params$Resource$Relyingparty$Resetpassword
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Getpublickeys extends StandardParameters {}
+  export interface Params$Resource$Relyingparty$Getrecaptchaparam extends StandardParameters {}
+  export interface Params$Resource$Relyingparty$Resetpassword extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyResetPasswordRequest;
   }
-  export interface Params$Resource$Relyingparty$Sendverificationcode
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Sendverificationcode extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySendVerificationCodeRequest;
   }
-  export interface Params$Resource$Relyingparty$Setaccountinfo
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Setaccountinfo extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySetAccountInfoRequest;
   }
-  export interface Params$Resource$Relyingparty$Setprojectconfig
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Setprojectconfig extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySetProjectConfigRequest;
   }
-  export interface Params$Resource$Relyingparty$Signoutuser
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Signoutuser extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySignOutUserRequest;
   }
-  export interface Params$Resource$Relyingparty$Signupnewuser
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Signupnewuser extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySignupNewUserRequest;
   }
-  export interface Params$Resource$Relyingparty$Uploadaccount
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Uploadaccount extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyUploadAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifyassertion
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Verifyassertion extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyAssertionRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifycustomtoken
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Verifycustomtoken extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyCustomTokenRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifypassword
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Verifypassword extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyPasswordRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifyphonenumber
-    extends StandardParameters {
+  export interface Params$Resource$Relyingparty$Verifyphonenumber extends StandardParameters {
     /**
      * Request body metadata
      */

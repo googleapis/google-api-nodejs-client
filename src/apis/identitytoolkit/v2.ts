@@ -1973,8 +1973,7 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Revoketoken
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Revoketoken extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2461,22 +2460,19 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Mfaenrollment$Finalize
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mfaenrollment$Finalize extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentRequest;
   }
-  export interface Params$Resource$Accounts$Mfaenrollment$Start
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mfaenrollment$Start extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitV2StartMfaEnrollmentRequest;
   }
-  export interface Params$Resource$Accounts$Mfaenrollment$Withdraw
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mfaenrollment$Withdraw extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2805,15 +2801,13 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Mfasignin$Finalize
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mfasignin$Finalize extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaSignInRequest;
   }
-  export interface Params$Resource$Accounts$Mfasignin$Start
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mfasignin$Start extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2981,8 +2975,7 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Defaultsupportedidps$List
-    extends StandardParameters {
+  export interface Params$Resource$Defaultsupportedidps$List extends StandardParameters {
     /**
      * The maximum number of items to return.
      */
@@ -3371,15 +3364,13 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getconfig extends StandardParameters {
     /**
      * The resource name of the config, for example: "projects/my-awesome-project/config"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updateconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updateconfig extends StandardParameters {
     /**
      * Output only. The name of the Config resource. Example: "projects/my-awesome-project/config"
      */
@@ -4184,8 +4175,7 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Defaultsupportedidpconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Defaultsupportedidpconfigs$Create extends StandardParameters {
     /**
      * The id of the Idp to create a config for. Call ListDefaultSupportedIdps for list of all default supported Idps.
      */
@@ -4200,22 +4190,19 @@ export namespace identitytoolkit_v2 {
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig;
   }
-  export interface Params$Resource$Projects$Defaultsupportedidpconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Defaultsupportedidpconfigs$Delete extends StandardParameters {
     /**
      * The resource name of the config, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Defaultsupportedidpconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Defaultsupportedidpconfigs$Get extends StandardParameters {
     /**
      * The resource name of the config, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Defaultsupportedidpconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Defaultsupportedidpconfigs$List extends StandardParameters {
     /**
      * The maximum number of items to return.
      */
@@ -4229,8 +4216,7 @@ export namespace identitytoolkit_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Defaultsupportedidpconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Defaultsupportedidpconfigs$Patch extends StandardParameters {
     /**
      * The name of the DefaultSupportedIdpConfig resource, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
      */
@@ -4404,8 +4390,7 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Identityplatform$Initializeauth
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Identityplatform$Initializeauth extends StandardParameters {
     /**
      * The resource name of the target project the developer wants to enable Identity Platform for.
      */
@@ -5203,8 +5188,7 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Inboundsamlconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Inboundsamlconfigs$Create extends StandardParameters {
     /**
      * The id to use for this config.
      */
@@ -5219,22 +5203,19 @@ export namespace identitytoolkit_v2 {
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig;
   }
-  export interface Params$Resource$Projects$Inboundsamlconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Inboundsamlconfigs$Delete extends StandardParameters {
     /**
      * The resource name of the config to be deleted, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Inboundsamlconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Inboundsamlconfigs$Get extends StandardParameters {
     /**
      * The resource name of the config, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Inboundsamlconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Inboundsamlconfigs$List extends StandardParameters {
     /**
      * The maximum number of items to return.
      */
@@ -5248,8 +5229,7 @@ export namespace identitytoolkit_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Inboundsamlconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Inboundsamlconfigs$Patch extends StandardParameters {
     /**
      * The name of the InboundSamlConfig resource, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'. Ignored during create requests.
      */
@@ -6061,8 +6041,7 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Oauthidpconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Oauthidpconfigs$Create extends StandardParameters {
     /**
      * The id to use for this config.
      */
@@ -6077,22 +6056,19 @@ export namespace identitytoolkit_v2 {
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig;
   }
-  export interface Params$Resource$Projects$Oauthidpconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Oauthidpconfigs$Delete extends StandardParameters {
     /**
      * The resource name of the config to be deleted, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Oauthidpconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Oauthidpconfigs$Get extends StandardParameters {
     /**
      * The resource name of the config, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Oauthidpconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Oauthidpconfigs$List extends StandardParameters {
     /**
      * The maximum number of items to return.
      */
@@ -6106,8 +6082,7 @@ export namespace identitytoolkit_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Oauthidpconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Oauthidpconfigs$Patch extends StandardParameters {
     /**
      * The name of the OAuthIdpConfig resource, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'. Ignored during create requests.
      */
@@ -7450,8 +7425,7 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Tenants$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Create extends StandardParameters {
     /**
      * The parent resource name where the tenant will be created. For example, "projects/project1".
      */
@@ -7462,22 +7436,19 @@ export namespace identitytoolkit_v2 {
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2Tenant;
   }
-  export interface Params$Resource$Projects$Tenants$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Delete extends StandardParameters {
     /**
      * Resource name of the tenant to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Get extends StandardParameters {
     /**
      * Resource name of the tenant to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7488,8 +7459,7 @@ export namespace identitytoolkit_v2 {
      */
     requestBody?: Schema$GoogleIamV1GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Tenants$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$List extends StandardParameters {
     /**
      * The maximum number of results to return, capped at 1000. If not specified, the default value is 20.
      */
@@ -7503,8 +7473,7 @@ export namespace identitytoolkit_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Patch extends StandardParameters {
     /**
      * Output only. Resource name of a tenant. For example: "projects/{project-id\}/tenants/{tenant-id\}"
      */
@@ -7519,8 +7488,7 @@ export namespace identitytoolkit_v2 {
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2Tenant;
   }
-  export interface Params$Resource$Projects$Tenants$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7531,8 +7499,7 @@ export namespace identitytoolkit_v2 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Tenants$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8340,8 +8307,7 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Create extends StandardParameters {
     /**
      * The id of the Idp to create a config for. Call ListDefaultSupportedIdps for list of all default supported Idps.
      */
@@ -8356,22 +8322,19 @@ export namespace identitytoolkit_v2 {
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig;
   }
-  export interface Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Delete extends StandardParameters {
     /**
      * The resource name of the config, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Get extends StandardParameters {
     /**
      * The resource name of the config, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$List extends StandardParameters {
     /**
      * The maximum number of items to return.
      */
@@ -8385,8 +8348,7 @@ export namespace identitytoolkit_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Patch extends StandardParameters {
     /**
      * The name of the DefaultSupportedIdpConfig resource, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
      */
@@ -9191,8 +9153,7 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Tenants$Inboundsamlconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Inboundsamlconfigs$Create extends StandardParameters {
     /**
      * The id to use for this config.
      */
@@ -9207,22 +9168,19 @@ export namespace identitytoolkit_v2 {
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig;
   }
-  export interface Params$Resource$Projects$Tenants$Inboundsamlconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Inboundsamlconfigs$Delete extends StandardParameters {
     /**
      * The resource name of the config to be deleted, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Inboundsamlconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Inboundsamlconfigs$Get extends StandardParameters {
     /**
      * The resource name of the config, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Inboundsamlconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Inboundsamlconfigs$List extends StandardParameters {
     /**
      * The maximum number of items to return.
      */
@@ -9236,8 +9194,7 @@ export namespace identitytoolkit_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Inboundsamlconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Inboundsamlconfigs$Patch extends StandardParameters {
     /**
      * The name of the InboundSamlConfig resource, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'. Ignored during create requests.
      */
@@ -10049,8 +10006,7 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Tenants$Oauthidpconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Oauthidpconfigs$Create extends StandardParameters {
     /**
      * The id to use for this config.
      */
@@ -10065,22 +10021,19 @@ export namespace identitytoolkit_v2 {
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig;
   }
-  export interface Params$Resource$Projects$Tenants$Oauthidpconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Oauthidpconfigs$Delete extends StandardParameters {
     /**
      * The resource name of the config to be deleted, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Oauthidpconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Oauthidpconfigs$Get extends StandardParameters {
     /**
      * The resource name of the config, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Oauthidpconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Oauthidpconfigs$List extends StandardParameters {
     /**
      * The maximum number of items to return.
      */
@@ -10094,8 +10047,7 @@ export namespace identitytoolkit_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Tenants$Oauthidpconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Tenants$Oauthidpconfigs$Patch extends StandardParameters {
     /**
      * The name of the OAuthIdpConfig resource, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'. Ignored during create requests.
      */
@@ -10422,15 +10374,13 @@ export namespace identitytoolkit_v2 {
     }
   }
 
-  export interface Params$Resource$V2$Getpasswordpolicy
-    extends StandardParameters {
+  export interface Params$Resource$V2$Getpasswordpolicy extends StandardParameters {
     /**
      * The id of a tenant.
      */
     tenantId?: string;
   }
-  export interface Params$Resource$V2$Getrecaptchaconfig
-    extends StandardParameters {
+  export interface Params$Resource$V2$Getrecaptchaconfig extends StandardParameters {
     /**
      * reCAPTCHA Enterprise uses separate site keys for different client types. Specify the client type to get the corresponding key.
      */
