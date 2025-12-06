@@ -987,7 +987,7 @@ export namespace checks_v1alpha {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1358,15 +1358,13 @@ export namespace checks_v1alpha {
     }
   }
 
-  export interface Params$Resource$Accounts$Apps$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$Get extends StandardParameters {
     /**
      * Required. Resource name of the app. Example: `accounts/123/apps/456`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Apps$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return. The server may further constrain the maximum number of results returned in a single page. If unspecified, the server will decide the number of results to be returned.
      */
@@ -1837,7 +1835,7 @@ export namespace checks_v1alpha {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2097,8 +2095,7 @@ export namespace checks_v1alpha {
     }
   }
 
-  export interface Params$Resource$Accounts$Apps$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2109,22 +2106,19 @@ export namespace checks_v1alpha {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Accounts$Apps$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Apps$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Apps$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2142,12 +2136,11 @@ export namespace checks_v1alpha {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Accounts$Apps$Operations$Wait
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$Operations$Wait extends StandardParameters {
     /**
      * The name of the operation resource to wait on.
      */
@@ -2468,8 +2461,7 @@ export namespace checks_v1alpha {
     }
   }
 
-  export interface Params$Resource$Accounts$Apps$Reports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$Reports$Get extends StandardParameters {
     /**
      * Optional. An [AIP-160](https://google.aip.dev/160) filter string to filter checks within the report. Only checks that match the filter string are included in the response. Example: `state = FAILED`
      */
@@ -2479,8 +2471,7 @@ export namespace checks_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Apps$Reports$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$Reports$List extends StandardParameters {
     /**
      * Optional. An [AIP-160](https://google.aip.dev/160) filter string to filter checks within reports. Only checks that match the filter string are included in the response. Example: `state = FAILED`
      */
@@ -2659,8 +2650,7 @@ export namespace checks_v1alpha {
     }
   }
 
-  export interface Params$Resource$Accounts$Repos$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Repos$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -3129,8 +3119,7 @@ export namespace checks_v1alpha {
     }
   }
 
-  export interface Params$Resource$Accounts$Repos$Scans$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Repos$Scans$Generate extends StandardParameters {
     /**
      * Required. Resource name of the repo. Example: `accounts/123/repos/456`
      */
@@ -3141,15 +3130,13 @@ export namespace checks_v1alpha {
      */
     requestBody?: Schema$GoogleChecksRepoScanV1alphaGenerateScanRequest;
   }
-  export interface Params$Resource$Accounts$Repos$Scans$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Repos$Scans$Get extends StandardParameters {
     /**
      * Required. Resource name of the repo scan. Example: `accounts/123/repos/456/scans/789`
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Repos$Scans$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Repos$Scans$List extends StandardParameters {
     /**
      * Optional. An [AIP-160](https://google.aip.dev/160) filter string to filter repo scans. Example: `scmMetadata.branch = main`
      */
@@ -3330,8 +3317,7 @@ export namespace checks_v1alpha {
     }
   }
 
-  export interface Params$Resource$Aisafety$Classifycontent
-    extends StandardParameters {
+  export interface Params$Resource$Aisafety$Classifycontent extends StandardParameters {
     /**
      * Request body metadata
      */
