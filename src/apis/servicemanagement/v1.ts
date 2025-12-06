@@ -4061,8 +4061,7 @@ export namespace servicemanagement_v1 {
      */
     serviceName?: string;
   }
-  export interface Params$Resource$Services$Generateconfigreport
-    extends StandardParameters {
+  export interface Params$Resource$Services$Generateconfigreport extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -4074,8 +4073,7 @@ export namespace servicemanagement_v1 {
      */
     serviceName?: string;
   }
-  export interface Params$Resource$Services$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Services$Getconfig extends StandardParameters {
     /**
      * Required. The id of the service configuration resource. This field must be specified for the server to return all fields, including `SourceInfo`.
      */
@@ -4089,8 +4087,7 @@ export namespace servicemanagement_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Services$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Services$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4119,8 +4116,7 @@ export namespace servicemanagement_v1 {
      */
     producerProjectId?: string;
   }
-  export interface Params$Resource$Services$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Services$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4131,8 +4127,7 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Services$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Services$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4143,8 +4138,7 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Services$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Services$Undelete extends StandardParameters {
     /**
      * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
@@ -4842,8 +4836,7 @@ export namespace servicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Configs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Services$Configs$Create extends StandardParameters {
     /**
      * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
@@ -4854,8 +4847,7 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Services$Configs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Services$Configs$Get extends StandardParameters {
     /**
      * Required. The id of the service configuration resource. This field must be specified for the server to return all fields, including `SourceInfo`.
      */
@@ -4869,8 +4861,7 @@ export namespace servicemanagement_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Services$Configs$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Configs$List extends StandardParameters {
     /**
      * The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      */
@@ -4884,8 +4875,7 @@ export namespace servicemanagement_v1 {
      */
     serviceName?: string;
   }
-  export interface Params$Resource$Services$Configs$Submit
-    extends StandardParameters {
+  export interface Params$Resource$Services$Configs$Submit extends StandardParameters {
     /**
      * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
@@ -5366,8 +5356,7 @@ export namespace servicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Consumers$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumers$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5378,8 +5367,7 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Services$Consumers$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumers$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5390,8 +5378,7 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Services$Consumers$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Services$Consumers$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5873,8 +5860,7 @@ export namespace servicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Rollouts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Services$Rollouts$Create extends StandardParameters {
     /**
      * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
@@ -5885,8 +5871,7 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$Rollout;
   }
-  export interface Params$Resource$Services$Rollouts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Services$Rollouts$Get extends StandardParameters {
     /**
      * Required. The id of the rollout resource.
      */
@@ -5896,8 +5881,7 @@ export namespace servicemanagement_v1 {
      */
     serviceName?: string;
   }
-  export interface Params$Resource$Services$Rollouts$List
-    extends StandardParameters {
+  export interface Params$Resource$Services$Rollouts$List extends StandardParameters {
     /**
      * Required. Use `filter` to return subset of rollouts. The following filters are supported: -- By status. For example, `filter='status=SUCCESS'` -- By strategy. For example, `filter='strategy=TrafficPercentStrategy'`
      */
