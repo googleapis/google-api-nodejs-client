@@ -676,8 +676,7 @@ export namespace verifiedaccess_v2 {
     }
   }
 
-  export interface Params$Resource$Challenge$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Challenge$Generate extends StandardParameters {
     /**
      * Request body metadata
      */
