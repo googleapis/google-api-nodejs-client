@@ -565,8 +565,7 @@ export namespace admin_datatransfer_v1 {
      */
     applicationId?: string;
   }
-  export interface Params$Resource$Applications$List
-    extends StandardParameters {
+  export interface Params$Resource$Applications$List extends StandardParameters {
     /**
      * Immutable ID of the Google Workspace account.
      */

@@ -612,7 +612,7 @@ export namespace admin_reports_v1 {
      *     actorIpAddress: 'placeholder-value',
      *     // Application name for which the events are to be retrieved.
      *     applicationName:
-     *       '(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(classroom)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gmail)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)',
+     *       '(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)',
      *     // The unique ID of the customer to retrieve data for.
      *     customerId: 'C.+|my_customer',
      *     // Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts: - *Date of the API's request for a report*: When the API created and retrieved the report. - *Report's start time*: The beginning of the timespan shown in the report. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. - *Report's end time*: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August. If the `endTime` is not specified, the report returns all activities from the `startTime` until the current time or the most recent 180 days if the `startTime` is more than 180 days in the past. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days.
@@ -631,6 +631,8 @@ export namespace admin_reports_v1 {
      *     orgUnitID: '(id:[a-z0-9]+)',
      *     // The token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string.
      *     pageToken: 'placeholder-value',
+     *     // Optional. The `resourceDetailsFilter` query string is an AND separated list composed of [Resource Details](#resourcedetails) fields manipulated by relational operators. Resource Details Filters are in the form `{resourceDetails.field1\}{relational operator\}{field1 value\} AND {resourceDetails.field2\}{relational operator\}{field2 value\}...` All the inner fields are traversed using the `.` operator, as shown in the following example: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" ``` `resourceDetailsFilter` query supports these relational operators: * `=`—'equal to'. * `!=`—'not equal to'. * `:`—'exists'. This is used for filtering on repeated fields. [`FieldValue`](#fieldvalue) types that are repeated in nature uses `exists` operator for filtering. The following [`FieldValue`](#fieldvalue) types are repeated: * [`TextListValue`](#textlistvalue) * [`SelectionListValue`](#selectionlistvalue) * [`UserListValue`](#userlistvalue) For example, in the following filter, [`SelectionListValue`](#selectionlistvalue), is a repeated field. The filter checks whether [`SelectionListValue`](#selectionlistvalue) contains `selection_id`: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" AND resourceDetails.appliedLabels.fieldValue.type = "SELECTION_LIST_VALUE" AND resourceDetails.appliedLabels.fieldValue.selectionListValue.id: "id" ``` **Usage** ``` GET...&resourceDetailsFilter=resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" GET...&resourceDetailsFilter=resourceDetails.id=%22resourceId%22%20AND%20resourceDetails.appliedLabels.id=%22appliedLabelId%22 ``` **Note the following**: * You must URL encode the query string before sending the request. * The API supports a maximum of 5 fields separated by the AND operator. - When filtering on deeper levels (e.g., [`AppliedLabel`](#appliedlabel), [`FieldValue`](#fieldvalue)), the IDs of all preceding levels in the hierarchy must be included in the filter. For example: Filtering on [`FieldValue`](#fieldvalue) requires [`AppliedLabel`](#appliedlabel) ID and resourceDetails ID to be present. *Sample Query*: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" ``` * Filtering on inner [`FieldValue`](#fieldvalue) types like `longTextValue` and `textValue` requires `resourceDetails.appliedLabels.fieldValue.type` to be present. * Only Filtering on a single [`AppliedLabel`](#appliedlabel) id and [`FieldValue`](#fieldvalue) id is supported.
+     *     resourceDetailsFilter: 'placeholder-value',
      *     // Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days.
      *     startTime:
      *       '(&#92;d&#92;d&#92;d&#92;d)-(&#92;d&#92;d)-(&#92;d&#92;d)T(&#92;d&#92;d):(&#92;d&#92;d):(&#92;d&#92;d)(?:&#92;.(&#92;d+))?(?:(Z)|([-+])(&#92;d&#92;d):(&#92;d&#92;d))',
@@ -972,6 +974,10 @@ export namespace admin_reports_v1 {
      * The token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string.
      */
     pageToken?: string;
+    /**
+     * Optional. The `resourceDetailsFilter` query string is an AND separated list composed of [Resource Details](#resourcedetails) fields manipulated by relational operators. Resource Details Filters are in the form `{resourceDetails.field1\}{relational operator\}{field1 value\} AND {resourceDetails.field2\}{relational operator\}{field2 value\}...` All the inner fields are traversed using the `.` operator, as shown in the following example: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" ``` `resourceDetailsFilter` query supports these relational operators: * `=`—'equal to'. * `!=`—'not equal to'. * `:`—'exists'. This is used for filtering on repeated fields. [`FieldValue`](#fieldvalue) types that are repeated in nature uses `exists` operator for filtering. The following [`FieldValue`](#fieldvalue) types are repeated: * [`TextListValue`](#textlistvalue) * [`SelectionListValue`](#selectionlistvalue) * [`UserListValue`](#userlistvalue) For example, in the following filter, [`SelectionListValue`](#selectionlistvalue), is a repeated field. The filter checks whether [`SelectionListValue`](#selectionlistvalue) contains `selection_id`: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" AND resourceDetails.appliedLabels.fieldValue.type = "SELECTION_LIST_VALUE" AND resourceDetails.appliedLabels.fieldValue.selectionListValue.id: "id" ``` **Usage** ``` GET...&resourceDetailsFilter=resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" GET...&resourceDetailsFilter=resourceDetails.id=%22resourceId%22%20AND%20resourceDetails.appliedLabels.id=%22appliedLabelId%22 ``` **Note the following**: * You must URL encode the query string before sending the request. * The API supports a maximum of 5 fields separated by the AND operator. - When filtering on deeper levels (e.g., [`AppliedLabel`](#appliedlabel), [`FieldValue`](#fieldvalue)), the IDs of all preceding levels in the hierarchy must be included in the filter. For example: Filtering on [`FieldValue`](#fieldvalue) requires [`AppliedLabel`](#appliedlabel) ID and resourceDetails ID to be present. *Sample Query*: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" ``` * Filtering on inner [`FieldValue`](#fieldvalue) types like `longTextValue` and `textValue` requires `resourceDetails.appliedLabels.fieldValue.type` to be present. * Only Filtering on a single [`AppliedLabel`](#appliedlabel) id and [`FieldValue`](#fieldvalue) id is supported.
+     */
+    resourceDetailsFilter?: string;
     /**
      * Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days.
      */
@@ -1349,8 +1355,7 @@ export namespace admin_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Customerusagereports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customerusagereports$Get extends StandardParameters {
     /**
      * The unique ID of the customer to retrieve data for.
      */
@@ -1532,8 +1537,7 @@ export namespace admin_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Entityusagereports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Entityusagereports$Get extends StandardParameters {
     /**
      * The unique ID of the customer to retrieve data for.
      */
@@ -1733,8 +1737,7 @@ export namespace admin_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Userusagereport$Get
-    extends StandardParameters {
+  export interface Params$Resource$Userusagereport$Get extends StandardParameters {
     /**
      * The unique ID of the customer to retrieve data for.
      */

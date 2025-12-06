@@ -153,7 +153,20 @@
                 "keep",
                 "vault",
                 "gemini_in_workspace_apps",
-                "classroom"
+                "classroom",
+                "assignments",
+                "cloud_search",
+                "tasks",
+                "data_migration",
+                "meet_hardware",
+                "directory_sync",
+                "ldap",
+                "profile",
+                "access_evaluation",
+                "admin_data_action",
+                "contacts",
+                "takeout",
+                "graduation"
               ],
               "enumDescriptions": [
                 "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
@@ -180,10 +193,23 @@
                 "The Keep application's activity reports return information about various Google Keep activity events. The Keep activity report is only available for Google Workspace Business and Enterprise customers.",
                 "The Vault activity reports return information about various types of Vault activity events.",
                 "The Gemini for Workspace activity reports return information about various types of Gemini activity events performed by users within a Workspace application.",
-                "The Classroom activity reports return information about different types of [Classroom activity events](https://developers.google.com/workspace/admin/reports/v1/appendix/activity/classroom)."
+                "The Classroom activity reports return information about different types of [Classroom activity events](https://developers.google.com/workspace/admin/reports/v1/appendix/activity/classroom).",
+                "The assignments application's activity reports return information about various types of assignments activity events.",
+                "The Cloud Search application's activity reports return information about various types of cloud_search activity events.",
+                "The Tasks application's activity reports return information about various types of Tasks activity events.",
+                "The Data Migration application's activity reports return information about various types of data migration activity events.",
+                "The Meet Hardware application's activity reports return information about various types of Meet Hardware activity events.",
+                "The Directory Sync application's activity reports return information about various types of Directory Sync activity events.",
+                "The ldap application's activity reports return information about various types of ldap activity events.",
+                "The Profile application's activity reports return information about various types of Profile activity events.",
+                "The Access Evaluation activity reports return information about various types of Access Evaluation activity events.",
+                "The Admin Data Action application's activity reports return information about various types of Admin Data Action activity events.",
+                "The Contacts application's activity reports return information about various types of Contacts activity events.",
+                "The Takeout application's activity reports return information about various types of Takeout activity events.",
+                "The Graduation application's activity reports return information about various types of Graduation activity events."
               ],
               "location": "path",
-              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(classroom)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gmail)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)",
+              "pattern": "(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)",
               "required": true,
               "type": "string"
             },
@@ -234,6 +260,11 @@
             },
             "pageToken": {
               "description": "The token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string.",
+              "location": "query",
+              "type": "string"
+            },
+            "resourceDetailsFilter": {
+              "description": "Optional. The `resourceDetailsFilter` query string is an AND separated list composed of [Resource Details](#resourcedetails) fields manipulated by relational operators. Resource Details Filters are in the form `{resourceDetails.field1}{relational operator}{field1 value} AND {resourceDetails.field2}{relational operator}{field2 value}...` All the inner fields are traversed using the `.` operator, as shown in the following example: ``` resourceDetails.id = \"resourceId\" AND resourceDetails.appliedLabels.id = \"appliedLabelId\" AND resourceDetails.appliedLabels.fieldValue.id = \"fieldValueId\" ``` `resourceDetailsFilter` query supports these relational operators: * `=`—'equal to'. * `!=`—'not equal to'. * `:`—'exists'. This is used for filtering on repeated fields. [`FieldValue`](#fieldvalue) types that are repeated in nature uses `exists` operator for filtering. The following [`FieldValue`](#fieldvalue) types are repeated: * [`TextListValue`](#textlistvalue) * [`SelectionListValue`](#selectionlistvalue) * [`UserListValue`](#userlistvalue) For example, in the following filter, [`SelectionListValue`](#selectionlistvalue), is a repeated field. The filter checks whether [`SelectionListValue`](#selectionlistvalue) contains `selection_id`: ``` resourceDetails.id = \"resourceId\" AND resourceDetails.appliedLabels.id = \"appliedLabelId\" AND resourceDetails.appliedLabels.fieldValue.id = \"fieldValueId\" AND resourceDetails.appliedLabels.fieldValue.type = \"SELECTION_LIST_VALUE\" AND resourceDetails.appliedLabels.fieldValue.selectionListValue.id: \"id\" ``` **Usage** ``` GET...&resourceDetailsFilter=resourceDetails.id = \"resourceId\" AND resourceDetails.appliedLabels.id = \"appliedLabelId\" GET...&resourceDetailsFilter=resourceDetails.id=%22resourceId%22%20AND%20resourceDetails.appliedLabels.id=%22appliedLabelId%22 ``` **Note the following**: * You must URL encode the query string before sending the request. * The API supports a maximum of 5 fields separated by the AND operator. - When filtering on deeper levels (e.g., [`AppliedLabel`](#appliedlabel), [`FieldValue`](#fieldvalue)), the IDs of all preceding levels in the hierarchy must be included in the filter. For example: Filtering on [`FieldValue`](#fieldvalue) requires [`AppliedLabel`](#appliedlabel) ID and resourceDetails ID to be present. *Sample Query*: ``` resourceDetails.id = \"resourceId\" AND resourceDetails.appliedLabels.id = \"appliedLabelId\" AND resourceDetails.appliedLabels.fieldValue.id = \"fieldValueId\" ``` * Filtering on inner [`FieldValue`](#fieldvalue) types like `longTextValue` and `textValue` requires `resourceDetails.appliedLabels.fieldValue.type` to be present. * Only Filtering on a single [`AppliedLabel`](#appliedlabel) id and [`FieldValue`](#fieldvalue) id is supported.",
               "location": "query",
               "type": "string"
             },
@@ -635,7 +666,7 @@
       }
     }
   },
-  "revision": "20251107",
+  "revision": "20251202",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {

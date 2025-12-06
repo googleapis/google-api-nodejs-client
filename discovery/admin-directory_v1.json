@@ -3849,6 +3849,24 @@
     },
     "users": {
       "methods": {
+        "createGuest": {
+          "description": "Create a guest user with access to a [subset of Workspace capabilities](https://support.google.com/a/answer/16558545?hl=en). This feature is currently in Alpha. Please reach out to support if you are interested in trying this feature.",
+          "flatPath": "admin/directory/v1/users:createGuest",
+          "httpMethod": "POST",
+          "id": "directory.users.createGuest",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "admin/directory/v1/users:createGuest",
+          "request": {
+            "$ref": "DirectoryUsersCreateGuestRequest"
+          },
+          "response": {
+            "$ref": "User"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/admin.directory.user"
+          ]
+        },
         "delete": {
           "description": "Deletes a user.",
           "flatPath": "admin/directory/v1/users/{userKey}",
@@ -4671,7 +4689,7 @@
       }
     }
   },
-  "revision": "20251107",
+  "revision": "20251124",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -6354,6 +6372,17 @@
       },
       "type": "object"
     },
+    "DirectoryUsersCreateGuestRequest": {
+      "description": "Directory users guest creation request message.",
+      "id": "DirectoryUsersCreateGuestRequest",
+      "properties": {
+        "primaryGuestEmail": {
+          "description": "Immutable. External email of the guest user being created.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DomainAlias": {
       "id": "DomainAlias",
       "properties": {
@@ -6745,6 +6774,17 @@
         },
         "nextPageToken": {
           "description": "Token used to access next page of this result.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GuestAccountInfo": {
+      "description": "Account info specific to Guest users.",
+      "id": "GuestAccountInfo",
+      "properties": {
+        "primaryGuestEmail": {
+          "description": "Immutable. The guest's external email.",
           "type": "string"
         }
       },
@@ -7960,6 +8000,10 @@
           "description": "The user's gender. The maximum allowed data size for this field is 1KB.",
           "type": "any"
         },
+        "guestAccountInfo": {
+          "$ref": "GuestAccountInfo",
+          "description": "Immutable. Additional guest-related metadata fields"
+        },
         "hashFunction": {
           "description": "Stores the hash format of the `password` property. The following `hashFunction` values are allowed: * `MD5` - Accepts simple hex-encoded values. * `SHA-1` - Accepts simple hex-encoded values. * `crypt` - Compliant with the [C crypt library](https://en.wikipedia.org/wiki/Crypt_%28C%29). Supports the DES, MD5 (hash prefix `$1$`), SHA-256 (hash prefix `$5$`), and SHA-512 (hash prefix `$6$`) hash algorithms. If rounds are specified as part of the prefix, they must be 10,000 or fewer.",
           "type": "string"
@@ -7998,6 +8042,10 @@
         "isEnrolledIn2Sv": {
           "description": "Output only. Is enrolled in 2-step verification (Read-only)",
           "readOnly": true,
+          "type": "boolean"
+        },
+        "isGuestUser": {
+          "description": "Immutable. Indicates if the inserted user is a guest.",
           "type": "boolean"
         },
         "isMailboxSetup": {
