@@ -1747,8 +1747,7 @@ export namespace bigqueryconnection_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Create extends StandardParameters {
     /**
      * Optional. Connection id that should be assigned to the created connection.
      */
@@ -1763,22 +1762,19 @@ export namespace bigqueryconnection_v1beta1 {
      */
     requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Delete extends StandardParameters {
     /**
      * Required. Name of the deleted connection, for example: `projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Get extends StandardParameters {
     /**
      * Required. Name of the requested connection, for example: `projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1789,8 +1785,7 @@ export namespace bigqueryconnection_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$List extends StandardParameters {
     /**
      * Required. Maximum number of results per page.
      */
@@ -1804,8 +1799,7 @@ export namespace bigqueryconnection_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Patch extends StandardParameters {
     /**
      * Required. Name of the connection to update, for example: `projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}`
      */
@@ -1820,8 +1814,7 @@ export namespace bigqueryconnection_v1beta1 {
      */
     requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1832,8 +1825,7 @@ export namespace bigqueryconnection_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1844,8 +1836,7 @@ export namespace bigqueryconnection_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Updatecredential
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Updatecredential extends StandardParameters {
     /**
      * Required. Name of the connection, for example: `projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}/credential`
      */
