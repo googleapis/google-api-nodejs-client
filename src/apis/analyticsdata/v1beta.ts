@@ -2507,8 +2507,7 @@ export namespace analyticsdata_v1beta {
     }
   }
 
-  export interface Params$Resource$Properties$Batchrunpivotreports
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Batchrunpivotreports extends StandardParameters {
     /**
      * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). This property must be specified for the batch. The property within RunPivotReportRequest may either be unspecified or consistent with this property. Example: properties/1234
      */
@@ -2519,8 +2518,7 @@ export namespace analyticsdata_v1beta {
      */
     requestBody?: Schema$BatchRunPivotReportsRequest;
   }
-  export interface Params$Resource$Properties$Batchrunreports
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Batchrunreports extends StandardParameters {
     /**
      * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). This property must be specified for the batch. The property within RunReportRequest may either be unspecified or consistent with this property. Example: properties/1234
      */
@@ -2531,8 +2529,7 @@ export namespace analyticsdata_v1beta {
      */
     requestBody?: Schema$BatchRunReportsRequest;
   }
-  export interface Params$Resource$Properties$Checkcompatibility
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Checkcompatibility extends StandardParameters {
     /**
      * A Google Analytics property identifier whose events are tracked. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). `property` should be the same value as in your `runReport` request. Example: properties/1234
      */
@@ -2543,15 +2540,13 @@ export namespace analyticsdata_v1beta {
      */
     requestBody?: Schema$CheckCompatibilityRequest;
   }
-  export interface Params$Resource$Properties$Getmetadata
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Getmetadata extends StandardParameters {
     /**
      * Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Example: properties/1234/metadata Set the Property ID to 0 for dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Runpivotreport
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Runpivotreport extends StandardParameters {
     /**
      * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234
      */
@@ -2562,8 +2557,7 @@ export namespace analyticsdata_v1beta {
      */
     requestBody?: Schema$RunPivotReportRequest;
   }
-  export interface Params$Resource$Properties$Runrealtimereport
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Runrealtimereport extends StandardParameters {
     /**
      * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Example: properties/1234
      */
@@ -2574,8 +2568,7 @@ export namespace analyticsdata_v1beta {
      */
     requestBody?: Schema$RunRealtimeReportRequest;
   }
-  export interface Params$Resource$Properties$Runreport
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Runreport extends StandardParameters {
     /**
      * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234
      */
@@ -3209,8 +3202,7 @@ export namespace analyticsdata_v1beta {
     }
   }
 
-  export interface Params$Resource$Properties$Audienceexports$Create
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Audienceexports$Create extends StandardParameters {
     /**
      * Required. The parent resource where this audience export will be created. Format: `properties/{property\}`
      */
@@ -3221,15 +3213,13 @@ export namespace analyticsdata_v1beta {
      */
     requestBody?: Schema$AudienceExport;
   }
-  export interface Params$Resource$Properties$Audienceexports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Audienceexports$Get extends StandardParameters {
     /**
      * Required. The audience export resource name. Format: `properties/{property\}/audienceExports/{audience_export\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Audienceexports$List
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Audienceexports$List extends StandardParameters {
     /**
      * Optional. The maximum number of audience exports to return. The service may return fewer than this value. If unspecified, at most 200 audience exports will be returned. The maximum value is 1000 (higher values will be coerced to the maximum).
      */
@@ -3243,8 +3233,7 @@ export namespace analyticsdata_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Properties$Audienceexports$Query
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Audienceexports$Query extends StandardParameters {
     /**
      * Required. The name of the audience export to retrieve users from. Format: `properties/{property\}/audienceExports/{audience_export\}`
      */
