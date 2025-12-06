@@ -1022,8 +1022,7 @@ export namespace script_v1 {
      */
     'userProcessFilter.userAccessLevels'?: string[];
   }
-  export interface Params$Resource$Processes$Listscriptprocesses
-    extends StandardParameters {
+  export interface Params$Resource$Processes$Listscriptprocesses extends StandardParameters {
     /**
      * The maximum number of returned processes per page of results. Defaults to 50.
      */
@@ -1812,8 +1811,7 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Getcontent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getcontent extends StandardParameters {
     /**
      * The script project's Drive ID.
      */
@@ -1823,8 +1821,7 @@ export namespace script_v1 {
      */
     versionNumber?: number;
   }
-  export interface Params$Resource$Projects$Getmetrics
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getmetrics extends StandardParameters {
     /**
      * Optional field indicating a specific deployment to retrieve metrics from.
      */
@@ -1838,8 +1835,7 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Updatecontent
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updatecontent extends StandardParameters {
     /**
      * The script project's Drive ID.
      */
@@ -2585,8 +2581,7 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Deployments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deployments$Create extends StandardParameters {
     /**
      * The script project's Drive ID.
      */
@@ -2597,8 +2592,7 @@ export namespace script_v1 {
      */
     requestBody?: Schema$DeploymentConfig;
   }
-  export interface Params$Resource$Projects$Deployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deployments$Delete extends StandardParameters {
     /**
      * The deployment ID to be undeployed.
      */
@@ -2608,8 +2602,7 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deployments$Get extends StandardParameters {
     /**
      * The deployment ID.
      */
@@ -2619,8 +2612,7 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deployments$List extends StandardParameters {
     /**
      * The maximum number of deployments on each returned page. Defaults to 50.
      */
@@ -2634,8 +2626,7 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Deployments$Update extends StandardParameters {
     /**
      * The deployment ID for this deployment.
      */
@@ -3100,8 +3091,7 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Versions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Versions$Create extends StandardParameters {
     /**
      * The script project's Drive ID.
      */
@@ -3112,8 +3102,7 @@ export namespace script_v1 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Projects$Versions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Versions$Get extends StandardParameters {
     /**
      * The script project's Drive ID.
      */
@@ -3123,8 +3112,7 @@ export namespace script_v1 {
      */
     versionNumber?: number;
   }
-  export interface Params$Resource$Projects$Versions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Versions$List extends StandardParameters {
     /**
      * The maximum number of versions on each returned page. Defaults to 50.
      */
