@@ -6513,7 +6513,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Optional. Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "description": "Optional. Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -9268,7 +9268,7 @@
       }
     }
   },
-  "revision": "20251027",
+  "revision": "20251118",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -11000,7 +11000,8 @@
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
-            "EXCHANGE_SNAP"
+            "EXCHANGE_SNAP",
+            "EXCHANGE_CADENT"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -11090,7 +11091,8 @@
             "Commerce Grid.",
             "Spotify.",
             "Tubi.",
-            "Snap."
+            "Snap.",
+            "Cadent."
           ],
           "type": "string"
         },
@@ -12250,7 +12252,7 @@
         },
         "maximizeSpendAutoBid": {
           "$ref": "MaximizeSpendBidStrategy",
-          "description": "A strategy that automatically adjusts the bid to optimize to your performance goal while spending the full budget. At insertion order level, the markup_type of line items cannot be set to `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`. In addition, when performance_goal_type is one of: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` , the line_item_type of the insertion order line items must be either: * `LINE_ITEM_TYPE_DISPLAY_DEFAULT` * `LINE_ITEM_TYPE_VIDEO_DEFAULT` , and when performance_goal_type is either: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` the line_item_type of the insertion order line items must be `LINE_ITEM_TYPE_VIDEO_DEFAULT`."
+          "description": "* `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` only allow for `LINE_ITEM_TYPE_DISPLAY_DEFAULT` or `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` only allow for `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_REACH` only allows for `LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP` line items."
         },
         "performanceGoalAutoBid": {
           "$ref": "PerformanceGoalBidStrategy",
@@ -14157,7 +14159,7 @@
             true,
             true,
             true,
-            false,
+            true,
             false,
             false,
             false,
@@ -16103,7 +16105,8 @@
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
-            "EXCHANGE_SNAP"
+            "EXCHANGE_SNAP",
+            "EXCHANGE_CADENT"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16193,7 +16196,8 @@
             "Commerce Grid.",
             "Spotify.",
             "Tubi.",
-            "Snap."
+            "Snap.",
+            "Cadent."
           ],
           "type": "string"
         }
@@ -16308,7 +16312,8 @@
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
-            "EXCHANGE_SNAP"
+            "EXCHANGE_SNAP",
+            "EXCHANGE_CADENT"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16398,7 +16403,8 @@
             "Commerce Grid.",
             "Spotify.",
             "Tubi.",
-            "Snap."
+            "Snap.",
+            "Cadent."
           ],
           "type": "string"
         },
@@ -16514,7 +16520,8 @@
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
-            "EXCHANGE_SNAP"
+            "EXCHANGE_SNAP",
+            "EXCHANGE_CADENT"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16604,7 +16611,8 @@
             "Commerce Grid.",
             "Spotify.",
             "Tubi.",
-            "Snap."
+            "Snap.",
+            "Cadent."
           ],
           "type": "string"
         },
@@ -16721,7 +16729,8 @@
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
-            "EXCHANGE_SNAP"
+            "EXCHANGE_SNAP",
+            "EXCHANGE_CADENT"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16811,7 +16820,8 @@
             "Commerce Grid.",
             "Spotify.",
             "Tubi.",
-            "Snap."
+            "Snap.",
+            "Cadent."
           ],
           "readOnly": true,
           "type": "string"
@@ -17838,7 +17848,8 @@
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
-            "EXCHANGE_SNAP"
+            "EXCHANGE_SNAP",
+            "EXCHANGE_CADENT"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -17928,7 +17939,8 @@
             "Commerce Grid.",
             "Spotify.",
             "Tubi.",
-            "Snap."
+            "Snap.",
+            "Cadent."
           ],
           "type": "string"
         },
@@ -18785,7 +18797,8 @@
             "EXCHANGE_COMMERCE_GRID",
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
-            "EXCHANGE_SNAP"
+            "EXCHANGE_SNAP",
+            "EXCHANGE_CADENT"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -18875,7 +18888,8 @@
             "Commerce Grid.",
             "Spotify.",
             "Tubi.",
-            "Snap."
+            "Snap.",
+            "Cadent."
           ],
           "type": "string"
         },
@@ -22088,7 +22102,7 @@
             true,
             true,
             true,
-            false,
+            true,
             false,
             false,
             false,
@@ -22183,7 +22197,7 @@
             true,
             true,
             true,
-            false,
+            true,
             false,
             false,
             false,
