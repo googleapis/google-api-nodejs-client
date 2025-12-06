@@ -929,8 +929,7 @@ export namespace firestore_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Exportdocuments
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Exportdocuments extends StandardParameters {
     /**
      * Database to export. Should be of the form: `projects/{project_id\}/databases/{database_id\}`.
      */
@@ -941,8 +940,7 @@ export namespace firestore_v1beta2 {
      */
     requestBody?: Schema$GoogleFirestoreAdminV1beta2ExportDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Databases$Importdocuments
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Importdocuments extends StandardParameters {
     /**
      * Database to import into. Should be of the form: `projects/{project_id\}/databases/{database_id\}`.
      */
@@ -1441,15 +1439,13 @@ export namespace firestore_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Get extends StandardParameters {
     /**
      * A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$List extends StandardParameters {
     /**
      * The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false`.
      */
@@ -1467,8 +1463,7 @@ export namespace firestore_v1beta2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch extends StandardParameters {
     /**
      * A field name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
@@ -2100,8 +2095,7 @@ export namespace firestore_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create extends StandardParameters {
     /**
      * A parent name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}`
      */
@@ -2112,22 +2106,19 @@ export namespace firestore_v1beta2 {
      */
     requestBody?: Schema$GoogleFirestoreAdminV1beta2Index;
   }
-  export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete extends StandardParameters {
     /**
      * A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{index_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get extends StandardParameters {
     /**
      * A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{index_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$List extends StandardParameters {
     /**
      * The filter to apply to list results.
      */
