@@ -1089,22 +1089,19 @@ export namespace libraryagent_v1 {
     }
   }
 
-  export interface Params$Resource$Shelves$Books$Borrow
-    extends StandardParameters {
+  export interface Params$Resource$Shelves$Books$Borrow extends StandardParameters {
     /**
      * Required. The name of the book to borrow.
      */
     name?: string;
   }
-  export interface Params$Resource$Shelves$Books$Get
-    extends StandardParameters {
+  export interface Params$Resource$Shelves$Books$Get extends StandardParameters {
     /**
      * Required. The name of the book to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Shelves$Books$List
-    extends StandardParameters {
+  export interface Params$Resource$Shelves$Books$List extends StandardParameters {
     /**
      * Requested page size. Server may return fewer books than requested. If unspecified, server will pick an appropriate default.
      */
@@ -1118,8 +1115,7 @@ export namespace libraryagent_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Shelves$Books$Return
-    extends StandardParameters {
+  export interface Params$Resource$Shelves$Books$Return extends StandardParameters {
     /**
      * Required. The name of the book to return.
      */
