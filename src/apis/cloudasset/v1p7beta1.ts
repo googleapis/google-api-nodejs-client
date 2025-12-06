@@ -1281,8 +1281,7 @@ export namespace cloudasset_v1p7beta1 {
     }
   }
 
-  export interface Params$Resource$V1p7beta1$Exportassets
-    extends StandardParameters {
+  export interface Params$Resource$V1p7beta1$Exportassets extends StandardParameters {
     /**
      * Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"), or a folder number (such as "folders/123").
      */

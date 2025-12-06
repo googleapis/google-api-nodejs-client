@@ -3190,8 +3190,7 @@ export namespace cloudasset_v1 {
     }
   }
 
-  export interface Params$Resource$Effectiveiampolicies$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Effectiveiampolicies$Batchget extends StandardParameters {
     /**
      * Required. The names refer to the [full_resource_names] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of the asset types [supported by search APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types). A maximum of 20 resources' effective policies can be retrieved in a batch.
      */
@@ -4850,8 +4849,7 @@ export namespace cloudasset_v1 {
     }
   }
 
-  export interface Params$Resource$Savedqueries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Savedqueries$Create extends StandardParameters {
     /**
      * Required. The name of the project/folder/organization where this saved_query should be created in. It can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345").
      */
@@ -4866,8 +4864,7 @@ export namespace cloudasset_v1 {
      */
     requestBody?: Schema$SavedQuery;
   }
-  export interface Params$Resource$Savedqueries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Savedqueries$Delete extends StandardParameters {
     /**
      * Required. The name of the saved query to delete. It must be in the format of: * projects/project_number/savedQueries/saved_query_id * folders/folder_number/savedQueries/saved_query_id * organizations/organization_number/savedQueries/saved_query_id
      */
@@ -4879,8 +4876,7 @@ export namespace cloudasset_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Savedqueries$List
-    extends StandardParameters {
+  export interface Params$Resource$Savedqueries$List extends StandardParameters {
     /**
      * Optional. The expression to filter resources. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. When `AND` and `OR` are both used in the expression, parentheses must be appropriately used to group the combinations. The expression may also contain regular expressions. See https://google.aip.dev/160 for more information on the grammar.
      */
@@ -4898,8 +4894,7 @@ export namespace cloudasset_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Savedqueries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Savedqueries$Patch extends StandardParameters {
     /**
      * The resource name of the saved query. The format must be: * projects/project_number/savedQueries/saved_query_id * folders/folder_number/savedQueries/saved_query_id * organizations/organization_number/savedQueries/saved_query_id
      */
@@ -6620,8 +6615,7 @@ export namespace cloudasset_v1 {
     }
   }
 
-  export interface Params$Resource$V1$Analyzeiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$V1$Analyzeiampolicy extends StandardParameters {
     /**
      * Optional. The permissions to appear in result.
      */
@@ -6679,8 +6673,7 @@ export namespace cloudasset_v1 {
      */
     scope?: string;
   }
-  export interface Params$Resource$V1$Analyzeiampolicylongrunning
-    extends StandardParameters {
+  export interface Params$Resource$V1$Analyzeiampolicylongrunning extends StandardParameters {
     /**
      * Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization ID, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project ID, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      */
@@ -6705,8 +6698,7 @@ export namespace cloudasset_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$V1$Analyzeorgpolicies
-    extends StandardParameters {
+  export interface Params$Resource$V1$Analyzeorgpolicies extends StandardParameters {
     /**
      * Required. The name of the constraint to analyze organization policies for. The response only contains analyzed organization policies for the provided constraint.
      */
@@ -6728,8 +6720,7 @@ export namespace cloudasset_v1 {
      */
     scope?: string;
   }
-  export interface Params$Resource$V1$Analyzeorgpolicygovernedassets
-    extends StandardParameters {
+  export interface Params$Resource$V1$Analyzeorgpolicygovernedassets extends StandardParameters {
     /**
      * Required. The name of the constraint to analyze governed assets for. The analysis only contains analyzed organization policies for the provided constraint.
      */
@@ -6751,8 +6742,7 @@ export namespace cloudasset_v1 {
      */
     scope?: string;
   }
-  export interface Params$Resource$V1$Analyzeorgpolicygovernedcontainers
-    extends StandardParameters {
+  export interface Params$Resource$V1$Analyzeorgpolicygovernedcontainers extends StandardParameters {
     /**
      * Required. The name of the constraint to analyze governed containers for. The analysis only contains organization policies for the provided constraint.
      */
@@ -6774,8 +6764,7 @@ export namespace cloudasset_v1 {
      */
     scope?: string;
   }
-  export interface Params$Resource$V1$Batchgetassetshistory
-    extends StandardParameters {
+  export interface Params$Resource$V1$Batchgetassetshistory extends StandardParameters {
     /**
      * A list of the full names of the assets. See: https://cloud.google.com/asset-inventory/docs/resource-name-format Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
      */
@@ -6823,8 +6812,7 @@ export namespace cloudasset_v1 {
      */
     requestBody?: Schema$QueryAssetsRequest;
   }
-  export interface Params$Resource$V1$Searchalliampolicies
-    extends StandardParameters {
+  export interface Params$Resource$V1$Searchalliampolicies extends StandardParameters {
     /**
      * Optional. A list of asset types that the IAM policies are attached to. If empty, it will search the IAM policies that are attached to all the asset types [supported by search APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types) Regular expressions are also supported. For example: * "compute.googleapis.com.*" snapshots IAM policies attached to asset type starts with "compute.googleapis.com". * ".*Instance" snapshots IAM policies attached to asset type ends with "Instance". * ".*Instance.*" snapshots IAM policies attached to asset type contains "Instance". See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported asset type, an INVALID_ARGUMENT error will be returned.
      */
@@ -6850,8 +6838,7 @@ export namespace cloudasset_v1 {
      */
     scope?: string;
   }
-  export interface Params$Resource$V1$Searchallresources
-    extends StandardParameters {
+  export interface Params$Resource$V1$Searchallresources extends StandardParameters {
     /**
      * Optional. A list of asset types that this request searches for. If empty, it will search all the asset types [supported by search APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types). Regular expressions are also supported. For example: * "compute.googleapis.com.*" snapshots resources whose asset type starts with "compute.googleapis.com". * ".*Instance" snapshots resources whose asset type ends with "Instance". * ".*Instance.*" snapshots resources whose asset type contains "Instance". See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported asset type, an INVALID_ARGUMENT error will be returned.
      */
