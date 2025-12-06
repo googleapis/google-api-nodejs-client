@@ -222,7 +222,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -945,15 +945,13 @@ export namespace networkconnectivity_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2205,8 +2203,7 @@ export namespace networkconnectivity_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Global$Hubs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Create extends StandardParameters {
     /**
      * Optional. Unique id for the Hub to create.
      */
@@ -2225,8 +2222,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestBody?: Schema$Hub;
   }
-  export interface Params$Resource$Projects$Locations$Global$Hubs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Delete extends StandardParameters {
     /**
      * Required. The name of the Hub to delete.
      */
@@ -2236,15 +2232,13 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Hubs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Get extends StandardParameters {
     /**
      * Required. Name of the Hub resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Hubs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2254,8 +2248,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Hubs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Hubs$List extends StandardParameters {
     /**
      * A filter expression that filters the results listed in the response.
      */
@@ -2277,8 +2270,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Global$Hubs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Patch extends StandardParameters {
     /**
      * Immutable. The name of a Hub resource.
      */
@@ -2297,8 +2289,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestBody?: Schema$Hub;
   }
-  export interface Params$Resource$Projects$Locations$Global$Hubs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2309,8 +2300,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Global$Hubs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3580,8 +3570,7 @@ export namespace networkconnectivity_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Internalranges$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Internalranges$Create extends StandardParameters {
     /**
      * Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/internalRanges/foo') See https://google.aip.dev/122#resource-id-segments Unique per location.
      */
@@ -3600,8 +3589,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestBody?: Schema$InternalRange;
   }
-  export interface Params$Resource$Projects$Locations$Internalranges$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Internalranges$Delete extends StandardParameters {
     /**
      * Required. The name of the InternalRange to delete.
      */
@@ -3611,15 +3599,13 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Internalranges$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Internalranges$Get extends StandardParameters {
     /**
      * Required. Name of the InternalRange to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Internalranges$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Internalranges$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3629,8 +3615,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Internalranges$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Internalranges$List extends StandardParameters {
     /**
      * A filter expression that filters the results listed in the response.
      */
@@ -3652,8 +3637,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Internalranges$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Internalranges$Patch extends StandardParameters {
     /**
      * Immutable. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
      */
@@ -3672,8 +3656,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestBody?: Schema$InternalRange;
   }
-  export interface Params$Resource$Projects$Locations$Internalranges$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Internalranges$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3684,8 +3667,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Internalranges$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Internalranges$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4160,7 +4142,7 @@ export namespace networkconnectivity_v1alpha1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4280,8 +4262,7 @@ export namespace networkconnectivity_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -4292,22 +4273,19 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -4325,7 +4303,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -5553,8 +5531,7 @@ export namespace networkconnectivity_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Spokes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Spokes$Create extends StandardParameters {
     /**
      * Required. The parent's resource name of the Spoke.
      */
@@ -5573,8 +5550,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestBody?: Schema$Spoke;
   }
-  export interface Params$Resource$Projects$Locations$Spokes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Spokes$Delete extends StandardParameters {
     /**
      * Required. The name of the Spoke to delete.
      */
@@ -5584,15 +5560,13 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Spokes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Spokes$Get extends StandardParameters {
     /**
      * Required. The name of Spoke resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Spokes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Spokes$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5602,8 +5576,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Spokes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Spokes$List extends StandardParameters {
     /**
      * A filter expression that filters the results listed in the response.
      */
@@ -5625,8 +5598,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Spokes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Spokes$Patch extends StandardParameters {
     /**
      * Immutable. The name of a Spoke resource.
      */
@@ -5645,8 +5617,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestBody?: Schema$Spoke;
   }
-  export interface Params$Resource$Projects$Locations$Spokes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Spokes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5657,8 +5628,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Spokes$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Spokes$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
