@@ -411,7 +411,7 @@
       }
     }
   },
-  "revision": "20230704",
+  "revision": "20251123",
   "rootUrl": "https://youtubereporting.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -431,6 +431,11 @@
         },
         "blobId": {
           "description": "gdata",
+          "type": "string"
+        },
+        "downloadExternalReadToken": {
+          "description": "gdata",
+          "format": "byte",
           "type": "string"
         },
         "downloadReadHandle": {
