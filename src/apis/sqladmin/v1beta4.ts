@@ -4009,8 +4009,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Backupruns$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Backupruns$Delete extends StandardParameters {
     /**
      * The ID of the backup run to delete. To find a backup run ID, use the [list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/backupRuns/list) method.
      */
@@ -4038,8 +4037,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backupruns$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Backupruns$Insert extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -4931,8 +4929,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Backups$Createbackup
-    extends StandardParameters {
+  export interface Params$Resource$Backups$Createbackup extends StandardParameters {
     /**
      * Required. The parent resource where this backup is created. Format: projects/{project\}
      */
@@ -4943,22 +4940,19 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$Backup;
   }
-  export interface Params$Resource$Backups$Deletebackup
-    extends StandardParameters {
+  export interface Params$Resource$Backups$Deletebackup extends StandardParameters {
     /**
      * Required. The name of the backup to delete. Format: projects/{project\}/backups/{backup\}
      */
     name?: string;
   }
-  export interface Params$Resource$Backups$Getbackup
-    extends StandardParameters {
+  export interface Params$Resource$Backups$Getbackup extends StandardParameters {
     /**
      * Required. The name of the backup to retrieve. Format: projects/{project\}/backups/{backup\}
      */
     name?: string;
   }
-  export interface Params$Resource$Backups$Listbackups
-    extends StandardParameters {
+  export interface Params$Resource$Backups$Listbackups extends StandardParameters {
     /**
      * Multiple filter queries are separated by spaces. For example, 'instance:abc AND type:FINAL, 'location:us', 'backupInterval.startTime\>=1950-01-01T01:01:25.771Z'. You can filter by type, instance, backupInterval.startTime (creation time), or location.
      */
@@ -4976,8 +4970,7 @@ export namespace sqladmin_v1beta4 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Backups$Updatebackup
-    extends StandardParameters {
+  export interface Params$Resource$Backups$Updatebackup extends StandardParameters {
     /**
      * Output only. The resource name of the backup. Format: projects/{project\}/backups/{backup\}.
      */
@@ -5315,8 +5308,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Connect$Generateephemeralcert
-    extends StandardParameters {
+  export interface Params$Resource$Connect$Generateephemeralcert extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12522,8 +12514,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Instances$Acquiressrslease
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Acquiressrslease extends StandardParameters {
     /**
      * Required. Cloud SQL instance ID. This doesn't include the project ID. It's composed of lowercase letters, numbers, and hyphens, and it must start with a letter. The total length must be 98 characters or less (Example: instance-id).
      */
@@ -12538,8 +12529,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$InstancesAcquireSsrsLeaseRequest;
   }
-  export interface Params$Resource$Instances$Addentraidcertificate
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Addentraidcertificate extends StandardParameters {
     /**
      * Required. Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12554,8 +12544,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$SqlInstancesAddEntraIdCertificateRequest;
   }
-  export interface Params$Resource$Instances$Addserverca
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Addserverca extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12565,8 +12554,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Addservercertificate
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Addservercertificate extends StandardParameters {
     /**
      * Required. Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12632,8 +12620,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$InstancesDemoteRequest;
   }
-  export interface Params$Resource$Instances$Demotemaster
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Demotemaster extends StandardParameters {
     /**
      * Cloud SQL instance name.
      */
@@ -12648,8 +12635,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$InstancesDemoteMasterRequest;
   }
-  export interface Params$Resource$Instances$Executesql
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Executesql extends StandardParameters {
     /**
      * Required. Database instance ID. This does not include the project ID.
      */
@@ -12679,8 +12665,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$InstancesExportRequest;
   }
-  export interface Params$Resource$Instances$Failover
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Failover extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12749,8 +12734,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Listentraidcertificates
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Listentraidcertificates extends StandardParameters {
     /**
      * Required. Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12760,8 +12744,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Listservercas
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Listservercas extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12771,8 +12754,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Listservercertificates
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Listservercertificates extends StandardParameters {
     /**
      * Required. Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12797,8 +12779,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$DatabaseInstance;
   }
-  export interface Params$Resource$Instances$Pointintimerestore
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Pointintimerestore extends StandardParameters {
     /**
      * Required. The parent resource where you created this instance. Format: projects/{project\}
      */
@@ -12809,8 +12790,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$PointInTimeRestoreContext;
   }
-  export interface Params$Resource$Instances$Precheckmajorversionupgrade
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Precheckmajorversionupgrade extends StandardParameters {
     /**
      * Required. Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12825,8 +12805,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$InstancesPreCheckMajorVersionUpgradeRequest;
   }
-  export interface Params$Resource$Instances$Promotereplica
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Promotereplica extends StandardParameters {
     /**
      * Set to true to invoke a replica failover to the DR replica. As part of replica failover, the promote operation attempts to add the original primary instance as a replica of the promoted DR replica when the original primary instance comes back online. If set to false or not specified, then the original primary instance becomes an independent Cloud SQL primary instance.
      */
@@ -12840,8 +12819,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Reencrypt
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Reencrypt extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12856,8 +12834,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$InstancesReencryptRequest;
   }
-  export interface Params$Resource$Instances$Releasessrslease
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Releasessrslease extends StandardParameters {
     /**
      * Required. The Cloud SQL instance ID. This doesn't include the project ID. It's composed of lowercase letters, numbers, and hyphens, and it must start with a letter. The total length must be 98 characters or less (Example: instance-id).
      */
@@ -12867,8 +12844,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Resetsslconfig
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Resetsslconfig extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12882,8 +12858,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Restart
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Restart extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12893,8 +12868,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Restorebackup
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Restorebackup extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12909,8 +12883,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$InstancesRestoreBackupRequest;
   }
-  export interface Params$Resource$Instances$Rotateentraidcertificate
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Rotateentraidcertificate extends StandardParameters {
     /**
      * Required. Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12925,8 +12898,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$InstancesRotateEntraIdCertificateRequest;
   }
-  export interface Params$Resource$Instances$Rotateserverca
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Rotateserverca extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12941,8 +12913,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$InstancesRotateServerCaRequest;
   }
-  export interface Params$Resource$Instances$Rotateservercertificate
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Rotateservercertificate extends StandardParameters {
     /**
      * Required. Cloud SQL instance ID. This does not include the project ID.
      */
@@ -12957,8 +12928,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$InstancesRotateServerCertificateRequest;
   }
-  export interface Params$Resource$Instances$Startreplica
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Startreplica extends StandardParameters {
     /**
      * Cloud SQL read replica instance name.
      */
@@ -12968,8 +12938,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Stopreplica
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Stopreplica extends StandardParameters {
     /**
      * Cloud SQL read replica instance name.
      */
@@ -12979,8 +12948,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Switchover
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Switchover extends StandardParameters {
     /**
      * Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations timeout, which is a sum of all database operations. Default value is 10 minutes and can be modified to a maximum value of 24 hours.
      */
@@ -12994,8 +12962,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Truncatelog
-    extends StandardParameters {
+  export interface Params$Resource$Instances$Truncatelog extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -13480,8 +13447,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * Instance operation ID.
      */
@@ -14696,8 +14662,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Getdiskshrinkconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Getdiskshrinkconfig extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -14707,8 +14672,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Instances$Getlatestrecoverytime
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Getlatestrecoverytime extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -14722,8 +14686,7 @@ export namespace sqladmin_v1beta4 {
      */
     sourceInstanceDeletionTime?: string;
   }
-  export interface Params$Resource$Projects$Instances$Performdiskshrink
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Performdiskshrink extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -14738,8 +14701,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$PerformDiskShrinkContext;
   }
-  export interface Params$Resource$Projects$Instances$Reschedulemaintenance
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Reschedulemaintenance extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -14754,8 +14716,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$SqlInstancesRescheduleMaintenanceRequestBody;
   }
-  export interface Params$Resource$Projects$Instances$Resetreplicasize
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Resetreplicasize extends StandardParameters {
     /**
      * Cloud SQL read replica instance name.
      */
@@ -14770,8 +14731,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$SqlInstancesResetReplicaSizeRequest;
   }
-  export interface Params$Resource$Projects$Instances$Startexternalsync
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Startexternalsync extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -14786,8 +14746,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$SqlInstancesStartExternalSyncRequest;
   }
-  export interface Params$Resource$Projects$Instances$Verifyexternalsyncsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Verifyexternalsyncsettings extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -15580,8 +15539,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Sslcerts$Createephemeral
-    extends StandardParameters {
+  export interface Params$Resource$Sslcerts$Createephemeral extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
