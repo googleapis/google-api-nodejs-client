@@ -2493,15 +2493,13 @@ export namespace redis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2827,15 +2825,13 @@ export namespace redis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupcollections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupcollections$Get extends StandardParameters {
     /**
      * Required. Redis backupCollection resource name using the form: `projects/{project_id\}/locations/{location_id\}/backupCollections/{backup_collection_id\}` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupcollections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupcollections$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more clusters left to be queried.
      */
@@ -3439,8 +3435,7 @@ export namespace redis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$Delete extends StandardParameters {
     /**
      * Required. Redis backup resource name using the form: `projects/{project_id\}/locations/{location_id\}/backupCollections/{backup_collection_id\}/backups/{backup_id\}`
      */
@@ -3450,8 +3445,7 @@ export namespace redis_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$Export extends StandardParameters {
     /**
      * Required. Redis backup resource name using the form: `projects/{project_id\}/locations/{location_id\}/backupCollections/{backup_collection_id\}/backups/{backup_id\}`
      */
@@ -3462,15 +3456,13 @@ export namespace redis_v1 {
      */
     requestBody?: Schema$ExportBackupRequest;
   }
-  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$Get extends StandardParameters {
     /**
      * Required. Redis backup resource name using the form: `projects/{project_id\}/locations/{location_id\}/backupCollections/{backup_collection_id\}/backups/{backup_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more clusters left to be queried.
      */
@@ -4772,8 +4764,7 @@ export namespace redis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Backup
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Backup extends StandardParameters {
     /**
      * Required. Redis cluster resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a Google Cloud region.
      */
@@ -4784,8 +4775,7 @@ export namespace redis_v1 {
      */
     requestBody?: Schema$BackupClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Create extends StandardParameters {
     /**
      * Required. The logical name of the Redis cluster in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
      */
@@ -4804,8 +4794,7 @@ export namespace redis_v1 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Delete extends StandardParameters {
     /**
      * Required. Redis cluster resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a Google Cloud region.
      */
@@ -4815,22 +4804,19 @@ export namespace redis_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Get extends StandardParameters {
     /**
      * Required. Redis cluster resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Getcertificateauthority
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Getcertificateauthority extends StandardParameters {
     /**
      * Required. Redis cluster certificate authority resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}/certificateAuthority` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$List extends StandardParameters {
     /**
      * The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more clusters left to be queried.
      */
@@ -4844,8 +4830,7 @@ export namespace redis_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Patch extends StandardParameters {
     /**
      * Required. Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
      */
@@ -4864,8 +4849,7 @@ export namespace redis_v1 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance extends StandardParameters {
     /**
      * Required. Redis Cluster instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a Google Cloud region.
      */
@@ -6594,8 +6578,7 @@ export namespace redis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Create extends StandardParameters {
     /**
      * Required. The logical name of the Redis instance in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
      */
@@ -6610,15 +6593,13 @@ export namespace redis_v1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Delete extends StandardParameters {
     /**
      * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Export extends StandardParameters {
     /**
      * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
@@ -6629,8 +6610,7 @@ export namespace redis_v1 {
      */
     requestBody?: Schema$ExportInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Failover
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Failover extends StandardParameters {
     /**
      * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
@@ -6641,22 +6621,19 @@ export namespace redis_v1 {
      */
     requestBody?: Schema$FailoverInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Get extends StandardParameters {
     /**
      * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Getauthstring
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Getauthstring extends StandardParameters {
     /**
      * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Import extends StandardParameters {
     /**
      * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
@@ -6667,8 +6644,7 @@ export namespace redis_v1 {
      */
     requestBody?: Schema$ImportInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$List extends StandardParameters {
     /**
      * The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more instances left to be queried.
      */
@@ -6682,8 +6658,7 @@ export namespace redis_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Patch extends StandardParameters {
     /**
      * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.
      */
@@ -6698,8 +6673,7 @@ export namespace redis_v1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Reschedulemaintenance
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Reschedulemaintenance extends StandardParameters {
     /**
      * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
@@ -6710,8 +6684,7 @@ export namespace redis_v1 {
      */
     requestBody?: Schema$RescheduleMaintenanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Upgrade
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Upgrade extends StandardParameters {
     /**
      * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
@@ -7281,29 +7254,25 @@ export namespace redis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
