@@ -2814,8 +2814,7 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Addpermissions
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Addpermissions extends StandardParameters {
     /**
      * The matter ID.
      */
@@ -2888,8 +2887,7 @@ export namespace vault_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Matters$Removepermissions
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Removepermissions extends StandardParameters {
     /**
      * The matter ID.
      */
@@ -3538,8 +3536,7 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Exports$Create
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Exports$Create extends StandardParameters {
     /**
      * The matter ID.
      */
@@ -3550,8 +3547,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$Export;
   }
-  export interface Params$Resource$Matters$Exports$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Exports$Delete extends StandardParameters {
     /**
      * The export ID.
      */
@@ -3561,8 +3557,7 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Exports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Exports$Get extends StandardParameters {
     /**
      * The export ID.
      */
@@ -3572,8 +3567,7 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Exports$List
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Exports$List extends StandardParameters {
     /**
      * The matter ID.
      */
@@ -4649,8 +4643,7 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Holds$Addheldaccounts
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Holds$Addheldaccounts extends StandardParameters {
     /**
      * The hold ID.
      */
@@ -4665,8 +4658,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$AddHeldAccountsRequest;
   }
-  export interface Params$Resource$Matters$Holds$Create
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Holds$Create extends StandardParameters {
     /**
      * The matter ID.
      */
@@ -4677,8 +4669,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$Hold;
   }
-  export interface Params$Resource$Matters$Holds$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Holds$Delete extends StandardParameters {
     /**
      * The hold ID.
      */
@@ -4688,8 +4679,7 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Holds$Get
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Holds$Get extends StandardParameters {
     /**
      * The hold ID.
      */
@@ -4703,8 +4693,7 @@ export namespace vault_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Matters$Holds$List
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Holds$List extends StandardParameters {
     /**
      * The matter ID.
      */
@@ -4722,8 +4711,7 @@ export namespace vault_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Matters$Holds$Removeheldaccounts
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Holds$Removeheldaccounts extends StandardParameters {
     /**
      * The hold ID.
      */
@@ -4738,8 +4726,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$RemoveHeldAccountsRequest;
   }
-  export interface Params$Resource$Matters$Holds$Update
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Holds$Update extends StandardParameters {
     /**
      * The ID of the hold.
      */
@@ -5198,8 +5185,7 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Holds$Accounts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Holds$Accounts$Create extends StandardParameters {
     /**
      * The hold ID.
      */
@@ -5214,8 +5200,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$HeldAccount;
   }
-  export interface Params$Resource$Matters$Holds$Accounts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Holds$Accounts$Delete extends StandardParameters {
     /**
      * The ID of the account to remove from the hold.
      */
@@ -5229,8 +5214,7 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Holds$Accounts$List
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Holds$Accounts$List extends StandardParameters {
     /**
      * The hold ID.
      */
@@ -5829,8 +5813,7 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Savedqueries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Savedqueries$Create extends StandardParameters {
     /**
      * The ID of the matter to create the saved query in.
      */
@@ -5841,8 +5824,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$SavedQuery;
   }
-  export interface Params$Resource$Matters$Savedqueries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Savedqueries$Delete extends StandardParameters {
     /**
      * The ID of the matter to delete the saved query from.
      */
@@ -5852,8 +5834,7 @@ export namespace vault_v1 {
      */
     savedQueryId?: string;
   }
-  export interface Params$Resource$Matters$Savedqueries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Savedqueries$Get extends StandardParameters {
     /**
      * The ID of the matter to get the saved query from.
      */
@@ -5863,8 +5844,7 @@ export namespace vault_v1 {
      */
     savedQueryId?: string;
   }
-  export interface Params$Resource$Matters$Savedqueries$List
-    extends StandardParameters {
+  export interface Params$Resource$Matters$Savedqueries$List extends StandardParameters {
     /**
      * The ID of the matter to get the saved queries for.
      */
@@ -6444,8 +6424,7 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -6456,8 +6435,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
