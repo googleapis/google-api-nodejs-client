@@ -2547,8 +2547,7 @@ export namespace datastore_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Allocateids
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Allocateids extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -2559,8 +2558,7 @@ export namespace datastore_v1beta3 {
      */
     requestBody?: Schema$AllocateIdsRequest;
   }
-  export interface Params$Resource$Projects$Begintransaction
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Begintransaction extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -2593,8 +2591,7 @@ export namespace datastore_v1beta3 {
      */
     requestBody?: Schema$LookupRequest;
   }
-  export interface Params$Resource$Projects$Reserveids
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Reserveids extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -2605,8 +2602,7 @@ export namespace datastore_v1beta3 {
      */
     requestBody?: Schema$ReserveIdsRequest;
   }
-  export interface Params$Resource$Projects$Rollback
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Rollback extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -2617,8 +2613,7 @@ export namespace datastore_v1beta3 {
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Runaggregationquery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Runaggregationquery extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -2629,8 +2624,7 @@ export namespace datastore_v1beta3 {
      */
     requestBody?: Schema$RunAggregationQueryRequest;
   }
-  export interface Params$Resource$Projects$Runquery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Runquery extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */

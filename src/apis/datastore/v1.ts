@@ -3081,8 +3081,7 @@ export namespace datastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Allocateids
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Allocateids extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -3093,8 +3092,7 @@ export namespace datastore_v1 {
      */
     requestBody?: Schema$AllocateIdsRequest;
   }
-  export interface Params$Resource$Projects$Begintransaction
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Begintransaction extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -3149,8 +3147,7 @@ export namespace datastore_v1 {
      */
     requestBody?: Schema$LookupRequest;
   }
-  export interface Params$Resource$Projects$Reserveids
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Reserveids extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -3161,8 +3158,7 @@ export namespace datastore_v1 {
      */
     requestBody?: Schema$ReserveIdsRequest;
   }
-  export interface Params$Resource$Projects$Rollback
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Rollback extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -3173,8 +3169,7 @@ export namespace datastore_v1 {
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Runaggregationquery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Runaggregationquery extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -3185,8 +3180,7 @@ export namespace datastore_v1 {
      */
     requestBody?: Schema$RunAggregationQueryRequest;
   }
-  export interface Params$Resource$Projects$Runquery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Runquery extends StandardParameters {
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -3821,8 +3815,7 @@ export namespace datastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Indexes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Indexes$Create extends StandardParameters {
     /**
      * Project ID against which to make the request.
      */
@@ -3833,8 +3826,7 @@ export namespace datastore_v1 {
      */
     requestBody?: Schema$GoogleDatastoreAdminV1Index;
   }
-  export interface Params$Resource$Projects$Indexes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Indexes$Delete extends StandardParameters {
     /**
      * The resource ID of the index to delete.
      */
@@ -3844,8 +3836,7 @@ export namespace datastore_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Indexes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Indexes$Get extends StandardParameters {
     /**
      * The resource ID of the index to get.
      */
@@ -3855,8 +3846,7 @@ export namespace datastore_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Indexes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Indexes$List extends StandardParameters {
     /**
      *
      */
@@ -4457,29 +4447,25 @@ export namespace datastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
