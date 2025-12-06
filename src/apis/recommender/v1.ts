@@ -994,15 +994,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Getconfig extends StandardParameters {
     /**
      * Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Updateconfig
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Updateconfig extends StandardParameters {
     /**
      * Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      */
@@ -1506,15 +1504,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get extends StandardParameters {
     /**
      * Required. Name of the insight.
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
@@ -1532,8 +1528,7 @@ export namespace recommender_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted extends StandardParameters {
     /**
      * Required. Name of the insight.
      */
@@ -1879,15 +1874,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Getconfig extends StandardParameters {
     /**
      * Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Updateconfig
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Updateconfig extends StandardParameters {
     /**
      * Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      */
@@ -2920,15 +2913,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List extends StandardParameters {
     /**
      * Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
@@ -2946,8 +2937,7 @@ export namespace recommender_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -2958,8 +2948,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationClaimedRequest;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -2970,8 +2959,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationDismissedRequest;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -2982,8 +2970,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationFailedRequest;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -3510,15 +3497,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Insighttypes$Insights$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Insighttypes$Insights$Get extends StandardParameters {
     /**
      * Required. Name of the insight.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Insighttypes$Insights$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Insighttypes$Insights$List extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
@@ -3536,8 +3521,7 @@ export namespace recommender_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Locations$Insighttypes$Insights$Markaccepted
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Insighttypes$Insights$Markaccepted extends StandardParameters {
     /**
      * Required. Name of the insight.
      */
@@ -4570,15 +4554,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Get extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$List extends StandardParameters {
     /**
      * Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
@@ -4596,8 +4578,7 @@ export namespace recommender_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Markclaimed
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Markclaimed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -4608,8 +4589,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationClaimedRequest;
   }
-  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -4620,8 +4600,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationDismissedRequest;
   }
-  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Markfailed
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Markfailed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -4632,8 +4611,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationFailedRequest;
   }
-  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Marksucceeded
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Marksucceeded extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -5002,15 +4980,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Insighttypes$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Insighttypes$Getconfig extends StandardParameters {
     /**
      * Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Insighttypes$Updateconfig
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Insighttypes$Updateconfig extends StandardParameters {
     /**
      * Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      */
@@ -5514,15 +5490,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Insighttypes$Insights$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Insighttypes$Insights$Get extends StandardParameters {
     /**
      * Required. Name of the insight.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Insighttypes$Insights$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Insighttypes$Insights$List extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
@@ -5540,8 +5514,7 @@ export namespace recommender_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Insighttypes$Insights$Markaccepted
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Insighttypes$Insights$Markaccepted extends StandardParameters {
     /**
      * Required. Name of the insight.
      */
@@ -5886,15 +5859,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Recommenders$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Recommenders$Getconfig extends StandardParameters {
     /**
      * Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Recommenders$Updateconfig
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Recommenders$Updateconfig extends StandardParameters {
     /**
      * Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      */
@@ -6925,15 +6896,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Get extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$List extends StandardParameters {
     /**
      * Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
@@ -6951,8 +6920,7 @@ export namespace recommender_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markclaimed
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markclaimed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -6963,8 +6931,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationClaimedRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -6975,8 +6942,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationDismissedRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markfailed
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markfailed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -6987,8 +6953,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationFailedRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Marksucceeded
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Marksucceeded extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -7355,15 +7320,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Insighttypes$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insighttypes$Getconfig extends StandardParameters {
     /**
      * Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Insighttypes$Updateconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insighttypes$Updateconfig extends StandardParameters {
     /**
      * Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      */
@@ -7863,15 +7826,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Insighttypes$Insights$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insighttypes$Insights$Get extends StandardParameters {
     /**
      * Required. Name of the insight.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Insighttypes$Insights$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insighttypes$Insights$List extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
@@ -7889,8 +7850,7 @@ export namespace recommender_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted extends StandardParameters {
     /**
      * Required. Name of the insight.
      */
@@ -8234,15 +8194,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Recommenders$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Recommenders$Getconfig extends StandardParameters {
     /**
      * Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Recommenders$Updateconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Recommenders$Updateconfig extends StandardParameters {
     /**
      * Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      */
@@ -9271,15 +9229,13 @@ export namespace recommender_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Get extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$List extends StandardParameters {
     /**
      * Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
@@ -9297,8 +9253,7 @@ export namespace recommender_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -9309,8 +9264,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationClaimedRequest;
   }
-  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -9321,8 +9275,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationDismissedRequest;
   }
-  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
@@ -9333,8 +9286,7 @@ export namespace recommender_v1 {
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationFailedRequest;
   }
-  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded extends StandardParameters {
     /**
      * Required. Name of the recommendation.
      */
