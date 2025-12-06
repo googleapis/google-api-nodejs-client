@@ -1268,8 +1268,7 @@ export namespace licensing_v1 {
     }
   }
 
-  export interface Params$Resource$Licenseassignments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Licenseassignments$Delete extends StandardParameters {
     /**
      * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
@@ -1283,8 +1282,7 @@ export namespace licensing_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Licenseassignments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Licenseassignments$Get extends StandardParameters {
     /**
      * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
@@ -1298,8 +1296,7 @@ export namespace licensing_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Licenseassignments$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Licenseassignments$Insert extends StandardParameters {
     /**
      * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
@@ -1314,8 +1311,7 @@ export namespace licensing_v1 {
      */
     requestBody?: Schema$LicenseAssignmentInsert;
   }
-  export interface Params$Resource$Licenseassignments$Listforproduct
-    extends StandardParameters {
+  export interface Params$Resource$Licenseassignments$Listforproduct extends StandardParameters {
     /**
      * The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error.
      */
@@ -1333,8 +1329,7 @@ export namespace licensing_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Licenseassignments$Listforproductandsku
-    extends StandardParameters {
+  export interface Params$Resource$Licenseassignments$Listforproductandsku extends StandardParameters {
     /**
      * The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error.
      */
@@ -1356,8 +1351,7 @@ export namespace licensing_v1 {
      */
     skuId?: string;
   }
-  export interface Params$Resource$Licenseassignments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Licenseassignments$Patch extends StandardParameters {
     /**
      * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
@@ -1376,8 +1370,7 @@ export namespace licensing_v1 {
      */
     requestBody?: Schema$LicenseAssignment;
   }
-  export interface Params$Resource$Licenseassignments$Update
-    extends StandardParameters {
+  export interface Params$Resource$Licenseassignments$Update extends StandardParameters {
     /**
      * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
