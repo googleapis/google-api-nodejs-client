@@ -854,8 +854,7 @@ export namespace firebasedynamiclinks_v1 {
     }
   }
 
-  export interface Params$Resource$Managedshortlinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Managedshortlinks$Create extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -1020,8 +1019,7 @@ export namespace firebasedynamiclinks_v1 {
     }
   }
 
-  export interface Params$Resource$Shortlinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Shortlinks$Create extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -1526,15 +1524,13 @@ export namespace firebasedynamiclinks_v1 {
      */
     sdkVersion?: string;
   }
-  export interface Params$Resource$V1$Installattribution
-    extends StandardParameters {
+  export interface Params$Resource$V1$Installattribution extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GetIosPostInstallAttributionRequest;
   }
-  export interface Params$Resource$V1$Reopenattribution
-    extends StandardParameters {
+  export interface Params$Resource$V1$Reopenattribution extends StandardParameters {
     /**
      * Request body metadata
      */
