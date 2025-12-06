@@ -464,6 +464,5 @@ export namespace abusiveexperiencereport_v1 {
     }
   }
 
-  export interface Params$Resource$Violatingsites$List
-    extends StandardParameters {}
+  export interface Params$Resource$Violatingsites$List extends StandardParameters {}
 }
