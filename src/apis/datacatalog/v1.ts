@@ -641,6 +641,10 @@ export namespace datacatalog_v1 {
      */
     gcsFilesetSpec?: Schema$GoogleCloudDatacatalogV1GcsFilesetSpec;
     /**
+     * Spec for graph.
+     */
+    graphSpec?: Schema$GoogleCloudDatacatalogV1GraphSpec;
+    /**
      * Output only. Indicates the entry's source system that Data Catalog integrates with, such as BigQuery, Pub/Sub, or Dataproc Metastore.
      */
     integratedSystem?: string | null;
@@ -817,6 +821,94 @@ export namespace datacatalog_v1 {
      * Output only. File size in bytes.
      */
     sizeBytes?: string | null;
+  }
+  /**
+   * Specification that applies to a graph.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1GraphSpec {
+    /**
+     * Optional. Edge tables of the graph.
+     */
+    edgeTables?: Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTable[];
+    /**
+     * Output only. Fully qualified graph name. e.g. `named_catalog.MyGraph`
+     */
+    name?: string | null;
+    /**
+     * Required. Node tables of the graph.
+     */
+    nodeTables?: Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTable[];
+  }
+  /**
+   * Element table definition.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTable {
+    /**
+     * Required. The alias name of the graph element.
+     */
+    alias?: string | null;
+    /**
+     * Required. The name of the data source. This is either a table name or a view name that is used for graph element input source. E.g. `Person` table or `PersonView` view.
+     */
+    dataSource?: string | null;
+    /**
+     * Optional. Only applies to `kind = EDGE`.
+     */
+    destinationNodeReference?: string | null;
+    /**
+     * Optional. If true, the graph element has a dynamic label in schemaless model.
+     */
+    dynamicLabelEnabled?: boolean | null;
+    /**
+     * Optional. If true, the graph element has dynamic properties in schemaless model.
+     */
+    dynamicPropertiesEnabled?: boolean | null;
+    /**
+     * Required. The name of the keys of the elements in the table.
+     */
+    elementKeys?: string[] | null;
+    /**
+     * Required. The input source of the graph element.
+     */
+    inputSource?: string | null;
+    /**
+     * Required. The kind of the graph element.
+     */
+    kind?: string | null;
+    /**
+     * Required. The labels and their properties for the graph element.
+     */
+    labelAndProperties?: Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableLabelAndProperties[];
+    /**
+     * Optional. Only applies to `kind = EDGE`. The reference to the source node of the edge. This name must be a valid `alias` of a node element in the same graph. Example, `Person` node can be a source node of an edge element `Person_to_Address`. Similar rule applies to `destination_node_reference`.
+     */
+    sourceNodeReference?: string | null;
+  }
+  /**
+   * The label and its properties. Each label is associated with a set of properties.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableLabelAndProperties {
+    /**
+     * Required. The name of the label.
+     */
+    label?: string | null;
+    /**
+     * Optional. The properties associated with the label.
+     */
+    properties?: Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableProperty[];
+  }
+  /**
+   * A property declaration.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableProperty {
+    /**
+     * Required. Property name.
+     */
+    name?: string | null;
+    /**
+     * Required. Property data type.
+     */
+    type?: string | null;
   }
   /**
    * Metadata message for long-running operation returned by the ImportEntries.
@@ -2169,6 +2261,7 @@ export namespace datacatalog_v1 {
      *   //   "filesetSpec": {},
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
+     *   //   "graphSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
@@ -2782,22 +2875,19 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Retrieveconfig
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Retrieveconfig extends StandardParameters {
     /**
      * Required. The organization whose config is being retrieved.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Retrieveeffectiveconfig
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Retrieveeffectiveconfig extends StandardParameters {
     /**
      * Required. The resource whose effective config is being retrieved.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Setconfig
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Setconfig extends StandardParameters {
     /**
      * Required. The organization or project whose config is being specified.
      */
@@ -3149,15 +3239,13 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Retrieveeffectiveconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Retrieveeffectiveconfig extends StandardParameters {
     /**
      * Required. The resource whose effective config is being retrieved.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Setconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Setconfig extends StandardParameters {
     /**
      * Required. The organization or project whose config is being specified.
      */
@@ -4397,8 +4485,7 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Entrygroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Create extends StandardParameters {
     /**
      * Required. The ID of the entry group to create. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and must start with a letter or underscore. The maximum size is 64 bytes when encoded in UTF-8.
      */
@@ -4413,8 +4500,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1EntryGroup;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Delete extends StandardParameters {
     /**
      * Optional. If true, deletes all entries in the entry group.
      */
@@ -4424,8 +4510,7 @@ export namespace datacatalog_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Get extends StandardParameters {
     /**
      * Required. The name of the entry group to get.
      */
@@ -4435,8 +4520,7 @@ export namespace datacatalog_v1 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4447,8 +4531,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. Default is 10. Maximum limit is 1000. Throws an invalid argument if `page_size` is greater than 1000.
      */
@@ -4462,8 +4545,7 @@ export namespace datacatalog_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.
      */
@@ -4478,8 +4560,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1EntryGroup;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4490,8 +4571,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4568,6 +4648,7 @@ export namespace datacatalog_v1 {
      *       //   "filesetSpec": {},
      *       //   "fullyQualifiedName": "my_fullyQualifiedName",
      *       //   "gcsFilesetSpec": {},
+     *       //   "graphSpec": {},
      *       //   "integratedSystem": "my_integratedSystem",
      *       //   "labels": {},
      *       //   "linkedResource": "my_linkedResource",
@@ -4605,6 +4686,7 @@ export namespace datacatalog_v1 {
      *   //   "filesetSpec": {},
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
+     *   //   "graphSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
@@ -4911,6 +4993,7 @@ export namespace datacatalog_v1 {
      *   //   "filesetSpec": {},
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
+     *   //   "graphSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
@@ -5859,6 +5942,7 @@ export namespace datacatalog_v1 {
      *       //   "filesetSpec": {},
      *       //   "fullyQualifiedName": "my_fullyQualifiedName",
      *       //   "gcsFilesetSpec": {},
+     *       //   "graphSpec": {},
      *       //   "integratedSystem": "my_integratedSystem",
      *       //   "labels": {},
      *       //   "linkedResource": "my_linkedResource",
@@ -5896,6 +5980,7 @@ export namespace datacatalog_v1 {
      *   //   "filesetSpec": {},
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
+     *   //   "graphSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
@@ -6467,8 +6552,7 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Create extends StandardParameters {
     /**
      * Required. The ID of the entry to create. The ID must contain only letters (a-z, A-Z), numbers (0-9), and underscores (_). The maximum size is 64 bytes when encoded in UTF-8.
      */
@@ -6483,22 +6567,19 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1Entry;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Delete extends StandardParameters {
     /**
      * Required. The name of the entry to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Get extends StandardParameters {
     /**
      * Required. The name of the entry to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6509,8 +6590,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Import extends StandardParameters {
     /**
      * Required. Target entry group for ingested entries.
      */
@@ -6521,8 +6601,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1ImportEntriesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$List extends StandardParameters {
     /**
      * The maximum number of items to return. Default is 10. Maximum limit is 1000. Throws an invalid argument if `page_size` is more than 1000.
      */
@@ -6540,8 +6619,7 @@ export namespace datacatalog_v1 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts extends StandardParameters {
     /**
      * Required. The full resource name of the entry.
      */
@@ -6552,8 +6630,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1ModifyEntryContactsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview extends StandardParameters {
     /**
      * Required. The full resource name of the entry.
      */
@@ -6564,8 +6641,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1ModifyEntryOverviewRequest;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.
      */
@@ -6580,8 +6656,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1Entry;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Star
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Star extends StandardParameters {
     /**
      * Required. The name of the entry to mark as starred.
      */
@@ -6592,8 +6667,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1StarEntryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6604,8 +6678,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar extends StandardParameters {
     /**
      * Required. The name of the entry to mark as **not** starred.
      */
@@ -7383,8 +7456,7 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Create extends StandardParameters {
     /**
      * Required. The name of the resource to attach this tag to. Tags can be attached to entries or entry groups. An entry can have up to 1000 attached tags. Note: The tag and its child resources might not be stored in the location specified in its name.
      */
@@ -7395,15 +7467,13 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1Tag;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Delete extends StandardParameters {
     /**
      * Required. The name of the tag to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List extends StandardParameters {
     /**
      * The maximum number of tags to return. Default is 10. Maximum limit is 1000.
      */
@@ -7417,8 +7487,7 @@ export namespace datacatalog_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.
      */
@@ -7433,8 +7502,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1Tag;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile extends StandardParameters {
     /**
      * Required. Name of Entry to be tagged.
      */
@@ -8053,8 +8121,7 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Create extends StandardParameters {
     /**
      * Required. The name of the resource to attach this tag to. Tags can be attached to entries or entry groups. An entry can have up to 1000 attached tags. Note: The tag and its child resources might not be stored in the location specified in its name.
      */
@@ -8065,15 +8132,13 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1Tag;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Delete extends StandardParameters {
     /**
      * Required. The name of the tag to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Tags$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Tags$List extends StandardParameters {
     /**
      * The maximum number of tags to return. Default is 10. Maximum limit is 1000.
      */
@@ -8087,8 +8152,7 @@ export namespace datacatalog_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.
      */
@@ -8662,29 +8726,25 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -9777,8 +9837,7 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Create extends StandardParameters {
     /**
      * Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
      */
@@ -9793,8 +9852,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1TagTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Delete extends StandardParameters {
     /**
      * Required. If true, deletes all tags that use this template. Currently, `true` is the only supported value.
      */
@@ -9804,15 +9862,13 @@ export namespace datacatalog_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Get extends StandardParameters {
     /**
      * Required. The name of the tag template to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9823,8 +9879,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.
      */
@@ -9839,8 +9894,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1TagTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9851,8 +9905,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10503,8 +10556,7 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Create extends StandardParameters {
     /**
      * Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
      */
@@ -10519,8 +10571,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1TagTemplateField;
   }
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Delete extends StandardParameters {
     /**
      * Required. If true, deletes this field from any tags that use it. Currently, `true` is the only supported value.
      */
@@ -10530,8 +10581,7 @@ export namespace datacatalog_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch extends StandardParameters {
     /**
      * Required. The name of the tag template field.
      */
@@ -10546,8 +10596,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1TagTemplateField;
   }
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename extends StandardParameters {
     /**
      * Required. The name of the tag template field.
      */
@@ -10725,8 +10774,7 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename extends StandardParameters {
     /**
      * Required. The name of the enum field value.
      */
@@ -12436,8 +12484,7 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Taxonomies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Create extends StandardParameters {
     /**
      * Required. Resource name of the project that the taxonomy will belong to.
      */
@@ -12448,15 +12495,13 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1Taxonomy;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Delete extends StandardParameters {
     /**
      * Required. Resource name of the taxonomy to delete. Note: All policy tags in this taxonomy are also deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Export extends StandardParameters {
     /**
      * Required. Resource name of the project that the exported taxonomies belong to.
      */
@@ -12470,15 +12515,13 @@ export namespace datacatalog_v1 {
      */
     taxonomies?: string[];
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Get extends StandardParameters {
     /**
      * Required. Resource name of the taxonomy to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12489,8 +12532,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Import extends StandardParameters {
     /**
      * Required. Resource name of project that the imported taxonomies will belong to.
      */
@@ -12501,8 +12543,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1ImportTaxonomiesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$List extends StandardParameters {
     /**
      * Supported field for filter is 'service' and value is 'dataplex'. Eg: service=dataplex.
      */
@@ -12520,8 +12561,7 @@ export namespace datacatalog_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Patch extends StandardParameters {
     /**
      * Identifier. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs.
      */
@@ -12536,8 +12576,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1Taxonomy;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Replace
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Replace extends StandardParameters {
     /**
      * Required. Resource name of the taxonomy to update.
      */
@@ -12548,8 +12587,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1ReplaceTaxonomyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12560,8 +12598,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13801,8 +13838,7 @@ export namespace datacatalog_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Create extends StandardParameters {
     /**
      * Required. Resource name of the taxonomy that the policy tag will belong to.
      */
@@ -13813,22 +13849,19 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1PolicyTag;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Delete extends StandardParameters {
     /**
      * Required. Resource name of the policy tag to delete. Note: All of its descendant policy tags are also deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Get extends StandardParameters {
     /**
      * Required. Resource name of the policy tag.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13839,8 +13872,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$List extends StandardParameters {
     /**
      * The maximum number of items to return. Must be a value between 1 and 1000 inclusively. If not set, defaults to 50.
      */
@@ -13854,8 +13886,7 @@ export namespace datacatalog_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch extends StandardParameters {
     /**
      * Identifier. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs.
      */
@@ -13870,8 +13901,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1PolicyTag;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13882,8 +13912,7 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */

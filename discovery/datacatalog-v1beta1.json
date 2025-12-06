@@ -1855,7 +1855,7 @@
       }
     }
   },
-  "revision": "20250609",
+  "revision": "20251112",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2565,6 +2565,10 @@
           "$ref": "GoogleCloudDatacatalogV1GcsFilesetSpec",
           "description": "Specification that applies to a Cloud Storage fileset. Valid only for entries with the `FILESET` type."
         },
+        "graphSpec": {
+          "$ref": "GoogleCloudDatacatalogV1GraphSpec",
+          "description": "Spec for graph."
+        },
         "integratedSystem": {
           "description": "Output only. Indicates the entry's source system that Data Catalog integrates with, such as BigQuery, Pub/Sub, or Dataproc Metastore.",
           "enum": [
@@ -2788,6 +2792,138 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1GraphSpec": {
+      "description": "Specification that applies to a graph.",
+      "id": "GoogleCloudDatacatalogV1GraphSpec",
+      "properties": {
+        "edgeTables": {
+          "description": "Optional. Edge tables of the graph.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1GraphSpecGraphElementTable"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Fully qualified graph name. e.g. `named_catalog.MyGraph`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nodeTables": {
+          "description": "Required. Node tables of the graph.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1GraphSpecGraphElementTable"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1GraphSpecGraphElementTable": {
+      "description": "Element table definition.",
+      "id": "GoogleCloudDatacatalogV1GraphSpecGraphElementTable",
+      "properties": {
+        "alias": {
+          "description": "Required. The alias name of the graph element.",
+          "type": "string"
+        },
+        "dataSource": {
+          "description": "Required. The name of the data source. This is either a table name or a view name that is used for graph element input source. E.g. `Person` table or `PersonView` view.",
+          "type": "string"
+        },
+        "destinationNodeReference": {
+          "description": "Optional. Only applies to `kind = EDGE`.",
+          "type": "string"
+        },
+        "dynamicLabelEnabled": {
+          "description": "Optional. If true, the graph element has a dynamic label in schemaless model.",
+          "type": "boolean"
+        },
+        "dynamicPropertiesEnabled": {
+          "description": "Optional. If true, the graph element has dynamic properties in schemaless model.",
+          "type": "boolean"
+        },
+        "elementKeys": {
+          "description": "Required. The name of the keys of the elements in the table.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "inputSource": {
+          "description": "Required. The input source of the graph element.",
+          "enum": [
+            "INPUT_SOURCE_UNSPECIFIED",
+            "TABLE",
+            "VIEW"
+          ],
+          "enumDescriptions": [
+            "Default unknown input source.",
+            "Table input source.",
+            "View input source."
+          ],
+          "type": "string"
+        },
+        "kind": {
+          "description": "Required. The kind of the graph element.",
+          "enum": [
+            "KIND_UNSPECIFIED",
+            "NODE",
+            "EDGE"
+          ],
+          "enumDescriptions": [
+            "Default unknown kind.",
+            "Node kind.",
+            "Edge kind."
+          ],
+          "type": "string"
+        },
+        "labelAndProperties": {
+          "description": "Required. The labels and their properties for the graph element.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1GraphSpecGraphElementTableLabelAndProperties"
+          },
+          "type": "array"
+        },
+        "sourceNodeReference": {
+          "description": "Optional. Only applies to `kind = EDGE`. The reference to the source node of the edge. This name must be a valid `alias` of a node element in the same graph. Example, `Person` node can be a source node of an edge element `Person_to_Address`. Similar rule applies to `destination_node_reference`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1GraphSpecGraphElementTableLabelAndProperties": {
+      "description": "The label and its properties. Each label is associated with a set of properties.",
+      "id": "GoogleCloudDatacatalogV1GraphSpecGraphElementTableLabelAndProperties",
+      "properties": {
+        "label": {
+          "description": "Required. The name of the label.",
+          "type": "string"
+        },
+        "properties": {
+          "description": "Optional. The properties associated with the label.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1GraphSpecGraphElementTableProperty"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1GraphSpecGraphElementTableProperty": {
+      "description": "A property declaration.",
+      "id": "GoogleCloudDatacatalogV1GraphSpecGraphElementTableProperty",
+      "properties": {
+        "name": {
+          "description": "Required. Property name.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Property data type.",
+          "type": "string"
         }
       },
       "type": "object"
