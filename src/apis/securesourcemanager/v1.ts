@@ -1463,15 +1463,13 @@ export namespace securesourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
      */
@@ -2551,8 +2549,7 @@ export namespace securesourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Create extends StandardParameters {
     /**
      * Required. ID of the instance to be created.
      */
@@ -2571,8 +2568,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Delete extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -2582,15 +2578,13 @@ export namespace securesourcemanager_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2600,8 +2594,7 @@ export namespace securesourcemanager_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$List extends StandardParameters {
     /**
      * Filter for filtering results.
      */
@@ -2623,8 +2616,7 @@ export namespace securesourcemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2635,8 +2627,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3213,8 +3204,7 @@ export namespace securesourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3225,22 +3215,19 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -4780,8 +4767,7 @@ export namespace securesourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Create extends StandardParameters {
     /**
      * Required. The project in which to create the repository. Values are of the form `projects/{project_number\}/locations/{location_id\}`
      */
@@ -4796,8 +4782,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$Repository;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Delete extends StandardParameters {
     /**
      * Optional. If set to true, and the repository is not found, the request will succeed but no action will be taken on the server.
      */
@@ -4807,8 +4792,7 @@ export namespace securesourcemanager_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Fetchblob
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Fetchblob extends StandardParameters {
     /**
      * Required. The format is `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}`. Specifies the repository containing the blob.
      */
@@ -4818,8 +4802,7 @@ export namespace securesourcemanager_v1 {
      */
     sha?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Fetchtree
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Fetchtree extends StandardParameters {
     /**
      * Optional. Requested page size. Server may return fewer items than requested. If unspecified, at most 10,000 items will be returned.
      */
@@ -4841,15 +4824,13 @@ export namespace securesourcemanager_v1 {
      */
     repository?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Get extends StandardParameters {
     /**
      * Required. Name of the repository to retrieve. The format is `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4859,8 +4840,7 @@ export namespace securesourcemanager_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$List extends StandardParameters {
     /**
      * Optional. Filter results.
      */
@@ -4882,8 +4862,7 @@ export namespace securesourcemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Patch extends StandardParameters {
     /**
      * Optional. A unique identifier for a repository. The name should be of the format: `projects/{project\}/locations/{location_id\}/repositories/{repository_id\}`
      */
@@ -4902,8 +4881,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$Repository;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4914,8 +4892,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5716,8 +5693,7 @@ export namespace securesourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Branchrules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Branchrules$Create extends StandardParameters {
     /**
      *
      */
@@ -5732,8 +5708,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$BranchRule;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Branchrules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Branchrules$Delete extends StandardParameters {
     /**
      * Optional. If set to true, and the branch rule is not found, the request will succeed but no action will be taken on the server.
      */
@@ -5743,15 +5718,13 @@ export namespace securesourcemanager_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Branchrules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Branchrules$Get extends StandardParameters {
     /**
      * Required. Name of the repository to retrieve. The format is `projects/{project\}/locations/{location\}/repositories/{repository\}/branchRules/{branch_rule\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Branchrules$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Branchrules$List extends StandardParameters {
     /**
      *
      */
@@ -5765,8 +5738,7 @@ export namespace securesourcemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Branchrules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Branchrules$Patch extends StandardParameters {
     /**
      * Optional. A unique identifier for a BranchRule. The name should be of the format: `projects/{project\}/locations/{location\}/repositories/{repository\}/branchRules/{branch_rule\}`
      */
@@ -6547,8 +6519,7 @@ export namespace securesourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Hooks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Hooks$Create extends StandardParameters {
     /**
      * Required. The ID to use for the hook, which will become the final component of the hook's resource name. This value restricts to lower-case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
      */
@@ -6563,22 +6534,19 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$Hook;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Hooks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Hooks$Delete extends StandardParameters {
     /**
      * Required. Name of the hook to delete. The format is `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/hooks/{hook_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Hooks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Hooks$Get extends StandardParameters {
     /**
      * Required. Name of the hook to retrieve. The format is `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/hooks/{hook_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Hooks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Hooks$List extends StandardParameters {
     /**
      * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      */
@@ -6592,8 +6560,7 @@ export namespace securesourcemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Hooks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Hooks$Patch extends StandardParameters {
     /**
      * Identifier. A unique identifier for a Hook. The name should be of the format: `projects/{project\}/locations/{location_id\}/repositories/{repository_id\}/hooks/{hook_id\}`
      */
@@ -7672,8 +7639,7 @@ export namespace securesourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$Close
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$Close extends StandardParameters {
     /**
      * Required. Name of the issue to close. The format is `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/issues/{issue_id\}`.
      */
@@ -7684,8 +7650,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$CloseIssueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$Create extends StandardParameters {
     /**
      * Required. The repository in which to create the issue. Format: `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}`
      */
@@ -7696,8 +7661,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$Issue;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$Delete extends StandardParameters {
     /**
      * Optional. The current etag of the issue. If the etag is provided and does not match the current etag of the issue, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -7707,15 +7671,13 @@ export namespace securesourcemanager_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$Get extends StandardParameters {
     /**
      * Required. Name of the issue to retrieve. The format is `projects/{project\}/locations/{location\}/repositories/{repository\}/issues/{issue_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$List extends StandardParameters {
     /**
      * Optional. Used to filter the resulting issues list.
      */
@@ -7733,8 +7695,7 @@ export namespace securesourcemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$Open
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$Open extends StandardParameters {
     /**
      * Required. Name of the issue to open. The format is `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/issues/{issue_id\}`.
      */
@@ -7745,8 +7706,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$OpenIssueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$Patch extends StandardParameters {
     /**
      * Identifier. Unique identifier for an issue. The issue id is generated by the server. Format: `projects/{project\}/locations/{location\}/repositories/{repository\}/issues/{issue_id\}`
      */
@@ -8520,8 +8480,7 @@ export namespace securesourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$Issuecomments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$Issuecomments$Create extends StandardParameters {
     /**
      * Required. The issue in which to create the issue comment. Format: `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/issues/{issue_id\}`
      */
@@ -8532,22 +8491,19 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$IssueComment;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$Issuecomments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$Issuecomments$Delete extends StandardParameters {
     /**
      * Required. Name of the issue comment to delete. The format is `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/issues/{issue_id\}/issueComments/{comment_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$Issuecomments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$Issuecomments$Get extends StandardParameters {
     /**
      * Required. Name of the issue comment to retrieve. The format is `projects/{project\}/locations/{location\}/repositories/{repository\}/issues/{issue_id\}/issueComments/{comment_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$Issuecomments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$Issuecomments$List extends StandardParameters {
     /**
      * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      */
@@ -8561,8 +8517,7 @@ export namespace securesourcemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Issues$Issuecomments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Issues$Issuecomments$Patch extends StandardParameters {
     /**
      * Identifier. Unique identifier for an issue comment. The comment id is generated by the server. Format: `projects/{project\}/locations/{location\}/repositories/{repository\}/issues/{issue\}/issueComments/{comment_id\}`
      */
@@ -9813,8 +9768,7 @@ export namespace securesourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Close
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Close extends StandardParameters {
     /**
      * Required. The pull request to close. Format: `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/pullRequests/{pull_request_id\}`
      */
@@ -9825,8 +9779,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$ClosePullRequestRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Create extends StandardParameters {
     /**
      * Required. The repository that the pull request is created from. Format: `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}`
      */
@@ -9837,15 +9790,13 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$PullRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Get extends StandardParameters {
     /**
      * Required. Name of the pull request to retrieve. The format is `projects/{project\}/locations/{location\}/repositories/{repository\}/pullRequests/{pull_request\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$List extends StandardParameters {
     /**
      * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      */
@@ -9859,8 +9810,7 @@ export namespace securesourcemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Listfilediffs
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Listfilediffs extends StandardParameters {
     /**
      * Required. The pull request to list file diffs for. Format: `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/pullRequests/{pull_request_id\}`
      */
@@ -9874,8 +9824,7 @@ export namespace securesourcemanager_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Merge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Merge extends StandardParameters {
     /**
      * Required. The pull request to merge. Format: `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/pullRequests/{pull_request_id\}`
      */
@@ -9886,8 +9835,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$MergePullRequestRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Open
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Open extends StandardParameters {
     /**
      * Required. The pull request to open. Format: `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/pullRequests/{pull_request_id\}`
      */
@@ -9898,8 +9846,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$OpenPullRequestRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Patch extends StandardParameters {
     /**
      * Output only. A unique identifier for a PullRequest. The number appended at the end is generated by the server. Format: `projects/{project\}/locations/{location\}/repositories/{repository\}/pullRequests/{pull_request_id\}`
      */
@@ -11145,8 +11092,7 @@ export namespace securesourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Batchcreate extends StandardParameters {
     /**
      * Required. The pull request in which to create the pull request comments. Format: `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/pullRequests/{pull_request_id\}`
      */
@@ -11157,8 +11103,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$BatchCreatePullRequestCommentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Create extends StandardParameters {
     /**
      * Required. The pull request in which to create the pull request comment. Format: `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/pullRequests/{pull_request_id\}`
      */
@@ -11169,22 +11114,19 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$PullRequestComment;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Delete extends StandardParameters {
     /**
      * Required. Name of the pull request comment to delete. The format is `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/pullRequests/{pull_request_id\}/pullRequestComments/{comment_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Get extends StandardParameters {
     /**
      * Required. Name of the pull request comment to retrieve. The format is `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/pullRequests/{pull_request_id\}/pullRequestComments/{comment_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$List extends StandardParameters {
     /**
      * Optional. Requested page size. If unspecified, at most 100 pull request comments will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
@@ -11198,8 +11140,7 @@ export namespace securesourcemanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Patch extends StandardParameters {
     /**
      * Identifier. Unique identifier for the pull request comment. The comment id is generated by the server. Format: `projects/{project\}/locations/{location\}/repositories/{repository\}/pullRequests/{pull_request\}/pullRequestComments/{comment_id\}`
      */
@@ -11214,8 +11155,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$PullRequestComment;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Resolve
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Resolve extends StandardParameters {
     /**
      * Required. The pull request in which to resolve the pull request comments. Format: `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/pullRequests/{pull_request_id\}`
      */
@@ -11226,8 +11166,7 @@ export namespace securesourcemanager_v1 {
      */
     requestBody?: Schema$ResolvePullRequestCommentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Unresolve
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Repositories$Pullrequests$Pullrequestcomments$Unresolve extends StandardParameters {
     /**
      * Required. The pull request in which to resolve the pull request comments. Format: `projects/{project_number\}/locations/{location_id\}/repositories/{repository_id\}/pullRequests/{pull_request_id\}`
      */
