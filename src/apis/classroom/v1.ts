@@ -2491,7 +2491,7 @@ export namespace classroom_v1 {
      *   const res = await classroom.courses.patch({
      *     // Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
      *     id: 'placeholder-value',
-     *     // Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `name` * `section` * `descriptionHeading` * `description` * `room` * `courseState` * `ownerId` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
+     *     // Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2985,8 +2985,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Getgradingperiodsettings
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Getgradingperiodsettings extends StandardParameters {
     /**
      * Required. The identifier of the course.
      */
@@ -3020,7 +3019,7 @@ export namespace classroom_v1 {
      */
     id?: string;
     /**
-     * Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `name` * `section` * `descriptionHeading` * `description` * `room` * `courseState` * `ownerId` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
+     * Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
      */
     updateMask?: string;
 
@@ -3040,8 +3039,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Course;
   }
-  export interface Params$Resource$Courses$Updategradingperiodsettings
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Updategradingperiodsettings extends StandardParameters {
     /**
      * Required. The identifier of the course.
      */
@@ -3495,8 +3493,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Aliases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Aliases$Create extends StandardParameters {
     /**
      * Identifier of the course to alias. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -3507,8 +3504,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$CourseAlias;
   }
-  export interface Params$Resource$Courses$Aliases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Aliases$Delete extends StandardParameters {
     /**
      * Alias to delete. This may not be the Classroom-assigned identifier.
      */
@@ -3518,8 +3514,7 @@ export namespace classroom_v1 {
      */
     courseId?: string;
   }
-  export interface Params$Resource$Courses$Aliases$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Aliases$List extends StandardParameters {
     /**
      * The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -4634,8 +4629,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Announcements$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Create extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -4646,8 +4640,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Announcement;
   }
-  export interface Params$Resource$Courses$Announcements$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Delete extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -4657,8 +4650,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Get extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -4668,8 +4660,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Getaddoncontext
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Getaddoncontext extends StandardParameters {
     /**
      * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.
      */
@@ -4691,8 +4682,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Announcements$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$List extends StandardParameters {
     /**
      * Restriction on the `state` of announcements returned. If this argument is left unspecified, the default value is `PUBLISHED`.
      */
@@ -4714,8 +4704,7 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Modifyassignees
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Modifyassignees extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -4730,8 +4719,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ModifyAnnouncementAssigneesRequest;
   }
-  export interface Params$Resource$Courses$Announcements$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Patch extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -5564,8 +5552,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Announcements$Addonattachments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Addonattachments$Create extends StandardParameters {
     /**
      * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.
      */
@@ -5588,8 +5575,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$AddOnAttachment;
   }
-  export interface Params$Resource$Courses$Announcements$Addonattachments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Addonattachments$Delete extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -5607,8 +5593,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Addonattachments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Addonattachments$Get extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -5626,8 +5611,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Addonattachments$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Addonattachments$List extends StandardParameters {
     /**
      * Required. Identifier of the course.
      */
@@ -5649,8 +5633,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Addonattachments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Addonattachments$Patch extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -7023,8 +7006,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Coursework$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Create extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -7035,8 +7017,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$CourseWork;
   }
-  export interface Params$Resource$Courses$Coursework$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Delete extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -7046,8 +7027,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Get extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -7057,8 +7037,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Getaddoncontext
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Getaddoncontext extends StandardParameters {
     /**
      * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.
      */
@@ -7080,8 +7059,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Coursework$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$List extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -7103,8 +7081,7 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Modifyassignees
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Modifyassignees extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -7119,8 +7096,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ModifyCourseWorkAssigneesRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Patch extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -7139,8 +7115,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$CourseWork;
   }
-  export interface Params$Resource$Courses$Coursework$Updaterubric
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Updaterubric extends StandardParameters {
     /**
      * Required. Identifier of the course.
      */
@@ -7980,8 +7955,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Coursework$Addonattachments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Create extends StandardParameters {
     /**
      * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.
      */
@@ -8004,8 +7978,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$AddOnAttachment;
   }
-  export interface Params$Resource$Courses$Coursework$Addonattachments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Delete extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -8023,8 +7996,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Addonattachments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Get extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -8042,8 +8014,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Addonattachments$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Addonattachments$List extends StandardParameters {
     /**
      * Required. Identifier of the course.
      */
@@ -8065,8 +8036,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Addonattachments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Patch extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -8434,8 +8404,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -8457,8 +8426,7 @@ export namespace classroom_v1 {
      */
     submissionId?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -9259,8 +9227,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Coursework$Rubrics$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Rubrics$Create extends StandardParameters {
     /**
      * Required. Identifier of the course.
      */
@@ -9275,8 +9242,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Rubric;
   }
-  export interface Params$Resource$Courses$Coursework$Rubrics$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Rubrics$Delete extends StandardParameters {
     /**
      * Required. Identifier of the course.
      */
@@ -9290,8 +9256,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Rubrics$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Rubrics$Get extends StandardParameters {
     /**
      * Required. Identifier of the course.
      */
@@ -9305,8 +9270,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Rubrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Rubrics$List extends StandardParameters {
     /**
      * Required. Identifier of the course.
      */
@@ -9324,8 +9288,7 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Rubrics$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Rubrics$Patch extends StandardParameters {
     /**
      * Required. Identifier of the course.
      */
@@ -10490,8 +10453,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Get extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -10505,8 +10467,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$List extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -10536,8 +10497,7 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -10556,8 +10516,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ModifyAttachmentsRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Patch extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -10580,8 +10539,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$StudentSubmission;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -10600,8 +10558,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ReclaimStudentSubmissionRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Return
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Return extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -10620,8 +10577,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ReturnStudentSubmissionRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Turnin
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Turnin extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -11597,8 +11553,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Courseworkmaterials$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Courseworkmaterials$Create extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -11609,8 +11564,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$CourseWorkMaterial;
   }
-  export interface Params$Resource$Courses$Courseworkmaterials$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Courseworkmaterials$Delete extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -11620,8 +11574,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Courseworkmaterials$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Courseworkmaterials$Get extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -11631,8 +11584,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Courseworkmaterials$Getaddoncontext
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Courseworkmaterials$Getaddoncontext extends StandardParameters {
     /**
      * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.
      */
@@ -11654,8 +11606,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Courseworkmaterials$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Courseworkmaterials$List extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -11685,8 +11636,7 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Courseworkmaterials$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Courseworkmaterials$Patch extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -12524,8 +12474,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create extends StandardParameters {
     /**
      * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.
      */
@@ -12548,8 +12497,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$AddOnAttachment;
   }
-  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -12567,8 +12515,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -12586,8 +12533,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$List extends StandardParameters {
     /**
      * Required. Identifier of the course.
      */
@@ -12609,8 +12555,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -12801,8 +12746,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Posts$Getaddoncontext
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Posts$Getaddoncontext extends StandardParameters {
     /**
      * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.
      */
@@ -13636,8 +13580,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Posts$Addonattachments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Posts$Addonattachments$Create extends StandardParameters {
     /**
      * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.
      */
@@ -13660,8 +13603,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$AddOnAttachment;
   }
-  export interface Params$Resource$Courses$Posts$Addonattachments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Posts$Addonattachments$Delete extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -13679,8 +13621,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Posts$Addonattachments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Posts$Addonattachments$Get extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -13698,8 +13639,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Posts$Addonattachments$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Posts$Addonattachments$List extends StandardParameters {
     /**
      * Required. Identifier of the course.
      */
@@ -13721,8 +13661,7 @@ export namespace classroom_v1 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Courses$Posts$Addonattachments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Posts$Addonattachments$Patch extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -14088,8 +14027,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -14111,8 +14049,7 @@ export namespace classroom_v1 {
      */
     submissionId?: string;
   }
-  export interface Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch extends StandardParameters {
     /**
      * Required. Identifier of the attachment.
      */
@@ -14741,8 +14678,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Students$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Students$Create extends StandardParameters {
     /**
      * Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -14757,8 +14693,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Student;
   }
-  export interface Params$Resource$Courses$Students$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Students$Delete extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -14768,8 +14703,7 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Students$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Students$Get extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -14779,8 +14713,7 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Students$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Students$List extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -15387,8 +15320,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Teachers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Teachers$Create extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -15399,8 +15331,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Teacher;
   }
-  export interface Params$Resource$Courses$Teachers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Teachers$Delete extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -15410,8 +15341,7 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Teachers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Teachers$Get extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -15421,8 +15351,7 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Teachers$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Teachers$List extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -16177,8 +16106,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Topics$Create
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Topics$Create extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -16189,8 +16117,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Topic;
   }
-  export interface Params$Resource$Courses$Topics$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Topics$Delete extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -16200,8 +16127,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Topics$Get
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Topics$Get extends StandardParameters {
     /**
      * Identifier of the course.
      */
@@ -16211,8 +16137,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Topics$List
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Topics$List extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -16226,8 +16151,7 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Topics$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Courses$Topics$Patch extends StandardParameters {
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -16956,22 +16880,19 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Invitations$Accept
-    extends StandardParameters {
+  export interface Params$Resource$Invitations$Accept extends StandardParameters {
     /**
      * Identifier of the invitation to accept.
      */
     id?: string;
   }
-  export interface Params$Resource$Invitations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Invitations$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$Invitation;
   }
-  export interface Params$Resource$Invitations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Invitations$Delete extends StandardParameters {
     /**
      * Identifier of the invitation to delete.
      */
@@ -17289,15 +17210,13 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Registrations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Registrations$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$Registration;
   }
-  export interface Params$Resource$Registrations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Registrations$Delete extends StandardParameters {
     /**
      * The `registration_id` of the `Registration` to be deleted.
      */
@@ -18090,8 +18009,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Userprofiles$Guardianinvitations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$Create extends StandardParameters {
     /**
      * ID of the student (in standard format)
      */
@@ -18102,8 +18020,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$GuardianInvitation;
   }
-  export interface Params$Resource$Userprofiles$Guardianinvitations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$Get extends StandardParameters {
     /**
      * The `id` field of the `GuardianInvitation` being requested.
      */
@@ -18113,8 +18030,7 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardianinvitations$List
-    extends StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$List extends StandardParameters {
     /**
      * If specified, only results with the specified `invited_email_address` are returned.
      */
@@ -18136,8 +18052,7 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardianinvitations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$Patch extends StandardParameters {
     /**
      * The `id` field of the `GuardianInvitation` to be modified.
      */
@@ -18597,8 +18512,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Userprofiles$Guardians$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardians$Delete extends StandardParameters {
     /**
      * The `id` field from a `Guardian`.
      */
@@ -18608,8 +18522,7 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardians$Get
-    extends StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardians$Get extends StandardParameters {
     /**
      * The `id` field from a `Guardian`.
      */
@@ -18619,8 +18532,7 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardians$List
-    extends StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardians$List extends StandardParameters {
     /**
      * Filter results by the email address that the original invitation was sent to, resulting in this guardian link. This filter can only be used by domain administrators.
      */
