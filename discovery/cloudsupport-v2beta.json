@@ -669,7 +669,7 @@
       }
     }
   },
-  "revision": "20250806",
+  "revision": "20251203",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
@@ -747,6 +747,11 @@
         },
         "blobId": {
           "description": "# gdata.* are outside protos with mising documentation",
+          "type": "string"
+        },
+        "downloadExternalReadToken": {
+          "description": "# gdata.* are outside protos with mising documentation",
+          "format": "byte",
           "type": "string"
         },
         "downloadReadHandle": {
