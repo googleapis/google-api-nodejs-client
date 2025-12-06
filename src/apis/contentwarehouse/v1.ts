@@ -3878,8 +3878,7 @@ export namespace contentwarehouse_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Fetchacl
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Fetchacl extends StandardParameters {
     /**
      * Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for collection: projects/{project_number\}/locations/{location\}/collections/{collection_id\}. Format for project: projects/{project_number\}.
      */
@@ -4394,15 +4393,13 @@ export namespace contentwarehouse_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Getstatus
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getstatus extends StandardParameters {
     /**
      * Required. The location to be queried Format: projects/{project_number\}/locations/{location\}.
      */
     location?: string;
   }
-  export interface Params$Resource$Projects$Locations$Initialize
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Initialize extends StandardParameters {
     /**
      * Required. The location to be initialized Format: projects/{project_number\}/locations/{location\}.
      */
@@ -4413,8 +4410,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1InitializeProjectRequest;
   }
-  export interface Params$Resource$Projects$Locations$Runpipeline
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Runpipeline extends StandardParameters {
     /**
      * Required. The resource name which owns the resources of the pipeline. Format: projects/{project_number\}/locations/{location\}.
      */
@@ -6058,8 +6054,7 @@ export namespace contentwarehouse_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Documents$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Create extends StandardParameters {
     /**
      * Required. The parent name. Format: projects/{project_number\}/locations/{location\}.
      */
@@ -6070,8 +6065,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1CreateDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Delete extends StandardParameters {
     /**
      * Required. The name of the document to delete. Format: projects/{project_number\}/locations/{location\}/documents/{document_id\} or projects/{project_number\}/locations/{location\}/documents/referenceId/{reference_id\}.
      */
@@ -6082,8 +6076,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1DeleteDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Fetchacl
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Fetchacl extends StandardParameters {
     /**
      * Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for collection: projects/{project_number\}/locations/{location\}/collections/{collection_id\}. Format for project: projects/{project_number\}.
      */
@@ -6094,8 +6087,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1FetchAclRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Get extends StandardParameters {
     /**
      * Required. The name of the document to retrieve. Format: projects/{project_number\}/locations/{location\}/documents/{document_id\} or projects/{project_number\}/locations/{location\}/documents/referenceId/{reference_id\}.
      */
@@ -6106,8 +6098,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1GetDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Linkedsources
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Linkedsources extends StandardParameters {
     /**
      * Required. The name of the document, for which all source links are returned. Format: projects/{project_number\}/locations/{location\}/documents/{source_document_id\}.
      */
@@ -6118,8 +6109,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1ListLinkedSourcesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Linkedtargets
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Linkedtargets extends StandardParameters {
     /**
      * Required. The name of the document, for which all target links are returned. Format: projects/{project_number\}/locations/{location\}/documents/{target_document_id\}.
      */
@@ -6130,8 +6120,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1ListLinkedTargetsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Lock
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Lock extends StandardParameters {
     /**
      * Required. The name of the document to lock. Format: projects/{project_number\}/locations/{location\}/documents/{document\}.
      */
@@ -6142,8 +6131,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1LockDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Patch extends StandardParameters {
     /**
      * Required. The name of the document to update. Format: projects/{project_number\}/locations/{location\}/documents/{document_id\} or projects/{project_number\}/locations/{location\}/documents/referenceId/{reference_id\}.
      */
@@ -6154,8 +6142,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1UpdateDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Search extends StandardParameters {
     /**
      * Required. The parent, which owns this collection of documents. Format: projects/{project_number\}/locations/{location\}.
      */
@@ -6166,8 +6153,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1SearchDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Setacl
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Setacl extends StandardParameters {
     /**
      * Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for collection: projects/{project_number\}/locations/{location\}/collections/{collection_id\}. Format for project: projects/{project_number\}.
      */
@@ -6494,8 +6480,7 @@ export namespace contentwarehouse_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Documents$Documentlinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Documentlinks$Create extends StandardParameters {
     /**
      * Required. Parent of the document-link to be created. parent of document-link should be a document. Format: projects/{project_number\}/locations/{location\}/documents/{source_document_id\}.
      */
@@ -6506,8 +6491,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1CreateDocumentLinkRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Documentlinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Documentlinks$Delete extends StandardParameters {
     /**
      * Required. The name of the document-link to be deleted. Format: projects/{project_number\}/locations/{location\}/documents/{source_document_id\}/documentLinks/{document_link_id\}.
      */
@@ -7004,8 +6988,7 @@ export namespace contentwarehouse_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Documents$Referenceid$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Referenceid$Delete extends StandardParameters {
     /**
      * Required. The name of the document to delete. Format: projects/{project_number\}/locations/{location\}/documents/{document_id\} or projects/{project_number\}/locations/{location\}/documents/referenceId/{reference_id\}.
      */
@@ -7016,8 +6999,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1DeleteDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Referenceid$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Referenceid$Get extends StandardParameters {
     /**
      * Required. The name of the document to retrieve. Format: projects/{project_number\}/locations/{location\}/documents/{document_id\} or projects/{project_number\}/locations/{location\}/documents/referenceId/{reference_id\}.
      */
@@ -7028,8 +7010,7 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1GetDocumentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Documents$Referenceid$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documents$Referenceid$Patch extends StandardParameters {
     /**
      * Required. The name of the document to update. Format: projects/{project_number\}/locations/{location\}/documents/{document_id\} or projects/{project_number\}/locations/{location\}/documents/referenceId/{reference_id\}.
      */
@@ -7814,8 +7795,7 @@ export namespace contentwarehouse_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Documentschemas$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documentschemas$Create extends StandardParameters {
     /**
      * Required. The parent name.
      */
@@ -7826,22 +7806,19 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1DocumentSchema;
   }
-  export interface Params$Resource$Projects$Locations$Documentschemas$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documentschemas$Delete extends StandardParameters {
     /**
      * Required. The name of the document schema to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Documentschemas$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documentschemas$Get extends StandardParameters {
     /**
      * Required. The name of the document schema to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Documentschemas$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documentschemas$List extends StandardParameters {
     /**
      * The maximum number of document schemas to return. The service may return fewer than this value. If unspecified, at most 50 document schemas will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -7855,8 +7832,7 @@ export namespace contentwarehouse_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Documentschemas$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Documentschemas$Patch extends StandardParameters {
     /**
      * Required. The name of the document schema to update. Format: projects/{project_number\}/locations/{location\}/documentSchemas/{document_schema_id\}.
      */
@@ -8018,8 +7994,7 @@ export namespace contentwarehouse_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -8785,8 +8760,7 @@ export namespace contentwarehouse_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Rulesets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rulesets$Create extends StandardParameters {
     /**
      * Required. The parent name. Format: projects/{project_number\}/locations/{location\}.
      */
@@ -8797,22 +8771,19 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1RuleSet;
   }
-  export interface Params$Resource$Projects$Locations$Rulesets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rulesets$Delete extends StandardParameters {
     /**
      * Required. The name of the rule set to delete. Format: projects/{project_number\}/locations/{location\}/ruleSets/{rule_set_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Rulesets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rulesets$Get extends StandardParameters {
     /**
      * Required. The name of the rule set to retrieve. Format: projects/{project_number\}/locations/{location\}/ruleSets/{rule_set_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Rulesets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rulesets$List extends StandardParameters {
     /**
      * The maximum number of rule sets to return. The service may return fewer than this value. If unspecified, at most 50 rule sets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -8826,8 +8797,7 @@ export namespace contentwarehouse_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Rulesets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rulesets$Patch extends StandardParameters {
     /**
      * Required. The name of the rule set to update. Format: projects/{project_number\}/locations/{location\}/ruleSets/{rule_set_id\}.
      */
@@ -9596,8 +9566,7 @@ export namespace contentwarehouse_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Synonymsets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Synonymsets$Create extends StandardParameters {
     /**
      * Required. The parent name. Format: projects/{project_number\}/locations/{location\}.
      */
@@ -9608,22 +9577,19 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1SynonymSet;
   }
-  export interface Params$Resource$Projects$Locations$Synonymsets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Synonymsets$Delete extends StandardParameters {
     /**
      * Required. The name of the synonymSet to delete Format: projects/{project_number\}/locations/{location\}/synonymSets/{context\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Synonymsets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Synonymsets$Get extends StandardParameters {
     /**
      * Required. The name of the synonymSet to retrieve Format: projects/{project_number\}/locations/{location\}/synonymSets/{context\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Synonymsets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Synonymsets$List extends StandardParameters {
     /**
      * The maximum number of synonymSets to return. The service may return fewer than this value. If unspecified, at most 50 rule sets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -9637,8 +9603,7 @@ export namespace contentwarehouse_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Synonymsets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Synonymsets$Patch extends StandardParameters {
     /**
      * Required. The name of the synonymSet to update Format: projects/{project_number\}/locations/{location\}/synonymSets/{context\}.
      */
