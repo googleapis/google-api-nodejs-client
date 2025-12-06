@@ -1041,6 +1041,10 @@ export namespace alertcenter_v1beta1 {
      */
     documentId?: string | null;
     /**
+     * RFC2822 message ID.
+     */
+    messageId?: string | null;
+    /**
      * Title of the resource, for example email subject, or document title.
      */
     resourceTitle?: string | null;
@@ -2471,15 +2475,13 @@ export namespace alertcenter_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Alerts$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Alerts$Batchdelete extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$BatchDeleteAlertsRequest;
   }
-  export interface Params$Resource$Alerts$Batchundelete
-    extends StandardParameters {
+  export interface Params$Resource$Alerts$Batchundelete extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2505,8 +2507,7 @@ export namespace alertcenter_v1beta1 {
      */
     customerId?: string;
   }
-  export interface Params$Resource$Alerts$Getmetadata
-    extends StandardParameters {
+  export interface Params$Resource$Alerts$Getmetadata extends StandardParameters {
     /**
      * Required. The identifier of the alert this metadata belongs to.
      */
@@ -2859,8 +2860,7 @@ export namespace alertcenter_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Alerts$Feedback$Create
-    extends StandardParameters {
+  export interface Params$Resource$Alerts$Feedback$Create extends StandardParameters {
     /**
      * Required. The identifier of the alert this feedback belongs to.
      */
@@ -2875,8 +2875,7 @@ export namespace alertcenter_v1beta1 {
      */
     requestBody?: Schema$AlertFeedback;
   }
-  export interface Params$Resource$Alerts$Feedback$List
-    extends StandardParameters {
+  export interface Params$Resource$Alerts$Feedback$List extends StandardParameters {
     /**
      * Required. The alert identifier. The "-" wildcard could be used to represent all alerts.
      */
@@ -3174,15 +3173,13 @@ export namespace alertcenter_v1beta1 {
     }
   }
 
-  export interface Params$Resource$V1beta1$Getsettings
-    extends StandardParameters {
+  export interface Params$Resource$V1beta1$Getsettings extends StandardParameters {
     /**
      * Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must/ have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
   }
-  export interface Params$Resource$V1beta1$Updatesettings
-    extends StandardParameters {
+  export interface Params$Resource$V1beta1$Updatesettings extends StandardParameters {
     /**
      * Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
