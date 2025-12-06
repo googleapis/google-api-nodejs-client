@@ -1065,6 +1065,173 @@
                 }
               }
             },
+            "hostGroups": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new host group.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/hostGroups",
+                  "httpMethod": "POST",
+                  "id": "netapp.projects.locations.hostGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "hostGroupId": {
+                      "description": "Required. ID of the host group to create. Must be unique within the parent resource. Must contain only letters, numbers, and hyphen, with the first character a letter or underscore, the last a letter or underscore or a number, and a 63 character maximum.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for CreateHostGroupRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/hostGroups",
+                  "request": {
+                    "$ref": "HostGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a host group.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/hostGroups/{hostGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "netapp.projects.locations.hostGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the host group. Format: `projects/{project_number}/locations/{location_id}/hostGroups/{host_group_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/hostGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns details of the specified host group.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/hostGroups/{hostGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "netapp.projects.locations.hostGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the host group. Format: `projects/{project_number}/locations/{location_id}/hostGroups/{host_group_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/hostGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "HostGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Returns a list of host groups in a location. Use '-' as location to list host groups across all locations.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/hostGroups",
+                  "httpMethod": "GET",
+                  "id": "netapp.projects.locations.hostGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter to apply to the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListHostGroupsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/hostGroups",
+                  "response": {
+                    "$ref": "ListHostGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing host group.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/hostGroups/{hostGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "netapp.projects.locations.hostGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the host group. Format: `projects/{project_number}/locations/{location_id}/hostGroups/{host_group_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/hostGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "HostGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "kmsConfigs": {
               "methods": {
                 "create": {
@@ -1401,7 +1568,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -2515,7 +2682,7 @@
       }
     }
   },
-  "revision": "20251029",
+  "revision": "20251116",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -2977,6 +3144,50 @@
       },
       "type": "object"
     },
+    "BlockDevice": {
+      "description": "Block device represents the device(s) which are stored in the block volume.",
+      "id": "BlockDevice",
+      "properties": {
+        "hostGroups": {
+          "description": "Optional. A list of host groups that identify hosts that can mount the block volume. Format: `projects/{project_id}/locations/{location}/hostGroups/{host_group_id}` This field can be updated after the block device is created.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "identifier": {
+          "description": "Output only. Device identifier of the Block volume. This represents lun_serial_number for iSCSI volumes",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Optional. User-defined name for the block device, unique within the Volume. In case no user input is provided, name will be autogenerated in the backend. The name must meet the following requirements: * Be between 1 and 255 characters long. * Contain only uppercase or lowercase letters (A-Z, a-z), numbers (0-9), and the following special characters: \"-\", \"_\", \"}\", \"{\", \".\". * Spaces are not allowed.",
+          "type": "string"
+        },
+        "osType": {
+          "description": "Required. Immutable. The OS type of the volume. This field can't be changed after the block device is created.",
+          "enum": [
+            "OS_TYPE_UNSPECIFIED",
+            "LINUX",
+            "WINDOWS",
+            "ESXI"
+          ],
+          "enumDescriptions": [
+            "Unspecified OS Type",
+            "OS Type is Linux",
+            "OS Type is Windows",
+            "OS Type is VMware ESXi"
+          ],
+          "type": "string"
+        },
+        "sizeGib": {
+          "description": "Optional. The size of the block device in GiB. Any value provided in this field during Volume creation is IGNORED. The block device's size is system-managed and will be set to match the parent Volume's `capacity_gib`.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CacheConfig": {
       "description": "Configuration of the cache volume.",
       "id": "CacheConfig",
@@ -3166,6 +3377,90 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
+      "type": "object"
+    },
+    "HostGroup": {
+      "description": "Host group is a collection of hosts that can be used for accessing a Block Volume.",
+      "id": "HostGroup",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Create time of the host group.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the host group.",
+          "type": "string"
+        },
+        "hosts": {
+          "description": "Required. The list of hosts associated with the host group.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels of the host group.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the host group. Format: `projects/{project_number}/locations/{location_id}/hostGroups/{host_group_id}`.",
+          "type": "string"
+        },
+        "osType": {
+          "description": "Required. The OS type of the host group. It indicates the type of operating system used by all of the hosts in the HostGroup. All hosts in a HostGroup must be of the same OS type. This can be set only when creating a HostGroup.",
+          "enum": [
+            "OS_TYPE_UNSPECIFIED",
+            "LINUX",
+            "WINDOWS",
+            "ESXI"
+          ],
+          "enumDescriptions": [
+            "Unspecified OS Type",
+            "OS Type is Linux",
+            "OS Type is Windows",
+            "OS Type is VMware ESXi"
+          ],
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the host group.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "UPDATING",
+            "DELETING",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state for host group.",
+            "Host group is creating.",
+            "Host group is ready.",
+            "Host group is updating.",
+            "Host group is deleting.",
+            "Host group is disabled."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Type of the host group.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ISCSI_INITIATOR"
+          ],
+          "enumDescriptions": [
+            "Unspecified type for host group.",
+            "iSCSI initiator host group."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "HourlySchedule": {
@@ -3492,6 +3787,31 @@
       },
       "type": "object"
     },
+    "ListHostGroupsResponse": {
+      "description": "ListHostGroupsResponse is the response to a ListHostGroupsRequest.",
+      "id": "ListHostGroupsResponse",
+      "properties": {
+        "hostGroups": {
+          "description": "The list of host groups.",
+          "items": {
+            "$ref": "HostGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListKmsConfigsResponse": {
       "description": "ListKmsConfigsResponse is the response to a ListKmsConfigsRequest.",
       "id": "ListKmsConfigsResponse",
@@ -3551,7 +3871,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -3824,13 +4144,15 @@
             "PROTOCOLS_UNSPECIFIED",
             "NFSV3",
             "NFSV4",
-            "SMB"
+            "SMB",
+            "ISCSI"
           ],
           "enumDescriptions": [
             "Unspecified protocol",
             "NFS V3 protocol",
             "NFS V4 protocol",
-            "SMB protocol"
+            "SMB protocol",
+            "ISCSI protocol"
           ],
           "type": "string"
         }
@@ -4606,8 +4928,7 @@
             "UPDATING",
             "RESTORING",
             "DISABLED",
-            "ERROR",
-            "DEGRADED"
+            "ERROR"
           ],
           "enumDescriptions": [
             "Unspecified Storage Pool State",
@@ -4617,8 +4938,7 @@
             "Storage Pool State is Updating",
             "Storage Pool State is Restoring",
             "Storage Pool State is Disabled",
-            "Storage Pool State is Error",
-            "Storage Pool State is Degraded The storage pool is operational, but with reduced performance."
+            "Storage Pool State is Error"
           ],
           "readOnly": true,
           "type": "string"
@@ -4636,6 +4956,20 @@
         "totalThroughputMibps": {
           "description": "Optional. Custom Performance Total Throughput of the pool (in MiBps)",
           "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. Type of the storage pool. This field is used to control whether the pool supports FILE based volumes only or UNIFIED (both FILE and BLOCK) volumes. If not specified during creation, it defaults to FILE.",
+          "enum": [
+            "STORAGE_POOL_TYPE_UNSPECIFIED",
+            "FILE",
+            "UNIFIED"
+          ],
+          "enumDescriptions": [
+            "Storage pool type is not specified.",
+            "Storage pool type is file.",
+            "Storage pool type is unified."
+          ],
           "type": "string"
         },
         "volumeCapacityGib": {
@@ -4820,6 +5154,13 @@
           "$ref": "BackupConfig",
           "description": "BackupConfig of the volume."
         },
+        "blockDevices": {
+          "description": "Optional. Block devices for the volume. Currently, only one block device is permitted per Volume.",
+          "items": {
+            "$ref": "BlockDevice"
+          },
+          "type": "array"
+        },
         "cacheParameters": {
           "$ref": "CacheParameters",
           "description": "Optional. Cache parameters for the volume."
@@ -4932,13 +5273,15 @@
               "PROTOCOLS_UNSPECIFIED",
               "NFSV3",
               "NFSV4",
-              "SMB"
+              "SMB",
+              "ISCSI"
             ],
             "enumDescriptions": [
               "Unspecified protocol",
               "NFS V3 protocol",
               "NFS V4 protocol",
-              "SMB protocol"
+              "SMB protocol",
+              "ISCSI protocol"
             ],
             "type": "string"
           },
