@@ -2467,7 +2467,7 @@
       }
     }
   },
-  "revision": "20251102",
+  "revision": "20251111",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -4138,6 +4138,10 @@
           },
           "type": "array"
         },
+        "connection": {
+          "description": "Optional. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection can have the form `{project}.{location}.{connection_id}` or `projects/{project}/locations/{location}/connections/{connection_id}\", or be set to DEFAULT.",
+          "type": "string"
+        },
         "dependencyTargets": {
           "description": "A list of actions that this action depends on.",
           "items": {
@@ -4148,6 +4152,18 @@
         "disabled": {
           "description": "Whether this action is disabled (i.e. should not be run).",
           "type": "boolean"
+        },
+        "fileFormat": {
+          "description": "Optional. The file format for the BigQuery table.",
+          "enum": [
+            "FILE_FORMAT_UNSPECIFIED",
+            "PARQUET"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Apache Parquet format."
+          ],
+          "type": "string"
         },
         "incrementalTableConfig": {
           "$ref": "IncrementalTableConfig",
@@ -4204,6 +4220,22 @@
         },
         "selectQuery": {
           "description": "The SELECT query which returns rows which this relation should contain.",
+          "type": "string"
+        },
+        "storageUri": {
+          "description": "Optional. The fully qualified location prefix of the external folder where table data is stored. The URI should be in the format `gs://bucket/path_to_table/`.",
+          "type": "string"
+        },
+        "tableFormat": {
+          "description": "Optional. The table format for the BigQuery table.",
+          "enum": [
+            "TABLE_FORMAT_UNSPECIFIED",
+            "ICEBERG"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Apache Iceberg format."
+          ],
           "type": "string"
         },
         "tags": {
