@@ -1704,36 +1704,31 @@ export namespace pubsub_v1beta1a {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Acknowledge
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Acknowledge extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AcknowledgeRequest;
   }
-  export interface Params$Resource$Subscriptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Delete extends StandardParameters {
     /**
      * The subscription to delete.
      */
     subscription?: string;
   }
-  export interface Params$Resource$Subscriptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Get extends StandardParameters {
     /**
      * The name of the subscription to get.
      */
     subscription?: string;
   }
-  export interface Params$Resource$Subscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$List extends StandardParameters {
     /**
      * Maximum number of subscriptions to return.
      */
@@ -1747,29 +1742,25 @@ export namespace pubsub_v1beta1a {
      */
     query?: string;
   }
-  export interface Params$Resource$Subscriptions$Modifyackdeadline
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Modifyackdeadline extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ModifyAckDeadlineRequest;
   }
-  export interface Params$Resource$Subscriptions$Modifypushconfig
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Modifypushconfig extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$ModifyPushConfigRequest;
   }
-  export interface Params$Resource$Subscriptions$Pull
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Pull extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$PullRequest;
   }
-  export interface Params$Resource$Subscriptions$Pullbatch
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Pullbatch extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -2672,8 +2663,7 @@ export namespace pubsub_v1beta1a {
      */
     requestBody?: Schema$PublishRequest;
   }
-  export interface Params$Resource$Topics$Publishbatch
-    extends StandardParameters {
+  export interface Params$Resource$Topics$Publishbatch extends StandardParameters {
     /**
      * Request body metadata
      */
