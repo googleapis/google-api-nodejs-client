@@ -448,8 +448,7 @@ export namespace areainsights_v1 {
     }
   }
 
-  export interface Params$Resource$V1$Computeinsights
-    extends StandardParameters {
+  export interface Params$Resource$V1$Computeinsights extends StandardParameters {
     /**
      * Request body metadata
      */
