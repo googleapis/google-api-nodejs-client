@@ -1765,6 +1765,10 @@ export namespace cloudbuild_v1 {
      */
     artifactId?: string | null;
     /**
+     * Optional. Path to a folder containing the files to upload to Artifact Registry. This can be either an absolute path, e.g. `/workspace/my-app/target/`, or a relative path from /workspace, e.g. `my-app/target/`. This field is mutually exclusive with the `path` field.
+     */
+    deployFolder?: string | null;
+    /**
      * Maven `groupId` value used when uploading the artifact to Artifact Registry.
      */
     groupId?: string | null;
@@ -2736,8 +2740,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Githubdotcomwebhook$Receive
-    extends StandardParameters {
+  export interface Params$Resource$Githubdotcomwebhook$Receive extends StandardParameters {
     /**
      * For GitHub Enterprise webhooks, this key is used to associate the webhook request with the GitHubEnterpriseConfig to use for validation.
      */
@@ -2903,8 +2906,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Regionalwebhook
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Regionalwebhook extends StandardParameters {
     /**
      * Required. The location where the webhook should be sent.
      */
@@ -3202,8 +3204,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -4221,8 +4222,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Builds$Approve
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Builds$Approve extends StandardParameters {
     /**
      * Required. Name of the target build. For example: "projects/{$project_id\}/builds/{$build_id\}"
      */
@@ -4233,8 +4233,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$ApproveBuildRequest;
   }
-  export interface Params$Resource$Projects$Builds$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Builds$Cancel extends StandardParameters {
     /**
      * Required. ID of the build.
      */
@@ -4249,8 +4248,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$CancelBuildRequest;
   }
-  export interface Params$Resource$Projects$Builds$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Builds$Create extends StandardParameters {
     /**
      * The parent resource where this build will be created. Format: `projects/{project\}/locations/{location\}`
      */
@@ -4265,8 +4263,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$Build;
   }
-  export interface Params$Resource$Projects$Builds$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Builds$Get extends StandardParameters {
     /**
      * Required. ID of the build.
      */
@@ -4280,8 +4277,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Builds$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Builds$List extends StandardParameters {
     /**
      * The raw filter text to constrain the results.
      */
@@ -4303,8 +4299,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Builds$Retry
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Builds$Retry extends StandardParameters {
     /**
      * Required. Build ID of the original build.
      */
@@ -5083,8 +5078,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Githubenterpriseconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Githubenterpriseconfigs$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig's resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
      */
@@ -5103,8 +5097,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$GitHubEnterpriseConfig;
   }
-  export interface Params$Resource$Projects$Githubenterpriseconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Githubenterpriseconfigs$Delete extends StandardParameters {
     /**
      * Unique identifier of the `GitHubEnterpriseConfig`
      */
@@ -5118,8 +5111,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Githubenterpriseconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Githubenterpriseconfigs$Get extends StandardParameters {
     /**
      * Unique identifier of the `GitHubEnterpriseConfig`
      */
@@ -5133,8 +5125,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Githubenterpriseconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Githubenterpriseconfigs$List extends StandardParameters {
     /**
      * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
      */
@@ -5144,8 +5135,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Githubenterpriseconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Githubenterpriseconfigs$Patch extends StandardParameters {
     /**
      * The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
@@ -5330,8 +5320,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Getdefaultserviceaccount
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getdefaultserviceaccount extends StandardParameters {
     /**
      * Required. The name of the `DefaultServiceAccount` to retrieve. Format: `projects/{project\}/locations/{location\}/defaultServiceAccount`
      */
@@ -6267,8 +6256,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the BitbucketServerConfig, which will become the final component of the BitbucketServerConfig's resource name. bitbucket_server_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character.
      */
@@ -6283,22 +6271,19 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$BitbucketServerConfig;
   }
-  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Delete extends StandardParameters {
     /**
      * Required. The config resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get extends StandardParameters {
     /**
      * Required. The config resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$List extends StandardParameters {
     /**
      * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -6312,8 +6297,7 @@ export namespace cloudbuild_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch extends StandardParameters {
     /**
      * The resource name for the config.
      */
@@ -6328,8 +6312,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$BitbucketServerConfig;
   }
-  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Removebitbucketserverconnectedrepository
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Removebitbucketserverconnectedrepository extends StandardParameters {
     /**
      * Required. The name of the `BitbucketServerConfig` to remove a connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
      */
@@ -6501,8 +6484,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories$Batchcreate extends StandardParameters {
     /**
      * The name of the `BitbucketServerConfig` that added connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
      */
@@ -6676,8 +6658,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List extends StandardParameters {
     /**
      * The maximum number of configs to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -7665,8 +7646,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Builds$Approve
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Builds$Approve extends StandardParameters {
     /**
      * Required. Name of the target build. For example: "projects/{$project_id\}/builds/{$build_id\}"
      */
@@ -7677,8 +7657,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$ApproveBuildRequest;
   }
-  export interface Params$Resource$Projects$Locations$Builds$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Builds$Cancel extends StandardParameters {
     /**
      * The name of the `Build` to cancel. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
      */
@@ -7689,8 +7668,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$CancelBuildRequest;
   }
-  export interface Params$Resource$Projects$Locations$Builds$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Builds$Create extends StandardParameters {
     /**
      * The parent resource where this build will be created. Format: `projects/{project\}/locations/{location\}`
      */
@@ -7705,8 +7683,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$Build;
   }
-  export interface Params$Resource$Projects$Locations$Builds$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Builds$Get extends StandardParameters {
     /**
      * Required. ID of the build.
      */
@@ -7720,8 +7697,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Builds$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Builds$List extends StandardParameters {
     /**
      * The raw filter text to constrain the results.
      */
@@ -7743,8 +7719,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Builds$Retry
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Builds$Retry extends StandardParameters {
     /**
      * The name of the `Build` to retry. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
      */
@@ -8528,8 +8503,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig's resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
      */
@@ -8548,8 +8522,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$GitHubEnterpriseConfig;
   }
-  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Delete extends StandardParameters {
     /**
      * Unique identifier of the `GitHubEnterpriseConfig`
      */
@@ -8563,8 +8536,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get extends StandardParameters {
     /**
      * Unique identifier of the `GitHubEnterpriseConfig`
      */
@@ -8578,8 +8550,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$List extends StandardParameters {
     /**
      * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
      */
@@ -8589,8 +8560,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch extends StandardParameters {
     /**
      * The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
@@ -9506,8 +9476,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the GitLabConfig, which will become the final component of the GitLabConfig’s resource name. gitlab_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
      */
@@ -9522,22 +9491,19 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$GitLabConfig;
   }
-  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Delete extends StandardParameters {
     /**
      * Required. The config resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Get extends StandardParameters {
     /**
      * Required. The config resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gitlabconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$List extends StandardParameters {
     /**
      * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000;, values above 1000 will be coerced to 1000.
      */
@@ -9551,8 +9517,7 @@ export namespace cloudbuild_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Patch extends StandardParameters {
     /**
      * The resource name for the config.
      */
@@ -9567,8 +9532,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$GitLabConfig;
   }
-  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Removegitlabconnectedrepository
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Removegitlabconnectedrepository extends StandardParameters {
     /**
      * Required. The name of the `GitLabConfig` to remove a connected repository. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
      */
@@ -9740,8 +9704,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories$Batchcreate extends StandardParameters {
     /**
      * The name of the `GitLabConfig` that adds connected repositories. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
      */
@@ -9910,8 +9873,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Repos$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Repos$List extends StandardParameters {
     /**
      * The maximum number of repositories to return. The service may return fewer than this value.
      */
@@ -10209,8 +10171,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -10221,8 +10182,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -11397,8 +11357,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Triggers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Create extends StandardParameters {
     /**
      * The parent resource where this trigger will be created. Format: `projects/{project\}/locations/{location\}`
      */
@@ -11413,8 +11372,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$BuildTrigger;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Delete extends StandardParameters {
     /**
      * The name of the `Trigger` to delete. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
      */
@@ -11428,8 +11386,7 @@ export namespace cloudbuild_v1 {
      */
     triggerId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Get extends StandardParameters {
     /**
      * The name of the `Trigger` to retrieve. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
      */
@@ -11443,8 +11400,7 @@ export namespace cloudbuild_v1 {
      */
     triggerId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$List extends StandardParameters {
     /**
      * Number of results to return in the list.
      */
@@ -11462,8 +11418,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Patch extends StandardParameters {
     /**
      * Required. ID of the project that owns the trigger.
      */
@@ -11486,8 +11441,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$BuildTrigger;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Run extends StandardParameters {
     /**
      * The name of the `Trigger` to run. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
      */
@@ -11498,8 +11452,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$RunBuildTriggerRequest;
   }
-  export interface Params$Resource$Projects$Locations$Triggers$Webhook
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Triggers$Webhook extends StandardParameters {
     /**
      * The name of the `ReceiveTriggerWebhook` to retrieve. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
      */
@@ -12282,8 +12235,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workerpools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Create extends StandardParameters {
     /**
      * Required. The parent resource where this worker pool will be created. Format: `projects/{project\}/locations/{location\}`.
      */
@@ -12302,8 +12254,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$WorkerPool;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Delete extends StandardParameters {
     /**
      * If set to true, and the `WorkerPool` is not found, the request will succeed but no action will be taken on the server.
      */
@@ -12321,15 +12272,13 @@ export namespace cloudbuild_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Get extends StandardParameters {
     /**
      * Required. The name of the `WorkerPool` to retrieve. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPool\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$List extends StandardParameters {
     /**
      * The maximum number of `WorkerPool`s to return. The service may return fewer than this value. If omitted, the server will use a sensible default.
      */
@@ -12343,8 +12292,7 @@ export namespace cloudbuild_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workerpools$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workerpools$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the `WorkerPool`, with format `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`. The value of `{worker_pool\}` is provided by `worker_pool_id` in `CreateWorkerPool` request and the value of `{location\}` is determined by the endpoint accessed.
      */
@@ -13542,8 +13490,7 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Triggers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Triggers$Create extends StandardParameters {
     /**
      * The parent resource where this trigger will be created. Format: `projects/{project\}/locations/{location\}`
      */
@@ -13558,8 +13505,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$BuildTrigger;
   }
-  export interface Params$Resource$Projects$Triggers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Triggers$Delete extends StandardParameters {
     /**
      * The name of the `Trigger` to delete. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
      */
@@ -13573,8 +13519,7 @@ export namespace cloudbuild_v1 {
      */
     triggerId?: string;
   }
-  export interface Params$Resource$Projects$Triggers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Triggers$Get extends StandardParameters {
     /**
      * The name of the `Trigger` to retrieve. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
      */
@@ -13588,8 +13533,7 @@ export namespace cloudbuild_v1 {
      */
     triggerId?: string;
   }
-  export interface Params$Resource$Projects$Triggers$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Triggers$List extends StandardParameters {
     /**
      * Number of results to return in the list.
      */
@@ -13607,8 +13551,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Triggers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Triggers$Patch extends StandardParameters {
     /**
      * Required. ID of the project that owns the trigger.
      */
@@ -13627,8 +13570,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$BuildTrigger;
   }
-  export interface Params$Resource$Projects$Triggers$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Triggers$Run extends StandardParameters {
     /**
      * The name of the `Trigger` to run. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
      */
@@ -13647,8 +13589,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$RepoSource;
   }
-  export interface Params$Resource$Projects$Triggers$Webhook
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Triggers$Webhook extends StandardParameters {
     /**
      * The name of the `ReceiveTriggerWebhook` to retrieve. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
      */

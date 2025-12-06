@@ -2057,15 +2057,13 @@ export namespace cloudbuild_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -3609,8 +3607,7 @@ export namespace cloudbuild_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Connection, which will become the final component of the Connection's resource name. Names must be unique per-project per-location. Allows alphanumeric characters and any of -._~%!$&'()*+,;=@.
      */
@@ -3625,8 +3622,7 @@ export namespace cloudbuild_v2 {
      */
     requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Delete extends StandardParameters {
     /**
      * The current etag of the connection. If an etag is provided and does not match the current etag of the connection, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -3640,8 +3636,7 @@ export namespace cloudbuild_v2 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Fetchlinkablerepositories
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Fetchlinkablerepositories extends StandardParameters {
     /**
      * Required. The name of the Connection. Format: `projects/x/locations/x/connections/x`.
      */
@@ -3655,15 +3650,13 @@ export namespace cloudbuild_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Get extends StandardParameters {
     /**
      * Required. The name of the Connection to retrieve. Format: `projects/x/locations/x/connections/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3673,8 +3666,7 @@ export namespace cloudbuild_v2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$List extends StandardParameters {
     /**
      * Number of results to return in the list.
      */
@@ -3692,8 +3684,7 @@ export namespace cloudbuild_v2 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Patch extends StandardParameters {
     /**
      * If set to true, and the connection is not found a new connection will be created. In this situation `update_mask` is ignored. The creation will succeed only if the input connection has all the necessary information (e.g a github_config with both user_oauth_token and installation_id properties).
      */
@@ -3716,8 +3707,7 @@ export namespace cloudbuild_v2 {
      */
     requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Processwebhook
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Processwebhook extends StandardParameters {
     /**
      * Required. Project and location where the webhook will be received. Format: `projects/x/locations/x`.
      */
@@ -3732,8 +3722,7 @@ export namespace cloudbuild_v2 {
      */
     requestBody?: Schema$HttpBody;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3744,8 +3733,7 @@ export namespace cloudbuild_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4971,8 +4959,7 @@ export namespace cloudbuild_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Repositories$Accessreadtoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Repositories$Accessreadtoken extends StandardParameters {
     /**
      * Required. The resource name of the repository in the format `projects/x/locations/x/connections/x/repositories/x`.
      */
@@ -4983,8 +4970,7 @@ export namespace cloudbuild_v2 {
      */
     requestBody?: Schema$FetchReadTokenRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Repositories$Accessreadwritetoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Repositories$Accessreadwritetoken extends StandardParameters {
     /**
      * Required. The resource name of the repository in the format `projects/x/locations/x/connections/x/repositories/x`.
      */
@@ -4995,8 +4981,7 @@ export namespace cloudbuild_v2 {
      */
     requestBody?: Schema$FetchReadWriteTokenRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Repositories$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Repositories$Batchcreate extends StandardParameters {
     /**
      * Required. The connection to contain all the repositories being created. Format: projects/x/locations/x/connections/x The parent field in the CreateRepositoryRequest messages must either be empty or match this field.
      */
@@ -5007,8 +4992,7 @@ export namespace cloudbuild_v2 {
      */
     requestBody?: Schema$BatchCreateRepositoriesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Repositories$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Repositories$Create extends StandardParameters {
     /**
      * Required. The connection to contain the repository. If the request is part of a BatchCreateRepositoriesRequest, this field should be empty or match the parent specified there.
      */
@@ -5023,8 +5007,7 @@ export namespace cloudbuild_v2 {
      */
     requestBody?: Schema$Repository;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Repositories$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Repositories$Delete extends StandardParameters {
     /**
      * The current etag of the repository. If an etag is provided and does not match the current etag of the repository, deletion will be blocked and an ABORTED error will be returned.
      */
@@ -5038,8 +5021,7 @@ export namespace cloudbuild_v2 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Repositories$Fetchgitrefs
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Repositories$Fetchgitrefs extends StandardParameters {
     /**
      * Optional. Number of results to return in the list. Default to 20.
      */
@@ -5057,15 +5039,13 @@ export namespace cloudbuild_v2 {
      */
     repository?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Repositories$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Repositories$Get extends StandardParameters {
     /**
      * Required. The name of the Repository to retrieve. Format: `projects/x/locations/x/connections/x/repositories/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Repositories$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Repositories$List extends StandardParameters {
     /**
      * A filter expression that filters resources listed in the response. Expressions must follow API improvement proposal [AIP-160](https://google.aip.dev/160). e.g. `remote_uri:"https://github.com*"`.
      */
@@ -5371,8 +5351,7 @@ export namespace cloudbuild_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -5383,8 +5362,7 @@ export namespace cloudbuild_v2 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
