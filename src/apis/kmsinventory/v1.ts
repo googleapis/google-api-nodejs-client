@@ -592,8 +592,7 @@ export namespace kmsinventory_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Protectedresources$Search
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Protectedresources$Search extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKey.
      */
@@ -786,8 +785,7 @@ export namespace kmsinventory_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Cryptokeys$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Cryptokeys$List extends StandardParameters {
     /**
      * Optional. The maximum number of keys to return. The service may return fewer than this value. If unspecified, at most 1000 keys will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -985,8 +983,7 @@ export namespace kmsinventory_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getprotectedresourcessummary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getprotectedresourcessummary extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKey.
      */
