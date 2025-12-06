@@ -1710,8 +1710,7 @@ export namespace datapipelines_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Pipelines$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Create extends StandardParameters {
     /**
      * Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`.
      */
@@ -1722,22 +1721,19 @@ export namespace datapipelines_v1 {
      */
     requestBody?: Schema$GoogleCloudDatapipelinesV1Pipeline;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Delete extends StandardParameters {
     /**
      * Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Get extends StandardParameters {
     /**
      * Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$List extends StandardParameters {
     /**
      * An expression for filtering the results of the request. If unspecified, all pipelines will be returned. Multiple filters can be applied and must be comma separated. Fields eligible for filtering are: + `type`: The type of the pipeline (streaming or batch). Allowed values are `ALL`, `BATCH`, and `STREAMING`. + `status`: The activity status of the pipeline. Allowed values are `ALL`, `ACTIVE`, `ARCHIVED`, and `PAUSED`. For example, to limit results to active batch processing pipelines: type:BATCH,status:ACTIVE
      */
@@ -1755,8 +1751,7 @@ export namespace datapipelines_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Patch extends StandardParameters {
     /**
      * The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`. * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), and periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects). * `LOCATION_ID` is the canonical ID for the pipeline's location. The list of available locations can be obtained by calling `google.cloud.location.Locations.ListLocations`. Note that the Data Pipelines service is not available in all regions. It depends on Cloud Scheduler, an App Engine application, so it's only available in [App Engine regions](https://cloud.google.com/about/locations#region). * `PIPELINE_ID` is the ID of the pipeline. Must be unique for the selected project and location.
      */
@@ -1771,8 +1766,7 @@ export namespace datapipelines_v1 {
      */
     requestBody?: Schema$GoogleCloudDatapipelinesV1Pipeline;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Run extends StandardParameters {
     /**
      * Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.
      */
@@ -1783,8 +1777,7 @@ export namespace datapipelines_v1 {
      */
     requestBody?: Schema$GoogleCloudDatapipelinesV1RunPipelineRequest;
   }
-  export interface Params$Resource$Projects$Locations$Pipelines$Stop
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Stop extends StandardParameters {
     /**
      * Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.
      */
@@ -1953,8 +1946,7 @@ export namespace datapipelines_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Pipelines$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Pipelines$Jobs$List extends StandardParameters {
     /**
      * The maximum number of entities to return. The service may return fewer than this value, even if there are additional pages. If unspecified, the max limit will be determined by the backend implementation.
      */
