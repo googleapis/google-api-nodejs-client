@@ -714,7 +714,7 @@ export namespace osconfig_v1beta {
      */
     rebootConfig?: string | null;
     /**
-     * Optional. Enables enhanced reporting for the patch job: 1. Allows the patch job to skip unpatchable instances, reporting them as SKIPPED. An instance can be unpatchable for two reasons: a. The instance runs Container-Optimized OS (COS), which cannot be patched. b. The patch job's configuration prohibits patching on Managed Instance Groups (MIGs) through the PatchConfig.migInstancesAllowed field, and the instance is part of one. 2. The system reports the patch job as SUCCEEDED if it completes without errors, regardless of whether any instances were SKIPPED. 3. The system reports the patch job as COMPLETED_WITH_INACTIVE_VMS if it completes without errors, but some instances were INACTIVE and therefore not patched.
+     * Optional. Enables enhanced reporting for the patch job: 1. Allows the patch job to skip unpatchable instances, reporting them as `SKIPPED`. An instance can be unpatchable for two reasons: 1. The instance runs Container-Optimized OS (COS), which cannot be patched. 2. The instance is part of a managed instance group (MIG), and patching MIG instances is disabled in the patch job's configuration (PatchConfig.migInstancesAllowed is `false`). 2. Reports the patch job as `SUCCEEDED` if it completes without errors, even if some instances were `SKIPPED`. 3. Reports the patch job as `COMPLETED_WITH_INACTIVE_VMS` if it completes without errors, but some instances were `INACTIVE` and were not patched.
      */
     skipUnpatchableVms?: boolean | null;
     /**
@@ -2224,8 +2224,7 @@ export namespace osconfig_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Guestpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Guestpolicies$Create extends StandardParameters {
     /**
      * Required. The logical name of the guest policy in the project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
      */
@@ -2240,22 +2239,19 @@ export namespace osconfig_v1beta {
      */
     requestBody?: Schema$GuestPolicy;
   }
-  export interface Params$Resource$Projects$Guestpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Guestpolicies$Delete extends StandardParameters {
     /**
      * Required. The resource name of the guest policy using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Guestpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Guestpolicies$Get extends StandardParameters {
     /**
      * Required. The resource name of the guest policy using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Guestpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Guestpolicies$List extends StandardParameters {
     /**
      * The maximum number of guest policies to return.
      */
@@ -2269,8 +2265,7 @@ export namespace osconfig_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Guestpolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Guestpolicies$Patch extends StandardParameters {
     /**
      * Required. Unique name of the resource in this project using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
      */
@@ -3361,8 +3356,7 @@ export namespace osconfig_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Patchdeployments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchdeployments$Create extends StandardParameters {
     /**
      * Required. The project to apply this patch deployment to in the form `projects/x`.
      */
@@ -3377,22 +3371,19 @@ export namespace osconfig_v1beta {
      */
     requestBody?: Schema$PatchDeployment;
   }
-  export interface Params$Resource$Projects$Patchdeployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchdeployments$Delete extends StandardParameters {
     /**
      * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Patchdeployments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchdeployments$Get extends StandardParameters {
     /**
      * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Patchdeployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchdeployments$List extends StandardParameters {
     /**
      * Optional. The maximum number of patch deployments to return. Default is 100.
      */
@@ -3406,8 +3397,7 @@ export namespace osconfig_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Patchdeployments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchdeployments$Patch extends StandardParameters {
     /**
      * Unique name for the patch deployment resource in a project. The patch deployment name is in the form: `projects/{project_id\}/patchDeployments/{patch_deployment_id\}`. This field is ignored when you create a new patch deployment.
      */
@@ -3422,8 +3412,7 @@ export namespace osconfig_v1beta {
      */
     requestBody?: Schema$PatchDeployment;
   }
-  export interface Params$Resource$Projects$Patchdeployments$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchdeployments$Pause extends StandardParameters {
     /**
      * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      */
@@ -3434,8 +3423,7 @@ export namespace osconfig_v1beta {
      */
     requestBody?: Schema$PausePatchDeploymentRequest;
   }
-  export interface Params$Resource$Projects$Patchdeployments$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchdeployments$Resume extends StandardParameters {
     /**
      * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      */
@@ -4074,8 +4062,7 @@ export namespace osconfig_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Patchjobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchjobs$Cancel extends StandardParameters {
     /**
      * Required. Name of the patch in the form `projects/x/patchJobs/x`
      */
@@ -4086,8 +4073,7 @@ export namespace osconfig_v1beta {
      */
     requestBody?: Schema$CancelPatchJobRequest;
   }
-  export interface Params$Resource$Projects$Patchjobs$Execute
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchjobs$Execute extends StandardParameters {
     /**
      * Required. The project in which to run this patch in the form `projects/x`
      */
@@ -4098,15 +4084,13 @@ export namespace osconfig_v1beta {
      */
     requestBody?: Schema$ExecutePatchJobRequest;
   }
-  export interface Params$Resource$Projects$Patchjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchjobs$Get extends StandardParameters {
     /**
      * Required. Name of the patch in the form `projects/x/patchJobs/x`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Patchjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchjobs$List extends StandardParameters {
     /**
      * If provided, this field specifies the criteria that must be met by patch jobs to be included in the response. Currently, filtering is only available on the patch_deployment field.
      */
@@ -4286,8 +4270,7 @@ export namespace osconfig_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Patchjobs$Instancedetails$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Patchjobs$Instancedetails$List extends StandardParameters {
     /**
      * A filter expression that filters results listed in the response. This field supports filtering results by instance zone, name, state, or `failure_reason`.
      */
@@ -4476,8 +4459,7 @@ export namespace osconfig_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy extends StandardParameters {
     /**
      * Required. The VM instance whose policies are being looked up.
      */
