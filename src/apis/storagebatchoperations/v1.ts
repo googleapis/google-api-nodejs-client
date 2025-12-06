@@ -853,15 +853,13 @@ export namespace storagebatchoperations_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1626,8 +1624,7 @@ export namespace storagebatchoperations_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Cancel extends StandardParameters {
     /**
      * Required. The `name` of the job to cancel. Format: projects/{project_id\}/locations/global/jobs/{job_id\}.
      */
@@ -1638,8 +1635,7 @@ export namespace storagebatchoperations_v1 {
      */
     requestBody?: Schema$CancelJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Create extends StandardParameters {
     /**
      * Required. The optional `job_id` for this Job . If not specified, an id is generated. `job_id` should be no more than 128 characters and must include only characters available in DNS names, as defined by RFC-1123.
      */
@@ -1658,8 +1654,7 @@ export namespace storagebatchoperations_v1 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Delete extends StandardParameters {
     /**
      * Required. The `name` of the job to delete. Format: projects/{project_id\}/locations/global/jobs/{job_id\} .
      */
@@ -1669,15 +1664,13 @@ export namespace storagebatchoperations_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Get extends StandardParameters {
     /**
      * Required. `name` of the job to retrieve. Format: projects/{project_id\}/locations/global/jobs/{job_id\} .
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$List extends StandardParameters {
     /**
      * Optional. Filters results as defined by https://google.aip.dev/160.
      */
@@ -2272,8 +2265,7 @@ export namespace storagebatchoperations_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2284,22 +2276,19 @@ export namespace storagebatchoperations_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
