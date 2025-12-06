@@ -782,8 +782,7 @@ export namespace readerrevenuesubscriptionlinking_v1 {
     }
   }
 
-  export interface Params$Resource$Publications$Readers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Publications$Readers$Delete extends StandardParameters {
     /**
      * If set to true, any entitlements under the reader will also be purged.
      */
@@ -793,22 +792,19 @@ export namespace readerrevenuesubscriptionlinking_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Publications$Readers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Publications$Readers$Get extends StandardParameters {
     /**
      * Required. The resource name of the reader. Format: publications/{publication_id\}/readers/{ppid\}
      */
     name?: string;
   }
-  export interface Params$Resource$Publications$Readers$Getentitlements
-    extends StandardParameters {
+  export interface Params$Resource$Publications$Readers$Getentitlements extends StandardParameters {
     /**
      * Required. The name of the reader entitlements to retrieve. Format: publications/{publication_id\}/readers/{reader_id\}/entitlements
      */
     name?: string;
   }
-  export interface Params$Resource$Publications$Readers$Updateentitlements
-    extends StandardParameters {
+  export interface Params$Resource$Publications$Readers$Updateentitlements extends StandardParameters {
     /**
      * Output only. The resource name of the singleton.
      */
